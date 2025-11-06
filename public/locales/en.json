@@ -1,0 +1,15 @@
+{
+  "site": {
+    "title": "Smart Technology Expo",
+    "description": "Welcome to the Smart Technology Expo! Discover the latest innovations in smart technology and connect with industry leaders."
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "home": {
+    "al": "from",
+    "month": "NOVEMBER"
+  }
+}
