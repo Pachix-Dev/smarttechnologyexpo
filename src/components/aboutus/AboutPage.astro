@@ -275,45 +275,43 @@ const tr = (key: string, fallback: string = '') =>
     <section
       class='py-16 md:py-20 bg-linear-to-r from-red-600 via-red-500 to-[#9E2D25] relative overflow-hidden'
     >
-      <div class="absolute inset-0 bg-[url('/img/pattern.svg')] opacity-10">
-      </div>
-      <div class='container mx-auto px-4 text-center relative z-10'>
-        <h2
-          class='text-3xl md:text-5xl font-bold text-white mb-6'
-          data-aos='fade-up'
-          data-aos-duration='1000'
-        >
-          {tr('aboutPage.ready')}
-        </h2>
-        <p
-          class='text-white/90 text-lg md:text-xl mb-8 max-w-2xl mx-auto'
-          data-aos='fade-up'
-          data-aos-duration='1000'
-          data-aos-delay='200'
-        >
-          {tr('aboutPage.join_us')}
-        </p>
-        <div
-          class='flex flex-col sm:flex-row gap-4 justify-center'
-          data-aos='fade-up'
-          data-aos-duration='1000'
-          data-aos-delay='400'
-        >
-          <a
-            href='/#quiero-ser-expositor'
-            class='bg-white text-red-600 font-bold py-4 px-8 rounded-full text-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-xl'
-          >
-            {tr('menu.banner')}
-          </a>
-          <a
-            href='mailto:claudia.rodriguez@igeco.mx'
-            class='bg-transparent border-2 border-white text-white font-bold py-4 px-8 rounded-full text-lg hover:bg-white hover:text-red-600 transition-all duration-300 transform hover:scale-105'
-          >
-            Más Información
-          </a>
-        </div>
-      </div>
     </section>
+    <div class='container mx-auto px-4 text-center relative z-10'>
+      <h2
+        class='text-3xl md:text-5xl font-bold text-white mb-6'
+        data-aos='fade-up'
+        data-aos-duration='1000'
+      >
+        {tr('aboutPage.ready')}
+      </h2>
+      <p
+        class='text-white/90 text-lg md:text-xl mb-8 max-w-2xl mx-auto'
+        data-aos='fade-up'
+        data-aos-duration='1000'
+        data-aos-delay='200'
+      >
+        {tr('aboutPage.join_us')}
+      </p>
+      <div
+        class='flex flex-col sm:flex-row gap-4 justify-center'
+        data-aos='fade-up'
+        data-aos-duration='1000'
+        data-aos-delay='400'
+      >
+        <a
+          href='/#quiero-ser-expositor'
+          class='bg-white text-red-600 font-bold py-4 px-8 rounded-full text-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-xl'
+        >
+          {tr('menu.banner')}
+        </a>
+        <a
+          href='mailto:claudia.rodriguez@igeco.mx'
+          class='bg-transparent border-2 border-white text-white font-bold py-4 px-8 rounded-full text-lg hover:bg-white hover:text-red-600 transition-all duration-300 transform hover:scale-105'
+        >
+          Más Información
+        </a>
+      </div>
+    </div>
   </main>
 </Layout>
 
