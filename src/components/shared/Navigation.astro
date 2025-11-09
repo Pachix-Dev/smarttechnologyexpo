@@ -1,118 +1,350 @@
 ---
-import { getRelativeLocaleUrl } from 'astro:i18n';
+import {
+  Astronav,
+  MenuItems,
+  MenuIcon,
+  Dropdown,
+  DropdownItems,
+  DropdownSubmenu,
+  StickyHeader,
+} from 'astro-navbar'
 
-const currentLocale = Astro.currentLocale || 'es';
+import { useTranslations, getTranslation } from '../../utils/translations'
+import LanguageSwitcher from './LanguageSwitcher.astro'
+// ✨ Una sola línea para cargar traducciones!
+const { locale, translations } = await useTranslations(Astro.props, Astro)
 
-// Cargar traducciones para la navegación
-let translations = {};
-try {
-  const translationModule = await import(`../../../public/locales/${currentLocale}.json`);
-  translations = translationModule.default || translationModule;
-} catch (error) {
-  console.error(`Error loading nav translations:`, error);
+// 🎯 Helper para traducciones más elegante
+const tr = (key: string, fallback: string = '') =>
+  getTranslation(translations, key, fallback)
+
+const basePath = locale === 'en' ? '/en' : ''
+interface MenuItem {
+  title: string
+  href?: string
+  target?: string
+  items?: MenuItem[]
 }
 
-const t = translations as any;
+const menu: MenuItem[] = [
+  {
+    title: tr('menu.about_us'),
+    href: '/acerca-de-nosotros',
+  },
+  {
+    title: tr('menu.exhibitors'),
+    href: '/#quiero-ser-expositor',
+  },
+  /*
+  {
+    title: tr('menu.visitors'),
+    items: [
+      { title: tr('menu.visitors_1'), href: '/por-que-visitarnos' },
+      { title: tr('hotels.title'), href: '/por-que-visitarnos/#tarifas' },
+      {
+        title: tr('hotels.visitplan'),
+        href: '/por-que-visitarnos/#planea-tu-visita',
+      },
+      {
+        title: tr('menu.visitors_5'),
+        href: '/programa-2025',
+      },
+    ],
+  },
+  
+  {
+    title: tr('menu.past_events'),
+    items: [
+      {
+        title: '2024',
+        items: [
+          {
+            title: tr('menu.itm2024_1'),
+            href: '/directorio-digital',
+          },
+          {
+            title: tr('menu.itm2024_2'),
 
-// URLs de navegación
-const homeUrl = getRelativeLocaleUrl(currentLocale, '/');
-const aboutUrl = getRelativeLocaleUrl(currentLocale, 'about');
+            href: '/files/PASAPORTE-ITM-2024-IMPRESION_compressed.pdf',
+            target: '_blank',
+          },
+          {
+            title: tr('menu.itm2024_3'),
+            href:
+              locale === 'en'
+                ? '/files/AFTERSHOW-REPORT-ITM-AMOF-2024-VF-ENG_compressed.pdf'
+                : '/files/RESULTADOS-ITM-AMOF-2024-VF-compressed.pdf',
+            target: '_blank',
+          },
+        ],
+      },
+      {
+        title: '2023',
+        items: [          
+          {
+            title: tr('menu.itm2023_2'),
 
-// Detectar página activa
-const currentPath = Astro.url.pathname;
-const isHome = currentPath === '/' || currentPath === `/${currentLocale}/` || currentPath === `/${currentLocale}`;
-const isAbout = currentPath.includes('about');
+            href:
+              locale === 'en'
+                ? '/files/Pasaporte-ITM-2023-ENG.pdf'
+                : '/files/Pasaporte-ITM-2023-ESP.pdf',
+            target: '_blank',
+          },
+          {
+            title: tr('menu.itm2023_3'),
+
+            href:
+              locale === 'en'
+                ? '/files/REPORT-ITM-2023-ENG.pdf'
+                : '/files/RESULTADOS-ITM-2023.pdf',
+            target: '_blank',
+          },
+        ],
+      },
+      {
+        title: '2022',
+        items: [
+          {
+            title: tr('menu.itm2022_1'),
+            href:
+              locale === 'en'
+                ? '/files/ENG-ITM-2022-RESULTS-v3.pdf'
+                : '/files/ESP-ITM-2022-RESULTADOS-v3.pdf',
+            target: '_blank',
+          },          
+          {
+            title: tr('menu.itm2022_3'),
+            href: '/files/ESP-Passport-ITM-2022.pdf',
+            target: '_blank',
+          },
+        ],
+      },
+      {
+        title: '2021',
+        items: [
+          {
+            title: tr('menu.itm2021_1'),
+            href:
+              locale === 'en'
+                ? '/files/ENG-Result-report-itm2021.pdf'
+                : '/files/ESP-Result-report-itm2021.pdf',
+            target: '_blank',
+          },          
+          {
+            title: tr('menu.itm2021_3'),
+            href: '/files/ESP-Passport-ITM-2021.pdf',
+            target: '_blank',
+          },
+        ],
+      },
+      {
+        title: '2020',
+        items: [          
+          {
+            title: tr('menu.itm2020_2'),
+            href: '/files/ESP-Passport-ITM-2020.pdf',
+            target: '_blank',
+          },
+          {
+            title: tr('menu.itm2020_3'),
+            href:
+              locale === 'en'
+                ? '/files/Aftershow-report-ITM-2020.pdf'
+                : '/files/Resultados-ITM-virtual-2020.pdf',
+            target: '_blank',
+          },
+        ],
+      },
+      {
+        title: '2019',
+        items: [          
+          {
+            title: tr('menu.itm2019_2'),
+            href: '/files/ESP-Passport-ITM-2019.pdf',
+            target: '_blank',
+          },
+          {
+            title: tr('menu.itm2019_3'),
+
+            href:
+              locale === 'en'
+                ? '/files/After-Show-report-bis-carta-2019.pdf'
+                : '/files/After-Show-Report-Esp-2019.pdf',
+            target: '_blank',
+          },
+        ],
+      },
+    ],
+  },*/
+  {
+    title: tr('menu.media_hub'),
+    items: [
+      { title: tr('menu.media_hub_2'), href: '/galeria' },
+      /*{ title: 'toolkit', href: '/toolkit' },
+      { title: tr('menu.media_hub_3'), href: '/descargar-logotipos' },
+      { title: 'roadhows', href: '/roadshows' },*/
+    ],
+  },
+]
 ---
 
-<nav class="main-nav">
-  <div class="nav-container">
-    <div class="nav-brand">
-      <a href={homeUrl} class="brand-link">
-        <span class="brand-text">{t.site?.title || 'Smart Technology Expo'}</span>
+<StickyHeader
+  class='sticky top-0 z-200 lg:flex justify-between items-center p-5 gap-5 w-full text-white font-bold bg-linear-to-r from-[#c7312a] to-[#8a2b23]'
+>
+  <Astronav closeOnClick>
+    <div class='flex w-full lg:w-auto justify-between items-center'>
+      <a href={`${basePath}/`}>
+        <img
+          src='/img/smarttecexpo_logo.svg'
+          alt='Industrial Transformation Mexico'
+          class='w-36'
+        />
       </a>
+      <div class='block lg:hidden'>
+        <MenuIcon class='w-6 h-6 text-white' />
+      </div>
     </div>
-    
-    <div class="nav-links">
-      <a 
-        href={homeUrl} 
-        class:list={['nav-link', { active: isHome }]}
-      >
-        {t.nav?.home || 'Inicio'}
-      </a>
-      <a 
-        href={aboutUrl} 
-        class:list={['nav-link', { active: isAbout }]}
-      >
-        {t.nav?.about || 'Acerca de'}
-      </a>
-    </div>
-  </div>
-</nav>
-
-<style>
-  .main-nav {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    padding: 1rem 0;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .nav-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .brand-link {
-    text-decoration: none;
-    color: white;
-  }
-  
-  .brand-text {
-    font-size: 1.5rem;
-    font-weight: bold;
-  }
-  
-  .nav-links {
-    display: flex;
-    gap: 2rem;
-    align-items: center;
-  }
-  
-  .nav-link {
-    color: white;
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    border-radius: 6px;
-    transition: all 0.3s ease;
-    font-weight: 500;
-  }
-  
-  .nav-link:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    transform: translateY(-1px);
-  }
-  
-  .nav-link.active {
-    background-color: rgba(255, 255, 255, 0.2);
-    font-weight: bold;
-  }
-  
-  @media (max-width: 768px) {
-    .nav-container {
-      padding: 0 1rem;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    
-    .brand-text {
-      font-size: 1.2rem;
-    }
-    
-    .nav-links {
-      gap: 1rem;
-    }
-  }
-</style>
+    <MenuItems class='hidden lg:flex'>
+      <ul class='flex flex-col items-center lg:flex-row gap-5 uppercase'>
+        {
+          menu.map((menuItem) => (
+            <li>
+              {menuItem.items ? (
+                <Dropdown class='group'>
+                  <button class='flex items-center uppercase'>
+                    <span>{menuItem.title}</span>
+                  </button>
+                  <DropdownItems class='relative'>
+                    <div class='lg:absolute bg-black top-2 border shadow rounded p-2 w-max'>
+                      <ul>
+                        {menuItem.items.map((subItem) => (
+                          <li class='p-2'>
+                            {subItem.items ? (
+                              <DropdownSubmenu class='group/submenu'>
+                                <button class='flex w-full items-center justify-between uppercase'>
+                                  <span>{subItem.title}</span>
+                                  <svg
+                                    xmlns='http://www.w3.org/2000/svg'
+                                    fill='none'
+                                    viewBox='0 0 24 24'
+                                    stroke-width='3'
+                                    stroke='currentColor'
+                                    class='w-3 h-3 mt-0.5 group-open/submenu:rotate-180'
+                                  >
+                                    <path
+                                      stroke-linecap='round'
+                                      stroke-linejoin='round'
+                                      d='M8.25 4.5l7.5 7.5-7.5 7.5'
+                                    />
+                                  </svg>
+                                </button>
+                                <DropdownItems class='relative'>
+                                  <ul class='lg:absolute bg-black top-0 left-full w-40 border shadow rounded p-2 '>
+                                    {subItem.items.map((nestedSubItem) => (
+                                      <li class='p-2'>
+                                        {nestedSubItem.items ? (
+                                          <DropdownSubmenu class='group/nestedsubmenu'>
+                                            <button class='flex w-full items-center justify-between uppercase'>
+                                              <span>{nestedSubItem.title}</span>
+                                              <svg
+                                                xmlns='http://www.w3.org/2000/svg'
+                                                fill='none'
+                                                viewBox='0 0 24 24'
+                                                stroke-width='3'
+                                                stroke='currentColor'
+                                                class='w-3 h-3 mt-0.5 group-open/nestedsubmenu:rotate-180'
+                                              >
+                                                <path
+                                                  stroke-linecap='round'
+                                                  stroke-linejoin='round'
+                                                  d='M8.25 4.5l7.5 7.5-7.5 7.5'
+                                                />
+                                              </svg>
+                                            </button>
+                                            <DropdownItems class='relative'>
+                                              <ul class='lg:absolute bg-white top-0 left-full w-40 border shadow rounded p-2'>
+                                                {nestedSubItem.items.map(
+                                                  (deepSubItem) => (
+                                                    <li>
+                                                      <a
+                                                        href={
+                                                          deepSubItem?.target
+                                                            ? deepSubItem.href
+                                                            : `${basePath}${deepSubItem.href}`
+                                                        }
+                                                        {...(deepSubItem.target && {
+                                                          target:
+                                                            deepSubItem.target,
+                                                        })}
+                                                      >
+                                                        {deepSubItem.title}
+                                                      </a>
+                                                    </li>
+                                                  )
+                                                )}
+                                              </ul>
+                                            </DropdownItems>
+                                          </DropdownSubmenu>
+                                        ) : (
+                                          <a
+                                            href={
+                                              nestedSubItem?.target
+                                                ? nestedSubItem.href
+                                                : `${basePath}${nestedSubItem.href}`
+                                            }
+                                            {...(nestedSubItem.target && {
+                                              target: nestedSubItem.target,
+                                            })}
+                                          >
+                                            {nestedSubItem.title}
+                                          </a>
+                                        )}
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </DropdownItems>
+                              </DropdownSubmenu>
+                            ) : (
+                              <a
+                                href={
+                                  subItem?.target
+                                    ? subItem.href
+                                    : `${basePath}${subItem.href}`
+                                }
+                                {...(subItem.target && {
+                                  target: subItem.target,
+                                })}
+                              >
+                                {subItem.title}
+                              </a>
+                            )}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </DropdownItems>
+                </Dropdown>
+              ) : (
+                <a
+                  href={
+                    menuItem?.target
+                      ? menuItem.href
+                      : `${basePath}${menuItem.href}`
+                  }
+                  {...(menuItem.target && {
+                    target: menuItem.target,
+                  })}
+                >
+                  {menuItem.title}
+                </a>
+              )}
+            </li>
+          ))
+        }
+        <div class='language-switcher-container'>
+          <LanguageSwitcher />
+        </div>
+      </ul>
+    </MenuItems>
+  </Astronav>
+</StickyHeader>

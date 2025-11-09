@@ -1,0 +1,266 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import { useTranslations, getTranslation } from '../../utils/translations'
+import Gallery from './Gallery.astro'
+
+import {
+  startupPitch2024,
+  itmujeres2024,
+  mtech2024,
+  octoker2024,
+  gallery2024,
+  galleryConferencias2024,
+} from '../../data/constans_gallery_by_year.ts'
+export interface Props {
+  locale?: string
+}
+
+// ✨ Una sola línea para cargar traducciones!
+const { translations } = await useTranslations(Astro.props, Astro)
+
+// 🎯 Helper para traducciones más elegante (opcional)
+const tr = (key: string, fallback: string = '') =>
+  getTranslation(translations, key, fallback)
+---
+
+<Layout
+  title={tr('site.title', 'Smart Technology Expo')}
+  description={tr('site.description', 'Expo de tecnología inteligente')}
+>
+  <main class='bg-linear-to-b from-white via-gray-50 to-white'>
+    <!-- Hero Section -->
+    <div
+      class='relative overflow-hidden bg-linear-to-r from-red-600 via-red-500 to-pink-600 py-20 md:py-28'
+    >
+    </div>
+    <div class='container mx-auto px-4 relative z-10'>
+      <h1
+        class='text-center text-4xl md:text-6xl font-extrabold text-white mb-4'
+        data-aos='fade-down'
+        data-aos-duration='1000'
+      >
+        {tr('gallery.title')}
+      </h1>
+      <div
+        class='w-24 h-1 bg-white mx-auto rounded-full mb-6'
+        data-aos='zoom-in'
+        data-aos-duration='800'
+        data-aos-delay='300'
+      >
+      </div>
+      <p
+        class='text-center text-white/90 text-lg md:text-xl max-w-2xl mx-auto'
+        data-aos='fade-up'
+        data-aos-duration='1000'
+        data-aos-delay='400'
+      >
+        {tr('gallery.subtitle')}
+      </p>
+    </div>
+    <!-- Decorative wave -->
+    <div class='absolute -bottom-1 left-0 right-0'>
+      <svg
+        viewBox='0 0 1440 120'
+        fill='none'
+        xmlns='http://www.w3.org/2000/svg'
+      >
+        <path
+          d='M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z'
+          fill='white'></path>
+      </svg>
+    </div>
+  </main>
+
+  <!-- Gallery Sections -->
+  <div class='container mx-auto px-4 py-16'>
+    <!-- ITM 2024 Section -->
+    <section class='mb-20' data-aos='fade-up' data-aos-duration='800'>
+      <div class='flex items-center justify-between mb-8'>
+        <div class='flex items-center gap-4'>
+          <div class='w-2 h-12 bg-red-600 rounded-full'></div>
+          <div>
+            <h2 class='text-3xl md:text-4xl font-bold text-gray-900'>
+              {tr('gallery.itm_2024')}
+            </h2>
+            <p class='text-gray-600 mt-1'>
+              {gallery2024.length}
+              {tr('gallery.total_photos')}
+            </p>
+          </div>
+        </div>
+        <div
+          class='hidden md:flex w-20 h-20 bg-red-50 rounded-2xl items-center justify-center text-red-600 text-2xl font-bold'
+        >
+          2024
+        </div>
+      </div>
+      <Gallery
+        images={gallery2024}
+        galleryID='gallery-expositores-2024'
+        class='mt-8'
+      />
+    </section>
+
+    <!-- Divider -->
+    <div
+      class='flex items-center justify-center gap-4 my-16'
+      data-aos='zoom-in'
+    >
+      <div
+        class='h-px bg-linear-to-r from-transparent via-red-300 to-transparent flex-1'
+      >
+      </div>
+      <div class='flex gap-2'>
+        <div class='w-2 h-2 bg-red-600 rounded-full animate-pulse'></div>
+        <div
+          class='w-2 h-2 bg-red-500 rounded-full animate-pulse'
+          style='animation-delay: 0.2s;'
+        >
+        </div>
+        <div
+          class='w-2 h-2 bg-red-400 rounded-full animate-pulse'
+          style='animation-delay: 0.4s;'
+        >
+        </div>
+      </div>
+      <div
+        class='h-px bg-linear-to-r from-transparent via-red-300 to-transparent flex-1'
+      >
+      </div>
+    </div>
+
+    <!-- Conferences Section -->
+    <section class='mb-20' data-aos='fade-up' data-aos-duration='800'>
+      <div class='flex items-center justify-between mb-8'>
+        <div class='flex items-center gap-4'>
+          <div class='w-2 h-12 bg-blue-600 rounded-full'></div>
+          <div>
+            <h2 class='text-3xl md:text-4xl font-bold text-gray-900'>
+              {tr('gallery.conferences')}
+            </h2>
+            <p class='text-gray-600 mt-1'>
+              {galleryConferencias2024.length}
+              {tr('gallery.total_photos')}
+            </p>
+          </div>
+        </div>
+        <div
+          class='hidden md:flex w-16 h-16 bg-blue-100 rounded-full items-center justify-center'
+        >
+          <svg
+            class='w-8 h-8 text-blue-600'
+            fill='currentColor'
+            viewBox='0 0 20 20'
+          >
+            <path
+              d='M10 3.5a1.5 1.5 0 013 0V4a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-.5a1.5 1.5 0 000 3h.5a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-.5a1.5 1.5 0 00-3 0v.5a1 1 0 01-1 1H6a1 1 0 01-1-1v-3a1 1 0 00-1-1h-.5a1.5 1.5 0 010-3H4a1 1 0 001-1V6a1 1 0 011-1h3a1 1 0 001-1v-.5z'
+            ></path>
+          </svg>
+        </div>
+      </div>
+      <Gallery
+        images={galleryConferencias2024}
+        galleryID='gallery-conferencias-2024'
+        class='mt-8'
+      />
+    </section>
+
+    <!-- Startup Pitch -->
+    <section data-aos='fade-up' data-aos-duration='800'>
+      <div class='flex items-center gap-4 mb-6'>
+        <div class='w-2 h-10 bg-purple-600 rounded-full'></div>
+        <div>
+          <h2 class='text-2xl md:text-3xl font-bold text-gray-900'>
+            {tr('gallery.startup_pitch')}
+          </h2>
+          <p class='text-gray-600 text-sm mt-1'>
+            {startupPitch2024.length}
+            {tr('gallery.total_photos')}
+          </p>
+        </div>
+      </div>
+      <Gallery
+        images={startupPitch2024}
+        galleryID='startup-pitch-2024'
+        class='mt-6'
+      />
+    </section>
+
+    <!-- ITMujeres -->
+    <section class='mt-10' data-aos='fade-up' data-aos-duration='800'>
+      <div class='flex items-center gap-4 mb-6'>
+        <div class='w-2 h-10 bg-pink-600 rounded-full'></div>
+        <div>
+          <h2 class='text-2xl md:text-3xl font-bold text-gray-900'>
+            {tr('gallery.itmujeres')}
+          </h2>
+          <p class='text-gray-600 text-sm mt-1'>
+            {itmujeres2024.length}
+            {tr('gallery.total_photos')}
+          </p>
+        </div>
+      </div>
+      <Gallery
+        images={itmujeres2024}
+        galleryID='itm-mujeres-2024'
+        class='mt-6'
+      />
+    </section>
+
+    <!-- M-Tech -->
+    <section class='mt-10' data-aos='fade-in' data-aos-duration='800'>
+      <div class='flex items-center gap-4 mb-6'>
+        <div class='w-2 h-10 bg-indigo-600 rounded-full'></div>
+        <div>
+          <h2 class='text-2xl md:text-3xl font-bold text-gray-900'>
+            {tr('gallery.mtech')}
+          </h2>
+          <p class='text-gray-600 text-sm mt-1'>
+            {mtech2024.length}
+            {tr('gallery.total_photos')}
+          </p>
+        </div>
+      </div>
+      <Gallery images={mtech2024} galleryID='m-tech-2024' class='mt-6' />
+    </section>
+
+    <!-- Oktoberfest -->
+    <section class='mt-10' data-aos='fade-in' data-aos-duration='800'>
+      <div class='flex items-center gap-4 mb-6'>
+        <div class='w-2 h-10 bg-amber-600 rounded-full'></div>
+        <div>
+          <h2 class='text-2xl md:text-3xl font-bold text-gray-900'>
+            {tr('gallery.oktoberfest')}
+          </h2>
+          <p class='text-gray-600 text-sm mt-1'>
+            {octoker2024.length}
+            {tr('gallery.total_photos')}
+          </p>
+        </div>
+      </div>
+      <Gallery images={octoker2024} galleryID='oktober-2024' class='mt-6' />
+    </section>
+  </div>
+</Layout>
+
+<style>
+  /* Custom scrollbar for gallery */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #e00d1b;
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #b00a16;
+  }
+</style>

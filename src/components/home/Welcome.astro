@@ -1,36 +1,62 @@
 ---
 import { useTranslations, getTranslation } from '../../utils/translations'
 // ✨ Una sola línea para cargar traducciones!
-const { locale, translations } = await useTranslations(Astro.props, Astro)
+const { translations } = await useTranslations(Astro.props, Astro)
 
 // 🎯 Helper para traducciones más elegante
 const tr = (key: string, fallback: string = '') =>
   getTranslation(translations, key, fallback)
 ---
 
-<div id='container'>
-  <main>
-    <section id='hero'>
-      <div class='hero-content'></div>
-    </section>
-  </main>
+<section class='h-full md:h-screen relative overflow-hidden'>
+  <!-- Video de fondo con animación suave -->
+  <video
+    class='w-full h-full absolute top-0 object-cover z-0 animate-fade-in animate-duration-2000'
+    muted
+    autoplay
+    loop
+  >
+    <source src='/video/bg_smartexpo.mp4' type='video/mp4' />
+    Your browser does not support the video tag.
+  </video>
 
-  <div id='news' class='box'>
-    <svg width='32' height='32' fill='none' xmlns='http://www.w3.org/2000/svg'
-      ><path
-        d='M24.667 12c1.333 1.414 2 3.192 2 5.334 0 4.62-4.934 5.7-7.334 12C18.444 28.567 18 27.456 18 26c0-4.642 6.667-7.053 6.667-14Zm-5.334-5.333c1.6 1.65 2.4 3.43 2.4 5.333 0 6.602-8.06 7.59-6.4 17.334C13.111 27.787 12 25.564 12 22.666c0-4.434 7.333-8 7.333-16Zm-6-5.333C15.111 3.555 16 5.556 16 7.333c0 8.333-11.333 10.962-5.333 22-3.488-.774-6-4-6-8 0-8.667 8.666-10 8.666-20Z'
-        fill='#111827'></path></svg
-    >
-    <h2>{tr('news.title', 'Smart Technology Expo 2025')}</h2>
-    <p>
-      {
-        tr(
-          'news.description',
-          locale === 'es'
-            ? 'Descubre las últimas innovaciones en tecnología inteligente. Conéctate con líderes de la industria.'
-            : 'Discover the latest innovations in smart technology. Connect with industry leaders.'
-        )
-      }
-    </p>
+  <!-- Overlay con gradiente para mejor legibilidad -->
+  <div class='absolute inset-0 bg-black/40 z-5'></div>
+
+  <div
+    class='container mx-auto py-10 md:py-0 px-4 relative z-10 grid md:flex gap-16 items-center justify-center h-full text-center text-white'
+  >
+    <!-- Logo y slogan con animaciones -->
+    <div class='animate-fade-up animate-delay-500 animate-duration-1000'>
+      <img
+        src='/img/smarttecexpo_logo.svg'
+        alt='Smart Technology Expo Logo'
+        class='mx-auto w-64 md:w-96 animate-pulse animate-duration-3000 animate-infinite'
+      />
+      <p
+        class='text-2xl md:text-3xl mt-5 animate-fade-up animate-delay-1000 animate-duration-1000'
+      >
+        Your business is our business.
+      </p>
+    </div>
+
+    <!-- Fecha del evento con animaciones -->
+    <div class='animate-fade-left animate-delay-1500 animate-duration-1000'>
+      <div>
+        <span class='text-3xl md:text-5xl font-bold'>18</span>
+        <span class='text-2xl font-bold mx-2'>{tr('home.al')}</span>
+        <span class='text-3xl md:text-5xl font-bold'>20</span>
+      </div>
+      <p
+        class='text-3xl md:text-5xl font-extrabold mt-4 animate-fade-up animate-delay-2500 animate-duration-1000'
+      >
+        {tr('home.month')} 2026
+      </p>
+      <p
+        class='text-3xl animate-fade-up animate-delay-3000 animate-duration-1000 text-gray-200'
+      >
+        EXPO GUADALAJARA
+      </p>
+    </div>
   </div>
-</div>
+</section>

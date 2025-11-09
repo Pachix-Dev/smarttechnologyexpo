@@ -1,0 +1,399 @@
+---
+import { useTranslations, getTranslation } from '../../utils/translations'
+
+// ✨ Una sola línea para cargar traducciones!
+const { translations } = await useTranslations(Astro.props, Astro)
+
+// 🎯 Helper para traducciones más elegante
+const tr = (key: string, fallback: string = '') =>
+  getTranslation(translations, key, fallback)
+---
+
+<section
+  class='mt-10 py-16 bg-linear-to-b from-gray-50 to-white relative'
+  id='quiero-ser-expositor'
+>
+  <div class='text-center mb-12' data-aos='fade-up' data-aos-duration='800'>
+    <h2 class='text-4xl md:text-5xl font-bold uppercase text-[#dc0c15]'>
+      {tr('home.become_exhibitor')}
+    </h2>
+    <img src='/img/line.png' alt='divider' class='w-11/12' />
+  </div>
+  <div class='mt-20 container mx-auto px-4 relative z-20'>
+    <div class='grid md:grid-cols-3 gap-14 md:gap-8 max-w-6xl mx-auto'>
+      <!-- RAW SPACE -->
+      <div
+        class='shadow-xl border-4 border-[#dc0c15] relative'
+        data-aos='fade-up'
+        data-aos-duration='800'
+        data-aos-delay='200'
+      >
+        <div
+          class='text-[#dc0c15] p-2 border-4 border-[#dc0c15] ms-auto w-fit absolute -top-10 -right-1'
+        >
+          <span class='text-sm font-semibold uppercase'
+            >{tr('home.regular_price')}</span
+          >
+          <span class='text-lg font-bold ml-2'
+            >{tr('pricing.raw_space.regular_price')}</span
+          >
+        </div>
+
+        <div class='bg-[#dc0c15] text-white p-4 text-center relative'>
+          <h3 class='text-2xl md:text-3xl font-bold'>
+            RAW <br /> SPACE
+          </h3>
+        </div>
+        <div class='bg-white'>
+          <!-- Precio principal -->
+          <div class='bg-gray-50 p-6 text-center border-b-4 border-gray-300'>
+            <div class='text-black text-sm font-semibold uppercase mb-2'>
+              {tr('home.rate_presale')}
+            </div>
+            <div class='text-4xl font-bold text-[#dc0c15] mb-2'>
+              {tr('pricing.raw_space.presale_price')}
+            </div>
+            <div class='text-sm text-gray-600'>
+              {tr('pricing.raw_space.unit')}
+            </div>
+          </div>
+
+          <!-- Contenido -->
+          <div class='text-black'>
+            <div
+              class='text-[#dc0c15] font-semibold mb-4 uppercase text-center'
+            >
+              {tr('home.includes')}
+            </div>
+
+            <div class='space-y-16'>
+              <div class='grid grid-cols-3 gap-2'>
+                <img
+                  src='/img/icon_gafete.png'
+                  alt='Gafete'
+                  class='w-8 mx-auto my-auto'
+                />
+                <span
+                  class='col-span-2'
+                  set:html={tr('pricing.raw_space.includes.0')}
+                />
+              </div>
+
+              <div class='grid grid-cols-3 gap-2'>
+                <img
+                  src='/img/icon_codigo.png'
+                  alt='Código'
+                  class='w-8 mx-auto my-auto'
+                />
+                <span class='col-span-2'
+                  >{tr('pricing.raw_space.includes.1')}</span
+                >
+              </div>
+
+              <div class='grid grid-cols-3 gap-2'>
+                <img
+                  src='/img/icon_directory.png'
+                  alt='Código'
+                  class='w-8 mx-auto my-auto'
+                />
+                <span
+                  class='col-span-2'
+                  set:html={tr('pricing.raw_space.includes.0')}
+                />
+              </div>
+
+              <!-- Exclusiones -->
+              <div class='grid grid-cols-3 gap-2'>
+                <img
+                  src='/img/icon_noinclude.png'
+                  alt='Gafete'
+                  class='w-8 mx-auto my-auto'
+                />
+                <span class='text-sm font-medium col-span-2'
+                  >{tr('pricing.raw_space.excludes')}</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONFORT PLUS -->
+      <div
+        class='shadow-xl border-4 border-[#dc0c15] relative'
+        data-aos='fade-up'
+        data-aos-duration='800'
+        data-aos-delay='200'
+      >
+        <div
+          class='text-[#dc0c15] p-2 border-x-4 border-t-4 border-[#dc0c15] ms-auto w-fit absolute -top-10 -right-1'
+        >
+          <span class='text-sm font-semibold uppercase'
+            >{tr('home.regular_price')}</span
+          >
+          <span class='text-lg font-bold ml-2'
+            >{tr('pricing.confort_plus.regular_price')}</span
+          >
+        </div>
+        <div class=''>
+          <div class='bg-[#dc0c15] text-white p-4 text-center relative'>
+            <h3 class='text-2xl md:text-3xl font-bold'>
+              CONFORT <br /> PLUS
+            </h3>
+          </div>
+          <div class='bg-white'>
+            <!-- Precio principal -->
+            <div class='bg-gray-50 p-6 text-center border-b-4 border-gray-300'>
+              <div class='text-black text-sm font-semibold uppercase mb-2'>
+                {tr('home.rate_presale')}
+              </div>
+              <div class='text-4xl font-bold text-[#dc0c15] mb-2'>
+                {tr('pricing.confort_plus.presale_price')}
+              </div>
+              <div class='text-sm text-gray-600'>
+                {tr('pricing.confort_plus.unit')}
+              </div>
+            </div>
+
+            <!-- Contenido -->
+            <div class='text-black'>
+              <div
+                class='text-[#dc0c15] font-semibold mb-4 uppercase text-center'
+              >
+                {tr('home.includes')}
+              </div>
+
+              <div class='space-y-4'>
+                <div class='grid grid-cols-3 gap-2'>
+                  <img
+                    src='/img/icon_stand.png'
+                    alt='Gafete'
+                    class='w-8 mx-auto my-auto'
+                  />
+                  <span class='col-span-2'
+                    >{tr('pricing.confort_plus.includes.0')}</span
+                  >
+                </div>
+
+                <div class='grid grid-cols-3 gap-2'>
+                  <img
+                    src='/img/icon_mueble.png'
+                    alt='Código'
+                    class='w-8 mx-auto my-auto'
+                  />
+                  <span class='col-span-2'
+                    >{tr('pricing.confort_plus.includes.1')}</span
+                  >
+                </div>
+
+                <div class='grid grid-cols-3 gap-2'>
+                  <img
+                    src='/img/icon_tv.png'
+                    alt='Código'
+                    class='w-8 mx-auto my-auto'
+                  />
+                  <span class='col-span-2'
+                    >{tr('pricing.confort_plus.includes.2')}</span
+                  >
+                </div>
+                <div class='grid grid-cols-3 gap-2'>
+                  <img
+                    src='/img/icon_conector.png'
+                    alt='Código'
+                    class='w-8 mx-auto my-auto'
+                  />
+                  <span class='col-span-2'
+                    >{tr('pricing.confort_plus.includes.3')}</span
+                  >
+                </div>
+                <div class='grid grid-cols-3 gap-2'>
+                  <img
+                    src='/img/icon_gafete.png'
+                    alt='Código'
+                    class='w-8 mx-auto my-auto'
+                  />
+                  <span class='col-span-2'
+                    >{tr('pricing.confort_plus.includes.4')}</span
+                  >
+                </div>
+                <div class='grid grid-cols-3 gap-2'>
+                  <img
+                    src='/img/icon_codigo.png'
+                    alt='Código'
+                    class='w-8 mx-auto my-auto'
+                  />
+                  <span class='col-span-2'
+                    >{tr('pricing.confort_plus.includes.5')}</span
+                  >
+                </div>
+                <div class='grid grid-cols-3 gap-2'>
+                  <img
+                    src='/img/icon_directory.png'
+                    alt='Código'
+                    class='w-8 mx-auto my-auto'
+                  />
+                  <span class='col-span-2'
+                    >{tr('pricing.confort_plus.includes.5')}</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- EQUIPADO BASICO -->
+      <div
+        class='shadow-xl border-4 border-[#dc0c15] bg-white relative'
+        data-aos='fade-up'
+        data-aos-duration='800'
+        data-aos-delay='200'
+      >
+        <div
+          class='text-[#dc0c15] p-2 border-x-4 border-t-4 border-[#dc0c15] ms-auto w-fit absolute -top-10 -right-1'
+        >
+          <span class='text-sm font-semibold uppercase'
+            >{tr('home.regular_price')}</span
+          >
+          <span class='text-lg font-bold ml-2'
+            >{tr('pricing.equipado_basico.regular_price')}</span
+          >
+        </div>
+        <div class=''>
+          <div class='bg-[#dc0c15] text-white p-4 text-center relative'>
+            <h3
+              class='text-2xl md:text-3xl font-bold'
+              set:html={tr('pricing.equipado_basico.title')}
+            />
+          </div>
+          <div class='bg-white'>
+            <!-- Precio principal -->
+            <div class='bg-gray-50 p-6 text-center border-b-4 border-gray-300'>
+              <div class='text-black text-sm font-semibold uppercase mb-2'>
+                {tr('home.rate_presale')}
+              </div>
+              <div class='text-4xl font-bold text-[#dc0c15] mb-2'>
+                {tr('pricing.equipado_basico.presale_price')}
+              </div>
+              <div class='text-sm text-gray-600'>
+                {tr('pricing.equipado_basico.unit')}
+              </div>
+            </div>
+
+            <!-- Contenido -->
+            <div class='text-black'>
+              <div
+                class='text-[#dc0c15] font-semibold mb-4 uppercase text-center'
+              >
+                {tr('home.includes')}
+              </div>
+
+              <div class='space-y-4'>
+                <div class='grid grid-cols-3 gap-2'>
+                  <img
+                    src='/img/icon_stand.png'
+                    alt='Gafete'
+                    class='w-8 mx-auto my-auto'
+                  />
+                  <span class='col-span-2'
+                    >{tr('pricing.equipado_basico.includes.0')}</span
+                  >
+                </div>
+
+                <div class='grid grid-cols-3 gap-2'>
+                  <img
+                    src='/img/icon_mueble.png'
+                    alt='Código'
+                    class='w-8 mx-auto my-auto'
+                  />
+                  <span class='col-span-2'
+                    >{tr('pricing.equipado_basico.includes.1')}</span
+                  >
+                </div>
+
+                <div class='grid grid-cols-3 gap-2'>
+                  <img
+                    src='/img/icon_conector.png'
+                    alt='Código'
+                    class='w-8 mx-auto my-auto'
+                  />
+                  <span class='col-span-2'
+                    >{tr('pricing.equipado_basico.includes.2')}</span
+                  >
+                </div>
+                <div class='grid grid-cols-3 gap-2'>
+                  <img
+                    src='/img/icon_gafete.png'
+                    alt='Código'
+                    class='w-8 mx-auto my-auto'
+                  />
+                  <span class='col-span-2'
+                    >{tr('pricing.equipado_basico.includes.3')}</span
+                  >
+                </div>
+                <div class='grid grid-cols-3 gap-2'>
+                  <img
+                    src='/img/icon_codigo.png'
+                    alt='Código'
+                    class='w-8 mx-auto my-auto'
+                  />
+                  <span class='col-span-2'
+                    >{tr('pricing.equipado_basico.includes.4')}</span
+                  >
+                </div>
+                <div class='grid grid-cols-3 gap-2'>
+                  <img
+                    src='/img/icon_directory.png'
+                    alt='Código'
+                    class='w-8 mx-auto my-auto'
+                  />
+                  <span class='col-span-2'
+                    >{tr('pricing.equipado_basico.includes.5')}</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div
+      class='text-center mt-12'
+      data-aos='fade-up'
+      data-aos-duration='800'
+      data-aos-delay='800'
+    >
+      <a
+        href='mailto:claudia.rodriguez@igeco.mx'
+        class='bg-[#dc0c15] hover:bg-red-600 text-white font-bold py-4 px-8 rounded-full text-4xl uppercase transition-all duration-300 transform hover:scale-105 shadow-xl inline-flex items-center gap-2 justify-center mx-auto'
+      >
+        <svg
+          xmlns='http://www.w3.org/2000/svg'
+          fill='none'
+          viewBox='0 0 24 24'
+          stroke-width='1.5'
+          stroke='currentColor'
+          class='w-9 h-9'
+        >
+          <path
+            stroke-linecap='round'
+            stroke-linejoin='round'
+            d='M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75'
+          ></path>
+        </svg>
+
+        {tr('home.contact_us')}
+      </a>
+      <p class='text-gray-600 mt-4 text-lg'>
+        ¿Tienes dudas? Contacta a nuestro equipo de ventas
+      </p>
+    </div>
+  </div>
+  <img
+    src='/img/vectores_red.png'
+    alt='vectores'
+    class='absolute bottom-0 right-0 z-0 pointer-events-none select-none opacity-0 xl:opacity-100'
+  />
+</section>

@@ -1,0 +1,221 @@
+---
+import { useTranslations, getTranslation } from '../../utils/translations'
+// ✨ Una sola línea para cargar traducciones!
+const { locale, translations } = await useTranslations(Astro.props, Astro)
+// 🎯 Helper para traducciones más elegante
+const tr = (key: string, fallback: string = '') =>
+  getTranslation(translations, key, fallback)
+
+interface Props {
+  events: Array<{
+    link?: string
+    src: string
+    alt: string
+    width?: number
+    height?: number
+    title?: string
+    subtitle?: string
+    subtitle_en?: string
+    description?: string
+    description_en?: string
+    date?: string
+    date_en?: string
+    location?: string
+    logo?: string
+  }>
+  isLeftToRight: boolean
+}
+
+const { events, isLeftToRight } = Astro.props as Props
+---
+
+<div
+  class='mt-4 py-10 enable-animation text-white bg-[#db0c15]'
+  data-aos='fade-in'
+  data-aos-duration='1500'
+>
+  <div
+    class='container mx-auto px-4 text-white'
+    data-aos='fade-up'
+    data-aos-duration='1500'
+  >
+    <p class='text-3xl md:text-6xl font-extrabold text-center'>
+      {tr('home.text_17')}
+    </p>
+    <p class='mt-5 text-center text-2xl' set:html={tr('home.text_18')} />
+  </div>
+  <div class='mt-10 marquee marquee--hover-pause'>
+    <div class='bg-gradient-left bg-linear-to-l from-transparent to-black'>
+    </div>
+    <div class='bg-gradient-right bg-linear-to-l to-transparent from-black'>
+    </div>
+    <ul
+      class='marquee__content grid grid-flow-col justify-center items-center gap-4'
+      style={`--animation: ${isLeftToRight ? 'scroll' : 'scroll-abs'}`}
+    >
+      {
+        events?.map((partner) => (
+          <li class='grid place-items-center rounded-xl border-[0.5px] border-gray-600 h-full w-96 md:w-[500px]'>
+            <a
+              href={partner.link}
+              target='_blank'
+              rel='noreferrer'
+              aria-label={partner.alt}
+              style={`background-image: url(${partner.src})`}
+              class='rounded-xl p-5 h-full bg-cover bg-bottom bg-no-repeat'
+            >
+              <div class='grid place-content-evenly gap-3 h-full'>
+                <div class='h-28 md:h-80 grid place-items-center'>
+                  <img src={partner.logo} width={partner.width} />
+                </div>
+                <div>
+                  <p class='text-2xl font-extrabold uppercase'>
+                    {partner.title}
+                  </p>
+                  <p class='mt-5 text-lg font-bold'>
+                    {locale === 'es' ? partner.subtitle : partner.subtitle_en}
+                  </p>
+                  <p class='mt-5'>
+                    {locale === 'es'
+                      ? partner.description
+                      : partner.description_en}
+                  </p>
+                </div>
+                <div class='mt-5 flex justify-center items-center gap-5 text-center'>
+                  <span class='border-[0.5px] border-gray-800 py-2 w-full rounded-xl bg-[#121212]'>
+                    {locale === 'es' ? partner.date : partner.date_en}
+                  </span>
+                  <span class='border-[0.5px] border-gray-800 py-2 w-full rounded-xl bg-[#121212]'>
+                    {partner.location}
+                  </span>
+                </div>
+              </div>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <ul
+      class='marquee__content grid grid-flow-col justify-center items-center gap-4'
+      style={`--animation: ${isLeftToRight ? 'scroll' : 'scroll-abs'}`}
+    >
+      {
+        events?.map((partner) => (
+          <li class='grid place-items-center rounded-xl border-[0.5px] border-gray-600 h-full w-96 md:w-[500px]'>
+            <a
+              href={partner.link}
+              target='_blank'
+              rel='noreferrer'
+              aria-label={partner.alt}
+              style={`background-image: url(${partner.src})`}
+              class='rounded-xl p-5 h-full bg-cover bg-bottom bg-no-repeat'
+            >
+              <div class='grid place-content-evenly gap-3 h-full'>
+                <div class='h-32 md:h-80 grid place-items-center'>
+                  <img src={partner.logo} width={partner.width} />
+                </div>
+                <div>
+                  <p class='text-2xl font-extrabold'>{partner.title}</p>
+                  <p class='mt-5 text-lg font-bold'>
+                    {locale === 'es' ? partner.subtitle : partner.subtitle_en}
+                  </p>
+                  <p class='mt-5'>
+                    {locale === 'es'
+                      ? partner.description
+                      : partner.description_en}
+                  </p>
+                </div>
+                <div class='mt-5 flex justify-center items-center gap-5 text-center'>
+                  <span class='border-[0.5px] border-gray-800 py-2 w-full rounded-xl bg-[#121212]'>
+                    {locale === 'es' ? partner.date : partner.date_en}
+                  </span>
+                  <span class='border-[0.5px] border-gray-800 py-2 w-full rounded-xl bg-[#121212]'>
+                    {partner.location}
+                  </span>
+                </div>
+              </div>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</div>
+
+<style>
+  .marquee {
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    user-select: none;
+    gap: 15px;
+  }
+
+  .bg-gradient-left {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 20%;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .bg-gradient-right {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 20%;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .marquee__content img {
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .marquee__content img:hover {
+    transform: scale(1.1);
+  }
+
+  @keyframes scroll {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(calc(0 - var(--gap)));
+    }
+  }
+
+  @keyframes scroll-abs {
+    from {
+      transform: translateX(calc(0 + var(--gap)));
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee__content {
+      animation-play-state: paused !important;
+    }
+  }
+
+  .enable-animation .marquee__content {
+    animation: var(--animation) 55s linear infinite;
+  }
+
+  .marquee--hover-pause:hover .marquee__content {
+    animation-play-state: paused;
+  }
+
+  @media screen and (max-width: 768px) {
+    /* Adjust styles for smaller screens */
+    .marquee {
+      --gap: 1rem;
+    }
+  }
+</style>

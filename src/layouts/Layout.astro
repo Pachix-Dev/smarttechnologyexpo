@@ -1,7 +1,7 @@
 ---
 import Navigation from '../components/shared/Navigation.astro'
-import LanguageSwitcher from '../components/shared/LanguageSwitcher.astro'
 import '../styles/global.css'
+import Footer from '../components/shared/Footer.astro'
 
 interface Props {
   title: string
@@ -21,17 +21,83 @@ const currentLocale = Astro.currentLocale || 'es'
     <meta name='generator' content={Astro.generator} />
     <title>{title}</title>
     <meta name='description' content={description} />
+    <link href='https://unpkg.com/aos@2.3.1/dist/aos.css' rel='stylesheet' />
   </head>
   <body>
     <header>
       <Navigation />
-      <div class='language-switcher-container'>
-        <LanguageSwitcher />
-      </div>
     </header>
     <main>
       <slot />
     </main>
+    <Footer />
+    <script
+      is:inline
+      data-astro-rerun
+      src='https://unpkg.com/aos@2.3.1/dist/aos.js'></script>
+    <script data-astro-rerun>
+      AOS.init()
+    </script>
+    <script is:inline data-astro-rerun>
+      // Agregar interactividad suave
+      document.addEventListener('DOMContentLoaded', function () {
+        // Crear partículas flotantes ocasionales
+        function createParticle() {
+          const particle = document.createElement('div')
+          particle.className = 'particle'
+          particle.style.left = Math.random() * 100 + '%'
+          particle.style.width = Math.random() * 4 + 2 + 'px'
+          particle.style.height = particle.style.width
+          particle.style.animationDelay = Math.random() * 2 + 's'
+
+          document.body.appendChild(particle)
+
+          setTimeout(() => {
+            particle.remove()
+          }, 8000)
+        }
+
+        // Crear partículas cada cierto tiempo
+        setInterval(createParticle, 3000)
+
+        // Efecto de partículas en el cursor
+        document.addEventListener('mousemove', function (e) {
+          const cursor = document.createElement('div')
+          cursor.style.position = 'fixed'
+          cursor.style.left = e.clientX + 'px'
+          cursor.style.top = e.clientY + 'px'
+          cursor.style.width = '6px'
+          cursor.style.height = '6px'
+          cursor.style.background = '#ED332D'
+          cursor.style.borderRadius = '50%'
+          cursor.style.pointerEvents = 'none'
+          cursor.style.zIndex = '9999'
+          cursor.style.animation = 'fadeOut 1s ease-out forwards'
+
+          document.body.appendChild(cursor)
+
+          setTimeout(() => {
+            cursor.remove()
+          }, 1000)
+        })
+
+        // CSS para la animación de desvanecimiento
+        const style = document.createElement('style')
+        style.textContent = `
+                @keyframes fadeOut {
+                    0% {
+                        opacity: 1;
+                        transform: scale(1);
+                    }
+                    100% {
+                        opacity: 0;
+                        transform: scale(2);
+                    }
+                }
+            `
+        document.head.appendChild(style)
+      })
+    </script>
   </body>
 </html>
 

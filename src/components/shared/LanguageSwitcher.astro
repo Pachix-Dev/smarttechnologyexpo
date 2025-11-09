@@ -1,28 +1,30 @@
 ---
-import { getRelativeLocaleUrl } from 'astro:i18n';
+import { getRelativeLocaleUrl } from 'astro:i18n'
 
-const currentLocale = Astro.currentLocale || 'es';
-const currentPath = Astro.url.pathname.replace(/^\/[a-z]{2}\//, '/').replace(/^\//, '');
+const currentLocale = Astro.currentLocale || 'es'
+const currentPath = Astro.url.pathname
+  .replace(/^\/[a-z]{2}\//, '/')
+  .replace(/^\//, '')
 
 // URLs para cambiar idioma
-const esUrl = getRelativeLocaleUrl('es', currentPath);
-const enUrl = getRelativeLocaleUrl('en', currentPath);
+const esUrl = getRelativeLocaleUrl('es', currentPath)
+const enUrl = getRelativeLocaleUrl('en', currentPath)
 ---
 
-<div class="language-switcher">
-  <a 
-    href={esUrl} 
+<div class='language-switcher'>
+  <a
+    href={esUrl}
     class:list={['lang-link', { active: currentLocale === 'es' }]}
-    aria-label="Cambiar a español"
+    aria-label='Cambiar a español'
   >
-    🇪🇸 ES
+    ES
   </a>
-  <a 
-    href={enUrl} 
+  <a
+    href={enUrl}
     class:list={['lang-link', { active: currentLocale === 'en' }]}
-    aria-label="Switch to English"
+    aria-label='Switch to English'
   >
-    🇺🇸 EN
+    EN
   </a>
 </div>
 
@@ -32,18 +34,18 @@ const enUrl = getRelativeLocaleUrl('en', currentPath);
     gap: 1rem;
     align-items: center;
   }
-  
+
   .lang-link {
     text-decoration: none;
     padding: 0.5rem;
     border-radius: 4px;
     transition: background-color 0.2s;
   }
-  
+
   .lang-link:hover {
     background-color: rgba(255, 255, 255, 0.1);
   }
-  
+
   .lang-link.active {
     background-color: rgba(255, 255, 255, 0.2);
     font-weight: bold;
