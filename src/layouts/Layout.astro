@@ -6,21 +6,123 @@ import Footer from '../components/shared/Footer.astro'
 interface Props {
   title: string
   description: string
+  keywords?: string
+  ogImage?: string
+  ogType?: string
+  canonical?: string
 }
 
-const { title, description } = Astro.props
 const currentLocale = Astro.currentLocale || 'es'
+const siteUrl = Astro.site || 'http://smarttechnologyexpo.mx'
+
+const defaultKeywords =
+  currentLocale === 'es'
+    ? 'Smart Technology Expo, tecnología inteligente México, Industria 4.0, tecnología industrial México, manufactura inteligente, automatización industrial, robotización, Internet of Things, IIoT, transformación digital, fábrica inteligente, smart factory, manufactura aditiva, logística inteligente, expo tecnología, innovación industrial, maquinaria industrial, soluciones industriales, conferencias tecnología, networking industrial, León Guanajuato'
+    : 'Smart Technology Expo, smart technology Mexico, Industry 4.0, industrial technology Mexico, smart manufacturing, industrial automation, robotics, Internet of Things, IIoT, digital transformation, smart factory, additive manufacturing, intelligent logistics, technology expo, industrial innovation, industrial machinery, industrial solutions, technology conferences, industrial networking, León Guanajuato'
+
+const {
+  title,
+  description,
+  keywords = defaultKeywords,
+  ogImage = '/img/og-image.jpg',
+  ogType = 'website',
+  canonical = Astro.url.pathname,
+} = Astro.props
+
+const canonicalURL = new URL(canonical, siteUrl).href
+const fullOgImage = new URL(ogImage, siteUrl).href
 ---
 
 <!doctype html>
 <html lang={currentLocale}>
   <head>
     <meta charset='UTF-8' />
-    <meta name='viewport' content='width=device-width' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
     <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
     <meta name='generator' content={Astro.generator} />
+
+    <!-- Primary Meta Tags -->
     <title>{title}</title>
+    <meta name='title' content={title} />
     <meta name='description' content={description} />
+    <meta name='keywords' content={keywords} />
+    <meta name='author' content='Italian German Exhibition Company Mexico' />
+    <meta name='robots' content='index, follow' />
+    <meta name='language' content={currentLocale} />
+    <link rel='canonical' href={canonicalURL} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property='og:type' content={ogType} />
+    <meta property='og:url' content={canonicalURL} />
+    <meta property='og:title' content={title} />
+    <meta property='og:description' content={description} />
+    <meta property='og:image' content={fullOgImage} />
+    <meta
+      property='og:locale'
+      content={currentLocale === 'es' ? 'es_MX' : 'en_US'}
+    />
+    <meta property='og:site_name' content='Smart Technology Expo' />
+
+    <!-- Twitter Card -->
+    <meta name='twitter:card' content='summary_large_image' />
+    <meta name='twitter:url' content={canonicalURL} />
+    <meta name='twitter:title' content={title} />
+    <meta name='twitter:description' content={description} />
+    <meta name='twitter:image' content={fullOgImage} />
+
+    <!-- Alternate Languages -->
+    <link
+      rel='alternate'
+      hreflang='es'
+      href={new URL(Astro.url.pathname.replace('/en/', '/'), siteUrl).href}
+    />
+    <link
+      rel='alternate'
+      hreflang='en'
+      href={new URL('/en' + Astro.url.pathname, siteUrl).href}
+    />
+    <link
+      rel='alternate'
+      hreflang='x-default'
+      href={new URL('/', siteUrl).href}
+    />
+
+    <!-- Preconnect for performance -->
+    <link rel='preconnect' href='https://unpkg.com' />
+    <link rel='dns-prefetch' href='https://unpkg.com' />
+
+    <!-- Structured Data (JSON-LD) -->
+    <script
+      type='application/ld+json'
+      set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Event',
+        name: 'Smart Technology Expo 2026',
+        description: description,
+        url: siteUrl,
+        startDate: '2026-11-18',
+        endDate: '2026-11-20',
+        eventStatus: 'https://schema.org/EventScheduled',
+        eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+        location: {
+          '@type': 'Place',
+          name: 'EXPO GUADALAJARA',
+          address: {
+            '@type': 'PostalAddress',
+            addressLocality: 'Guadalajara',
+            addressRegion: 'Jalisco',
+            addressCountry: 'MX',
+          },
+        },
+        organizer: {
+          '@type': 'Organization',
+          name: 'Italian German Exhibition Company Mexico',
+          url: siteUrl,
+        },
+        image: fullOgImage,
+      })}
+    />
+
     <link href='https://unpkg.com/aos@2.3.1/dist/aos.css' rel='stylesheet' />
   </head>
   <body>
