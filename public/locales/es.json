@@ -163,5 +163,8 @@
     "oktoberfest": "Oktoberfest León",
     "view_more": "Ver más fotos",
     "total_photos": "fotos en total"
+  },
+  "directory": {
+        "title": "Bienvenid@ al directorio de expositores de 2025"
   }
 }

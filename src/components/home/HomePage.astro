@@ -4,7 +4,6 @@ import Welcome from './Welcome.astro'
 import Layout from '../../layouts/Layout.astro'
 import { useTranslations, getTranslation } from '../../utils/translations'
 import Description from './Description.astro'
-import StandPrice from './StandPrice.astro'
 import Highlights from './Highlights.astro'
 import { events } from '../../data/constans_events'
 import Events from './Events.astro'
@@ -27,7 +26,7 @@ const tr = (key: string, fallback: string = '') =>
 >
   <Welcome />
   <Description />
-  <StandPrice />
+
   <Highlights />
   <Events events={events} isLeftToRight={true} />
   <ContactTeam />

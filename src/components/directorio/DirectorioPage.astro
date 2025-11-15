@@ -1,0 +1,82 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import { useTranslations, getTranslation } from '../../utils/translations'
+
+import { SearchExihibitor } from '../shared/SearchExihibitor.jsx'
+
+export interface Props {
+  locale?: string
+}
+
+// ✨ Una sola línea para cargar traducciones!
+const { locale, translations } = await useTranslations(Astro.props, Astro)
+
+// 🎯 Helper para traducciones más elegante (opcional)
+const tr = (key: string, fallback: string = '') =>
+  getTranslation(translations, key, fallback)
+---
+
+<Layout
+  title={tr('directory.pageTitle', 'Directorio Digital 2025')}
+  description='Directorio Digital de Expositores de Smart Technology Expo 2025'
+>
+  <main class='relative bg-black'>
+    <section class='py-10 md:py-20'>
+      <div
+        data-aos='fade-in'
+        data-aos-duration='1000'
+        class='container mx-auto px-4'
+      >
+        <p
+          class='square_red text-white text-center text-4xl font-extrabold place-items-start py-5'
+        >
+          {tr('directory.title')}
+        </p>
+        <a
+          href='https://machinesitalia.org/'
+          target='_blank'
+          class='max-w-6xl mx-auto mt-5 flex'
+        >
+          <img
+            src='/img/banner_MACHINESITALIA.png'
+            alt='Schneider'
+            class='mx-auto'
+          />
+        </a>
+      </div>
+    </section>
+
+    <section
+      class='container mx-auto px-4 py-10 relative md:grid md:grid-flow-col gap-10'
+    >
+      <SearchExihibitor client:load language={locale} />
+      <div class='relative w-96'>
+        <div class='sticky top-32'>
+          <a href='https://machinesitalia.org/' target='_blank'>
+            <img
+              src='/img/banner_MACHINESITALIA.png'
+              alt='Schneider'
+              class='w-96'
+            />
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  body {
+    background-color: black;
+    color: white;
+    overflow-x: hidden;
+  }
+
+  .square_red {
+    display: grid;
+    place-items: center;
+    background: #dd0000;
+    overflow: hidden;
+    transform: skew(-10deg);
+  }
+</style>
