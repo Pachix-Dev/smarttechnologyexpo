@@ -11,7 +11,7 @@ import react from '@astrojs/react';
 
 // https://astro.build/config
 export default defineConfig({
-  site: "http://smarttechnologyexpo.mx/",
+  site: "https://smarttechnologyexpo.mx/",
 
   i18n: {
     defaultLocale: "es",
@@ -45,8 +45,8 @@ export default defineConfig({
       },
     ],
     sitemap: [
-      'http://smarttechnologyexpo.mx/sitemap-index.xml',
-      'http://smarttechnologyexpo.mx/sitemap-0.xml',
+      'https://smarttechnologyexpo.mx/sitemap-index.xml',
+      'https://smarttechnologyexpo.mx/sitemap-0.xml',
     ],
   }), react()]
 });
