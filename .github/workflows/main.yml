@@ -38,6 +38,6 @@ jobs:
           server: '${{ secrets.SERVER }}'
           port: '${{ secrets.SSH_PORT }}'
           local_path: './server'
-          remote_path: '/home/ecomondomexicoco/public_html'
+          remote_path: '/home/smarttechnologye/public_html'
           sftp_only: true
           password: '${{ secrets.SFTP_PASSWORD }}'
