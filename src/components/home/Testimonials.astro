@@ -1,0 +1,235 @@
+---
+import { useTranslations, getTranslation } from '../../utils/translations'
+// ✨ Una sola línea para cargar traducciones!
+const { translations } = await useTranslations(Astro.props, Astro)
+
+// 🎯 Helper para traducciones más elegante
+const tr = (key: string, fallback: string = '') =>
+  getTranslation(translations, key, fallback)
+
+// Testimonios de expositores
+const exhibitorsTestimonials = [
+  {
+    text: tr('testimonials.exhibitors.exhibitors_1'),
+    name: 'Filiberto Cruz Morales',
+    company: 'Beckhoff México',
+    role: 'Director General',
+    color: 'from-blue-500 to-purple-600',
+    image: '/img/testimoniales/filibertoCruz.webp'
+  },
+  {
+    text: tr('testimonials.exhibitors.exhibitors_2'),
+    name: 'Caroline Hoarau',
+    company: 'Schneider Electric México y CentroaméricaNo',
+    role: 'Directora de Automatización',
+    color: 'from-purple-500 to-pink-600',
+    image: '/img/team/person2.jpg'
+  },
+  {
+    text: tr('testimonials.exhibitors.exhibitors_3'),
+    name: 'Santiago Escalona Vázquez',
+    company: 'Nokia Networks México',
+    role: 'Director de Marketing Estratégico',
+    color: 'from-pink-500 to-red-600',
+    image: '/img/team/person3.jpg'
+  },
+  {
+    text: tr('testimonials.exhibitors.exhibitors_4'),
+    name: 'Laura Martínez',
+    company: 'Schneider Electric',
+    role: 'Gerente de Desarrollo de Negocios',
+    color: 'from-red-500 to-orange-600',
+    image: '/img/team/person4.jpg'
+  }
+]
+
+// Testimonios de visitantes
+const visitorsTestimonials = [
+  {
+    text: tr('testimonials.visitors.visitors_1'),
+    name: 'Pedro Ramírez',
+    company: 'Ford Motor Company',
+    role: 'Ingeniero Industrial',
+    color: 'from-emerald-500 to-teal-600',
+    image: '/img/team/person5.jpg'
+  },
+  {
+    text: tr('testimonials.visitors.visitors_2'),
+    name: 'María González',
+    company: 'BMW Group',
+    role: 'Directora de Operaciones',
+    color: 'from-teal-500 to-cyan-600',
+    image: '/img/team/person6.jpg'
+  },
+  {
+    text: tr('testimonials.visitors.visitors_3'),
+    name: 'Juan Martínez',
+    company: 'Coca-Cola FEMSA',
+    role: 'Consultor en Manufactura',
+    color: 'from-cyan-500 to-blue-600',
+    image: '/img/team/person7.jpg'
+  },
+  {
+    text: tr('testimonials.visitors.visitors_4'),
+    name: 'Ana López',
+    company: 'Grupo Bimbo',
+    role: 'Gerente de Innovación',
+    color: 'from-indigo-500 to-purple-600',
+    image: '/img/team/person8.jpg'
+  }
+]
+---
+
+<section class='py-12 md:py-20 bg-white relative overflow-hidden'>
+  <!-- Pattern decorativo de fondo -->
+  <div class='absolute inset-0 opacity-5'>
+    <svg class='w-full h-full' xmlns='http://www.w3.org/2000/svg'>
+      <defs>
+        <pattern id='grid' width='40' height='40' patternUnits='userSpaceOnUse'>
+          <path d='M 40 0 L 0 0 0 40' fill='none' stroke='currentColor' stroke-width='1'/>
+        </pattern>
+      </defs>
+      <rect width='100%' height='100%' fill='url(#grid)' />
+    </svg>
+  </div>
+
+  <div class='container mx-auto px-4 relative z-10'>
+    <!-- Header principal -->
+    <div class='text-center mb-16'>
+      <h2 class='text-4xl md:text-5xl font-black text-gray-900 mb-4'>
+        Lo que dicen de nosotros
+      </h2>
+      <div class='w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-6'></div>
+      <p class='text-xl text-gray-600 max-w-3xl mx-auto'>
+        Testimonios reales de empresas y profesionales que han participado en nuestros eventos
+      </p>
+    </div>
+
+    <!-- Testimonios de Expositores -->
+    <div class='mb-20'>
+      <div class='flex items-center justify-center gap-3 mb-10'>
+        <div class='w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-lg'>
+          <svg class='w-6 h-6 text-white' fill='currentColor' viewBox='0 0 20 20'>
+            <path d='M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z'/>
+          </svg>
+        </div>
+        <h3 class='text-2xl md:text-3xl font-bold text-gray-900'>
+          {tr('home.exhibitors')}
+        </h3>
+      </div>
+
+      <div class='grid md:grid-cols-2 lg:grid-cols-2 gap-6 max-w-5xl mx-auto'>
+        {exhibitorsTestimonials.map((testimonial, index) => (
+          <div
+            class='group relative bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-500 overflow-hidden p-6'
+            style={`animation: slideUp 0.6s ease-out ${index * 150}ms forwards; opacity: 0;`}
+          >
+            <!-- Imagen con bloques decorativos -->
+            <div class='relative mb-4 h-32'>
+              <!-- Bloques decorativos -->
+              <div class='absolute top-0 left-0 w-16 h-16 bg-gray-200 opacity-50'></div>
+              <div class={`absolute top-4 left-4 w-16 h-16 bg-gradient-to-br ${testimonial.color} opacity-30`}></div>
+              
+              <!-- Imagen -->
+              <div class='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 w-24 h-24'>
+                <img 
+                  src={testimonial.image} 
+                  alt={testimonial.name}
+                  class='w-full h-full object-contain'
+                />
+              </div>
+            </div>
+            
+            <!-- Contenido -->
+            <div class='text-center'>
+              <h3 class='text-lg font-bold text-gray-900 mb-1'>
+                {testimonial.name}
+              </h3>
+              <p class='text-sm font-semibold text-gray-700 mb-0.5'>{testimonial.company}</p>
+              <p class='text-xs text-gray-600 mb-3'>{testimonial.role}</p>
+              
+              <!-- Icono de cita -->
+              <svg class='w-6 h-6 text-red-600 mx-auto mb-2' fill='currentColor' viewBox='0 0 24 24'>
+                <path d='M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z' />
+              </svg>
+              
+              <p class='text-gray-700 text-sm leading-relaxed italic'>
+                {testimonial.text}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Testimonios de Visitantes -->
+    <div>
+      <div class='flex items-center justify-center gap-3 mb-10'>
+        <div class='w-12 h-12 rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center shadow-lg'>
+          <svg class='w-6 h-6 text-white' fill='currentColor' viewBox='0 0 20 20'>
+            <path d='M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z'/>
+          </svg>
+        </div>
+        <h3 class='text-2xl md:text-3xl font-bold text-gray-900'>
+          {tr('home.visitors')}
+        </h3>
+      </div>
+
+      <div class='grid md:grid-cols-2 lg:grid-cols-2 gap-6 max-w-5xl mx-auto'>
+        {visitorsTestimonials.map((testimonial, index) => (
+          <div
+            class='group relative bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-500 overflow-hidden p-6'
+            style={`animation: slideUp 0.6s ease-out ${index * 150}ms forwards; opacity: 0;`}
+          >
+            <!-- Imagen con bloques decorativos -->
+            <div class='relative mb-4 h-32'>
+              <!-- Bloques decorativos -->
+              <div class='absolute top-0 left-0 w-16 h-16 bg-gray-200 opacity-50'></div>
+              <div class={`absolute top-4 left-4 w-16 h-16 bg-gradient-to-br ${testimonial.color} opacity-30`}></div>
+              
+              <!-- Imagen -->
+              <div class='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 w-24 h-24'>
+                <img 
+                  src={testimonial.image} 
+                  alt={testimonial.name}
+                  class='w-full h-full object-contain'
+                />
+              </div>
+            </div>
+            
+            <!-- Contenido -->
+            <div class='text-center'>
+              <h3 class='text-lg font-bold text-gray-900 mb-1'>
+                {testimonial.name}
+              </h3>
+              <p class='text-sm font-semibold text-gray-700 mb-0.5'>{testimonial.company}</p>
+              <p class='text-xs text-gray-600 mb-3'>{testimonial.role}</p>
+              
+              <!-- Icono de cita -->
+              <svg class='w-6 h-6 text-red-600 mx-auto mb-2' fill='currentColor' viewBox='0 0 24 24'>
+                <path d='M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z' />
+              </svg>
+              
+              <p class='text-gray-700 text-sm leading-relaxed italic'>
+                {testimonial.text}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

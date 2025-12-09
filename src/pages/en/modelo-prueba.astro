@@ -1,0 +1,37 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { useTranslations, getTranslation } from "../../utils/translations";
+
+export interface Props {
+  locale?: string;
+}
+// ✨ Una sola línea para cargar traducciones!
+const { translations } = await useTranslations(Astro.props, Astro);
+
+// 🎯 Helper para traducciones más elegante (opcional)
+const tr = (key: string, fallback: string = "") =>
+  getTranslation(translations, key, fallback);
+---
+
+<Layout
+  title={tr("modeloPrueba.title", "Modelo de Prueba")}
+  description={tr(
+    "modeloPrueba.description",
+    "Aquí va la descripción del modelo de prueba."
+  )}
+>
+  <main class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-6">
+      {tr("modeloPrueba.title", "Modelo de Prueba")}
+    </h1>
+    <p class="mb-4">
+      {
+        tr(
+          "modeloPrueba.description",
+          "Aquí va la descripción del modelo de prueba."
+        )
+      }
+    </p>
+    <!-- Agrega más contenido relevante para la página de modelo de prueba -->
+  </main>
+</Layout>

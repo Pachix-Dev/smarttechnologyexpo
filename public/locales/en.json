@@ -108,5 +108,19 @@
   },
   "directory": {
         "title": "Welcome to the  2025 Exhibitor Directory"
+  },
+  "testimonials":{
+    "exhibitors":{
+      "exhibitors_1":"For Beckhoff, it is very important to participate in this event because it is a platform where we can make ourselves known in the Mexican market, showcase our technological advances, and contribute to the development of new automation projects.",
+      "exhibitors_2":"It is important for Schneider Electric to participate in Industrial Transformation Mexico 2023 because the geographical location is beneficial for bringing us closer to industries and bringing them our latest innovations and technologies. ITM 2023 is a platform where we can show the entire industry the benefits of automation and digitalization for optimizing business processes.",
+      "exhibitors_3":"It is essential to be here at Industrial Transformation Mexico because we showcase this company's global experience and to catalyze our presence in the Mexican market, ITM 2023 is the main channel for doing so. The 2023 edition of Industrial Transformation Mexico has been spectacular. The truth is that we have had a large audience compared to last year and greater interest in the topic of Industry 4.0 and digitalization.",
+      "exhibitors_4":"It is important to participate in Industrial Transformation Mexico 2023 because it is a forum for communication and exhibition within Mexico's industrial corridor, making it an excellent opportunity to showcase our technology. I found ITM to be a very interesting forum where we encountered brands and highly innovative technologies. I am grateful to Industrial Transformation Mexico for allowing us to participate in this event, which is so important for the industry."
+    },
+    "visitors":{
+      "visitors_1":"We were struck by the fact that it was the same Hannover Messe trade fair. Our company specializes in industrial process automation, which is why we are here. We attended to see the latest trends in automation and to make lots of contacts. It has been very interesting to see how all these leading companies in the industry come together in one place.",
+      "visitors_2":"I just arrived and noticed that there are many industrial automation and industrial equipment companies here. It's great to be able to connect with suppliers, meet exhibitors, and learn about their great ideas.",
+      "visitors_3":"It's an excellent idea to attend this expo to see the new technology on the market. I've come across many excellent exhibitors who provide the right support and service. I really enjoyed it and had a great experience.",
+      "visitors_4":"A very comprehensive fair in terms of exhibitors, conferences, and forums, it fully meets expectations, as I have also attended the one in Germany."
+    }
   }
 }
