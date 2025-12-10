@@ -122,5 +122,17 @@
       "visitors_3":"It's an excellent idea to attend this expo to see the new technology on the market. I've come across many excellent exhibitors who provide the right support and service. I really enjoyed it and had a great experience.",
       "visitors_4":"A very comprehensive fair in terms of exhibitors, conferences, and forums, it fully meets expectations, as I have also attended the one in Germany."
     }
+  },
+  "expositorsSection": {
+    "description": "Connect with an exclusive network of professional buyers looking for the most innovative technologies and solutions that are transforming the industry.",
+    "sede_description": "The new venue and our next industrial epicenter",
+    "topics_list": {
+      "topic_1": "The Bajío-Occidente region is now the engine of industrial growth in the country.",
+      "topic_2": "Innovation and talent ecosystem.",
+      "topic_3": "International connectivity with the U.S., Canada, and Europe.",
+      "topic_4": "Expo Guadalajara: world-class infrastructure.",
+      "topic_5": "Extensive business collaboration network."
+    },
+    "title_section": "Take advantage of this great opportunity to become an exhibitor! With launch pricing. Quote your space:"
   }
 }

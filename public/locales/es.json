@@ -127,5 +127,17 @@
       "visitors_3":"Es una excelente idea asistir a esta expo para ver la nueva tecnología que hay en el mercado. Me he encontrado con muchos expositores muy buenos que brindan el soporte y el servicio adecuado. Me ha gustado mucho y he vivido una gran experiencia",
       "visitors_4":"Una feria muy completa por los expositores, las conferencias y los foros que tiene, cumple con total expectativa, debido a que he asistido también a la de Alemania"
     }
+  },
+  "expositorsSection": {
+    "description": "Conecta con una exclusiva red de compradores profesionales en busca de las tecnologías y soluciones más innovadoras que están transformando la industria.",
+    "sede_description": "La nueva sede y nuestro próximo epicentro industrial",
+    "topics_list": {
+      "topic_1": "El Bajío-Occidente es hoy el motor del crecimiento industrial del país.",
+      "topic_2": "Ecosistema de innovación y talento.",
+      "topic_3": "Conectividad internacional con EE. UU., Canadá y Europa.",
+      "topic_4": "Expo Guadalajara: infraestructura de clase mundial.",
+      "topic_5": "Amplia red de colaboración empresarial."
+    },
+    "title_section": "¡Aprovecha esta gran oportunidad para convertirte en expositor! Con precio de lanzamiento. Cotiza tu espacio:"
   }
 }

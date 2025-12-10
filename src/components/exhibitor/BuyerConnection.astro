@@ -1,0 +1,179 @@
+---
+import { useTranslations, getTranslation } from "../../utils/translations";
+// ✨ Una sola línea para cargar traducciones!
+const { locale, translations } = await useTranslations(Astro.props, Astro);
+// 🎯 Helper para traducciones más elegante
+const tr = (key: string, fallback: string = "") =>
+  getTranslation(translations, key, fallback);
+---
+
+<section
+  class="relative py-20 md:py-28 bg-linear-to-b from-gray-50 to-white overflow-hidden"
+>
+  <div class="container mx-auto px-4 relative z-10">
+    <!-- Hero Section -->
+    <div class="max-w-6xl mx-auto mb-20">
+
+      <div class="text-center mb-12">
+        <h2
+          class="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-8 leading-tight"
+        >
+          {tr("expositorsSection.description")}
+        </h2>
+      </div>
+
+      <!-- Sede Card -->
+      <div class="relative overflow-hidden rounded-3xl shadow-2xl group">
+        <div class="grid md:grid-cols-2 gap-0">
+          <!-- Imagen de Guadalajara -->
+          <div class="relative h-64 md:h-auto overflow-hidden">
+            <img
+              src="/img/guadalajara.webp"
+              alt="Guadalajara"
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+            />
+            <div
+              class="absolute inset-0 bg-linear-to-r from-[#c7312a]/10 to-[#8a2b23]/10 mix-blend-multiply"
+            >
+            </div>
+
+            <!-- Badge flotante -->
+            <div class="absolute top-6 left-6">
+              <div
+                class="inline-flex items-center gap-2 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg"
+              >
+                <svg
+                  class="w-5 h-5 text-[#c7312a]"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                    clip-rule="evenodd"></path>
+                </svg>
+                <span class="font-bold text-sm text-gray-900"
+                  >Nueva Sede 2025</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Contenido -->
+          <div
+            class="relative bg-white p-8 md:p-12 flex flex-col justify-center"
+          >
+            <div
+              class="absolute top-0 right-0 w-32 h-32 bg-[#c7312a]/5 rounded-full -translate-y-10 translate-x-10"
+            >
+            </div>
+
+            <div class="relative">
+              <div class="inline-flex items-center gap-2 mb-6">
+                <div
+                  class="w-1 h-12 bg-linear-to-b from-[#c7312a] to-[#8a2b23] rounded-full"
+                >
+                </div>
+                <div>
+                  <p
+                    class="text-sm font-bold text-[#c7312a] uppercase tracking-wider"
+                  >
+                    Próximo Epicentro
+                  </p>
+                  <p class="text-xs text-gray-600">Innovación Industrial</p>
+                </div>
+              </div>
+
+              <h2
+                class="text-3xl md:text-4xl lg:text-6xl font-black text-gray-900 leading-tight"
+              >
+                Guadalajara
+              </h2><br />
+              <h3
+                class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight"
+              >
+                {tr("expositorsSection.sede_description")}
+              </h3>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Benefits Section -->
+      <div class="my-20">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {
+            ["topic_1", "topic_2", "topic_3", "topic_4", "topic_5"].map(
+              (topicKey, index) => {
+                const topic = tr(`expositorsSection.topics_list.${topicKey}`);
+                return (
+                  <div class="group relative">
+                    {/* Tarjeta con sombra y efecto elevación */}
+                    <div class="relative h-full bg-white rounded-3xl p-8 shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border-t-4 border-[#c7312a]">
+                      
+                      {/* Gradiente sutil de fondo */}
+                      <div class="absolute inset-0 bg-gradient-to-br from-gray-50/50 to-white pointer-events-none" />
+                      
+                      {/* Elemento decorativo circular */}
+                      <div class="absolute -right-8 -bottom-8 w-32 h-32 bg-[#c7312a]/5 rounded-full" />
+
+                      <div class="relative">
+                        {/* Ícono con círculo de fondo */}
+                        <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-[#c7312a] to-[#8a2b23] rounded-2xl shadow-lg mb-6">
+                          <svg
+                            class="w-8 h-8 text-white"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M13 10V3L4 14h7v7l9-11h-7z"
+                            />
+                          </svg>
+                        </div>
+
+                        {/* Texto */}
+                        <h4 class="text-xl font-bold text-gray-900 leading-tight">
+                          {topic}
+                        </h4>
+                      </div>
+                    </div>
+                  </div>
+                );
+              }
+            )
+          }
+        </div>
+      </div>
+
+      <!-- Imagen de Segmentos -->
+      <div
+        class="container mx-auto px-4 my-18">
+        <div class="relative">
+          <img
+            src={locale === "es"
+              ? "/img/segmentos_esp_new.png"
+              : "/img/segmentos_eng_new.png"}
+            alt="Smart Technology Expo Segments"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</section>
