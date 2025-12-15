@@ -81,33 +81,23 @@ const visitorsTestimonials = [
 ---
 
 <section class='py-12 md:py-20 bg-white relative overflow-hidden'>
-  <!-- Pattern decorativo de fondo -->
-  <div class='absolute inset-0 opacity-5'>
-    <svg class='w-full h-full' xmlns='http://www.w3.org/2000/svg'>
-      <defs>
-        <pattern id='grid' width='40' height='40' patternUnits='userSpaceOnUse'>
-          <path d='M 40 0 L 0 0 0 40' fill='none' stroke='currentColor' stroke-width='1'/>
-        </pattern>
-      </defs>
-      <rect width='100%' height='100%' fill='url(#grid)' />
-    </svg>
-  </div>
 
   <div class='container mx-auto px-4 relative z-10'>
     <!-- Header principal -->
-    <div class='text-center mb-16'>
+    <div class='text-center' data-aos='fade-up'>
       <h2 class='text-4xl md:text-5xl font-black text-gray-900 mb-4'>
-        Lo que dicen de nosotros
+        {tr('testimonials.title')}
       </h2>
       <div class='w-24 h-1 bg-linear-to-r from-[#dc2626] to-[#991b1b] mx-auto mb-6'></div>
-      <p class='text-xl text-gray-600 max-w-3xl mx-auto'>
-        Testimonios reales de empresas y profesionales que han participado en nuestros eventos
-      </p>
     </div>
-
+    <div class='text-center max-w-2xl mx-auto mb-16' data-aos='fade-up' data-aos-delay='100'>
+      <p class='text-gray-700 text-lg md:text-xl'>
+        {tr('testimonials.subtitle')}
+      </p>  
+    </div>
     <!-- Testimonios de Expositores -->
     <div class='mb-20'>
-      <div class='flex items-center justify-center gap-3 mb-10'>
+      <div class='flex items-center justify-center gap-3 mb-10' data-aos='fade-right'>
         <div class='w-12 h-12 rounded-full bg-linear-to-br from-[#dc2626] to-[#991b1b] flex items-center justify-center shadow-lg'>
           <svg class='w-6 h-6 text-white' fill='currentColor' viewBox='0 0 20 20'>
 
@@ -116,7 +106,7 @@ const visitorsTestimonials = [
           </svg>
         </div>
         <h3 class='text-2xl md:text-3xl font-bold text-gray-900'>
-          {tr('home.exhibitors')}
+          {tr('testimonials.exhibitors.title')}
         </h3>
       </div>
 
@@ -124,7 +114,8 @@ const visitorsTestimonials = [
         {exhibitorsTestimonials.map((testimonial, index) => (
           <div
             class='group relative bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-500 overflow-hidden p-6'
-            style={`animation: slideUp 0.6s ease-out ${index * 150}ms forwards; opacity: 0;`}
+            data-aos='fade-up'
+            data-aos-delay={index * 100}
           >
             <!-- Imagen con bloques decorativos -->
             <div class='relative mb-4 h-32'>
@@ -162,7 +153,7 @@ const visitorsTestimonials = [
 
     <!-- Testimonios de Visitantes -->
     <div>
-      <div class='flex items-center justify-center gap-3 mb-10'>
+      <div class='flex items-center justify-center gap-3 mb-10' data-aos='fade-left'>
         <div class='w-12 h-12 rounded-full bg-linear-to-br from-[#dc2626] to-[#991b1b] flex items-center justify-center shadow-lg'>
           <svg class='w-6 h-6 text-white' fill='currentColor' viewBox='0 0 20 20'>
 
@@ -171,7 +162,7 @@ const visitorsTestimonials = [
           </svg>
         </div>
         <h3 class='text-2xl md:text-3xl font-bold text-gray-900'>
-          {tr('home.visitors')}
+          {tr('testimonials.visitors.title')}
         </h3>
       </div>
 
@@ -179,7 +170,8 @@ const visitorsTestimonials = [
         {visitorsTestimonials.map((testimonial, index) => (
           <div
             class='group relative bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-500 overflow-hidden p-6'
-            style={`animation: slideUp 0.6s ease-out ${index * 150}ms forwards; opacity: 0;`}
+            data-aos='fade-up'
+            data-aos-delay={index * 100}
           >
             <!-- Imagen con bloques decorativos -->
             <div class='relative mb-4 h-32'>

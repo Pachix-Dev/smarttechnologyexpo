@@ -115,13 +115,17 @@
     "description": "¡Únete a Smart Technology Expo y lleva tu negocio al siguiente nivel! Como expositor, tendrás la oportunidad de mostrar tus productos y servicios a una audiencia altamente calificada, establecer conexiones valiosas y aumentar la visibilidad de tu marca en la industria tecnológica."
   },
   "testimonials":{
+    "title": "Lo que dicen de nosotros",
+    "subtitle": "Testimonios reales de empresas y profesionales que han participado en nuestros eventos",
     "exhibitors":{
+      "title":"Testimoniales de expositores",
       "exhibitors_1":"Para Beckhoff es muy importante participar en este evento porque es una plataforma donde nos podemos dar a conocer en el mercado mexicano, para mostrar los avances tecnológicos que tenemos, y contribuir con los desarrollos de nuevos proyectos de automatización",
       "exhibitors_2":"Es importante para Schneider Electric participar Industrial Transformation Mexico 2023 porque la ubicación geográfica es benéfica para acercarnos a las industrias y llevarles nuestras ultimas innovaciones y tecnologías. ITM 2023 es una plataforma donde podemos enseñar a toda la industria la bondad de la Automatización y Digitalización para optimizar las proceso de las empresas",
       "exhibitors_3":"Es esencial estar aquí en Industrial Transformation Mexico porque mostramos la experiencia global que tiene esta empresa y para catalizar nuestra presencia en el mercado en México, ITM 2023 es el principal canal para hacerlo. La edición 2023 de Industrial Transformation Mexico ha sido espectacular, la verdad es que hemos tenido una gran audiencia, comparada con el año anterior y un mayor interés por el tema de la evolución 4.0 y la digitalización",
       "exhibitors_4":"Es importante participar en Industrial Transformation Mexico 2023, debido a que es un foro de comunicación y de exposición dentro del corredor industrial de México, por ello es muy bueno presentar nuestra tecnología. ITM me ha parecido un foro muy interesante, donde encontramos, marcas, tecnologías muy innovadoras. Agradezco a Industrial Transformation Mexico por permitirnos participar en este evento tan importante para la industria"
     },
     "visitors":{
+      "title":"Testimoniales de visitantes",
       "visitors_1":"Nos llamo la atención que fuera la misma feria de Hannover Messe. Nuestra empresa se dedica a la automatización de procesos industriales y por esa razón estamos aquí. Asistimos para ver las nuevas tendencias en automatización y a realizar muchos contactos, ha sido muy interesante ver cómo todas esta empresas líderes en la industria se reúnen en un solo lugar.",
       "visitors_2":"Recién acabo de llegar y pude observar que hay muchas empresas de automatización industrial y equipos industriales. Es grandioso poder conectar con proveedores, conocer los expositores y sus grandes ideas",
       "visitors_3":"Es una excelente idea asistir a esta expo para ver la nueva tecnología que hay en el mercado. Me he encontrado con muchos expositores muy buenos que brindan el soporte y el servicio adecuado. Me ha gustado mucho y he vivido una gran experiencia",
