@@ -23,7 +23,7 @@ const exhibitorsTestimonials = [
     company: 'Schneider Electric México y CentroaméricaNo',
     role: 'Directora de Automatización',
     color: 'from-purple-500 to-pink-600',
-    image: '/img/team/person2.jpg'
+    image: '/img/testimoniales/carolinehoarau.webp'
   },
   {
     text: tr('testimonials.exhibitors.exhibitors_3'),
@@ -31,7 +31,7 @@ const exhibitorsTestimonials = [
     company: 'Nokia Networks México',
     role: 'Director de Marketing Estratégico',
     color: 'from-pink-500 to-red-600',
-    image: '/img/team/person3.jpg'
+    image: '/img/testimoniales/santiagoEscalona.webp'
   },
   {
     text: tr('testimonials.exhibitors.exhibitors_4'),
@@ -39,7 +39,7 @@ const exhibitorsTestimonials = [
     company: 'Schneider Electric',
     role: 'Gerente de Desarrollo de Negocios',
     color: 'from-red-500 to-orange-600',
-    image: '/img/team/person4.jpg'
+    image: '/img/testimoniales/javierCardenas.webp'
   }
 ]
 
@@ -47,35 +47,35 @@ const exhibitorsTestimonials = [
 const visitorsTestimonials = [
   {
     text: tr('testimonials.visitors.visitors_1'),
-    name: 'Pedro Ramírez',
-    company: 'Ford Motor Company',
-    role: 'Ingeniero Industrial',
+    name: 'Mauricio Rubio',
+    company: 'Global Automation de Bogotá',
+    role: '',
     color: 'from-emerald-500 to-teal-600',
-    image: '/img/team/person5.jpg'
+    image: '/img/testimoniales/mauricioRublo.webp'
   },
   {
     text: tr('testimonials.visitors.visitors_2'),
-    name: 'María González',
-    company: 'BMW Group',
-    role: 'Directora de Operaciones',
+    name: 'Directora comercial',
+    company: 'Airmat Del Caribe de Barranquilla, Colombia',
+    role: '',
     color: 'from-teal-500 to-cyan-600',
-    image: '/img/team/person6.jpg'
+    image: '/img/testimoniales/visitante.webp'
   },
   {
     text: tr('testimonials.visitors.visitors_3'),
-    name: 'Juan Martínez',
-    company: 'Coca-Cola FEMSA',
-    role: 'Consultor en Manufactura',
+    name: 'Miguel Ángel Lara',
+    company: 'Emprededor de negocio de maquinaria',
+    role: '',
     color: 'from-cyan-500 to-blue-600',
-    image: '/img/team/person7.jpg'
+    image: '/img/testimoniales/miguelAngel.webp'
   },
   {
     text: tr('testimonials.visitors.visitors_4'),
-    name: 'Ana López',
-    company: 'Grupo Bimbo',
-    role: 'Gerente de Innovación',
+    name: 'Jorge Estrada',
+    company: 'Director de Inversiones del gobierno de Tabasco',
+    role: '',
     color: 'from-indigo-500 to-purple-600',
-    image: '/img/team/person8.jpg'
+    image: '/img/testimoniales/jorgeEstrada.webp'
   }
 ]
 ---
@@ -99,7 +99,7 @@ const visitorsTestimonials = [
       <h2 class='text-4xl md:text-5xl font-black text-gray-900 mb-4'>
         Lo que dicen de nosotros
       </h2>
-      <div class='w-24 h-1 bg-linear-to-r from-blue-600 to-purple-600 mx-auto mb-6'></div>
+      <div class='w-24 h-1 bg-linear-to-r from-[#dc2626] to-[#991b1b] mx-auto mb-6'></div>
       <p class='text-xl text-gray-600 max-w-3xl mx-auto'>
         Testimonios reales de empresas y profesionales que han participado en nuestros eventos
       </p>
@@ -108,8 +108,10 @@ const visitorsTestimonials = [
     <!-- Testimonios de Expositores -->
     <div class='mb-20'>
       <div class='flex items-center justify-center gap-3 mb-10'>
-        <div class='w-12 h-12 rounded-full bg-linear-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-lg'>
+        <div class='w-12 h-12 rounded-full bg-linear-to-br from-[#dc2626] to-[#991b1b] flex items-center justify-center shadow-lg'>
           <svg class='w-6 h-6 text-white' fill='currentColor' viewBox='0 0 20 20'>
+
+
             <path d='M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z'/>
           </svg>
         </div>
@@ -126,12 +128,9 @@ const visitorsTestimonials = [
           >
             <!-- Imagen con bloques decorativos -->
             <div class='relative mb-4 h-32'>
-              <!-- Bloques decorativos -->
-              <div class='absolute top-0 left-0 w-16 h-16 bg-gray-200 opacity-50'></div>
-              <div class={`absolute top-4 left-4 w-16 h-16 bg-linear-to-br ${testimonial.color} opacity-30`}></div>
               
               <!-- Imagen -->
-              <div class='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 w-24 h-24'>
+              <div class='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 w-40'>
                 <img 
                   src={testimonial.image} 
                   alt={testimonial.name}
@@ -164,8 +163,10 @@ const visitorsTestimonials = [
     <!-- Testimonios de Visitantes -->
     <div>
       <div class='flex items-center justify-center gap-3 mb-10'>
-        <div class='w-12 h-12 rounded-full bg-linear-to-br from-emerald-500 to-teal-600 flex items-center justify-center shadow-lg'>
+        <div class='w-12 h-12 rounded-full bg-linear-to-br from-[#dc2626] to-[#991b1b] flex items-center justify-center shadow-lg'>
           <svg class='w-6 h-6 text-white' fill='currentColor' viewBox='0 0 20 20'>
+
+
             <path d='M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z'/>
           </svg>
         </div>
@@ -182,12 +183,9 @@ const visitorsTestimonials = [
           >
             <!-- Imagen con bloques decorativos -->
             <div class='relative mb-4 h-32'>
-              <!-- Bloques decorativos -->
-              <div class='absolute top-0 left-0 w-16 h-16 bg-gray-200 opacity-50'></div>
-              <div class={`absolute top-4 left-4 w-16 h-16 bg-linear-to-br ${testimonial.color} opacity-30`}></div>
               
               <!-- Imagen -->
-              <div class='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 w-24 h-24'>
+              <div class='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 w-40'>
                 <img 
                   src={testimonial.image} 
                   alt={testimonial.name}
