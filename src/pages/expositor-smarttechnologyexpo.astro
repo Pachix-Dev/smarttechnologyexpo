@@ -3,12 +3,12 @@ import Welcome from "../components/home/Welcome.astro";
 import Testimonials from "../components/home/Testimonials.astro";
 import Layout from "../layouts/Layout.astro";
 import BuyerConnection from "../components/exhibitor/BuyerConnection.astro";
-import { ContactForm } from "../components/formExpositores/ContactForm";
+import ExhibitorForm from "../components/formExpositores/ExhibitorForm.astro";
 ---
 
 <Layout title="Conviértete en expositor" description="Expositor page">
-    <Welcome />
-    <BuyerConnection />
-    <ContactForm client:visible />
-    <!-- <Testimonials /> -->
+  <Welcome />
+  <BuyerConnection />
+  <ExhibitorForm />
+  <Testimonials />
 </Layout>
