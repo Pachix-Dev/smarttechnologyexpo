@@ -6,27 +6,24 @@ const { locale, translations } = await useTranslations(Astro.props, Astro);
 const tr = (key: string, fallback: string = "") =>
   getTranslation(translations, key, fallback);
 ---
-
 <section
   class="relative py-20 md:py-28 bg-linear-to-b from-gray-50 to-white overflow-hidden"
 >
   <div class="container mx-auto px-4 relative z-10">
     <!-- Hero Section -->
     <div class="max-w-6xl mx-auto mb-20">
-
-      <div class="text-center mb-12">
+      <div class="text-center mb-12" data-aos="fade-up">
         <h2
           class="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-8 leading-tight"
         >
           {tr("expositorsSection.description")}
         </h2>
       </div>
-
       <!-- Sede Card -->
-      <div class="relative overflow-hidden rounded-3xl shadow-2xl group">
+      <div class="relative overflow-hidden rounded-3xl shadow-2xl group" data-aos="fade-up">
         <div class="grid md:grid-cols-2 gap-0">
           <!-- Imagen de Guadalajara -->
-          <div class="relative h-64 md:h-auto overflow-hidden">
+          <div class="relative h-64 md:h-auto overflow-hidden" data-aos="fade-right">
             <img
               src="/img/guadalajara.webp"
               alt="Guadalajara"
@@ -58,10 +55,10 @@ const tr = (key: string, fallback: string = "") =>
               </div>
             </div>
           </div>
-
           <!-- Contenido -->
           <div
             class="relative bg-white p-8 md:p-12 flex flex-col justify-center"
+            data-aos="fade-left"
           >
             <div
               class="absolute top-0 right-0 w-32 h-32 bg-[#c7312a]/5 rounded-full -translate-y-10 translate-x-10"
@@ -98,16 +95,15 @@ const tr = (key: string, fallback: string = "") =>
           </div>
         </div>
       </div>
-
       <!-- Benefits Section -->
-      <div class="my-20">
+      <div class="my-20" data-aos="fade-up">
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {
             ["topic_1", "topic_2", "topic_3", "topic_4", "topic_5"].map(
               (topicKey, index) => {
                 const topic = tr(`expositorsSection.topics_list.${topicKey}`);
                 return (
-                  <div class="group relative">
+                  <div class="group relative" data-aos="zoom-in" data-aos-delay={index * 100}>
                     {/* Tarjeta con sombra y efecto elevación */}
                     <div class="relative h-full bg-white rounded-3xl p-8 shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border-t-4 border-[#c7312a]">
                       
@@ -148,10 +144,11 @@ const tr = (key: string, fallback: string = "") =>
           }
         </div>
       </div>
-
       <!-- Imagen de Segmentos -->
       <div
-        class="container mx-auto px-4 my-18">
+        class="container mx-auto px-4 my-18"
+        data-aos="fade-up"
+      >
         <div class="relative">
           <img
             src={locale === "es"
@@ -163,7 +160,6 @@ const tr = (key: string, fallback: string = "") =>
       </div>
     </div>
   </div>
-
   <style>
     @keyframes slideUp {
       from {
