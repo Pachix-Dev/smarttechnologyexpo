@@ -138,5 +138,11 @@
       "topic_5": "Extensive business collaboration network."
     },
     "title_section": "Take advantage of this great opportunity to become an exhibitor! With launch pricing. Quote your space:"
+  },
+  "thankYouPage": {
+    "title": "Thank you for contacting us",
+    "description": "We have received your information correctly. One of our agents will contact you soon.",
+    "back_home": "Back to Home",
+    "textSocial": "Follow us on our social networks"
   }
 }

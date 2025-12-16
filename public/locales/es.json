@@ -143,5 +143,11 @@
       "topic_5": "Amplia red de colaboración empresarial."
     },
     "title_section": "¡Aprovecha esta gran oportunidad para convertirte en expositor! <br /> Con precio de lanzamiento. Cotiza tu espacio: "
+  },
+  "thankYouPage": {
+    "title": "Gracias por contactarnos",
+    "description": "Hemos recibido tu información correctamente. Pronto uno de nuestros agentes se pondrá en contacto contigo.",
+    "back_home": "Regresar al inicio",
+    "textSocial": "Síguenos en "
   }
 }
