@@ -6,9 +6,13 @@
   "menu": {
         "banner": "become an exhibitor",
         "about_us": "ABOUT US",        
-        "exhibitors": "I WANT TO BE AN EXHIBITOR",        
-        "media_hub": "Media Hub",
-        "exhibitor_section": "EXHIBITORS",       
+        "exhibitors": "I WANT TO BE AN EXHIBITOR",
+         "exhibitor_section": {
+            "title": "EXHIBITORS",
+            "item_1": "I want to be an exhibitor",
+            "item_2": "FLOOR PLAN STE 2026"
+        },         
+        "media_hub": "Media Hub",      
         "gallery": "GALLERY",
         "afeter_show_report": "AFTER SHOW REPORT 2025"  
     },

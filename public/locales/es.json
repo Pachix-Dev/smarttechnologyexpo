@@ -7,7 +7,11 @@
         "banner": "conviértete en expositor",
         "about_us": "ACERCA DE NOSOTROS",        
         "exhibitors": "QUIERO SER EXPOSITOR",
-        "exhibitor_section": "EXPOSITORES",     
+        "exhibitor_section": {
+            "title": "EXPOSITORES",
+            "item_1": "Quiero ser expositor",
+            "item_2": "Plano STE 2026"
+        }, 
         "media_hub": "Centro de Medios",        
         "gallery": "GALERÍA",
         "afeter_show_report": "REPORTE DE RESULTADOS 2025"

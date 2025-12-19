@@ -32,8 +32,18 @@ const menu: MenuItem[] = [
     href: "/acerca-de-nosotros",
   },
   {
-    title: tr("menu.exhibitor_section"),
-    href: "/expositores",
+    title: tr("menu.exhibitor_section.title"),
+    items: [
+      {
+        title: tr("menu.exhibitor_section.item_1"),
+        href: "/expositores",
+      },
+      {
+        title: tr("menu.exhibitor_section.item_2"),
+        target: '_blank',
+        href: "/files/PLANO_STE_2026_191225_modelo.pdf",
+      }
+    ]
   },
   // {
   //   title: tr('menu.exhibitors'),
