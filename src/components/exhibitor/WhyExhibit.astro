@@ -24,7 +24,7 @@ const tr = (key: string, fallback: string = "") =>
     <div class="grid grid-cols-2 md:grid-cols-2 gap-6 sm:w-4xl mx-auto">
       {/* Card 1 */}
       <div
-        class="bg-white rounded-2xl shadow-xl p-6 flex flex-col items-start hover:scale-[1.03] transition border border-[#e53935]"
+        class="why-exhibit-card bg-white rounded-2xl shadow-xl p-6 flex flex-col items-start transition-transform duration-300 ease-out border border-[#e53935]"
         data-aos="zoom-in"
         data-aos-delay="100"
       >
@@ -50,7 +50,7 @@ const tr = (key: string, fallback: string = "") =>
       </div>
       {/* Card 2 */}
       <div
-        class="bg-white rounded-2xl shadow-xl p-6 flex flex-col items-start hover:scale-[1.03] transition border border-[#e53935]"
+        class="why-exhibit-card bg-white rounded-2xl shadow-xl p-6 flex flex-col items-start transition-transform duration-300 ease-out border border-[#e53935]"
         data-aos="zoom-in"
         data-aos-delay="200"
       >
@@ -78,7 +78,7 @@ const tr = (key: string, fallback: string = "") =>
       </div>
       {/* Card 3 */}
       <div
-        class="bg-white rounded-2xl shadow-xl p-6 flex flex-col items-start hover:scale-[1.03] transition border border-[#e53935]"
+        class="why-exhibit-card bg-white rounded-2xl shadow-xl p-6 flex flex-col items-start transition-transform duration-300 ease-out border border-[#e53935]"
         data-aos="zoom-in"
         data-aos-delay="300"
       >
@@ -105,7 +105,7 @@ const tr = (key: string, fallback: string = "") =>
       </div>
       {/* Card 4 */}
       <div
-        class="bg-white rounded-2xl shadow-xl p-6 flex flex-col items-start hover:scale-[1.03] transition border border-[#e53935]"
+        class="why-exhibit-card bg-white rounded-2xl shadow-xl p-6 flex flex-col items-start transition-transform duration-300 ease-out border border-[#e53935]"
         data-aos="zoom-in"
         data-aos-delay="400"
       >
@@ -141,11 +141,13 @@ const tr = (key: string, fallback: string = "") =>
     max-width: 700px;
     margin: 2rem auto;
     border: 1px solid #e5e7eb;
-    transition: box-shadow 0.2s;
+    transition: all 0.3s ease-out;
   }
   .why-exhibit:hover {
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 0 10px 16px 0 rgba(229, 57, 53, 0.10);
+    transform: translateY(-4px);
   }
+
   .why-exhibit-title {
     display: flex;
     align-items: center;
@@ -181,7 +183,7 @@ const tr = (key: string, fallback: string = "") =>
     box-shadow: 0 2px 8px 0 rgba(30, 64, 175, 0.04);
     font-weight: 500;
     line-height: 1.5;
-    transition: background 0.2s;
+    transition: background 0.4s;
   }
   .why-exhibit-list li:hover {
     background: #f1f5fd;
@@ -210,5 +212,13 @@ const tr = (key: string, fallback: string = "") =>
       left: 0.6rem;
       top: 0.9rem;
     }
+  }
+  .why-exhibit-card {
+    /* Mueve la transición aquí para asegurar que se aplique correctamente */
+    transition: box-shadow 0.4s cubic-bezier(0.4,0,0.2,1), transform 0.3s cubic-bezier(0.4,0,0.2,1);
+  }
+  .why-exhibit-card:hover {
+    box-shadow: 0 10px 16px 0 rgba(229, 57, 53, 0.10);
+    transform: scale(1.015) translateY(-4px);
   }
 </style>
