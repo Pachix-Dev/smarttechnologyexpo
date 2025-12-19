@@ -1,0 +1,48 @@
+{
+  "title": "Participation Rates",
+  "raw": {
+    "name": "Raw Space",
+    "preventa": "Early Bird Rate",
+    "price": "410 USD",
+    "price_unit": "per m² + VAT",
+    "regular": "Regular price 430 USD",
+    "includes": "Includes:",
+    "badges": "Exhibitor badges",
+    "badges_note": "(3 per 9 m²)",
+    "qr": "Pre-registration code for unlimited visitors for your company",
+    "directory": "Mention in the directory",
+    "power": "One 110v electrical outlet",
+    "not_included": "Does not include carpet, construction, furniture, or services."
+  },
+  "basic": {
+    "name": "Basic Equipped",
+    "preventa": "Early Bird Rate",
+    "price": "475 USD",
+    "price_unit": "per m² + VAT",
+    "regular": "Regular price 500 USD",
+    "includes": "Includes:",
+    "structure": "Basic structure (carpet, partitions, fascia with sign)",
+    "furniture": "Standard furniture (counter, table and two chairs)",
+    "power": "One 110v electrical outlet",
+    "badges": "Exhibitor badges",
+    "badges_note": "(3 per 9 m²)",
+    "qr": "Pre-registration code for unlimited visitors for your company",
+    "directory": "Mention in the directory"
+  },
+  "plus": {
+    "name": "Confort Plus",
+    "preventa": "Early Bird Rate",
+    "price": "5,585 USD",
+    "price_unit": "+ VAT per 9m² stand",
+    "regular": "Regular price 5,865 USD",
+    "includes": "Includes:",
+    "design": "Predesigned construction with branding space",
+    "furniture": "Furniture",
+    "screen": "40” screen",
+    "power": "One 110v electrical outlet per 9m²",
+    "badges": "Exhibitor badges",
+    "badges_note": "(3 per 9 m²)",
+    "qr": "Pre-registration code for unlimited visitors for your company",
+    "directory": "Mention in the directory"
+  }
+}

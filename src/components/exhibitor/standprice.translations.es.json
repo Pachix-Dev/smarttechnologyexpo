@@ -1,0 +1,48 @@
+{
+  "title": "Tarifas de Participación",
+  "raw": {
+    "name": "Raw Space",
+    "preventa": "Tarifa Preventa",
+    "price": "410 USD",
+    "price_unit": "por m² + IVA",
+    "regular": "Precio regular 430 USD",
+    "includes": "Incluye:",
+    "badges": "Gafetes de expositor",
+    "badges_note": "(3 por cada 9 m²)",
+    "qr": "Código de pre-registro de visitantes ilimitados para su compañía",
+    "directory": "Mención en el directorio",
+    "power": "Un contacto eléctrico de 110v",
+    "not_included": "No incluye alfombra, construcción, mobiliario, ni servicios."
+  },
+  "basic": {
+    "name": "Equipado Básico",
+    "preventa": "Tarifa Preventa",
+    "price": "475 USD",
+    "price_unit": "por m² + IVA",
+    "regular": "Precio regular 500 USD",
+    "includes": "Incluye:",
+    "structure": "Estructura básica (alfombra, mamparas, antepecho con rótulo)",
+    "furniture": "Mobiliario estándar (counter, mesa y dos sillas)",
+    "power": "Un contacto eléctrico de 110v",
+    "badges": "Gafetes de expositor",
+    "badges_note": "(3 por cada 9 m²)",
+    "qr": "Código de pre-registro de visitantes ilimitados para su compañía",
+    "directory": "Mención en el directorio"
+  },
+  "plus": {
+    "name": "Confort Plus",
+    "preventa": "Tarifa Preventa",
+    "price": "5,585 USD",
+    "price_unit": "+ IVA por stand de 9m²",
+    "regular": "Precio regular 5,865 USD",
+    "includes": "Incluye:",
+    "design": "Construcción con diseño predeterminado y espacio para marca",
+    "furniture": "Mobiliario",
+    "screen": "Pantalla de 40”",
+    "power": "Un contacto eléctrico de 110v por cada 9m²",
+    "badges": "Gafetes de expositor",
+    "badges_note": "(3 por cada 9 m²)",
+    "qr": "Código de pre-registro de visitantes ilimitados para su compañía",
+    "directory": "Mención en el directorio"
+  }
+}
