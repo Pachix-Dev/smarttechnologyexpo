@@ -103,9 +103,12 @@ const tr = (key: string, fallback: string = "") =>
             </ul>
           </div>
         </div>
+        <div class="flex flex-col items-center mb-6">
+          <img src={`/img/stand_basico.webp`} alt="Stand Básico" class="w-[190px] sm:w-[250px] h-auto rounded-lg shadow-md border border-gray-100"/>
+        </div>
       </div>
 
-      {/* CONFORT PLUS */}
+      <!-- CONFORT PLUS -->
       <div class="relative flex flex-col border-2 border-red-600 rounded-2xl bg-white shadow-xl overflow-hidden hover:scale-105 transition-transform">
         <div class="p-7 flex flex-col h-full">
           <h3 class="text-2xl font-extrabold text-red-700 uppercase tracking-wide mb-2">Confort Plus</h3>
@@ -161,23 +164,29 @@ const tr = (key: string, fallback: string = "") =>
             </ul>
           </div>
         </div>
+        <div class="flex flex-col items-center mb-6">
+          <img src={`/img/stand_confort.webp`} alt="Stand Confort Plus" class="w-[190px] sm:w-[250px] h-auto rounded-lg shadow-md border border-gray-100"/>
+        </div>
       </div>
     </div>
 
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-
-      {/* EQUIPADO BÁSICO */}
-      <div class="">
-        <img src={`/assets/exhibitor/stand-prices/raw-space-${locale}.png`} alt="Raw Space Stand Example" class="w-full h-auto mt-4 rounded-lg shadow-md"/>
+    {/* Ejemplos de Stands */}
+    <!-- <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mt-12">
+      /* EQUIPADO BÁSICO */
+      <div class="bg-white rounded-2xl shadow-lg border border-red-600 flex flex-col items-center p-6">
+        <span class="inline-block px-4 py-1 rounded-full bg-red-600 text-white font-bold text-lg uppercase tracking-wide mb-4 shadow">
+          Stand Equipado Básico
+        </span>
+        <img src={`/img/stand_basico.webp`} alt="Stand Equipado Básico" class="w-[190px] sm:w-[320px] h-auto rounded-lg shadow-md border border-gray-100"/>
       </div>
-
-      {/* CONFORT PLUS */}
-      <div class="">
-        <img src={`/assets/exhibitor/stand-prices/raw-space-${locale}.png`} alt="Raw Space Stand Example" class="w-full h-auto mt-4 rounded-lg shadow-md"/>
+      /* CONFORT PLUS */
+      <div class="bg-white rounded-2xl shadow-lg border border-red-600 flex flex-col items-center p-6">
+        <span class="inline-block px-4 py-1 rounded-full bg-red-600 text-white font-bold text-lg uppercase tracking-wide mb-4 shadow">
+          Stand Confort Plus
+        </span>
+        <img src={`/img/stand_confort.webp`} alt="Stand Confort Plus" class="w-[190px] sm:w-[320px] h-auto rounded-lg shadow-md border border-gray-100"/>
       </div>
-    </div>
-
-
+    </div> -->
   </div>
 </section>
