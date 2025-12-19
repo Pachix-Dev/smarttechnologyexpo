@@ -115,7 +115,16 @@
   "beExhibitor":{
     "title": "Quiero ser expositor",
     "description": "¡Únete a Smart Technology Expo y lleva tu negocio al siguiente nivel! Como expositor, tendrás la oportunidad de mostrar tus productos y servicios a una audiencia altamente calificada, establecer conexiones valiosas y aumentar la visibilidad de tu marca en la industria tecnológica.",
-    "sede": "Nueva sede 2026"
+    "sede": "Nueva sede 2026",
+    "why_exhibit": {
+      "title": "Por qué exhibir en",
+      "reasons": {
+        "reason_1": "Nos transformamos para continuar impulsando el desarrollo industrial y la capacidad de innovación tecnológica en el país, reafirmando la posición estratégica de México en el ecosistema industrial a nivel global.​",
+        "reason_2": "Smart Technology Expo 2026 es la nueva plataforma donde la tecnología industrial se traduce en crecimiento, posicionamiento y ventas.",
+        "reason_3": "Conectando a proveedores de tecnología con tomadores de decisión, líderes de la industria, especialistas y ejecutivos que buscan soluciones reales para automatizar, digitalizar y hacer más competitiva su operación.",
+        "reason_4": "Un espacio diseñado para generar leads calificados, impulsar relaciones comerciales y acelerar la transformación industrial."
+      }
+    }
   },
   "testimonials":{
     "title": "Lo que dicen de nosotros",

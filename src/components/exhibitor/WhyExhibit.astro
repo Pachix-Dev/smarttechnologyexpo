@@ -1,0 +1,214 @@
+---
+import { useTranslations, getTranslation } from "../../utils/translations";
+const { locale, translations } = await useTranslations(Astro.props, Astro);
+const tr = (key: string, fallback: string = "") =>
+  getTranslation(translations, key, fallback);
+---
+<section
+  class="w-full flex justify-center py-14 px-2 md:px-0"
+  style="
+    background: radial-gradient(ellipse at 60% 20%, #e53935 0%, #b71c1c 60%, #232323 100%);
+  "
+  data-aos="fade-up"
+>
+  <div class="w-full max-w-6xl">
+    <div class="flex flex-col items-center mb-8" data-aos="fade-down">
+      <h2
+        class="text-2xl md:text-5xl font-black text-white text-center tracking-tight mb-2 shadow-black-950 uppercase"
+      >
+        ¿{tr("beExhibitor.why_exhibit.title")}
+        <br />
+        <span class="drop-shadow-lg"> Smart Technology Expo?</span>
+      </h2>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-2 gap-6 sm:w-4xl mx-auto">
+      {/* Card 1 */}
+      <div
+        class="bg-white rounded-2xl shadow-xl p-6 flex flex-col items-start hover:scale-[1.03] transition border border-[#e53935]"
+        data-aos="zoom-in"
+        data-aos-delay="100"
+      >
+        <div class="bg-[#e53935] rounded-xl p-2 mb-3">
+          {/* Icono bombilla innovación */}
+          <svg
+            class="w-7 h-7"
+            fill="none"
+            stroke="#fff"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 2a7 7 0 0 0-4 12.9V18a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-3.1A7 7 0 0 0 12 2zm0 0v2m0 16v2m-4-4h8"
+            ></path>
+          </svg>
+        </div>
+        <div class="font-semibold text-black text-base mb-1">
+          {tr("beExhibitor.why_exhibit.reasons.reason_1")}
+        </div>
+      </div>
+      {/* Card 2 */}
+      <div
+        class="bg-white rounded-2xl shadow-xl p-6 flex flex-col items-start hover:scale-[1.03] transition border border-[#e53935]"
+        data-aos="zoom-in"
+        data-aos-delay="200"
+      >
+        <div class="bg-black rounded-xl p-2 mb-3">
+          {/* Icono networking/conexión */}
+          <svg
+            class="w-7 h-7"
+            fill="none"
+            stroke="#e53935"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <circle cx="12" cy="12" r="3" stroke="#ffffff" />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M19.4 15a7 7 0 0 0-14.8 0M12 3v2m0 14v2m9-9h-2M5 12H3"
+              stroke="#fff"
+            ></path>
+          </svg>
+        </div>
+        <div class="font-semibold text-black text-base mb-1">
+          {tr("beExhibitor.why_exhibit.reasons.reason_2")}
+        </div>
+      </div>
+      {/* Card 3 */}
+      <div
+        class="bg-white rounded-2xl shadow-xl p-6 flex flex-col items-start hover:scale-[1.03] transition border border-[#e53935]"
+        data-aos="zoom-in"
+        data-aos-delay="300"
+      >
+        <div class="bg-[#e53935] rounded-xl p-2 mb-3">
+            {/* Icono gráfico de crecimiento */}
+            <svg
+              class="w-7 h-7"
+              fill="none"
+              stroke="#fff"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M3 17l6-6 4 4 8-8"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M14 7h7v7"
+              ></path>
+            </svg>
+          </div>
+          <div class="font-semibold text-black text-base mb-1">
+            {tr("beExhibitor.why_exhibit.reasons.reason_3")}
+          </div>
+      </div>
+      {/* Card 4 */}
+      <div
+        class="bg-white rounded-2xl shadow-xl p-6 flex flex-col items-start hover:scale-[1.03] transition border border-[#e53935]"
+        data-aos="zoom-in"
+        data-aos-delay="400"
+      >
+        <div class="bg-black rounded-xl p-2 mb-3">
+          {/* Icono globo internacional */}
+          <svg
+            class="w-7 h-7"
+            fill="none"
+            stroke="#fff"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <circle cx="12" cy="12" r="10"></circle>
+            <ellipse cx="12" cy="12" rx="6" ry="10"></ellipse>
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2 12h20"
+            ></path>
+          </svg>
+        </div>
+        <div class="font-semibold text-black text-base mb-1">
+          {tr("beExhibitor.why_exhibit.reasons.reason_4")}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .why-exhibit {
+    padding: 2.5rem 2rem;
+    background: linear-gradient(120deg, #f9fafb 60%, #e0e7ef 100%);
+    border-radius: 1.25rem;
+    box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.07);
+    max-width: 700px;
+    margin: 2rem auto;
+    border: 1px solid #e5e7eb;
+    transition: box-shadow 0.2s;
+  }
+  .why-exhibit:hover {
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.12);
+  }
+  .why-exhibit-title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1a237e;
+    letter-spacing: -1px;
+    text-shadow: 0 2px 8px #e3e6f3;
+    justify-content: center;
+  }
+  .icon-star {
+    color: #fbbf24;
+    font-size: 2.2rem;
+    filter: drop-shadow(0 1px 2px #eab30844);
+  }
+  .why-exhibit-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  .why-exhibit-list li {
+    background: #fff;
+    border-radius: 0.75rem;
+    padding: 1.1rem 1.5rem 1.1rem 2.5rem;
+    font-size: 1.13rem;
+    color: #374151;
+    position: relative;
+    box-shadow: 0 2px 8px 0 rgba(30, 64, 175, 0.04);
+    font-weight: 500;
+    line-height: 1.5;
+    transition: background 0.2s;
+  }
+  .why-exhibit-list li:hover {
+    background: #f1f5fd;
+  }
+  .icon-check {
+    position: absolute;
+    left: 1rem;
+    top: 1.1rem;
+    color: #22c55e;
+    font-size: 1.3rem;
+    font-weight: bold;
+    filter: drop-shadow(0 1px 2px #22c55e33);
+  }
+  @media (max-width: 600px) {
+    .why-exhibit {
+      padding: 1.2rem 0.5rem;
+    }
+    .why-exhibit-title {
+      font-size: 1.3rem;
+    }
+    .why-exhibit-list li {
+      font-size: 1rem;
+      padding: 0.9rem 0.7rem 0.9rem 2.1rem;
+    }
+    .icon-check {
+      left: 0.6rem;
+      top: 0.9rem;
+    }
+  }
+</style>

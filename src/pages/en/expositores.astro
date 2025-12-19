@@ -1,11 +1,13 @@
 ---
 import BuyerConnection from "../../components/exhibitor/BuyerConnection.astro";
 import StandPrice from "../../components/exhibitor/StandPrice.astro";
+import WhyExhibit from "../../components/exhibitor/WhyExhibit.astro";
 import ContactTeam from "../../components/home/ContactTeam.astro";
 import Layout from "../../layouts/Layout.astro";
 ---
 <Layout title="Expositores | Smart Technology Expo" description="Página para expositores Smart Technology Expo">
-   <section class="mx-auto pt-12 w-auto">
+   <section class="mx-auto w-auto">
+    <WhyExhibit locale='en'/>
     <BuyerConnection locale='en'/>
     <StandPrice locale='en'/>
     <ContactTeam locale='en'/>
