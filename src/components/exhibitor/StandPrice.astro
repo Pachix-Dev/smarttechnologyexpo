@@ -1,0 +1,183 @@
+---
+import { useTranslations, getTranslation } from "../../utils/translations";
+// ✨ Una sola línea para cargar traducciones!
+const { locale, translations } = await useTranslations(Astro.props, Astro);
+// 🎯 Helper para traducciones más elegante
+const tr = (key: string, fallback: string = "") =>
+  getTranslation(translations, key, fallback);
+---
+<section class="pb-10 bg-white">
+  <div class="max-w-6xl mx-auto px-4">
+    <h2 class="text-4xl font-extrabold text-center mb-12 text-red-700 tracking-tight uppercase drop-shadow">Tarifas de Participación</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+      {/* RAW SPACE */}
+      <div class="relative flex flex-col border-2 border-red-600 rounded-2xl bg-white shadow-xl overflow-hidden hover:scale-105 transition-transform">
+        <div class="p-7 flex flex-col h-full">
+          <h3 class="text-2xl font-extrabold text-red-700 uppercase tracking-wide mb-2">Raw Space</h3>
+          <!-- <span class="inline-block bg-red-100 text-red-700 text-xs font-semibold px-2 py-1 rounded mb-2">Tarifa Preventa</span>
+          <p class="text-3xl font-extrabold text-gray-900 mb-1">410 <span class="text-xl font-bold align-top">USD</span></p>
+          <p class="text-sm text-gray-600 mb-2">por m² + IVA</p>
+          <p class="text-xs text-red-700 font-semibold mb-4">Precio regular <span class="font-bold">430 USD</span></p> -->
+          <div class="mb-4">
+            <h4 class="text-base font-semibold text-gray-800 mb-2">Incluye:</h4>
+            <ul class="space-y-2 text-gray-700 text-sm">
+              <li class="flex items-start">
+                <span class="mr-2 w-6 h-6 text-red-600">{/* Gafete SVG */}
+                  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6"><rect x="4" y="4" width="16" height="16" rx="3" stroke-width="2"/><circle cx="12" cy="12" r="3" stroke-width="2"/><path d="M12 15v2" stroke-width="2"/></svg>
+                </span>
+                <span><b>Gafetes de expositor</b><br><span>(3 por cada 9 m²)</span></span>
+              </li>
+              <li class="flex items-start">
+                <span class="mr-2 w-6 h-6 text-red-600">{/* QR SVG */}
+                  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6"><rect x="3" y="3" width="6" height="6" rx="1" stroke-width="2"/><rect x="15" y="3" width="6" height="6" rx="1" stroke-width="2"/><rect x="3" y="15" width="6" height="6" rx="1" stroke-width="2"/><path d="M15 15h2v2h2v2" stroke-width="2"/></svg>
+                </span>
+                <span><b>Código de pre-registro</b><br> de visitantes ilimitados para su compañía</span>
+              </li>
+              <li class="flex items-start">
+                <span class="mr-2 w-6 h-6 text-red-600">{/* Directorio SVG */}
+                  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6"><rect x="5" y="4" width="14" height="16" rx="2" stroke-width="2"/><path d="M9 8h6M9 12h6M9 16h2" stroke-width="2"/></svg>
+                </span>
+                <span><b>Mención en el directorio</b></span>
+              </li>
+              <li class="flex items-start">
+                <span class="mr-2 w-6 h-6 text-red-600">{/* Electricidad SVG */}
+                  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" stroke-width="2"/></svg>
+                </span>
+                <span><b>Un contacto eléctrico</b><br> de 110v</span>
+              </li>
+              <li class="flex items-start mt-4">
+                <div class="flex items-center text-red-600 font-medium bg-red-50 rounded px-2 py-1 mt-auto"><span class="material-icons mr-2 text-base"></span>No incluye alfombra, construcción, mobiliario, ni servicios.</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      {/* EQUIPADO BÁSICO */}
+      <div class="relative flex flex-col border-2 border-red-600 rounded-2xl bg-white shadow-xl overflow-hidden hover:scale-105 transition-transform">
+        <div class="p-7 flex flex-col h-full">
+          <h3 class="text-2xl font-extrabold text-red-700 uppercase tracking-wide mb-2">Equipado Básico</h3>
+          <!-- <span class="inline-block bg-red-100 text-red-700 text-xs font-semibold px-2 py-1 rounded mb-2">Tarifa Preventa</span>
+          <p class="text-3xl font-extrabold text-gray-900 mb-1">475 <span class="text-xl font-bold align-top">USD</span></p>
+          <p class="text-sm text-gray-600 mb-2">por m² + IVA</p>
+          <p class="text-xs text-red-700 font-semibold mb-4">Precio regular <span class="font-bold">500 USD</span></p> -->
+          <div class="mb-4">
+            <h4 class="text-base font-semibold text-gray-800 mb-2">Incluye:</h4>
+            <ul class="space-y-2 text-gray-700 text-sm">
+              <li class="flex items-start">
+                <span class="mr-2 w-6 h-6 text-red-600">{/* Estructura SVG */}
+                  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6"><rect x="4" y="8" width="16" height="10" rx="2" stroke-width="2"/><rect x="7" y="4" width="10" height="4" rx="1" stroke-width="2"/></svg>
+                </span>
+                <span><b>Estructura básica</b><br> (alfombra, mamparas, antepecho con rótulo)</span>
+              </li>
+              <li class="flex items-start">
+                <span class="mr-2 w-6 h-6 text-red-600">{/* Mobiliario SVG */}
+                  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6"><rect x="3" y="12" width="7" height="7" rx="2" stroke-width="2"/><rect x="14" y="12" width="7" height="7" rx="2" stroke-width="2"/><rect x="8" y="5" width="8" height="5" rx="2" stroke-width="2"/></svg>
+                </span>
+                <span><b>Mobiliario estándar</b><br> (counter, mesa y dos sillas)</span>
+              </li>
+              <li class="flex items-start">
+                <span class="mr-2 w-6 h-6 text-red-600">{/* Electricidad SVG */}
+                  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" stroke-width="2"/></svg>
+                </span>
+                <span><b>Un contacto eléctrico</b><br> de 110v</span>
+              </li>
+              <li class="flex items-start">
+                <span class="mr-2 w-6 h-6 text-red-600">{/* Gafete SVG */}
+                  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6"><rect x="4" y="4" width="16" height="16" rx="3" stroke-width="2"/><circle cx="12" cy="12" r="3" stroke-width="2"/><path d="M12 15v2" stroke-width="2"/></svg>
+                </span>
+                <span><b>Gafetes de expositor</b><br> <span>(3 por cada 9 m²)</span></span>
+              </li>
+              <li class="flex items-start">
+                <span class="mr-2 w-6 h-6 text-red-600">{/* QR SVG */}
+                  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6"><rect x="3" y="3" width="6" height="6" rx="1" stroke-width="2"/><rect x="15" y="3" width="6" height="6" rx="1" stroke-width="2"/><rect x="3" y="15" width="6" height="6" rx="1" stroke-width="2"/><path d="M15 15h2v2h2v2" stroke-width="2"/></svg>
+                </span>
+                <span><b>Código de pre-registro</b><br> de visitantes ilimitados para su compañía</span>
+              </li>
+              <li class="flex items-start">
+                <span class="mr-2 w-6 h-6 text-red-600">{/* Directorio SVG */}
+                  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6"><rect x="5" y="4" width="14" height="16" rx="2" stroke-width="2"/><path d="M9 8h6M9 12h6M9 16h2" stroke-width="2"/></svg>
+                </span>
+                <span><b>Mención en el directorio</b></span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      {/* CONFORT PLUS */}
+      <div class="relative flex flex-col border-2 border-red-600 rounded-2xl bg-white shadow-xl overflow-hidden hover:scale-105 transition-transform">
+        <div class="p-7 flex flex-col h-full">
+          <h3 class="text-2xl font-extrabold text-red-700 uppercase tracking-wide mb-2">Confort Plus</h3>
+          <!-- <span class="inline-block bg-red-100 text-red-700 text-xs font-semibold px-2 py-1 rounded mb-2">Tarifa Preventa</span>
+          <p class="text-3xl font-extrabold text-gray-900 mb-1">5,585 <span class="text-xl font-bold align-top">USD</span></p>
+          <p class="text-sm text-gray-600 mb-2">+ IVA por stand de 9m²</p>
+          <p class="text-xs text-red-700 font-semibold mb-4">Precio regular <span class="font-bold">5,865 USD</span></p> -->
+          <div class="mb-4">
+            <h4 class="text-base font-semibold text-gray-800 mb-2">Incluye:</h4>
+            <ul class="space-y-2 text-gray-700 text-sm">
+              <li class="flex items-start">
+                <span class="mr-2 w-6 h-6 text-red-600">{/* Diseño SVG */}
+                  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6"><rect x="4" y="4" width="16" height="16" rx="3" stroke-width="2"/><path d="M8 8h8v8H8z" stroke-width="2"/></svg>
+                </span>
+                <span><b>Construcción con diseño</b><br> predeterminado y espacio para marca</span>
+              </li>
+              <li class="flex items-start">
+                <span class="mr-2 w-6 h-6 text-red-600">{/* Mobiliario SVG */}
+                  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6"><rect x="3" y="12" width="7" height="7" rx="2" stroke-width="2"/><rect x="14" y="12" width="7" height="7" rx="2" stroke-width="2"/><rect x="8" y="5" width="8" height="5" rx="2" stroke-width="2"/></svg>
+                </span>
+                <span><b>Mobiliario</b></span>
+              </li>
+              <li class="flex items-start">
+                <span class="mr-2 w-6 h-6 text-red-600">{/* Pantalla SVG */}
+                  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6"><rect x="4" y="6" width="16" height="12" rx="2" stroke-width="2"/><path d="M8 20h8" stroke-width="2"/></svg>
+                </span>
+                <span><b>Pantalla de 40”</b></span>
+              </li>
+              <li class="flex items-start">
+                <span class="mr-2 w-6 h-6 text-red-600">{/* Electricidad SVG */}
+                  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" stroke-width="2"/></svg>
+                </span>
+                <span><b>Un contacto eléctrico</b><br> de 110v por cada 9m²</span>
+              </li>
+              <li class="flex items-start">
+                <span class="mr-2 w-6 h-6 text-red-600">{/* Gafete SVG */}
+                  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6"><rect x="4" y="4" width="16" height="16" rx="3" stroke-width="2"/><circle cx="12" cy="12" r="3" stroke-width="2"/><path d="M12 15v2" stroke-width="2"/></svg>
+                </span>
+                <span><b>Gafetes de expositor</b><br><span>(3 por cada 9 m²)</span></span>
+              </li>
+              <li class="flex items-start">
+                <span class="mr-2 w-6 h-6 text-red-600">{/* QR SVG */}
+                  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6"><rect x="3" y="3" width="6" height="6" rx="1" stroke-width="2"/><rect x="15" y="3" width="6" height="6" rx="1" stroke-width="2"/><rect x="3" y="15" width="6" height="6" rx="1" stroke-width="2"/><path d="M15 15h2v2h2v2" stroke-width="2"/></svg>
+                </span>
+                <span><b>Código de pre-registro</b><br> de visitantes ilimitados para su compañía</span>
+              </li>
+              <li class="flex items-start">
+                <span class="mr-2 w-6 h-6 text-red-600">{/* Directorio SVG */}
+                  <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6"><rect x="5" y="4" width="14" height="16" rx="2" stroke-width="2"/><path d="M9 8h6M9 12h6M9 16h2" stroke-width="2"/></svg>
+                </span>
+                <span><b>Mención en el directorio</b></span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+
+      {/* EQUIPADO BÁSICO */}
+      <div class="">
+        <img src={`/assets/exhibitor/stand-prices/raw-space-${locale}.png`} alt="Raw Space Stand Example" class="w-full h-auto mt-4 rounded-lg shadow-md"/>
+      </div>
+
+      {/* CONFORT PLUS */}
+      <div class="">
+        <img src={`/assets/exhibitor/stand-prices/raw-space-${locale}.png`} alt="Raw Space Stand Example" class="w-full h-auto mt-4 rounded-lg shadow-md"/>
+      </div>
+    </div>
+
+
+  </div>
+</section>
