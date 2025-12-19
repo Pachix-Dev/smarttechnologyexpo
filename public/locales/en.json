@@ -7,7 +7,8 @@
         "banner": "become an exhibitor",
         "about_us": "ABOUT US",        
         "exhibitors": "I WANT TO BE AN EXHIBITOR",        
-        "media_hub": "Media Hub",        
+        "media_hub": "Media Hub",
+        "exhibitor_section": "EXHIBITORS",       
         "gallery": "GALLERY",
         "afeter_show_report": "AFTER SHOW REPORT 2025"  
     },
@@ -109,6 +110,11 @@
   },
   "directory": {
         "title": "Welcome to the  2025 Exhibitor Directory"
+  },
+  "beExhibitor":{
+    "title": "I WANT TO BE AN EXHIBITOR",
+    "description": "Join Smart Technology Expo and take your business to the next level! As an exhibitor, you will have the opportunity to showcase your products and services to a highly qualified audience, establish valuable connections, and increase your brand visibility in the technology industry.",
+    "sede": "New headquarters 2026"
   },
   "testimonials":{
     "title": "What they say about us",

@@ -6,7 +6,8 @@
   "menu": {
         "banner": "conviértete en expositor",
         "about_us": "ACERCA DE NOSOTROS",        
-        "exhibitors": "QUIERO SER EXPOSITOR",        
+        "exhibitors": "QUIERO SER EXPOSITOR",
+        "exhibitor_section": "EXPOSITORES",     
         "media_hub": "Centro de Medios",        
         "gallery": "GALERÍA",
         "afeter_show_report": "REPORTE DE RESULTADOS 2025"
@@ -113,7 +114,8 @@
   },
   "beExhibitor":{
     "title": "Quiero ser expositor",
-    "description": "¡Únete a Smart Technology Expo y lleva tu negocio al siguiente nivel! Como expositor, tendrás la oportunidad de mostrar tus productos y servicios a una audiencia altamente calificada, establecer conexiones valiosas y aumentar la visibilidad de tu marca en la industria tecnológica."
+    "description": "¡Únete a Smart Technology Expo y lleva tu negocio al siguiente nivel! Como expositor, tendrás la oportunidad de mostrar tus productos y servicios a una audiencia altamente calificada, establecer conexiones valiosas y aumentar la visibilidad de tu marca en la industria tecnológica.",
+    "sede": "Nueva sede 2026"
   },
   "testimonials":{
     "title": "Lo que dicen de nosotros",
