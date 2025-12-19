@@ -1,30 +1,29 @@
 ---
 // Componente compartido para todas las páginas de inicio
-import Welcome from './Welcome.astro'
-import Layout from '../../layouts/Layout.astro'
-import { useTranslations, getTranslation } from '../../utils/translations'
-import Description from './Description.astro'
-import Highlights from './Highlights.astro'
-import { events } from '../../data/constans_events'
-import Events from './Events.astro'
-import ContactTeam from './ContactTeam.astro'
+import Welcome from "./Welcome.astro";
+import Layout from "../../layouts/Layout.astro";
+import { useTranslations, getTranslation } from "../../utils/translations";
+import Description from "./Description.astro";
+import Highlights from "./Highlights.astro";
+import { events } from "../../data/constans_events";
+import Events from "./Events.astro";
+import ContactTeam from "./ContactTeam.astro";
+import UserGuideButtons from "./UserGuideButtons.astro";
 
 export interface Props {
-  locale?: string
+  locale?: string;
 }
 
 // ✨ Una sola línea para cargar traducciones!
-const { translations } = await useTranslations(Astro.props, Astro)
+const { translations } = await useTranslations(Astro.props, Astro);
 // 🎯 Helper para traducciones más elegante
-const tr = (key: string, fallback: string = '') =>
-  getTranslation(translations, key, fallback)
+const tr = (key: string, fallback: string = "") =>
+  getTranslation(translations, key, fallback);
 ---
 
-<Layout
-  title={tr('site.title', 'Smart Technology Expo')}
-  description={tr('site.description', 'Expo de tecnología inteligente')}
->
+<Layout title={tr("site.title", "Smart Technology Expo")} description={tr("site.description", "Expo de tecnología inteligente")}>
   <Welcome />
+  <UserGuideButtons />
   <Description />
   <Highlights />
   <Events events={events} isLeftToRight={true} />

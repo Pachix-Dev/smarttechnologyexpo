@@ -127,7 +127,16 @@
         "reason_3": "Connecting technology providers with decision-makers, industry leaders, specialists, and executives seeking real solutions to automate, digitize, and make their operations more competitive.",
         "reason_4": "A space designed to generate qualified leads, boost business relationships, and accelerate industrial transformation."
       }
-    }
+    },
+    "invitation_title": {
+      "word_1": "Take advantage",
+      "word_2": "of this",
+      "word_3": "great opportunity",
+      "word_4": "to become an",
+      "word_5": "exhibitor!"
+    },
+    "invitation_text": "Take advantage of this great opportunity to become an exhibitor!",
+    "invitation_desc": "Expand your presence in front of thousands of attendees, build strategic relationships, and position your brand at the technology event of the year."
   },
   "testimonials":{
     "title": "What they say about us",

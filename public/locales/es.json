@@ -128,7 +128,16 @@
         "reason_3": "Conectando a proveedores de tecnología con tomadores de decisión, líderes de la industria, especialistas y ejecutivos que buscan soluciones reales para automatizar, digitalizar y hacer más competitiva su operación.",
         "reason_4": "Un espacio diseñado para generar leads calificados, impulsar relaciones comerciales y acelerar la transformación industrial."
       }
-    }
+    },
+    "invitation_title": {
+      "word_1": "Aprovecha",
+      "word_2": "esta",
+      "word_3": "gran oportunidad",
+      "word_4": "para convertirte en",
+      "word_5": "expositor!"
+    },
+    "invitation_text": "¡Aprovecha esta gran oportunidad para convertirte en expositor!",
+    "invitation_desc": "Amplía tu presencia ante miles de asistentes, construye relaciones estratégicas y posiciona tu marca en el encuentro tecnológico del año."
   },
   "testimonials":{
     "title": "Lo que dicen de nosotros",

@@ -1,0 +1,35 @@
+---
+import { useTranslations, getTranslation } from "../../utils/translations";
+const { locale, translations } = await useTranslations(Astro.props, Astro);
+const tr = (key: string, fallback: string = "") =>
+  getTranslation(translations, key, fallback);
+---
+<section class="w-full flex flex-col items-center justify-center py-16 px-4 bg-linear-to-br from-white via-[#fff5f5] to-[#ffeaea] md:h-screen" data-aos="fade-up">
+  <div class="max-w-2xl w-full flex flex-col items-center">
+    <h1 class="text-4xl md:text-5xl font-black text-[#1a1a1a] text-center mb-4 tracking-tight uppercase">
+      <span class="text-[#e53935]"> {tr("beExhibitor.invitation_title.word_1")} </span> {tr("beExhibitor.invitation_title.word_2")} <span class="text-[#e53935]"> {tr("beExhibitor.invitation_title.word_3")} </span >   {tr("beExhibitor.invitation_title.word_4")} <span class="text-[#e53935]">{tr("beExhibitor.invitation_title.word_5")} </span>
+    </h1>
+    <p class="text-[#7a7a7a] text-lg text-center mb-6 max-w-lg">
+      {tr("beExhibitor.invitation_desc")}
+    </p>
+    <div class="flex flex-col md:flex-row gap-4 mb-6 w-full justify-center">
+      <a
+        href="/expositor-smarttechnologyexpo"
+        class="flex items-center justify-center px-10 py-4 bg-linear-to-r from-[#e53935] to-[#ff5252] hover:from-[#b71c1c] hover:to-[#e53935] text-white font-extrabold rounded-full sm:text-xl shadow-lg transition-all duration-200 tracking-wide border-2 border-[#e53935] outline-none focus:ring-4 focus:ring-[#e53935]/30"
+      >
+        {tr("menu.exhibitors")}
+        <svg class="ml-3 w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+<style>
+  section {
+    max-width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+</style>
+
