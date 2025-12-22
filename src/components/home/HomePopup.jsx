@@ -6,7 +6,7 @@ const HomePopup = () => {
   if (!visible) return null;
 
     return (
-      <div className="fixed inset-0 z-[9999] flex items-center justify-center">
+      <div className="fixed inset-0 z-9999 flex items-center justify-center">
         <div className="w-[1000px] text-center relative p-2">
           <div className="relative inline-block w-full">
             <img

@@ -9,6 +9,7 @@ import { events } from "../../data/constans_events";
 import Events from "./Events.astro";
 import ContactTeam from "./ContactTeam.astro";
 import UserGuideButtons from "./UserGuideButtons.astro";
+import HomePopup from '../../components/home/HomePopup.jsx'
 
 export interface Props {
   locale?: string;
@@ -22,6 +23,7 @@ const tr = (key: string, fallback: string = "") =>
 ---
 
 <Layout title={tr("site.title", "Smart Technology Expo")} description={tr("site.description", "Expo de tecnología inteligente")}>
+  <HomePopup client:load />
   <Welcome />
   <UserGuideButtons />
   <Description />
