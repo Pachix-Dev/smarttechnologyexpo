@@ -76,6 +76,17 @@ export function ContactForm() {
 
   return (
     <>
+      {/*
+        Formulario de contacto para expositores.
+        Campos solicitados:
+        - Empresa: Nombre de la empresa que desea participar. Obligatorio.
+        - Sector: Sector industrial al que pertenece la empresa. Obligatorio. Opciones predefinidas.
+        - Nombre: Nombre completo de la persona de contacto. Obligatorio.
+        - Email: Correo electrónico de contacto. Obligatorio.
+        - Código de país: Selección del código internacional del país para el teléfono. Obligatorio.
+        - Teléfono: Número de teléfono de contacto. Obligatorio.
+        - Mensaje: Mensaje o motivo de contacto. Obligatorio.
+      */}
       <form
         id='form-contact'
         className='mt-10 space-y-6 w-[95%] md:w-8/12 mx-auto bg-[#858C7E]/10 backdrop-blur rounded-2xl p-6 md:p-8 shadow-sm'
@@ -87,6 +98,27 @@ export function ContactForm() {
            Completa el formulario y nos pondremos en contacto contigo.
           </h2>
         </div>
+        {/* Empresa: Nombre de la empresa que desea participar. Obligatorio. */}
+        <div>
+          <label
+            htmlFor='company'
+            className='flex items-center gap-1 mb-1 text-sm font-semibold text-gray-800'
+          >
+            <span>Empresa</span>
+            <span className='text-[#9f2e26]' aria-hidden='true'>*</span>
+          </label>
+          <input
+            type='text'
+            id='company'
+            name='company'
+            className='shadow-sm bg-white/80 border border-[#858C7E]/40 text-gray-900 text-sm rounded-lg focus:ring-[#1F5E00] focus:border-[#1F5E00] block w-full p-3'
+            placeholder='Empresa S.A. de C.V.'
+            required
+            autoComplete='organization'
+            aria-required='true'
+          />
+        </div>
+        {/* Sector: Sector industrial al que pertenece la empresa. Obligatorio. */}
         <div>
           <label
             htmlFor='sector'
@@ -131,6 +163,7 @@ export function ContactForm() {
             <option value='Startups'>Startups</option>
           </select>
         </div>
+        {/* Nombre: Nombre completo de la persona de contacto. Obligatorio. */}
         <div>
           <label
             htmlFor='name'
@@ -150,6 +183,7 @@ export function ContactForm() {
             aria-required='true'
           />
         </div>
+        {/* Email: Correo electrónico de contacto. Obligatorio. */}
         <div>
           <label
             htmlFor='email'
@@ -169,6 +203,7 @@ export function ContactForm() {
             aria-required='true'
           />
         </div>
+        {/* Código de país y teléfono: Selección del código internacional y número de teléfono. Ambos obligatorios. */}
         <div>
           <label
             htmlFor='countrycodes'
@@ -178,6 +213,7 @@ export function ContactForm() {
           </label>
           <div className='w-full rounded-lg flex flex-col md:flex-row gap-3' role='group' aria-labelledby='countrycodes'>
             <div className='w-52'>
+              {/* Código de país: Selección del código internacional. Obligatorio. */}
               <select
                 className='block w-full mt-1 p-3 text-gray-700 border border-[#858C7E]/40 rounded-md focus:outline-none focus:ring-[#1F5E00] focus:border-[#1F5E00] bg-white/80'
                 value={selectedCountryCode}
@@ -198,6 +234,7 @@ export function ContactForm() {
               </select>
             </div>
             <div className='w-full'>
+              {/* Teléfono: Número de teléfono de contacto. Obligatorio. */}
               <input
                 className='block w-full mt-1 p-3 text-gray-700 border border-[#858C7E]/40 rounded-md focus:outline-none focus:ring-[#1F5E00] focus:border-[#1F5E00] bg-white/80'
                 type='number'
@@ -213,6 +250,7 @@ export function ContactForm() {
             </div>
           </div>
         </div>
+        {/* Mensaje: Mensaje o motivo de contacto. Obligatorio. */}
         <div className='sm:col-span-2'>
           <label
             htmlFor='message'
