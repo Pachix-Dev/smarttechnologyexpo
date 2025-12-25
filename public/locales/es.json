@@ -137,7 +137,15 @@
       "word_5": "expositor!"
     },
     "invitation_text": "¡Aprovecha esta gran oportunidad para convertirte en expositor!",
-    "invitation_desc": "Amplía tu presencia ante miles de asistentes, construye relaciones estratégicas y posiciona tu marca en el encuentro tecnológico del año."
+    "invitation_desc": "Amplía tu presencia ante miles de asistentes, construye relaciones estratégicas y posiciona tu marca en el encuentro tecnológico del año.",
+    "title_key_resources": "Recursos clave para expositores",
+    "desc_key_resources": "Descarga materiales esenciales para maximizar tu experiencia como expositor en Smart Technology Expo.",
+    "floorPlan_item": "PLANO",
+    "factsheet_item": "FACTSHEET",
+    "sponsor_item": "PATROCINAR",
+    "btn_floorPlan": "Descargar plano",
+    "btn_factsheet": "Descargar información",
+    "btn_sponsor": "Únete como patrocinador"
   },
   "testimonials":{
     "title": "Lo que dicen de nosotros",

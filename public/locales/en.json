@@ -136,7 +136,15 @@
       "word_5": "exhibitor!"
     },
     "invitation_text": "Take advantage of this great opportunity to become an exhibitor!",
-    "invitation_desc": "Expand your presence in front of thousands of attendees, build strategic relationships, and position your brand at the technology event of the year."
+    "invitation_desc": "Expand your presence in front of thousands of attendees, build strategic relationships, and position your brand at the technology event of the year.",
+    "title_key_resources": "Key Resources for Exhibitors",
+    "desc_key_resources": "Download essential materials to maximize your experience as an exhibitor at Smart Technology Expo.",
+    "floorPlan_item": "FLOOR PLAN",
+    "factsheet_item": "FACTSHEET",
+    "sponsor_item": "SPONSOR",
+    "btn_floorPlan": "Download Floor Plan",
+    "btn_factsheet": "Download Information",
+    "btn_sponsor": "Join as a Sponsor"
   },
   "testimonials":{
     "title": "What they say about us",
