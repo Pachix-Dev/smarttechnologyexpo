@@ -137,30 +137,27 @@ export function ContactForm() {
             <option value='' defaultValue>
               Elige una opción
             </option>
-            <option value='Máquinas y Herramientas / Metalworking'>
-              Máquinas y Herramientas / Metalworking
+            <option value='Automatización y Robótica /  Automation and Robotics'>
+              Automatización y Robótica /  Automation and Robotics
             </option>
-            <option value='Automatización, Robotización y Transmisión / Automation, Robotization & Motion'>
-              Automatización, Robotización y Transmisión / Automation,
-              Robotization & Motion
+            <option value='Manufactura Inteligente - Industria 4.0 / Smart Manufacturing - Industry 4.0'>
+              Manufactura Inteligente - Industria 4.0 / Smart Manufacturing - Industry 4.0
             </option>
-            <option value='Logística Inteligente / Smart Logistics'>
-              Logística Inteligente / Smart Logistics
+            <option value='Motion Control y Sistemas de Accionamiento / Motion Control and Drive Systems'>
+              Motion Control y Sistemas de Accionamiento / Motion Control and Drive Systems
             </option>
-            <option value='Manufactura Digital y TIC / Digital Factory & ITC'>
-              Manufactura Digital y TIC / Digital Factory & ITC
+            <option value='Inteligencia Artificial y Machine Learning en Automatización / Artificial Intelligence and Machine Learning in Automation'>
+              Inteligencia Artificial y Machine Learning en Automatización / Artificial Intelligence and Machine Learning in Automation
             </option>
-            <option value='Soluciones de Energía / Power Solutions'>
-              Soluciones de Energía / Power Solutions
+            <option value='Logística, Manejo de Materiales y Automatización de Almacenes / Logistics, Material Handling, and Warehouse Automation'>
+              Logística, Manejo de Materiales y Automatización de Almacenes / Logistics, Material Handling, and Warehouse Automation
             </option>
-            <option value='Manufactura Aditiva / Additive Manufacture'>
-              Manufactura Aditiva / Additive Manufacture
+            <option value='Seguridad Industrial, Ciberseguridad y Estándares / Industrial Safety, Cybersecurity, and Standards'>
+              Seguridad Industrial, Ciberseguridad y Estándares / Industrial Safety, Cybersecurity, and Standards
             </option>
-            <option value='Gobierno / Government'>Gobierno / Government</option>
-            <option value='Instituciones de investigación / Research institutions'>
-              Instituciones de investigación / Research institutions
+            <option value='Software de Automatización e Integración de Sistemas / Automation Software and Systems Integration'>
+              Software de Automatización e Integración de Sistemas / Automation Software and Systems Integration
             </option>
-            <option value='Startups'>Startups</option>
           </select>
         </div>
         {/* Nombre: Nombre completo de la persona de contacto. Obligatorio. */}
