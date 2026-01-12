@@ -45,7 +45,8 @@
     "hightlights_3": "Con +100 conferencistas nacionales e internacionales",
     "hightlights_4": "Profesionales en el piso de exhibición",
     "contact_nacional": "CONTACTO NACIONAL",
-    "contact_internacional": "CONTACTO INTERNACIONAL"
+    "contact_internacional": "CONTACTO INTERNACIONAL",
+    "slogan_ste": "Su negocio es nuestro negocio"
   },
   "pricing": {
     "raw_space": {
@@ -98,8 +99,19 @@
         "our_story": "Nuestra historia",
         "ready": "¿Listo para ser parte del futuro?",
         "join_us": "Únete a la comunidad líder en tecnología industrial de México",
-        "more_info": "Más información"
-
+        "more_info": "Más información",
+        "subTitle_ste": "La plataforma estratégica que define el futuro de la industria en Latinoamérica",
+        "desc_ste_01":"<b>SMART TECHNOLOGY EXPO</b> es la plataforma líder en México y Latinoamérica dedicada a las tecnologías que están redefiniendo la innovación industrial.</br></br>Diseñada para conectar líderes tecnológicos globales con tomadores de decisión de alto nivel, la expo reúne las soluciones más avanzadas en automatización, robótica, manufactura inteligente, control de movimiento, inteligencia artificial, intralogística, ciberseguridad industrial y software de integración",
+        "desc_ste_02":"Más que una expo<br />Un entorno estratégico donde la tecnología se convierte en negocio",
+        "why_ste_title": "¿Por qué SMART TECHNOLOGY EXPO?",
+        "why_ste_desc": "SMART TECHNOLOGY EXPO está diseñada para quienes definen la estrategia industrial.<br /><br /> Aquí la innovación no solo se exhibe: se evalúa, se compara y se activa a través de networking de alto nivel, contenido ejecutivo y encuentros estratégicos B2B.",
+        "why_ste_reasons": {
+          "reason_1": "Acceso directo a compradores calificados y líderes industriales",
+          "reason_2": "Reuniones B2B y matchmaking estratégico",
+          "reason_3": "Conferencias ejecutivas y liderazgo de pensamiento",
+          "reason_4": "Demostraciones tecnológicas con aplicaciones reales",
+          "reason_5": "Un entorno premium diseñado para generar ROI y alianzas de largo plazo"
+        }
   },
   "gallery": {
     "title": "Galería Smart Technology Expo",

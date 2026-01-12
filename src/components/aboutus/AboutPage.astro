@@ -1,314 +1,397 @@
 ---
-import Layout from '../../layouts/Layout.astro'
-import { useTranslations, getTranslation } from '../../utils/translations'
+import Layout from "../../layouts/Layout.astro";
+import { useTranslations, getTranslation } from "../../utils/translations";
 
 export interface Props {
-  locale?: string
+  locale?: string;
 }
 
 // ✨ Una sola línea para cargar traducciones!
-const { translations } = await useTranslations(Astro.props, Astro)
+const { translations } = await useTranslations(Astro.props, Astro);
 
 // 🎯 Helper para traducciones más elegante (opcional)
-const tr = (key: string, fallback: string = '') =>
-  getTranslation(translations, key, fallback)
+const tr = (key: string, fallback: string = "") =>
+  getTranslation(translations, key, fallback);
 ---
 
 <Layout
-  title={tr('menu.about_us', 'ACERCA DE NOSOTROS')}
-  description={tr('site.description', 'Expo de tecnología inteligente')}
+  title={tr("menu.about_us", "ACERCA DE NOSOTROS")}
+  description={tr("site.description", "Expo de tecnología inteligente")}
 >
-  <main class='bg-linear-to-b from-white via-gray-50 to-white'>
-    <!-- Hero Section -->
+  <main class="relative bg-linear-to-br from-gray-50 via-white to-gray-50">
+    <!-- Hero Section Moderno -->
     <div
-      class='relative overflow-hidden bg-linear-to-r from-red-600 via-red-500 to-[#9E2D25] py-20 md:py-32'
+      class="relative overflow-hidden bg-linear-to-br from-red-600 via-red-500 to-rose-600 py-24 md:py-40"
     >
-      <div class='container mx-auto px-4 relative z-10'>
-        <h1
-          class='text-center text-4xl md:text-6xl font-extrabold text-white mb-6'
-          data-aos='fade-down'
-          data-aos-duration='1000'
-        >
-          {tr('aboutPage.title')}
-        </h1>
+      <!-- Patrón de fondo moderno -->
+      <div class="absolute inset-0 opacity-10">
         <div
-          class='w-24 h-1 bg-white mx-auto rounded-full'
-          data-aos='zoom-in'
-          data-aos-duration='800'
-          data-aos-delay='300'
+          class="absolute inset-0"
+          style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 40px 40px;"
         >
         </div>
-        <p
-          class='text-center text-white/90 text-lg md:text-xl mt-6 max-w-3xl mx-auto'
-          data-aos='fade-up'
-          data-aos-duration='1000'
-          data-aos-delay='400'
-        >
-          {tr('aboutPage.subtitle')}
-        </p>
       </div>
-      <!-- Decorative elements -->
-      <div class='absolute -bottom-1 left-0 right-0'>
+
+      <!-- Círculos decorativos -->
+      <div
+        class="absolute top-20 right-10 w-72 h-72 bg-white/10 rounded-full blur-3xl"
+      >
+      </div>
+      <div
+        class="absolute bottom-20 left-10 w-96 h-96 bg-rose-400/20 rounded-full blur-3xl"
+      >
+      </div>
+
+      <div class="container mx-auto px-4 relative z-10">
+        <h1
+          class="text-center text-5xl md:text-7xl font-black text-white mb-6 tracking-tight"
+          data-aos="fade-down"
+          data-aos-duration="1000"
+        >
+          {tr("aboutPage.title")}
+        </h1>
+        <div
+          class="w-32 h-1.5 bg-linear-to-r from-transparent via-white to-transparent mx-auto rounded-full"
+          data-aos="zoom-in"
+          data-aos-duration="800"
+          data-aos-delay="300"
+        >
+        </div>
+      </div>
+
+      <!-- Wave decorativo moderno -->
+      <div class="absolute -bottom-1 left-0 right-0">
         <svg
-          viewBox='0 0 1440 120'
-          fill='none'
-          xmlns='http://www.w3.org/2000/svg'
+          viewBox="0 0 1440 120"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-full"
         >
           <path
-            d='M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z'
-            fill='white'></path>
+            d="M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z"
+            fill="rgb(249, 250, 251)"></path>
         </svg>
       </div>
     </div>
 
-    <!-- Primera Sección -->
-    <section class='py-16 md:py-24 overflow-hidden'>
-      <div class='container mx-auto px-4'>
-        <div class='flex flex-col md:flex-row items-center gap-8 md:gap-12'>
-          <!-- Imagen -->
-          <div
-            class='w-full md:w-1/2 relative group'
-            data-aos='fade-right'
-            data-aos-duration='1000'
-          >
-            <div
-              class='relative overflow-hidden rounded-2xl shadow-2xl transform transition-all duration-500 group-hover:scale-105'
-            >
-              <div
-                class='absolute inset-0 bg-linear-to-tr from-red-600/30 to-transparent z-10 group-hover:opacity-0 transition-opacity duration-500'
-              >
-              </div>
-              <img
-                src='/img/bgabout_1.jpg'
-                alt='About Smart Technology Expo'
-                class='w-full h-[400px] md:h-[500px] object-cover'
-              />
-              <!-- Decorative border -->
-              <div
-                class='absolute inset-0 border-4 border-red-500/20 rounded-2xl'
-              >
-              </div>
-            </div>
-            <!-- Floating badge -->
-            <div
-              class='absolute -bottom-6 -right-6 bg-red-600 text-white p-6 rounded-xl shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-300'
-              data-aos='zoom-in'
-              data-aos-duration='800'
-              data-aos-delay='600'
-            >
-              <div class='text-center'>
-                <div class='text-3xl font-bold'>2026</div>
-                <div class='text-sm'>Next Edition</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Contenido -->
-          <div
-            class='w-full md:w-1/2'
-            data-aos='fade-left'
-            data-aos-duration='1000'
-            data-aos-delay='300'
-          >
-            <div class='prose prose-lg max-w-none'>
-              <!-- Decorative element -->
-              <div class='flex items-center gap-4 mb-6'>
-                <div
-                  class='w-12 h-1 bg-linear-to-r from-red-600 to-pink-600 rounded-full'
-                >
-                </div>
-                <span
-                  class='text-red-600 font-semibold uppercase tracking-wider text-sm'
-                  >{tr('aboutPage.our_story')}</span
-                >
-              </div>
-
-              <div
-                class='text-gray-700 leading-relaxed space-y-4 text-justify'
-                set:html={tr('aboutPage.description_1')}
-              />
-
-              <!-- Feature highlights -->
-              <div class='grid grid-cols-2 gap-4 mt-8'>
-                <div
-                  class='bg-linear-to-br from-red-50 to-pink-50 p-4 rounded-xl border border-red-100'
-                  data-aos='flip-left'
-                  data-aos-duration='800'
-                  data-aos-delay='800'
-                >
-                  <div class='text-red-600 text-3xl font-bold mb-1'>+275</div>
-                  <div class='text-gray-600 text-sm'>
-                    {tr('home.exhibitors')}
-                  </div>
-                </div>
-                <div
-                  class='bg-linear-to-br from-blue-50 to-indigo-50 p-4 rounded-xl border border-blue-100'
-                  data-aos='flip-left'
-                  data-aos-duration='800'
-                  data-aos-delay='900'
-                >
-                  <div class='text-blue-600 text-3xl font-bold mb-1'>+15K</div>
-                  <div class='text-gray-600 text-sm'>{tr('home.visitors')}</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Divider decorativo -->
-    <div class='container mx-auto px-4'>
+    <!-- Sección de Contenido Principal -->
+    <section class="container mx-auto px-4 py-16 md:py-24">
+      <!-- Título Principal con Badge -->
       <div
-        class='flex items-center justify-center gap-4 py-8'
-        data-aos='zoom-in'
-        data-aos-duration='800'
+        class="text-center mb-16"
+        data-aos="fade-up"
+        data-aos-duration="1000"
       >
-        <div
-          class='h-px bg-linear-to-r from-transparent via-red-300 to-transparent flex-1'
-        >
-        </div>
-        <div class='flex gap-2'>
-          <div class='w-2 h-2 bg-red-600 rounded-full animate-pulse'></div>
-          <div
-            class='w-2 h-2 bg-red-500 rounded-full animate-pulse'
-            style='animation-delay: 0.2s;'
-          >
-          </div>
-          <div
-            class='w-2 h-2 bg-red-400 rounded-full animate-pulse'
-            style='animation-delay: 0.4s;'
-          >
-          </div>
-        </div>
-        <div
-          class='h-px bg-linear-to-r from-transparent via-red-300 to-transparent flex-1'
-        >
-        </div>
-      </div>
-    </div>
-
-    <!-- Segunda Sección -->
-    <section
-      class='py-16 md:py-24 bg-linear-to-br from-gray-50 to-white overflow-hidden'
-    >
-      <div class='container mx-auto px-4'>
-        <div
-          class='flex flex-col md:flex-row-reverse items-center gap-8 md:gap-12'
-        >
-          <!-- Imagen -->
-          <div
-            class='w-full md:w-1/2 relative group'
-            data-aos='fade-left'
-            data-aos-duration='1000'
-          >
-            <div
-              class='relative overflow-hidden rounded-2xl shadow-2xl transform transition-all duration-500 group-hover:scale-105'
-            >
-              <div
-                class='absolute inset-0 bg-linear-to-tl from-blue-600/30 to-transparent z-10 group-hover:opacity-0 transition-opacity duration-500'
-              >
-              </div>
-              <img
-                src='/img/bgabout_2.jpg'
-                alt='Smart Technology Innovation'
-                class='w-full h-[400px] md:h-[500px] object-cover'
-              />
-              <!-- Decorative border -->
-              <div
-                class='absolute inset-0 border-4 border-blue-500/20 rounded-2xl'
-              >
-              </div>
-            </div>
-            <!-- Floating elements -->
-            <div
-              class='absolute -top-6 -left-6 bg-white p-4 rounded-full shadow-xl'
-              data-aos='zoom-in'
-              data-aos-duration='800'
-              data-aos-delay='600'
-            >
-              <svg
-                class='w-8 h-8 text-blue-600'
-                fill='currentColor'
-                viewBox='0 0 20 20'
-              >
-                <path d='M9 2a1 1 0 000 2h2a1 1 0 100-2H9z'></path>
-                <path
-                  fill-rule='evenodd'
-                  d='M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z'
-                  clip-rule='evenodd'></path>
-              </svg>
-            </div>
-          </div>
-
-          <!-- Contenido -->
-          <div
-            class='w-full md:w-1/2'
-            data-aos='fade-right'
-            data-aos-duration='1000'
-            data-aos-delay='300'
-          >
-            <div class='prose prose-lg max-w-none'>
-              <!-- Decorative element -->
-              <div class='flex items-center gap-4 mb-6'>
-                <div
-                  class='w-12 h-1 bg-linear-to-r from-blue-600 to-indigo-600 rounded-full'
-                >
-                </div>
-                <span
-                  class='text-blue-600 font-semibold uppercase tracking-wider text-sm'
-                  >{tr('aboutPage.our_story')}</span
-                >
-              </div>
-
-              <div
-                class='text-gray-700 leading-relaxed space-y-4 text-justify'
-                set:html={tr('aboutPage.description_2')}
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Call to Action -->
-    <section
-      class='py-16 md:py-20 bg-linear-to-r from-red-600 via-red-500 to-[#9E2D25] relative overflow-hidden'
-    >
-      <div class='container mx-auto px-4 text-center relative z-10'>
         <h2
-          class='text-3xl md:text-5xl font-bold text-white mb-6'
-          data-aos='fade-up'
-          data-aos-duration='1000'
+          class="text-4xl md:text-6xl font-black bg-linear-to-r from-gray-900 via-red-600 to-gray-900 bg-clip-text text-transparent mb-4"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+          data-aos-delay="200"
         >
-          {tr('aboutPage.ready')}
+          SMART TECHNOLOGY EXPO
         </h2>
         <p
-          class='text-white/90 text-lg md:text-xl mb-8 max-w-2xl mx-auto'
-          data-aos='fade-up'
-          data-aos-duration='1000'
-          data-aos-delay='200'
+          class="text-gray-600 max-w-2xl mx-auto text-xl md:text-2xl font-bold"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+          data-aos-delay="400"
         >
-          {tr('aboutPage.join_us')}
+          {tr("home.slogan_ste")}
         </p>
+      </div>
+
+      <!-- Grid de Contenido Moderno -->
+      <div
+        class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center"
+      >
+        <!-- Imagen con efecto moderno -->
         <div
-          class='flex flex-col sm:flex-row gap-4 justify-center'
-          data-aos='fade-up'
-          data-aos-duration='1000'
-          data-aos-delay='400'
+          class="relative group"
+          data-aos="fade-right"
+          data-aos-duration="1200"
+          data-aos-delay="300"
         >
-          <a
-            href='/#quiero-ser-expositor'
-            class='bg-white text-red-600 font-bold py-4 px-8 rounded-full text-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-xl'
+          <div
+            class="absolute -inset-1 bg-linear-to-r from-red-600 to-rose-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000"
           >
-            {tr('menu.banner')}
-          </a>
-          <a
-            href='mailto:claudia.rodriguez@igeco.mx'
-            class='bg-white text-red-600 font-bold py-4 px-8 rounded-full text-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-xl'
+          </div>
+          <div class="relative">
+            <img
+              src="/img/bgabout_1.jpg"
+              alt="About Smart Technology Expo"
+              class="w-full h-[400px] md:h-[550px] object-cover rounded-2xl shadow-2xl"
+            />
+            <!-- Overlay decorativo -->
+            <div
+              class="absolute inset-0 bg-linear-to-t from-black/20 to-transparent rounded-2xl"
+            >
+            </div>
+          </div>
+        </div>
+
+        <!-- Descripción -->
+        <div
+          class="space-y-6"
+          data-aos="fade-left"
+          data-aos-duration="1200"
+          data-aos-delay="300"
+        >
+          <div>
+            <h3
+              class="text-3xl md:text-6xl font-black text-gray-900 mb-6 leading-tight"
+              data-aos="zoom-in"
+              data-aos-duration="800"
+              data-aos-delay="500"
+            >
+              {tr("aboutPage.subTitle_ste")}
+            </h3>
+
+            <div
+              class="prose prose-lg max-w-none text-gray-700 leading-relaxed space-y-4"
+              set:html={tr("aboutPage.desc_ste_01")}
+              data-aos="fade-up"
+              data-aos-duration="1000"
+              data-aos-delay="700"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="h-auto max-w-6xl mx-auto mb-24">
+      <p
+        class="text-4xl md:text-6xl font-black bg-linear-to-r from-gray-900 via-red-600 to-gray-900 bg-clip-text text-transparent text-center sm:py-12"
+        set:html={tr("aboutPage.desc_ste_02")}
+        data-aos="fade-up"
+        data-aos-duration="1000"
+        data-aos-delay="900"
+      />
+    </div>
+
+    <!-- Sección por qué exponer en STE -->
+    <section class="py-12 md:py-20 lg:py-28 relative overflow-hidden">
+      <!-- Fondo con gradiente dinámico -->
+      <div
+        class="absolute inset-0 bg-linear-to-br from-red-50 via-white to-rose-50"
+      >
+      </div>
+
+      <!-- Elementos decorativos animados -->
+      <div
+        class="absolute top-0 right-0 w-96 h-96 bg-red-100/40 rounded-full blur-3xl -mr-48 -mt-48 animate-pulse"
+      >
+      </div>
+      <div
+        class="absolute bottom-0 left-0 w-80 h-80 bg-rose-100/30 rounded-full blur-3xl -ml-40 -mb-40"
+        style="animation: pulse 4s ease-in-out infinite; animation-delay: 2s;"
+      >
+      </div>
+
+      <div class="container mx-auto px-4 relative z-10">
+        <!-- Cabecera de la sección -->
+        <div class="max-w-6xl mx-auto text-center mb-12 md:mb-20">
+          <h2
+            class="text-3xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-4 md:mb-6 leading-tight"
+            data-aos="fade-up"
+            data-aos-delay="100"
           >
-            Más Información
-          </a>
+            {tr("aboutPage.why_ste_title")}
+          </h2>
+        </div>
+
+        <!-- Grid de beneficios -->
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto"
+        >
+          <!-- Beneficio 1 -->
+          <div
+            class="group relative bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <div class="p-6 md:p-8">
+              <div class="flex gap-5 items-start">
+                
+                  <div
+                    class="flex items-center justify-center h-14 w-14 md:h-16 md:w-16 rounded-xl bg-linear-to-br from-red-500 to-rose-600 group-hover:scale-110 transition-transform duration-300"
+                  >
+                    <svg
+                      class="h-7 w-7 md:h-8 md:w-8 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                </div>
+                <div class="flex-1">
+                  <p
+                    class="text-gray-700 leading-relaxed text-sm md:text-xl font-semibold group-hover:text-gray-900 transition-colors"
+                  >
+                    {tr("aboutPage.why_ste_reasons.reason_1")}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Beneficio 2 -->
+          <div
+            class="group relative bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <div class="p-6 md:p-8">
+              <div class="flex gap-5 items-start">
+                  <div
+                    class="flex items-center justify-center h-14 w-14 md:h-16 md:w-16 rounded-xl bg-linear-to-br from-red-500 to-rose-600 group-hover:scale-110 transition-transform duration-300"
+                  >
+                    <svg
+                      class="h-7 w-7 md:h-8 md:w-8 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                      ></path>
+                    </svg>
+                  </div>
+                <div class="flex-1">
+                  <p
+                    class="text-gray-700 leading-relaxed text-sm md:text-xl font-semibold group-hover:text-gray-900 transition-colors"
+                  >
+                    {tr("aboutPage.why_ste_reasons.reason_2")}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Beneficio 3 -->
+          <div
+            class="group relative bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
+            <div class="p-6 md:p-8">
+              <div class="flex gap-5 items-start">
+                  <div
+                    class="flex items-center justify-center h-14 w-14 md:h-16 md:w-16 rounded-xl bg-linear-to-br from-red-500 to-rose-600 group-hover:scale-110 transition-transform duration-300"
+                  >
+                    <svg
+                      class="h-7 w-7 md:h-8 md:w-8 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                      ></path>
+                    </svg>
+                  </div>
+                <div class="flex-1">
+                  <p
+                    class="text-gray-700 leading-relaxed text-sm md:text-xl font-semibold group-hover:text-gray-900 transition-colors"
+                  >
+                    {tr("aboutPage.why_ste_reasons.reason_3")}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Beneficio 4 -->
+          <div
+            class="group relative bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500"
+            data-aos="fade-up"
+            data-aos-delay="400"
+          >
+            <div class="p-6 md:p-8">
+              <div class="flex gap-5 items-center">
+                <div
+                  class="flex items-center justify-center h-14 w-14 md:h-16 md:w-16 rounded-xl bg-linear-to-br from-red-500 to-rose-600 group-hover:scale-110 transition-transform duration-300"
+                >
+                  <svg
+                    class="h-7 w-7 md:h-8 md:w-8 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"
+                    ></path>
+                  </svg>
+                </div>
+                <div class="flex-1">
+                  <p
+                    class="text-gray-700 leading-relaxed text-sm md:text-xl font-semibold group-hover:text-gray-900 transition-colors"
+                  >
+                    {tr("aboutPage.why_ste_reasons.reason_4")}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Beneficio 5 -->
+          <div
+            class="group relative bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 md:col-span-2"
+            data-aos="fade-up"
+            data-aos-delay="500"
+          >
+            <div class="p-6 md:p-8">
+              <div class="flex gap-5 items-justify-center items-center">
+                <div
+                  class="flex items-center justify-center h-14 w-14 md:h-16 md:w-16 rounded-xl bg-linear-to-br from-red-500 to-rose-600 group-hover:scale-110 transition-transform duration-300"
+                >
+                  <svg
+                    class="h-7 w-7 md:h-8 md:w-8 text-white"
+                    fill="#ffffff"
+                    version="1.1"
+                    id="Layer_1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    viewBox="0 0 512 512"
+                    xml:space="preserve"
+                    stroke="#ffffff"
+                    ><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g
+                      id="SVGRepo_tracerCarrier"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier">
+                      <g>
+                        <g>
+                          <path
+                            d="M454.313,249.708L512,206.991L462.136,38.939l-256.667,8.226l-24.727,38.398L92.839,64.42L0,256.087l42.289,36.399 l-22.328,34.553c-7.052,10.914-9.432,23.92-6.701,36.624c2.73,12.704,10.245,23.583,21.158,30.635 c7.963,5.146,17.042,7.804,26.304,7.804c2.438,0,4.887-0.193,7.333-0.565c3.097,11.013,10.047,20.988,20.388,27.67 c8.142,5.262,17.282,7.774,26.323,7.774c2.442,0,4.873-0.206,7.278-0.567c3.198,11.44,10.36,21.2,20.423,27.703 c8.143,5.262,17.282,7.774,26.323,7.774c15.973,0,31.639-7.845,40.934-22.231l6.634-10.268l38.853,25.758l0.162,0.107 c7.963,5.146,17.042,7.805,26.304,7.805c3.43,0,6.887-0.365,10.32-1.102c12.704-2.731,23.583-10.246,30.635-21.158 c4.963-7.681,7.476-16.249,7.745-24.785c2.489-0.146,4.985-0.478,7.47-1.012c12.704-2.731,23.583-10.246,30.635-21.158 c4.865-7.528,7.504-16.054,7.777-24.787c2.479-0.147,4.963-0.478,7.436-1.01c12.705-2.731,23.584-10.244,30.636-21.158 c4.968-7.688,7.481-16.267,7.745-24.811c14.973-0.869,29.358-8.609,38.102-22.144c7.052-10.914,9.432-23.92,6.703-36.624 C464.938,264.277,460.578,256.165,454.313,249.708z M223.819,79.562l213.947-6.856l36.06,121.529l-47.959,35.513L242.472,110.338 l-52.058,79.011l-0.08,0.123c-4.694,7.26-14.416,9.349-21.676,4.66c-7.26-4.691-9.35-14.415-4.645-21.697L223.819,79.562z M73.986,361.949c-4.694,7.261-14.418,9.35-21.675,4.66c-3.517-2.273-5.939-5.779-6.819-9.873 c-0.879-4.094-0.113-8.285,2.161-11.802l32.971-51.027c2.997-4.637,8.043-7.164,13.192-7.164c2.913,0,5.86,0.81,8.484,2.505 c3.517,2.273,5.938,5.778,6.818,9.872s0.113,8.286-2.159,11.803L73.986,361.949z M128.011,396.858 c-4.694,7.26-14.417,9.348-21.676,4.659c-7.26-4.691-9.35-14.415-4.658-21.675l32.972-51.027 c2.997-4.637,8.043-7.164,13.192-7.164c2.913,0,5.86,0.81,8.484,2.506c7.26,4.691,9.35,14.415,4.659,21.675L128.011,396.858z M215.006,380.74l-32.972,51.027c-4.691,7.262-14.415,9.349-21.674,4.659c-3.517-2.273-5.939-5.779-6.818-9.873 c-0.88-4.094-0.114-8.285,2.159-11.803l32.972-51.027c2.273-3.517,5.778-5.938,9.872-6.818c1.107-0.237,2.22-0.355,3.324-0.355 c2.985,0,5.911,0.857,8.477,2.516C217.607,363.757,219.697,373.48,215.006,380.74z M432.488,292.041 c-2.273,3.517-5.778,5.938-9.872,6.818c-4.094,0.881-8.286,0.113-11.802-2.159l-10.939-7.068l-0.001-0.001l-51.028-32.972 l-17.892,27.69l10.94,7.07l40.088,25.904c3.517,2.273,5.938,5.778,6.818,9.872s0.113,8.286-2.159,11.803s-5.779,5.939-9.872,6.819 c-4.095,0.879-8.285,0.113-11.803-2.159l-51.027-32.972l-17.892,27.69l40.087,25.902c7.26,4.691,9.35,14.414,4.659,21.675 c-2.273,3.517-5.779,5.939-9.872,6.819c-4.095,0.879-8.285,0.113-11.802-2.159l-43.558-28.145l-17.892,27.69l32.617,21.076 c7.26,4.693,9.351,14.415,4.659,21.676c-2.273,3.517-5.778,5.939-9.872,6.819c-4.068,0.874-8.232,0.122-11.735-2.117 l-39.081-25.909l8.443-13.068c14.557-22.529,8.072-52.702-14.457-67.258c-10.349-6.687-22.309-8.922-33.629-7.214 c-3.094-11.023-10.046-21.008-20.394-27.695c-10.342-6.682-22.292-8.919-33.605-7.217c-3.199-11.436-10.36-21.192-20.42-27.692 c-18.62-12.034-42.458-9.676-58.391,4.224l-21.076-18.14l70.215-144.958l50.897,12.241l-25.527,39.639 c-14.557,22.529-8.072,52.701,14.457,67.258c22.506,14.544,52.642,8.083,67.217-14.392l33.979-51.572l175.87,114.508 c3.516,2.273,5.938,5.778,6.818,9.872C435.528,284.332,434.761,288.523,432.488,292.041z"
+                          ></path>
+                        </g>
+                      </g>
+                    </g></svg
+                  >
+                </div>
+                <div class="flex-1">
+                  <p
+                    class="text-gray-700 leading-relaxed text-sm md:text-xl font-semibold group-hover:text-gray-900 transition-colors"
+                  >
+                    {tr("aboutPage.why_ste_reasons.reason_5")}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -316,22 +399,23 @@ const tr = (key: string, fallback: string = '') =>
 </Layout>
 
 <style>
-  /* Prose customization */
+  /* Estilos de Prose mejorados */
   .prose {
     max-width: none;
   }
 
   .prose :global(p) {
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
     line-height: 1.8;
+    color: #374151;
   }
 
   .prose :global(strong) {
-    color: #e00d1b;
+    color: #dc2626;
     font-weight: 700;
   }
 
-  /* Animaciones personalizadas */
+  /* Animaciones modernas */
   @keyframes float {
     0%,
     100% {
@@ -342,31 +426,72 @@ const tr = (key: string, fallback: string = '') =>
     }
   }
 
+  @keyframes pulse-glow {
+    0%,
+    100% {
+      opacity: 1;
+      box-shadow: 0 0 20px rgba(220, 38, 38, 0.3);
+    }
+    50% {
+      opacity: 0.8;
+      box-shadow: 0 0 30px rgba(220, 38, 38, 0.5);
+    }
+  }
+
   .animate-float {
     animation: float 3s ease-in-out infinite;
   }
 
-  /* Gradientes mejorados */
-  .bg-gradient-to-r,
-  .bg-gradient-to-br,
-  .bg-gradient-to-b,
-  .bg-gradient-to-tl,
-  .bg-gradient-to-tr {
-    background-image: linear-gradient(
-      var(--tw-gradient-direction),
-      var(--tw-gradient-stops)
-    );
+  /* Efectos de gradiente de texto */
+  .bg-clip-text {
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
-  /* Hover effects */
-  .group:hover .group-hover\:opacity-0 {
-    opacity: 0;
+  /* Mejoras de sombras y profundidad */
+  .shadow-glow {
+    box-shadow:
+      0 10px 25px -5px rgba(220, 38, 38, 0.1),
+      0 8px 10px -6px rgba(220, 38, 38, 0.1);
   }
 
-  /* Responsive images */
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .lg\:grid-cols-2 {
+      grid-template-columns: 1fr;
+    }
+  }
+
   @media (max-width: 768px) {
-    .md\:h-\[500px\] {
-      height: 400px;
+    .md\:text-7xl {
+      font-size: 3rem;
+      line-height: 1.1;
+    }
+
+    .md\:h-\[550px\] {
+      height: 350px;
+    }
+  }
+
+  /* Efectos hover modernos */
+  .group:hover img {
+    transform: scale(1.05);
+    transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  img {
+    transition: transform 0.7s ease;
+  }
+
+  /* Badge pulse animation */
+  @keyframes badge-pulse {
+    0%,
+    100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
     }
   }
 </style>

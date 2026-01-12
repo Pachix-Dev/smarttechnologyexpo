@@ -45,7 +45,8 @@
     "hightlights_3": "With +100 national and international speakers",
     "hightlights_4": "Professionals on the exhibition floor",
     "contact_nacional": "NATIONAL CONTACT",
-    "contact_internacional": "INTERNATIONAL CONTACT"
+    "contact_internacional": "INTERNATIONAL CONTACT",
+    "slogan_ste": "Your business is our business"
   },
   "pricing": {
     "raw_space": {
@@ -98,7 +99,19 @@
         "our_story": "Our Story",
         "ready": "Ready to be part of the future?",
         "join_us": "Join the leading industrial technology community in Mexico",
-        "more_info": "More information"
+        "more_info": "More information",
+        "subTitle_ste": "The Strategic Platform Shaping the Future of Industry in Latin America",
+        "desc_ste_01": "SMART TECHNOLOGY EXPO is the leading executive platform in Mexico and Latin America dedicated to the technologies redefining industrial innovation.<br/><br/>Designed to connect global technology leaders with senior decision-makers, the expo brings together the most advanced solutions in automation, robotics, smart manufacturing, motion control, artificial intelligence, intralogistics, industrial cybersecurity, and integration software.",
+        "desc_ste_02": "More than a trade show <br />A strategic environment where technology meets business impact",
+        "why_ste_title": "Why Smart Technology Expo?",
+        "why_ste_desc": "SMART TECHNOLOGY EXPO is built for leaders shaping industrial strategy.<br /><br />Here, innovation is not only showcased—it is evaluated, compared, and activated through high-level engagement, curated networking, and executive-driven content.",
+        "why_ste_reasons": {
+            "reason_1": "Direct access to qualified buyers and decision-makers",
+            "reason_2": "High-value B2B meetings and strategic matchmaking",
+            "reason_3": "Executive conferences and thought leadership",
+            "reason_4": "Live demonstrations with real industrial applications",
+            "reason_5": "A premium environment designed for ROI and long-term partnerships"
+        }
   },
   "gallery": {
     "title": "Gallery Smart Technology Expo",
