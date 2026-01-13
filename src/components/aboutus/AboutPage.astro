@@ -100,13 +100,14 @@ const tr = (key: string, fallback: string = "") =>
         </p>
       </div>
 
-      <!-- Grid de Contenido Moderno -->
+      <!-- Esta sección habla sobre lo que es STE -->
       <div
-        class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center"
+        class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-20 items-center mx-12"
       >
-        <!-- Imagen con efecto moderno -->
+
+      <!-- Imagen con efecto hover -->
         <div
-          class="relative group"
+          class="relative group order-2 lg:order-1"
           data-aos="fade-right"
           data-aos-duration="1200"
           data-aos-delay="300"
@@ -115,15 +116,14 @@ const tr = (key: string, fallback: string = "") =>
             class="absolute -inset-1 bg-linear-to-r from-red-600 to-rose-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000"
           >
           </div>
-          <div class="relative">
+          <div class="relative overflow-hidden rounded-2xl">
             <img
               src="/img/bgabout_1.jpg"
               alt="About Smart Technology Expo"
-              class="w-full h-[400px] md:h-[550px] object-cover rounded-2xl shadow-2xl"
+              class="w-full h-[400px] md:h-[550px] lg:h-[600px] object-cover shadow-2xl transform group-hover:scale-105 transition-transform duration-700"
             />
-            <!-- Overlay decorativo -->
             <div
-              class="absolute inset-0 bg-linear-to-t from-black/20 to-transparent rounded-2xl"
+              class="absolute inset-0 bg-linear-to-t from-black/30 via-black/5 to-transparent"
             >
             </div>
           </div>
@@ -131,14 +131,15 @@ const tr = (key: string, fallback: string = "") =>
 
         <!-- Descripción -->
         <div
-          class="space-y-6"
+          class="space-y-6 md:space-y-8 px-6 md:px-8 lg:px-0 order-1 lg:order-2"
           data-aos="fade-left"
           data-aos-duration="1200"
           data-aos-delay="300"
         >
-          <div>
+          <div class="space-y-6">
+            <!-- Título mejorado -->
             <h3
-              class="text-3xl md:text-6xl font-black text-gray-900 mb-6 leading-tight"
+              class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 leading-[1.1] tracking-tight"
               data-aos="zoom-in"
               data-aos-duration="800"
               data-aos-delay="500"
@@ -146,8 +147,12 @@ const tr = (key: string, fallback: string = "") =>
               {tr("aboutPage.subTitle_ste")}
             </h3>
 
+            <!-- Línea decorativa -->
+            <div class="w-24 h-1 bg-linear-to-r from-red-600 to-rose-600 rounded-full"></div>
+
+            <!-- Texto descriptivo mejorado -->
             <div
-              class="prose prose-lg max-w-none text-gray-700 leading-relaxed space-y-4"
+              class="prose prose-lg md:prose-xl max-w-none text-gray-700 leading-relaxed space-y-6"
               set:html={tr("aboutPage.desc_ste_01")}
               data-aos="fade-up"
               data-aos-duration="1000"
@@ -171,12 +176,8 @@ const tr = (key: string, fallback: string = "") =>
     <!-- Sección por qué exponer en STE -->
     <section class="py-12 md:py-20 lg:py-28 relative overflow-hidden">
       <!-- Fondo con gradiente dinámico -->
-      <div
-        class="absolute inset-0 bg-linear-to-br from-red-50 via-white to-rose-50"
-      >
+      <div class="absolute inset-0 bg-linear-to-br from-red-50 via-white to-rose-50">
       </div>
-
-      <!-- Elementos decorativos animados -->
       <div
         class="absolute top-0 right-0 w-96 h-96 bg-red-100/40 rounded-full blur-3xl -mr-48 -mt-48 animate-pulse"
       >
@@ -186,7 +187,6 @@ const tr = (key: string, fallback: string = "") =>
         style="animation: pulse 4s ease-in-out infinite; animation-delay: 2s;"
       >
       </div>
-
       <div class="container mx-auto px-4 relative z-10">
         <!-- Cabecera de la sección -->
         <div class="max-w-6xl mx-auto text-center mb-12 md:mb-20">
