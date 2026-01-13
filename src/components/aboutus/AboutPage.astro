@@ -74,7 +74,7 @@ const tr = (key: string, fallback: string = "") =>
       </div>
     </div>
 
-    <!-- Sección de Contenido Principal -->
+    <!-- Sección SMART TECHNOLOGY EXPO -->
     <section class="container mx-auto px-4 py-16 md:py-24">
       <!-- Título Principal con Badge -->
       <div
@@ -101,9 +101,7 @@ const tr = (key: string, fallback: string = "") =>
       </div>
 
       <!-- Esta sección habla sobre lo que es STE -->
-      <div
-        class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-20 items-center mx-12"
-      >
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-20 items-center sm:mx-12">
 
       <!-- Imagen con efecto hover -->
         <div
@@ -160,12 +158,99 @@ const tr = (key: string, fallback: string = "") =>
             />
           </div>
         </div>
+        
       </div>
     </section>
 
-    <div class="h-auto max-w-6xl mx-auto mb-24">
+    <!-- Sección Misión y Visión -->
+    <section class="relative overflow-hidden from-gray-50 via-white to-gray-50 py-10">
+      <!-- Elementos decorativos de fondo -->
+      <div class="absolute top-0 left-0 w-96 h-96 bg-red-100/20 rounded-full blur-3xl -ml-48 -mt-48"></div>
+      <div class="absolute bottom-0 right-0 w-96 h-96 bg-rose-100/20 rounded-full blur-3xl -mr-48 -mb-48"></div>
+      
+      <div class="container mx-auto px-4 relative z-10">
+        <!-- Título de la sección -->
+        <div class="text-center mb-8 md:mb-10">
+          <h2
+            class="text-4xl md:text-5xl lg:text-6xl font-black bg-linear-to-r from-gray-900 via-red-600 to-gray-900 bg-clip-text text-transparent py-8"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+          >
+            {tr("aboutPage.title-visionMission")}
+          </h2>
+        </div>
+
+        <!-- Grid de Misión y Visión -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 max-w-7xl mx-auto">
+          
+          <!-- Card Misión -->
+          <div
+            class="group relative bg-white rounded-3xl p-8 md:p-10 lg:p-12 shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden"
+            data-aos="fade-right"
+            data-aos-duration="1000"
+            data-aos-delay="300"
+          >
+            <!-- Gradiente decorativo -->
+            <div class="absolute top-0 left-0 w-full h-2 bg-linear-to-r from-red-600 to-rose-600"></div>
+            
+            <!-- Efecto de brillo al hover -->
+            <div class="absolute inset-0 bg-linear-to-br from-red-50/0 to-rose-50/0 group-hover:from-red-50/30 group-hover:to-rose-50/30 transition-all duration-500"></div>
+            
+            <div class="relative z-10">
+              <!-- Icono -->
+              <div class="flex items-center justify-center w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-linear-to-br from-red-500 to-rose-600 shadow-lg mb-6 group-hover:scale-110 transition-transform duration-500">
+                <svg class="w-8 h-8 md:w-10 md:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                </svg>
+              </div>
+              <!-- Título -->
+              <h3 class="text-2xl md:text-3xl lg:text-4xl font-black text-gray-900 mb-6 leading-tight">
+                {tr("aboutPage.mission-title")}
+              </h3>
+              <!-- Descripción -->
+              <p class="text-gray-700 text-base md:text-lg leading-relaxed" set:html={tr("aboutPage.mission-desc")}>
+            </div>
+          </div>
+
+          <!-- Card Visión -->
+          <div
+            class="group relative bg-white rounded-3xl p-8 md:p-10 lg:p-12 shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden"
+            data-aos="fade-left"
+            data-aos-duration="1000"
+            data-aos-delay="400"
+          >
+            <!-- Gradiente decorativo -->
+            <div class="absolute top-0 left-0 w-full h-2 bg-linear-to-r from-rose-600 to-red-600"></div>
+            
+            <!-- Efecto de brillo al hover -->
+            <div class="absolute inset-0 bg-linear-to-br from-rose-50/0 to-red-50/0 group-hover:from-rose-50/30 group-hover:to-red-50/30 transition-all duration-500"></div>
+            
+            <div class="relative z-10">
+              <!-- Icono -->
+              <div class="flex items-center justify-center w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-linear-to-br from-rose-600 to-red-500 shadow-lg mb-6 group-hover:scale-110 transition-transform duration-500">
+                <svg class="w-8 h-8 md:w-10 md:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                </svg>
+              </div>
+
+              <!-- Título -->
+              <h3 class="text-2xl md:text-3xl lg:text-4xl font-black text-gray-900 mb-6 leading-tight">
+                {tr("aboutPage.vision-title")}
+              </h3>
+
+              <!-- Descripción -->
+              <p class="text-gray-700 text-base md:text-lg leading-relaxed" set:html={tr("aboutPage.vision-desc")} />
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="h-auto max-w-6xl mx-auto py-12 px-4">
       <p
-        class="text-4xl md:text-6xl font-black bg-linear-to-r from-gray-900 via-red-600 to-gray-900 bg-clip-text text-transparent text-center sm:py-12"
+        class="text-4xl md:text-6xl font-black bg-linear-to-r from-gray-900 via-red-600 to-gray-900 bg-clip-text text-transparent text-center py-10 sm:py-10"
         set:html={tr("aboutPage.desc_ste_02")}
         data-aos="fade-up"
         data-aos-duration="1000"

@@ -112,7 +112,12 @@
           "reason_4": "Demostraciones tecnológicas con aplicaciones reales",
           "reason_5": "Un entorno premium diseñado para generar ROI y alianzas de largo plazo"
         },
-        "subtitle-pillars": "Los Pilares Tecnológicos Estratégicos"
+        "subtitle-pillars": "Los Pilares Tecnológicos Estratégicos",
+        "title-visionMission": "Misión y Visión",
+        "vision-title": "Nuestra Visión",
+        "vision-desc": "Ser reconocidos como la plataforma industrial más influyente de Latinoamérica, donde convergen innovación, liderazgo y expansión de negocios.<br />SMART TECHNOLOGY EXPO busca marcar el estándar de cómo los ecosistemas industriales se conectan, colaboran y evolucionan.",
+        "mission-title": "Nuestra Misión",
+        "mission-desc": "Acelerar la transformación industrial en México y Latinoamérica conectando tecnología avanzada con la toma de decisiones estratégicas.<br />Impulsamos a las empresas a posicionar sus soluciones, generar demanda y cerrar oportunidades clave, mientras brindamos a los líderes industriales las herramientas para definir el siguiente nivel de competitividad."
   },
   "gallery": {
     "title": "Galería Smart Technology Expo",
