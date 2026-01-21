@@ -1,0 +1,32 @@
+---
+import { useTranslations, getTranslation } from '../../utils/translations'
+// ✨ Una sola línea para cargar traducciones!
+const { locale, translations } = await useTranslations(Astro.props, Astro)
+
+// 🎯 Helper para traducciones más elegante
+const tr = (key: string, fallback: string = '') =>
+  getTranslation(translations, key, fallback)
+
+import { buyers } from '../../data/constans_logos.js'
+---
+
+<section class='px-4 py-20 bg-white'>
+  <div
+    class='w-fit mx-auto square_red font-extrabold text-3xl md:text-4xl uppercase py-5 px-10 text-red-600 text-center'
+  >
+    {tr('home.buyers_profesionals')}
+  </div>
+
+  <div class='mt-10 grid grid-cols-4 sm:grid-cols-3 md:grid-cols-8 gap-6 max-w-7xl mx-auto'>
+    {
+      buyers.map((buyer) => (
+        <div class='flex justify-center items-center'>
+          <img src={buyer.src} alt={buyer.alt} width={buyer.width} />
+        </div>
+      ))
+    }
+  </div>
+  <p class='text-right font-extrabold text-2xl uppercase'>
+    {tr('home.others')}...
+  </p>
+</section>

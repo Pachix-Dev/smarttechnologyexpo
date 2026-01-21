@@ -10,6 +10,7 @@ import Events from "./Events.astro";
 import ContactTeam from "./ContactTeam.astro";
 import UserGuideButtons from "./UserGuideButtons.astro";
 import HomePopup from '../../components/home/HomePopup.jsx'
+import Buyers from "./Buyers.astro";
 
 export interface Props {
   locale?: string;
@@ -27,6 +28,7 @@ const tr = (key: string, fallback: string = "") =>
   <UserGuideButtons />
   <Description />
   <Highlights />
+  <Buyers />
   <Events events={events} isLeftToRight={true} />
   <ContactTeam />
 </Layout>
