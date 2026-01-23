@@ -41,32 +41,31 @@ const menu: MenuItem[] = [
       },
       {
         title: tr("menu.exhibitor_section.item_2"),
-        target: '_blank',
+        target: "_blank",
         href: "/files/PLANO_STE_2026_191225_modelo.pdf",
-      }
-    ]
-  },
-  // {
-  //   title: tr('menu.exhibitors'),
-  //   href: '/quiero-ser-expositor',
-  // },
-  /*
-  {
-    title: tr('menu.visitors'),
-    items: [
-      { title: tr('menu.visitors_1'), href: '/por-que-visitarnos' },
-      { title: tr('hotels.title'), href: '/por-que-visitarnos/#tarifas' },
-      {
-        title: tr('hotels.visitplan'),
-        href: '/por-que-visitarnos/#planea-tu-visita',
-      },
-      {
-        title: tr('menu.visitors_5'),
-        href: '/programa-2025',
       },
     ],
   },
-  
+
+  {
+    title: tr("menu.visitors_section.title"),
+    items: [
+      {
+        title: tr("menu.visitors_section.hotels"),
+        href: "/tarifas-hoteles-2026",
+      },
+      // {
+      //   title: tr("menu.visitors_section.item_1"),
+      //   href: "/por-que-visitarnos",
+      // },
+      // { title: tr("hotels.title"), href: "/por-que-visitarnos/#tarifas" },
+      // {
+      //   title: tr("menu.visitors_5"),
+      //   href: "/programa-2025",
+      // },
+    ],
+  },
+  /*
   {
     title: tr('menu.past_events'),
     items: [
@@ -206,7 +205,7 @@ const menu: MenuItem[] = [
       locale === "en"
         ? "/files/aftershow/Aftershow_ENG_Report_ITM_AMOF_DRONE_2025.pdf"
         : "/files/aftershow/Aftershow_ESP_Report_ITM_AMOF_DRONE_2025.pdf",
-        target: '_blank',
+    target: "_blank",
   },
 ];
 ---
@@ -305,7 +304,7 @@ const menu: MenuItem[] = [
                                                         {deepSubItem.title}
                                                       </a>
                                                     </li>
-                                                  )
+                                                  ),
                                                 )}
                                               </ul>
                                             </DropdownItems>

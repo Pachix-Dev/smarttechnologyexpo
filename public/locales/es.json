@@ -11,7 +11,13 @@
             "title": "EXPOSITORES",
             "item_1": "Quiero ser expositor",
             "item_2": "Plano STE 2026"
-        }, 
+        },
+        "visitors_section": {
+            "title": "VISITANTES",
+            "item_1": "Por qué visitarnos",
+            "item_2": "Registro de visitantes",
+            "hotels": "Tarifas especiales de hoteles"
+        },
         "media_hub": "Centro de Medios",        
         "gallery": "GALERÍA",
         "afeter_show_report": "REPORTE DE RESULTADOS 2025"
@@ -202,5 +208,26 @@
     "description": "Hemos recibido tu información correctamente. Pronto uno de nuestros agentes se pondrá en contacto contigo.",
     "back_home": "Regresar al inicio",
     "textSocial": "Síguenos en "
-  }
+  },
+  "hotels": {
+        "cede": "Recinto sede",
+        "text_description": "Expo Guadalajara es el centro de convenciones más grande de México y Latinoamérica, con más de 119,000 m² de espacios modernos para ferias, congresos y exposiciones internacionales.<br /><br /> Ubicado en el corazón de Guadalajara, ofrece conectividad de primer nivel y está rodeado de hoteles, restaurantes y servicios que lo convierten en la sede ideal para eventos de clase mundial.",
+        "title": "Tarifas especiales en hoteles",
+        "description": "Nos complace anunciar que hemos asegurado tarifas preferenciales en hoteles de calidad para que tu experiencia sea aún más cómoda y accesible.<br /><br />Ubicados estratégicamente alrededor del lugar del evento, estos hoteles ofrecen no solo comodidad, sino también la oportunidad de sumergirte completamente en la atmósfera del evento. Hemos negociado tarifas especiales para nuestros asistentes, asegurándonos de que tu estancia sea tan inolvidable como el propio evento.",
+        "rate": "Tarifa desde: ",
+        "code": "codigo de reserva: ",
+        "book": "Reservar",
+        "taxes": "Impuestos",
+        "time" : "min",
+        "place" : "El hotel se encuentra justo en frente",
+        "about_gdl": "Acerca de Guadalajara",
+        "description_gdl":"Guadalajara, la perla del occidente mexicano, se destaca como una ciudad llena de encanto y diversidad. Conocida como la 'Perla Tapatía', Guadalajara combina la rica herencia histórica de México con una modernidad vibrante. <br /><br />La ciudad es famosa por su arquitectura colonial, plazas pintorescas y una atmósfera que refleja la calidez de su gente. Al caminar por el centro histórico, te sumergirás en calles empedradas que llevan a impresionantes iglesias, como la Catedral de Guadalajara y la Basílica de Zapopan. La cultura mexicana se encuentra en cada rincón, desde los mercados tradicionales hasta los coloridos murales que adornan las calles.",
+        "restaurants": "Opciones Gastronómicas",
+        "restaurants_desc": "Guadalajara es conocida por su cocina tradicional mexicana, que se puede disfrutar en los numerosos restaurantes de la ciudad. Los platos típicos incluyen tortas ahogadas, pozole, birria y carne en su jugo. La ciudad también ofrece una amplia variedad de restaurantes internacionales, que van desde comida italiana hasta japonesa.abr <br />Para aquellos que buscan experiencias gourmet, la ciudad cuenta con elegantes restaurantes que ofrecen menús sofisticados y una selección cuidadosa de vinos. Ya sea que te encuentres explorando los barrios históricos o las áreas más modernas de la ciudad, los restaurantes en Guadalajara te invitan a un festín de sabores auténticos y emocionantes. En muchos lugares, también podrás disfrutar de la música en vivo, creando una experiencia gastronómica única que captura la esencia vibrante de la ciudad.",
+        "entertainment": "Entretenimiento",
+        "entertainment_desc": "Guadalajara es una ciudad que ofrece una amplia variedad de actividades de entretenimiento. Desde museos hasta galerías de arte, la ciudad cuenta con una gran cantidad de lugares que celebran la cultura mexicana. <br /><br />La ciudad también cuenta con una gran cantidad de parques y áreas verdes, que ofrecen un escape de la vida urbana.",
+        "money": "Moneda",
+        "money_desc": "Si estás planificando tu visita a Guadalajara, es importante conocer la moneda oficial de México, que es el peso mexicano (MXN). El peso mexicano se utiliza en transacciones diarias, y encontrarás billetes y monedas de diferentes denominaciones.",
+        "link_currency": "Haga clic aquí para utilizar el conversor de moneda."
+    }
 }

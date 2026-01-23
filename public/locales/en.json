@@ -11,7 +11,13 @@
             "title": "EXHIBITORS",
             "item_1": "I want to be an exhibitor",
             "item_2": "FLOOR PLAN STE 2026"
-        },         
+        },
+        "visitors_section": {
+            "title": "VISITORS",
+            "item_1": "Why visit us",
+            "item_2": "Visitor Registration",
+            "hotels": "Special hotel rates"
+        },
         "media_hub": "Media Hub",      
         "gallery": "GALLERY",
         "afeter_show_report": "AFTER SHOW REPORT 2025"  
@@ -202,5 +208,27 @@
     "description": "We have received your information correctly. One of our agents will contact you soon.",
     "back_home": "Back to Home",
     "textSocial": "Follow us on our social networks"
-  }
+  },
+  "hotels":{
+        "cede": "venue cedes",
+        "cedera": "Headquarters",
+        "text_description": "Expo Guadalajara is the largest convention center in Mexico and Latin America, with more than 1,230,000 square feet of modern space for international trade shows, conferences, and exhibitions.<br /><br /> Located in the heart of Guadalajara, it offers first-class connectivity and is surrounded by hotels, restaurants, and services that make it the ideal venue for world-class events.",
+        "title": "Special Hotel Rates",
+        "description": "Expo Guadalajara is the largest convention center in Mexico and Latin America, with more than 119,000 m² of modern spaces for international fairs, congresses and exhibitions. <br /><br /> Located in the heart of Guadalajara, it offers first-class connectivity and is surrounded by hotels, restaurants and services that make it the ideal venue for world-class events.",
+        "rate": "Rates from: ",
+        "code": "reservation code: ",
+        "book": "Book now",
+        "taxes": "Taxes",
+        "time" : "min",
+        "place" : "The hotel is located right in front.",
+        "about_gdl": "About Guadalajara",
+        "description_gdl":"Guadalajara, the pearl of western Mexico, stands out as a city full of charm and diversity. Known as the 'Pearl of Tapatia', Guadalajara combines Mexico's rich historical heritage with vibrant modernity. <br /><br />The city is famous for its colonial architecture, picturesque squares and an atmosphere that reflects the warmth of its people. Walking through the historic center, you will immerse yourself in cobblestone streets that lead to impressive churches, such as the Guadalajara Cathedral and the Zapopan Basilica. Mexican culture is found in every corner, from the traditional markets to the colorful murals that adorn the streets.",
+        "restaurants": "Dining options",
+        "restaurants_desc": "Guadalajara is known for its traditional Mexican cuisine, which can be enjoyed in the city's many restaurants. Typical dishes include cakes drowned, pozole, birria and meat in its juice. The city also offers a wide variety of international restaurants, ranging from Italian to Japanese food. Apr <br />For those seeking gourmet experiences, the city has elegant restaurants offering sophisticated menus and a careful selection of wines. Whether you find yourself exploring the historic neighborhoods or the more modern areas of the city, the restaurants in Guadalajara invite you to a feast of authentic and exciting flavors. In many places, you can also enjoy live music, creating a unique dining experience that captures the vibrant essence of the city.",
+        "entertainment": "Entertainment",
+        "entertainment_desc": "Guadalajara is a city that offers a wide variety of entertainment activities. From museums to art galleries, the city has a host of places that celebrate Mexican culture. <br /><br />The city also has a large number of parks and green areas, offering an escape from urban life.",
+        "money": "Currency",
+        "money_desc": "If you are planning a visit to Guadalajara, it is important to know that the official currency of Mexico is the Mexican peso (MXN). The Mexican peso is used in everyday transactions, and you will find bills and coins in various denominations.",
+        "link_currency": "Click here to use the currency converter."
+    }
 }
