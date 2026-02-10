@@ -17,20 +17,20 @@ import { mediaPlanito } from "../../logos.js";
     >
       {tr("home.platinum_allies")}
     </h2>
-    <div
-      class="mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-8 max-w-xl"
-    >
-      {
-        mediaPlanito.map((medio, index) => (
-          <div class="flex justify-center items-center w-full h-24">
-            <img
-              src={medio.src}
-              alt={medio.alt}
-              style={`width: ${medio.width}px;`}
-            />
-          </div>
-        ))
-      }
+    <div class="flex justify-center w-full">
+      <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-8 place-items-center place-content-center">
+        {
+          mediaPlanito.map((medio, index) => (
+            <div class="flex justify-center items-center">
+              <img
+                src={medio.src}
+                alt={medio.alt}
+                class="h-16 w-auto object-contain"
+              />
+            </div>
+          ))
+        }
+      </div>
     </div>
   </div>
 </section>
