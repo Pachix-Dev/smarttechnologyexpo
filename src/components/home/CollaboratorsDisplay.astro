@@ -1,0 +1,35 @@
+---
+import { useTranslations, getTranslation } from "../../utils/translations";
+//Una sola línea para cargar traducciones!
+const { locale, translations } = await useTranslations(Astro.props, Astro);
+
+//Helper para traducciones más elegante
+const tr = (key: string, fallback: string = "") =>
+  getTranslation(translations, key, fallback);
+
+import { mediaPlanito } from "../../logos.js";
+---
+
+<section class="mb-20">
+  <div>
+    <h2
+      class="w-fit mx-auto square_red font-extrabold text-3xl md:text-4xl uppercase py-5 px-10 text-red-600 text-center"
+    >
+      {tr("home.platinum_allies")}
+    </h2>
+    <div
+      class="mt-5 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 place-items-center"
+    >
+      {
+        mediaPlanito.map((medio, index) => (
+          <img
+            src={medio.src}
+            alt={medio.alt}
+            class="mx-auto h-auto max-w-[180px] md:max-w-[220px]"
+            style={`width: ${medio.width}px;`}
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>
