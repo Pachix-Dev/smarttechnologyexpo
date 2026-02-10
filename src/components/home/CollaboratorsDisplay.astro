@@ -10,24 +10,25 @@ const tr = (key: string, fallback: string = "") =>
 import { mediaPlanito } from "../../logos.js";
 ---
 
-<section class="mb-20">
-  <div>
+<section class="mb-20 p-2">
+  <div class="mx-auto">
     <h2
       class="w-fit mx-auto square_red font-extrabold text-3xl md:text-4xl uppercase py-5 px-10 text-red-600 text-center"
     >
       {tr("home.platinum_allies")}
     </h2>
     <div
-      class="mt-5 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 place-items-center"
+      class="mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-8 max-w-xl"
     >
       {
         mediaPlanito.map((medio, index) => (
-          <img
-            src={medio.src}
-            alt={medio.alt}
-            class="mx-auto h-auto max-w-[180px] md:max-w-[220px]"
-            style={`width: ${medio.width}px;`}
-          />
+          <div class="flex justify-center items-center w-full h-24">
+            <img
+              src={medio.src}
+              alt={medio.alt}
+              style={`width: ${medio.width}px;`}
+            />
+          </div>
         ))
       }
     </div>
