@@ -158,6 +158,9 @@ export function ContactForm() {
             <option value='Software de Automatización e Integración de Sistemas / Automation Software and Systems Integration'>
               Software de Automatización e Integración de Sistemas / Automation Software and Systems Integration
             </option>
+            <option value="Drone Innovators Forum">
+              Drone Innovators Forum
+            </option>
           </select>
         </div>
         {/* Nombre: Nombre completo de la persona de contacto. Obligatorio. */}
