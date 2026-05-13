@@ -52,25 +52,25 @@ const objectiveCards = [
     <h3 class="text-3xl sm:text-4xl lg:text-6xl font-bold text-center mt-2 md:mt-4">
       {tr("itzamnaPage.objectives.title")}
     </h3>
-    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight text-center italic">
+    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight text-center mt-4 md:mt-6 ">
       <!-- {tr("itzamnaPage.objectives.title", locale === "en" ? "Main Objectives" : "Objetivos principales")} -->
        {tr("itzamnaPage.objectives.description")}
     </h2>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-7 mt-10 md:mt-12">
+    <div class="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5 md:gap-7 mt-8 md:mt-12">
       {
         objectiveCards.map((card) => {
           const fallbackText = locale === "en" ? card.en : card.es;
           return (
-            <article class="w-full mx-auto rounded-2xl overflow-hidden bg-white/10 shadow-[0_16px_35px_rgba(0,0,0,0.32)] backdrop-blur-[1px]">
+            <article class="w-full max-w-[180px] sm:max-w-none mx-auto rounded-xl md:rounded-2xl overflow-hidden bg-white/10 shadow-[0_10px_24px_rgba(0,0,0,0.28)] md:shadow-[0_16px_35px_rgba(0,0,0,0.32)] backdrop-blur-[1px]">
               <img
                 src={card.img}
                 alt={tr(card.key, fallbackText)}
-                class="w-full h-[260px] object-cover"
+                class="w-full h-[145px] sm:h-[200px] md:h-[260px] object-cover"
                 loading="lazy"
               />
-              <div class="bg-[#c9202c] px-4 py-4 min-h-[86px] flex items-center justify-center">
-                <p class="text-center text-base md:text-lg font-semibold leading-tight">
+              <div class="bg-[#c9202c] px-2 sm:px-4 py-2 sm:py-4 min-h-16 sm:min-h-[86px] flex items-center justify-center">
+                <p class="text-center text-sm sm:text-base md:text-lg font-semibold leading-tight">
                   {tr(card.key, fallbackText)}
                 </p>
               </div>
