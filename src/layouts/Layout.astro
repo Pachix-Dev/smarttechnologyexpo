@@ -34,7 +34,7 @@ const fullOgImage = new URL(ogImage, siteUrl).href
 ---
 
 <!doctype html>
-<html lang={currentLocale}>
+<html lang={currentLocale} class="scroll-pt-16 lg:scroll-pt-24">
   <head>
     <meta charset='UTF-8' />
     <meta name='viewport' content='width=device-width, initial-scale=1.0' />
@@ -193,7 +193,7 @@ const fullOgImage = new URL(ogImage, siteUrl).href
     <header>
       <Navigation />
     </header>
-    <main>
+    <main class="pt-16 lg:pt-24">
       <slot />
     </main>
     <Footer />
@@ -306,7 +306,7 @@ const fullOgImage = new URL(ogImage, siteUrl).href
   }
 
   main {
-    min-height: calc(100vh - 80px);
+    /* min-height: calc(100vh - 80px); */
     padding-top: 60px;
   }
 

@@ -679,5 +679,9 @@
     "description_2": "Por favor pasa al modulo de caja con este numero para pagar y recoger tu gafete.",
     "recomendation": "Recomendaciones para tu visita",
     "back_home": "Regresar a la página de inicio"
+  },
+  "itzamnaPage": {
+    "title": "PREMIO ITZAMNÁ 2026",
+    "subtitle": "Reconociendo la innovación y la transformación industrial"
   }
 }

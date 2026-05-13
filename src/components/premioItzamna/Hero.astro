@@ -1,0 +1,124 @@
+---
+import { useTranslations, getTranslation } from "../../utils/translations";
+// ✨ Una sola línea para cargar traducciones!
+const { locale, translations } = await useTranslations(Astro.props, Astro);
+// 🎯 Helper para traducciones más elegante
+const tr = (key: string, fallback: string = "") =>
+  getTranslation(translations, key, fallback);
+---
+
+<section class="relative overflow-hidden">
+  <!-- Background gradient animado -->
+  <div
+    class="absolute inset-0 bg-linear-to-br from-slate-950 via-[#2a4b9b]/95 to-slate-950 overflow-hidden"
+  >
+    <!-- Efecto de luces de fondo -->
+    <div
+      class="absolute top-0 right-0 w-96 h-96 bg-[#2a4b9b] rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"
+    >
+    </div>
+    <div
+      class="absolute -bottom-8 left-20 w-72 h-72 bg-[#2a4b9b]/80 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"
+    >
+    </div>
+    <div
+      class="absolute top-1/2 left-1/2 w-80 h-80 bg-[#2a4b9b]/60 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"
+    >
+    </div>
+  </div>
+
+  <!-- Contenido principal -->
+  <div
+    class="relative flex justify-center px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20"
+  >
+    <div
+      class="grid grid-cols-1 gap-8 sm:gap-10 items-center max-w-5xl mx-auto w-full"
+    >
+      <!-- Contenido de texto -->
+      <div class="text-center space-y-5 sm:space-y-6 animate-fadeInUp max-w-6xl mx-auto flex md:flex-row flex-col items-center sm:gap-10 md:gap-20">
+        <div class="text-center md:text-start">
+          <!-- Título principal -->
+          <h1 class="text-4xl sm:text-5xl lg:text-7xl font-bold leading-tight  flex flex-col text-white">
+            {tr("itzamnaPage.title")}
+          </h1>
+          <!-- Subtítulo -->
+          <p class="text-lg sm:text-sm lg:text-2xl text-white/80 mt-4 max-w-3xl">
+            {tr("itzamnaPage.subtitle")}
+          </p>
+        </div>
+
+        <!-- Logo -->
+        <div
+          class="relative mx-auto w-full max-w-[220px] sm:max-w-[260px] lg:max-w-[320px]"
+        >
+          <div
+            class="absolute inset-0 bg-linear-to-br from-[#2a4b9b]/10 to-[#2a4b9b]/20 rounded-2xl blur-2xl"
+          >
+          </div>
+          <img
+            src="/img/itzamna/itzamna_logo.png"
+            alt="Premio Itzamná"
+            class="relative w-full drop-shadow-2xl transition-transform duration-500 hover:scale-105 hover:drop-shadow-[0_0_30px_rgba(42,75,155,0.45)]"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes blob {
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+    33% {
+      transform: translate(30px, -50px) scale(1.1);
+    }
+    66% {
+      transform: translate(-20px, 20px) scale(0.9);
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-blob {
+    animation: blob 7s infinite;
+  }
+
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+
+  .animate-fadeInUp {
+    animation: fadeInUp 0.8s ease-out 0.2s both;
+  }
+
+  .animate-fadeInDown {
+    animation: fadeInDown 0.8s ease-out 0.3s both;
+  }
+</style>
