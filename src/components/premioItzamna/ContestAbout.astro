@@ -6,10 +6,77 @@ const { locale, translations } = await useTranslations(Astro.props, Astro);
 const tr = (key: string, fallback: string = "") =>
   getTranslation(translations, key, fallback);
 ---
+
 <section class="py-10">
   <div class="text-white">
-    <h3 class="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight text-center italic">ITALIAN GERMAN EXHIBITION COMPANY MÉXICO</h3>
-    <h2 class="text-4xl sm:text-5xl lg:text-7xl font-bold leading-tight text-center">{tr("itzamnaPage.contestAbout.title")}</h2>
-    <p class="text-base md:text-xl leading-7 p-4 max-w-4xl text-justify mx-auto w-fit" set:html={tr("itzamnaPage.contestAbout.description")}></p>
+    <h3
+      class="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight text-center italic"
+    >
+      ITALIAN GERMAN EXHIBITION COMPANY MÉXICO
+    </h3>
+    <h2
+      class="text-4xl sm:text-5xl lg:text-7xl font-bold leading-tight text-center"
+    >
+      {tr("itzamnaPage.contestAbout.title")}
+    </h2>
+    <div
+      class="grid md:grid-cols-2 leading-7 p-4 max-w-6xl text-justify mx-auto w-fit pt-10 gap-4"
+    >
+      <p
+        class="text-base md:text-xl"
+        set:html={tr("itzamnaPage.contestAbout.description")}
+      />
+      <img
+        src="/img/itzamna/convocatoria.webp"
+        alt=""
+        class="w-[450px] rounded-lg mx-auto"
+      />
+    </div>
+  </div>
+  <!-- participantes -->
+  <div class="flex flex-col justify-center items-center mt-10 bg-[#ad2f27] text-white px-4 py-8 md:py-10">
+    <h3
+      class="text-4xl lg:text-6xl font-bold leading-tight text-center"
+    >
+      {tr("itzamnaPage.participants.title")}
+    </h3>
+    <div class="w-full max-w-6xl grid grid-cols-3 gap-2 md:gap-6 mt-8 md:mt-10 justify-items-center">
+      <div
+        class="min-h-[150px] md:min-h-[220px] w-full max-w-[280px] bg-black/40 flex flex-col justify-center items-center text-center rounded-lg md:rounded-xl p-2 md:p-3 text-[11px] leading-4 md:text-base md:leading-6"
+      >
+        <img src="/img/itzamna/icono_01.webp" alt="" class="w-10 md:w-[130px]" />
+        {tr("itzamnaPage.participants.item01")}
+      </div>
+      <div
+        class="min-h-[150px] md:min-h-[220px] w-full max-w-[280px] bg-black/40 flex flex-col justify-center items-center text-center rounded-lg md:rounded-xl p-2 md:p-3 text-[11px] leading-4 md:text-base md:leading-6"
+      >
+        <img src="/img/itzamna/icono_02.webp" alt="" class="w-10 md:w-[130px]"/>
+        {tr("itzamnaPage.participants.item02")}
+      </div>
+      <div
+        class="min-h-[150px] md:min-h-[220px] w-full max-w-[280px] bg-black/40 flex flex-col justify-center items-center text-center rounded-lg md:rounded-xl p-2 md:p-3 text-[11px] leading-4 md:text-base md:leading-6"
+      >
+        <img src="/img/itzamna/icono_03.webp" alt="" class="w-10 md:w-[130px]"/>
+        {tr("itzamnaPage.participants.item03")}
+      </div>
+      <div
+        class="min-h-[150px] md:min-h-[220px] w-full max-w-[280px] bg-black/40 flex flex-col justify-center items-center text-center rounded-lg md:rounded-xl p-2 md:p-3 text-[11px] leading-4 md:text-base md:leading-6"
+      >
+        <img src="/img/itzamna/icono_04.webp" alt="" class="w-10 md:w-[130px]"/>
+        {tr("itzamnaPage.participants.item04")}
+      </div>
+      <div
+        class="min-h-[150px] md:min-h-[220px] w-full max-w-[280px] bg-black/40 flex flex-col justify-center items-center text-center rounded-lg md:rounded-xl p-2 md:p-3 text-[11px] leading-4 md:text-base md:leading-6"
+      >
+        <img src="/img/itzamna/icono_05.webp" alt="" class="w-10 md:w-[130px]"/>
+        {tr("itzamnaPage.participants.item05")}
+      </div>
+      <div
+        class="min-h-[150px] md:min-h-[220px] w-full max-w-[280px] bg-black/40 flex flex-col justify-center items-center text-center rounded-lg md:rounded-xl p-2 md:p-3 text-[11px] leading-4 md:text-base md:leading-6"
+      >
+        <img src="/img/itzamna/icono_06.webp" alt="" class="w-10 md:w-[130px]"/>
+        {tr("itzamnaPage.participants.item06")}
+      </div>
+    </div>
   </div>
 </section>

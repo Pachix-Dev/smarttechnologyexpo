@@ -686,11 +686,20 @@
     "subtitle": "Recognizing the innovation and industrial transformation that are shaping the future",
     "aboutItzamna": {
       "title": "About The Itzamná Award",
-      "description":"Since 2021, the Itzamná Award has recognized projects, initiatives, and solutions that have had a significant impact on the technological evolution of the national productive sector. <br /><br />Starting in 2026, a new phase begins as the award joins Smart Technology Expo (STE), an international platform that connects technological and industrial ecosystems between Europe and the Americas, thereby strengthening its reach, visibility, and strategic positioning. <br /><br />Inspired by Itzamná, a Mayan deity associated with knowledge and wisdom, the award symbolizes vision, innovation, and the ability to build the future through applied intelligence."
+      "description": "Since 2021, the Itzamná Award has recognized projects, initiatives, and solutions that have had a significant impact on the technological evolution of the national productive sector. <br /><br />Starting in 2026, a new phase begins as the award joins Smart Technology Expo (STE), an international platform that connects technological and industrial ecosystems between Europe and the Americas, thereby strengthening its reach, visibility, and strategic positioning. <br /><br />Inspired by Itzamná, a Mayan deity associated with knowledge and wisdom, the award symbolizes vision, innovation, and the ability to build the future through applied intelligence."
     },
-    "contestAbout":{
+    "contestAbout": {
       "title": "ANNOUNCEMENT",
       "description": "We invite companies, organizations, scale-ups, tech startups, and system integrators to participate in the 2026 edition of the Itzamná Award. <br /><br />This award is intended for solutions with proven implementation, operation, or impact in Mexico, aimed at strengthening industrial competitiveness through automation, digitization, applied intelligence, and advanced technologies."
+    },
+    "participants": {
+      "title": "Who is eligible to participate?",
+      "item01": "Domestic or international companies with operations in Mexico",
+      "item02": "Industrial organizations",
+      "item03": "Technology startups",
+      "item04": "Scaleups",
+      "item05": "Technology integrators",
+      "item06": "Industrial solution providers"
     }
   }
 }

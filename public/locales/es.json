@@ -685,11 +685,20 @@
     "subtitle": "Reconociendo la innovación y la transformación industrial",
     "aboutItzamna": {
       "title": "Acerca del Premio Itzamná",
-      "description":"Desde 2021, el Premio Itzamná ha distinguido proyectos, iniciativas y soluciones con impacto relevante en la evolución tecnológica del sector productivo nacional. <br /><br />A partir de 2026, inicia una nueva etapa al integrarse a Smart Technology Expo (STE), plataforma internacional que vincula ecosistemas tecnológicos e industriales entre Europa y América, fortaleciendo su alcance, proyección y posicionamiento estratégico. <br /><br />Inspirado en VFFF, deidad maya asociada al conocimiento y la sabiduría, el reconocimiento simboliza visión, innovación y la capacidad de construir el futuro mediante inteligencia aplicada."
+      "description": "Desde 2021, el Premio Itzamná ha distinguido proyectos, iniciativas y soluciones con impacto relevante en la evolución tecnológica del sector productivo nacional. <br /><br />A partir de 2026, inicia una nueva etapa al integrarse a Smart Technology Expo (STE), plataforma internacional que vincula ecosistemas tecnológicos e industriales entre Europa y América, fortaleciendo su alcance, proyección y posicionamiento estratégico. <br /><br />Inspirado en VFFF, deidad maya asociada al conocimiento y la sabiduría, el reconocimiento simboliza visión, innovación y la capacidad de construir el futuro mediante inteligencia aplicada."
     },
     "contestAbout": {
       "title": "CONVOCA",
       "description": "A empresas, organizaciones, scaleups, startups tecnológicas e integradores a participar en la edición 2026 del Premio Itzamná.<br /><br />Este reconocimiento está dirigido a soluciones con implementación, operación o impacto comprobable en México, orientadas a fortalecer la competitividad industrial mediante automatización, digitalización, inteligencia aplicada y tecnologías avanzadas."
+    },
+    "participants": {
+      "title": "¿Quiénes pueden participar?",
+      "item01": "Empresas nacionales o internacionales con operaciones en México",
+      "item02": "Organizaciones industriales",
+      "item03": "Startups tecnológicas",
+      "item04": "Scaleups",
+      "item05": "Integradores tecnológicos",
+      "item06": "Proveedores de soluciones industriales"
     }
   }
 }
