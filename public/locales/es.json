@@ -699,6 +699,10 @@
       "item04": "Scaleups",
       "item05": "Integradores tecnológicos",
       "item06": "Proveedores de soluciones industriales"
+    },
+    "objectives": {
+      "title": "Objetivo",
+      "description": "Reconocer proyectos tecnológicos con aplicación real en México que contribuyan de manera demostrable a:"
     }
   }
 }

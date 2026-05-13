@@ -700,6 +700,10 @@
       "item04": "Scaleups",
       "item05": "Technology integrators",
       "item06": "Industrial solution providers"
+    },
+    "objectives": {
+      "title": "Objective",
+      "description": "To recognize technology projects with real-world applications in Mexico that demonstrably contribute to:"
     }
   }
 }

@@ -1,0 +1,83 @@
+---
+import { useTranslations, getTranslation } from "../../utils/translations";
+// ✨ Una sola línea para cargar traducciones!
+const { locale, translations } = await useTranslations(Astro.props, Astro);
+// 🎯 Helper para traducciones más elegante
+const tr = (key: string, fallback: string = "") =>
+  getTranslation(translations, key, fallback);
+
+const objectiveCards = [
+  {
+    key: "itzamnaPage.objectives.item01",
+    es: "Incrementar productividad y competitividad",
+    en: "Increase productivity and competitiveness",
+    img : "/img/itzamna/persons.webp",
+  },
+  {
+    key: "itzamnaPage.objectives.item02",
+    es: "Optimizar procesos industriales",
+    en: "Optimize industrial processes",
+    img : "/img/itzamna/man_work.webp",
+  },
+  {
+    key: "itzamnaPage.objectives.item03",
+    es: "Impulsar transformación digital",
+    en: "Drive digital transformation",
+    img : "/img/itzamna/robotMan.webp",
+  },
+  {
+    key: "itzamnaPage.objectives.item04",
+    es: "Mejorar eficiencia energética y sostenibilidad",
+    en: "Improve energy efficiency and sustainability",
+    img : "/img/itzamna/house_person.webp",
+  },
+  {
+    key: "itzamnaPage.objectives.item05",
+    es: "Fortalecer cadenas productivas",
+    en: "Strengthen supply chains",
+    img : "/img/itzamna/person_industri.webp",
+  },
+  {
+    key: "itzamnaPage.objectives.item06",
+    es: "Promover innovación escalable en el sector industrial",
+    en: "Promote scalable innovation in the industrial sector",
+    img : "/img/itzamna/person_learning.webp",
+  },
+];
+---
+<section class="relative overflow-hidden py-12 md:py-16">
+  <div class="absolute inset-0 bg-linear-to-br from-[#0f2f75] via-[#1f4ea8] to-[#2f6fd4]"></div>
+
+  <div class="relative z-10 max-w-6xl mx-auto px-4 md:px-6 text-white">
+    <h3 class="text-3xl sm:text-4xl lg:text-6xl font-bold text-center mt-2 md:mt-4">
+      {tr("itzamnaPage.objectives.title")}
+    </h3>
+    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight text-center italic">
+      <!-- {tr("itzamnaPage.objectives.title", locale === "en" ? "Main Objectives" : "Objetivos principales")} -->
+       {tr("itzamnaPage.objectives.description")}
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-7 mt-10 md:mt-12">
+      {
+        objectiveCards.map((card) => {
+          const fallbackText = locale === "en" ? card.en : card.es;
+          return (
+            <article class="w-full mx-auto rounded-2xl overflow-hidden bg-white/10 shadow-[0_16px_35px_rgba(0,0,0,0.32)] backdrop-blur-[1px]">
+              <img
+                src={card.img}
+                alt={tr(card.key, fallbackText)}
+                class="w-full h-[260px] object-cover"
+                loading="lazy"
+              />
+              <div class="bg-[#c9202c] px-4 py-4 min-h-[86px] flex items-center justify-center">
+                <p class="text-center text-base md:text-lg font-semibold leading-tight">
+                  {tr(card.key, fallbackText)}
+                </p>
+              </div>
+            </article>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>
