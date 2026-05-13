@@ -4,24 +4,24 @@
     "description": "Welcome to the Smart Technology Expo! Discover the latest innovations in smart technology and connect with industry leaders."
   },
   "menu": {
-        "banner": "become an exhibitor",
-        "about_us": "ABOUT US",        
-        "exhibitors": "I WANT TO BE AN EXHIBITOR",
-         "exhibitor_section": {
-            "title": "EXHIBITORS",
-            "item_1": "I want to be an exhibitor",
-            "item_2": "FLOOR PLAN STE 2026"
-        },
-        "visitors_section": {
-            "title": "VISITORS",
-            "item_1": "Why visit us",
-            "item_2": "Visitor Registration",
-            "hotels": "Special hotel rates"
-        },
-        "media_hub": "Media Hub",      
-        "gallery": "GALLERY",
-        "afeter_show_report": "AFTER SHOW REPORT 2025"  
+    "banner": "become an exhibitor",
+    "about_us": "ABOUT US",
+    "exhibitors": "I WANT TO BE AN EXHIBITOR",
+    "exhibitor_section": {
+      "title": "EXHIBITORS",
+      "item_1": "I want to be an exhibitor",
+      "item_2": "FLOOR PLAN STE 2026"
     },
+    "visitors_section": {
+      "title": "VISITORS",
+      "item_1": "Why visit us",
+      "item_2": "Visitor Registration",
+      "hotels": "Special hotel rates"
+    },
+    "media_hub": "Media Hub",
+    "gallery": "GALLERY",
+    "afeter_show_report": "AFTER SHOW REPORT 2025"
+  },
   "home": {
     "al": "from",
     "month": "NOVEMBER",
@@ -101,32 +101,32 @@
     }
   },
   "aboutPage": {
-        "title": "ABOUT US",
-        "subtitle": "Transforming the industry through innovation and technology",
-        "description_1": "Technological advances are redefining manufacturing processes, production and design facilities, distribution systems, and global supply chains. Companies in the region acknowledge that current business models are no longer sustainable, prompting them to embrace, enhance, and maintain the adoption of Industry 4.0 processes and solutions. INDUSTRIAL TRANSFORMATION MEXICO comprises an exhibition area, conferences, and a comprehensive educational program, all interconnected by the overarching themes of digital transformation in Mexico and smart manufacturing. The exhibition area features eight main categories: Research Institutes, Automation and Robotics, Smart Factory, Additive Manufacturing, Intelligent Logistics, Energy Solutions, Machinery and Tools, and Government, along with spaces for live demonstrations and individual consultations.",
-        "description_2": "“<strong>HANNOVER MESSE</strong> is the world’s biggest showcase for industrial technology and the platform for Industry 4.0. During the past decade, we have strategically introduced the brand to growing markets around the world. Mexico impressed the global industry as Partner Country at <strong>Hannover Messe 2018</strong>. Now is the time to bring to Mexico a <strong>Hannover Messe</strong> event that is custom-made for Mexico’s booming industrial sector”, said Jochen Köckler, CEO of Deutsche Messe AG.</br></br> <strong>Industrial Transformation Mexico</strong> packages the leading industrial technologies and solutions with a top-notch education and networking program. Visitors from Mexico and neighboring countries now have a single event that provides all the tools and information they need to digitalize their factories and plants. Industrial Transformation Mexico will be an engaging and inclusive event where stakeholders and targeted audience groups convene for networking and knowledge transfer opportunities for business success.",
-        "our_story": "Our Story",
-        "ready": "Ready to be part of the future?",
-        "join_us": "Join the leading industrial technology community in Mexico",
-        "more_info": "More information",
-        "subTitle_ste": "The Strategic Platform Shaping the Future of Industry in Latin America",
-        "desc_ste_01": "SMART TECHNOLOGY EXPO is the executive platform in Mexico and Latin America dedicated to the technologies redefining industrial innovation.<br/><br/>Designed to connect global technology leaders with senior decision-makers, the expo brings together the most advanced solutions in automation, robotics, smart manufacturing, motion control, artificial intelligence, intralogistics, industrial cybersecurity, and integration software.",
-        "desc_ste_02": "More than a trade show <br />A strategic environment where technology meets business impact",
-        "why_ste_title": "Why Smart Technology Expo?",
-        "why_ste_desc": "SMART TECHNOLOGY EXPO is built for leaders shaping industrial strategy.<br /><br />Here, innovation is not only showcased—it is evaluated, compared, and activated through high-level engagement, curated networking, and executive-driven content.",
-        "why_ste_reasons": {
-            "reason_1": "Direct access to qualified buyers and decision-makers",
-            "reason_2": "High-value B2B meetings and strategic matchmaking",
-            "reason_3": "Executive conferences and thought leadership",
-            "reason_4": "Live demonstrations with real industrial applications",
-            "reason_5": "A premium environment designed for ROI and long-term partnerships"
-        },
-        "subtitle-pillars": "The Pillars of Smart Technology Expo",
-        "title-visionMission": "Vision and Mission",
-        "vision-title": "Our Vision",
-        "vision-desc": "To be recognized as Latin America’s most influential industrial technology platform, where innovation, leadership, and business expansion converge.<br />SMART TECHNOLOGY EXPO aspires to set the standard for how industrial ecosystems connect, collaborate, and evolve.",
-        "mission-title": "Our Mission",
-        "mission-desc": "To accelerate industrial transformation in Mexico and Latin America by connecting advanced technology with executive decision-making.<br /> We enable companies to position solutions, generate demand, and close strategic opportunities while empowering industry leaders to define the next phase of growth and competitiveness."
+    "title": "ABOUT US",
+    "subtitle": "Transforming the industry through innovation and technology",
+    "description_1": "Technological advances are redefining manufacturing processes, production and design facilities, distribution systems, and global supply chains. Companies in the region acknowledge that current business models are no longer sustainable, prompting them to embrace, enhance, and maintain the adoption of Industry 4.0 processes and solutions. INDUSTRIAL TRANSFORMATION MEXICO comprises an exhibition area, conferences, and a comprehensive educational program, all interconnected by the overarching themes of digital transformation in Mexico and smart manufacturing. The exhibition area features eight main categories: Research Institutes, Automation and Robotics, Smart Factory, Additive Manufacturing, Intelligent Logistics, Energy Solutions, Machinery and Tools, and Government, along with spaces for live demonstrations and individual consultations.",
+    "description_2": "“<strong>HANNOVER MESSE</strong> is the world’s biggest showcase for industrial technology and the platform for Industry 4.0. During the past decade, we have strategically introduced the brand to growing markets around the world. Mexico impressed the global industry as Partner Country at <strong>Hannover Messe 2018</strong>. Now is the time to bring to Mexico a <strong>Hannover Messe</strong> event that is custom-made for Mexico’s booming industrial sector”, said Jochen Köckler, CEO of Deutsche Messe AG.</br></br> <strong>Industrial Transformation Mexico</strong> packages the leading industrial technologies and solutions with a top-notch education and networking program. Visitors from Mexico and neighboring countries now have a single event that provides all the tools and information they need to digitalize their factories and plants. Industrial Transformation Mexico will be an engaging and inclusive event where stakeholders and targeted audience groups convene for networking and knowledge transfer opportunities for business success.",
+    "our_story": "Our Story",
+    "ready": "Ready to be part of the future?",
+    "join_us": "Join the leading industrial technology community in Mexico",
+    "more_info": "More information",
+    "subTitle_ste": "The Strategic Platform Shaping the Future of Industry in Latin America",
+    "desc_ste_01": "SMART TECHNOLOGY EXPO is the executive platform in Mexico and Latin America dedicated to the technologies redefining industrial innovation.<br/><br/>Designed to connect global technology leaders with senior decision-makers, the expo brings together the most advanced solutions in automation, robotics, smart manufacturing, motion control, artificial intelligence, intralogistics, industrial cybersecurity, and integration software.",
+    "desc_ste_02": "More than a trade show <br />A strategic environment where technology meets business impact",
+    "why_ste_title": "Why Smart Technology Expo?",
+    "why_ste_desc": "SMART TECHNOLOGY EXPO is built for leaders shaping industrial strategy.<br /><br />Here, innovation is not only showcased—it is evaluated, compared, and activated through high-level engagement, curated networking, and executive-driven content.",
+    "why_ste_reasons": {
+      "reason_1": "Direct access to qualified buyers and decision-makers",
+      "reason_2": "High-value B2B meetings and strategic matchmaking",
+      "reason_3": "Executive conferences and thought leadership",
+      "reason_4": "Live demonstrations with real industrial applications",
+      "reason_5": "A premium environment designed for ROI and long-term partnerships"
+    },
+    "subtitle-pillars": "The Pillars of Smart Technology Expo",
+    "title-visionMission": "Vision and Mission",
+    "vision-title": "Our Vision",
+    "vision-desc": "To be recognized as Latin America’s most influential industrial technology platform, where innovation, leadership, and business expansion converge.<br />SMART TECHNOLOGY EXPO aspires to set the standard for how industrial ecosystems connect, collaborate, and evolve.",
+    "mission-title": "Our Mission",
+    "mission-desc": "To accelerate industrial transformation in Mexico and Latin America by connecting advanced technology with executive decision-making.<br /> We enable companies to position solutions, generate demand, and close strategic opportunities while empowering industry leaders to define the next phase of growth and competitiveness."
   },
   "gallery": {
     "title": "Gallery Smart Technology Expo",
@@ -141,9 +141,9 @@
     "total_photos": "total photos"
   },
   "directory": {
-        "title": "Welcome to the  2025 Exhibitor Directory"
+    "title": "Welcome to the  2025 Exhibitor Directory"
   },
-  "beExhibitor":{
+  "beExhibitor": {
     "title": "I WANT TO BE AN EXHIBITOR",
     "description": "Join Smart Technology Expo and take your business to the next level! As an exhibitor, you will have the opportunity to showcase your products and services to a highly qualified audience, establish valuable connections, and increase your brand visibility in the technology industry.",
     "sede": "New headquarters 2026",
@@ -174,22 +174,22 @@
     "btn_factsheet": "Download Information",
     "btn_sponsor": "Join as a Sponsor"
   },
-  "testimonials":{
+  "testimonials": {
     "title": "What they say about us",
     "subtitle": "Real testimonials from companies and professionals who have participated in our events",
-    "exhibitors":{
-      "title":"Exhibitors Testimonials",
-      "exhibitors_1":"For Beckhoff, it is very important to participate in this event because it is a platform where we can make ourselves known in the Mexican market, showcase our technological advances, and contribute to the development of new automation projects.",
-      "exhibitors_2":"It is important for Schneider Electric to participate in Industrial Transformation Mexico 2023 because the geographical location is beneficial for bringing us closer to industries and bringing them our latest innovations and technologies. ITM 2023 is a platform where we can show the entire industry the benefits of automation and digitalization for optimizing business processes.",
-      "exhibitors_3":"It is essential to be here at Industrial Transformation Mexico because we showcase this company's global experience and to catalyze our presence in the Mexican market, ITM 2023 is the main channel for doing so. The 2023 edition of Industrial Transformation Mexico has been spectacular. The truth is that we have had a large audience compared to last year and greater interest in the topic of Industry 4.0 and digitalization.",
-      "exhibitors_4":"It is important to participate in Industrial Transformation Mexico 2023 because it is a forum for communication and exhibition within Mexico's industrial corridor, making it an excellent opportunity to showcase our technology. I found ITM to be a very interesting forum where we encountered brands and highly innovative technologies. I am grateful to Industrial Transformation Mexico for allowing us to participate in this event, which is so important for the industry."
+    "exhibitors": {
+      "title": "Exhibitors Testimonials",
+      "exhibitors_1": "For Beckhoff, it is very important to participate in this event because it is a platform where we can make ourselves known in the Mexican market, showcase our technological advances, and contribute to the development of new automation projects.",
+      "exhibitors_2": "It is important for Schneider Electric to participate in Industrial Transformation Mexico 2023 because the geographical location is beneficial for bringing us closer to industries and bringing them our latest innovations and technologies. ITM 2023 is a platform where we can show the entire industry the benefits of automation and digitalization for optimizing business processes.",
+      "exhibitors_3": "It is essential to be here at Industrial Transformation Mexico because we showcase this company's global experience and to catalyze our presence in the Mexican market, ITM 2023 is the main channel for doing so. The 2023 edition of Industrial Transformation Mexico has been spectacular. The truth is that we have had a large audience compared to last year and greater interest in the topic of Industry 4.0 and digitalization.",
+      "exhibitors_4": "It is important to participate in Industrial Transformation Mexico 2023 because it is a forum for communication and exhibition within Mexico's industrial corridor, making it an excellent opportunity to showcase our technology. I found ITM to be a very interesting forum where we encountered brands and highly innovative technologies. I am grateful to Industrial Transformation Mexico for allowing us to participate in this event, which is so important for the industry."
     },
-    "visitors":{
-      "title":"Visitors Testimonials",
-      "visitors_1":"We were struck by the fact that it was the same Hannover Messe trade fair. Our company specializes in industrial process automation, which is why we are here. We attended to see the latest trends in automation and to make lots of contacts. It has been very interesting to see how all these leading companies in the industry come together in one place.",
-      "visitors_2":"I just arrived and noticed that there are many industrial automation and industrial equipment companies here. It's great to be able to connect with suppliers, meet exhibitors, and learn about their great ideas.",
-      "visitors_3":"It's an excellent idea to attend this expo to see the new technology on the market. I've come across many excellent exhibitors who provide the right support and service. I really enjoyed it and had a great experience.",
-      "visitors_4":"A very comprehensive fair in terms of exhibitors, conferences, and forums, it fully meets expectations, as I have also attended the one in Germany."
+    "visitors": {
+      "title": "Visitors Testimonials",
+      "visitors_1": "We were struck by the fact that it was the same Hannover Messe trade fair. Our company specializes in industrial process automation, which is why we are here. We attended to see the latest trends in automation and to make lots of contacts. It has been very interesting to see how all these leading companies in the industry come together in one place.",
+      "visitors_2": "I just arrived and noticed that there are many industrial automation and industrial equipment companies here. It's great to be able to connect with suppliers, meet exhibitors, and learn about their great ideas.",
+      "visitors_3": "It's an excellent idea to attend this expo to see the new technology on the market. I've come across many excellent exhibitors who provide the right support and service. I really enjoyed it and had a great experience.",
+      "visitors_4": "A very comprehensive fair in terms of exhibitors, conferences, and forums, it fully meets expectations, as I have also attended the one in Germany."
     }
   },
   "expositorsSection": {
@@ -210,33 +210,33 @@
     "back_home": "Back to Home",
     "textSocial": "Follow us on our social networks"
   },
-  "hotels":{
-        "cede": "venue cedes",
-        "cedera": "Headquarters",
-        "text_description": "Expo Guadalajara is the largest convention center in Mexico and Latin America, with more than 1,230,000 square feet of modern space for international trade shows, conferences, and exhibitions.<br /><br /> Located in the heart of Guadalajara, it offers first-class connectivity and is surrounded by hotels, restaurants, and services that make it the ideal venue for world-class events.",
-        "title": "Special Hotel Rates",
-        "description": "Expo Guadalajara is the largest convention center in Mexico and Latin America, with more than 119,000 m² of modern spaces for international fairs, congresses and exhibitions. <br /><br /> Located in the heart of Guadalajara, it offers first-class connectivity and is surrounded by hotels, restaurants and services that make it the ideal venue for world-class events.",
-        "rate": "Rates from: ",
-        "code": "reservation code: ",
-        "book": "Book now",
-        "taxes": "Taxes",
-        "time" : "min",
-        "place" : "The hotel is located right in front.",
-        "about_gdl": "About Guadalajara",
-        "description_gdl":"Guadalajara, the pearl of western Mexico, stands out as a city full of charm and diversity. Known as the 'Pearl of Tapatia', Guadalajara combines Mexico's rich historical heritage with vibrant modernity. <br /><br />The city is famous for its colonial architecture, picturesque squares and an atmosphere that reflects the warmth of its people. Walking through the historic center, you will immerse yourself in cobblestone streets that lead to impressive churches, such as the Guadalajara Cathedral and the Zapopan Basilica. Mexican culture is found in every corner, from the traditional markets to the colorful murals that adorn the streets.",
-        "restaurants": "Dining options",
-        "restaurants_desc": "Guadalajara is known for its traditional Mexican cuisine, which can be enjoyed in the city's many restaurants. Typical dishes include cakes drowned, pozole, birria and meat in its juice. The city also offers a wide variety of international restaurants, ranging from Italian to Japanese food. Apr <br />For those seeking gourmet experiences, the city has elegant restaurants offering sophisticated menus and a careful selection of wines. Whether you find yourself exploring the historic neighborhoods or the more modern areas of the city, the restaurants in Guadalajara invite you to a feast of authentic and exciting flavors. In many places, you can also enjoy live music, creating a unique dining experience that captures the vibrant essence of the city.",
-        "entertainment": "Entertainment",
-        "entertainment_desc": "Guadalajara is a city that offers a wide variety of entertainment activities. From museums to art galleries, the city has a host of places that celebrate Mexican culture. <br /><br />The city also has a large number of parks and green areas, offering an escape from urban life.",
-        "money": "Currency",
-        "money_desc": "If you are planning a visit to Guadalajara, it is important to know that the official currency of Mexico is the Mexican peso (MXN). The Mexican peso is used in everyday transactions, and you will find bills and coins in various denominations.",
-        "link_currency": "Click here to use the currency converter."
-    },
-     "register": {
+  "hotels": {
+    "cede": "venue cedes",
+    "cedera": "Headquarters",
+    "text_description": "Expo Guadalajara is the largest convention center in Mexico and Latin America, with more than 1,230,000 square feet of modern space for international trade shows, conferences, and exhibitions.<br /><br /> Located in the heart of Guadalajara, it offers first-class connectivity and is surrounded by hotels, restaurants, and services that make it the ideal venue for world-class events.",
+    "title": "Special Hotel Rates",
+    "description": "Expo Guadalajara is the largest convention center in Mexico and Latin America, with more than 119,000 m² of modern spaces for international fairs, congresses and exhibitions. <br /><br /> Located in the heart of Guadalajara, it offers first-class connectivity and is surrounded by hotels, restaurants and services that make it the ideal venue for world-class events.",
+    "rate": "Rates from: ",
+    "code": "reservation code: ",
+    "book": "Book now",
+    "taxes": "Taxes",
+    "time": "min",
+    "place": "The hotel is located right in front.",
+    "about_gdl": "About Guadalajara",
+    "description_gdl": "Guadalajara, the pearl of western Mexico, stands out as a city full of charm and diversity. Known as the 'Pearl of Tapatia', Guadalajara combines Mexico's rich historical heritage with vibrant modernity. <br /><br />The city is famous for its colonial architecture, picturesque squares and an atmosphere that reflects the warmth of its people. Walking through the historic center, you will immerse yourself in cobblestone streets that lead to impressive churches, such as the Guadalajara Cathedral and the Zapopan Basilica. Mexican culture is found in every corner, from the traditional markets to the colorful murals that adorn the streets.",
+    "restaurants": "Dining options",
+    "restaurants_desc": "Guadalajara is known for its traditional Mexican cuisine, which can be enjoyed in the city's many restaurants. Typical dishes include cakes drowned, pozole, birria and meat in its juice. The city also offers a wide variety of international restaurants, ranging from Italian to Japanese food. Apr <br />For those seeking gourmet experiences, the city has elegant restaurants offering sophisticated menus and a careful selection of wines. Whether you find yourself exploring the historic neighborhoods or the more modern areas of the city, the restaurants in Guadalajara invite you to a feast of authentic and exciting flavors. In many places, you can also enjoy live music, creating a unique dining experience that captures the vibrant essence of the city.",
+    "entertainment": "Entertainment",
+    "entertainment_desc": "Guadalajara is a city that offers a wide variety of entertainment activities. From museums to art galleries, the city has a host of places that celebrate Mexican culture. <br /><br />The city also has a large number of parks and green areas, offering an escape from urban life.",
+    "money": "Currency",
+    "money_desc": "If you are planning a visit to Guadalajara, it is important to know that the official currency of Mexico is the Mexican peso (MXN). The Mexican peso is used in everyday transactions, and you will find bills and coins in various denominations.",
+    "link_currency": "Click here to use the currency converter."
+  },
+  "register": {
     "btn-register": "Free Registration",
-    "text-welcome": "Welcome", 
-    "title-register":"Sign up to begin your experience",
-    "warning-text":"* Exclusive event for industry professionals and buyers.  *",
+    "text-welcome": "Welcome",
+    "title-register": "Sign up to begin your experience",
+    "warning-text": "* Exclusive event for industry professionals and buyers.  *",
     "update_info": "Update information",
     "welcome": "Welcome to ECOMONDO 2026",
     "first_time": "Is this your first time with us?",
@@ -683,6 +683,10 @@
   },
   "itzamnaPage": {
     "title": "2026 ITZAMNÁ AWARD",
-    "subtitle": "Recognizing the innovation and industrial transformation that are shaping the future"
+    "subtitle": "Recognizing the innovation and industrial transformation that are shaping the future",
+    "aboutItzamna": {
+      "title": "About The Itzamná Award",
+      "description":"Since 2021, the Itzamná Award has recognized projects, initiatives, and solutions that have had a significant impact on the technological evolution of the national productive sector. <br /><br />Starting in 2026, a new phase begins as the award joins Smart Technology Expo (STE), an international platform that connects technological and industrial ecosystems between Europe and the Americas, thereby strengthening its reach, visibility, and strategic positioning. <br /><br />Inspired by Itzamná, a Mayan deity associated with knowledge and wisdom, the award symbolizes vision, innovation, and the ability to build the future through applied intelligence."
+    }
   }
 }

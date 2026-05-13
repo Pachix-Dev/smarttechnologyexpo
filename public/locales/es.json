@@ -4,24 +4,24 @@
     "description": "¡Bienvenido a la Smart Technology Expo! Descubra las últimas innovaciones en tecnología inteligente y conecte con los líderes del sector."
   },
   "menu": {
-        "banner": "conviértete en expositor",
-        "about_us": "ACERCA DE NOSOTROS",        
-        "exhibitors": "QUIERO SER EXPOSITOR",
-        "exhibitor_section": {
-            "title": "EXPOSITORES",
-            "item_1": "Quiero ser expositor",
-            "item_2": "Plano STE 2026"
-        },
-        "visitors_section": {
-            "title": "VISITANTES",
-            "item_1": "Por qué visitarnos",
-            "item_2": "Registro de visitantes",
-            "hotels": "Tarifas especiales de hoteles"
-        },
-        "media_hub": "Centro de Medios",        
-        "gallery": "GALERÍA",
-        "afeter_show_report": "REPORTE DE RESULTADOS 2025"
-    },  
+    "banner": "conviértete en expositor",
+    "about_us": "ACERCA DE NOSOTROS",
+    "exhibitors": "QUIERO SER EXPOSITOR",
+    "exhibitor_section": {
+      "title": "EXPOSITORES",
+      "item_1": "Quiero ser expositor",
+      "item_2": "Plano STE 2026"
+    },
+    "visitors_section": {
+      "title": "VISITANTES",
+      "item_1": "Por qué visitarnos",
+      "item_2": "Registro de visitantes",
+      "hotels": "Tarifas especiales de hoteles"
+    },
+    "media_hub": "Centro de Medios",
+    "gallery": "GALERÍA",
+    "afeter_show_report": "REPORTE DE RESULTADOS 2025"
+  },
   "home": {
     "al": "al",
     "month": "NOVIEMBRE",
@@ -73,7 +73,7 @@
     "confort_plus": {
       "title": "CONFORT PLUS",
       "regular_price": "5,865 USD",
-      "presale_price": "5,585 USD", 
+      "presale_price": "5,585 USD",
       "unit": "+ IVA por stand de 9m2",
       "includes": [
         "Construcción con diseño predeterminado con espacio para posicionamiento de marca",
@@ -101,32 +101,32 @@
     }
   },
   "aboutPage": {
-        "title": "ACERCA DE NOSOTROS",
-        "subtitle": "Transformando la industria a través de la innovación y la tecnología",
-        "description_1": "Los avances tecnológicos están redefiniendo los procesos de fabricación, las instalaciones de producción y diseño, los sistemas de distribución y las cadenas globales de suministro. Las empresas de la región reconocen que los modelos comerciales actuales ya no son sostenibles, lo que los impulsa a comenzar, aumentar y mantener su adopción de los procesos y soluciones de la Industria 4.0. INDUSTRIAL TRANSFORMATION MEXICO, se ha convertido en la feria líder del sector al englobar un área de exposición, conferencias y un amplio programa educativo; todo esto unido por los temas generales de transformación digital en México y la fabricación inteligente. El área de exposición presenta ocho categorías principales: Institutos de Investigación, Automatización y Robotización, Fábrica Inteligente, Manufactura Aditiva, Logística Inteligente, Soluciones de Energía, Máquina y Herramienta y Gobierno, así como áreas para demostraciones en vivo y consultas individuales.",
-        "description_2": "“<strong>HANNOVER MESSE </strong>es la mayor exposición mundial de tecnología industrial y la plataforma para la Industria 4.0. Durante la última década, hemos introducido estratégicamente la marca en mercados de todo el mundo en vías de crecimiento. México impresionó a la industria global como país invitado de honor en <strong>Hannover Messe 2018</strong>. Es el momento de traer a México un evento <strong>Hannover Messe</strong>, el cual está hecho a medida al auge del sector industrial que vive México”, dijo Jochen Köckler, CEO de Deutsche Messe AG.</br></br> Industrial Transformation Mexico combina las principales tecnologías y las soluciones industriales líderes, con un programa de educación y una red de contacto completo. Compradores de México y países vecinos, ahora tienen un evento que proporciona todas las herramientas e información que necesitan para digitalizar sus fábricas y plantas. <strong>Industrial Transformation Mexico</strong> es un evento interesante e inclusivo en el que los actores clave y los grupos objetivo se reúnen para crear redes y oportunidades de intercambio de conocimientos para el éxito empresarial.",
-        "our_story": "Nuestra historia",
-        "ready": "¿Listo para ser parte del futuro?",
-        "join_us": "Únete a la comunidad líder en tecnología industrial de México",
-        "more_info": "Más información",
-        "subTitle_ste": "La plataforma estratégica que define el futuro de la industria en Latinoamérica",
-        "desc_ste_01":"<b>SMART TECHNOLOGY EXPO</b> es la plataforma en México y Latinoamérica dedicada a las tecnologías que están redefiniendo la innovación industrial.</br></br>Diseñada para conectar líderes tecnológicos globales con tomadores de decisión de alto nivel, la expo reúne las soluciones más avanzadas en automatización, robótica, manufactura inteligente, control de movimiento, inteligencia artificial, intralogística, ciberseguridad industrial y software de integración",
-        "desc_ste_02":"Más que una expo<br />Un entorno estratégico donde la tecnología se convierte en negocio",
-        "why_ste_title": "¿Por qué SMART TECHNOLOGY EXPO?",
-        "why_ste_desc": "SMART TECHNOLOGY EXPO está diseñada para quienes definen la estrategia industrial.<br /><br /> Aquí la innovación no solo se exhibe: se evalúa, se compara y se activa a través de networking de alto nivel, contenido ejecutivo y encuentros estratégicos B2B.",
-        "why_ste_reasons": {
-          "reason_1": "Acceso directo a compradores calificados y líderes industriales",
-          "reason_2": "Reuniones B2B y matchmaking estratégico",
-          "reason_3": "Conferencias ejecutivas y liderazgo de pensamiento",
-          "reason_4": "Demostraciones tecnológicas con aplicaciones reales",
-          "reason_5": "Un entorno premium diseñado para generar ROI y alianzas de largo plazo"
-        },
-        "subtitle-pillars": "Los Pilares Tecnológicos Estratégicos",
-        "title-visionMission": "Misión y Visión",
-        "vision-title": "Nuestra Visión",
-        "vision-desc": "Ser reconocidos como la plataforma industrial más influyente de Latinoamérica, donde convergen innovación, liderazgo y expansión de negocios.<br />SMART TECHNOLOGY EXPO busca marcar el estándar de cómo los ecosistemas industriales se conectan, colaboran y evolucionan.",
-        "mission-title": "Nuestra Misión",
-        "mission-desc": "Acelerar la transformación industrial en México y Latinoamérica conectando tecnología avanzada con la toma de decisiones estratégicas.<br />Impulsamos a las empresas a posicionar sus soluciones, generar demanda y cerrar oportunidades clave, mientras brindamos a los líderes industriales las herramientas para definir el siguiente nivel de competitividad."
+    "title": "ACERCA DE NOSOTROS",
+    "subtitle": "Transformando la industria a través de la innovación y la tecnología",
+    "description_1": "Los avances tecnológicos están redefiniendo los procesos de fabricación, las instalaciones de producción y diseño, los sistemas de distribución y las cadenas globales de suministro. Las empresas de la región reconocen que los modelos comerciales actuales ya no son sostenibles, lo que los impulsa a comenzar, aumentar y mantener su adopción de los procesos y soluciones de la Industria 4.0. INDUSTRIAL TRANSFORMATION MEXICO, se ha convertido en la feria líder del sector al englobar un área de exposición, conferencias y un amplio programa educativo; todo esto unido por los temas generales de transformación digital en México y la fabricación inteligente. El área de exposición presenta ocho categorías principales: Institutos de Investigación, Automatización y Robotización, Fábrica Inteligente, Manufactura Aditiva, Logística Inteligente, Soluciones de Energía, Máquina y Herramienta y Gobierno, así como áreas para demostraciones en vivo y consultas individuales.",
+    "description_2": "“<strong>HANNOVER MESSE </strong>es la mayor exposición mundial de tecnología industrial y la plataforma para la Industria 4.0. Durante la última década, hemos introducido estratégicamente la marca en mercados de todo el mundo en vías de crecimiento. México impresionó a la industria global como país invitado de honor en <strong>Hannover Messe 2018</strong>. Es el momento de traer a México un evento <strong>Hannover Messe</strong>, el cual está hecho a medida al auge del sector industrial que vive México”, dijo Jochen Köckler, CEO de Deutsche Messe AG.</br></br> Industrial Transformation Mexico combina las principales tecnologías y las soluciones industriales líderes, con un programa de educación y una red de contacto completo. Compradores de México y países vecinos, ahora tienen un evento que proporciona todas las herramientas e información que necesitan para digitalizar sus fábricas y plantas. <strong>Industrial Transformation Mexico</strong> es un evento interesante e inclusivo en el que los actores clave y los grupos objetivo se reúnen para crear redes y oportunidades de intercambio de conocimientos para el éxito empresarial.",
+    "our_story": "Nuestra historia",
+    "ready": "¿Listo para ser parte del futuro?",
+    "join_us": "Únete a la comunidad líder en tecnología industrial de México",
+    "more_info": "Más información",
+    "subTitle_ste": "La plataforma estratégica que define el futuro de la industria en Latinoamérica",
+    "desc_ste_01": "<b>SMART TECHNOLOGY EXPO</b> es la plataforma en México y Latinoamérica dedicada a las tecnologías que están redefiniendo la innovación industrial.</br></br>Diseñada para conectar líderes tecnológicos globales con tomadores de decisión de alto nivel, la expo reúne las soluciones más avanzadas en automatización, robótica, manufactura inteligente, control de movimiento, inteligencia artificial, intralogística, ciberseguridad industrial y software de integración",
+    "desc_ste_02": "Más que una expo<br />Un entorno estratégico donde la tecnología se convierte en negocio",
+    "why_ste_title": "¿Por qué SMART TECHNOLOGY EXPO?",
+    "why_ste_desc": "SMART TECHNOLOGY EXPO está diseñada para quienes definen la estrategia industrial.<br /><br /> Aquí la innovación no solo se exhibe: se evalúa, se compara y se activa a través de networking de alto nivel, contenido ejecutivo y encuentros estratégicos B2B.",
+    "why_ste_reasons": {
+      "reason_1": "Acceso directo a compradores calificados y líderes industriales",
+      "reason_2": "Reuniones B2B y matchmaking estratégico",
+      "reason_3": "Conferencias ejecutivas y liderazgo de pensamiento",
+      "reason_4": "Demostraciones tecnológicas con aplicaciones reales",
+      "reason_5": "Un entorno premium diseñado para generar ROI y alianzas de largo plazo"
+    },
+    "subtitle-pillars": "Los Pilares Tecnológicos Estratégicos",
+    "title-visionMission": "Misión y Visión",
+    "vision-title": "Nuestra Visión",
+    "vision-desc": "Ser reconocidos como la plataforma industrial más influyente de Latinoamérica, donde convergen innovación, liderazgo y expansión de negocios.<br />SMART TECHNOLOGY EXPO busca marcar el estándar de cómo los ecosistemas industriales se conectan, colaboran y evolucionan.",
+    "mission-title": "Nuestra Misión",
+    "mission-desc": "Acelerar la transformación industrial en México y Latinoamérica conectando tecnología avanzada con la toma de decisiones estratégicas.<br />Impulsamos a las empresas a posicionar sus soluciones, generar demanda y cerrar oportunidades clave, mientras brindamos a los líderes industriales las herramientas para definir el siguiente nivel de competitividad."
   },
   "gallery": {
     "title": "Galería Smart Technology Expo",
@@ -141,9 +141,9 @@
     "total_photos": "fotos en total"
   },
   "directory": {
-        "title": "Bienvenid@ al directorio de expositores de 2025"
+    "title": "Bienvenid@ al directorio de expositores de 2025"
   },
-  "beExhibitor":{
+  "beExhibitor": {
     "title": "Quiero ser expositor",
     "description": "¡Únete a Smart Technology Expo y lleva tu negocio al siguiente nivel! Como expositor, tendrás la oportunidad de mostrar tus productos y servicios a una audiencia altamente calificada, establecer conexiones valiosas y aumentar la visibilidad de tu marca en la industria tecnológica.",
     "sede": "Nueva sede 2026",
@@ -174,22 +174,22 @@
     "btn_factsheet": "Descargar información",
     "btn_sponsor": "Únete como patrocinador"
   },
-  "testimonials":{
+  "testimonials": {
     "title": "Lo que dicen de nosotros",
     "subtitle": "Testimonios reales de empresas y profesionales que han participado en nuestros eventos",
-    "exhibitors":{
-      "title":"Testimoniales de expositores",
-      "exhibitors_1":"Para Beckhoff es muy importante participar en este evento porque es una plataforma donde nos podemos dar a conocer en el mercado mexicano, para mostrar los avances tecnológicos que tenemos, y contribuir con los desarrollos de nuevos proyectos de automatización",
-      "exhibitors_2":"Es importante para Schneider Electric participar Industrial Transformation Mexico 2023 porque la ubicación geográfica es benéfica para acercarnos a las industrias y llevarles nuestras ultimas innovaciones y tecnologías. ITM 2023 es una plataforma donde podemos enseñar a toda la industria la bondad de la Automatización y Digitalización para optimizar las proceso de las empresas",
-      "exhibitors_3":"Es esencial estar aquí en Industrial Transformation Mexico porque mostramos la experiencia global que tiene esta empresa y para catalizar nuestra presencia en el mercado en México, ITM 2023 es el principal canal para hacerlo. La edición 2023 de Industrial Transformation Mexico ha sido espectacular, la verdad es que hemos tenido una gran audiencia, comparada con el año anterior y un mayor interés por el tema de la evolución 4.0 y la digitalización",
-      "exhibitors_4":"Es importante participar en Industrial Transformation Mexico 2023, debido a que es un foro de comunicación y de exposición dentro del corredor industrial de México, por ello es muy bueno presentar nuestra tecnología. ITM me ha parecido un foro muy interesante, donde encontramos, marcas, tecnologías muy innovadoras. Agradezco a Industrial Transformation Mexico por permitirnos participar en este evento tan importante para la industria"
+    "exhibitors": {
+      "title": "Testimoniales de expositores",
+      "exhibitors_1": "Para Beckhoff es muy importante participar en este evento porque es una plataforma donde nos podemos dar a conocer en el mercado mexicano, para mostrar los avances tecnológicos que tenemos, y contribuir con los desarrollos de nuevos proyectos de automatización",
+      "exhibitors_2": "Es importante para Schneider Electric participar Industrial Transformation Mexico 2023 porque la ubicación geográfica es benéfica para acercarnos a las industrias y llevarles nuestras ultimas innovaciones y tecnologías. ITM 2023 es una plataforma donde podemos enseñar a toda la industria la bondad de la Automatización y Digitalización para optimizar las proceso de las empresas",
+      "exhibitors_3": "Es esencial estar aquí en Industrial Transformation Mexico porque mostramos la experiencia global que tiene esta empresa y para catalizar nuestra presencia en el mercado en México, ITM 2023 es el principal canal para hacerlo. La edición 2023 de Industrial Transformation Mexico ha sido espectacular, la verdad es que hemos tenido una gran audiencia, comparada con el año anterior y un mayor interés por el tema de la evolución 4.0 y la digitalización",
+      "exhibitors_4": "Es importante participar en Industrial Transformation Mexico 2023, debido a que es un foro de comunicación y de exposición dentro del corredor industrial de México, por ello es muy bueno presentar nuestra tecnología. ITM me ha parecido un foro muy interesante, donde encontramos, marcas, tecnologías muy innovadoras. Agradezco a Industrial Transformation Mexico por permitirnos participar en este evento tan importante para la industria"
     },
-    "visitors":{
-      "title":"Testimoniales de visitantes",
-      "visitors_1":"Nos llamo la atención que fuera la misma feria de Hannover Messe. Nuestra empresa se dedica a la automatización de procesos industriales y por esa razón estamos aquí. Asistimos para ver las nuevas tendencias en automatización y a realizar muchos contactos, ha sido muy interesante ver cómo todas esta empresas líderes en la industria se reúnen en un solo lugar.",
-      "visitors_2":"Recién acabo de llegar y pude observar que hay muchas empresas de automatización industrial y equipos industriales. Es grandioso poder conectar con proveedores, conocer los expositores y sus grandes ideas",
-      "visitors_3":"Es una excelente idea asistir a esta expo para ver la nueva tecnología que hay en el mercado. Me he encontrado con muchos expositores muy buenos que brindan el soporte y el servicio adecuado. Me ha gustado mucho y he vivido una gran experiencia",
-      "visitors_4":"Una feria muy completa por los expositores, las conferencias y los foros que tiene, cumple con total expectativa, debido a que he asistido también a la de Alemania"
+    "visitors": {
+      "title": "Testimoniales de visitantes",
+      "visitors_1": "Nos llamo la atención que fuera la misma feria de Hannover Messe. Nuestra empresa se dedica a la automatización de procesos industriales y por esa razón estamos aquí. Asistimos para ver las nuevas tendencias en automatización y a realizar muchos contactos, ha sido muy interesante ver cómo todas esta empresas líderes en la industria se reúnen en un solo lugar.",
+      "visitors_2": "Recién acabo de llegar y pude observar que hay muchas empresas de automatización industrial y equipos industriales. Es grandioso poder conectar con proveedores, conocer los expositores y sus grandes ideas",
+      "visitors_3": "Es una excelente idea asistir a esta expo para ver la nueva tecnología que hay en el mercado. Me he encontrado con muchos expositores muy buenos que brindan el soporte y el servicio adecuado. Me ha gustado mucho y he vivido una gran experiencia",
+      "visitors_4": "Una feria muy completa por los expositores, las conferencias y los foros que tiene, cumple con total expectativa, debido a que he asistido también a la de Alemania"
     }
   },
   "expositorsSection": {
@@ -211,31 +211,31 @@
     "textSocial": "Síguenos en "
   },
   "hotels": {
-        "cede": "Recinto sede",
-        "text_description": "Expo Guadalajara es el centro de convenciones más grande de México y Latinoamérica, con más de 119,000 m² de espacios modernos para ferias, congresos y exposiciones internacionales.<br /><br /> Ubicado en el corazón de Guadalajara, ofrece conectividad de primer nivel y está rodeado de hoteles, restaurantes y servicios que lo convierten en la sede ideal para eventos de clase mundial.",
-        "title": "Tarifas especiales en hoteles",
-        "description": "Nos complace anunciar que hemos asegurado tarifas preferenciales en hoteles de calidad para que tu experiencia sea aún más cómoda y accesible.<br /><br />Ubicados estratégicamente alrededor del lugar del evento, estos hoteles ofrecen no solo comodidad, sino también la oportunidad de sumergirte completamente en la atmósfera del evento. Hemos negociado tarifas especiales para nuestros asistentes, asegurándonos de que tu estancia sea tan inolvidable como el propio evento.",
-        "rate": "Tarifa desde: ",
-        "code": "codigo de reserva: ",
-        "book": "Reservar",
-        "taxes": "Impuestos",
-        "time" : "min",
-        "place" : "El hotel se encuentra justo en frente",
-        "about_gdl": "Acerca de Guadalajara",
-        "description_gdl":"Guadalajara, la perla del occidente mexicano, se destaca como una ciudad llena de encanto y diversidad. Conocida como la 'Perla Tapatía', Guadalajara combina la rica herencia histórica de México con una modernidad vibrante. <br /><br />La ciudad es famosa por su arquitectura colonial, plazas pintorescas y una atmósfera que refleja la calidez de su gente. Al caminar por el centro histórico, te sumergirás en calles empedradas que llevan a impresionantes iglesias, como la Catedral de Guadalajara y la Basílica de Zapopan. La cultura mexicana se encuentra en cada rincón, desde los mercados tradicionales hasta los coloridos murales que adornan las calles.",
-        "restaurants": "Opciones Gastronómicas",
-        "restaurants_desc": "Guadalajara es conocida por su cocina tradicional mexicana, que se puede disfrutar en los numerosos restaurantes de la ciudad. Los platos típicos incluyen tortas ahogadas, pozole, birria y carne en su jugo. La ciudad también ofrece una amplia variedad de restaurantes internacionales, que van desde comida italiana hasta japonesa.abr <br />Para aquellos que buscan experiencias gourmet, la ciudad cuenta con elegantes restaurantes que ofrecen menús sofisticados y una selección cuidadosa de vinos. Ya sea que te encuentres explorando los barrios históricos o las áreas más modernas de la ciudad, los restaurantes en Guadalajara te invitan a un festín de sabores auténticos y emocionantes. En muchos lugares, también podrás disfrutar de la música en vivo, creando una experiencia gastronómica única que captura la esencia vibrante de la ciudad.",
-        "entertainment": "Entretenimiento",
-        "entertainment_desc": "Guadalajara es una ciudad que ofrece una amplia variedad de actividades de entretenimiento. Desde museos hasta galerías de arte, la ciudad cuenta con una gran cantidad de lugares que celebran la cultura mexicana. <br /><br />La ciudad también cuenta con una gran cantidad de parques y áreas verdes, que ofrecen un escape de la vida urbana.",
-        "money": "Moneda",
-        "money_desc": "Si estás planificando tu visita a Guadalajara, es importante conocer la moneda oficial de México, que es el peso mexicano (MXN). El peso mexicano se utiliza en transacciones diarias, y encontrarás billetes y monedas de diferentes denominaciones.",
-        "link_currency": "Haga clic aquí para utilizar el conversor de moneda."
-    },
-     "register": {
+    "cede": "Recinto sede",
+    "text_description": "Expo Guadalajara es el centro de convenciones más grande de México y Latinoamérica, con más de 119,000 m² de espacios modernos para ferias, congresos y exposiciones internacionales.<br /><br /> Ubicado en el corazón de Guadalajara, ofrece conectividad de primer nivel y está rodeado de hoteles, restaurantes y servicios que lo convierten en la sede ideal para eventos de clase mundial.",
+    "title": "Tarifas especiales en hoteles",
+    "description": "Nos complace anunciar que hemos asegurado tarifas preferenciales en hoteles de calidad para que tu experiencia sea aún más cómoda y accesible.<br /><br />Ubicados estratégicamente alrededor del lugar del evento, estos hoteles ofrecen no solo comodidad, sino también la oportunidad de sumergirte completamente en la atmósfera del evento. Hemos negociado tarifas especiales para nuestros asistentes, asegurándonos de que tu estancia sea tan inolvidable como el propio evento.",
+    "rate": "Tarifa desde: ",
+    "code": "codigo de reserva: ",
+    "book": "Reservar",
+    "taxes": "Impuestos",
+    "time": "min",
+    "place": "El hotel se encuentra justo en frente",
+    "about_gdl": "Acerca de Guadalajara",
+    "description_gdl": "Guadalajara, la perla del occidente mexicano, se destaca como una ciudad llena de encanto y diversidad. Conocida como la 'Perla Tapatía', Guadalajara combina la rica herencia histórica de México con una modernidad vibrante. <br /><br />La ciudad es famosa por su arquitectura colonial, plazas pintorescas y una atmósfera que refleja la calidez de su gente. Al caminar por el centro histórico, te sumergirás en calles empedradas que llevan a impresionantes iglesias, como la Catedral de Guadalajara y la Basílica de Zapopan. La cultura mexicana se encuentra en cada rincón, desde los mercados tradicionales hasta los coloridos murales que adornan las calles.",
+    "restaurants": "Opciones Gastronómicas",
+    "restaurants_desc": "Guadalajara es conocida por su cocina tradicional mexicana, que se puede disfrutar en los numerosos restaurantes de la ciudad. Los platos típicos incluyen tortas ahogadas, pozole, birria y carne en su jugo. La ciudad también ofrece una amplia variedad de restaurantes internacionales, que van desde comida italiana hasta japonesa.abr <br />Para aquellos que buscan experiencias gourmet, la ciudad cuenta con elegantes restaurantes que ofrecen menús sofisticados y una selección cuidadosa de vinos. Ya sea que te encuentres explorando los barrios históricos o las áreas más modernas de la ciudad, los restaurantes en Guadalajara te invitan a un festín de sabores auténticos y emocionantes. En muchos lugares, también podrás disfrutar de la música en vivo, creando una experiencia gastronómica única que captura la esencia vibrante de la ciudad.",
+    "entertainment": "Entretenimiento",
+    "entertainment_desc": "Guadalajara es una ciudad que ofrece una amplia variedad de actividades de entretenimiento. Desde museos hasta galerías de arte, la ciudad cuenta con una gran cantidad de lugares que celebran la cultura mexicana. <br /><br />La ciudad también cuenta con una gran cantidad de parques y áreas verdes, que ofrecen un escape de la vida urbana.",
+    "money": "Moneda",
+    "money_desc": "Si estás planificando tu visita a Guadalajara, es importante conocer la moneda oficial de México, que es el peso mexicano (MXN). El peso mexicano se utiliza en transacciones diarias, y encontrarás billetes y monedas de diferentes denominaciones.",
+    "link_currency": "Haga clic aquí para utilizar el conversor de moneda."
+  },
+  "register": {
     "btn-register": "Registro Gratuito",
     "text-welcome": "Bienvenido",
-    "title-register":"Regístrate para comenzar tu experiencia",
-    "warning-text":" * Evento exclusivo para profesionales y compradores de la industria. *",
+    "title-register": "Regístrate para comenzar tu experiencia",
+    "warning-text": " * Evento exclusivo para profesionales y compradores de la industria. *",
     "update_info": "Actualizar información",
     "welcome": "¡Bienvenido a ECOMONDO 2026!",
     "first_time": "¿Es tu primera vez con nosotros?",
@@ -682,6 +682,10 @@
   },
   "itzamnaPage": {
     "title": "PREMIO ITZAMNÁ 2026",
-    "subtitle": "Reconociendo la innovación y la transformación industrial"
+    "subtitle": "Reconociendo la innovación y la transformación industrial",
+    "aboutItzamna": {
+      "title": "Acerca del Premio Itzamná",
+      "description":"Desde 2021, el Premio Itzamná ha distinguido proyectos, iniciativas y soluciones con impacto relevante en la evolución tecnológica del sector productivo nacional. <br /><br />A partir de 2026, inicia una nueva etapa al integrarse a Smart Technology Expo (STE), plataforma internacional que vincula ecosistemas tecnológicos e industriales entre Europa y América, fortaleciendo su alcance, proyección y posicionamiento estratégico. <br /><br />Inspirado en Itzamná, deidad maya asociada al conocimiento y la sabiduría, el reconocimiento simboliza visión, innovación y la capacidad de construir el futuro mediante inteligencia aplicada."
+    }
   }
 }
