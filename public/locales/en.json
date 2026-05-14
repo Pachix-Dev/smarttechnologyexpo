@@ -704,6 +704,15 @@
     "objectives": {
       "title": "Objective",
       "description": "To recognize technology projects with real-world applications in Mexico that demonstrably contribute to:"
+    },
+    "participation": {
+      "title": "HOW TO PARTICIPATE",
+      "category01": "Official Registration",
+      "description_category01": "Complete the registration form.",
+      "category02": "Project Technical Specifications",
+      "description_category02": "General information, executive summary, objectives, impact, and results.",
+      "category03": "Executive Presentation Video",
+      "description_category03": "Introduce your company and project. Upload a video of up to 1:30 minutes to social media and tag us."
     }
   }
 }

@@ -703,6 +703,15 @@
     "objectives": {
       "title": "Objetivo",
       "description": "Reconocer proyectos tecnológicos con aplicación real en México que contribuyan de manera demostrable a:"
+    },
+    "participation": {
+      "title": "¿CÓMO PARTICIPAR?",
+      "category01": "Registro Oficial",
+      "description_category01": "Completar el formulario de inscripción.",
+      "category02": "Ficha Técnica del Proyecto",
+      "description_category02": "Datos generales, resumen ejecutivo, objetivos, impacto y resultados.",
+      "category03": "Video Ejecutivo de Presentación",
+      "description_category03": "Presenta tu empresa y proyecto. Sube a redes sociales un video de máximo 1:30 minutos y etiquétanos."
     }
   }
 }
