@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig } from "astro/config";
 
 import tailwindcss from "@tailwindcss/vite";
 
@@ -7,7 +7,7 @@ import sitemap from "@astrojs/sitemap";
 
 import robotsTxt from "astro-robots-txt";
 
-import react from '@astrojs/react';
+import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
@@ -17,36 +17,41 @@ export default defineConfig({
     defaultLocale: "es",
     locales: ["es", "en"],
     routing: {
-      prefixDefaultLocale: false
-    }
+      prefixDefaultLocale: false,
+    },
   },
 
   vite: {
-    plugins: [tailwindcss()]
+    // @ts-expect-error: Vite types can diverge between Astro's bundled Vite and root dependencies.
+    plugins: tailwindcss(),
   },
 
-  integrations: [sitemap({
-    i18n: {
-      defaultLocale: 'es',
-      locales: {
-        es: 'es-MX',
-        en: 'en-US',
+  integrations: [
+    sitemap({
+      i18n: {
+        defaultLocale: "es",
+        locales: {
+          es: "es-MX",
+          en: "en-US",
+        },
       },
-    },
-    changefreq: 'weekly',
-    priority: 0.7,
-    lastmod: new Date(),
-  }), robotsTxt({
-    policy: [
-      {
-        userAgent: '*',
-        allow: '/',
-        crawlDelay: 1,
-      },
-    ],
-    sitemap: [
-      'https://smarttechnologyexpo.mx/sitemap-index.xml',
-      'https://smarttechnologyexpo.mx/sitemap-0.xml',
-    ],
-  }), react()]
+      changefreq: "weekly",
+      priority: 0.7,
+      lastmod: new Date(),
+    }),
+    robotsTxt({
+      policy: [
+        {
+          userAgent: "*",
+          allow: "/",
+          crawlDelay: 1,
+        },
+      ],
+      sitemap: [
+        'https://smarttechnologyexpo.mx/sitemap-index.xml',
+        'https://smarttechnologyexpo.mx/sitemap-0.xml',
+      ],
+    }),
+    react(),
+  ],
 });
