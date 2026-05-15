@@ -723,6 +723,11 @@
       "item05": "Sustainability and Efficiency",
       "subitem01": "About the Evaluation Committee",
       "description01": ""
+    },
+    "contact": {
+      "title": "Questions or comments",
+      "description": "If you have any questions or need further clarification, please contact",
+      "position": "Public Relations"
     }
   }
 }

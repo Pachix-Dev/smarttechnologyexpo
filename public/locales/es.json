@@ -722,6 +722,11 @@
       "item05": "Sostenibilidad y Eficiencia",
       "subitem01": "Sobre el comité de evaluación",
       "description01": ""
+    },
+    "contact": {
+      "title": "Dudas o comentarios",
+      "description": "Para cualquier duda o aclaración, favor de contactar a",
+      "position":"Relaciones Públicas"
     }
   }
 }

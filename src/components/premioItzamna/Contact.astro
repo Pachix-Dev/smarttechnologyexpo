@@ -1,0 +1,43 @@
+---
+import { useTranslations, getTranslation } from "../../utils/translations";
+// ✨ Una sola línea para cargar traducciones!
+const { locale, translations } = await useTranslations(Astro.props, Astro);
+// 🎯 Helper para traducciones más elegante
+const tr = (key: string, fallback: string = "") =>
+  getTranslation(translations, key, fallback);
+---
+<section class="bg-linear-to-br from-[#1d356f] via-[#345fbf] to-[#1d356f] text-white">
+    <div class="relative z-10 mx-auto w-full max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
+        <div class="mx-auto max-w-3xl text-center">
+            <h2 class="text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl uppercase">
+                {tr("itzamnaPage.contact.title")}
+            </h2>
+            <p class="mt-4 text-2xl font-normal text-white/90 ">
+                {tr("itzamnaPage.contact.description")}
+            </p>
+        </div>
+
+        <div class="mx-auto mt-10 grid w-full max-w-3xl grid-cols-1 sm:grid-cols-2 items-center gap-6 rounded-2xl bg-white/10 p-5 shadow-[0_14px_30px_rgba(0,0,0,0.25)] backdrop-blur-[2px] sm:p-7 md:grid-cols-[auto,1fr] md:gap-8">
+            <div class="flex justify-center items-center">
+                <img
+                src="/img/itzamna/regina_calvillo.webp"
+                alt="Regina Calvillo"
+                class="mx-auto h-36 w-36 rounded-full border-4 border-white/30 object-cover sm:h-52 sm:w-52 md:mx-0"
+                />
+            </div>
+            <div class="text-center md:text-left">
+                <p class="text-2xl sm:text-3xl font-bold leading-tight">Regina Calvillo</p>
+                <p class="mt-1 text-xl sm:text-2xl font-medium tracking-wide text-white/80">
+                    {tr("itzamnaPage.contact.position")}
+                </p>
+
+                <a
+                    href="mailto:regina.calvillo@igeco.mx"
+                    class="mt-5 inline-flex items-center rounded-md bg-white px-4 py-2 text-sm font-semibold text-[#1d356f] transition hover:bg-[#eaf0ff] sm:text-base"
+                >
+                    regina.calvillo@igeco.mx
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
