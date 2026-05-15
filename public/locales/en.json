@@ -713,6 +713,16 @@
       "description_category02": "General information, executive summary, objectives, impact, and results.",
       "category03": "Executive Presentation Video",
       "description_category03": "Introduce your company and project. Upload a video of up to 1:30 minutes to social media and tag us."
+    },
+    "evaluation": {
+      "title": "Evaluation Criteria",
+      "item01": "Technological Innovation",
+      "item02": "Demonstrable Impact in Mexico",
+      "item03": "Feasibility and Implementation",
+      "item04": "Scalability and Replicability",
+      "item05": "Sustainability and Efficiency",
+      "subitem01": "About the Evaluation Committee",
+      "description01": ""
     }
   }
 }

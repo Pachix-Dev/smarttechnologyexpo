@@ -712,6 +712,16 @@
       "description_category02": "Datos generales, resumen ejecutivo, objetivos, impacto y resultados.",
       "category03": "Video Ejecutivo de Presentación",
       "description_category03": "Presenta tu empresa y proyecto. Sube a redes sociales un video de máximo 1:30 minutos y etiquétanos."
+    },
+    "evaluation": {
+      "title": "Criterios de evaluación",
+      "item01": "Innovación Tecnológica",
+      "item02": "Impacto Comprobable en México",
+      "item03": "Viabilidad y Ejecución",
+      "item04": "Escalabilidad y Replicabilidad",
+      "item05": "Sostenibilidad y Eficiencia",
+      "subitem01": "Sobre el comité de evaluación",
+      "description01": ""
     }
   }
 }

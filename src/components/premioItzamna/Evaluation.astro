@@ -1,0 +1,38 @@
+---
+import { useTranslations, getTranslation } from "../../utils/translations";
+// ✨ Una sola línea para cargar traducciones!
+const { locale, translations } = await useTranslations(Astro.props, Astro);
+// 🎯 Helper para traducciones más elegante
+const tr = (key: string, fallback: string = "") =>
+  getTranslation(translations, key, fallback);
+---
+<section class='bg-[url(/img/itzamna/bg-valuation.webp)] bg-cover bg-center text-white'>
+    <div class="text-white">
+      <div class="text-center bg-[#2a4b9b]">
+        <h1 class=" text-white text-2xl sm:text-4xl lg:text-5xl uppercase py-4 px-6 font-bold ">{tr("itzamnaPage.evaluation.title")}</h1>
+      </div>
+      <!-- sección de los criterios -->
+      <div class="flex flex-wrap gap-8 sm:max-w-4xl justify-center items-center mx-auto py-10">
+        <div class="bg-[#c10007] w-[150px] h-[150px] sm:w-64 sm:h-60 rounded-lg p-2 flex flex-col justify-center items-center sm:gap-2">
+          <img src="/img/itzamna/icon_eva_01.webp" alt="" class="w-16 sm:w-36 mx-auto"/>
+          <p class="font-semibold text-center text-sm sm:text-xl">{tr("itzamnaPage.evaluation.item01")}</p>
+        </div>
+        <div class="bg-[#c10007] w-[150px] h-[150px] sm:w-64 sm:h-60 rounded-lg p-2 flex flex-col justify-center items-center sm:gap-2">
+          <img src="/img/itzamna/icon_eva_02.webp" alt="" class="w-16 sm:w-36 mx-auto"/>
+          <p class="font-semibold text-center text-sm sm:text-xl">{tr("itzamnaPage.evaluation.item02")}</p>
+        </div>
+        <div class="bg-[#c10007] w-[150px] h-[150px] sm:w-64 sm:h-60 rounded-lg p-2 flex flex-col justify-center items-center sm:gap-2">
+          <img src="/img/itzamna/icon_eva_03.webp" alt="" class="w-16 sm:w-36 mx-auto"/>
+          <p class="font-semibold text-center text-sm sm:text-xl">{tr("itzamnaPage.evaluation.item03")}</p>
+        </div>
+        <div class="bg-[#c10007] w-[150px] h-[150px] sm:w-64 sm:h-60 rounded-lg p-2 flex flex-col justify-center items-center sm:gap-2">
+          <img src="/img/itzamna/icon_eva_04.webp" alt="" class="w-16 sm:w-36 mx-auto"/>
+          <p class="font-semibold text-center text-sm sm:text-xl">{tr("itzamnaPage.evaluation.item04")}</p>
+        </div>
+        <div class="bg-[#c10007] w-[150px] h-[150px] sm:w-64 sm:h-60 rounded-lg p-2 flex flex-col justify-center items-center sm:gap-2">
+          <img src="/img/itzamna/icon_eva_05.webp" alt="" class="w-16 sm:w-36 mx-auto"/>
+          <p class="font-semibold text-center text-sm sm:text-xl">{tr("itzamnaPage.evaluation.item05")}</p>
+        </div>
+      </div>
+    </div>
+</section>
