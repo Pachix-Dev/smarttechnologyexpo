@@ -7,10 +7,10 @@ const tr = (key: string, fallback: string = "") =>
   getTranslation(translations, key, fallback);
 ---
 
-<section
-  class="bg-[url(/img/itzamna/itzamna_bg_04.webp)] bg-cover bg-center text-white min-h-screen py-8 sm:py-12 lg:py-16"
->
-  <div class="md:px-4 sm:px-6 lg:px-0">
+<section class="relative bg-[url(/img/itzamna/itzamna_bg_04.webp)] bg-cover bg-center text-white py-8 sm:py-12 lg:py-16">
+  <div class="absolute inset-0 bg-black/50"></div>
+
+  <div class="relative z-10 md:px-4 sm:px-6 lg:px-0">
     <div class="flex items-end justify-start lg:justify-end">
       <h2 class="my-6 sm:my-10 lg:my-0 text-2xl sm:text-4xl lg:text-5xl uppercase font-extrabold text-white bg-red-700 ps-5 sm:ps-8 lg:ps-10 py-3 sm:py-4 lg:py-6 w-full max-w-[850px] rounded-l-full">
         {tr("itzamnaPage.participation.title")}
