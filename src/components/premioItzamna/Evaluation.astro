@@ -6,7 +6,7 @@ const { locale, translations } = await useTranslations(Astro.props, Astro);
 const tr = (key: string, fallback: string = "") =>
   getTranslation(translations, key, fallback);
 ---
-<section class='bg-[url(/img/itzamna/bg-valuation.webp)] bg-cover bg-center text-white'>
+<section class='text-white'>
     <div class="text-white">
       <div class="text-center bg-[#2a4b9b]">
         <h1 class=" text-white text-2xl sm:text-4xl lg:text-5xl uppercase py-4 px-6 font-bold ">{tr("itzamnaPage.evaluation.title")}</h1>
@@ -34,5 +34,9 @@ const tr = (key: string, fallback: string = "") =>
           <p class="font-semibold text-center text-sm sm:text-xl">{tr("itzamnaPage.evaluation.item05")}</p>
         </div>
       </div>
+    </div>
+    <div class="py-10">
+      <h2 class="text-white text-2xl sm:text-4xl lg:text-5xl uppercase py-4 px-6 font-bold text-center">{tr("itzamnaPage.evaluation.subitem01")}</h2>
+      <p class="text-white text-center text-base sm:text-xl lg:text-2xl px-6 max-w-3xl mx-auto">{tr("itzamnaPage.evaluation.description01")}</p>
     </div>
 </section>

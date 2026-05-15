@@ -1,0 +1,115 @@
+---
+import { useTranslations, getTranslation } from "../../utils/translations";
+
+const { locale, translations } = await useTranslations(Astro.props, Astro);
+const tr = (key: string, fallback: string = "") =>
+  getTranslation(translations, key, fallback);
+
+const awardBenefits = [
+  {
+    key: "recognition",
+    es: "Reconocimiento Itzamna",
+    en: "Itzamna recognition",
+  },
+  {
+    key: "promotion",
+    es: "Promocion del proyecto en redes sociales de Smart Technology Expo",
+    en: "Project promotion on Smart Technology Expo social media",
+  },
+  {
+    key: "trip",
+    es: "Boleto de avion\n4 dias / 3 noches de hospedaje\nAcceso a la Hannover Messe 2027",
+    en: "Plane ticket\n4 days / 3 nights accommodation\nAccess to Hannover Messe 2027",
+  },
+];
+
+const isEnglish = locale === "en";
+---
+
+<section class="relative overflow-hidden py-10 text-white sm:py-14 lg:py-16">
+
+  <div class="relative z-10 mx-auto w-full">
+    <div class="inline-flex items-center justify-center sm:items-end sm:justify-end rounded-r-full bg-[#0f95be] px-7 py-2 shadow-[0_8px_20px_rgba(0,0,0,0.25)] sm:px-10 sm:py-3  w-full sm:w-[750px]">
+      <h3 class="py-4 px-6 text-2xl sm:text-4xl lg:text-5xl uppercase font-extrabold text-white">
+        {tr("itzamnaPage.evaluation.subitem02")}
+      </h3>
+    </div>
+
+    <h2 class="mt-6 text-center text-3xl font-black uppercase leading-tight sm:mt-8 sm:text-4xl lg:text-5xl">
+      {tr("itzamnaPage.evaluation.titleAward")}
+    </h2>
+
+    <div
+      class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-8 lg:mt-10 lg:grid-cols-[1fr,1.1fr] lg:gap-10 max-w-6xl mx-auto p-4 sm:p-6 lg:p-0"
+    >
+      <div class="space-y-5 sm:space-y-6">
+        {
+          awardBenefits.map((item) => {
+            const benefitText = isEnglish ? item.en : item.es;
+            const lines = benefitText.split("\n");
+
+            return (
+              <div class="rounded-2xl bg-[#2a4b9b] p-4 shadow-[0_10px_20px_rgba(12,26,63,0.45)] sm:p-5">
+                <img
+                  src="/img/itzamna/icon-award.webp"
+                  alt={tr(
+                    "itzamnaPage.award.iconAlt",
+                    isEnglish ? "award icon" : "icono de premio",
+                  )}
+                  class="mx-auto h-16 w-16 object-contain sm:h-30 sm:w-30"
+                  loading="lazy"
+                />
+
+                <div class="mt-3 text-center text-lg font-semibold leading-tight sm:text-2xl">
+                  {lines.map((line) => (
+                    <p class="text-base leading-tight sm:text-2xl">{line}</p>
+                  ))}
+                </div>
+              </div>
+            );
+          })
+        }
+      </div>
+
+      <div class="flex flex-col items-center">
+        <div
+          class="w-full max-w-95 rounded-2xl bg-[#3156ad] p-3 shadow-[0_10px_25px_rgba(12,26,63,0.45)]"
+        >
+          <div
+            class="flex items-center justify-center rounded-xl border border-white/15 bg-[#3156ad] text-center h-[650px] p-5"
+          >
+            <p class="text-base font-medium text-white/90 sm:text-xl">
+              {
+                tr(
+                  "itzamnaPage.award.videoPlaceholder",
+                  isEnglish ? "Insert video" : "Insertar video",
+                )
+              }
+            </p>
+          </div>
+        </div>
+
+        <p
+          class="mt-5 text-center text-2xl font-black uppercase leading-tight sm:text-3xl"
+        >
+          {tr("itzamnaPage.evaluation.winnerText")}
+
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-12 sm:mt-28 sm:space-y-12">
+      <div class="flex items-center justify-center sm:items-end sm:justify-start lg:justify-end">
+        <h2 class="my-4 sm:my-10 lg:my-0 text-2xl sm:text-4xl lg:text-5xl uppercase font-extrabold text-white bg-[#0f95be] ps-5 sm:ps-8 lg:ps-10 py-6 sm:py-4 lg:py-6 w-full sm:w-[850px] rounded-l-full">
+            {tr("itzamnaPage.evaluation.subitem03")}
+        </h2>
+      </div>
+
+      <div class="rounded-3xl bg-[#5973ad]/85 p-5 shadow-[0_12px_24px_rgba(20,31,76,0.35)] sm:mt-7 sm:p-7 max-w-6xl mx-5 sm:mx-auto">
+        <p class="text-xl font-medium text-white sm:text-xl text-center sm:text-justify p-4">
+          {tr("itzamnaPage.evaluation.description03")}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
