@@ -712,7 +712,8 @@
       "category02": "Project Technical Specifications",
       "description_category02": "General information, executive summary, objectives, impact, and results.",
       "category03": "Executive Presentation Video",
-      "description_category03": "Introduce your company and project. Upload a video of up to 1:30 minutes to social media and tag us."
+      "description_category03": "Introduce your company and project. Upload a video of up to 1:30 minutes to social media and tag us.",
+      "btnRegister":"Register now"
     },
     "evaluation": {
       "title": "Evaluation Criteria",

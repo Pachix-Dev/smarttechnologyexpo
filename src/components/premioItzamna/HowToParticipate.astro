@@ -7,48 +7,83 @@ const tr = (key: string, fallback: string = "") =>
   getTranslation(translations, key, fallback);
 ---
 
-<section class="relative bg-[url(/img/itzamna/itzamna_bg_04.webp)] bg-cover bg-center text-white py-8 sm:py-12 lg:py-16">
+<section
+  class="relative bg-[url(/img/itzamna/itzamna_bg_04.webp)] bg-cover bg-center text-white py-8 sm:py-12 lg:py-16"
+>
   <div class="absolute inset-0 bg-black/50"></div>
 
   <div class="relative z-10 md:px-4 sm:px-6 lg:px-0">
     <div class="flex items-end justify-start lg:justify-end">
-      <h2 class="my-6 sm:my-10 lg:my-0 text-2xl sm:text-4xl lg:text-5xl uppercase font-extrabold text-white bg-red-700 ps-5 sm:ps-8 lg:ps-10 py-3 sm:py-4 lg:py-6 w-full max-w-[850px] rounded-l-full">
+      <h2
+        class="my-6 sm:my-10 lg:my-0 text-2xl sm:text-4xl lg:text-5xl uppercase font-extrabold text-white bg-red-700 ps-5 sm:ps-8 lg:ps-10 py-3 sm:py-4 lg:py-6 w-full max-w-[850px] rounded-l-full"
+      >
         {tr("itzamnaPage.participation.title")}
       </h2>
     </div>
-    <div class="flex flex-col justify-start items-start gap-6 sm:gap-8 lg:gap-10 max-w-4xl mx-auto px-6 pt-10">
-      <div class="flex flex-col sm:flex-row justify-center items-start sm:items-center gap-4 sm:gap-6">
+    <div
+      class="flex flex-col justify-start items-start gap-6 sm:gap-8 lg:gap-10 max-w-4xl mx-auto px-6 pt-10"
+    >
+      <div
+        class="flex flex-col sm:flex-row justify-center items-start sm:items-center gap-4 sm:gap-6"
+      >
         <img
           src="/img/itzamna/participate_item_01.webp"
           alt=""
           class="w-16 sm:w-20 lg:w-[100px]"
         />
-        <p class="font-extrabold text-lg sm:text-xl lg:text-2xl text-left sm:text-left">
-          {tr("itzamnaPage.participation.category01")} <br />
-          <span class="font-normal"> {tr("itzamnaPage.participation.description_category01")} </span
+        <div class="space-y-2">
+          <p
+            class="font-extrabold text-lg sm:text-xl lg:text-2xl text-left sm:text-left"
           >
-        </p>
+            {tr("itzamnaPage.participation.category01")}
+            <br />
+            <span class="font-normal">
+              {tr("itzamnaPage.participation.description_category01")}
+            </span>
+          </p>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSdOTLXW9jjv0GjShNi4D_3YEPVN6lF6Qq2_WCbcLXnc9it0Dw/viewform?usp=sharing&ouid=116952597483176544662">
+            <button
+              class="inline-flex items-center rounded-md bg-[#c10007] px-4 py-2 text-xl font-semibold text-white transition hover:bg-[#f52d34] hover:text-white/90 uppercase"
+            >
+              {tr("itzamnaPage.participation.btnRegister")}
+            </button>
+          </a>
+        </div>
       </div>
-      <div class="flex flex-col sm:flex-row justify-center items-start sm:items-center gap-4 sm:gap-6">
+      <div
+        class="flex flex-col sm:flex-row justify-center items-start sm:items-center gap-4 sm:gap-6"
+      >
         <img
           src="/img/itzamna/participate_item_02.webp"
           alt=""
           class="w-16 sm:w-20 lg:w-[100px]"
         />
-        <p class="font-extrabold text-lg sm:text-xl lg:text-2xl text-left sm:text-left">
-          {tr("itzamnaPage.participation.category02")} <br />
-          <span class="font-normal"> {tr("itzamnaPage.participation.description_category02")} </span
-          >
+        <p
+          class="font-extrabold text-lg sm:text-xl lg:text-2xl text-left sm:text-left"
+        >
+          {tr("itzamnaPage.participation.category02")}
+          <br />
+          <span class="font-normal">
+            {tr("itzamnaPage.participation.description_category02")}
+          </span>
         </p>
       </div>
-      <div class="flex flex-col sm:flex-row justify-center items-start sm:items-center gap-4 sm:gap-6">
-        <img src="/img/itzamna/participate_item_03.webp"
+      <div
+        class="flex flex-col sm:flex-row justify-center items-start sm:items-center gap-4 sm:gap-6"
+      >
+        <img
+          src="/img/itzamna/participate_item_03.webp"
           alt=""
-          class="w-16 sm:w-20 lg:w-[100px]"/>
-        <p class="font-extrabold text-lg sm:text-xl lg:text-2xl text-left sm:text-left">
-          {tr("itzamnaPage.participation.category03")} <br />
-          <span class="font-normal"> {tr("itzamnaPage.participation.description_category03")} </span
-          >
+          class="w-16 sm:w-20 lg:w-[100px]"
+        />
+        <p
+          class="font-extrabold text-lg sm:text-xl lg:text-2xl text-left sm:text-left"
+        >
+          {tr("itzamnaPage.participation.category03")}
+          <br />
+          <span class="font-normal">
+            {tr("itzamnaPage.participation.description_category03")}
+          </span>
         </p>
       </div>
     </div>
