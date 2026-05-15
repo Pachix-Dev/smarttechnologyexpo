@@ -29,7 +29,7 @@ const isEnglish = locale === "en";
 <section class="relative overflow-hidden py-10 text-white sm:py-14 lg:py-16">
 
   <div class="relative z-10 mx-auto w-full">
-    <div class="inline-flex items-center justify-center sm:items-end sm:justify-end rounded-r-full bg-[#0f95be] px-7 py-2 shadow-[0_8px_20px_rgba(0,0,0,0.25)] sm:px-10 sm:py-3  w-full sm:w-[750px]">
+    <div class="inline-flex items-center justify-center sm:items-end sm:justify-end rounded-r-full bg-[#0f95be] px-7 py-2 shadow-[0_8px_20px_rgba(0,0,0,0.25)] sm:px-10 sm:py-3  w-full sm:w-187.5">
       <h3 class="py-4 px-6 text-2xl sm:text-4xl lg:text-5xl uppercase font-extrabold text-white">
         {tr("itzamnaPage.evaluation.subitem02")}
       </h3>
@@ -73,7 +73,7 @@ const isEnglish = locale === "en";
 
       <div class="flex flex-col items-center">
         <div class="w-full max-w-95 rounded-2xl bg-[#3156ad] p-3 shadow-[0_10px_25px_rgba(12,26,63,0.45)]">
-          <div class="flex items-center justify-center rounded-xl border border-white/15 bg-[#3156ad] text-center h-[650px] p-5">
+          <div class="flex items-center justify-center rounded-xl border border-white/15 bg-[#3156ad] text-center h-162.5 p-5">
             
         
         <!-- video de instagram -->
@@ -100,10 +100,17 @@ const isEnglish = locale === "en";
     </div>
 
     <div class="mt-12 sm:mt-28 sm:space-y-12">
-      <div class="flex items-center justify-center sm:items-end sm:justify-start lg:justify-end">
-        <h2 class="my-4 sm:my-10 lg:my-0 text-2xl sm:text-4xl lg:text-5xl uppercase font-extrabold text-white bg-[#0f95be] ps-5 sm:ps-8 lg:ps-10 py-6 sm:py-4 lg:py-6 w-full sm:w-[850px] rounded-l-full">
+      <div class="flex justify-center sm:justify-start lg:justify-end">
+        <div class="relative w-full sm:w-212.5">
+          <h2 class="my-4 sm:my-10 lg:my-0 w-full rounded-l-full bg-[#0f95be] py-6 ps-5 text-2xl font-extrabold uppercase text-white sm:py-4 sm:ps-8 sm:pe-32 sm:text-4xl lg:py-6 lg:ps-10 lg:pe-40 lg:text-5xl">
             {tr("itzamnaPage.evaluation.subitem03")}
-        </h2>
+          </h2>
+          <img
+            src="/img/itzamna/icon_prehispanico_itzamna.webp"
+            alt="premio itzamna 2026"
+            class="pointer-events-none absolute right-3 top-1/2 h-14 w-auto -translate-y-1/2 object-contain sm:right-5 sm:h-24 lg:right-6 lg:h-48"
+          />
+        </div>
       </div>
 
       <div class="rounded-3xl bg-[#5973ad]/85 p-5 shadow-[0_12px_24px_rgba(20,31,76,0.35)] sm:mt-7 sm:p-7 max-w-6xl mx-5 sm:mx-auto">
