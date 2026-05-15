@@ -712,7 +712,8 @@
       "category02": "Project Technical Specifications",
       "description_category02": "General information, executive summary, objectives, impact, and results.",
       "category03": "Executive Presentation Video",
-      "description_category03": "Introduce your company and project. Upload a video of up to 1:30 minutes to social media and tag us.",
+      "description_category03": "Present your company and project. Upload a video to social media with the following specifications and be sure to tag us : ",
+      "especifications": "Maximum duration: 2 minutes. Format: Landscape, 1920 x 1080. The video must clearly explain: the identified problem, the implemented solution, the results obtained, and the strategic value of the project. The purpose of this content is to provide a concise overview of the case and to complement the documentary evaluation. It will be shared on our website and social media.",
       "btnRegister":"Register now"
     },
     "evaluation": {
