@@ -8,9 +8,22 @@ const tr = (key: string, fallback: string = "") =>
 ---
 
 <section class="relative overflow-hidden">
+  <!-- Video de fondo -->
+  <video
+    class="absolute inset-0 w-full h-full object-cover"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="metadata"
+    aria-hidden="true"
+  >
+    <source src="/video/background_technology_loop.mp4" type="video/mp4" />
+  </video>
+
   <!-- Background gradient animado -->
   <div
-    class="absolute inset-0 bg-linear-to-br from-slate-950 via-[#2a4b9b]/95 to-slate-950 overflow-hidden"
+    class="absolute inset-0 bg-linear-to-br from-slate-950/85 via-[#2a4b9b]/75 to-slate-950/85 overflow-hidden"
   >
     <!-- Efecto de luces de fondo -->
     <div
