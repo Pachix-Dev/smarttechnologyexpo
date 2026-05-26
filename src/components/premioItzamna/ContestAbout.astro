@@ -4,7 +4,8 @@ import { useTranslations, getTranslation } from "../../utils/translations";
 const { locale, translations } = await useTranslations(Astro.props, Astro);
 // 🎯 Helper para traducciones más elegante
 const tr = (key: string, fallback: string = "") =>
-  getTranslation(translations, key, fallback);
+  getTranslation(translations, key, fallback); 
+
 ---
 
 <section class="pt-6 sm:pt-10">
@@ -28,7 +29,7 @@ const tr = (key: string, fallback: string = "") =>
           set:html={tr("itzamnaPage.contestAbout.description")}
         />
         <a
-          href="/files/itzamna_2026_convocatoria_26_05_2026.pdf"
+          href={locale === "en" ? "/files/itzamna_2026_convocatoria_eng_26_05_2026.pdf" : "/files/itzamna_2026_convocatoria_esp_26_05_2026.pdf"}
           target="_blank"
           rel="noopener noreferrer"
           class="uppercase inline-flex items-center justify-center rounded-md bg-[#ad2f27] px-5 py-3 text-sm sm:text-base font-semibold text-white transition hover:bg-[#8c251f] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ad2f27] focus-visible:ring-offset-2 max-w-2xs mx-auto"
