@@ -5,7 +5,11 @@
   },
   "menu": {
     "banner": "become an exhibitor",
-    "about_us": "ABOUT US",
+    "section_about_us": {
+      "title": "ABOUT US",
+      "item_1": "About Smart Technology Expo",
+      "item_2": "Strategic communication pillars"
+    },
     "exhibitors": "I WANT TO BE AN EXHIBITOR",
     "exhibitor_section": {
       "title": "EXHIBITORS",
@@ -56,7 +60,8 @@
     "slogan_ste": "Your business is our business",
     "buyers_profesionals": "Our professional buyers",
     "others": "entre otros",
-    "platinum_allies": "PLATINUM MEDIA ALLIES"
+    "platinum_allies": "PLATINUM MEDIA ALLIES",
+    "title_communication_file": "learn more about the strategic communication pillars of STE 2027"
   },
   "pricing": {
     "raw_space": {

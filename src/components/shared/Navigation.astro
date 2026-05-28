@@ -29,8 +29,18 @@ interface MenuItem {
 
 const menu: MenuItem[] = [
   {
-    title: tr("menu.about_us"),
-    href: "/acerca-de-nosotros",
+    title: tr("menu.section_about_us.title"),
+      items: [
+        {
+          title: tr("menu.section_about_us.item_1"),
+          href: "/acerca-de-nosotros",
+        },
+        {
+          title: tr("menu.section_about_us.item_2"),
+          href: locale === "es" ? "/files/puntos_clave_de_comunicación_de_STE_2026.pdf" : "/files/key_communication_pillars_forSTE.pdf",
+          target: "_blank",
+        }
+      ],
   },
   {
     title: tr("menu.exhibitor_section.title"),
