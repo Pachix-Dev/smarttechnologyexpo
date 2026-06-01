@@ -237,13 +237,78 @@
     "money_desc": "Si estás planificando tu visita a Guadalajara, es importante conocer la moneda oficial de México, que es el peso mexicano (MXN). El peso mexicano se utiliza en transacciones diarias, y encontrarás billetes y monedas de diferentes denominaciones.",
     "link_currency": "Haga clic aquí para utilizar el conversor de moneda."
   },
+  "thanks_page": {
+    "title": "Gracias por registrarte",
+    "title2": "Gracias_por_registrarte",
+    "description": "Tu registro ha sido exitoso, te hemos enviado un correo con tu gafete de acceso al evento o también puedes descargarlo dando click en el boton descargar tu gafete",
+    "download_pass": "Descargar tu gafete",
+    "download_invoice": "Descargar tu recibo de compra",
+    "thanks_purchasing": "Gracias por tu compra",
+    "sucess_purchasing": "¡Fantástico! haz tu compra fue procesada correctamente.",
+    "email_sent": "¡Pronto recibiras un correo de confirmación!",
+    "description_2": "Por favor pasa al modulo de caja con este numero para pagar y recoger tu gafete.",
+    "recomendation": "Recomendaciones para tu visita",
+    "back_home": "Regresar a la página de inicio"
+  },
+  "itzamnaPage": {
+    "title": "PREMIO ITZAMNÁ 2026",
+    "subtitle": "Reconociendo la innovación y la transformación industrial",
+    "aboutItzamna": {
+      "title": "Acerca del Premio Itzamná",
+      "description": "Desde 2021, el Premio Itzamná ha distinguido proyectos, iniciativas y soluciones con impacto relevante en la evolución tecnológica del sector productivo nacional. <br /><br />A partir de 2026, inicia una nueva etapa al integrarse a Smart Technology Expo (STE), plataforma internacional que vincula ecosistemas tecnológicos e industriales entre Europa y América, fortaleciendo su alcance, proyección y posicionamiento estratégico. <br /><br />Inspirado en Itzamná, deidad maya asociada al conocimiento y la sabiduría, el reconocimiento simboliza visión, innovación y la capacidad de construir el futuro mediante inteligencia aplicada."
+    },
+    "contestAbout": {
+      "title": "CONVOCA",
+      "description": "A empresas, organizaciones, scaleups, startups tecnológicas e integradores a participar en la edición 2026 del Premio Itzamná.<br /><br />Este reconocimiento está dirigido a soluciones con implementación, operación o impacto comprobable en México, orientadas a fortalecer la competitividad industrial mediante automatización, digitalización, inteligencia aplicada y tecnologías avanzadas."
+    },
+    "participants": {
+      "title": "¿Quiénes pueden participar?",
+      "item01": "Empresas nacionales o internacionales con operaciones en México",
+      "item02": "Organizaciones industriales",
+      "item03": "Startups tecnológicas",
+      "item04": "Scaleups",
+      "item05": "Integradores tecnológicos",
+      "item06": "Proveedores de soluciones industriales"
+    },
+    "objectives": {
+      "title": "Objetivo",
+      "description": "Reconocer proyectos tecnológicos con aplicación real en México que contribuyan de manera demostrable a:"
+    },
+    "participation": {
+      "title": "¿CÓMO PARTICIPAR?",
+      "category01": "Registro Oficial",
+      "description_category01": "Completar el formulario de inscripción.",
+      "category02": "Ficha Técnica del Proyecto",
+      "description_category02": "Datos generales, resumen ejecutivo, objetivos, impacto y resultados.",
+      "category03": "Video Ejecutivo de Presentación",
+      "description_category03": "Presenta tu empresa y proyecto. Sube a redes sociales un video con las siguientes especificaciones y asegúrate de etiquetarnos: ",
+      "especifications": "Duración máxima 2 minutos. Formato: Horizontal a 1920 x 1080. El video deberá explicar de forma clara: Problema identificado, solución implementada, resultados obtenidos, valor estratégico del proyecto. Este contenido tiene como propósito presentar de manera ejecutiva la esencia del caso y complementar la evaluación documental. Será compartido en nuestra página web y redes sociales.",
+      "btnRegister": "Regístrate aquí"
+    },
+    "evaluation": {
+      "title": "Criterios de evaluación",
+      "item01": "Innovación Tecnológica",
+      "item02": "Impacto Comprobable en México",
+      "item03": "Viabilidad y Ejecución",
+      "item04": "Escalabilidad y Replicabilidad",
+      "item05": "Sostenibilidad y Eficiencia",
+      "subitem01": "Sobre el comité de evaluación",
+      "description01": "Integrado por especialistas de reconocido prestigio provenientes de la industria, organismos empresariales, asociaciones sectoriales, instituciones estratégicas y medios especializados, vinculados al desarrollo tecnológico e industrial de México.",
+      "subitem02": "Premio",
+      "titleAward": "Viaje a Hannover Messe 2027",
+      "winnerText": "Ganador premio Itzamná 2025",
+      "subitem03": "Propiedad industrial",
+      "description03": "Toda la información presentada será tratada con estricta confidencialidad por las instancias involucradas en el proceso. La información será utilizada exclusivamente para fines de análisis, evaluación y deliberación del Premio Itzamná 2026. Se respetarán en todo momento los derechos de propiedad intelectual, industrial, secretos comerciales, marcas, patentes y desarrollos tecnológicos de los participantes, conforme a la legislación aplicable en México."
+    },
+    "contact": {
+      "title": "Dudas o comentarios",
+      "description": "Para cualquier duda o aclaración, favor de contactar a",
+      "position":"Relaciones Públicas"
+    }
+  },
   "register": {
-    "btn-register": "Registro Gratuito",
-    "text-welcome": "Bienvenido",
-    "title-register": "Regístrate para comenzar tu experiencia",
-    "warning-text": " * Evento exclusivo para profesionales y compradores de la industria. *",
     "update_info": "Actualizar información",
-    "welcome": "¡Bienvenido a ECOMONDO 2026!",
+    "welcome": "¡Bienvenido a ECOMONDO 2027!",
     "first_time": "¿Es tu primera vez con nosotros?",
     "already_account": "¿Ya nos visitaste antes?, ingresa tu correo electrónico",
     "title": "REGISTRO",
@@ -273,8 +338,8 @@
     "type_register_3": "MEDIO/PRENSA",
     "name": "Nombre",
     "placeholder_name": "Ingresa tu nombre",
-    "lastname": "Apellido Paterno",
-    "placeholder_lastname": "Ingresa tu apellido paterno",
+    "lastname": "Apellido",
+    "placeholder_lastname": "Ingresa tu apellido",
     "surname": "Apellido Materno",
     "placeholder_surname": "Ingresa tu apellido materno",
     "code_invitation": "Código de invitación",
@@ -595,32 +660,14 @@
       "SECRETARÍA"
     ],
     "list_interest_product": [
-      "PLANTAS DE TRATAMIENTO DE AGUA",
-      "MONITOREO, ANÁLISIS Y MEDICIÓN",
-      "BOMBAS, TURBINAS, INVERSORES Y CONTROLADORES",
-      "EQUIPOS, SUMINISTROS E INSTRUMENTACIÓN",
-      "SISTEMAS DE FILTRACIÓN, REUSO Y AHORRO DE AGUA",
-      "RECOLECCIÓN Y MANEJO DE RESIDUOS",
-      "RECICLAJE DE MATERIALES INDUSTRIALES",
-      "EQUIPOS PARA EL RECICLAJE",
-      "COMPOSTAJE",
-      "BIOCOMBUSTIBLES",
-      "COGENERACIÓN",
-      "EQUIPOS Y DISPOSITIVOS PARA EL PROCESAMIENTO DE BIOCOMBUSTIBLES",
-      "SISTEMAS DE GENERACIÓN DE CALOR",
-      "SOLUCIONES SUSTENTABLES",
-      "TECNOLOGÍA PARA EL MONITOREO AMBIENTAL",
-      "SERVICIOS DE CONSULTORÍA ESG",
-      "LUMINARIAS INTELIGENTES",
-      "CONSTRUCCIÓN SOSTENIBLE",
-      "FINANCIAMIENTO VERDE",
-      "VEHÍCULOS SUSTENTABLES",
-      "APPS Y SOFTWARE DE CONECTIVIDAD",
-      "INTELIGENCIA ARTIFICIAL",
-      "INFRAESTRUCTURA DE CARGA",
-      "CONDUCCIÓN AUTÓNOMA",
-      "ESTACIONAMIENTOS INTELIGENTES",
-      "CIBERSEGURIDAD"
+      "AUTOMATIZACIÓN, ROBOTIZACIÓN Y TRANSMISIÓN DE PODER",
+      "FÁBRICA DIGITAL",
+      "MÁQUINAS Y HERRAMIENTAS",
+      "LOGÍSTICA INTELIGENTE",
+      "MOVILIDAD DEL FUTURO",
+      "INSTITUTOS DE INVESTIGACIÓN",
+      "MANUFACTURA ADITIVA",
+      "DRONES"
     ],
     "spectacular": "ESPECTACULAR",
     "webpage": "PÁGINA WEB",
@@ -672,74 +719,5 @@
     "select_country_first": "Por favor selecciona un país primero",
     "select_state_first": "Por favor selecciona un estado primero",
     "media_messege": "Para atención a medios, favor de contactar a "
-  },
-  "thanks_page": {
-    "title": "Gracias por registrarte",
-    "title2": "Gracias_por_registrarte",
-    "description": "Tu registro ha sido exitoso, te hemos enviado un correo con tu gafete de acceso al evento o también puedes descargarlo dando click en el boton descargar tu gafete",
-    "download_pass": "Descargar tu gafete",
-    "download_invoice": "Descargar tu recibo de compra",
-    "thanks_purchasing": "Gracias por tu compra",
-    "sucess_purchasing": "¡Fantástico! haz tu compra fue procesada correctamente.",
-    "email_sent": "¡Pronto recibiras un correo de confirmación!",
-    "description_2": "Por favor pasa al modulo de caja con este numero para pagar y recoger tu gafete.",
-    "recomendation": "Recomendaciones para tu visita",
-    "back_home": "Regresar a la página de inicio"
-  },
-  "itzamnaPage": {
-    "title": "PREMIO ITZAMNÁ 2026",
-    "subtitle": "Reconociendo la innovación y la transformación industrial",
-    "aboutItzamna": {
-      "title": "Acerca del Premio Itzamná",
-      "description": "Desde 2021, el Premio Itzamná ha distinguido proyectos, iniciativas y soluciones con impacto relevante en la evolución tecnológica del sector productivo nacional. <br /><br />A partir de 2026, inicia una nueva etapa al integrarse a Smart Technology Expo (STE), plataforma internacional que vincula ecosistemas tecnológicos e industriales entre Europa y América, fortaleciendo su alcance, proyección y posicionamiento estratégico. <br /><br />Inspirado en Itzamná, deidad maya asociada al conocimiento y la sabiduría, el reconocimiento simboliza visión, innovación y la capacidad de construir el futuro mediante inteligencia aplicada."
-    },
-    "contestAbout": {
-      "title": "CONVOCA",
-      "description": "A empresas, organizaciones, scaleups, startups tecnológicas e integradores a participar en la edición 2026 del Premio Itzamná.<br /><br />Este reconocimiento está dirigido a soluciones con implementación, operación o impacto comprobable en México, orientadas a fortalecer la competitividad industrial mediante automatización, digitalización, inteligencia aplicada y tecnologías avanzadas."
-    },
-    "participants": {
-      "title": "¿Quiénes pueden participar?",
-      "item01": "Empresas nacionales o internacionales con operaciones en México",
-      "item02": "Organizaciones industriales",
-      "item03": "Startups tecnológicas",
-      "item04": "Scaleups",
-      "item05": "Integradores tecnológicos",
-      "item06": "Proveedores de soluciones industriales"
-    },
-    "objectives": {
-      "title": "Objetivo",
-      "description": "Reconocer proyectos tecnológicos con aplicación real en México que contribuyan de manera demostrable a:"
-    },
-    "participation": {
-      "title": "¿CÓMO PARTICIPAR?",
-      "category01": "Registro Oficial",
-      "description_category01": "Completar el formulario de inscripción.",
-      "category02": "Ficha Técnica del Proyecto",
-      "description_category02": "Datos generales, resumen ejecutivo, objetivos, impacto y resultados.",
-      "category03": "Video Ejecutivo de Presentación",
-      "description_category03": "Presenta tu empresa y proyecto. Sube a redes sociales un video con las siguientes especificaciones y asegúrate de etiquetarnos: ",
-      "especifications": "Duración máxima 2 minutos. Formato: Horizontal a 1920 x 1080. El video deberá explicar de forma clara: Problema identificado, solución implementada, resultados obtenidos, valor estratégico del proyecto. Este contenido tiene como propósito presentar de manera ejecutiva la esencia del caso y complementar la evaluación documental. Será compartido en nuestra página web y redes sociales.",
-      "btnRegister": "Regístrate aquí"
-    },
-    "evaluation": {
-      "title": "Criterios de evaluación",
-      "item01": "Innovación Tecnológica",
-      "item02": "Impacto Comprobable en México",
-      "item03": "Viabilidad y Ejecución",
-      "item04": "Escalabilidad y Replicabilidad",
-      "item05": "Sostenibilidad y Eficiencia",
-      "subitem01": "Sobre el comité de evaluación",
-      "description01": "Integrado por especialistas de reconocido prestigio provenientes de la industria, organismos empresariales, asociaciones sectoriales, instituciones estratégicas y medios especializados, vinculados al desarrollo tecnológico e industrial de México.",
-      "subitem02": "Premio",
-      "titleAward": "Viaje a Hannover Messe 2027",
-      "winnerText": "Ganador premio Itzamná 2025",
-      "subitem03": "Propiedad industrial",
-      "description03": "Toda la información presentada será tratada con estricta confidencialidad por las instancias involucradas en el proceso. La información será utilizada exclusivamente para fines de análisis, evaluación y deliberación del Premio Itzamná 2026. Se respetarán en todo momento los derechos de propiedad intelectual, industrial, secretos comerciales, marcas, patentes y desarrollos tecnológicos de los participantes, conforme a la legislación aplicable en México."
-    },
-    "contact": {
-      "title": "Dudas o comentarios",
-      "description": "Para cualquier duda o aclaración, favor de contactar a",
-      "position":"Relaciones Públicas"
-    }
   }
 }

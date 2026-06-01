@@ -238,13 +238,78 @@
     "money_desc": "If you are planning a visit to Guadalajara, it is important to know that the official currency of Mexico is the Mexican peso (MXN). The Mexican peso is used in everyday transactions, and you will find bills and coins in various denominations.",
     "link_currency": "Click here to use the currency converter."
   },
+  "thanks_page": {
+    "title": "Thank you for registering",
+    "title2": "Thank_you_for_registering",
+    "description": "Your registration has been successfully completed. We will send you an email with your access to the event....",
+    "download_pass": "Download your pass",
+    "download_invoice": "Download your invoice",
+    "thanks_purchasing": "Thank you for your purchase",
+    "sucess_purchasing": "Fantastic! your purchase was successfully processed.",
+    "email_sent": "You will receive a confirmation email soon!",
+    "description_2": "Please go to the cashier's office with this number to pay and pick up your badge.",
+    "recomendation": "Recommendations for your visit",
+    "back_home": "Back to home page"
+  },
+  "itzamnaPage": {
+    "title": "2026 ITZAMNÁ AWARD",
+    "subtitle": "Recognizing the innovation and industrial transformation that are shaping the future",
+    "aboutItzamna": {
+      "title": "About The Itzamná Award",
+      "description": "Since 2021, the Itzamná Award has recognized projects, initiatives, and solutions that have had a significant impact on the technological evolution of the national productive sector. <br /><br />Starting in 2026, a new phase begins as the award joins Smart Technology Expo (STE), an international platform that connects technological and industrial ecosystems between Europe and the Americas, thereby strengthening its reach, visibility, and strategic positioning. <br /><br />Inspired by Itzamná, a Mayan deity associated with knowledge and wisdom, the award symbolizes vision, innovation, and the ability to build the future through applied intelligence."
+    },
+    "contestAbout": {
+      "title": "ANNOUNCEMENT",
+      "description": "We invite companies, organizations, scale-ups, tech startups, and system integrators to participate in the 2026 edition of the Itzamná Award. <br /><br />This award is intended for solutions with proven implementation, operation, or impact in Mexico, aimed at strengthening industrial competitiveness through automation, digitization, applied intelligence, and advanced technologies."
+    },
+    "participants": {
+      "title": "Who is eligible to participate?",
+      "item01": "Domestic or international companies with operations in Mexico",
+      "item02": "Industrial organizations",
+      "item03": "Technology startups",
+      "item04": "Scaleups",
+      "item05": "Technology integrators",
+      "item06": "Industrial solution providers"
+    },
+    "objectives": {
+      "title": "Objective",
+      "description": "To recognize technology projects with real-world applications in Mexico that demonstrably contribute to:"
+    },
+    "participation": {
+      "title": "HOW TO PARTICIPATE",
+      "category01": "Official Registration",
+      "description_category01": "Complete the registration form.",
+      "category02": "Project Technical Specifications",
+      "description_category02": "General information, executive summary, objectives, impact, and results.",
+      "category03": "Executive Presentation Video",
+      "description_category03": "Present your company and project. Upload a video to social media with the following specifications and be sure to tag us : ",
+      "especifications": "Maximum duration: 2 minutes. Format: Landscape, 1920 x 1080. The video must clearly explain: the identified problem, the implemented solution, the results obtained, and the strategic value of the project. The purpose of this content is to provide a concise overview of the case and to complement the documentary evaluation. It will be shared on our website and social media.",
+      "btnRegister":"Register now"
+    },
+    "evaluation": {
+      "title": "Evaluation Criteria",
+      "item01": "Technological Innovation",
+      "item02": "Demonstrable Impact in Mexico",
+      "item03": "Feasibility and Implementation",
+      "item04": "Scalability and Replicability",
+      "item05": "Sustainability and Efficiency",
+      "subitem01": "About the Evaluation Committee",
+      "description01": "Comprised of renowned experts from industry, business organizations, sector-specific associations, strategic institutions, and specialized media outlets involved in Mexico’s technological and industrial development.",
+      "subitem02": "Award",
+      "titleAward": "Trip to Hannover Messe 2027",
+      "winnerText": "Winner of the 2025 Iztamná Award",
+      "subitem03": "Industrial Property",
+      "description03": "All information submitted will be treated with strict confidentiality by the entities involved in the process.The information will be used exclusively for the purposes of analysis, evaluation, and deliberation regarding the 2026 Itzamná Award.The intellectual and industrial property rights, trade secrets, trademarks, patents, and technological developments of the participants will be respected at all times, in accordance with applicable Mexican law."
+    },
+    "contact": {
+      "title": "Questions or comments",
+      "description": "If you have any questions or need further clarification, please contact",
+      "position": "Public Relations"
+    }
+  },
   "register": {
-    "btn-register": "Free Registration",
-    "text-welcome": "Welcome",
-    "title-register": "Sign up to begin your experience",
-    "warning-text": "* Exclusive event for industry professionals and buyers.  *",
     "update_info": "Update information",
-    "welcome": "Welcome to ECOMONDO 2026",
+    "welcome": "Welcome to ECOMONDO 2027",
     "first_time": "Is this your first time with us?",
     "already_account": "Have you visited us before? Enter your email",
     "title": "Registration",
@@ -596,32 +661,14 @@
       "SECRETARIAT"
     ],
     "list_interest_product": [
-      "WATER TREATMENT PLANTS",
-      "MONITORING, ANALYSIS, AND MEASUREMENT",
-      "PUMPS, TURBINES, INVERTERS, AND CONTROLLERS",
-      "EQUIPMENT, SUPPLIES, AND INSTRUMENTATION",
-      "FILTRATION, WATER REUSE AND SAVING SYSTEMS",
-      "WASTE COLLECTION AND MANAGEMENT",
-      "INDUSTRIAL MATERIAL RECYCLING",
-      "RECYCLING EQUIPMENT",
-      "COMPOSTING",
-      "BIOFUELS",
-      "COGENERATION",
-      "EQUIPMENT AND DEVICES FOR BIOFUEL PROCESSING",
-      "HEAT GENERATION SYSTEMS",
-      "SUSTAINABLE SOLUTIONS",
-      "TECHNOLOGY FOR ENVIRONMENTAL MONITORING",
-      "ESG CONSULTING SERVICES",
-      "SMART LIGHTING",
-      "SUSTAINABLE CONSTRUCTION",
-      "GREEN FINANCING",
-      "SUSTAINABLE VEHICLES",
-      "CONNECTIVITY APPS AND SOFTWARE",
-      "ARTIFICIAL INTELLIGENCE",
-      "CHARGING INFRASTRUCTURE",
-      "AUTONOMOUS DRIVING",
-      "SMART PARKING",
-      "CYBERSECURITY"
+      "AUTOMATION, ROBOTISATION AND POWER TRANSMISSION",
+      "DIGITAL FACTORY",
+      "MACHINES AND TOOLS",
+      "SMART LOGISTICS",
+      "MOBILITY OF THE FUTURE",
+      "RESEARCH INSTITUTES",
+      "ADDITIVE MANUFACTURING",
+      "DRONES"
     ],
     "spectacular": "SPECTACULAR",
     "webpage": "WEBPAGE",
@@ -673,74 +720,5 @@
     "select_country_first": "Please select a country first",
     "select_state_first": "Please select a state first",
     "media_messege": "For media inquiries, please contact "
-  },
-  "thanks_page": {
-    "title": "Thank you for registering",
-    "title2": "Thank_you_for_registering",
-    "description": "Your registration has been successfully completed. We will send you an email with your access to the event....",
-    "download_pass": "Download your pass",
-    "download_invoice": "Download your invoice",
-    "thanks_purchasing": "Thank you for your purchase",
-    "sucess_purchasing": "Fantastic! your purchase was successfully processed.",
-    "email_sent": "You will receive a confirmation email soon!",
-    "description_2": "Please go to the cashier's office with this number to pay and pick up your badge.",
-    "recomendation": "Recommendations for your visit",
-    "back_home": "Back to home page"
-  },
-  "itzamnaPage": {
-    "title": "2026 ITZAMNÁ AWARD",
-    "subtitle": "Recognizing the innovation and industrial transformation that are shaping the future",
-    "aboutItzamna": {
-      "title": "About The Itzamná Award",
-      "description": "Since 2021, the Itzamná Award has recognized projects, initiatives, and solutions that have had a significant impact on the technological evolution of the national productive sector. <br /><br />Starting in 2026, a new phase begins as the award joins Smart Technology Expo (STE), an international platform that connects technological and industrial ecosystems between Europe and the Americas, thereby strengthening its reach, visibility, and strategic positioning. <br /><br />Inspired by Itzamná, a Mayan deity associated with knowledge and wisdom, the award symbolizes vision, innovation, and the ability to build the future through applied intelligence."
-    },
-    "contestAbout": {
-      "title": "ANNOUNCEMENT",
-      "description": "We invite companies, organizations, scale-ups, tech startups, and system integrators to participate in the 2026 edition of the Itzamná Award. <br /><br />This award is intended for solutions with proven implementation, operation, or impact in Mexico, aimed at strengthening industrial competitiveness through automation, digitization, applied intelligence, and advanced technologies."
-    },
-    "participants": {
-      "title": "Who is eligible to participate?",
-      "item01": "Domestic or international companies with operations in Mexico",
-      "item02": "Industrial organizations",
-      "item03": "Technology startups",
-      "item04": "Scaleups",
-      "item05": "Technology integrators",
-      "item06": "Industrial solution providers"
-    },
-    "objectives": {
-      "title": "Objective",
-      "description": "To recognize technology projects with real-world applications in Mexico that demonstrably contribute to:"
-    },
-    "participation": {
-      "title": "HOW TO PARTICIPATE",
-      "category01": "Official Registration",
-      "description_category01": "Complete the registration form.",
-      "category02": "Project Technical Specifications",
-      "description_category02": "General information, executive summary, objectives, impact, and results.",
-      "category03": "Executive Presentation Video",
-      "description_category03": "Present your company and project. Upload a video to social media with the following specifications and be sure to tag us : ",
-      "especifications": "Maximum duration: 2 minutes. Format: Landscape, 1920 x 1080. The video must clearly explain: the identified problem, the implemented solution, the results obtained, and the strategic value of the project. The purpose of this content is to provide a concise overview of the case and to complement the documentary evaluation. It will be shared on our website and social media.",
-      "btnRegister":"Register now"
-    },
-    "evaluation": {
-      "title": "Evaluation Criteria",
-      "item01": "Technological Innovation",
-      "item02": "Demonstrable Impact in Mexico",
-      "item03": "Feasibility and Implementation",
-      "item04": "Scalability and Replicability",
-      "item05": "Sustainability and Efficiency",
-      "subitem01": "About the Evaluation Committee",
-      "description01": "Comprised of renowned experts from industry, business organizations, sector-specific associations, strategic institutions, and specialized media outlets involved in Mexico’s technological and industrial development.",
-      "subitem02": "Award",
-      "titleAward": "Trip to Hannover Messe 2027",
-      "winnerText": "Winner of the 2025 Iztamná Award",
-      "subitem03": "Industrial Property",
-      "description03": "All information submitted will be treated with strict confidentiality by the entities involved in the process.The information will be used exclusively for the purposes of analysis, evaluation, and deliberation regarding the 2026 Itzamná Award.The intellectual and industrial property rights, trade secrets, trademarks, patents, and technological developments of the participants will be respected at all times, in accordance with applicable Mexican law."
-    },
-    "contact": {
-      "title": "Questions or comments",
-      "description": "If you have any questions or need further clarification, please contact",
-      "position": "Public Relations"
-    }
   }
 }

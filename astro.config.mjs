@@ -24,6 +24,10 @@ export default defineConfig({
   vite: {
     // @ts-expect-error: Vite types can diverge between Astro's bundled Vite and root dependencies.
     plugins: tailwindcss(),
+    optimizeDeps: {
+      include: ['react-dom/client'],
+      needsInterop: ['react-dom/client'],
+    },
   },
 
   integrations: [
