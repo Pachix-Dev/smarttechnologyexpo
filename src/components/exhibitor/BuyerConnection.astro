@@ -75,9 +75,9 @@ const tr = (key: string, fallback: string = "") =>
                   <p
                     class="text-sm font-bold text-[#c7312a] uppercase tracking-wider"
                   >
-                    Próximo Epicentro
+                    {locale === "en" ? "Next Epicenter" : "Próximo Epicentro"}
                   </p>
-                  <p class="text-xs text-gray-600">Innovación Industrial</p>
+                  <p class="text-xs text-gray-600">{locale === "en" ? "Industrial Innovation" : "Innovación Industrial"}</p>
                 </div>
               </div>
 
