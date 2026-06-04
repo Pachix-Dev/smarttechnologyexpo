@@ -719,5 +719,48 @@
     "select_country_first": "Por favor selecciona un país primero",
     "select_state_first": "Por favor selecciona un estado primero",
     "media_messege": "Para atención a medios, favor de contactar a "
+  },
+  "rates": {
+    "title": "Tarifas de participación",
+    "description": "Consulta nuestras tarifas de participación para expositores.",
+    "stand01": {
+      "title": "ESPACIO BÁSICO",
+      "item01": "Gafetes de expositor",
+      "desc_item01": "(3 por cada 9 m²)",
+      "item02": "Código de pre-registro",
+      "desc_item02": "de visitantes ilimitados para su compañía",
+      "item03": "Mención en el directorio de expositores",
+      "item04": "Un contacto eléctrico",
+      "desc_item04": "de 110v",
+      "not_include": "No incluye alfombra, construcción, mobiliario, ni servicios."
+    },
+    "stand02":{
+      "title": "ESPACIO BÁSICO",
+      "item01": "Estructura básica",
+      "desc_item01": "(Alfombra estándar, mamparas divisorias, antepecho con rótulo en vinil)",
+      "item02": "Mobiliario estándar",
+      "desc_item02": "(Counter, mesa y dos sillas)",
+      "item03": "Un contacto eléctrico",
+      "desc_item03": "de 110v",
+      "item04": "Gafetes de expositor",
+      "desc_item04": "(3 por cada 9 m²)",
+      "item05": "Código de pre-registro",
+      "desc_item05": "de visitantes ilimitados para su compañía",
+      "item06": "Mención en el directorio de expositores"
+    },
+    "stand03": {
+      "title": "CONFORT PLUS",
+      "item01": "Construcción con diseño",
+      "desc_item01": "predeterminado con espacio para posicionamiento de marca",
+      "item02": "Mobiliario",
+      "item03": "Pantalla de 40 pulgadas",
+      "item04": "Un contacto eléctrico",
+      "desc_item04": "de 110v por cada 9m²",
+      "item05": "Gafetes de expositor",
+      "desc_item05": "(3 por cada 9 m²)",
+      "item06": "Código de pre-registro",
+      "desc_item06": "de visitantes ilimitados para su compañía",
+      "item07": "Mención en el directorio de expositores"
+    }
   }
 }

@@ -720,5 +720,49 @@
     "select_country_first": "Please select a country first",
     "select_state_first": "Please select a state first",
     "media_messege": "For media inquiries, please contact "
+  },
+  "rates" : {
+      "title": "Participation Rates",
+      "description": "Check out our participation rates for exhibitors.",
+      "stand01":{
+        "title": "RAW SPACE",
+        "item01": "Exhibitor badges",
+        "desc_item01": "(3 per 9 sqm)",
+        "item02": "Visitor preregistration code",
+        "desc_item02": "unlimited for your company",
+        "item03": "Mention in the exhibitor directory",
+        "item04": "One electrical contact",
+        "desc_item04": "of 110v",
+        "not_include": "Does NOT include carpet, construction, furniture, or services."
+      },
+      "stand02":{
+        "title": "EQUIPPED BOOTH",
+        "item01": "Basic structure",
+        "desc_item01": "(standard carpet, dividing partitions, vinyl sign)",
+        "item02": "Standard furniture",
+        "desc_item02": "(Counter, table, and two chairs)",
+        "item03": "One electrical contact",
+        "desc_item03": "of 110v",
+        "item04": "Exhibitor badges",
+        "desc_item04": "(3 per 9 m²)",
+        "item05": "Visitor preregistration code",
+        "desc_item05": "unlimited for your company",
+        "item06": "Mention in the exhibitor directory"
+      },
+      "stand03":{
+        "title": "COMFORT PLUS",
+        "item01": "Construction with Predetermineddesign",
+        "desc_item01": "with space for brand positioning",
+        "item02": "Forniture",
+        "desc_item02": "",
+        "item03": "40” screen",
+        "item04": "Oneelectricalcontact 110v",
+        "desc_item04": "",
+        "item05": "Exhibitor badges",
+        "desc_item05": "(3 per 9 m²)",
+        "item06": "Visitor preregistration code",
+        "desc_item06": "unlimited for your company",
+        "item07": "Mention in the exhibitor directory"
+      }
   }
 }
