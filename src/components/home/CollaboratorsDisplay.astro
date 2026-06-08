@@ -7,10 +7,31 @@ const { locale, translations } = await useTranslations(Astro.props, Astro);
 const tr = (key: string, fallback: string = "") =>
   getTranslation(translations, key, fallback);
 
-import { mediaPlanito } from "../../logos.js";
+import { mediaPlanito, strategicPartners } from "../../logos.js";
 ---
 
-<section class="mb-20 p-2">
+<section class="my-10 p-2">
+  <div class="mx-auto mb-10">
+    <!-- ALIADOS ESTRATEGICOS -->
+    <h2 class="w-fit mx-auto square_red font-extrabold text-3xl md:text-4xl uppercase py-5 px-10 text-red-600 text-center">
+      {tr("home.strategic_partners")}
+    </h2>
+    <div class="flex justify-center w-full">
+      <div class="grid grid-cols-4 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-2 sm:gap-8 place-items-center place-content-center">
+        {
+          strategicPartners.map((partner, index) => (
+            <div class="flex justify-center items-center">
+              <img
+                src={partner.src}
+                alt={partner.alt}
+                class="w-auto object-contain h-16 sm:h-28" 
+              />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
   <div class="mx-auto">
     <h2
       class="w-fit mx-auto square_red font-extrabold text-3xl md:text-4xl uppercase py-5 px-10 text-red-600 text-center"
