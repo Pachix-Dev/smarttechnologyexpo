@@ -18,13 +18,14 @@ export interface Props {
 }
 
 // ✨ Una sola línea para cargar traducciones!
-const { translations } = await useTranslations(Astro.props, Astro);
+const { locale, translations } = await useTranslations(Astro.props, Astro);
 // 🎯 Helper para traducciones más elegante
 const tr = (key: string, fallback: string = "") =>
   getTranslation(translations, key, fallback);
 ---
 
 <Layout title={tr("site.title", "Smart Technology Expo")} description={tr("site.description", "Expo de tecnología inteligente")}>
+  <HomePopup client:load language={locale}/>
   <Welcome />
   <UserGuideButtons />
   <Description />

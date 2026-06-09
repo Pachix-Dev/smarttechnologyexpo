@@ -1,19 +1,21 @@
 
 import React, { useState } from "react";
 
-const HomePopup = () => {
+const HomePopup = ({ language }) => {
   const [visible, setVisible] = useState(true);
   if (!visible) return null;
 
     return (
       <div className="fixed inset-0 z-9999 flex items-center justify-center">
-        <div className="w-[1000px] text-center relative p-2">
-          <div className="relative inline-block w-full">
-            <img
-              src="/img/post_navidad.webp"
-              alt="Banner de Navidad IGECo"
+        <div className="w-[610px] text-center relative p-2">
+          <div className="flex justify-center items-center w-full">
+            <a href={language === "es" ? "/premio-itzamna-2026" : "/en/premio-itzamna-2026"} rel="noopener noreferrer">
+              <img
+              src={language === "es" ? "/img/banner_premio_itzmna_es.webp" : "/img/banner_premio_itzmna_en.webp"}
+              alt={language === "es" ? "Premio ITZMNA 2026" : "ITZMNA Award 2026"}
               className="mb-4 rounded-lg block shadow-lg shadow-white/30"
             />
+            </a>
             <button
               className="absolute top-2 right-2  bg-opacity-80 border-none text-red-600 text-2xl font-bold rounded-full w-8 h-8 flex items-center justify-center cursor-pointer"
               aria-label="Cerrar"
