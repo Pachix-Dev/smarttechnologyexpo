@@ -1,4 +1,5 @@
 ---
+import DisplaySegments from "../home/DisplaySegments.astro";
 import { useTranslations, getTranslation } from "../../utils/translations";
 // ✨ Una sola línea para cargar traducciones!
 const { locale, translations } = await useTranslations(Astro.props, Astro);
@@ -147,8 +148,11 @@ const tr = (key: string, fallback: string = "") =>
           }
         </div>
       </div>
-      <!-- Imagen de Segmentos -->
-      <div class="container mx-auto px-4 my-18" data-aos="fade-up">
+      <!-- Segmentos -->
+      <div class="not-prose">
+        <DisplaySegments />
+      </div>
+      <!-- <div class="container mx-auto px-4 my-18" data-aos="fade-up">
         <h2
           class="text-2xl md:text-5xl mb-4 text-center font-extrabold italic text-red-700"
           data-aos="fade-down"
@@ -165,7 +169,7 @@ const tr = (key: string, fallback: string = "") =>
             alt="Smart Technology Expo Segments"
           />
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
   <style>
