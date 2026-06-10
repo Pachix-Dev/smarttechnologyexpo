@@ -1,0 +1,28 @@
+---
+// src/pages/en/inteligencia-artificial.astro
+import Layout from '../../layouts/Layout.astro'
+import SegmentoLayout from '../../layouts/SegmentoLayout.astro'
+import { useTranslations, getTranslation } from '../../utils/translations'
+
+export interface Props {
+  locale?: string
+}
+
+const { locale, translations } = await useTranslations({ locale: 'en' }, Astro)
+const tr = (key: string, fallback: string = '') =>
+  getTranslation(translations, key, fallback)
+---
+
+<Layout
+  title="Artificial Intelligence and Machine Learning in Automation — Smart Technology Expo 2026"
+  description="Discover the AI and Machine Learning segment at Smart Technology Expo 2026."
+>
+  <SegmentoLayout
+    locale="en"
+    titulo="Artificial Intelligence and Machine Learning in Automation"
+    descripcion={tr('home.new_cap', 'Coming soon: information about this segment.')}
+    icono="/img/segmentos/Inteligencia_Artificial_Machine_Learning.webp"
+    proximamente={true}
+    expositoresBuscados={[]}
+  />
+</Layout>

@@ -285,7 +285,7 @@
       "category03": "Executive Presentation Video",
       "description_category03": "Present your company and project. Upload a video to social media with the following specifications and be sure to tag us : ",
       "especifications": "Maximum duration: 2 minutes. Format: Landscape, 1920 x 1080. The video must clearly explain: the identified problem, the implemented solution, the results obtained, and the strategic value of the project. The purpose of this content is to provide a concise overview of the case and to complement the documentary evaluation. It will be shared on our website and social media.",
-      "btnRegister":"Register now"
+      "btnRegister": "Register now"
     },
     "evaluation": {
       "title": "Evaluation Criteria",
@@ -722,48 +722,66 @@
     "select_state_first": "Please select a state first",
     "media_messege": "For media inquiries, please contact "
   },
-  "rates" : {
-      "title": "Participation Rates",
-      "description": "Check out our participation rates for exhibitors.",
-      "stand01":{
-        "title": "RAW SPACE",
-        "item01": "Exhibitor badges",
-        "desc_item01": "(3 per 9 sqm)",
-        "item02": "Visitor preregistration code",
-        "desc_item02": "unlimited for your company",
-        "item03": "Mention in the exhibitor directory",
-        "item04": "One electrical contact",
-        "desc_item04": "of 110v",
-        "not_include": "Does NOT include carpet, construction, furniture, or services."
-      },
-      "stand02":{
-        "title": "EQUIPPED BOOTH",
-        "item01": "Basic structure",
-        "desc_item01": "(standard carpet, dividing partitions, vinyl sign)",
-        "item02": "Standard furniture",
-        "desc_item02": "(Counter, table, and two chairs)",
-        "item03": "One electrical contact",
-        "desc_item03": "of 110v",
-        "item04": "Exhibitor badges",
-        "desc_item04": "(3 per 9 m²)",
-        "item05": "Visitor preregistration code",
-        "desc_item05": "unlimited for your company",
-        "item06": "Mention in the exhibitor directory"
-      },
-      "stand03":{
-        "title": "COMFORT PLUS",
-        "item01": "Construction with Predetermineddesign",
-        "desc_item01": "with space for brand positioning",
-        "item02": "Forniture",
-        "desc_item02": "",
-        "item03": "40” screen",
-        "item04": "Oneelectricalcontact 110v",
-        "desc_item04": "",
-        "item05": "Exhibitor badges",
-        "desc_item05": "(3 per 9 m²)",
-        "item06": "Visitor preregistration code",
-        "desc_item06": "unlimited for your company",
-        "item07": "Mention in the exhibitor directory"
-      }
+  "rates": {
+    "title": "Participation Rates",
+    "description": "Check out our participation rates for exhibitors.",
+    "stand01": {
+      "title": "RAW SPACE",
+      "item01": "Exhibitor badges",
+      "desc_item01": "(3 per 9 sqm)",
+      "item02": "Visitor preregistration code",
+      "desc_item02": "unlimited for your company",
+      "item03": "Mention in the exhibitor directory",
+      "item04": "One electrical contact",
+      "desc_item04": "of 110v",
+      "not_include": "Does NOT include carpet, construction, furniture, or services."
+    },
+    "stand02": {
+      "title": "EQUIPPED BOOTH",
+      "item01": "Basic structure",
+      "desc_item01": "(standard carpet, dividing partitions, vinyl sign)",
+      "item02": "Standard furniture",
+      "desc_item02": "(Counter, table, and two chairs)",
+      "item03": "One electrical contact",
+      "desc_item03": "of 110v",
+      "item04": "Exhibitor badges",
+      "desc_item04": "(3 per 9 m²)",
+      "item05": "Visitor preregistration code",
+      "desc_item05": "unlimited for your company",
+      "item06": "Mention in the exhibitor directory"
+    },
+    "stand03": {
+      "title": "COMFORT PLUS",
+      "item01": "Construction with Predetermineddesign",
+      "desc_item01": "with space for brand positioning",
+      "item02": "Forniture",
+      "desc_item02": "",
+      "item03": "40” screen",
+      "item04": "Oneelectricalcontact 110v",
+      "desc_item04": "",
+      "item05": "Exhibitor badges",
+      "desc_item05": "(3 per 9 m²)",
+      "item06": "Visitor preregistration code",
+      "desc_item06": "unlimited for your company",
+      "item07": "Mention in the exhibitor directory"
+    }
+  },
+  "segments": {
+    "heading": "SEGMENTS OF INTEREST",
+    "cta": "See more",
+    "automatizacion": "Automation and Robotics",
+    "manufactura": "Smart Manufacturing / Industry 4.0",
+    "motion": "Motion Control and Drive Systems",
+    "ia": "Artificial Intelligence and Machine Learning in Automation",
+    "logistica": "Logistics, Material Handling and Warehouse Automation",
+    "seguridad": "Industrial Security, Cybersecurity and Standards",
+    "software": "Automation Software and Systems Integration",
+    "drone": "Drone Innovators Forum",
+    "heading_expositors": "EXHIBITORS WE ARE LOOKING FOR",
+    "sub_expositors": "Do you offer products and solutions in these fields?",
+    "prox_expositors": "Coming soon: the list of products and solutions for this segment.",
+    "otros": "Other segments",
+    "cta_expositor": "I want to be an exhibitor",
+    "breadcrumb_inicio": "Home"
   }
 }

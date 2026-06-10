@@ -1,0 +1,28 @@
+---
+// src/pages/en/logistica-almacenes.astro
+import Layout from '../../layouts/Layout.astro'
+import SegmentoLayout from '../../layouts/SegmentoLayout.astro'
+import { useTranslations, getTranslation } from '../../utils/translations'
+
+export interface Props {
+  locale?: string
+}
+
+const { locale, translations } = await useTranslations({ locale: 'en' }, Astro)
+const tr = (key: string, fallback: string = '') =>
+  getTranslation(translations, key, fallback)
+---
+
+<Layout
+  title="Logistics, Material Handling and Warehouse Automation — Smart Technology Expo 2026"
+  description="Discover the Logistics segment at Smart Technology Expo 2026."
+>
+  <SegmentoLayout
+    locale="en"
+    titulo="Logistics, Material Handling and Warehouse Automation"
+    descripcion={tr('home.new_cap', 'Coming soon: information about this segment.')}
+    icono="/img/segmentos/Logística_Manejo_Materiales.webp"
+    proximamente={true}
+    expositoresBuscados={[]}
+  />
+</Layout>

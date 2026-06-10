@@ -1,0 +1,27 @@
+---
+// src/pages/manufactura-inteligente.astro
+import Layout from '../layouts/Layout.astro'
+import SegmentoLayout from '../layouts/SegmentoLayout.astro'
+import { useTranslations, getTranslation } from '../utils/translations'
+
+export interface Props {
+  locale?: string
+}
+
+const { locale, translations } = await useTranslations(Astro.props, Astro)
+const tr = (key: string, fallback: string = '') =>
+  getTranslation(translations, key, fallback)
+---
+
+<Layout
+  title="Manufactura Inteligente / Industria 4.0 — Smart Technology Expo 2026"
+  description="Descubre el segmento de Manufactura Inteligente en Smart Technology Expo 2026."
+>
+  <SegmentoLayout
+    titulo="Manufactura Inteligente / Industria 4.0"
+    descripcion={tr('home.new_cap', 'Próximamente información sobre este segmento.')}
+    icono="/img/segmentos/Manufactura_Inteligente_Industria_4_0.webp"
+    proximamente={true}
+    expositoresBuscados={[]}
+  />
+</Layout>

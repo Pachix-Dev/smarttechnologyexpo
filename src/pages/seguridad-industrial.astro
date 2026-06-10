@@ -1,0 +1,27 @@
+---
+// src/pages/seguridad-industrial.astro
+import Layout from '../layouts/Layout.astro'
+import SegmentoLayout from '../layouts/SegmentoLayout.astro'
+import { useTranslations, getTranslation } from '../utils/translations'
+
+export interface Props {
+  locale?: string
+}
+
+const { locale, translations } = await useTranslations(Astro.props, Astro)
+const tr = (key: string, fallback: string = '') =>
+  getTranslation(translations, key, fallback)
+---
+
+<Layout
+  title="Seguridad Industrial, Ciberseguridad y Estándares — Smart Technology Expo 2026"
+  description="Descubre el segmento de Seguridad Industrial en Smart Technology Expo 2026."
+>
+  <SegmentoLayout
+    titulo="Seguridad Industrial, Ciberseguridad y Estándares"
+    descripcion={tr('home.new_cap', 'Próximamente información sobre este segmento.')}
+    icono="/img/segmentos/Seguridad_Industrial.webp"
+    proximamente={true}
+    expositoresBuscados={[]}
+  />
+</Layout>

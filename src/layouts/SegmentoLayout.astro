@@ -1,0 +1,438 @@
+---
+import { useTranslations, getTranslation } from '../utils/translations'
+
+export interface ExpositorBuscado {
+  texto: string
+}
+
+export interface Props {
+  locale?: string
+  titulo: string
+  descripcion: string
+  icono: string
+  imagenHero?: string
+  expositoresBuscados?: ExpositorBuscado[]
+  proximamente?: boolean
+}
+
+const { locale, translations } = await useTranslations(Astro.props, Astro)
+const tr = (key: string, fallback: string = '') =>
+  getTranslation(translations, key, fallback)
+
+const base = locale === 'en' ? '/en' : ''
+
+const {
+  titulo,
+  descripcion,
+  icono,
+  imagenHero,
+  expositoresBuscados = [],
+  proximamente = true,
+} = Astro.props
+---
+
+<div class="sl-page">
+
+  <!-- HERO -->
+  <section class="sl-hero" style={imagenHero ? `--hero-bg: url(${imagenHero})` : ""}>
+    <div class="sl-hero-overlay" />
+
+    <div class="sl-hero-inner">
+
+      <!-- Texto -->
+      <div class="sl-hero-text" data-aos="fade-up" data-aos-duration="800">
+        <nav class="sl-breadcrumb">
+          <a href={base + '/'}>{tr('segments.breadcrumb_inicio', 'Inicio')}</a>
+          <span>/</span>
+          <span>{titulo}</span>
+        </nav>
+        <div class="sl-hero-accent" />
+        <h1 class="sl-hero-title">{titulo}</h1>
+        <p class="sl-hero-desc">{descripcion}</p>
+        <a href={base + '/expositor-smarttechnologyexpo'} class="sl-hero-cta">
+          {tr('segments.cta_expositor', 'Quiero ser expositor')}
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Ícono -->
+      <div class="sl-hero-icon-wrap" data-aos="fade-left" data-aos-duration="900" data-aos-delay="200">
+        <img src={icono} alt={titulo} class="sl-hero-icon" width="96" height="96" />
+      </div>
+
+    </div>
+  </section>
+
+  <!-- BODY -->
+  <div class="sl-body">
+
+    <main class="sl-main">
+      <section class="sl-block" data-aos="fade-up" data-aos-duration="700">
+        <h2 class="sl-block-title">{tr('segments.heading_expositors', 'EXPOSITORES QUE ESTAMOS BUSCANDO')}</h2>
+        <p class="sl-block-sub">{tr('segments.sub_expositors', '¿Ofreces productos y soluciones en estos campos?')}</p>
+
+        {proximamente && expositoresBuscados.length === 0 ? (
+          <div class="sl-prox">
+            <div class="sl-prox-dot" />
+            <p>{tr('segments.prox_expositors', 'Próximamente el listado de productos y soluciones para este segmento.')}</p>
+          </div>
+        ) : (
+          <ol class="sl-list">
+            {expositoresBuscados.map((e, i) => (
+              <li class="sl-list-item">
+                <span class="sl-list-num">{String(i + 1).padStart(2, "0")}</span>
+                <span>{e.texto}</span>
+              </li>
+            ))}
+          </ol>
+        )}
+      </section>
+    </main>
+
+    <aside class="sl-sidebar" data-aos="fade-left" data-aos-duration="700" data-aos-delay="150">
+      <div class="sl-sidebar-card">
+        <h3 class="sl-sidebar-title">{tr('segments.otros', 'Otros segmentos')}</h3>
+        <nav class="sl-otros">
+          <a href={base + '/automatizacion-robotica'} class="sl-otro">{tr('segments.automatizacion', 'Automatización y Robótica')}</a>
+          <a href={base + '/manufactura-inteligente'} class="sl-otro">{tr('segments.manufactura', 'Manufactura Inteligente / Industria 4.0')}</a>
+          <a href={base + '/motion-control'} class="sl-otro">{tr('segments.motion', 'Motion Control y Accionamiento')}</a>
+          <a href={base + '/inteligencia-artificial'} class="sl-otro">{tr('segments.ia', 'IA y Machine Learning')}</a>
+          <a href={base + '/logistica-almacenes'} class="sl-otro">{tr('segments.logistica', 'Logística y Almacenes')}</a>
+          <a href={base + '/seguridad-industrial'} class="sl-otro">{tr('segments.seguridad', 'Seguridad Industrial')}</a>
+          <a href={base + '/software-automatizacion'} class="sl-otro">{tr('segments.software', 'Software e Integración')}</a>
+          <a href={base + '/drone-innovators'} class="sl-otro">{tr('segments.drone', 'Drone Innovators Forum')}</a>
+        </nav>
+      </div>
+    </aside>
+
+  </div>
+</div>
+
+<style is:global>
+  .sl-page {
+    width: 100%;
+    background: #fff;
+  }
+
+  /* HERO */
+  .sl-hero {
+    position: relative;
+    width: 100%;
+    min-height: 420px;
+    display: flex;
+    align-items: center;
+    background-color: #0a0000;
+    background-image: var(--hero-bg);
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+  }
+
+  .sl-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      105deg,
+      rgba(8,0,0,0.97) 0%,
+      rgba(20,0,0,0.92) 40%,
+      rgba(140,0,0,0.55) 75%,
+      rgba(183,28,28,0.3) 100%
+    );
+    z-index: 0;
+  }
+
+  .sl-hero-inner {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 4rem 4rem;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+  }
+
+  .sl-hero-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 580px;
+  }
+
+  .sl-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 11px;
+    color: rgba(255,255,255,0.3);
+  }
+
+  .sl-breadcrumb a {
+    color: rgba(255,255,255,0.3);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .sl-breadcrumb a:hover { color: #fff; }
+  .sl-breadcrumb span:last-child {
+    color: rgba(255,255,255,0.75);
+    font-weight: 600;
+  }
+
+  .sl-hero-accent {
+    width: 48px;
+    height: 3px;
+    background: #B71C1C;
+    border-radius: 2px;
+  }
+
+  .sl-hero-title {
+    font-family: "Montserrat", sans-serif;
+    font-size: clamp(2.5rem, 3vw, 3.5rem);
+    font-weight: 900;
+    font-style: italic;
+    color: #fff;
+    line-height: 1.05;
+    margin: 0;
+  }
+
+  .sl-hero-desc {
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .sl-hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    color: #fff;
+    background: #B71C1C;
+    padding: 14px 28px;
+    border-radius: 6px;
+    text-decoration: none;
+    width: fit-content;
+    margin-top: 0.5rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border: 2px solid #B71C1C;
+    transition: background 0.22s, color 0.22s, gap 0.22s, transform 0.22s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .sl-hero-cta::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.08);
+    opacity: 0;
+    transition: opacity 0.22s;
+  }
+
+  .sl-hero-cta:hover {
+    background: transparent;
+    color: #fff;
+    gap: 14px;
+    transform: translateY(-1px);
+  }
+
+  .sl-hero-cta:hover::before {
+    opacity: 1;
+  }
+
+  .sl-hero-icon-wrap {
+    flex-shrink: 0;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255,255,255,0.1);
+    background: rgba(183,28,28,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+      0 0 0 28px rgba(183,28,28,0.05),
+      0 0 0 56px rgba(183,28,28,0.03),
+      0 0 80px rgba(183,28,28,0.25);
+  }
+
+  .sl-hero-icon {
+    width: 130px;
+    height: 130px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+    display: block;
+  }
+
+  /* BODY */
+  .sl-body {
+    display: grid;
+    grid-template-columns: 1fr 315px;
+    gap: 2.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 3rem 4rem 4rem;
+    box-sizing: border-box;
+  }
+
+  .sl-block { margin-bottom: 2rem; }
+
+  .sl-block-title {
+    font-family: "Montserrat", sans-serif;
+    font-size: clamp(1.5rem, 1.3vw, 1.15rem);
+    font-weight: 900;
+    font-style: italic;
+    color: #B71C1C;
+    margin: 0 0 0.35rem 0;
+  }
+
+  .sl-block-sub {
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.95rem;
+    color: #666;
+    margin: 0 0 1.25rem 0;
+  }
+
+  .sl-prox {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    background: #e6e4e497;
+    border: 1.5px dashed #e8e8e8;
+    border-radius: 8px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.85rem;
+    color: #666;
+  }
+
+  .sl-prox-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #a29f9f;
+    flex-shrink: 0;
+  }
+
+  .sl-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .sl-list-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.87rem;
+    color: #444;
+    line-height: 1.5;
+    padding: 11px 14px;
+    border: 1px solid #f0f0f0;
+    border-radius: 8px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .sl-list-item:hover {
+    border-color: #B71C1C;
+    background: #fff8f8;
+  }
+
+  .sl-list-num {
+    font-size: 10px;
+    font-weight: 700;
+    color: #B71C1C;
+    letter-spacing: 0.06em;
+    flex-shrink: 0;
+    margin-top: 3px;
+  }
+
+  /* Sidebar */
+  .sl-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .sl-sidebar-card {
+    padding: 1.25rem;
+    border: 1px solid #f0f0f0;
+    border-radius: 10px;
+    background: #fff;
+  }
+
+  .sl-sidebar-title {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1rem;
+    font-weight: 800;
+    color: #222;
+    margin: 0 0 0.75rem 0;
+  }
+
+  .sl-otros {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .sl-otro {
+    font-family: "Montserrat", sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: #555;
+    text-decoration: none;
+    padding: 7px 8px;
+    border-radius: 4px;
+    border-left: 2px solid transparent;
+    transition: background 0.15s, color 0.15s, padding-left 0.15s, border-color 0.15s;
+  }
+
+  .sl-otro:hover {
+    background: #fff8f8;
+    color: #B71C1C;
+    border-left-color: #B71C1C;
+    padding-left: 12px;
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .sl-hero-inner { padding: 3rem 2rem; }
+    .sl-body { padding: 2rem 2rem 3rem; gap: 2rem; }
+  }
+
+  @media (max-width: 768px) {
+    .sl-hero-inner {
+      padding: 2.5rem 1.25rem;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2rem;
+    }
+    .sl-hero-icon-wrap {
+      width: 160px;
+      height: 160px;
+      align-self: center;
+    }
+    .sl-hero-icon { width: 80px; height: 80px; }
+    .sl-body {
+      grid-template-columns: 1fr;
+      padding: 1.5rem 1.25rem 2.5rem;
+    }
+    .sl-sidebar { order: 1; }
+  }
+</style>

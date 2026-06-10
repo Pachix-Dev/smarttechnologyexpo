@@ -304,7 +304,7 @@
     "contact": {
       "title": "Dudas o comentarios",
       "description": "Para cualquier duda o aclaración, favor de contactar a",
-      "position":"Relaciones Públicas"
+      "position": "Relaciones Públicas"
     }
   },
   "register": {
@@ -735,7 +735,7 @@
       "desc_item04": "de 110v",
       "not_include": "No incluye alfombra, construcción, mobiliario, ni servicios."
     },
-    "stand02":{
+    "stand02": {
       "title": "ESPACIO BÁSICO",
       "item01": "Estructura básica",
       "desc_item01": "(Alfombra estándar, mamparas divisorias, antepecho con rótulo en vinil)",
@@ -763,5 +763,23 @@
       "desc_item06": "de visitantes ilimitados para su compañía",
       "item07": "Mención en el directorio de expositores"
     }
+  },
+  "segments": {
+    "heading": "SEGMENTOS DE INTERÉS",
+    "cta": "Ver más",
+    "automatizacion": "Automatización y Robótica",
+    "manufactura": "Manufactura Inteligente / Industria 4.0",
+    "motion": "Motion Control y Sistemas de Accionamiento",
+    "ia": "Inteligencia Artificial y Machine Learning en Automatización",
+    "logistica": "Logística, Manejo de Materiales y Automatización de Almacenes",
+    "seguridad": "Seguridad Industrial, Ciberseguridad y Estándares",
+    "software": "Software de Automatización e Integración de Sistemas",
+    "drone": "Drone Innovators Forum",
+    "heading_expositors": "EXPOSITORES QUE ESTAMOS BUSCANDO",
+    "sub_expositors": "¿Ofreces productos y soluciones en estos campos?",
+    "prox_expositors": "Próximamente el listado de productos y soluciones para este segmento.",
+    "otros": "Otros segmentos",
+    "cta_expositor": "Quiero ser expositor",
+    "breadcrumb_inicio": "Inicio"
   }
 }
