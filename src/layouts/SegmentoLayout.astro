@@ -91,17 +91,17 @@ const {
       </section>
     </main>
 
-    <aside class="sl-sidebar" data-aos="fade-left" data-aos-duration="700" data-aos-delay="150">
+    <aside class="sl-sidebar" data-aos="fade-up" data-aos-duration="700" data-aos-delay="150">
       <div class="sl-sidebar-card">
         <h3 class="sl-sidebar-title">{tr('segments.otros', 'Otros segmentos')}</h3>
         <nav class="sl-otros">
           <a href={base + '/automatizacion-robotica'} class="sl-otro">{tr('segments.automatizacion', 'Automatización y Robótica')}</a>
           <a href={base + '/manufactura-inteligente'} class="sl-otro">{tr('segments.manufactura', 'Manufactura Inteligente / Industria 4.0')}</a>
-          <a href={base + '/motion-control'} class="sl-otro">{tr('segments.motion', 'Motion Control y Accionamiento')}</a>
-          <a href={base + '/inteligencia-artificial'} class="sl-otro">{tr('segments.ia', 'IA y Machine Learning')}</a>
-          <a href={base + '/logistica-almacenes'} class="sl-otro">{tr('segments.logistica', 'Logística y Almacenes')}</a>
-          <a href={base + '/seguridad-industrial'} class="sl-otro">{tr('segments.seguridad', 'Seguridad Industrial')}</a>
-          <a href={base + '/software-automatizacion'} class="sl-otro">{tr('segments.software', 'Software e Integración')}</a>
+          <a href={base + '/motion-control'} class="sl-otro">{tr('segments.motion', 'Motion Control y Sistemas de Accionamiento')}</a>
+          <a href={base + '/inteligencia-artificial'} class="sl-otro">{tr('segments.ia', 'Inteligencia Artificial y Machine Learning en Automatización')}</a>
+          <a href={base + '/logistica-almacenes'} class="sl-otro">{tr('segments.logistica', 'Logística, Manejo de Materiales y Automatización de Almacenes')}</a>
+          <a href={base + '/seguridad-industrial'} class="sl-otro">{tr('segments.seguridad', 'Seguridad Industrial, Ciberseguridad y Estándares')}</a>
+          <a href={base + '/software-automatizacion'} class="sl-otro">{tr('segments.software', 'Software de Automatización e Integración de Sistemas')}</a>
           <a href={base + '/drone-innovators'} class="sl-otro">{tr('segments.drone', 'Drone Innovators Forum')}</a>
         </nav>
       </div>
@@ -194,7 +194,7 @@ const {
 
   .sl-hero-title {
     font-family: "Montserrat", sans-serif;
-    font-size: clamp(2.5rem, 3vw, 3.5rem);
+    font-size: clamp(2rem, 3.8vw, 3.4rem);
     font-weight: 900;
     font-style: italic;
     color: #fff;
@@ -279,7 +279,7 @@ const {
   /* BODY */
   .sl-body {
     display: grid;
-    grid-template-columns: 1fr 315px;
+    grid-template-columns: 1fr 300px;
     gap: 2.5rem;
     max-width: 1100px;
     margin: 0 auto;
@@ -300,8 +300,8 @@ const {
 
   .sl-block-sub {
     font-family: "Montserrat", sans-serif;
-    font-size: 0.95rem;
-    color: #666;
+    font-size: 0.82rem;
+    color: #999;
     margin: 0 0 1.25rem 0;
   }
 
@@ -310,19 +310,19 @@ const {
     align-items: center;
     gap: 1rem;
     padding: 1.25rem 1.5rem;
-    background: #e6e4e497;
+    background: #fafafa;
     border: 1.5px dashed #e8e8e8;
     border-radius: 8px;
     font-family: "Montserrat", sans-serif;
     font-size: 0.85rem;
-    color: #666;
+    color: #bbb;
   }
 
   .sl-prox-dot {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: #a29f9f;
+    background: #e0e0e0;
     flex-shrink: 0;
   }
 
@@ -393,7 +393,7 @@ const {
 
   .sl-otro {
     font-family: "Montserrat", sans-serif;
-    font-size: 13px;
+    font-size: 11.5px;
     font-weight: 500;
     color: #555;
     text-decoration: none;
