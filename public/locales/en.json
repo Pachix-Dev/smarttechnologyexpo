@@ -776,7 +776,7 @@
     "logistica": "Logistics, Material Handling and Warehouse Automation",
     "seguridad": "Industrial Security, Cybersecurity and Standards",
     "software": "Automation Software and Systems Integration",
-    "drone": "Drone Innovators Forum",
+    "drone": "Drones",
     "heading_expositors": "EXHIBITORS WE ARE LOOKING FOR",
     "sub_expositors": "Do you offer products and solutions in these fields?",
     "prox_expositors": "Coming soon: the list of products and solutions for this segment.",
@@ -790,6 +790,6 @@
     "desc_logistica": "This space brings together technologies aimed at optimizing the flow of materials, products, and information within the supply chain. It features warehouse automation, AMRs, AGVs, picking, sorting and packaging systems, internal transport, inventory management, logistics software, traceability, automatic identification, intelligent storage systems, and distribution center technologies — driving more agile, accurate, and cost-effective operations.",
     "desc_seguridad": "This space focuses on protecting both people and the physical and digital assets of industrial organizations. It includes functional safety technologies, machine protection devices, access control systems, safety sensors, regulatory compliance, industrial cybersecurity, OT network protection, risk management, critical infrastructure monitoring, and solutions to ensure safe, reliable operations aligned with international standards.",
     "desc_software": "This space connects the digital platforms that enable efficient management, supervision, and integration of industrial operations. It brings together MES, SCADA, HMI, industrial ERP, IoT platforms, data analytics and visualization software, systems integration, cloud computing, edge computing, energy management, and interoperability tools — enabling real-time, data-driven decision making.",
-    "desc_drone": "This space is dedicated to aerial and autonomous solutions redefining industrial operations, inspection, and monitoring. It brings together drones, robotics, advanced aerial mobility, data capture systems, 3D mapping and modeling, environmental monitoring, perimeter security, autonomous logistics, specialized sensors, and applied artificial intelligence. This section promotes the use of technologies that transform captured data into strategic information, enabling companies to optimize operations, increase efficiency, reduce risks, and make more informed decisions in complex industrial environments."
+    "desc_drone": "This space, powered by the Drone Innovators Forum, is dedicated to aerial and autonomous solutions that are redefining industrial operations, inspection, and monitoring. It brings together solutions from drones, robotics, advanced aerial mobility, data capture systems, 3D mapping and modeling, environmental monitoring, perimeter security, autonomous logistics, specialized sensors, and applied artificial intelligence. This section promotes the use of technologies that transform captured data into strategic information, enabling companies to optimize operations, increase efficiency, reduce risks, and make more informed decisions in complex industrial environments."
   }
 }

@@ -774,7 +774,7 @@
     "logistica": "Logística, Manejo de Materiales y Automatización de Almacenes",
     "seguridad": "Seguridad Industrial, Ciberseguridad y Estándares",
     "software": "Software de Automatización e Integración de Sistemas",
-    "drone": "Drone Innovators Forum",
+    "drone": "Drones",
     "heading_expositors": "EXPOSITORES QUE ESTAMOS BUSCANDO",
     "sub_expositors": "¿Ofreces productos y soluciones en estos campos?",
     "prox_expositors": "Próximamente el listado de productos y soluciones para este segmento.",
@@ -788,6 +788,6 @@
     "desc_logistica": "Este espacio reúne tecnologías orientadas a optimizar el flujo de materiales, productos e información dentro de la cadena de suministro. Presenta soluciones de automatización de almacenes, AMRs, AGVs, sistemas de picking, clasificación y empaque, transporte interno, gestión de inventarios, software logístico, trazabilidad, identificación automática, sistemas de almacenamiento inteligente y tecnologías para centros de distribución, impulsando operaciones más ágiles, precisas y rentables.",
     "desc_seguridad": "Este espacio está enfocado en proteger tanto a las personas como a los activos físicos y digitales de las organizaciones industriales. Incluye tecnologías de seguridad funcional, dispositivos de protección de maquinaria, sistemas de control de acceso, sensores de seguridad, cumplimiento normativo, ciberseguridad industrial, protección de redes OT, gestión de riesgos, monitoreo de infraestructura crítica y soluciones para garantizar operaciones seguras, confiables y alineadas con los estándares internacionales.",
     "desc_software": "Este espacio conecta las plataformas digitales que permiten gestionar, supervisar e integrar la operación industrial de manera eficiente. Reúne soluciones MES, SCADA, HMI, ERP industrial, plataformas IoT, software de análisis y visualización de datos, integración de sistemas, computación en la nube, edge computing, gestión energética y herramientas para la interoperabilidad de equipos y procesos, facilitando la toma de decisiones basada en información en tiempo real.",
-    "desc_drone": "Este espacio está dedicado a las soluciones aéreas y autónomas que están redefiniendo la operación, inspección y monitoreo industrial. Reúne soluciones de drones, robótica, movilidad aérea avanzada, sistemas de captura de datos, mapeo y modelado 3D, monitoreo ambiental, seguridad perimetral, logística autónoma, sensores especializados e inteligencia artificial aplicada. Esta sección promueve el uso de tecnologías que transforman los datos capturados en información estratégica, permitiendo a las empresas optimizar operaciones, incrementar la eficiencia, reducir riesgos y tomar decisiones más informadas en entornos industriales complejos."
-  }
+    "desc_drone": "Este espacio, powered by Drone Innovators Forum, está dedicado a las soluciones aéreas y autónomas que están redefiniendo la operación, inspección y monitoreo industrial. Reúne soluciones de drones, robótica, movilidad aérea avanzada, sistemas de captura de datos, mapeo y modelado 3D, monitoreo ambiental, seguridad perimetral, logística autónoma, sensores especializados e inteligencia artificial aplicada. Esta sección promueve el uso de tecnologías que transforman los datos capturados en información estratégica, permitiendo a las empresas optimizar operaciones, incrementar la eficiencia, reducir riesgos y tomar decisiones más informadas en entornos industriales complejos."
+    }
 }
