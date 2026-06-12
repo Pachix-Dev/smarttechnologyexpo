@@ -97,6 +97,12 @@ export function RegisterForm({ translates, currentLanguage }) {
     setValue('colonia', colonia)
   }, [state, municipality, city, colonia, setValue])
 
+  useEffect(() => {
+    if (typeRegister !== 'VISITANTE') {
+      setTypeRegister('VISITANTE')
+    }
+  }, [typeRegister, setTypeRegister])
+
   const [messagePostalCode, setMessagePostalCode] = useState('')
   const urlcp = 'https://industrialtransformation.mx/server/'
 
@@ -298,7 +304,7 @@ export function RegisterForm({ translates, currentLanguage }) {
 
   const handleRegister = async () => {
     setProcessing(true)
-    const response = await fetch(urlbase + 'free-register-ecomondo', {
+    const response = await fetch(urlbase + 'free-register-ste', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -309,7 +315,7 @@ export function RegisterForm({ translates, currentLanguage }) {
         maternSurname,
         email,
         phone,
-        typeRegister,
+        typeRegister: 'VISITANTE',
         genre,
         nacionality,
         code_invitation,
@@ -570,7 +576,7 @@ export function RegisterForm({ translates, currentLanguage }) {
                       message: `${translates.min_char}`,
                     },
                     maxLength: {
-                      value: 15,
+                      value: 50,
                       message: `${translates.max_char}`,
                     },
                     pattern: {

@@ -1,0 +1,13 @@
+---
+import { useTranslations, getTranslation } from "../../utils/translations";
+const { locale, translations } = await useTranslations(Astro.props, Astro);
+const tr = (key: string, fallback: string = "") =>
+  getTranslation(translations, key, fallback);
+
+const currentLanguage = locale;
+---
+<section class="registration-thanks container mx-auto p-4 sm:p-20 text-center">
+    <h1>{currentLanguage === 'es' ? '¡Gracias por registrarte!' : 'Thank you for registering!'}</h1>
+    <p>{currentLanguage === 'es' ? 'Tu registro ha sido exitoso. Estamos emocionados de contar contigo en el Smart Technology Expo. Pronto recibirás un correo electrónico con más detalles sobre el evento.' : 'Your registration was successful. We are excited to have you at the Smart Technology Expo. You will soon receive an email with more details about the event.'}</p>
+    <p>{currentLanguage === 'es' ? 'Si tienes alguna pregunta, no dudes en contactarnos a través de nuestro correo de soporte.' : 'If you have any questions, feel free to contact us through our support email.'}</p>
+</section>
