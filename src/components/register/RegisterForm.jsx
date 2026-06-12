@@ -300,7 +300,7 @@ export function RegisterForm({ translates, currentLanguage }) {
 
   const urlbase = import.meta.env.DEV
     ? 'http://localhost:3010/'
-    : 'https://ecomondomexico.com.mx/server/'
+    : 'https://smarttechnologyexpo.mx/server/'
 
   const handleRegister = async () => {
     setProcessing(true)
