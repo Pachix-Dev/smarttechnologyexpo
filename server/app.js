@@ -653,7 +653,7 @@ async function sendEmailEcomondo(data, pdfAtch = null, paypal_id_transaction = n
             attachments: [
                 {
                     filename: `${paypal_id_transaction}.pdf`,
-                    path: `https://ecomondomexico.com.mx/invoices/${paypal_id_transaction}.pdf`,
+                    path: `https://smarttechnologyexpo.mx/invoices/${paypal_id_transaction}.pdf`,
                     content_type: 'application/pdf'
                 },
               ],           
@@ -679,14 +679,14 @@ async function sendEmailEcomondo_student(data, pdfAtch = null, paypal_id_transac
         const emailContent = data.currentLanguage === 'es' ?  await email_template_ecomondo_student({ ...data }) : await email_template_ecomondo_eng_student({ ...data });
 
         await resend.emails.send({
-            from: 'SMART TECHNOLOGY EXPO 2026 <noreply@smarttechnologyexpo.com.mx>',
+            from: 'SMART TECHNOLOGY EXPO 2026 <noreply@smarttechnologyexpo.mx>',
             to: data.email,
             subject: 'Confirmación de pre registro SMART TECHNOLOGY EXPO 2026',
             html: emailContent,
             attachments: [
                 {
                     filename: `${paypal_id_transaction}.pdf`,
-                    path: `https://ecomondomexico.com.mx/invoices/${paypal_id_transaction}.pdf`,
+                    path: `https://smarttechnologyexpo.mx/invoices/${paypal_id_transaction}.pdf`,
                     content_type: 'application/pdf'
                 },
               ],           
