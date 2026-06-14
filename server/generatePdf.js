@@ -149,7 +149,7 @@ async function generatePDFInvoice(paypal_id_transaction, body) {
     return pdfSave;
 }
 
-//generate pdf for ecomondo pass
+//generate pdf for ecomondo pass visitor
 async function generatePDF_freePass_ecomondo( body, uuid) {
 
     const __filename = fileURLToPath(import.meta.url);
@@ -166,171 +166,44 @@ async function generatePDF_freePass_ecomondo( body, uuid) {
 
     doc.pipe(pdfStream);
 
-    // Draw a dashed cross in the middle of the document
-    const midX = doc.page.width / 2;
-    const midY = doc.page.height / 2;
-
-    doc.save();
-    doc.lineWidth(2);
-    doc.dash(5, { space: 5 });
-
-    // Vertical dashed line
-    doc.moveTo(midX, 0)
-        .lineTo(midX, doc.page.height)
-        .stroke();
-    // Horizontal dashed line
-    doc.moveTo(0, midY)
-        .lineTo(doc.page.width, midY)
-        .stroke();
-    doc.restore();
-    
-   
-    doc.image('img/header_ecomondo_gafete.jpg', 0, 0, { width: 305 })
+    doc.image('img/header_ste.jpg', 0, 0, { width: 612 })
     
     // Sección del QR con info del usuario    
-    doc.image(qrMainUser, 90, 120, { width: 120 });
+    doc.image(qrMainUser, 80, 150, { width: 200 });
     
+    doc
+    .font('Helvetica-Bold')
+    .fontSize(25)
+    .text(body.name, 300, 180)
+    .fontSize(25)
+    .text(body.paternSurname,)
+    .fontSize(25)
+    .font('Helvetica-Bold')
+    .text(body.company)
+    .fontSize(18)
+    .font('Helvetica-BoldOblique')
+    .text(body.position);
+
+
     doc
     .font('Helvetica-Bold')
     .fontSize(18)
-    .text(body.name, 30, 240)
-    .text(body.paternSurname,)
-    .fontSize(12)
+    .text('HORARIOS / SCHEDULE', 100, 390, { align: 'center' })
+    .fontSize(18)
     .font('Helvetica')
-    .text(body.position)
-    .moveDown(0.5)
-    .text(body.company);
+    .text('Fecha: 18 al 20 de noviembre de 2026', { align: 'center' })
+    .text('Horarios: 11:00 - 18:00 hrs', { align: 'center' })
+    .text('Lugar : Expo Guadalajara, Jalisco, México', { align: 'center' });
 
-    body.typeRegister === 'VISITANTE' ? doc.image('img/footer_ecomondo_gafete.jpg', 0, 328, { width: 305 }) : doc.image('img/footer_prensa_ecomondo_gafete.jpg', 0, 328, { width: 305 });
     doc
-    .font('Helvetica-Bold')
-    .fontSize(17)
-    .text('INSTRUCCIONES PARA TU VISITA', 310, 10, {
-        width: 300,
-        align: 'center'
-    })
+    .fontSize(15)
+    .text('*Presenta tu gafete digital en los módulos de registro para validar tu acceso y acreditar tu ingreso al piso expositor. / Present your digital badge at the registration modules to validate your access and certify your entry to the exhibition floor.', 
+    90, 510, {  width: 450,  align: 'center' }) 
     .moveDown(0.2);
 
-    doc.text(' GUIDELINES FOR YOUR VISIT', {
-        width: 300,
-        align: 'center'
-    }).moveDown(1);
-    
-    doc.font('Helvetica-Bold')
-    .fontSize(8)
-    .text('1.', 330)
-    .font('Helvetica')
-    .text('Tu gafete es tu pase a la exposición de ECOMONDO MEXICO 2026. Deberás portarlo en todo momento.', 345, 75, {
-        width: 250,
-        align: 'justify'
-    })  
-    doc.text('Your badge is your access pass to ECOMONDO MEXICO 2026 tradeshow. You must wear it at all times.',{
-        width: 250,
-        align: 'justify'
-    })
-    .moveDown(1); 
+    doc.image('img/social_items.png', 90, 620, { width: 450 });
 
-    doc.font('Helvetica-Bold')
-    .fontSize(8)
-    .text('2.', 330)
-    .font('Helvetica')
-    .text('El gafete es personal e intransferible. Por motivos de seguridad, podemos solicitarte al ingreso de la exposición una identificación con fotografía.', 345, 120, {
-        width: 250,
-        align: 'justify'
-    })
-    .text('The badge is personal and non-transferable. For security reasons, we may ask for an ID with picture at the entrance of the exhibition.', {
-        width: 250,
-        align: 'justify'
-    })
-    .moveDown(1);
-    
-    doc.font('Helvetica-Bold')
-    .fontSize(8)
-    .text('3.', 330)
-    .font('Helvetica')
-    .text('Disfruta tu visita y utiliza el hashtag', 345, 175, {
-        width: 250,    
-        continued: true
-    })
-    .fillColor('#1E92D0')
-    .font('Helvetica-Bold')
-    .text(' #ECOMONDOMEXICO2026 ', { continued: true })
-    .fillColor('black')
-    .font('Helvetica')
-    .text(' en tus posteos en redes sociales.')
-    .text('Enjoy your visit and use the hashtag', {
-        width: 250,    
-        continued: true
-    })
-    .fillColor('#1E92D0')
-    .font('Helvetica-Bold')
-    .text(' #ECOMONDOMEXICO2026 ', { continued: true })
-    .fillColor('black')
-    .font('Helvetica')
-    .text(' on your social media posts.')
-    .moveDown(2);
-
-    doc
-    .font('Helvetica-Bold')
-    .text('HORARIOS / SCHEDULE', 325, 240,{
-        width: 250,    
-        align: 'center'
-    })
-    .moveDown(1)    
-    .text('Martes/Tuesday  11:00 am – 6:00 pm', 330, 250, {
-        width: 250,    
-        align: 'center'
-    })
-    .text('Miércoles/Wednesday  11:00 am – 6:00 pm', 330, 260, {
-        width: 250,    
-        align: 'center'
-    })
-    .text('Jueves/Thursday  11:00 am – 5:00 pm', 330, 270, {
-        width: 250,    
-        align: 'center'
-    });
-
-    body.typeRegister === 'VISITANTE' ? doc.image('img/footer2_ecomondo_gafete.jpg', 307, 328, { width: 306 }) : doc.image('img/footer_2_prensa_ecomondo_gafete.jpg', 307, 328, { width: 306 });
-        
-    doc.save();
-    // Rotate and draw some text
-    doc.rotate(180, {origin: [150, 305]})
-    .fillColor('red')  
-    .fontSize(20)
-    .text('AVISO / DISCLAIMER', 15, -140, {
-        width: 250,
-        align: 'center'
-    
-    })
-    .moveDown(1)
-    .fillColor('black')  
-    .fontSize(12)
-    .text('Agilice su entrada imprimiendo su acreditación o llevando este documento en su teléfono móvil. Speed up your entrance by printing your badge or carrying this document on your cell phone.', {
-        width: 250,
-        align: 'justify'
-    
-    })
-    .moveDown(1)
-    .text('El gafete es personal e intransferible y se imprimirá una sola vez en el módulo de registro digital. The badge is personal and non-transferable and will be printed once at the digital registration module.', {
-        width: 250,
-        align: 'justify'
-    
-    })
-    .moveDown(1)
-    .text('En caso de que pierdas tu gafete y necesites reimprimirlo, se cobrará una cuota de $300 MXN. In case you lose your badge and need to reprint it, a replacement fee of $300 MXN will be charged.', {
-        width: 250,
-        align: 'justify'
-    
-    });
-
-    doc.fontSize(14)
-    .text('PLEGADO DE GAFETE / BADGE FOLDING', -360, -140, {
-        width: 400,
-        align: 'center'
-    });
-
-    doc.rotate(180, {origin: [-170, 50]})
-    .image('img/indicaciones_ITM.jpg', -330, -100, { width: 305 });
+    doc.image(body.typeRegister === 'VISITANTE' ? 'img/gafete_footer_ste.jpg' : 'img/footer_prensa_ecomondo_gafete.jpg', 0, 710, { width: 612 });
 
     // Restore the previous state to avoid rotating everything else
     doc.restore();       
@@ -374,7 +247,7 @@ async function generatePDF_freePass_ecomondo_student( body, uuid) {
     doc.restore();
     
    
-    doc.image('img/header_ecomondo_gafete.jpg', 0, 0, { width: 305 })
+    doc.image('img/header_ste.jpg', 0, 0, { width: 305 })
     // aqui iria el QR con info del usuario    
     doc.image(qrMainUser, 90, 120, { width: 120 });
     
