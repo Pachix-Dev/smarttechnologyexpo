@@ -151,8 +151,7 @@ const email_template_ecomondo = async ({  name,   paternSurname,  maternSurname 
 
           <!-- Sección de imágenes anexas (2da imagen) -->
           <tr>
-            <td">
-
+            <td align="center" align="center" style="padding:0;" >
               <a href="https://smarttechnologyexpo.mx/" target="_blank" style="text-decoration:none;">
                 <img src="https://smarttechnologyexpo.mx/item_conferencias_es.jpg" alt="Programa de Conferencias" width="600" style="display:block; width:100%; max-width:600px; border:0;" />
               </a>
