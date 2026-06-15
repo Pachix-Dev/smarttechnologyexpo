@@ -151,34 +151,34 @@ const email_template_ecomondo = async ({  name,   paternSurname,  maternSurname 
 
           <!-- Sección de imágenes anexas (2da imagen) -->
           <tr>
-            <td align="center" style="padding:0; gap:5px; display:flex; flex-direction:column; align-items:center;">
+            <td">
 
               <a href="https://smarttechnologyexpo.mx/" target="_blank" style="text-decoration:none;">
                 <img src="https://smarttechnologyexpo.mx/item_conferencias_es.jpg" alt="Programa de Conferencias" width="600" style="display:block; width:100%; max-width:600px; border:0;" />
               </a>
 
               <a href="https://smarttechnologyexpo.mx/" target="_blank" style="text-decoration:none;">
-                <img src="https://smarttechnologyexpo.mx/item_mujeres_es.jpg" alt="W 2026" width="600" style="display:block; width:100%; max-width:600px; border:0;" />
+                <img src="https://smarttechnologyexpo.mx/item_mujeres_es.jpg" alt="W 2026" width="600" style="display:block; width:100%; max-width:600px; border:0; padding-top: 5px;" />
               </a>
 
-              <a href="https://smarttechnologyexpo.mx/" target="_blank" style="text-decoration:none;">
-                <img src="https://smarttechnologyexpo.mx/item_drones_es.jpg" alt="Drones" width="600" style="display:block; width:100%; max-width:600px; border:0;" />
+              <a href="https://smarttechnologyexpo.mx/drones/" target="_blank" style="text-decoration:none;">
+                <img src="https://smarttechnologyexpo.mx/item_drones_es.jpg" alt="Drones" width="600" style="display:block; width:100%; max-width:600px; border:0; padding-top: 5px;" />
               </a>
 
-              <a href="https://smarttechnologyexpo.mx/" target="_blank" style="text-decoration:none;">
-                <img src="https://smarttechnologyexpo.mx/item_plano_es.jpg" alt="Plano" width="600" style="display:block; width:100%; max-width:600px; border:0;" />
+              <a href="https://smarttechnologyexpo.mx/files/PLANO_STE_2026_11_06_2026.pdf" target="_blank" style="text-decoration:none;">
+                <img src="https://smarttechnologyexpo.mx/item_plano_es.jpg" alt="Plano" width="600" style="display:block; width:100%; max-width:600px; border:0; padding-top: 5px;" />
               </a>
 
-              <a href="https://smarttechnologyexpo.mx/" target="_blank" style="text-decoration:none;">
-                <img src="https://smarttechnologyexpo.mx/item_hoteles_es.jpg" alt="Hoteles" width="600" style="display:block; width:100%; max-width:600px; border:0;" />
+              <a href="https://smarttechnologyexpo.mx/tarifas-hoteles-2026/" target="_blank" style="text-decoration:none;">
+                <img src="https://smarttechnologyexpo.mx/item_hoteles_es.jpg" alt="Hoteles" width="600" style="display:block; width:100%; max-width:600px; border:0; padding-top: 5px;" />
               </a>
 
-              <a href="https://smarttechnologyexpo.mx/" target="_blank" style="text-decoration:none;">
-                <img src="https://smarttechnologyexpo.mx/item_eventos_es.jpg" alt="Otros Eventos" width="600" style="display:block; width:100%; max-width:600px; border:0;" />
+              <a href="https://igeco.mx/" target="_blank" style="text-decoration:none;">
+                <img src="https://smarttechnologyexpo.mx/item_eventos_es.jpg" alt="Otros Eventos" width="600" style="display:block; width:100%; max-width:600px; border:0; padding-top: 5px;" />
               </a>
 
-              <a href="https://smarttechnologyexpo.mx/" target="_blank" style="text-decoration:none;">
-                <img src="https://smarttechnologyexpo.mx/item_premio_es.jpg" alt="Premio Itzamná 2026" width="600" style="display:block; width:100%; max-width:600px; border:0;" />
+              <a href="https://smarttechnologyexpo.mx/premio-itzamna-2026/" target="_blank" style="text-decoration:none;">
+                <img src="https://smarttechnologyexpo.mx/item_premio_es.jpg" alt="Premio Itzamná 2026" width="600" style="display:block; width:100%; max-width:600px; border:0; padding-top: 5px;" />
               </a>
 
             </td>
