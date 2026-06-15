@@ -144,7 +144,7 @@ const email_template_ecomondo = async ({  name,   paternSurname,  maternSurname 
           <tr>
             <td align="center" style="padding:0 30px 18px 30px;">
               <div style="font-size:14px; line-height:1.5; color:#333333; text-align:center;">
-                Consulta toda la información necesaria para aprovechar al máximo tu experiencia en <strong>Smart Technology Expo 2026</strong>.
+                Consulta toda la información necesaria para aprovechar al máximo tu experiencia en <br><strong>Smart Technology Expo 2026</strong>.
               </div>
             </td>
           </tr>
@@ -195,7 +195,7 @@ const email_template_ecomondo = async ({  name,   paternSurname,  maternSurname 
           <tr>
             <td align="center" style="padding:0 30px 12px 30px;">
               <div style="font-size:14px; line-height:1.5; color:#333333; text-align:center;">
-                ¿Conoces a alguien que también debería ser parte de Smart Technology Expo 2026?
+                ¿Conoces a alguien que también debería ser parte de <strong>Smart Technology Expo 2026</strong>?
               </div>
             </td>
           </tr>
