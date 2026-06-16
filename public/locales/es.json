@@ -241,7 +241,12 @@
   "thanks_page": {
     "title": "Gracias por registrarte",
     "title2": "Gracias_por_registrarte",
-    "description": "Tu registro ha sido exitoso, te hemos enviado un correo con tu gafete de acceso al evento o también puedes descargarlo dando click en el boton descargar tu gafete",
+    "eyebrow": "Registro confirmado",
+    "description": "Tu registro a Smart Technology Expo fue completado correctamente. Revisa tu correo electrónico: te enviamos información relevante del evento y tu acceso digital.",
+    "access_title": "Presenta tu acceso digital",
+    "access_description": "El día del evento deberás mostrar tu gafete digital en los módulos de registro para validar tu acceso.",
+    "email_note": "También puedes descargarlo ahora y guardarlo en tu dispositivo.",
+    "social": "Síguenos en redes sociales",
     "download_pass": "Descargar tu gafete",
     "download_invoice": "Descargar tu recibo de compra",
     "thanks_purchasing": "Gracias por tu compra",

@@ -242,7 +242,12 @@
   "thanks_page": {
     "title": "Thank you for registering",
     "title2": "Thank_you_for_registering",
-    "description": "Your registration has been successfully completed. We will send you an email with your access to the event....",
+    "eyebrow": "Registration confirmed",
+    "description": "Your Smart Technology Expo registration was completed successfully. Please check your email: we sent you relevant event information and your digital access.",
+    "access_title": "Show your digital access",
+    "access_description": "On the event day, please present your digital badge at the registration modules to validate your access.",
+    "email_note": "You can also download it now and save it to your device.",
+    "social": "Follow us on social media",
     "download_pass": "Download your pass",
     "download_invoice": "Download your invoice",
     "thanks_purchasing": "Thank you for your purchase",
