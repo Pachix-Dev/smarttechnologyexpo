@@ -166,44 +166,104 @@ async function generatePDF_freePass_ecomondo( body, uuid) {
 
     doc.pipe(pdfStream);
 
-    doc.image('img/header_ste.jpg', 0, 0, { width: 612 })
-    
-    // Sección del QR con info del usuario    
-    doc.image(qrMainUser, 80, 150, { width: 200 });
-    
+    const pageWidth = doc.page.width;   // 612
+    const pageHeight = doc.page.height; // 792
+
+    doc.save();
+    /**
+     * HEADER
+     */
+    doc.image('img/header_ste.jpg', 0, 0, {
+        width: pageWidth
+    });
+
+    /**
+     * TÍTULO PRINCIPAL
+     */
     doc
-    .font('Helvetica-Bold')
-    .fontSize(25)
-    .text(body.name, 300, 180)
-    .fontSize(25)
-    .text(body.paternSurname,)
-    .fontSize(25)
-    .font('Helvetica-Bold')
-    .text(body.company)
-    .fontSize(18)
-    .font('Helvetica-BoldOblique')
-    .text(body.position);
+        .fillColor('#000000')
+        .font('Helvetica-Bold')
+        .fontSize(25)
+        .text('WELCOME TO SMART TECHNOLOGY EXPO', 0, 165, {
+            width: pageWidth ,
+            align: 'center'
+        });
 
+    /**
+     * QR
+     */
+    doc.image(qrMainUser, 70, 215, { width: 170 });
 
-    doc
-    .font('Helvetica-Bold')
-    .fontSize(18)
-    .text('HORARIOS / SCHEDULE', 100, 390, { align: 'center' })
-    .fontSize(18)
-    .font('Helvetica')
-    .text('Fecha: 18 al 20 de noviembre de 2026', { align: 'center' })
-    .text('Horarios: 11:00 - 18:00 hrs', { align: 'center' })
-    .text('Lugar : Expo Guadalajara, Jalisco, México', { align: 'center' });
+    /** DATOS DEL VISITANTE **/
+    const infoX = 275;
+    const infoY = 230;
+    const infoWidth = 290;
 
     doc
-    .fontSize(15)
-    .text('*Presenta tu gafete digital en los módulos de registro para validar tu acceso y acreditar tu ingreso al piso expositor. / Present your digital badge at the registration modules to validate your access and certify your entry to the exhibition floor.', 
-    90, 510, {  width: 450,  align: 'center' }) 
-    .moveDown(0.2);
+        .fillColor('#000000')
+        .font('Helvetica-Bold')
+        .fontSize(23)
+        .text(body.name || '', infoX, infoY, { width: infoWidth, align: 'left' })
+        .text(body.paternSurname || '', { width: infoWidth, align: 'left' })
+        .moveDown(0.3)
+        .fontSize(18)
+        .font('Helvetica-BoldOblique')
+        .text(body.company || '', { width: infoWidth, align: 'left' })
+        .moveDown(0.3)
+        .fontSize(15)
+        .font('Helvetica-Oblique')
+        .text(body.position || '', { width: infoWidth, align: 'left'});
 
-    doc.image('img/social_items.png', 90, 620, { width: 450 });
+    /** TEXTO INFORMATIVO ESPAÑOL  **/
+    doc
+        .font('Helvetica')
+        .fontSize(10.5)
+        .fillColor('#000000')
+        .text(
+            'Presenta este código QR en los módulos de registro para recoger tu gafete de ingreso. Recuerda llevar tu credencial oficial de empresa o negocio para verificar tus datos. Tu acceso es único e intransferible. Tu gafete debe estar visible durante toda tu visita.',
+            75,
+            410,
+            {
+                width: 460,
+                align: 'center',
+                lineGap: 2
+            }
+        );
 
-    doc.image(body.typeRegister === 'VISITANTE' ? 'img/gafete_footer_ste.jpg' : 'img/footer_prensa_ecomondo_gafete.jpg', 0, 710, { width: 612 });
+    /**
+     * TEXTO INFORMATIVO INGLÉS
+     */
+    doc
+        .font('Helvetica')
+        .fontSize(10.5)
+        .text(
+            'Present this QR code at the registration counters to collect your access badge. Your access is personal and non-transferable. Your badge must remain visible throughout your visit.',
+            75,
+            doc.y + 12,
+            {
+                width: 460,
+                align: 'center',
+                lineGap: 2
+            }
+        );
+
+    /** REDES SOCIALES */
+    doc.image('img/social_items.png', 90, 520, { width: 430 });
+
+    /** FECHA, HORARIO Y LUGAR COMO IMAGEN  */
+    doc.image('img/date_event.png', 156, 610, { width: 300 });
+
+    /** FOOTER */   
+    doc.image(
+        body.typeRegister === 'VISITANTE'
+            ? 'img/gafete_footer_ste.jpg'
+            : 'img/footer_prensa_ecomondo_gafete.jpg',
+        0,
+        710,
+        {
+            width: pageWidth
+        }
+    );
 
     // Restore the previous state to avoid rotating everything else
     doc.restore();       
