@@ -183,11 +183,20 @@ async function generatePDF_freePass_ecomondo( body, uuid) {
     doc
         .fillColor('#000000')
         .font('Helvetica-Bold')
-        .fontSize(25)
-        .text('WELCOME TO SMART TECHNOLOGY EXPO', 0, 165, {
+        .fontSize(18)
+        .text('WELCOME TO / BIENVENIDO A ', 0, 165, {
             width: pageWidth ,
             align: 'center'
         });
+    
+    doc
+        .font('Helvetica-Bold')
+        .fontSize(25)
+        .text('SMART  TECHNOLOGY  EXPO', {
+            width: pageWidth ,
+            align: 'center'
+        })
+        .moveDown(0.5); 
 
     /**
      * QR
@@ -248,10 +257,10 @@ async function generatePDF_freePass_ecomondo( body, uuid) {
         );
 
     /** REDES SOCIALES */
-    doc.image('img/social_items.png', 90, 520, { width: 430 });
+    doc.image('img/social_items.png', 90, 530, { width: 430 });
 
     /** FECHA, HORARIO Y LUGAR COMO IMAGEN  */
-    doc.image('img/date_event.png', 156, 610, { width: 300 });
+    doc.image('img/date_event.png', 156, 620, { width: 300 });
 
     /** FOOTER */   
     doc.image(
@@ -259,7 +268,7 @@ async function generatePDF_freePass_ecomondo( body, uuid) {
             ? 'img/gafete_footer_ste.jpg'
             : 'img/footer_prensa_ecomondo_gafete.jpg',
         0,
-        710,
+        722,
         {
             width: pageWidth
         }
