@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form'
 import PhoneInputWithCountry from 'react-phone-number-input/react-hook-form'
 import Select from 'react-select'
 import { countries } from '../../data/list_countries'
+import { PrivacyNoticeAcceptance } from './PrivacyNoticeAcceptance'
 import 'react-phone-number-input/style.css'
 import './Form.css'
 import { useEffect, useState } from 'react'
@@ -87,6 +88,7 @@ export function RegisterForm({ translates, currentLanguage }) {
       municipality,
       city,
       colonia,
+      privacyNoticeAccepted: false,
     },
   })
 
@@ -299,7 +301,7 @@ export function RegisterForm({ translates, currentLanguage }) {
   ]
 
   const urlbase = import.meta.env.DEV
-    ? 'http://localhost:3010/'
+    ? 'http://localhost:3005/'
     : 'https://smarttechnologyexpo.mx/server/'
 
   const handleRegister = async () => {
@@ -360,7 +362,7 @@ export function RegisterForm({ translates, currentLanguage }) {
 
   return (
     <section className="py-5">
-      <form className="mx-auto">
+      <form className="mx-auto" onSubmit={handleSubmit(handleRegister)}>
         {/* Personal Information */}
         <div className="rounded-lg shadow-lg p-8 ">
           <p className="text-lg font-semibold text-black flex items-center gap-5">
@@ -1821,9 +1823,16 @@ export function RegisterForm({ translates, currentLanguage }) {
           </div> */}
         </div>
 
+        <PrivacyNoticeAcceptance
+          register={register}
+          errors={errors}
+          translates={translates}
+          currentLanguage={currentLanguage}
+        />
+
         {/* Button para finalizar el registro */}
         <div className="flex justify-center mt-10">
-          <button className="button" onClick={handleSubmit(handleRegister)}>
+          <button type="submit" className="button">
             {translates.finish}
           </button>
         </div>
