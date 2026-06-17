@@ -1,7 +1,6 @@
 const email_template_ecomondo_eng = async ({   name,   paternSurname,   maternSurname = "" }) => {
   return `
-      
-         <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#e9e9e9; margin:0; padding:20px 0;">
+       <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#e9e9e9; margin:0; padding:0px 0px;">
     <tr>
       <td align="center">
 
@@ -25,7 +24,7 @@ const email_template_ecomondo_eng = async ({   name,   paternSurname,   maternSu
             <td align="center" style="padding:24px 30px 8px 30px;">
               <div style="font-size:20px; font-weight:bold; color:#000000; line-height:1.3;">
                 WELCOME!<br /> ${name} ${paternSurname} ${maternSurname} <br />
-                YOUR REGISTRATION HAS BEEN SUCCESSFULLY COMPLETED
+                YOUR REGISTRATION IS CONFIRMED <br /><br />
               </div>
             </td>
           </tr>
@@ -34,7 +33,23 @@ const email_template_ecomondo_eng = async ({   name,   paternSurname,   maternSu
           <tr>
             <td align="center" style="padding:0 30px 16px 30px;">
               <div style="font-size:15px; line-height:1.6; color:#333333; text-align:center;">
-                Thank you for being part of <strong>Smart Technology Expo 2026</strong>, the meeting point that drives the adoption of applied innovation, strengthens industrial value chains, and generates real business opportunities, strategic networking, and technological collaboration for companies looking to grow within the new industrial environment of the country.
+                Over the course of three days, you’ll discover applied innovation, learn about solutions that are already transforming plants, supply chains, and business models, and connect with the people driving the next generation of manufacturing, automation, artificial intelligence, smart logistics, and digital transformation.
+              </div>
+            </td>
+          </tr>
+          
+          <tr>
+            <td align="center" style="padding:0 30px 16px 30px;">
+              <div style="font-size:14px; line-height:1.6; color:#333333; text-align:center; font-weight:bold; text-transform: uppercase; font-style: italic;">
+                The next big opportunity for your business starts now.
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td align="center" style="padding:0 30px 16px 30px;">
+              <div style="font-size:14px; line-height:1.6; color:#333333; text-align:center;">
+                See you in Guadalajara <br><strong style="text-transform: uppercase;">Smart Technology Expo 2026</strong><br>YOUR BUSINESS IS OUR BUSINESS 
               </div>
             </td>
           </tr>
@@ -228,7 +243,7 @@ const email_template_ecomondo_eng = async ({   name,   paternSurname,   maternSu
             <td style="padding:0 40px 30px 40px;">
               <div style="font-size:14px; line-height:1.7; color:#333333;">
                 <ul style="margin:0; padding-left:18px;">
-                  <li><strong>IMPORTANT:</strong> It is essential to bring your pre-registration printed or in digital format to expedite your access to the event.</li>
+                  <li><strong>IMPORTANT :</strong> It is essential to bring your pre-registration printed or in digital format to expedite your access to the event.</li>
                   <li>Remember to bring your official company or business ID to verify your information.</li>
                   <li>Your access is unique and non-transferable and must be visible throughout your visit.</li>
                 </ul>
@@ -253,7 +268,6 @@ const email_template_ecomondo_eng = async ({   name,   paternSurname,   maternSu
       </td>
     </tr>
   </table>
-
       `;
 };
 

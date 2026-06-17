@@ -1,6 +1,6 @@
-const email_template_ecomondo = async ({  name,   paternSurname,  maternSurname = "" }) => {
-
-  return `<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#e9e9e9; margin:0; padding:20px 0;">
+const email_template_ecomondo = async ({  name, paternSurname, maternSurname = "" }) => {
+  return `
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#e9e9e9; margin:0; padding:0px 0px;">
     <tr>
       <td align="center">
 
@@ -23,8 +23,8 @@ const email_template_ecomondo = async ({  name,   paternSurname,  maternSurname 
           <tr>
             <td align="center" style="padding:24px 30px 8px 30px;">
               <div style="font-size:20px; font-weight:bold; color:#000000; line-height:1.3;">
-                ¡BIENVENIDO(A)!<br /> ${name} ${paternSurname} ${maternSurname} <br />
-                TU REGISTRO SE HA REALIZADO CON ÉXITO
+                ¡ BIENVENIDO(A) !<br /> ${name} ${paternSurname} ${maternSurname} <br />
+                TU REGISTRO ESTÁ CONFIRMADO <br /><br />
               </div>
             </td>
           </tr>
@@ -33,7 +33,23 @@ const email_template_ecomondo = async ({  name,   paternSurname,  maternSurname 
           <tr>
             <td align="center" style="padding:0 30px 16px 30px;">
               <div style="font-size:15px; line-height:1.6; color:#333333; text-align:center;">
-                Gracias por formar parte de <strong>Smart Technology Expo 2026</strong>, el punto de encuentro que impulsa la adopción de innovación aplicada, fortalece las cadenas de valor industriales y genera oportunidades reales de negocio, networking estratégico y colaboración tecnológica para las empresas que buscan crecer dentro del nuevo entorno industrial del país.
+                Durante tres días descubrirás innovación aplicada, conocerás soluciones que ya están transformando plantas, cadenas de suministro y modelos de negocio, y conectarás con las personas que están impulsando la próxima generación de la manufactura, la automatización, la inteligencia artificial, la logística inteligente y la transformación digital.
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td align="center" style="padding:0 30px 16px 30px;">
+              <div style="font-size:14px; line-height:1.6; color:#333333; text-align:center; font-weight:bold; text-transform: uppercase; font-style: italic;">
+                La próxima gran oportunidad para tu negocio comienza ahora.
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td align="center" style="padding:0 30px 16px 30px;">
+              <div style="font-size:14px; line-height:1.6; color:#333333; text-align:center;">
+                Nos vemos en Guadalajara <br><strong style="text-transform: uppercase;">Smart Technology Expo 2026</strong><br>YOUR BUSINESS IS OUR BUSINESS 
               </div>
             </td>
           </tr>
@@ -251,7 +267,8 @@ const email_template_ecomondo = async ({  name,   paternSurname,  maternSurname 
 
       </td>
     </tr>
-  </table>`;
+  </table>
+  `;
 };
 
 export { email_template_ecomondo };
