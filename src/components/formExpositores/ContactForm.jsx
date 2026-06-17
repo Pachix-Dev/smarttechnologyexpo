@@ -159,7 +159,7 @@ export function ContactForm() {
               Software de Automatización e Integración de Sistemas / Automation Software and Systems Integration
             </option>
             <option value="Drone Innovators Forum">
-              Drone Innovators Forum
+              Drones
             </option>
           </select>
         </div>
