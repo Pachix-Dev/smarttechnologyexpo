@@ -205,7 +205,7 @@ async function generatePDF_freePass_ecomondo( body, uuid) {
 
     /** DATOS DEL VISITANTE **/
     const infoX = 275;
-    const infoY = 230;
+    const infoY = 235;
     const infoWidth = 290;
 
     doc
@@ -226,10 +226,10 @@ async function generatePDF_freePass_ecomondo( body, uuid) {
     /** TEXTO INFORMATIVO ESPAÑOL  **/
     doc
         .font('Helvetica')
-        .fontSize(10.5)
+        .fontSize(12)
         .fillColor('#000000')
         .text(
-            'Presenta este código QR en los módulos de registro para recoger tu gafete de ingreso. Recuerda llevar tu credencial oficial de empresa o negocio para verificar tus datos. Tu acceso es único e intransferible. Tu gafete debe estar visible durante toda tu visita.',
+            'Presenta tu gafete digital en los módulos de registro para agilizar tu acceso y comenzar tu experiencia en Smart Technology Expo 2026.',
             75,
             410,
             {
@@ -244,9 +244,9 @@ async function generatePDF_freePass_ecomondo( body, uuid) {
      */
     doc
         .font('Helvetica')
-        .fontSize(10.5)
+        .fontSize(12)
         .text(
-            'Present this QR code at the registration counters to collect your access badge. Your access is personal and non-transferable. Your badge must remain visible throughout your visit.',
+            'Present your digital badge at the registration counters for a seamless check-in experience and start your Smart Technology Expo 2026 journey.',
             75,
             doc.y + 12,
             {
