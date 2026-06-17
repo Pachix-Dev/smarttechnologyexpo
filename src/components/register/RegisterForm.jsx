@@ -1111,14 +1111,11 @@ export function RegisterForm({ translates, currentLanguage }) {
                 <option value="PLÁSTICO">
                   {translates.industry_option_28}
                 </option>
-                <option value="PAQUETERÍA Y LOGÍSTICA">
+                <option value="LOGÍSTICA E INTRALOGÍSTICA">
                   {translates.industry_option_29}
                 </option>
                 <option value="DRONES">
                   {translates.industry_option_30}
-                </option>
-                <option value="PAQUETERÍA POR INTRALOGÍSTICA">
-                  {translates.industry_option_31}
                 </option>
               </select>
               {errors.industry && (
