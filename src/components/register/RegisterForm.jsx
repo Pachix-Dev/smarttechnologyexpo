@@ -381,7 +381,7 @@ export function RegisterForm({ translates, currentLanguage }) {
     <section className="py-5">
       <form className="mx-auto" onSubmit={handleSubmit(handleRegister)}>
         {/* Personal Information */}
-        <div className="rounded-lg shadow-lg p-8 ">
+        <div className="rounded-lg shadow-lg border border-gray-800/20 p-8">
           <p className="text-lg font-semibold text-black flex items-center gap-5">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -931,7 +931,7 @@ export function RegisterForm({ translates, currentLanguage }) {
         </div>
 
         {/* Business Information */}
-        <div className="rounded-lg shadow-lg p-8 mt-10">
+        <div className="rounded-lg shadow-lg border border-gray-800/20 p-8 mt-10">
           <p className="text-lg font-semibold text-black flex items-center gap-5">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -1649,7 +1649,7 @@ export function RegisterForm({ translates, currentLanguage }) {
         </div>
 
         {/* Survey */}
-        <div className="rounded-lg shadow-lg p-8 mt-10">
+        <div className="rounded-lg shadow-lg border border-gray-800/20 p-8 mt-10">
           <p className="text-lg font-semibold text-black flex items-center gap-5">
             <svg
               xmlns="http://www.w3.org/2000/svg"

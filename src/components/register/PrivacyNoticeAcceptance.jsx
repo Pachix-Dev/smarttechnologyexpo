@@ -14,7 +14,7 @@ export function PrivacyNoticeAcceptance({
     : 'Debe aceptar el aviso de privacidad para completar su registro'
 
   return (
-    <div className="rounded-lg shadow-lg p-8 mt-10">
+    <div className="rounded-lg shadow-lg border border-gray-800/20 p-8 mt-10">
       <p className="text-lg font-semibold text-black">{privacyLabel}</p>
       <hr className="my-4 border-t border-gray-200" />
 

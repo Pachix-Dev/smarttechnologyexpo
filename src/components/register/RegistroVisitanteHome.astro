@@ -1,27 +1,32 @@
 ---
 import { RegisterForm } from "./RegisterForm";
-
-import { useTranslations, getTranslation } from "../../utils/translations";
-import { ContactForm } from "../formExpositores/ContactForm";
+import OtherSectorProfileNotice from "./OtherSectorProfileNotice.astro";
+import { useTranslations } from "../../utils/translations";
 
 const { locale, translations } = await useTranslations(Astro.props, Astro);
 
-const tr = (key: string, fallback: string = "") =>
-  getTranslation(translations, key, fallback);
-
-// Toma las traducciones del bloque "register"; si no existen, usa un objeto vacío para evitar errores.
-const registerTranslations = translations?.register ?? {}; 
+// Toma las traducciones del bloque "register"; si no existen, usa un objeto vacio para evitar errores.
+const registerTranslations = translations?.register ?? {};
 const currentLanguage = locale;
 ---
 
 <div class="registro-visitante-home">
   <div class="header pt-16 text-center">
-    <h2 class="text-2xl sm:text-6xl font-extrabold">{locale === 'en' ? 'VISITOR REGISTRATION' : 'REGISTRO DE VISITANTE'}</h2>
-    <span class="text-base sm:text-2xl mt-2 text-gray-600">
-      {locale === 'en' ? 'Complete the form to register as a visitor for the event.' : 'Completa el formulario para registrarte como visitante en el evento.'}
+    <h2 class="text-2xl sm:text-6xl font-extrabold">
+      {locale === "en" ? "VISITOR REGISTRATION" : "REGISTRO DE VISITANTE"}
+    </h2>
+    <span class="mt-2 text-base text-gray-600 sm:text-2xl">
+      {
+        locale === "en"
+          ? "Complete the form to register as a visitor for the event."
+          : "Completa el formulario para registrarte como visitante en el evento."
+      }
     </span>
   </div>
-  <div class="container mx-auto p-4 sm:p-20">
+
+  <div class="container mx-auto p-4 sm:px-20">
+    <OtherSectorProfileNotice locale={locale} />
+
     <RegisterForm
       translates={registerTranslations}
       currentLanguage={currentLanguage}

@@ -1,0 +1,146 @@
+---
+const { locale = "es" } = Astro.props;
+
+const registrationNotice =
+  locale === "en"
+    ? {
+        question: "Other registrations: Media and Students",
+        studentButton: "STUDENT",
+        mediaButton: "MEDIA",
+        studentTitle: "Important",
+        studentParagraphs: [
+          "This event is intended exclusively for industry professionals, executives, decision-makers, technical specialists, and company representatives.",
+          "Due to the specialized nature of the program and networking activities, registration is not available for students.",
+          "We appreciate your understanding and kindly ask you to avoid submitting registrations that do not meet this criterion, as access to the venue cannot be authorized.",
+        ],
+        mediaTitle: "Media registration",
+        mediaParagraph:
+          "For media inquiries, please contact social.media@igeco.mx.",
+      }
+    : {
+        question: "Otros registros: Medios y Estudiantes",
+        studentButton: "ESTUDIANTE",
+        mediaButton: "MEDIO",
+        studentTitle: "Importante",
+        studentParagraphs: [
+          "Este evento está dirigido exclusivamente a profesionales de la industria, ejecutivos, tomadores de decisión, especialistas técnicos y representantes de empresas.",
+          "Por la naturaleza especializada del programa y de las actividades de networking, el registro no está disponible para estudiantes.",
+          "Agradecemos su comprensión y les solicitamos amablemente evitar realizar registros que no cumplan con este criterio, ya que no será posible autorizar el acceso al recinto.",
+        ],
+        mediaTitle: "Registro para medios",
+        mediaParagraph:
+          "Para atención a medios, favor de contactar a social.media@igeco.mx.",
+      };
+---
+
+<section
+  class="mx-auto mb-6 rounded-lg border border-orange-200 border-l-4 border-l-orange-500 bg-orange-50 p-4 text-left shadow-sm sm:p-4"
+  aria-labelledby="registration-notice-title"
+  data-other-sector-profile-notice
+>
+  <div class="flex items-start gap-3">
+    <span class="mt-1 flex size-7 shrink-0 items-center justify-center rounded-full bg-orange-500 text-white">
+      <svg
+        class="size-4"
+        aria-hidden="true"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.515 2.625H3.72c-1.345 0-2.188-1.458-1.515-2.625L8.485 2.495ZM10 5a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 10 5Zm0 8a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"
+          clip-rule="evenodd"
+        />
+      </svg>
+    </span>
+    <div class="w-full space-y-3">
+      <h3
+        id="registration-notice-title"
+        class="text-sm font-extrabold uppercase tracking-wide text-orange-900 sm:text-base"
+      >
+        {registrationNotice.question}
+      </h3>
+      <div class="flex flex-col gap-3 sm:flex-row">
+        <button
+          type="button"
+          class="rounded-lg bg-orange-500 px-4 py-2 text-xs font-extrabold uppercase tracking-wide text-white transition hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-orange-50"
+          aria-controls="student-notice-panel"
+          aria-expanded="false"
+          data-notice-trigger="student"
+        >
+          {registrationNotice.studentButton}
+        </button>
+        <button
+          type="button"
+          class="rounded-lg border border-orange-400 bg-white px-4 py-2 text-xs font-extrabold uppercase tracking-wide text-orange-900 transition hover:bg-orange-100 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-orange-50"
+          aria-controls="media-notice-panel"
+          aria-expanded="false"
+          data-notice-trigger="media"
+        >
+          {registrationNotice.mediaButton}
+        </button>
+      </div>
+
+      <div
+        id="student-notice-panel"
+        class="hidden rounded-lg border border-orange-200 bg-white p-3"
+        data-notice-panel="student"
+      >
+        <h4 class="mb-2 text-sm font-extrabold uppercase tracking-wide text-red-700">
+          {registrationNotice.studentTitle}
+        </h4>
+        <div class="space-y-0">
+          {
+            registrationNotice.studentParagraphs.map((paragraph) => (
+              <p class="text-xs leading-relaxed text-orange-950">
+                {paragraph}
+              </p>
+            ))
+          }
+        </div>
+      </div>
+
+      <div
+        id="media-notice-panel"
+        class="hidden rounded-lg border border-orange-200 bg-white p-3"
+        data-notice-panel="media"
+      >
+        <h4 class="mb-2 text-sm font-extrabold uppercase tracking-wide text-orange-900">
+          {registrationNotice.mediaTitle}
+        </h4>
+        <p class="text-xs leading-relaxed text-orange-950">
+          {registrationNotice.mediaParagraph}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const notices = document.querySelectorAll(
+    "[data-other-sector-profile-notice]",
+  );
+
+  notices.forEach((notice) => {
+    const triggers = notice.querySelectorAll("[data-notice-trigger]");
+    const panels = notice.querySelectorAll("[data-notice-panel]");
+
+    triggers.forEach((trigger) => {
+      trigger.addEventListener("click", () => {
+        const target = trigger.getAttribute("data-notice-trigger");
+
+        panels.forEach((panel) => {
+          const isActive = panel.getAttribute("data-notice-panel") === target;
+          panel.classList.toggle("hidden", !isActive);
+        });
+
+        triggers.forEach((button) => {
+          button.setAttribute(
+            "aria-expanded",
+            String(button.getAttribute("data-notice-trigger") === target),
+          );
+        });
+      });
+    });
+  });
+</script>
