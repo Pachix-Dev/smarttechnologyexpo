@@ -288,7 +288,7 @@ const email_template_ecomondo_eng = async ({   name,   paternSurname,   maternSu
               <table border="0" cellspacing="0" cellpadding="0" style="margin:0 auto;">
                 <tr>
                   <td align="center" style="background-color:#ef2b2d; border-radius:30px;">
-                    <a href="https://smarttechnologyexpo.mx/" target="_blank" style="display:inline-block; padding:14px 24px; font-size:16px; font-weight:bold; color:#ffffff; text-decoration:none;">
+                    <a href="https://smarttechnologyexpo.mx/en/" target="_blank" style="display:inline-block; padding:14px 24px; font-size:16px; font-weight:bold; color:#ffffff; text-decoration:none;">
                       INVITE A COLLEAGUE, PARTNER, OR CLIENT
                     </a>
                   </td>
@@ -335,7 +335,7 @@ const email_template_ecomondo_eng = async ({   name,   paternSurname,   maternSu
       </td>
     </tr>
   </table>
-  
+
       `;
 };
 
