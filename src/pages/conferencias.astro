@@ -1,0 +1,20 @@
+---
+// src/pages/conferencias.astro
+import Layout from '../layouts/Layout.astro'
+import ConferenciasHero from '../components/conferencias/ConferenciasHero.astro'
+import DisplayScenarios from '../components/conferencias/DisplayScenarios.astro'
+import NoticeBanner from '../components/conferencias/NoticeBanner.astro'
+import ThematicContent from '../components/conferencias/ThematicContent.astro'
+import Contact from '../components/conferencias/Contact.astro'
+---
+
+<Layout
+  title="Conferencias y Talleres"
+  description="Explora la agenda de conferencias y talleres del Smart Technology Expo 2026."
+>
+  <ConferenciasHero />
+  <DisplayScenarios />
+  <NoticeBanner />
+  <ThematicContent />
+  <Contact />
+</Layout>

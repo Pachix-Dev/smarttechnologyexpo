@@ -1,0 +1,295 @@
+---
+// src/components/conferencias/ConferenciasHero.astro
+import { useTranslations, getTranslation } from '../../utils/translations'
+
+export interface Props {
+  locale?: string
+}
+
+const { locale, translations } = await useTranslations(Astro.props, Astro)
+const tr = (key: string, fallback: string = '') =>
+  getTranslation(translations, key, fallback)
+---
+
+<section class="ch-hero">
+
+  <video
+    class="ch-video"
+    src="/video/bg_conferencias.mp4"
+    autoplay
+    muted
+    loop
+    playsinline
+    aria-hidden="true"
+  ></video>
+
+  <div class="ch-box"></div>
+
+  <div class="ch-inner">
+
+    <!-- Izquierda: Logo + texto -->
+    <div class="ch-left" data-aos="fade-right" data-aos-duration="900">
+      <div class="ch-logo-wrap">
+        <img
+          src="/img/conferencias/logo_conferencias.webp"
+          alt="Con26 by Smart Technology Expo"
+          class="ch-logo"
+        />
+      </div>
+      <p class="ch-desc">
+        <strong>{tr('conferencias.hero.desc_bold', '¡CON 2026 es tu oportunidad para explorar tendencias globales, innovación tecnológica y nuevos modelos de negocio')}</strong>
+        {tr('conferencias.hero.desc_rest', '— conecta con los líderes que están transformando el futuro de la industria.')}
+      </p>
+    </div>
+
+    <div class="ch-divider"></div>
+
+    <!-- Derecha: Label + título + párrafo -->
+    <div class="ch-right" data-aos="fade-left" data-aos-duration="900" data-aos-delay="200">
+      <span class="ch-label" set:html={tr('conferencias.hero.label', 'STE 2026 ·<br/>PROGRAMA EDUCATIVO').replace(' · ', ' ·<br/>')}></span>
+      <h1 class="ch-title">
+        {tr('conferencias.hero.title', 'Dos\nexperiencias,\nun mismo\nevento').split('\n').map((line, i) => (
+          <>{line}{i < 3 && <br />}</>
+        ))}
+      </h1>
+      <p class="ch-sub">
+        {tr('conferencias.hero.sub', 'Desde conferencias estratégicas hasta talleres técnicos de aplicación real en entornos productivos e industriales.')}
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .ch-hero {
+    position: relative;
+    width: 100%;
+    min-height: 420px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #060606;
+  }
+
+  .ch-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 0;
+    filter: grayscale(1) brightness(0.7) contrast(1.15);
+  }
+
+  /* Overlay oscuro — los extremos laterales se ven sin opacidad via mask */
+  .ch-box {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.65);
+    -webkit-mask-image: linear-gradient(
+      to right,
+      rgba(0,0,0,0.15) 0%,
+      rgba(0,0,0,1) 12%,
+      rgba(0,0,0,1) 88%,
+      rgba(0,0,0,0.15) 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      rgba(0,0,0,0.15) 0%,
+      rgba(0,0,0,1) 12%,
+      rgba(0,0,0,1) 88%,
+      rgba(0,0,0,0.15) 100%
+    );
+  }
+
+  .ch-inner {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2.8rem 4rem;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 70fr auto 30fr;
+    align-items: center;
+    gap: 0;
+  }
+
+  .ch-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    padding-right: 2rem;
+    overflow: visible;
+    min-width: 0;
+  }
+
+  .ch-logo-wrap {
+    width: 100%;
+    overflow: visible;
+    position: relative;
+  }
+
+  /*
+    Logo: width 250% + margin-left -24.7% cancela el espacio
+    transparente izquierdo del webp (17.8% del archivo).
+  */
+  .ch-logo {
+    width: 250%;
+    max-width: 1150px;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    position: relative;
+    margin-left: -24.7%;
+    margin-bottom: -40px;
+  }
+
+  /* width/margin-left alineados con el contenido visual del logo */
+  .ch-desc {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.80);
+    line-height: 1.4;
+    margin: 0;
+    text-align: justify;
+    width: 90%;
+    margin-left: 3%;
+  }
+
+  .ch-desc strong {
+    color: #fff;
+    font-weight: 700;
+  }
+
+  .ch-divider {
+    width: 2px;
+    height: 450px;
+    flex-shrink: 0;
+    align-self: center;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(255, 255, 255, 0.35) 15%,
+      rgba(255, 255, 255, 0.35) 85%,
+      transparent 100%
+    );
+  }
+
+  .ch-right {
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding-left: 1rem;
+  }
+
+  .ch-label {
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.9rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.85);
+    display: block;
+    text-shadow:
+      0 0 8px  rgba(255, 255, 255, 0.6),
+      0 0 18px rgba(255, 255, 255, 0.2);
+  }
+
+  .ch-title {
+    font-family: "Montserrat", sans-serif;
+    font-size: clamp(2.6rem, 2.75vw, 7rem);
+    font-weight: 1000;
+    font-style: normal;
+    color: #fff;
+    line-height: 1.08;
+    margin: 0;
+    text-shadow:
+      0 0 10px rgba(255, 255, 255, 0.7),
+      0 0 28px rgba(255, 255, 255, 0.25);
+  }
+
+  .ch-sub {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.60);
+    line-height: 1.75;
+    margin: 0;
+  }
+
+  /* ── TABLET GRANDE 820px–1024px ───────────────────────────────── */
+  @media (max-width: 1024px) and (min-width: 820px) {
+    .ch-inner {
+      padding: 3rem 3rem;
+      grid-template-columns: 65fr auto 35fr;
+      align-items: center;
+    }
+    .ch-left    { padding-right: 1.5rem; overflow: visible; }
+    .ch-right   { padding-left: 1.5rem; overflow: hidden; }
+    .ch-logo    { width: 140%; margin-left: -22%; margin-bottom: -20px; }
+    .ch-desc    { font-size: 0.9rem; width: 80%; margin-left: 4%; }
+    .ch-divider { height: 360px; }
+    .ch-title   { font-size: clamp(2rem, 3.2vw, 3rem); }
+    .ch-sub     { font-size: 0.85rem; }
+    .ch-label   { font-size: 0.72rem; }
+    .ch-box     { left: 3%; right: 3%; }
+  }
+
+  /* ── TABLET MEDIA 769px–819px ─────────────────────────────────── */
+  @media (max-width: 819px) and (min-width: 769px) {
+    .ch-inner {
+      padding: 3rem 2rem;
+      grid-template-columns: 60fr auto 40fr;
+      align-items: center;
+    }
+    .ch-left    { padding-right: 1rem; overflow: visible; }
+    .ch-right   { padding-left: 1.25rem; overflow: hidden; }
+    .ch-logo    { width: 150%; margin-left: -24%; margin-bottom: -15px; }
+    .ch-desc    { font-size: 0.82rem; width: 82%; margin-left: 4.5%; }
+    .ch-divider { height: 320px; }
+    .ch-title   { font-size: clamp(1.8rem, 3vw, 2.6rem); }
+    .ch-sub     { font-size: 0.78rem; }
+    .ch-label   { font-size: 0.68rem; }
+    .ch-box     { left: 3%; right: 3%; }
+  }
+
+  /* ── MOBILE ≤768px ────────────────────────────────────────────── */
+  @media (max-width: 768px) {
+    .ch-hero { min-height: auto; overflow: hidden; }
+
+    .ch-inner {
+      grid-template-columns: 58fr auto 42fr;
+      padding: 2rem 1rem 2rem 0;
+      gap: 0;
+      align-items: center;
+    }
+
+    .ch-left    { align-items: flex-start; padding-right: 0.5rem; overflow: visible; min-width: 0; }
+    .ch-logo    { width: 170%; max-width: 480px; margin-left: -13.7%; margin-bottom: -8px; }
+    .ch-desc    { font-size: 0.55rem; margin-left: 6.7%; width: 85%; line-height: 1.4; }
+    .ch-divider { width: 1px; height: 240px; align-self: center; flex-shrink: 0; margin: 0 0.3rem; }
+    .ch-right   { align-items: flex-start; text-align: left; padding-left: 0.5rem; gap: 0.5rem; overflow: hidden; min-width: 0; }
+    .ch-label   { font-size: 0.52rem; letter-spacing: 0.07em; line-height: 1.5; }
+    .ch-title   { font-size: clamp(1.2rem, 5vw, 1.9rem); line-height: 1.05; }
+    .ch-sub     { font-size: 0.6rem; line-height: 1.45; }
+  }
+
+  /* ── MOBILE PEQUEÑO ≤480px ────────────────────────────────────── */
+  @media (max-width: 480px) {
+    .ch-inner   { grid-template-columns: 58fr auto 42fr; padding: 1.5rem 0.75rem 1.5rem 0; }
+    .ch-logo    { width: 140%; margin-left: -18%; }
+    .ch-desc    { font-size: 0.56rem; width: 85%; }
+    .ch-title   { font-size: clamp(1rem, 4.5vw, 1.5rem); }
+    .ch-sub     { font-size: 0.54rem; }
+    .ch-label   { font-size: 0.48rem; }
+    .ch-divider { height: 210px; }
+  }
+</style>
