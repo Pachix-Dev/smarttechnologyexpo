@@ -798,5 +798,22 @@
     "desc_seguridad": "Este espacio está enfocado en proteger tanto a las personas como a los activos físicos y digitales de las organizaciones industriales. Incluye tecnologías de seguridad funcional, dispositivos de protección de maquinaria, sistemas de control de acceso, sensores de seguridad, cumplimiento normativo, ciberseguridad industrial, protección de redes OT, gestión de riesgos, monitoreo de infraestructura crítica y soluciones para garantizar operaciones seguras, confiables y alineadas con los estándares internacionales.",
     "desc_software": "Este espacio conecta las plataformas digitales que permiten gestionar, supervisar e integrar la operación industrial de manera eficiente. Reúne soluciones MES, SCADA, HMI, ERP industrial, plataformas IoT, software de análisis y visualización de datos, integración de sistemas, computación en la nube, edge computing, gestión energética y herramientas para la interoperabilidad de equipos y procesos, facilitando la toma de decisiones basada en información en tiempo real.",
     "desc_drone": "Este espacio, powered by Drone Innovators Forum, está dedicado a las soluciones aéreas y autónomas que están redefiniendo la operación, inspección y monitoreo industrial. Reúne soluciones de drones, robótica, movilidad aérea avanzada, sistemas de captura de datos, mapeo y modelado 3D, monitoreo ambiental, seguridad perimetral, logística autónoma, sensores especializados e inteligencia artificial aplicada. Esta sección promueve el uso de tecnologías que transforman los datos capturados en información estratégica, permitiendo a las empresas optimizar operaciones, incrementar la eficiencia, reducir riesgos y tomar decisiones más informadas en entornos industriales complejos."
+  },
+  "conferencias": {
+    "hero": {
+      "label": "STE 2026 · PROGRAMA EDUCATIVO",
+      "desc_bold": "¡CON 2026 es tu oportunidad para explorar tendencias globales, innovación tecnológica y nuevos modelos de negocio",
+      "desc_rest": "— conecta con los líderes que están transformando el futuro de la industria.",
+      "title": "Dos\nexperiencias,\nun mismo\nevento",
+      "sub": "Desde conferencias estratégicas hasta talleres técnicos de aplicación real en entornos productivos e industriales."
+    },
+    "scenarios": {
+      "label_insights": "ESCENARIO PRINCIPAL",
+      "label_skills": "TALLERES PRÁCTICOS",
+      "desc_insights": "Contenido estratégico para líderes que impulsan el rumbo de la industria. Conferencias magistrales y paneles de discusión que analizan las fuerzas redefiniendo los mercados, la innovación y el futuro de los negocios.",
+      "desc_skills": "Aprendizaje práctico y aplicación real de la tecnología. Capacitaciones para desarrollar habilidades técnicas, conocer herramientas clave y profundizar en soluciones aplicables a entornos productivos.",
+      "bullet_insights": "CONFERENCIAS MAGISTRALES - PANELES DE DISCUSIÓN",
+      "bullet_skills": "CUPO LIMITADO - REGISTRO PREVIO REQUERIDO"
     }
+  }
 }

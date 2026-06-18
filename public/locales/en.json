@@ -800,5 +800,22 @@
     "desc_seguridad": "This space focuses on protecting both people and the physical and digital assets of industrial organizations. It includes functional safety technologies, machine protection devices, access control systems, safety sensors, regulatory compliance, industrial cybersecurity, OT network protection, risk management, critical infrastructure monitoring, and solutions to ensure safe, reliable operations aligned with international standards.",
     "desc_software": "This space connects the digital platforms that enable efficient management, supervision, and integration of industrial operations. It brings together MES, SCADA, HMI, industrial ERP, IoT platforms, data analytics and visualization software, systems integration, cloud computing, edge computing, energy management, and interoperability tools — enabling real-time, data-driven decision making.",
     "desc_drone": "This space, powered by the Drone Innovators Forum, is dedicated to aerial and autonomous solutions that are redefining industrial operations, inspection, and monitoring. It brings together solutions from drones, robotics, advanced aerial mobility, data capture systems, 3D mapping and modeling, environmental monitoring, perimeter security, autonomous logistics, specialized sensors, and applied artificial intelligence. This section promotes the use of technologies that transform captured data into strategic information, enabling companies to optimize operations, increase efficiency, reduce risks, and make more informed decisions in complex industrial environments."
+  },
+  "conferencias": {
+    "hero": {
+      "label": "STE 2026 · EDUCATIONAL PROGRAM",
+      "desc_bold": "CON 2026 is your opportunity to explore global trends, technological innovation and new business models",
+      "desc_rest": "— connect with the leaders transforming the future of industry.",
+      "title": "Two\nexperiences,\none single\nevent",
+      "sub": "From strategic conferences to hands-on technical workshops with real applications in productive and industrial environments."
+    },
+    "scenarios": {
+      "label_insights": "MAIN STAGE",
+      "label_skills": "PRACTICAL WORKSHOPS",
+      "desc_insights": "Strategic content for leaders driving the direction of the industry. Keynote conferences and discussion panels analyzing the forces redefining markets, innovation and the future of business.",
+      "desc_skills": "Hands-on learning and real application of technology. Training sessions to develop technical skills, discover key tools and dive deep into solutions applicable to productive environments.",
+      "bullet_insights": "KEYNOTE CONFERENCES - DISCUSSION PANELS",
+      "bullet_skills": "LIMITED SPOTS - PRIOR REGISTRATION REQUIRED"
+    }
   }
 }
