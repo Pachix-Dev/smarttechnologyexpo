@@ -1,6 +1,7 @@
 const email_template_ecomondo_eng = async ({   name,   paternSurname,   maternSurname = "" }) => {
   return `
-       <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#e9e9e9; margin:0; padding:0px 0px;">
+       
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#e9e9e9; margin:0; padding:0px 0px;">
     <tr>
       <td align="center">
 
@@ -165,37 +166,103 @@ const email_template_ecomondo_eng = async ({   name,   paternSurname,   maternSu
             </td>
           </tr>
 
-          <!-- Sección de imágenes anexas (2da imagen) -->
+          <!-- Sección de eventos simultáneos -->
           <tr>
-            <td align="center" align="center" style="padding:0;" >
-              <a href="https://smarttechnologyexpo.mx/" target="_blank" style="text-decoration:none;">
-                <img src="https://smarttechnologyexpo.mx/item_conferencias_en.jpg" alt="Programa de Conferencias" width="600" style="display:block; width:100%; max-width:600px; border:0;" />
-              </a>
+            <td align="center" style="padding:0 30px 20px 30px;">
+              <table role="presentation" width="540" border="0" cellspacing="0" cellpadding="0"
+                style="width:540px; max-width:540px; border-collapse:collapse;">
+                <!-- Fila 1 -->
+                <tr>
+                  <td width="266" align="center" valign="top"
+                    style="width:266px; padding:0; font-size:0; line-height:0;">
+                    <a href="https://smarttechnologyexpo.mx/en/" target="_blank"
+                      style="display:block; text-decoration:none;">
+                      <img src="https://smarttechnologyexpo.mx/conferencias_en.jpg" alt="Conference Program" width="266" border="0"
+                        style="display:block; width:266px; max-width:266px; height:auto; border:0; outline:none; text-decoration:none;" />
+                    </a>
+                  </td>
 
-              <a href="https://smarttechnologyexpo.mx/" target="_blank" style="text-decoration:none;">
-                <img src="https://smarttechnologyexpo.mx/item_mujeres_en.jpg" alt="W 2026" width="600" style="display:block; width:100%; max-width:600px; border:0; padding-top: 5px;" />
-              </a>
+                  <!-- Espacio entre columnas -->
+                  <td width="8" style="width:8px; padding:0; font-size:0; line-height:0;">
+                    &nbsp;
+                  </td>
 
-              <a href="https://smarttechnologyexpo.mx/drones/" target="_blank" style="text-decoration:none;">
-                <img src="https://smarttechnologyexpo.mx/item_drones_en.jpg" alt="Drones" width="600" style="display:block; width:100%; max-width:600px; border:0; padding-top: 5px;" />
-              </a>
+                  <td width="266" align="center" valign="top"
+                    style="width:266px; padding:0; font-size:0; line-height:0;">
+                    <a href="https://smarttechnologyexpo.mx/en/" target="_blank"
+                      style="display:block; text-decoration:none;">
+                      <img src="https://smarttechnologyexpo.mx/mujeres_en.jpg" alt="Women in Technology" width="266" border="0"
+                        style="display:block; width:266px; max-width:266px; height:auto; border:0; outline:none; text-decoration:none;" />
+                    </a>
+                  </td>
+                </tr>
 
-              <a href="https://smarttechnologyexpo.mx/files/PLANO_STE_2026_11_06_2026.pdf" target="_blank" style="text-decoration:none;">
-                <img src="https://smarttechnologyexpo.mx/item_plano_en.jpg" alt="Plano" width="600" style="display:block; width:100%; max-width:600px; border:0; padding-top: 5px;" />
-              </a>
+                <!-- Espacio entre filas -->
+                <tr>
+                  <td colspan="3" height="8" style="height:8px; padding:0; font-size:0; line-height:0;">
+                    &nbsp;
+                  </td>
+                </tr>
 
-              <a href="https://smarttechnologyexpo.mx/tarifas-hoteles-2026/" target="_blank" style="text-decoration:none;">
-                <img src="https://smarttechnologyexpo.mx/item_hoteles_en.jpg" alt="Hoteles" width="600" style="display:block; width:100%; max-width:600px; border:0; padding-top: 5px;" />
-              </a>
+                <!-- Fila 2 -->
+                <tr>
+                  <td width="266" align="center" valign="top"
+                    style="width:266px; padding:0; font-size:0; line-height:0;">
+                    <a href="https://smarttechnologyexpo.mx/en/" target="_blank"
+                      style="display:block; text-decoration:none;">
+                      <img src="https://smarttechnologyexpo.mx/cursos_talleres_en.jpg" alt="Courses and Workshops" width="266" border="0"
+                        style="display:block; width:266px; max-width:266px; height:auto; border:0; outline:none; text-decoration:none;" />
+                    </a>
+                  </td>
 
-              <a href="https://igeco.mx/" target="_blank" style="text-decoration:none;">
-                <img src="https://smarttechnologyexpo.mx/item_eventos_en.jpg" alt="Otros Eventos" width="600" style="display:block; width:100%; max-width:600px; border:0; padding-top: 5px;" />
-              </a>
+                  <!-- Espacio entre columnas -->
+                  <td width="8" style="width:8px; padding:0; font-size:0; line-height:0;">
+                    &nbsp;
+                  </td>
 
-              <a href="https://smarttechnologyexpo.mx/premio-itzamna-2026/" target="_blank" style="text-decoration:none;">
-                <img src="https://smarttechnologyexpo.mx/item_premio_es.jpg" alt="Premio Itzamná 2026" width="600" style="display:block; width:100%; max-width:600px; border:0; padding-top: 5px;" />
-              </a>
+                  <td width="266" align="center" valign="top"
+                    style="width:266px; padding:0; font-size:0; line-height:0;">
+                    <a href="https://smarttechnologyexpo.mx/en/premio-itzamna-2026/" target="_blank"
+                      style="display:block; text-decoration:none;">
+                      <img src="https://smarttechnologyexpo.mx/premio_itzamna_en.jpg" alt="Exhibition Plan" width="266" border="0"
+                        style="display:block; width:266px; max-width:266px; height:auto; border:0; outline:none; text-decoration:none;" />
+                    </a>
+                  </td>
+                </tr>
 
+                <!-- Espacio entre filas -->
+                <tr>
+                  <td colspan="3" height="8" style="height:8px; padding:0; font-size:0; line-height:0;">
+                    &nbsp;
+                  </td>
+                </tr>
+
+                <!-- Fila 3 -->
+                <tr>
+                  <td width="266" align="center" valign="top"
+                    style="width:266px; padding:0; font-size:0; line-height:0;">
+                    <a href="https://smarttechnologyexpo.mx/en/tarifas-hoteles-2026/" target="_blank"
+                      style="display:block; text-decoration:none;">
+                      <img src="https://smarttechnologyexpo.mx/hoteles_en.jpg" alt="Hotels" width="266" border="0"
+                        style="display:block; width:266px; max-width:266px; height:auto; border:0; outline:none; text-decoration:none;" />
+                    </a>
+                  </td>
+
+                  <!-- Espacio entre columnas -->
+                  <td width="8" style="width:8px; padding:0; font-size:0; line-height:0;">
+                    &nbsp;
+                  </td>
+
+                  <td width="266" align="center" valign="top"
+                    style="width:266px; padding:0; font-size:0; line-height:0;">
+                    <a href="https://igeco.mx/en/" target="_blank"
+                      style="display:block; text-decoration:none;">
+                      <img src="https://smarttechnologyexpo.mx/otros_eventos_en.jpg" alt="Other Events" width="266" border="0"
+                        style="display:block; width:266px; max-width:266px; height:auto; border:0; outline:none; text-decoration:none;" />
+                    </a>
+                  </td>
+                </tr>
+              </table>
             </td>
           </tr>
 
@@ -268,6 +335,7 @@ const email_template_ecomondo_eng = async ({   name,   paternSurname,   maternSu
       </td>
     </tr>
   </table>
+  
       `;
 };
 
