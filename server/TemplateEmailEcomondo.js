@@ -315,7 +315,7 @@ const email_template_ecomondo = async ({
             <td style="padding:0 40px 30px 40px;">
               <div style="font-size:14px; line-height:1.7; color:#333333;">
                 <ul style="margin:0; padding-left:18px;">
-                  <li><strong>IMPORTANTE:</strong> Es indispensable llevar tu pre-registro impreso o en formato digital para agilizar tu acceso al evento.</li>
+                  <li><strong>IMPORTANTE:</strong> Es indispensable llevar tu prerregistro impreso o en formato digital para agilizar tu acceso al evento.</li>
                   <li>Recuerda llevar tu credencial oficial de empresa o negocio para verificar tus datos.</li>
                   <li>Tu acceso es único e intransferible y debe estar visible durante toda tu visita.</li>
                 </ul>

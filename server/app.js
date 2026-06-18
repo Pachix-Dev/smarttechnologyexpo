@@ -648,13 +648,13 @@ async function sendEmailEcomondo(data, pdfAtch = null, paypal_id_transaction = n
         await resend.emails.send({
             from: 'SMART TECHNOLOGY EXPO 2026 <noreply@smarttechnologyexpo.mx>',
             to: data.email,
-            subject: 'Confirmación de pre registro SMART TECHNOLOGY EXPO 2026',
+            subject: 'CONFIRMACIÓN DE PRERREGISTRO - SMART TECHNOLOGY EXPO 2026',
             html: emailContent,
             attachments: [
                 {
                     filename: `${paypal_id_transaction}.pdf`,
                     path: `https://smarttechnologyexpo.mx/invoices/${paypal_id_transaction}.pdf`,
-                    content_type: 'application/pdf'
+                    content_type: 'application/pdf'         
                 },
               ],           
         })
@@ -668,7 +668,7 @@ async function sendEmailEcomondo(data, pdfAtch = null, paypal_id_transaction = n
         console.log(err);
         return {
             status: false,
-            message: 'No pudimos enviarte el correo de confirmación de tu registro, por favor descarga tu registro en este pagina y presentalo hasta el dia del evento...'
+            message: 'No pudimos enviarte el correo de confirmación de tu prerregistro, por favor descarga tu prerregistro en esta página y preséntalo hasta el día del evento...'
         };              
     }    
 }
@@ -681,7 +681,7 @@ async function sendEmailEcomondo_student(data, pdfAtch = null, paypal_id_transac
         await resend.emails.send({
             from: 'SMART TECHNOLOGY EXPO 2026 <noreply@smarttechnologyexpo.mx>',
             to: data.email,
-            subject: 'Confirmación de pre registro SMART TECHNOLOGY EXPO 2026',
+            subject: 'CONFIRMACIÓN DE PRERREGISTRO - SMART TECHNOLOGY EXPO 2026',
             html: emailContent,
             attachments: [
                 {
@@ -701,7 +701,7 @@ async function sendEmailEcomondo_student(data, pdfAtch = null, paypal_id_transac
         console.log(err);
         return {
             status: false,
-            message: 'No pudimos enviarte el correo de confirmación de tu registro, por favor descarga tu registro en este pagina y presentalo hasta el dia del evento...'
+            message: 'No pudimos enviarte el correo de confirmación de tu prerregistro, por favor descarga tu prerregistro en esta página y preséntalo hasta el día del evento...'
         };              
     }    
 }
