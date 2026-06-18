@@ -1,14 +1,23 @@
 import { useRegisterForm } from '../../store/register-form.js'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 
-export function Redirect() {
-  const { complete_register } = useRegisterForm()
+export function Redirect({ homePath = '/' }) {
+  const { complete_register, setCompleteRegister } = useRegisterForm()
+  const hasAllowedAccess = useRef(false)
 
   useEffect(() => {
-    if (complete_register !== true) {
-      window.location.href = '/'
+    if (hasAllowedAccess.current) {
+      return
     }
-  }, [complete_register])
+
+    if (complete_register !== true) {
+      window.location.replace(homePath)
+      return
+    }
+
+    hasAllowedAccess.current = true
+    setCompleteRegister(false)
+  }, [complete_register, homePath, setCompleteRegister])
 
   return <></>
 }

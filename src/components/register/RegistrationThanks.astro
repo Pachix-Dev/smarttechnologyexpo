@@ -21,7 +21,7 @@ const tr = (key: string, fallback: string = "") =>
   >
   </div>
 
-  <Redirect client:only="react" />
+  <Redirect client:only="react" homePath={locale === "en" ? "/en/" : "/"} />
 
   <div class="relative z-10 mx-auto grid w-full max-w-6xl items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
     <div class="text-center lg:text-left">

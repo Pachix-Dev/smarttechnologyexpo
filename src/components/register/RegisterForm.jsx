@@ -7,6 +7,7 @@ import { PrivacyNoticeAcceptance } from './PrivacyNoticeAcceptance'
 import 'react-phone-number-input/style.css'
 import './Form.css'
 import { useEffect, useState } from 'react'
+import { flushSync } from 'react-dom'
 
 export function RegisterForm({ translates, currentLanguage }) {
   const {
@@ -166,6 +167,18 @@ export function RegisterForm({ translates, currentLanguage }) {
 
   const [message, setMessage] = useState('')
   const [processing, setProcessing] = useState(false)
+
+  useEffect(() => {
+    const resetProcessingOnRestore = () => {
+      setProcessing(false)
+    }
+
+    window.addEventListener('pageshow', resetProcessingOnRestore)
+
+    return () => {
+      window.removeEventListener('pageshow', resetProcessingOnRestore)
+    }
+  })
 
   const options = [
     {
@@ -348,9 +361,13 @@ export function RegisterForm({ translates, currentLanguage }) {
       clear()
       setCompleteRegister(true)
       setInvoiceDownToLoad(orderData?.invoice)
-      currentLanguage === 'es'
-        ? (window.location.href = '/gracias-por-registrarte')
-        : (window.location.href = '/en/gracias-por-registrarte')
+
+      flushSync(() => {// Aseguramos que el estado se actualice antes de redirigir
+        setProcessing(false)
+      })
+      const thankYouPath = currentLanguage === 'es' ? '/gracias-por-registrarte' : '/en/gracias-por-registrarte'
+      window.location.replace(thankYouPath)
+
     } else {
       setProcessing(false)
       setMessage(orderData?.message)
