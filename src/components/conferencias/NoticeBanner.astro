@@ -1,0 +1,145 @@
+---
+// src/components/conferencias/NoticeBanner.astro
+import { useTranslations, getTranslation } from '../../utils/translations'
+
+export interface Props {
+  locale?: string
+}
+
+const { locale, translations } = await useTranslations(Astro.props, Astro)
+const tr = (key: string, fallback: string = '') =>
+  getTranslation(translations, key, fallback)
+---
+
+<section class="nb-section">
+  <div class="nb-card" data-aos="fade-up" data-aos-duration="800">
+
+    <h2 class="nb-title">{tr('conferencias.banner.title', 'Agenda de Conferencias')}</h2>
+
+    <p class="nb-subtitle">
+      {tr('conferencias.banner.subtitle', 'Mantente pendiente y descubre las tendencias que están transformando la industria tecnológica.')}
+    </p>
+
+    <div class="nb-bullet">
+      <span class="nb-dot"></span>
+      <span class="nb-cta">{tr('conferencias.banner.cta', 'PRÓXIMAMENTE MÁS INFORMACIÓN')}</span>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .nb-section {
+    width: 100%;
+    background: #ffffff;
+    padding: 3rem 3rem;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Card oscura centrada con bordes redondeados */
+  .nb-card {
+    width: 100%;
+    max-width: 820px;
+    background: #141414;
+    border-radius: 4px;
+    padding: 3rem 4rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  /* Título con neon blanco */
+  .nb-title {
+    font-family: "Montserrat", sans-serif;
+    font-size: clamp(3rem, 3.5vw, 2.6rem);
+    font-weight: 800;
+    color: #fff;
+    margin: 0;
+    letter-spacing: -0.01em;
+    text-shadow:
+      0 0 10px rgba(255, 255, 255, 0.9),
+      0 0 25px rgba(255, 255, 255, 0.5),
+      0 0 50px rgba(255, 255, 255, 0.2);
+  }
+
+  .nb-subtitle {
+    font-family: "Montserrat", sans-serif;
+    font-size: clamp(1.35rem, 1.5vw, 1rem);
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.55);
+    margin: 0;
+    line-height: 1.4;
+    max-width: 520px;
+  }
+
+  .nb-bullet {
+    display: flex;
+    align-items: center;
+    gap: 0.9em;
+    margin-top: 0.25rem;
+  }
+
+  /* Punto blanco con parpadeo */
+  .nb-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ffffff;
+    flex-shrink: 0;
+    animation: nb-flicker 2.4s infinite;
+    box-shadow:
+      0 0 4px  rgba(255, 255, 255, 1),
+      0 0 10px rgba(255, 255, 255, 0.8),
+      0 0 20px rgba(255, 255, 255, 0.4);
+  }
+
+  @keyframes nb-flicker {
+    0%   { opacity: 1; box-shadow: 0 0 4px rgba(255,255,255,1), 0 0 10px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.4); }
+    8%   { opacity: 0.2; box-shadow: none; }
+    10%  { opacity: 1; box-shadow: 0 0 4px rgba(255,255,255,1), 0 0 10px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.4); }
+    14%  { opacity: 0.1; box-shadow: none; }
+    16%  { opacity: 1; box-shadow: 0 0 4px rgba(255,255,255,1), 0 0 10px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.4); }
+    60%  { opacity: 1; box-shadow: 0 0 4px rgba(255,255,255,1), 0 0 10px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.4); }
+    62%  { opacity: 0.3; box-shadow: none; }
+    64%  { opacity: 1; box-shadow: 0 0 4px rgba(255,255,255,1), 0 0 10px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.4); }
+    100% { opacity: 1; box-shadow: 0 0 4px rgba(255,255,255,1), 0 0 10px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.4); }
+  }
+
+  .nb-cta {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.18rem;
+    font-weight: 800;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.315em;
+    line-height: 1.4;
+  }
+
+  /* ── TABLET ───────────────────────────────────────────────────── */
+  @media (max-width: 1024px) {
+    .nb-section { padding: 2.5rem 2rem; }
+    .nb-card    { padding: 2.5rem 3rem; }
+  }
+
+  /* ── MOBILE ───────────────────────────────────────────────────── */
+  @media (max-width: 768px) {
+    .nb-section { padding: 2rem 1.25rem; }
+    .nb-card    { padding: 2rem 1.75rem; border-radius: 12px; }
+    .nb-title   { font-size: clamp(1.4rem, 6vw, 1.9rem); }
+    .nb-subtitle{ font-size: 0.82rem; }
+    .nb-cta     { font-size: 0.68rem; }
+  }
+
+  @media (max-width: 480px) {
+    .nb-section { padding: 1.5rem 1rem; }
+    .nb-card    { padding: 1.75rem 1.25rem; }
+    .nb-title   { font-size: clamp(1.2rem, 7vw, 1.6rem); }
+    .nb-cta     { font-size: 0.6rem; letter-spacing: 0.1em; }
+  }
+</style>

@@ -195,12 +195,12 @@ const tr = (key: string, fallback: string = '') =>
   }
 
   .ds-dot {
-    width: 7px;
-    height: 7px;
+    width: 11px;
+    height: 11px;
     border-radius: 50%;
     background: #fff;
     flex-shrink: 0;
-    margin-top: 4px;
+    margin-top: 11px;
     animation: ds-flicker 2.4s infinite;
     box-shadow:
       0 0 4px  rgba(255,255,255,1),
@@ -222,7 +222,7 @@ const tr = (key: string, fallback: string = '') =>
 
   .ds-bullet span:last-child {
     font-family: "Montserrat", sans-serif;
-    font-size: 0.75rem;
+    font-size: 1.27rem;
     font-weight: 800;
     color: #fff;
     text-transform: uppercase;
@@ -239,10 +239,12 @@ const tr = (key: string, fallback: string = '') =>
     .ds-card  { padding: 2rem 1.75rem; min-height: auto; gap: 0.75rem; }
     .ds-title--white,
     .ds-title--muted,
-    .ds-title--dark-red { font-size: clamp(2.8rem, 4.5vw, 4.5rem); }
-    .ds-desc    { font-size: 15px; }
-    /* bullet pegado al texto — sin margin-top auto */
+    .ds-title--dark-red { font-size: clamp(4rem, 4.5vw, 4.5rem); }
+    .ds-label  { font-size: 1.3rem; }
+    .ds-desc    { font-size: 20px; }
+    .ds-dot    { width: 9px; height: 9px; margin-top: 9px; }
     .ds-bullet  { margin-top: 0.5rem; }
+    .ds-bullet span:last-child { font-size: 1.2rem; }
     .ds-dots    { width: 300px; }
   }
 
@@ -296,11 +298,11 @@ const tr = (key: string, fallback: string = '') =>
     .ds-title--white,
     .ds-title--muted,
     .ds-title--dark-red { font-size: clamp(1.6rem, 3.5vw, 1.5rem); }
-    .ds-label  { font-size: 0.37rem; }
-    .ds-desc   { font-size: 6.5px; max-width: 76%; }
-    .ds-dot    { width: 4px; height: 4px; margin-top: 3px; }
+    .ds-label  { font-size: 0.6rem; }
+    .ds-desc   { font-size: 9.5px; max-width: 84%; }
+    .ds-dot    { width: 4px; height: 4px; margin-top: 4.5px; }
     .ds-bullet { margin-top: 0.25rem; }
-    .ds-bullet span:last-child { font-size: 0.37rem; }
+    .ds-bullet span:last-child { font-size: 0.5rem; }
     .ds-dots   { width: 65px; }
   }
 </style>
