@@ -175,7 +175,7 @@ const email_template_ecomondo_eng = async ({   name,   paternSurname,   maternSu
                 <tr>
                   <td width="266" align="center" valign="top"
                     style="width:266px; padding:0; font-size:0; line-height:0;">
-                    <a href="https://smarttechnologyexpo.mx/en/" target="_blank"
+                    <a href="https://smarttechnologyexpo.mx/en/conferencias/" target="_blank"
                       style="display:block; text-decoration:none;">
                       <img src="https://smarttechnologyexpo.mx/conferencias_en.jpg" alt="Conference Program" width="266" border="0"
                         style="display:block; width:266px; max-width:266px; height:auto; border:0; outline:none; text-decoration:none;" />
