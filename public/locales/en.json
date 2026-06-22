@@ -671,13 +671,13 @@
       "SMART MANUFACTURING",
       "MOTION CONTROL AND DRIVE SYSTEMS",
       "ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING IN AUTOMATION",
-      "LOGISTICS, INTRALOGISTICS AND WAREHOUSE AUTOMATION",
+      "LOGISTICS, MATERIAL HANDLING AND WAREHOUSE AUTOMATION",
       "INDUSTRIAL SAFETY, CYBERSECURITY AND STANDARDS",
       "AUTOMATION AND SYSTEM INTEGRATION SOFTWARE",
       "DRONES",
       "DIGITAL FACTORY",
-      "RESEARCH AND DEVELOPMENT",
-      "MATERIAL HANDLING"
+      "SMART LOGISTICS",
+      "RESEARCH AND DEVELOPMENT"
     ],
     "spectacular": "SPECTACULAR",
     "webpage": "WEBPAGE",
@@ -858,10 +858,13 @@
       "card6_f2": "Circular economy",
       "card6_f3": "Corporate responsibility",
       "card6_f4": "Environmental compliance and ESG"
+    },
+    "contact": {
+      "title": "Questions or comments",
+      "subtitle": "For any questions or clarification, please contact",
+      "name": "Daniela Hernández",
+      "role": "Fringe Programs",
+      "email": "daniela.hernandez@igeco.mx"
     }
-  },
-  "mediaPage": {
-    "title": "Media Accreditation ",
-    "description": "Dear Media Representatives:<br/>We invite interested media outlets to complete the following press registration form to obtain accreditation for coverage of the Smart Technology Expo.<br/>The deadline to apply for accreditation is Friday, November 6, 2026. You will be notified of your accreditation status no later than November 13.<br/>Please note that press accreditation for Smart Technology Expo is granted in two ways: by invitation and through this registration process.<br/>If your media outlet has received an invitation in previous editions to cover events organized by Italian German Exhibition Company Mexico, you will receive this invitation before November 6, 2026.<br/>Please note that Smart Technology Expo is a free event aimed at industry professionals, and anyone interested can attend at no cost by registering as a professional visitor."
   }
 }
