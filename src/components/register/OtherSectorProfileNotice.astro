@@ -1,6 +1,8 @@
 ---
 const { locale = "es" } = Astro.props;
 
+const basePath = locale === "en" ? "/en" : "";
+
 const registrationNotice =
   locale === "en"
     ? {
@@ -71,15 +73,17 @@ const registrationNotice =
         {registrationNotice.question}
       </h3>
       <div class="grid gap-3 sm:grid-cols-2">
-        <button
+        <a href={`${basePath}/medios`} class="block rounded-lg border border-blue-200 bg-blue-50 px-4 py-3 text-left text-xs font-extrabold uppercase tracking-wide text-blue-900 transition hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+          <button
           type="button"
-          class="rounded-lg border border-blue-200 bg-blue-50 px-4 py-3 text-left text-xs font-extrabold uppercase tracking-wide text-blue-900 transition hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+          class=""
           aria-controls="media-notice-panel"
           aria-expanded="false"
           data-notice-trigger="media"
         >
           {registrationNotice.mediaButton}
         </button>
+        </a>
         <button
           type="button"
           class="rounded-lg border border-orange-200 bg-orange-50 px-4 py-3 text-left text-xs font-extrabold uppercase tracking-wide text-orange-900 transition hover:bg-orange-100 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
