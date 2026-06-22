@@ -1,0 +1,206 @@
+---
+// src/components/conferencias/Contact.astro
+import { useTranslations, getTranslation } from '../../utils/translations'
+
+export interface Props {
+  locale?: string
+}
+
+const { locale, translations } = await useTranslations(Astro.props, Astro)
+const tr = (key: string, fallback: string = '') =>
+  getTranslation(translations, key, fallback)
+---
+
+<section class="ct-section">
+
+  <div class="ct-inner" data-aos="fade-up" data-aos-duration="800">
+
+    <div class="ct-header">
+      <h2 class="ct-title">{tr('conferencias.contact.title', 'Dudas o comentarios')}</h2>
+      <p class="ct-subtitle">{tr('conferencias.contact.subtitle', 'Para cualquier duda o aclaración, favor de contactar a')}</p>
+    </div>
+
+    <div class="ct-card">
+      <div class="ct-photo-wrap">
+        <img
+          src="/img/conferencias/daniela_hernandez.webp"
+          alt="Daniela Hernández"
+          class="ct-photo"
+        />
+      </div>
+      <div class="ct-info">
+        <p class="ct-name">{tr('conferencias.contact.name', 'Daniela Hernández')}</p>
+        <p class="ct-role">{tr('conferencias.contact.role', 'Fringe Programs')}</p>
+        <a href={`mailto:${tr('conferencias.contact.email', 'daniela.hernandez@igeco.mx')}`} class="ct-email">
+          {tr('conferencias.contact.email', 'daniela.hernandez@igeco.mx')}
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  /* BG negro igual que DisplayScenarios */
+  .ct-section {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background-color: #000000;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.15) 1px, transparent 1px);
+    background-size: 18px 18px;
+    padding: 5rem 2rem;
+    box-sizing: border-box;
+  }
+
+  .ct-inner {
+    position: relative;
+    z-index: 1;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .ct-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .ct-title {
+    font-family: "Montserrat", sans-serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 800;
+    color: #fff;
+    margin: 0;
+    text-shadow:
+      0 0 10px rgba(255,255,255,0.9),
+      0 0 25px rgba(255,255,255,0.5),
+      0 0 50px rgba(255,255,255,0.2);
+  }
+
+  .ct-subtitle {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.6);
+    margin: 0;
+  }
+
+  /* Card transparente blanca — glassmorphism */
+  .ct-card {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 2.5rem;
+    border-radius: 16px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    padding: 2.5rem 3rem;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .ct-photo-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ct-photo {
+    width: 12rem;
+    height: 12rem;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+    background: #fff;
+    box-shadow:
+      0 0 0 3px rgba(255,255,255,0.15),
+      0 8px 24px rgba(0,0,0,0.3);
+  }
+
+  .ct-info {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 0.2rem;
+  }
+
+  .ct-name {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #fff;
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .ct-role {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.65);
+    margin: 0;
+  }
+
+  .ct-email {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 1rem;
+    border-radius: 8px;
+    background: #fff;
+    padding: 0.55rem 1.25rem;
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    text-decoration: none;
+    transition: background 0.2s;
+    align-self: flex-start;
+  }
+
+  .ct-email:hover { background: rgba(255,255,255,0.88); }
+
+  /* ── TABLET ───────────────────────────────────────────────────── */
+  @media (max-width: 1024px) {
+    .ct-section { padding: 4rem 2rem; }
+    .ct-photo   { width: 10rem; height: 10rem; }
+    .ct-name    { font-size: 1.4rem; }
+    .ct-role    { font-size: 1rem; }
+  }
+
+  /* ── MOBILE ───────────────────────────────────────────────────── */
+  @media (max-width: 640px) {
+    .ct-section { padding: 3rem 1.25rem; }
+
+    .ct-card {
+      grid-template-columns: 1fr;
+      justify-items: center;
+      gap: 1.5rem;
+      padding: 2rem 1.5rem;
+      border-radius: 12px;
+    }
+
+    .ct-info    { align-items: center; text-align: center; }
+    .ct-email   { align-self: center; }
+    .ct-photo   { width: 9rem; height: 9rem; }
+    .ct-title   { font-size: clamp(1.5rem, 6vw, 2rem); }
+    .ct-name    { font-size: 1.25rem; }
+    .ct-role    { font-size: 0.95rem; }
+  }
+
+  @media (max-width: 480px) {
+    .ct-card  { padding: 1.5rem 1rem; }
+    .ct-photo { width: 7.5rem; height: 7.5rem; }
+    .ct-name  { font-size: 1.1rem; }
+    .ct-email { font-size: 0.78rem; }
+  }
+</style>
