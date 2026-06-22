@@ -4,7 +4,7 @@ const { locale = "es" } = Astro.props;
 const registrationNotice =
   locale === "en"
     ? {
-        question: "Other registrations:",
+        question: "Other registrations :",
         studentButton: "STUDENT",
         mediaButton: "MEDIA",
         studentTitle: "Important",
@@ -18,7 +18,7 @@ const registrationNotice =
           "For media inquiries, please contact social.media@igeco.mx.",
       }
     : {
-        question: "Otros registros:",
+        question: "Otros registros :",
         studentButton: "ESTUDIANTE",
         mediaButton: "MEDIO",
         studentTitle: "Importante",
@@ -34,67 +34,90 @@ const registrationNotice =
 ---
 
 <section
-  class="mx-auto mb-6 rounded-lg border border-orange-200 border-l-4 border-l-orange-500 bg-orange-50 p-4 text-left shadow-sm sm:p-4"
+  class="mx-auto mb-6 rounded-lg border border-slate-200 bg-white p-4 text-left shadow-sm"
   aria-labelledby="registration-notice-title"
   data-other-sector-profile-notice
 >
   <div class="flex items-start gap-3">
-    <span class="mt-1 flex size-7 shrink-0 items-center justify-center rounded-full bg-orange-500 text-white">
+    <span
+      class="mt-1 flex size-7 shrink-0 items-center justify-center rounded-full bg-slate-900 text-white"
+    >
       <svg
-        class="size-4"
-        aria-hidden="true"
-        viewBox="0 0 20 20"
-        fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.75"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="icon icon-tabler icons-tabler-outline icon-tabler-edit"
       >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"
+        ></path>
         <path
-          fill-rule="evenodd"
-          d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.515 2.625H3.72c-1.345 0-2.188-1.458-1.515-2.625L8.485 2.495ZM10 5a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 10 5Zm0 8a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"
-          clip-rule="evenodd"
-        />
+          d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415"
+        ></path>
+        <path d="M16 5l3 3"></path>
       </svg>
     </span>
     <div class="w-full space-y-3">
       <h3
         id="registration-notice-title"
-        class="text-sm font-extrabold uppercase tracking-wide text-orange-900 sm:text-base"
+        class="text-sm font-bold uppercase tracking-wide text-slate-900 sm:text-base"
       >
         {registrationNotice.question}
       </h3>
-      <div class="flex flex-col gap-3 sm:flex-row">
+      <div class="grid gap-3 sm:grid-cols-2">
         <button
           type="button"
-          class="rounded-lg bg-orange-500 px-4 py-2 text-xs font-extrabold uppercase tracking-wide text-white transition hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-orange-50"
-          aria-controls="student-notice-panel"
-          aria-expanded="false"
-          data-notice-trigger="student"
-        >
-          {registrationNotice.studentButton}
-        </button>
-        <button
-          type="button"
-          class="rounded-lg border border-orange-400 bg-white px-4 py-2 text-xs font-extrabold uppercase tracking-wide text-orange-900 transition hover:bg-orange-100 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-orange-50"
+          class="rounded-lg border border-blue-200 bg-blue-50 px-4 py-3 text-left text-xs font-extrabold uppercase tracking-wide text-blue-900 transition hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
           aria-controls="media-notice-panel"
           aria-expanded="false"
           data-notice-trigger="media"
         >
           {registrationNotice.mediaButton}
         </button>
+        <button
+          type="button"
+          class="rounded-lg border border-orange-200 bg-orange-50 px-4 py-3 text-left text-xs font-extrabold uppercase tracking-wide text-orange-900 transition hover:bg-orange-100 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+          aria-controls="student-notice-panel"
+          aria-expanded="false"
+          data-notice-trigger="student"
+        >
+          {registrationNotice.studentButton}
+        </button>
       </div>
 
       <div
         id="student-notice-panel"
-        class="hidden rounded-lg border border-orange-200 bg-white p-3"
+        class="hidden rounded-lg border border-orange-200 border-l-4 border-l-orange-500 bg-orange-50 p-3"
         data-notice-panel="student"
       >
-        <h4 class="mb-2 text-sm font-extrabold uppercase tracking-wide text-red-700">
-          {registrationNotice.studentTitle}
-        </h4>
+        <div class="flex flex-row gap-x-2 justify-start items-center">
+          <svg
+            class="mb-2 size-5 text-orange-900"
+            aria-hidden="true"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.515 2.625H3.72c-1.345 0-2.188-1.458-1.515-2.625L8.485 2.495ZM10 5a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 10 5Zm0 8a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"
+              clip-rule="evenodd"></path>
+          </svg>
+          <h4
+            class="mb-2 text-sm font-extrabold uppercase tracking-wide text-orange-900"
+          >
+            {registrationNotice.studentTitle}
+          </h4>
+        </div>
         <div class="space-y-0">
           {
             registrationNotice.studentParagraphs.map((paragraph) => (
-              <p class="text-xs leading-relaxed text-orange-950">
-                {paragraph}
-              </p>
+              <p class="text-xs leading-relaxed text-orange-950">{paragraph}</p>
             ))
           }
         </div>
@@ -102,13 +125,15 @@ const registrationNotice =
 
       <div
         id="media-notice-panel"
-        class="hidden rounded-lg border border-orange-200 bg-white p-3"
+        class="hidden rounded-lg border border-blue-200 border-l-4 border-l-blue-500 bg-blue-50 p-3"
         data-notice-panel="media"
       >
-        <h4 class="mb-2 text-sm font-extrabold uppercase tracking-wide text-orange-900">
+        <h4
+          class="mb-2 text-sm font-extrabold uppercase tracking-wide text-blue-900"
+        >
           {registrationNotice.mediaTitle}
         </h4>
-        <p class="text-xs leading-relaxed text-orange-950">
+        <p class="text-xs leading-relaxed text-blue-950">
           {registrationNotice.mediaParagraph}
         </p>
       </div>
