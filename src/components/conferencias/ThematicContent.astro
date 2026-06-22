@@ -1,0 +1,399 @@
+---
+// src/components/conferencias/ThematicContent.astro
+import { useTranslations, getTranslation } from '../../utils/translations'
+
+export interface Props {
+  locale?: string
+}
+
+const { locale, translations } = await useTranslations(Astro.props, Astro)
+const tr = (key: string, fallback: string = '') =>
+  getTranslation(translations, key, fallback)
+
+const cards = [
+  {
+    id: 'automatizacion',
+    title: tr('conferencias.thematic.card1_title', 'Automatización y robótica avanzada'),
+    icon: '/img/conferencias/icon_automatización.webp',
+    bg: '/img/conferencias/bg_automatización.webp',
+    features: [
+      tr('conferencias.thematic.card1_f1', 'Manufactura inteligente'),
+      tr('conferencias.thematic.card1_f2', 'Robótica industrial'),
+      tr('conferencias.thematic.card1_f3', 'Motion control'),
+      tr('conferencias.thematic.card1_f4', 'Automatización de procesos'),
+      tr('conferencias.thematic.card1_f5', 'Sistemas de control industrial'),
+    ]
+  },
+  {
+    id: 'transformacion',
+    title: tr('conferencias.thematic.card2_title', 'Transformación digital y tecnología'),
+    icon: '/img/conferencias/icon_transformación.webp',
+    bg: '/img/conferencias/bg_transformación.webp',
+    features: [
+      tr('conferencias.thematic.card2_f1', 'Inteligencia artificial'),
+      tr('conferencias.thematic.card2_f2', 'Software de automatización'),
+      tr('conferencias.thematic.card2_f3', 'Integración de sistemas'),
+      tr('conferencias.thematic.card2_f4', 'Ciberseguridad industrial'),
+      tr('conferencias.thematic.card2_f5', 'Digitalización de procesos'),
+    ]
+  },
+  {
+    id: 'tendencias',
+    title: tr('conferencias.thematic.card3_title', 'Tendencias globales'),
+    icon: '/img/conferencias/icon_tendencias.webp',
+    bg: '/img/conferencias/bg_tendencias.webp',
+    features: [
+      tr('conferencias.thematic.card3_f1', 'Nuevos modelos de negocio'),
+      tr('conferencias.thematic.card3_f2', 'Innovación empresarial'),
+      tr('conferencias.thematic.card3_f3', 'Escalabilidad y competitividad'),
+      tr('conferencias.thematic.card3_f4', 'Sostenibilidad'),
+      tr('conferencias.thematic.card3_f5', 'Regulaciones industriales'),
+    ]
+  },
+  {
+    id: 'geopolitica',
+    title: tr('conferencias.thematic.card4_title', 'Geopolítica'),
+    icon: '/img/conferencias/icon_geopolitica.webp',
+    bg: '/img/conferencias/bg_geopolitica.webp',
+    features: [
+      tr('conferencias.thematic.card4_f1', 'Comercio global'),
+      tr('conferencias.thematic.card4_f2', 'Cadenas de suministro'),
+      tr('conferencias.thematic.card4_f3', 'Reconfiguración de mercados'),
+      tr('conferencias.thematic.card4_f4', 'Riesgos y oportunidades para la industria'),
+    ]
+  },
+  {
+    id: 'gobernanza',
+    title: tr('conferencias.thematic.card5_title', 'Gobernanza, normatividad y mejores prácticas'),
+    icon: '/img/conferencias/icon_gobernanza.webp',
+    bg: '/img/conferencias/bg_gobernanza.webp',
+    features: [
+      tr('conferencias.thematic.card5_f1', 'Cumplimiento regulatorio'),
+      tr('conferencias.thematic.card5_f2', 'Estándares internacionales'),
+      tr('conferencias.thematic.card5_f3', 'Certificaciones industriales'),
+      tr('conferencias.thematic.card5_f4', 'Excelencia operativa'),
+      tr('conferencias.thematic.card5_f5', 'Gobierno corporativo'),
+    ]
+  },
+  {
+    id: 'sostenibilidad',
+    title: tr('conferencias.thematic.card6_title', 'Sostenibilidad e impacto industrial'),
+    icon: '/img/conferencias/icon_sostenibilidad.webp',
+    bg: '/img/conferencias/bg_sostenibilidad.webp',
+    features: [
+      tr('conferencias.thematic.card6_f1', 'Eficiencia y descarbonización'),
+      tr('conferencias.thematic.card6_f2', 'Economía circular'),
+      tr('conferencias.thematic.card6_f3', 'Responsabilidad empresarial'),
+      tr('conferencias.thematic.card6_f4', 'Cumplimiento ambiental y ESG'),
+    ]
+  },
+]
+---
+
+<section class="tc-section">
+
+  <img src="/img/conferencias/puntos_superior_izquierda.webp" class="tc-dots tc-dots--top-left" alt="" aria-hidden="true" />
+  <img src="/img/conferencias/puntos_inferior_derecha.webp" class="tc-dots tc-dots--bottom-right" alt="" aria-hidden="true" />
+
+  <div class="tc-header" data-aos="fade-up" data-aos-duration="800">
+    <h2 class="tc-title">{tr('conferencias.thematic.title', 'Contenido Temático')}</h2>
+  </div>
+
+  <div class="tc-grid">
+    {cards.map((card, i) => (
+      <div
+        class="tc-card"
+        data-aos="fade-up"
+        data-aos-duration="700"
+        data-aos-delay={`${i * 80}`}
+      >
+        <img src={card.bg} alt="" class={`tc-bg${card.id === 'automatizacion' ? ' tc-bg--automatizacion' : ''}`} aria-hidden="true" />
+        <div class="tc-overlay"></div>
+
+        <div class="tc-front">
+          <div class="tc-icon-wrap">
+            <img src={card.icon} alt={card.title} class="tc-icon" />
+          </div>
+          <span class="tc-card-title">{card.title}</span>
+          <span class="tc-arrow">→</span>
+        </div>
+
+        <div class="tc-panel">
+          <span class="tc-panel-title">{card.title}</span>
+          <ul class="tc-features">
+            {card.features.map(f => (
+              <li class="tc-feature">
+                <span class="tc-feature-dot"></span>
+                <span>{f}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+      </div>
+    ))}
+  </div>
+
+</section>
+
+<style>
+  .tc-section {
+    width: 100%;
+    background-color: #000;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px);
+    background-size: 18px 18px;
+    padding: 1rem 3rem 3rem 3rem;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tc-dots {
+    position: absolute;
+    width: 320px;
+    height: auto;
+    pointer-events: none;
+    z-index: 0;
+    display: block;
+  }
+  .tc-dots--top-left     { top: 0; left: 0; }
+  .tc-dots--bottom-right { bottom: 0; right: 0; }
+
+  .tc-header {
+    text-align: center;
+    margin-bottom: 2em;
+    position: relative;
+    z-index: 1;
+  }
+
+  .tc-title {
+    font-family: "Montserrat", sans-serif;
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    font-weight: 800;
+    color: #fff;
+    margin: 0;
+    text-shadow:
+      0 0 10px rgba(255,255,255,0.9),
+      0 0 25px rgba(255,255,255,0.5),
+      0 0 50px rgba(255,255,255,0.2);
+  }
+
+  .tc-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1rem;
+    max-width: 1280px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .tc-card {
+    position: relative;
+    aspect-ratio: 3 / 4;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    background: #1a1a1a;
+  }
+
+  .tc-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 0;
+    transition: transform 0.4s ease;
+  }
+
+  .tc-bg--automatizacion { object-position: left center; }
+  .tc-card:hover .tc-bg  { transform: scale(1.06); }
+
+  .tc-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(0,0,0,0.92) 0%,
+      rgba(0,0,0,0.50) 45%,
+      rgba(0,0,0,0.18) 100%
+    );
+    z-index: 1;
+    transition: background 0.4s ease;
+  }
+
+  .tc-card:hover .tc-overlay { background: rgba(0,0,0,0.75); }
+
+  /* FRENTE: grid 3 filas — ícono / título / flecha */
+  .tc-front {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: grid;
+    grid-template-rows: 1fr auto auto;
+    align-items: center;
+    justify-items: center;
+    padding: 1rem 0.75rem;
+    box-sizing: border-box;
+    text-align: center;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .tc-card:hover .tc-front {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  .tc-icon-wrap {
+    width: 90px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+  }
+
+  .tc-icon {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+  }
+
+  .tc-card-title {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.3;
+    text-align: center;
+    width: 100%;
+  }
+
+  .tc-arrow {
+    font-size: 1.8rem;
+    color: #fff;
+    font-weight: 300;
+    display: block;
+    text-align: center;
+    width: 100%;
+    padding-bottom: 0.25rem;
+  }
+
+  /* Panel slide-up */
+  .tc-panel {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem;
+    box-sizing: border-box;
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(0,0,0,0.88);
+    overflow: hidden;
+  }
+
+  .tc-card:hover .tc-panel { transform: translateY(0); }
+
+  .tc-panel-title {
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.6rem;
+    font-weight: 800;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    display: block;
+    line-height: 1.3;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+    padding-bottom: 0.4rem;
+    flex-shrink: 0;
+  }
+
+  .tc-features {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    overflow: hidden;
+  }
+
+  .tc-feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.4rem;
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.03rem;
+    font-weight: 400;
+    color: rgba(255,255,255,0.9);
+    line-height: 1.15;
+  }
+
+  .tc-feature-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #db0c15;
+    flex-shrink: 0;
+    margin-top: 3px;
+  }
+
+  /* ── TABLET GRANDE 820–1024px ────────────────────────────────── */
+  @media (max-width: 1024px) and (min-width: 820px) {
+    .tc-section    { padding: 1rem 2rem 2.5rem; }
+    .tc-grid       { grid-template-columns: repeat(3, 1fr); max-width: 750px; gap: 0.75rem; }
+    .tc-card       { aspect-ratio: 1 / 1; }
+    .tc-icon-wrap  { width: 60px; height: 60px; }
+    .tc-card-title { font-size: 0.85rem; }
+    .tc-feature    { font-size: 0.8rem; }
+    .tc-arrow      { font-size: 1.2rem; }
+    .tc-panel-title{ font-size: 0.55rem; }
+    .tc-dots       { width: 200px; }
+  }
+
+  /* ── TABLET MEDIA 769–819px ───────────────────────────────────── */
+  @media (max-width: 819px) and (min-width: 769px) {
+    .tc-section    { padding: 1rem 1.5rem 2rem; }
+    .tc-grid       { grid-template-columns: repeat(3, 1fr); max-width: 680px; gap: 0.65rem; }
+    .tc-card       { aspect-ratio: 1 / 1; }
+    .tc-icon-wrap  { width: 50px; height: 50px; }
+    .tc-card-title { font-size: 0.8rem; }
+    .tc-feature    { font-size: 0.75rem; }
+    .tc-arrow      { font-size: 1.1rem; }
+    .tc-panel-title{ font-size: 0.52rem; }
+    .tc-dots       { width: 160px; }
+  }
+
+  /* ── MOBILE ≤768px ────────────────────────────────────────────── */
+  @media (max-width: 768px) {
+    .tc-section    { padding: 1rem 0.75rem 1.5rem; }
+    .tc-grid       { grid-template-columns: repeat(2, 1fr); max-width: 480px; margin: 0 auto; gap: 0.5rem; }
+    .tc-title      { font-size: clamp(1.6rem, 5vw, 2rem); }
+    .tc-header     { margin-bottom: 1rem; }
+    .tc-dots       { width: 110px; }
+    .tc-card       { aspect-ratio: 1 / 1; }
+    .tc-icon-wrap  { width: 15vw; height: 15vw; max-width: 70px; max-height: 70px; }
+    .tc-card-title { font-size: clamp(0.75rem, 3vw, 1rem); }
+    .tc-arrow      { font-size: clamp(1rem, 3.5vw, 1.4rem); }
+    .tc-feature    { font-size: clamp(0.7rem, 2.8vw, 0.9rem); }
+    .tc-panel-title{ font-size: clamp(0.45rem, 1.8vw, 0.58rem); }
+    .tc-front      { padding: 0.65rem 0.5rem; }
+    .tc-panel      { padding: 0.65rem; gap: 0.3rem; }
+  }
+
+  /* ── MOBILE PEQUEÑO ≤480px ────────────────────────────────────── */
+  @media (max-width: 480px) {
+    .tc-grid       { max-width: 400px; gap: 0.4rem; }
+    .tc-icon-wrap  { width: 13vw; height: 13vw; max-width: 58px; max-height: 58px; }
+    .tc-card-title { font-size: clamp(0.65rem, 2.8vw, 0.85rem); }
+    .tc-feature    { font-size: clamp(0.6rem, 2.5vw, 0.78rem); }
+    .tc-arrow      { font-size: clamp(0.9rem, 3vw, 1.2rem); }
+    .tc-dots       { width: 80px; }
+  }
+</style>
