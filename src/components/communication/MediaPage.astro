@@ -15,6 +15,9 @@ const registerUrl =
   'https://forms.cloud.microsoft/pages/responsepage.aspx?id=NPbrEwntT0iO9-slC7AyJuoXe9rlJXZPmsGakvmyQHhUNVE3SzJEVzdIUFlDWEtUSDk5SzZVWE9DSC4u&route=shorturl'
 
 const registerLabel = locale === 'en' ? 'Register here' : 'Realiza tu registro'
+const pdfUrl = '/files/lineamientos_acreditación_igeco_2026.pdf'
+const guidelinesIntro = locale === 'en' ? 'Know more about the accreditation requirements in the following document:' : 'Conoce más a detalle sobre los requerimientos de acreditación en el siguiente documento:'
+const pdfLabel = locale === 'en' ? 'Download Guidelines' : 'Descargar Lineamientos'
 const contactIntro =
   locale === 'en'
     ? 'For questions and more information, please contact us at'
@@ -62,6 +65,18 @@ const contactIntro =
         >
           {registerLabel}
           <span class="ml-2" aria-hidden="true">-&gt;</span>
+        </a>
+
+        <div class="mt-7 border-t border-neutral-200 pt-6"/>
+        <p class="text-sm leading-6 text-neutral-600">{guidelinesIntro}</p>
+        <a
+          href={pdfUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mt-3 inline-flex w-full items-center justify-center rounded-md border border-[#e30613] bg-white px-5 py-3 text-center text-sm font-bold uppercase tracking-wide text-[#e30613] transition hover:bg-[#e30613] hover:text-white focus:outline-none focus:ring-2 focus:ring-[#e30613] focus:ring-offset-2"
+        >
+          {pdfLabel}
+          <span class="ml-2" aria-hidden="true">&#8595;</span>
         </a>
 
         <div class="mt-7 border-t border-neutral-200 pt-6">
