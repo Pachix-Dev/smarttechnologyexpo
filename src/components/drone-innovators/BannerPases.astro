@@ -1,0 +1,94 @@
+---
+// src/components/drone-innovators/BannerPases.astro
+import { useTranslations, getTranslation } from '../../utils/translations'
+
+export interface Props {
+  locale?: string
+}
+
+const { locale, translations } = await useTranslations(Astro.props, Astro)
+const tr = (key: string, fallback: string = '') =>
+  getTranslation(translations, key, fallback)
+---
+
+<section class="bp-section">
+
+  <!-- Fondo full-width sin recortes -->
+  <img
+    src="/img/drone-innovators/bg-bannerpases.webp"
+    alt=""
+    class="bp-bg"
+    aria-hidden="true"
+  />
+
+  <!-- Botón pill centrado sobre el fondo -->
+  <div class="bp-inner" data-aos="zoom-in" data-aos-duration="700">
+    <a href="#" class="bp-btn">
+      {tr('droneInnovators.bannerPases.cta', '¡ADQUIERE TUS PASES!')}
+    </a>
+  </div>
+
+</section>
+
+<style>
+  .bp-section {
+    position: relative;
+    width: 100%;
+    background: #0b1627;
+  }
+
+  /* Fondo — imagen dicta la altura, sin recortes */
+  .bp-bg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  /* Contenido centrado absoluto sobre el fondo */
+  .bp-inner {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4rem;
+    box-sizing: border-box;
+  }
+
+  /* Botón pill blanco grande */
+  .bp-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    color: #111;
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1rem, 4.5vw, 3.9rem);
+    font-weight: 900;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.1rem 4rem;
+    border-radius: 60px;
+    white-space: nowrap;
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+  }
+
+  .bp-btn:hover {
+    background: #f0f0f0;
+    transform: translateY(-2px);
+  }
+
+  /* ── MOBILE ≤768px ── */
+  @media (max-width: 768px) {
+    .bp-inner { padding: 0 2rem; }
+    .bp-btn   { padding: 0.9rem 2.5rem; white-space: normal; text-align: center; }
+  }
+
+  /* ── MOBILE PEQUEÑO ≤480px ── */
+  @media (max-width: 480px) {
+    .bp-inner { padding: 0 1.25rem; }
+    .bp-btn   { padding: 0.75rem 2rem; }
+  }
+</style>

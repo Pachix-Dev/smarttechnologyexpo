@@ -1,0 +1,150 @@
+---
+// src/components/drone-innovators/DroneHero.astro
+import { useTranslations, getTranslation } from '../../utils/translations'
+
+export interface Props {
+  locale?: string
+}
+
+const { locale, translations } = await useTranslations(Astro.props, Astro)
+const tr = (key: string, fallback: string = '') =>
+  getTranslation(translations, key, fallback)
+
+const dateBadge = locale === 'en'
+  ? '/img/drone-innovators/date_en-hero.webp'
+  : '/img/drone-innovators/date_es-hero.webp'
+---
+
+<section class="dh-hero">
+
+  <img
+    src="/img/drone-innovators/bg-hero.webp"
+    alt=""
+    class="dh-bg"
+    aria-hidden="true"
+  />
+
+  <div class="dh-inner">
+
+    <div class="dh-left" data-aos="fade-right" data-aos-duration="900">
+      <img
+        src="/img/drone-innovators/logo-hero.webp"
+        alt="Drone Innovators Forum MX"
+        class="dh-logo"
+      />
+    </div>
+
+    <div class="dh-right" data-aos="fade-left" data-aos-duration="900" data-aos-delay="200">
+      <img
+        src={dateBadge}
+        alt={locale === 'en'
+          ? 'November 18–20, 2026 · Expo Guadalajara'
+          : '18–20 Noviembre 2026 · Expo Guadalajara'}
+        class="dh-date"
+      />
+    </div>
+
+  </div>
+
+</section>
+
+<style>
+  .dh-hero {
+    position: relative;
+    width: 100%;
+    background: #0b1627;
+    max-height: 680px;
+    overflow: hidden;
+  }
+
+  .dh-bg {
+    display: block;
+    width: 100%;
+    height: 680px;
+    object-fit: cover;
+    object-position: center bottom;
+  }
+
+  .dh-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  /* Desktop: posiciones exactas donde quedaron bien */
+  .dh-left {
+    position: absolute;
+    top: 27%;
+    left: 6.3%;
+  }
+
+  .dh-logo {
+    width: 49vw;
+    max-width: none;
+    min-width: 200px;
+    height: auto;
+    display: block;
+  }
+
+  .dh-right {
+    position: absolute;
+    top: 23%;
+    right: 5%;
+  }
+
+  .dh-date {
+    width: 33.5vw;
+    max-width: none;
+    min-width: 160px;
+    height: auto;
+    display: block;
+  }
+
+  /* ── TABLET GRANDE 1025px–1280px ── */
+  @media (max-width: 1280px) and (min-width: 1025px) {
+    .dh-hero { max-height: 580px; }
+    .dh-bg   { height: 580px; }
+    .dh-logo { width: 46vw; }
+    .dh-date { width: 31vw; }
+  }
+
+  /* ── TABLET 769px–1024px ── */
+  @media (max-width: 1024px) and (min-width: 769px) {
+    .dh-hero { max-height: 460px; }
+    .dh-bg   { height: 460px; }
+    .dh-left { top: 25%; left: 5%; }
+    .dh-right { top: 20%; right: 4%; }
+    .dh-logo { width: 44vw; min-width: 180px; }
+    .dh-date { width: 30vw; min-width: 150px; }
+  }
+
+  /* ── MOBILE ≤768px ── */
+  @media (max-width: 768px) {
+    .dh-hero  { max-height: 420px; }
+    .dh-bg    { height: 420px; object-position: 30% bottom; }
+    .dh-left  { top: 12%; left: 50%; transform: translateX(-50%); }
+    .dh-right { top: 52%; left: 50%; transform: translateX(-50%); right: auto; }
+    .dh-logo  { width: 62vw; min-width: 160px; }
+    .dh-date  { width: 52vw; min-width: 140px; }
+  }
+
+  /* ── MOBILE PEQUEÑO ≤480px ── */
+  @media (max-width: 480px) {
+    .dh-hero  { max-height: 340px; }
+    .dh-bg    { height: 340px; }
+    .dh-left  { top: 10%; }
+    .dh-right { top: 50%; }
+    .dh-logo  { width: 68vw; }
+    .dh-date  { width: 56vw; }
+  }
+
+  /* ── MOBILE MUY PEQUEÑO ≤380px ── */
+  @media (max-width: 380px) {
+    .dh-hero  { max-height: 300px; }
+    .dh-bg    { height: 300px; }
+    .dh-logo  { width: 72vw; }
+    .dh-date  { width: 60vw; }
+  }
+</style>

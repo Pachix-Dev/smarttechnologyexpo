@@ -1,0 +1,264 @@
+---
+// src/components/drone-innovators/ExhibitorsSection.astro
+import { useTranslations, getTranslation } from '../../utils/translations'
+
+export interface Props {
+  locale?: string
+}
+
+const { locale, translations } = await useTranslations(Astro.props, Astro)
+const tr = (key: string, fallback: string = '') =>
+  getTranslation(translations, key, fallback)
+---
+
+<section class="es-section">
+
+  <!-- INTRO -->
+  <div class="es-intro" data-aos="fade-up" data-aos-duration="700">
+
+    <div class="es-intro-left">
+      <span class="es-quote">&ldquo;</span>
+      <p class="es-heading">
+        <strong>{tr('droneInnovators.exhibitors.heading_bold', 'DRONE INNOVATORS FORUM')}</strong><br/>
+        {tr('droneInnovators.exhibitors.heading_rest', 'es un')}
+      </p>
+    </div>
+
+    <p class="es-intro-desc">
+      {tr('droneInnovators.exhibitors.description', 'Drone Innovators Forum es un')}
+    </p>
+
+  </div>
+
+  <!-- GRID DE TARJETAS -->
+  <div class="es-grid" data-aos="fade-up" data-aos-duration="700" data-aos-delay="150">
+
+    <!-- Tarjeta 1 -->
+    <div class="es-card">
+      <div class="es-card-top">
+        <div class="es-card-info">
+          <span class="es-card-name">
+            {tr('droneInnovators.exhibitors.card1.name', 'NOMBRE')}<br/>
+            {tr('droneInnovators.exhibitors.card1.name2', 'EMPRESA')}
+          </span>
+          <span class="es-card-desc">
+            {tr('droneInnovators.exhibitors.card1.desc', 'Descripción')}
+          </span>
+        </div>
+        <a href="#" class="es-card-arrow" aria-label="Ver más">
+          <img
+            src="/img/drone-innovators/icon_exhibitorsection.webp"
+            alt=""
+            width="70"
+            height="70"
+          />
+        </a>
+      </div>
+      <div class="es-card-bottom">
+        <div class="es-card-circle">
+          <span class="es-logo-text">Logo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tarjeta 2 -->
+    <div class="es-card">
+      <div class="es-card-top">
+        <div class="es-card-info">
+          <span class="es-card-name">
+            {tr('droneInnovators.exhibitors.card2.name', 'NOMBRE')}<br/>
+            {tr('droneInnovators.exhibitors.card2.name2', 'EMPRESA')}
+          </span>
+          <span class="es-card-desc">
+            {tr('droneInnovators.exhibitors.card2.desc', 'Descripción')}
+          </span>
+        </div>
+        <a href="#" class="es-card-arrow" aria-label="Ver más">
+          <img
+            src="/img/drone-innovators/icon_exhibitorsection.webp"
+            alt=""
+            width="70"
+            height="70"
+          />
+        </a>
+      </div>
+      <div class="es-card-bottom">
+        <div class="es-card-circle">
+          <span class="es-logo-text">Logo</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<style>
+  .es-section {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3.5rem 4rem 4rem;
+    box-sizing: border-box;
+  }
+
+  /* ── INTRO ── */
+  .es-intro {
+    display: flex;
+    align-items: flex-start;
+    gap: 4rem;
+    margin-bottom: 3rem;
+  }
+
+  .es-intro-left {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.25rem;
+    flex-shrink: 0;
+  }
+
+  .es-quote {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 4.5rem;
+    font-weight: 900;
+    color: #e6e6e6;
+    line-height: 0.7;
+    flex-shrink: 0;
+  }
+
+  .es-heading {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2rem;
+    font-weight: 900;
+    color: #3c3c3b;
+    margin: 0;
+    line-height: 0.6;
+  }
+
+  .es-heading strong {
+    font-weight: 900;
+    color: #296684;
+    display: block;
+  }
+
+  .es-intro-desc {
+    font-family: 'Montserrat', sans-serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: #000;
+    line-height: 1.4;
+    margin: 0;
+    align-self: center;
+  }
+
+  /* ── GRID ── */
+  .es-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.75rem;
+  }
+
+  /* Card casi cuadrada */
+  .es-card {
+    background: #db0c15;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    aspect-ratio: 1 / 0.90;
+  }
+
+  /* Header: nombre + descripción + flecha */
+  .es-card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 1.4rem 1.4rem 0.5rem;
+    gap: 0.5rem;
+  }
+
+  .es-card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .es-card-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1.3rem, 2.5vw, 2.1rem);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.1;
+    text-transform: uppercase;
+  }
+
+  .es-card-desc {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .es-card-arrow {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+  }
+
+  .es-card-arrow:hover {
+    transform: translate(2px, -2px);
+  }
+
+  /* Círculo del logo — a la derecha, se sale por abajo */
+  .es-card-bottom {
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding-right: 0.5rem;
+    padding-top: 0;
+    overflow: hidden;
+  }
+
+  .es-card-circle {
+    width: 62%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .es-logo-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    font-weight: 400;
+    color: #888;
+  }
+
+  /* ── TABLET ≤1024px ── */
+  @media (max-width: 1024px) {
+    .es-section { padding: 3rem 2.5rem; }
+    .es-intro   { gap: 2.5rem; }
+    .es-card    { aspect-ratio: 1 / 0.95; }
+  }
+
+  /* ── MOBILE ≤768px ── */
+  @media (max-width: 768px) {
+    .es-section { padding: 2.5rem 1.5rem; }
+    .es-intro   { flex-direction: column; gap: 1rem; }
+    .es-grid    { grid-template-columns: 1fr; gap: 1.25rem; }
+    .es-quote   { font-size: 3.5rem; }
+    .es-card    { aspect-ratio: 1 / 1.1; }
+  }
+
+  /* ── MOBILE PEQUEÑO ≤480px ── */
+  @media (max-width: 480px) {
+    .es-section   { padding: 2rem 1.25rem; }
+    .es-card-name { font-size: clamp(1.1rem, 5vw, 1.5rem); }
+    .es-card-desc { font-size: 0.85rem; }
+  }
+</style>

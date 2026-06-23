@@ -1,0 +1,275 @@
+---
+// src/components/drone-innovators/PricingSection.astro
+import { useTranslations, getTranslation } from '../../utils/translations'
+
+export interface Props {
+  locale?: string
+}
+
+const { locale, translations } = await useTranslations(Astro.props, Astro)
+const tr = (key: string, fallback: string = '') =>
+  getTranslation(translations, key, fallback)
+---
+
+<section class="ps-section">
+  <div class="ps-grid" data-aos="fade-up" data-aos-duration="700">
+
+    <!-- Tarjeta 1 -->
+    <div class="ps-card">
+      <div class="ps-tag">
+        {tr('droneInnovators.pricing.card1.tag', 'TALLER 1 BÁSICO')}
+      </div>
+      <div class="ps-body">
+        <div class="ps-price">
+          <span class="ps-price-symbol">$</span>
+          <span class="ps-price-amount">0,000</span>
+          <span class="ps-price-currency">MXN</span>
+        </div>
+        <ul class="ps-features">
+          <li class="ps-feature">
+            <span class="ps-check">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="3.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </span>
+            <span>{tr('droneInnovators.pricing.card1.feat1', 'Entrada al evento exclusivo con líderes de la industria')}</span>
+          </li>
+          <li class="ps-feature">
+            <span class="ps-check">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="3.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </span>
+            <span>{tr('droneInnovators.pricing.card1.feat2', 'Contenido de valor en conferencias especializadas')}</span>
+          </li>
+        </ul>
+        <button class="ps-btn">
+          {tr('droneInnovators.pricing.cta', 'AGREGAR AL CARRITO')}
+        </button>
+      </div>
+    </div>
+
+    <!-- Tarjeta 2 -->
+    <div class="ps-card">
+      <div class="ps-tag">
+        {tr('droneInnovators.pricing.card2.tag', 'TALLER 2 PROFESIONAL')}
+      </div>
+      <div class="ps-body">
+        <div class="ps-price">
+          <span class="ps-price-symbol">$</span>
+          <span class="ps-price-amount">0,000</span>
+          <span class="ps-price-currency">MXN</span>
+        </div>
+        <ul class="ps-features">
+          <li class="ps-feature">
+            <span class="ps-check">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="3.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </span>
+            <span>{tr('droneInnovators.pricing.card2.feat1', 'Entrada al evento exclusivo con líderes de la industria')}</span>
+          </li>
+          <li class="ps-feature">
+            <span class="ps-check">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="3.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </span>
+            <span>{tr('droneInnovators.pricing.card2.feat2', 'Contenido de valor en conferencias especializadas')}</span>
+          </li>
+        </ul>
+        <button class="ps-btn">
+          {tr('droneInnovators.pricing.cta', 'AGREGAR AL CARRITO')}
+        </button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .ps-section {
+    position: relative;
+    width: 100%;
+    background: #fff;
+    padding: 4rem 4rem 5rem;
+    box-sizing: border-box;
+  }
+
+  /* Línea horizontal que cruza detrás de las cards */
+  .ps-section::before {
+    content: '';
+    position: absolute;
+    top: 24.4%;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: #103347;
+    z-index: 0;
+  }
+
+  /* Grid centrado */
+  .ps-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.75rem;
+    max-width: 620px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Card con sombra solo derecha e inferior */
+  .ps-card {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    aspect-ratio: 1 / 1.58;
+  }
+
+  /* Tag parte superior integral de la card */
+  .ps-tag {
+    background: linear-gradient(to right, #c60c15, #921113);
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 800;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 1rem;
+    flex-shrink: 0;
+  }
+
+  .ps-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem 1.4rem 1.75rem;
+  }
+
+  /* ── PRECIO ── */
+  .ps-price {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .ps-price-symbol {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2rem;
+    font-weight: 400;
+    color: #1d1d1b;
+    margin-right: 1px;
+  }
+
+  .ps-price-amount {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1.6rem, 3vw, 3rem);
+    font-weight: 900;
+    color: #296684;
+    line-height: 1;
+  }
+
+  .ps-price-currency {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2rem;
+    font-weight: 500;
+    color: #1d1d1b;
+    margin-left: 0.25rem;
+    align-self: flex-end;
+    margin-bottom: 0.15rem;
+  }
+
+  /* ── FEATURES ── */
+  .ps-features {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+
+  .ps-feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.45rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: #444;
+    line-height: 1.45;
+  }
+
+  .ps-check {
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #18374a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    margin-top: 1px;
+  }
+
+  /* ── BOTÓN ── */
+  .ps-btn {
+    display: block;
+    width: 100%;
+    padding: 0.6rem 1rem;
+    background: #348fb7;
+    color: #18374a;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    text-align: center;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 2rem;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .ps-btn:hover {
+    background: #2a7a9e;
+    transform: translateY(-1px);
+  }
+
+  /* ── TABLET ≤1024px ── */
+  @media (max-width: 1024px) {
+    .ps-section { padding: 3rem 2.5rem 4rem; }
+    .ps-grid    { max-width: 540px; }
+  }
+
+  /* ── MOBILE ≤768px ── */
+  @media (max-width: 768px) {
+    .ps-section { padding: 2.5rem 1.5rem 3.5rem; }
+    .ps-grid    { grid-template-columns: 1fr; max-width: 300px; gap: 1.5rem; }
+    .ps-card    { aspect-ratio: 1 / 1.4; }
+  }
+
+  /* ── MOBILE PEQUEÑO ≤480px ── */
+  @media (max-width: 480px) {
+    .ps-section { padding: 2rem 1.25rem 3rem; }
+    .ps-grid    { max-width: 100%; }
+    .ps-card    { aspect-ratio: 1 / 1.5; }
+    .ps-body    { padding: 1.25rem; }
+  }
+</style>

@@ -1,0 +1,112 @@
+---
+// src/components/drone-innovators/BannerPromocional.astro
+import { useTranslations, getTranslation } from '../../utils/translations'
+
+export interface Props {
+  locale?: string
+}
+
+const { locale, translations } = await useTranslations(Astro.props, Astro)
+const tr = (key: string, fallback: string = '') =>
+  getTranslation(translations, key, fallback)
+---
+
+<section class="bp-section">
+
+  <!-- Fondo -->
+  <img
+    src="/img/drone-innovators/bg-bannerpromocional.webp"
+    alt=""
+    class="bp-bg"
+    aria-hidden="true"
+  />
+
+  <!-- Contenido centrado -->
+  <div class="bp-inner" data-aos="fade-up" data-aos-duration="700">
+    <p class="bp-pre">
+      {tr('droneInnovators.banner.pre', 'NO PIERDAS')}
+    </p>
+    <h2 class="bp-title">
+      {tr('droneInnovators.banner.title', 'LA OPORTUNIDAD')}
+    </h2>
+    <p class="bp-sub">
+      {tr('droneInnovators.banner.sub', 'de ser parte del evento ...')}
+    </p>
+  </div>
+
+</section>
+
+<style>
+  .bp-section {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background: #0b1627;
+  }
+
+  /* Fondo full-width sin recortes */
+  .bp-bg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  /* Contenido sobre el fondo */
+  .bp-inner {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;      /* ← cambiado de center a flex-start */
+    justify-content: center;
+    padding: 2rem 15%;            /* ← padding lateral para centrar el bloque visualmente */
+    box-sizing: border-box;
+  }
+
+  /* "NO PIERDAS" */
+  .bp-pre {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(2.2rem, 3.8vw, 3.7rem);
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.01em;
+    margin: 0;
+    line-height: 1.2;
+    align-self: center;           /* ← centrado */
+  }
+
+  /* "LA OPORTUNIDAD" */
+  .bp-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(2.5rem, 7vw, 6.68rem);
+    font-weight: 1000;
+    color: #fff;
+    letter-spacing: 0em;
+    margin: 0;
+    line-height: 1;
+    text-transform: uppercase;
+    align-self: center;           /* ← centrado */
+  }
+
+  /* "de ser parte del evento ..." — queda a la izquierda naturalmente */
+  .bp-sub {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.85rem, 1.8vw, 1.8rem);
+    font-weight: 500;
+    color: #FAFBFBff;
+    margin: 0.5rem 0 0;
+    line-height: 0.5;
+    margin-left: -2.2rem;  /* ← ajusta el valor */
+  }
+
+  /* ── MOBILE ≤768px ── */
+  @media (max-width: 768px) {
+    .bp-inner { padding: 2rem 2rem; }
+    .bp-sub   { align-self: center; }   /* ← en mobile se centra también */
+  }
+
+  /* ── MOBILE PEQUEÑO ≤480px ── */
+  @media (max-width: 480px) {
+    .bp-inner { padding: 1.5rem 1.25rem; }
+  }
+</style>
