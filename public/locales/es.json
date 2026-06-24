@@ -652,19 +652,19 @@
     "yes": "SÍ",
     "no": "NO",
     "list_area": [
-      "CONSEJO DE ADMINISTRACIÓN / COMITÉ EJECUTIVO",
+      "ADMINISTRACIÓN",
+      "AUTOMATIZACIÓN Y DESARROLLO",
       "COMPRAS",
+      "CONSEJO DE ADMINISTRACIÓN / COMITÉ EJECUTIVO",
       "FINANZAS",
-      "INVESTIGACIÓN Y DESARROLLO",
       "INFORMÁTICA / TI",
+      "INVESTIGACIÓN Y DESARROLLO",
       "LOGÍSTICA",
       "MARKETING",
-      "RECURSOS HUMANOS",
       "PRODUCCIÓN / INGENIERÍA",
-      "VENTAS Y DISTRIBUCIÓN",
-      "ADMINISTRACIÓN",
+      "RECURSOS HUMANOS",
       "SECRETARÍA",
-      "AUTOMATIZACIÓN Y DESARROLLO"
+      "VENTAS Y DISTRIBUCIÓN"
     ],
     "list_interest_product": [
       "AUTOMATIZACIÓN Y ROBÓTICA",
