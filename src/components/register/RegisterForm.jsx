@@ -1055,84 +1055,80 @@ export function RegisterForm({ translates, currentLanguage }) {
                 defaultValue={industry}
                 className="mt-2 w-full rounded-lg bg-transparent border border-gray-200 p-4 pe-12 text-sm *:text-black"
               >
-                <option value="">{translates.select_option}</option>
-                <option value="ALIMENTOS Y BEBIDAS">
+                <option value="">
+                  {translates.select_option}
+                </option>
+                <option value="ACADÉMICO">
                   {translates.industry_option_1}
                 </option>
-                <option value="TEQUILERA">
+                <option value="AEROESPACIAL">
                   {translates.industry_option_2}
                 </option>
-                <option value="AGRÍCOLA">{translates.industry_option_3}</option>
-                <option value="GANADERA">{translates.industry_option_4}</option>
-                <option value="QUÍMICA">{translates.industry_option_5}</option>
-                <option value="MINERA, METALÚRGICA Y SIDERÚRGICA">
+                <option value="AGRÍCOLA">
+                  {translates.industry_option_3}
+                </option>
+                <option value="ALIMENTOS Y BEBIDAS">
+                  {translates.industry_option_4}
+                </option>
+                <option value="AMBIENTAL">
+                  {translates.industry_option_5}
+                </option>
+                <option value="AUTOMOTRIZ">
                   {translates.industry_option_6}
                 </option>
-                <option value="PETROQUÍMICA">
+                <option value="CÁMARAS Y ASOCIACIONES">
                   {translates.industry_option_7}
                 </option>
                 <option value="CELULOSA Y PAPEL">
                   {translates.industry_option_8}
                 </option>
-                <option value="AEROESPACIAL">
+                <option value="DRONES">
                   {translates.industry_option_9}
                 </option>
-                <option value="AUTOMOTRIZ">
+                <option value="FINANCIERO">
                   {translates.industry_option_10}
                 </option>
-                <option value="MANUFACTURERA">
+                <option value="GANADERA">
                   {translates.industry_option_11}
                 </option>
-                <option value="HOTELERÍA Y TURISMO">
+                <option value="GOBIERNO">
                   {translates.industry_option_12}
                 </option>
-                <option value="RESTAURANTERA">
+                <option value="HOTELERÍA Y TURISMO">
                   {translates.industry_option_13}
                 </option>
-                <option value="GOBIERNO">
+                <option value="LOGÍSTICA E INTRALOGÍSTICA">
                   {translates.industry_option_14}
                 </option>
-                <option value="FARMACÉUTICA Y HOSPITALARIA">
+                <option value="MANUFACTURERA">
                   {translates.industry_option_15}
                 </option>
-                <option value="TEXTIL">{translates.industry_option_16}</option>
-                <option value="ORGANISMOS OPERADORES DE AGUA">
+                <option value="MINERA, METALÚRGICA Y SIDERÚRGICA">
+                  {translates.industry_option_16}
+                </option>
+                <option value="PETROQUÍMICA">
                   {translates.industry_option_17}
                 </option>
-                <option value="TECNOLOGÍA Y ELECTRÓNICA">
+                <option value="QUÍMICA">
                   {translates.industry_option_18}
                 </option>
-                <option value="CONSULTORÍA AMBIENTAL">
+                <option value="RESTAURANTERA">
                   {translates.industry_option_19}
                 </option>
-                <option value="ACADÉMICO">
+                <option value="SECTOR MÉDICO">
                   {translates.industry_option_20}
                 </option>
-                <option value="FINANCIERO">
+                <option value="SEGUROS">
                   {translates.industry_option_21}
                 </option>
-                <option value="CÁMARAS Y ASOCIACIONES">
+                <option value="TECNOLOGÍA Y ELECTRÓNICA">
                   {translates.industry_option_22}
                 </option>
-                <option value="SEGUROS">{translates.industry_option_23}</option>
-                <option value="TELECOMUNICACIONES Y OPERADORAS MÓVILES">
-                  {translates.industry_option_24}
+                <option value="TEXTIL">
+                  {translates.industry_option_23}
                 </option>
-                <option value="ENERGÍA">{translates.industry_option_25}</option>
                 <option value="TRANSPORTE">
-                  {translates.industry_option_26}
-                </option>
-                <option value="CUERO, CALZADO Y MARROQUINERÍA">
-                  {translates.industry_option_27}
-                </option>
-                <option value="PLÁSTICO">
-                  {translates.industry_option_28}
-                </option>
-                <option value="LOGÍSTICA E INTRALOGÍSTICA">
-                  {translates.industry_option_29}
-                </option>
-                <option value="DRONES">
-                  {translates.industry_option_30}
+                  {translates.industry_option_24}
                 </option>
               </select>
               {errors.industry && (
