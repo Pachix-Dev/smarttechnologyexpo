@@ -367,6 +367,7 @@
     "max_char": "El campo debe tener menos de 15 caracteres",
     "numbers_symbols": "No se permiten números o símbolos",
     "countries": [
+      "México",
       "Afganistán",
       "Islas Aland",
       "Albania",
