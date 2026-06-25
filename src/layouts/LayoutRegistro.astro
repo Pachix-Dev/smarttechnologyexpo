@@ -1,0 +1,48 @@
+---
+import { useTranslations, getTranslation } from "../utils/translations";
+// ✨ Una sola línea para cargar traducciones!
+const { locale, translations } = await useTranslations(Astro.props, Astro);
+
+// 🎯 Helper para traducciones más elegante
+const tr = (key: string, fallback: string = "") =>
+  getTranslation(translations, key, fallback);
+
+import "../styles/global.css";
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>{tr("site.title")}</title>
+    <meta name="description" content={tr("site.description")} />
+
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <header>
+      <!-- Aquí va el menú o header -->
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer>
+      <!-- Aquí va el footer -->
+    </footer>
+
+    <!-- AOS Animation Library -->
+    <script
+      is:inline
+      data-astro-rerun
+      src="https://unpkg.com/aos@2.3.1/dist/aos.js">
+    </script>
+    <script data-astro-rerun>
+      AOS.init();
+    </script>
+    
+  </body>
+</html>

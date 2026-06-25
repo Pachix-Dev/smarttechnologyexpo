@@ -863,5 +863,37 @@
    "mediaPage": {
     "title": "Acreditación de prensa",
     "description": "Estimados medios de comunicación:<br/>Convocamos a los medios interesados a realizar el siguiente registro de prensa para obtener su acreditación para la cobertura de Smart Technology Expo.<br/>La fecha límite para acreditarte es el viernes 6 de noviembre de 2026. Y se comunicará el status de tu acreditación a más tardar el 13 de noviembre.<br/>Cabe mencionar que la acreditación de prensa de Smart Technology Expo se otorga de dos maneras; por invitación y a través de este registro.<br/>Si en ediciones anteriores tu medio ha recibido una invitación para realizar la cobertura de los evento organizados por Italian German Exhibition Company Mexico, esta invitación te llegará antes del 6 de noviembre de 2026.<br/>Recuerda que Smart Technology Expo es un evento gratuito dirigido para profesionales de la industria y que cualquier persona interesada puede acceder sin costo realizando su registro como visitante profesional. "
+  },
+  "registerHome": {
+    "warningMessage": "Este evento está dirigido exclusivamente a profesionales de la industria, ejecutivos, tomadores de decisión, especialistas técnicos, directivos y representantes de empresas. Por la naturaleza especializada del programa y de las actividades de networking, el <strong class=text-red-700>registro no está disponible para estudiantes.</strong> Agradecemos su comprensión y les solicitamos amablemente evitar realizar registros que no cumplan con este criterio, ya que no será posible autorizar el acceso al recinto.",
+    "eventInfo": {
+      "venueLabel": "Lugar",
+      "venue": "Expo Guadalajara",
+      "dateLabel": "Fecha",
+      "date": "18 - 20 Noviembre 2026",
+      "scheduleLabel": "Horario",
+      "schedule": "11:00 a 19:00 hrs"
+    },
+    "freeAccess": {
+      "title": "Tu Acceso Gratuito Incluye :",
+      "benefits": {
+        "exhibition": {
+          "title": "Acceso a la zona de exposición",
+          "description": "Acceso completo al piso de exhibición con más de 200 marcas nacionales e internacionales."
+        },
+        "conferences": {
+          "title": "Programa de conferencias",
+          "description": "Acceso a las conferencias con especialistas, tendencias y casos de éxito para la industria."
+        },
+        "workshops": {
+          "title": "Cursos y talleres",
+          "description": "Entrada a cursos y talleres enfocados en tecnología, innovación y aplicaciones industriales."
+        },
+        "networking": {
+          "title": "Networking y espacios de interacción",
+          "description": "Plataforma para crear conexiones estratégicas con proveedores, líderes de la industria y tomadores de decisión."
+        }
+      }
+    }
   }
 }

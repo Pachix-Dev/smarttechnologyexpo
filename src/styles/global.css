@@ -1,1 +1,16 @@
 @import "tailwindcss";
+
+@font-face {
+  font-family: "Montserrat ExtraBold Italic";
+  src: url("/fonts/Montserrat/static/Montserrat-ExtraBoldItalic.ttf")
+    format("truetype");
+  font-weight: 800;
+  font-style: italic;
+  font-display: swap;
+}
+
+.font-montserrat-extra-bold-italic {
+  font-family: "Montserrat ExtraBold Italic", "Montserrat", system-ui, sans-serif;
+  font-weight: 800;
+  font-style: italic;
+}
