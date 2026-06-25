@@ -864,7 +864,6 @@
     "title": "Acreditación de prensa",
     "description": "Estimados medios de comunicación:<br/>Convocamos a los medios interesados a realizar el siguiente registro de prensa para obtener su acreditación para la cobertura de Smart Technology Expo.<br/>La fecha límite para acreditarte es el viernes 6 de noviembre de 2026. Y se comunicará el status de tu acreditación a más tardar el 13 de noviembre.<br/>Cabe mencionar que la acreditación de prensa de Smart Technology Expo se otorga de dos maneras; por invitación y a través de este registro.<br/>Si en ediciones anteriores tu medio ha recibido una invitación para realizar la cobertura de los evento organizados por Italian German Exhibition Company Mexico, esta invitación te llegará antes del 6 de noviembre de 2026.<br/>Recuerda que Smart Technology Expo es un evento gratuito dirigido para profesionales de la industria y que cualquier persona interesada puede acceder sin costo realizando su registro como visitante profesional. "
   },
-
   "registerHome": {
     "warningMessage": "Este evento está dirigido exclusivamente a profesionales de la industria, ejecutivos, tomadores de decisión, especialistas técnicos, directivos y representantes de empresas. Por la naturaleza especializada del programa y de las actividades de networking, el <strong class=text-red-700>registro no está disponible para estudiantes.</strong> Agradecemos su comprensión y les solicitamos amablemente evitar realizar registros que no cumplan con este criterio, ya que no será posible autorizar el acceso al recinto.",
     "eventInfo": {
@@ -873,7 +872,7 @@
       "dateLabel": "Fecha",
       "date": "18 - 20 Noviembre 2026",
       "scheduleLabel": "Horario",
-      "schedule": "11:00 a 19:00 hrs"
+      "schedule": "11:00 a 18:00 hrs"
     },
     "freeAccess": {
       "title": "Tu Acceso Gratuito Incluye :",
@@ -895,9 +894,8 @@
           "description": "Plataforma para crear conexiones estratégicas con proveedores, líderes de la industria y tomadores de decisión."
         }
       }
-    }  
+    }
   },
-
   "droneInnovators": {
     "exhibitors": {
       "heading_bold": "DRONE INNOVATORS FORUM",
