@@ -13,7 +13,7 @@ const tr = (key: string, fallback: string = '') =>
 
 <section class="bp-section">
 
-  <!-- Fondo full-width sin recortes -->
+  <!-- Fondo — imagen dicta la altura, sin recortes -->
   <img
     src="/img/drone-innovators/bg-bannerpases.webp"
     alt=""
@@ -37,14 +37,12 @@ const tr = (key: string, fallback: string = '') =>
     background: #0b1627;
   }
 
-  /* Fondo — imagen dicta la altura, sin recortes */
   .bp-bg {
     display: block;
     width: 100%;
     height: auto;
   }
 
-  /* Contenido centrado absoluto sobre el fondo */
   .bp-inner {
     position: absolute;
     inset: 0;
@@ -55,7 +53,6 @@ const tr = (key: string, fallback: string = '') =>
     box-sizing: border-box;
   }
 
-  /* Botón pill blanco grande */
   .bp-btn {
     display: inline-flex;
     align-items: center;
@@ -80,15 +77,39 @@ const tr = (key: string, fallback: string = '') =>
     transform: translateY(-2px);
   }
 
+  /* ── DESKTOP ≥1281px ── */
+  @media (min-width: 1281px) {
+    .bp-inner { padding: 0 4rem; }
+    .bp-btn   { font-size: 3.9rem; padding: 1.1rem 4rem; border-radius: 60px; white-space: nowrap; }
+  }
+
+  /* ── TABLET GRANDE 1025px–1280px ── */
+  @media (max-width: 1280px) and (min-width: 1025px) {
+    .bp-inner { padding: 0 4rem; }
+    .bp-btn   { font-size: 3rem; padding: 1rem 3.5rem; border-radius: 55px; white-space: nowrap; }
+  }
+
+  /* ── TABLET 769px–1024px ── */
+  @media (max-width: 1024px) and (min-width: 769px) {
+    .bp-inner { padding: 0 3rem; }
+    .bp-btn   { font-size: 2.4rem; padding: 1rem 3rem; border-radius: 50px; white-space: nowrap; }
+  }
+
   /* ── MOBILE ≤768px ── */
   @media (max-width: 768px) {
     .bp-inner { padding: 0 2rem; }
-    .bp-btn   { padding: 0.9rem 2.5rem; white-space: normal; text-align: center; }
+    .bp-btn   { font-size: 1.6rem; padding: 0.9rem 2.5rem; border-radius: 40px; white-space: normal; text-align: center; }
   }
 
   /* ── MOBILE PEQUEÑO ≤480px ── */
   @media (max-width: 480px) {
-    .bp-inner { padding: 0 1.25rem; }
-    .bp-btn   { padding: 0.75rem 2rem; }
+    .bp-inner { padding: 0 1.5rem; }
+    .bp-btn   { font-size: 1.2rem; padding: 0.8rem 2rem; border-radius: 30px; white-space: normal; text-align: center; }
+  }
+
+  /* ── MOBILE MUY PEQUEÑO ≤380px ── */
+  @media (max-width: 380px) {
+    .bp-inner { padding: 0 1rem; }
+    .bp-btn   { font-size: 1rem; padding: 0.7rem 1.5rem; border-radius: 24px; white-space: normal; text-align: center; }
   }
 </style>

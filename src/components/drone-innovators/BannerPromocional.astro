@@ -44,26 +44,23 @@ const tr = (key: string, fallback: string = '') =>
     background: #0b1627;
   }
 
-  /* Fondo full-width sin recortes */
   .bp-bg {
     display: block;
     width: 100%;
     height: auto;
   }
 
-  /* Contenido sobre el fondo */
   .bp-inner {
     position: absolute;
     inset: 0;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;      /* ← cambiado de center a flex-start */
+    align-items: flex-start;
     justify-content: center;
-    padding: 2rem 15%;            /* ← padding lateral para centrar el bloque visualmente */
+    padding: 2rem 15%;
     box-sizing: border-box;
   }
 
-  /* "NO PIERDAS" */
   .bp-pre {
     font-family: 'Montserrat', sans-serif;
     font-size: clamp(2.2rem, 3.8vw, 3.7rem);
@@ -72,41 +69,76 @@ const tr = (key: string, fallback: string = '') =>
     letter-spacing: 0.01em;
     margin: 0;
     line-height: 1.2;
-    align-self: center;           /* ← centrado */
+    align-self: center;
   }
 
-  /* "LA OPORTUNIDAD" */
   .bp-title {
     font-family: 'Montserrat', sans-serif;
-    font-size: clamp(2.5rem, 7vw, 6.68rem);
+    font-size: clamp(2.5rem, 7vw, 6rem);
     font-weight: 1000;
     color: #fff;
     letter-spacing: 0em;
     margin: 0;
     line-height: 1;
     text-transform: uppercase;
-    align-self: center;           /* ← centrado */
+    align-self: center;
   }
 
-  /* "de ser parte del evento ..." — queda a la izquierda naturalmente */
   .bp-sub {
     font-family: 'Montserrat', sans-serif;
     font-size: clamp(0.85rem, 1.8vw, 1.8rem);
     font-weight: 500;
-    color: #FAFBFBff;
+    color: #fafbfb;
     margin: 0.5rem 0 0;
     line-height: 0.5;
-    margin-left: -2.2rem;  /* ← ajusta el valor */
+    margin-left: -2.2rem;
+  }
+
+  /* ── DESKTOP ≥1281px ── */
+  @media (min-width: 1281px) {
+    .bp-inner { padding: 2rem 15%; }
+    .bp-pre   { font-size: 3.7rem; align-self: center; }
+    .bp-title { font-size: 6rem; align-self: center; }
+    .bp-sub   { font-size: 1.8rem; margin-left: -2.2rem; line-height: 0.5; }
+  }
+
+  /* ── TABLET GRANDE 1025px–1280px ── */
+  @media (max-width: 1280px) and (min-width: 1025px) {
+    .bp-inner { padding: 2rem 12%; }
+    .bp-pre   { font-size: 3.2rem; align-self: center; }
+    .bp-title { font-size: 5rem; align-self: center; }
+    .bp-sub   { font-size: 1.5rem; margin-left: -2.2rem; line-height: 0.5; }
+  }
+
+  /* ── TABLET 769px–1024px ── */
+  @media (max-width: 1024px) and (min-width: 769px) {
+    .bp-inner { padding: 2rem 10%; }
+    .bp-pre   { font-size: 2.6rem; align-self: center; }
+    .bp-title { font-size: 4rem; align-self: center; }
+    .bp-sub   { font-size: 1.2rem; margin-left: -2.2rem; line-height: 0.5; }
   }
 
   /* ── MOBILE ≤768px ── */
   @media (max-width: 768px) {
-    .bp-inner { padding: 2rem 2rem; }
-    .bp-sub   { align-self: center; }   /* ← en mobile se centra también */
+    .bp-inner { padding: 2rem 2rem; align-items: center; }
+    .bp-pre   { font-size: 2rem; align-self: center; }
+    .bp-title { font-size: 3rem; align-self: center; }
+    .bp-sub   { font-size: 1rem; margin-left: 0; line-height: 1.4; align-self: center; }
   }
 
   /* ── MOBILE PEQUEÑO ≤480px ── */
   @media (max-width: 480px) {
-    .bp-inner { padding: 1.5rem 1.25rem; }
+    .bp-inner { padding: 1.5rem 1.25rem; align-items: center; }
+    .bp-pre   { font-size: 1.5rem; align-self: center; }
+    .bp-title { font-size: 2.1rem; align-self: center; }
+    .bp-sub   { font-size: 0.85rem; margin-left: 0; line-height: 1.4; align-self: center; }
+  }
+
+  /* ── MOBILE MUY PEQUEÑO ≤380px ── */
+  @media (max-width: 380px) {
+    .bp-inner { padding: 1rem 1rem; align-items: center; }
+    .bp-pre   { font-size: 1.2rem; align-self: center; }
+    .bp-title { font-size: 1.8rem; align-self: center; }
+    .bp-sub   { font-size: 0.75rem; margin-left: 0; line-height: 1.4; align-self: center; }
   }
 </style>

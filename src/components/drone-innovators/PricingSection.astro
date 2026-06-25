@@ -104,7 +104,7 @@ const tr = (key: string, fallback: string = '') =>
     box-sizing: border-box;
   }
 
-  /* Línea horizontal que cruza detrás de las cards */
+  /* Línea 1 — detrás de la primera card (siempre visible) */
   .ps-section::before {
     content: '';
     position: absolute;
@@ -114,6 +114,18 @@ const tr = (key: string, fallback: string = '') =>
     height: 5px;
     background: #103347;
     z-index: 0;
+  }
+
+  /* Línea 2 — detrás de la segunda card (solo en 2 filas, oculta en desktop) */
+  .ps-section::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: #103347;
+    z-index: 0;
+    display: none; /* oculta por defecto en desktop */
   }
 
   /* Grid centrado */
@@ -252,24 +264,120 @@ const tr = (key: string, fallback: string = '') =>
     transform: translateY(-1px);
   }
 
-  /* ── TABLET ≤1024px ── */
-  @media (max-width: 1024px) {
-    .ps-section { padding: 3rem 2.5rem 4rem; }
-    .ps-grid    { max-width: 540px; }
+  /* ── DESKTOP ≥1281px ── */
+  @media (min-width: 1281px) {
+    .ps-section       { padding: 4rem 4rem 5rem; }
+    .ps-section::before { top: 24.4%; }
+    .ps-section::after  { display: none; }
+    .ps-grid          { grid-template-columns: 1fr 1fr; max-width: 620px; gap: 1.75rem; }
+    .ps-card          { aspect-ratio: 1 / 1.58; border-radius: 18px; }
+    .ps-tag           { font-size: 0.9rem; padding: 1rem; }
+    .ps-body          { padding: 1.5rem 1.4rem 1.75rem; }
+    .ps-price         { margin-top: 2rem; margin-bottom: 3rem; }
+    .ps-price-symbol  { font-size: 2rem; }
+    .ps-price-amount  { font-size: 3rem; }
+    .ps-price-currency { font-size: 2rem; }
+    .ps-feature       { font-size: 0.8rem; }
+    .ps-check         { width: 16px; height: 16px; }
+    .ps-btn           { font-size: 1rem; padding: 0.6rem 1rem; margin-top: 2rem; }
   }
 
-  /* ── MOBILE ≤768px ── */
+  /* ── TABLET GRANDE 1025px–1280px ── */
+  @media (max-width: 1280px) and (min-width: 1025px) {
+    .ps-section       { padding: 3.5rem 3rem 4.5rem; }
+    .ps-section::before { top: 24.4%; }
+    .ps-section::after  { display: none; }
+    .ps-grid          { grid-template-columns: 1fr 1fr; max-width: 580px; gap: 1.5rem; }
+    .ps-card          { aspect-ratio: 1 / 1.58; border-radius: 18px; }
+    .ps-tag           { font-size: 0.85rem; padding: 0.9rem; }
+    .ps-body          { padding: 1.4rem 1.3rem 1.6rem; }
+    .ps-price         { margin-top: 1.8rem; margin-bottom: 2.5rem; }
+    .ps-price-symbol  { font-size: 1.8rem; }
+    .ps-price-amount  { font-size: 2.6rem; }
+    .ps-price-currency { font-size: 1.8rem; }
+    .ps-feature       { font-size: 0.78rem; }
+    .ps-check         { width: 15px; height: 15px; }
+    .ps-btn           { font-size: 0.9rem; padding: 0.6rem 1rem; margin-top: 1.8rem; }
+  }
+
+  /* ── TABLET 769px–1024px ── */
+  @media (max-width: 1024px) and (min-width: 769px) {
+    .ps-section       { padding: 3rem 2.5rem 4rem; }
+    .ps-section::before { top: 24.4%; }
+    .ps-section::after  { display: none; }
+    .ps-grid          { grid-template-columns: 1fr 1fr; max-width: 540px; gap: 1.25rem; }
+    .ps-card          { aspect-ratio: 1 / 1.58; border-radius: 16px; }
+    .ps-tag           { font-size: 0.78rem; padding: 0.85rem; }
+    .ps-body          { padding: 1.25rem 1.2rem 1.5rem; }
+    .ps-price         { margin-top: 1.5rem; margin-bottom: 2rem; }
+    .ps-price-symbol  { font-size: 1.5rem; }
+    .ps-price-amount  { font-size: 2.2rem; }
+    .ps-price-currency { font-size: 1.5rem; }
+    .ps-feature       { font-size: 0.72rem; }
+    .ps-check         { width: 14px; height: 14px; }
+    .ps-btn           { font-size: 0.8rem; padding: 0.55rem 1rem; margin-top: 1.5rem; }
+  }
+
+  /* ── MOBILE ≤768px — 2 filas, aparece línea 2 ── */
   @media (max-width: 768px) {
-    .ps-section { padding: 2.5rem 1.5rem 3.5rem; }
-    .ps-grid    { grid-template-columns: 1fr; max-width: 300px; gap: 1.5rem; }
-    .ps-card    { aspect-ratio: 1 / 1.4; }
+    .ps-section       { padding: 2.5rem 1.5rem 3.5rem; }
+    .ps-section::before { top: 12.5%; }   
+    .ps-section::after  {
+      display: block;
+      top: 55%;                           
+    }
+    .ps-grid          { grid-template-columns: 1fr; max-width: 300px; gap: 1.5rem; }
+    .ps-card          { aspect-ratio: 1.2 / 1.4; border-radius: 16px; }
+    .ps-tag           { font-size: 0.78rem; padding: 0.85rem; }
+    .ps-body          { padding: 1.25rem 1.2rem 1.5rem; }
+    .ps-price         { margin-top: 1.5rem; margin-bottom: 2rem; }
+    .ps-price-symbol  { font-size: 2rem; }
+    .ps-price-amount  { font-size: 3rem; }
+    .ps-price-currency { font-size: 2rem; }
+    .ps-feature       { font-size: 0.75rem; }
+    .ps-check         { width: 14px; height: 14px; }
+    .ps-btn           { font-size: 0.85rem; padding: 0.6rem 1rem; margin-top: 1.5rem; }
   }
 
-  /* ── MOBILE PEQUEÑO ≤480px ── */
+  /* ── MOBILE PEQUEÑO ≤480px — */
   @media (max-width: 480px) {
-    .ps-section { padding: 2rem 1.25rem 3rem; }
-    .ps-grid    { max-width: 100%; }
-    .ps-card    { aspect-ratio: 1 / 1.5; }
-    .ps-body    { padding: 1.25rem; }
+    .ps-section       { padding: 2rem 1.25rem 3rem; }
+    .ps-section::before { top: 15%; }    
+    .ps-section::after  {
+      display: block;
+      top: 61%;                           
+    }
+    .ps-grid          { grid-template-columns: 1fr; max-width: 100%; gap: 1.25rem; }
+    .ps-card          { aspect-ratio: 1 / 0.8; border-radius: 14px; }
+    .ps-tag           { font-size: 0.72rem; padding: 0.8rem; }
+    .ps-body          { padding: 1.25rem; }
+    .ps-price         { margin-top: 1.25rem; margin-bottom: 1.75rem; }
+    .ps-price-symbol  { font-size: 2.3rem; }
+    .ps-price-amount  { font-size: 3rem; }
+    .ps-price-currency { font-size: 2.3rem; }
+    .ps-feature       { font-size: 0.8rem; }
+    .ps-check         { width: 13px; height: 13px; }
+    .ps-btn           { font-size: 0.78rem; padding: 0.55rem 1rem; margin-top: 1.25rem; }
+  }
+
+  /* ── MOBILE MUY PEQUEÑO ≤380px — */
+  @media (max-width: 380px) {
+    .ps-section       { padding: 1.5rem 1rem 2.5rem; }
+    .ps-section::before { top: 14%; }   
+    .ps-section::after  {
+      display: block;
+      top: 60%;                           
+    }
+    .ps-grid          { grid-template-columns: 1fr; max-width: 100%; gap: 1rem; }
+    .ps-card          { aspect-ratio: 1 / 0.8; border-radius: 12px; }
+    .ps-tag           { font-size: 0.68rem; padding: 0.75rem; }
+    .ps-body          { padding: 1rem; }
+    .ps-price         { margin-top: 1rem; margin-bottom: 1.5rem; }
+    .ps-price-symbol  { font-size: 2.3rem; }
+    .ps-price-amount  { font-size: 3rem; }
+    .ps-price-currency { font-size: 2.3rem; }
+    .ps-feature       { font-size: 0.7rem; }
+    .ps-check         { width: 12px; height: 12px; }
+    .ps-btn           { font-size: 0.72rem; padding: 0.5rem 1rem; margin-top: 1rem; }
   }
 </style>
