@@ -1100,10 +1100,10 @@ export function RegisterForm({ translates, currentLanguage }) {
                 <option value="LOGÍSTICA E INTRALOGÍSTICA">
                   {translates.industry_option_14}
                 </option>
-                <option value="MANUFACTURERA">
+                <option value="MINERA, METALÚRGICA Y SIDERÚRGICA">
                   {translates.industry_option_15}
                 </option>
-                <option value="MINERA, METALÚRGICA Y SIDERÚRGICA">
+                <option value="OTRAS MANUFACTURAS">
                   {translates.industry_option_16}
                 </option>
                 <option value="PETROQUÍMICA">
