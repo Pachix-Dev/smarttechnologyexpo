@@ -36,17 +36,18 @@ const base = locale === "en" ? "/en" : "";
     </div>
   </header>
 
+  <!-- sección de acceso gratuito -->
+  <FreeAccessSection />
+
   <!-- patrocinadores -->
   <!-- <div class="w-full">
     <LogoGrid
-      title="PATROCINADORES"
+      title={locale === "es" ? "PATROCINADORES" : "SPONSORS"}
       logos={strategicPartners}
       imageHeight="56px"
-      columnsMin="200px"
+      columnsMin="100px"
       compact
     />
   </div> -->
 
-  <!-- sección de acceso gratuito -->
-  <FreeAccessSection />
 </section>

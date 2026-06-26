@@ -14,10 +14,9 @@ const base = locale === "en" ? "/en" : "";
     
     <!-- sección de beneficios de acceso gratuito -->
     <div class="benefits-card h-full flex flex-col justify-center">
-      <h2 id="free-access-title" class="benefits-title text-sm text-center sm:text-start uppercase">
+      <h2 id="free-access-title" class="benefits-title text-center sm:text-start uppercase">
         {tr("registerHome.freeAccess.title")}
       </h2>
-
       <div class="benefits-list">
         <article class="benefit-item">
           <span class="benefit-icon" aria-hidden="true">
@@ -39,7 +38,7 @@ const base = locale === "en" ? "/en" : "";
           </div>
         </article>
 
-        <article class="benefit-item">
+        <!-- <article class="benefit-item">
           <span class="benefit-icon" aria-hidden="true">
             <img src="/img/check_icon.svg" alt="">
           </span>
@@ -47,7 +46,7 @@ const base = locale === "en" ? "/en" : "";
             <h3>{tr("registerHome.freeAccess.benefits.workshops.title")}</h3>
             <p>{tr("registerHome.freeAccess.benefits.workshops.description")}</p>
           </div>
-        </article>
+        </article> -->
 
         <article class="benefit-item">
           <span class="benefit-icon" aria-hidden="true">
@@ -61,11 +60,11 @@ const base = locale === "en" ? "/en" : "";
       </div>
     </div>
 
-    <!-- sección de acceso -->
     <div class="access-side">
 
-      <aside class="pass-card" aria-label="Pases limitados">
-        <div class="event-info" aria-label={locale === "es" ? "Información del evento" : "Event information"}>
+      <!-- sección de acceso al evento -->
+      <aside class="pass-card">
+        <div class="event-info">
           <div class="event-info-item">
             <span>{tr("registerHome.eventInfo.venueLabel")}</span>
             <strong>{tr("registerHome.eventInfo.venue")}</strong>
@@ -80,15 +79,16 @@ const base = locale === "en" ? "/en" : "";
           </div>
         </div>
 
-        <a class="register-button" href={`${base}/registro-nuevo`}>
-          REGÍSTRATE GRATIS
+        <a class="register-button uppercase text-xl" href={`${base}/registro-nuevo`}>
+          {locale === 'es' ? 'Regístrate gratis' : 'Register for free'}
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path>
           </svg>
         </a>
-        <p class="pass-note">Confirmación inmediata vía correo electrónico.</p>
+        <p class="pass-note">{locale === 'es' ? 'Confirmación inmediata vía correo electrónico.' : 'Immediate confirmation via email.'}</p>
       </aside>
 
+      <!-- sección de aviso B2B -->
       <aside class="b2b-notice" aria-label="Evento exclusivo B2B">
         <div class="flex flex-row gap-x-2   " >
           <span class="notice-icon" aria-hidden="true">!</span>
@@ -98,6 +98,7 @@ const base = locale === "en" ? "/en" : "";
           <p set:html={tr('registerHome.warningMessage')}/>
         </div>
       </aside>
+
     </div>
   </div>
 </section>
@@ -364,6 +365,22 @@ const base = locale === "en" ? "/en" : "";
       grid-template-columns: 1fr;
       gap: 24px;
     }
+
+    .access-side {
+      display: contents;
+    }
+
+    .pass-card {
+      order: -1;
+    }
+
+    .benefits-card {
+      order: 0;
+    }
+
+    .b2b-notice {
+      order: 1;
+    }
   }
 
   @media (max-width: 640px) {
@@ -375,7 +392,7 @@ const base = locale === "en" ? "/en" : "";
 
     .benefits-title {
       align-items: flex-start;
-      font-size: 1.18rem;
+      font-size: 1.10rem;
       margin-bottom: 24px;
     }
 

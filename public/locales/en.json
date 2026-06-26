@@ -866,8 +866,39 @@
     "title": "Media Accreditation ",
     "description": "Dear Media Representatives:<br/>We invite interested media outlets to complete the following press registration form to obtain accreditation for coverage of the Smart Technology Expo.<br/>The deadline to apply for accreditation is Friday, November 6, 2026. You will be notified of your accreditation status no later than November 13.<br/>Please note that press accreditation for Smart Technology Expo is granted in two ways: by invitation and through this registration process.<br/>If your media outlet has received an invitation in previous editions to cover events organized by Italian German Exhibition Company Mexico, you will receive this invitation before November 6, 2026.<br/>Please note that Smart Technology Expo is a free event aimed at industry professionals, and anyone interested can attend at no cost by registering as a professional visitor."
   },
-
-  "droneInnovators": {
+  "registerHome": {
+    "warningMessage": "This event is intended exclusively for industry professionals, executives, decision-makers, technical specialists, directors, and company representatives. Due to the specialized nature of the program and networking activities, <strong class=text-red-700>registration is not available for students.</strong> We appreciate your understanding and kindly ask you to avoid submitting registrations that do not meet this criterion, as access to the venue cannot be authorized.",
+    "eventInfo": {
+      "venueLabel": "Venue",
+      "venue": "Expo Guadalajara",
+      "dateLabel": "Date",
+      "date": "November 18 - 20, 2026",
+      "scheduleLabel": "Hours",
+      "schedule": "11:00  - 18:00 hrs"
+    },
+    "freeAccess": {
+      "title": "Your Free Access Includes:",
+      "benefits": {
+        "exhibition": {
+          "title": "Access to the exhibition area",
+          "description": "Full access to the exhibition floor with more than 200 national and international brands."
+        },
+        "conferences": {
+          "title": "Educational Program",
+          "description": "Access to conference and workshop sessions with specialists, trends, and success stories focused on technology, innovation, and industrial applications."
+        },
+        "workshops": {
+          "title": "Courses and workshops",
+          "description": "Entry to courses and workshops focused on technology, innovation, and industrial applications."
+        },
+        "networking": {
+          "title": "Networking and interaction spaces",
+            "description": "A platform for building strategic connections with suppliers, industry leaders, and decision-makers."
+          }
+      }
+    }
+  },
+   "droneInnovators": {
     "exhibitors": {
       "heading_bold": "DRONE INNOVATORS FORUM",
       "heading_rest": "is a",
