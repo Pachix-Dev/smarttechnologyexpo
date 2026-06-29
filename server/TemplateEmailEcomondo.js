@@ -256,33 +256,33 @@ const email_template_ecomondo = async ({
                   </td>
                 </tr>
 
-                <!-- Fila 2 -->
-                <tr>
-                  <td width="266" align="center" valign="top"
-                    style="width:266px; padding:0; font-size:0; line-height:0;">
-                    <a href="https://smarttechnologyexpo.mx/" target="_blank"
-                      style="display:block; text-decoration:none;">
-                      <img src="https://smarttechnologyexpo.mx/cursos_talleres_es.jpg" alt="Courses and Workshops"
-                        width="266" border="0"
-                        style="display:block; width:266px; max-width:266px; height:auto; border:0; outline:none; text-decoration:none;" />
-                    </a>
-                  </td>
+                <!-- Fila 3 -->
+                // <tr>
+                //   <td width="266" align="center" valign="top"
+                //     style="width:266px; padding:0; font-size:0; line-height:0;">
+                //     <a href="https://smarttechnologyexpo.mx/" target="_blank"
+                //       style="display:block; text-decoration:none;">
+                //       <img src="https://smarttechnologyexpo.mx/cursos_talleres_es.jpg" alt="Courses and Workshops"
+                //         width="266" border="0"
+                //         style="display:block; width:266px; max-width:266px; height:auto; border:0; outline:none; text-decoration:none;" />
+                //     </a>
+                //   </td>
 
 
-                  <td width="8" style="width:8px; padding:0; font-size:0; line-height:0;">
-                    &nbsp;
-                  </td>
+                //   <td width="8" style="width:8px; padding:0; font-size:0; line-height:0;">
+                //     &nbsp;
+                //   </td>
 
-                  <td width="266" align="center" valign="top"
-                    style="width:266px; padding:0; font-size:0; line-height:0;">
-                    <a href="https://smarttechnologyexpo.mx/" target="_blank"
-                      style="display:block; text-decoration:none;">
-                      <img src="https://smarttechnologyexpo.mx/mujeres_es.jpg" alt="Women in Technology" width="266"
-                        border="0"
-                        style="display:block; width:266px; max-width:266px; height:auto; border:0; outline:none; text-decoration:none;" />
-                    </a>
-                  </td>
-                </tr>
+                //   <td width="266" align="center" valign="top"
+                //     style="width:266px; padding:0; font-size:0; line-height:0;">
+                //     <a href="https://smarttechnologyexpo.mx/" target="_blank"
+                //       style="display:block; text-decoration:none;">
+                //       <img src="https://smarttechnologyexpo.mx/mujeres_es.jpg" alt="Women in Technology" width="266"
+                //         border="0"
+                //         style="display:block; width:266px; max-width:266px; height:auto; border:0; outline:none; text-decoration:none;" />
+                //     </a>
+                //   </td>
+                // </tr>
 
               </table>
             </td>
