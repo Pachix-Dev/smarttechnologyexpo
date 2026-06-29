@@ -8,6 +8,7 @@ const tr = (key: string, fallback: string = "") =>
   getTranslation(translations, key, fallback);
 
 import "../styles/global.css";
+import Footer from "../components/shared/Footer.astro";
 ---
 
 <!doctype html>
@@ -15,7 +16,7 @@ import "../styles/global.css";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+    <link rel='icon' type='image/png' href='/img/smart_logo_red.png' />
     <title>{tr("site.title")}</title>
     <meta name="description" content={tr("site.description")} />
 
@@ -30,9 +31,7 @@ import "../styles/global.css";
     <main>
       <slot />
     </main>
-    <footer>
-      <!-- Aquí va el footer -->
-    </footer>
+     <Footer />
 
     <!-- AOS Animation Library -->
     <script
