@@ -1,5 +1,9 @@
 ---
 import { useTranslations, getTranslation } from "../utils/translations";
+interface Props {
+  title?: string;
+  description?: string;
+}
 // ✨ Una sola línea para cargar traducciones!
 const { locale, translations } = await useTranslations(Astro.props, Astro);
 
@@ -7,18 +11,23 @@ const { locale, translations } = await useTranslations(Astro.props, Astro);
 const tr = (key: string, fallback: string = "") =>
   getTranslation(translations, key, fallback);
 
+const {
+  title = tr("site.title", "Smart Technology Expo"),
+  description = tr("site.description", ""),
+} = Astro.props;
+
 import "../styles/global.css";
 import Footer from "../components/shared/Footer.astro";
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={locale}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="/img/smart_logo_red.png" />
-    <title>{tr("site.title")}</title>
-    <meta name="description" content={tr("site.description")} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
 
     <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
@@ -118,6 +127,5 @@ import Footer from "../components/shared/Footer.astro";
         style='display:none;visibility:hidden'></iframe></noscript
     >
     <!-- End Google Tag Manager (noscript) -->
-     
   </body>
 </html>
