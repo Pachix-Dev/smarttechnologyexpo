@@ -2,6 +2,7 @@
 export interface LogoItem {
   src: string
   alt: string
+  href?: string
   width?: number
   height?: number
 }
@@ -18,15 +19,35 @@ const { logos = [] } = Astro.props
     {
       logos.map((logo) => (
         <div class="group flex min-h-20 w-full items-center justify-center overflow-hidden rounded-lg transition duration-300 hover:-translate-y-1 hover:drop-shadow-[0_12px_18px_rgba(0,0,0,0.14)] sm:min-h-24">
-          <img
-            class="block h-auto max-h-24 w-auto max-w-full object-contain p-2 transition duration-300 group-hover:scale-105 sm:max-h-32"
-            src={logo.src}
-            alt={logo.alt}
-            width={logo.width}
-            height={logo.height}
-            loading="lazy"
-            decoding="async"
-          />
+          {logo.href ? (
+            <a
+              class="flex w-full items-center justify-center no-underline outline-none focus-visible:ring-2 focus-visible:ring-[#ed332d] focus-visible:ring-offset-4"
+              href={logo.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={logo.alt}
+            >
+              <img
+                class="block h-auto max-h-24 w-auto max-w-full object-contain p-2 transition duration-300 group-hover:scale-105 sm:max-h-32"
+                src={logo.src}
+                alt={logo.alt}
+                width={logo.width}
+                height={logo.height}
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
+          ) : (
+            <img
+              class="block h-auto max-h-24 w-auto max-w-full object-contain p-2 transition duration-300 group-hover:scale-105 sm:max-h-32"
+              src={logo.src}
+              alt={logo.alt}
+              width={logo.width}
+              height={logo.height}
+              loading="lazy"
+              decoding="async"
+            />
+          )}
         </div>
       ))
     }

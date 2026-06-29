@@ -1,4 +1,4 @@
-const email_template_ecomondo_eng = async ({   name,   paternSurname,   maternSurname = "" }) => {
+const email_template_ecomondo_eng = async ({ name, paternSurname, maternSurname = "" }) => {
   return `
        
     <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#e9e9e9; margin:0; padding:0px 0px;">
@@ -189,39 +189,6 @@ const email_template_ecomondo_eng = async ({   name,   paternSurname,   maternSu
 
                   <td width="266" align="center" valign="top"
                     style="width:266px; padding:0; font-size:0; line-height:0;">
-                    <a href="https://smarttechnologyexpo.mx/en/" target="_blank"
-                      style="display:block; text-decoration:none;">
-                      <img src="https://smarttechnologyexpo.mx/mujeres_en.jpg" alt="Women in Technology" width="266" border="0"
-                        style="display:block; width:266px; max-width:266px; height:auto; border:0; outline:none; text-decoration:none;" />
-                    </a>
-                  </td>
-                </tr>
-
-                <!-- Espacio entre filas -->
-                <tr>
-                  <td colspan="3" height="8" style="height:8px; padding:0; font-size:0; line-height:0;">
-                    &nbsp;
-                  </td>
-                </tr>
-
-                <!-- Fila 2 -->
-                <tr>
-                  <td width="266" align="center" valign="top"
-                    style="width:266px; padding:0; font-size:0; line-height:0;">
-                    <a href="https://smarttechnologyexpo.mx/en/" target="_blank"
-                      style="display:block; text-decoration:none;">
-                      <img src="https://smarttechnologyexpo.mx/cursos_talleres_en.jpg" alt="Courses and Workshops" width="266" border="0"
-                        style="display:block; width:266px; max-width:266px; height:auto; border:0; outline:none; text-decoration:none;" />
-                    </a>
-                  </td>
-
-                  <!-- Espacio entre columnas -->
-                  <td width="8" style="width:8px; padding:0; font-size:0; line-height:0;">
-                    &nbsp;
-                  </td>
-
-                  <td width="266" align="center" valign="top"
-                    style="width:266px; padding:0; font-size:0; line-height:0;">
                     <a href="https://smarttechnologyexpo.mx/en/premio-itzamna-2026/" target="_blank"
                       style="display:block; text-decoration:none;">
                       <img src="https://smarttechnologyexpo.mx/premio_itzamna_en.jpg" alt="Exhibition Plan" width="266" border="0"
@@ -237,7 +204,7 @@ const email_template_ecomondo_eng = async ({   name,   paternSurname,   maternSu
                   </td>
                 </tr>
 
-                <!-- Fila 3 -->
+                <!-- Fila 2 -->
                 <tr>
                   <td width="266" align="center" valign="top"
                     style="width:266px; padding:0; font-size:0; line-height:0;">
@@ -258,6 +225,39 @@ const email_template_ecomondo_eng = async ({   name,   paternSurname,   maternSu
                     <a href="https://igeco.mx/en/" target="_blank"
                       style="display:block; text-decoration:none;">
                       <img src="https://smarttechnologyexpo.mx/otros_eventos_en.jpg" alt="Other Events" width="266" border="0"
+                        style="display:block; width:266px; max-width:266px; height:auto; border:0; outline:none; text-decoration:none;" />
+                    </a>
+                  </td>
+                </tr>
+                
+                <!-- Espacio entre filas -->
+                <tr>
+                  <td colspan="3" height="8" style="height:8px; padding:0; font-size:0; line-height:0;">
+                    &nbsp;
+                  </td>
+                </tr>
+
+                <!-- Fila 3 -->
+                <tr>
+                  <td width="266" align="center" valign="top"
+                    style="width:266px; padding:0; font-size:0; line-height:0;">
+                    <a href="https://smarttechnologyexpo.mx/en/" target="_blank"
+                      style="display:block; text-decoration:none;">
+                      <img src="https://smarttechnologyexpo.mx/cursos_talleres_en.jpg" alt="Courses and Workshops" width="266" border="0"
+                        style="display:block; width:266px; max-width:266px; height:auto; border:0; outline:none; text-decoration:none;" />
+                    </a>
+                  </td>
+
+                  <!-- Espacio entre columnas -->
+                  <td width="8" style="width:8px; padding:0; font-size:0; line-height:0;">
+                    &nbsp;
+                  </td>
+
+                  <td width="266" align="center" valign="top"
+                    style="width:266px; padding:0; font-size:0; line-height:0;">
+                    <a href="https://smarttechnologyexpo.mx/en/" target="_blank"
+                      style="display:block; text-decoration:none;">
+                      <img src="https://smarttechnologyexpo.mx/mujeres_en.jpg" alt="Women in Technology" width="266" border="0"
                         style="display:block; width:266px; max-width:266px; height:auto; border:0; outline:none; text-decoration:none;" />
                     </a>
                   </td>
@@ -334,7 +334,7 @@ const email_template_ecomondo_eng = async ({   name,   paternSurname,   maternSu
 
       </td>
     </tr>
-  </table>
+</table>
 
       `;
 };

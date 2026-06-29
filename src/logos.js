@@ -12,7 +12,7 @@
 ];
 
   const sponsorsDiamond = [
-    { src: "/img/logos/sponsors/beckhoff.webp", alt: "Beckhoff", width: 300 },
+    { src: "/img/logos/sponsors/beckhoff.webp", alt: "Beckhoff", href: "https://www.beckhoff.com/es-mx/", width: 300 },
   ];
 
 export { mediaPlanito, strategicPartners, sponsorsDiamond };

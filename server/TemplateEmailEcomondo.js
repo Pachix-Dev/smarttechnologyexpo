@@ -5,22 +5,20 @@ const email_template_ecomondo = async ({
 }) => {
   return `
     
-  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#e9e9e9; margin:0; padding:0px 0px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0"
+    style="background-color:#e9e9e9; margin:0; padding:0px 0px;">
     <tr>
       <td align="center">
 
         <!-- Contenedor principal -->
-        <table width="600" border="0" cellspacing="0" cellpadding="0" style="width:600px; max-width:600px; background-color:#ffffff;">
-          
+        <table width="600" border="0" cellspacing="0" cellpadding="0"
+          style="width:600px; max-width:600px; background-color:#ffffff;">
+
           <!-- Header / Banner principal -->
           <tr>
             <td align="center">
-              <img 
-                src="https://smarttechnologyexpo.mx/header_email_ste.jpg" 
-                alt="Smart Technology Expo 2026" 
-                width="600" 
-                style="display:block; width:100%; max-width:600px; border:0;"
-              />
+              <img src="https://smarttechnologyexpo.mx/header_email_ste.jpg" alt="Smart Technology Expo 2026"
+                width="600" style="display:block; width:100%; max-width:600px; border:0;" />
             </td>
           </tr>
 
@@ -38,14 +36,18 @@ const email_template_ecomondo = async ({
           <tr>
             <td align="center" style="padding:0 30px 16px 30px;">
               <div style="font-size:15px; line-height:1.6; color:#333333; text-align:center;">
-                Durante tres días descubrirás innovación aplicada, conocerás soluciones que ya están transformando plantas, cadenas de suministro y modelos de negocio, y conectarás con las personas que están impulsando la próxima generación de la manufactura, la automatización, la inteligencia artificial, la logística inteligente y la transformación digital.
+                Durante tres días descubrirás innovación aplicada, conocerás soluciones que ya están transformando
+                plantas, cadenas de suministro y modelos de negocio, y conectarás con las personas que están impulsando
+                la próxima generación de la manufactura, la automatización, la inteligencia artificial, la logística
+                inteligente y la transformación digital.
               </div>
             </td>
           </tr>
 
           <tr>
             <td align="center" style="padding:0 30px 16px 30px;">
-              <div style="font-size:14px; line-height:1.6; color:#333333; text-align:center; font-weight:bold; text-transform: uppercase; font-style: italic;">
+              <div
+                style="font-size:14px; line-height:1.6; color:#333333; text-align:center; font-weight:bold; text-transform: uppercase; font-style: italic;">
                 La próxima gran oportunidad para tu negocio comienza ahora.
               </div>
             </td>
@@ -54,7 +56,8 @@ const email_template_ecomondo = async ({
           <tr>
             <td align="center" style="padding:0 30px 16px 30px;">
               <div style="font-size:14px; line-height:1.6; color:#333333; text-align:center;">
-                Nos vemos en Guadalajara <br><strong style="text-transform: uppercase;">Smart Technology Expo 2026</strong><br>YOUR BUSINESS IS OUR BUSINESS 
+                Nos vemos en Guadalajara <br><strong style="text-transform: uppercase;">Smart Technology Expo
+                  2026</strong><br>YOUR BUSINESS IS OUR BUSINESS
               </div>
             </td>
           </tr>
@@ -98,23 +101,30 @@ const email_template_ecomondo = async ({
               <table border="0" cellspacing="0" cellpadding="0">
                 <tr>
                   <td style="padding:6px;">
-                    <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Smart%20Technology%20Expo%202026&dates=20261118T170000Z%2F20261121T000000Z&details=El%20punto%20de%20encuentro%20que%20impulsa%20la%20adopci%C3%B3n%20de%20innovaci%C3%B3n%20aplicada%2C%20fortalece%20las%20cadenas%20de%20valor%20industriales%20y%20genera%20oportunidades%20reales%20de%20negocio%2C%20networking%20estrat%C3%A9gico%20y%20colaboraci%C3%B3n%20tecnol%C3%B3gica%20para%20las%20empresas%20que%20buscan%20crecer%20dentro%20del%20nuevo%20entorno%20industrial%20del%20pa%C3%ADs.&location=Expo%20Guadalajara%2C%20Guadalajara%2C%20Jalisco&ctz=America%2FMexico_City" target="_blank">
-                      <img src="https://smarttechnologyexpo.mx/btn_google_calendar.png" alt="Google Calendar" width="110" style="display:block; border:0;" />
+                    <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Smart%20Technology%20Expo%202026&dates=20261118T170000Z%2F20261121T000000Z&details=El%20punto%20de%20encuentro%20que%20impulsa%20la%20adopci%C3%B3n%20de%20innovaci%C3%B3n%20aplicada%2C%20fortalece%20las%20cadenas%20de%20valor%20industriales%20y%20genera%20oportunidades%20reales%20de%20negocio%2C%20networking%20estrat%C3%A9gico%20y%20colaboraci%C3%B3n%20tecnol%C3%B3gica%20para%20las%20empresas%20que%20buscan%20crecer%20dentro%20del%20nuevo%20entorno%20industrial%20del%20pa%C3%ADs.&location=Expo%20Guadalajara%2C%20Guadalajara%2C%20Jalisco&ctz=America%2FMexico_City"
+                      target="_blank">
+                      <img src="https://smarttechnologyexpo.mx/btn_google_calendar.png" alt="Google Calendar"
+                        width="110" style="display:block; border:0;" />
                     </a>
                   </td>
                   <td style="padding:6px;">
-                    <a href="https://outlook.live.com/calendar/0/action/compose?rru=addevent&subject=Smart%20Technology%20Expo%202026&startdt=2026-11-18T11%3A00%3A00-06%3A00&enddt=2026-11-20T18%3A00%3A00-06%3A00&body=El%20punto%20de%20encuentro%20que%20impulsa%20la%20adopci%C3%B3n%20de%20innovaci%C3%B3n%20aplicada%2C%20fortalece%20las%20cadenas%20de%20valor%20industriales%20y%20genera%20oportunidades%20reales%20de%20negocio%2C%20networking%20estrat%C3%A9gico%20y%20colaboraci%C3%B3n%20tecnol%C3%B3gica%20para%20las%20empresas%20que%20buscan%20crecer%20dentro%20del%20nuevo%20entorno%20industrial%20del%20pa%C3%ADs.&location=Expo%20Guadalajara%2C%20Guadalajara%2C%20Jalisco&allday=false" target="_blank">
-                      <img src="https://smarttechnologyexpo.mx/btn_outlook.png" alt="Outlook" width="110" style="display:block; border:0;" />
+                    <a href="https://outlook.live.com/calendar/0/action/compose?rru=addevent&subject=Smart%20Technology%20Expo%202026&startdt=2026-11-18T11%3A00%3A00-06%3A00&enddt=2026-11-20T18%3A00%3A00-06%3A00&body=El%20punto%20de%20encuentro%20que%20impulsa%20la%20adopci%C3%B3n%20de%20innovaci%C3%B3n%20aplicada%2C%20fortalece%20las%20cadenas%20de%20valor%20industriales%20y%20genera%20oportunidades%20reales%20de%20negocio%2C%20networking%20estrat%C3%A9gico%20y%20colaboraci%C3%B3n%20tecnol%C3%B3gica%20para%20las%20empresas%20que%20buscan%20crecer%20dentro%20del%20nuevo%20entorno%20industrial%20del%20pa%C3%ADs.&location=Expo%20Guadalajara%2C%20Guadalajara%2C%20Jalisco&allday=false"
+                      target="_blank">
+                      <img src="https://smarttechnologyexpo.mx/btn_outlook.png" alt="Outlook" width="110"
+                        style="display:block; border:0;" />
                     </a>
                   </td>
                   <td style="padding:6px;">
-                    <a href="https://calendar.yahoo.com/?v=60&title=Smart%20Technology%20Expo%202026&st=20261118T170000Z&et=20261121T000000Z&desc=El%20punto%20de%20encuentro%20que%20impulsa%20la%20adopci%C3%B3n%20de%20innovaci%C3%B3n%20aplicada%2C%20fortalece%20las%20cadenas%20de%20valor%20industriales%20y%20genera%20oportunidades%20reales%20de%20negocio%2C%20networking%20estrat%C3%A9gico%20y%20colaboraci%C3%B3n%20tecnol%C3%B3gica%20para%20las%20empresas%20que%20buscan%20crecer%20dentro%20del%20nuevo%20entorno%20industrial%20del%20pa%C3%ADs.&in_loc=Expo%20Guadalajara%2C%20Guadalajara%2C%20Jalisco" target="_blank">
-                      <img src="https://smarttechnologyexpo.mx/btn_yahoo.png" alt="Yahoo!" width="110" style="display:block; border:0;" />
+                    <a href="https://calendar.yahoo.com/?v=60&title=Smart%20Technology%20Expo%202026&st=20261118T170000Z&et=20261121T000000Z&desc=El%20punto%20de%20encuentro%20que%20impulsa%20la%20adopci%C3%B3n%20de%20innovaci%C3%B3n%20aplicada%2C%20fortalece%20las%20cadenas%20de%20valor%20industriales%20y%20genera%20oportunidades%20reales%20de%20negocio%2C%20networking%20estrat%C3%A9gico%20y%20colaboraci%C3%B3n%20tecnol%C3%B3gica%20para%20las%20empresas%20que%20buscan%20crecer%20dentro%20del%20nuevo%20entorno%20industrial%20del%20pa%C3%ADs.&in_loc=Expo%20Guadalajara%2C%20Guadalajara%2C%20Jalisco"
+                      target="_blank">
+                      <img src="https://smarttechnologyexpo.mx/btn_yahoo.png" alt="Yahoo!" width="110"
+                        style="display:block; border:0;" />
                     </a>
                   </td>
                   <td style="padding:6px;">
                     <a href="https://smarttechnologyexpo.mx/calendar-ste-2026.ics" target="_blank">
-                      <img src="https://smarttechnologyexpo.mx/btn_icalendar.png" alt="iCalendar" width="110" style="display:block; border:0;" />
+                      <img src="https://smarttechnologyexpo.mx/btn_icalendar.png" alt="iCalendar" width="110"
+                        style="display:block; border:0;" />
                     </a>
                   </td>
                 </tr>
@@ -144,7 +154,8 @@ const email_template_ecomondo = async ({
               <table border="0" cellspacing="0" cellpadding="0" style="margin:0 auto;">
                 <tr>
                   <td align="center" style="background-color:#ef2b2d; border-radius:30px;">
-                    <a href="https://maps.app.goo.gl/njZwNA7KiwSptKTN7" target="_blank" style="display:inline-block; padding:14px 26px; font-size:16px; font-weight:bold; color:#ffffff; text-decoration:none;">
+                    <a href="https://maps.app.goo.gl/njZwNA7KiwSptKTN7" target="_blank"
+                      style="display:inline-block; padding:14px 26px; font-size:16px; font-weight:bold; color:#ffffff; text-decoration:none;">
                       VER UBICACIÓN EN GOOGLE MAPS
                     </a>
                   </td>
@@ -165,13 +176,14 @@ const email_template_ecomondo = async ({
           <tr>
             <td align="center" style="padding:0 30px 18px 30px;">
               <div style="font-size:14px; line-height:1.5; color:#333333; text-align:center;">
-                Consulta toda la información necesaria para aprovechar al máximo tu experiencia en <br><strong>Smart Technology Expo 2026</strong>.
+                Consulta toda la información necesaria para aprovechar al máximo tu experiencia en <br><strong>Smart
+                  Technology Expo 2026</strong>.
               </div>
             </td>
           </tr>
 
           <!-- Sección de imágenes anexas (2da imagen) -->
-           <!-- Sección de eventos simultáneos -->
+          <!-- Sección de eventos simultáneos -->
           <tr>
             <td align="center" style="padding:0 30px 20px 30px;">
               <table role="presentation" width="540" border="0" cellspacing="0" cellpadding="0"
@@ -182,7 +194,8 @@ const email_template_ecomondo = async ({
                     style="width:266px; padding:0; font-size:0; line-height:0;">
                     <a href="https://smarttechnologyexpo.mx/conferencias/" target="_blank"
                       style="display:block; text-decoration:none;">
-                      <img src="https://smarttechnologyexpo.mx/conferencias_es.jpg" alt="Conference Program" width="266" border="0"
+                      <img src="https://smarttechnologyexpo.mx/conferencias_es.jpg" alt="Conference Program" width="266"
+                        border="0"
                         style="display:block; width:266px; max-width:266px; height:auto; border:0; outline:none; text-decoration:none;" />
                     </a>
                   </td>
@@ -194,9 +207,43 @@ const email_template_ecomondo = async ({
 
                   <td width="266" align="center" valign="top"
                     style="width:266px; padding:0; font-size:0; line-height:0;">
-                    <a href="https://smarttechnologyexpo.mx/" target="_blank"
+                    <a href="https://smarttechnologyexpo.mx/premio-itzamna-2026/" target="_blank"
                       style="display:block; text-decoration:none;">
-                      <img src="https://smarttechnologyexpo.mx/mujeres_es.jpg" alt="Women in Technology" width="266" border="0"
+                      <img src="https://smarttechnologyexpo.mx/premio_itzamna_es.jpg" alt="Exhibition Plan" width="266"
+                        border="0"
+                        style="display:block; width:266px; max-width:266px; height:auto; border:0; outline:none; text-decoration:none;" />
+                    </a>
+                  </td>
+                </tr>
+
+                <!-- Espacio entre filas -->
+                <tr>
+                  <td colspan="3" height="8" style="height:8px; padding:0; font-size:0; line-height:0;">
+                    &nbsp;
+                  </td>
+                </tr>
+
+                <!-- Fila 2 -->
+                <tr>
+                  <td width="266" align="center" valign="top"
+                    style="width:266px; padding:0; font-size:0; line-height:0;">
+                    <a href="https://smarttechnologyexpo.mx/tarifas-hoteles-2026/" target="_blank"
+                      style="display:block; text-decoration:none;">
+                      <img src="https://smarttechnologyexpo.mx/hoteles_es.jpg" alt="Hotels" width="266" border="0"
+                        style="display:block; width:266px; max-width:266px; height:auto; border:0; outline:none; text-decoration:none;" />
+                    </a>
+                  </td>
+
+                  <!-- Espacio entre columnas -->
+                  <td width="8" style="width:8px; padding:0; font-size:0; line-height:0;">
+                    &nbsp;
+                  </td>
+
+                  <td width="266" align="center" valign="top"
+                    style="width:266px; padding:0; font-size:0; line-height:0;">
+                    <a href="https://igeco.mx/" target="_blank" style="display:block; text-decoration:none;">
+                      <img src="https://smarttechnologyexpo.mx/otros_eventos_es.jpg" alt="Other Events" width="266"
+                        border="0"
                         style="display:block; width:266px; max-width:266px; height:auto; border:0; outline:none; text-decoration:none;" />
                     </a>
                   </td>
@@ -215,58 +262,28 @@ const email_template_ecomondo = async ({
                     style="width:266px; padding:0; font-size:0; line-height:0;">
                     <a href="https://smarttechnologyexpo.mx/" target="_blank"
                       style="display:block; text-decoration:none;">
-                      <img src="https://smarttechnologyexpo.mx/cursos_talleres_es.jpg" alt="Courses and Workshops" width="266" border="0"
+                      <img src="https://smarttechnologyexpo.mx/cursos_talleres_es.jpg" alt="Courses and Workshops"
+                        width="266" border="0"
                         style="display:block; width:266px; max-width:266px; height:auto; border:0; outline:none; text-decoration:none;" />
                     </a>
                   </td>
 
-                  <!-- Espacio entre columnas -->
+
                   <td width="8" style="width:8px; padding:0; font-size:0; line-height:0;">
                     &nbsp;
                   </td>
 
                   <td width="266" align="center" valign="top"
                     style="width:266px; padding:0; font-size:0; line-height:0;">
-                    <a href="https://smarttechnologyexpo.mx/premio-itzamna-2026/" target="_blank"
+                    <a href="https://smarttechnologyexpo.mx/" target="_blank"
                       style="display:block; text-decoration:none;">
-                      <img src="https://smarttechnologyexpo.mx/premio_itzamna_es.jpg" alt="Exhibition Plan" width="266" border="0"
+                      <img src="https://smarttechnologyexpo.mx/mujeres_es.jpg" alt="Women in Technology" width="266"
+                        border="0"
                         style="display:block; width:266px; max-width:266px; height:auto; border:0; outline:none; text-decoration:none;" />
                     </a>
                   </td>
                 </tr>
 
-                <!-- Espacio entre filas -->
-                <tr>
-                  <td colspan="3" height="8" style="height:8px; padding:0; font-size:0; line-height:0;">
-                    &nbsp;
-                  </td>
-                </tr>
-
-                <!-- Fila 3 -->
-                <tr>
-                  <td width="266" align="center" valign="top"
-                    style="width:266px; padding:0; font-size:0; line-height:0;">
-                    <a href="https://smarttechnologyexpo.mx/tarifas-hoteles-2026/" target="_blank"
-                      style="display:block; text-decoration:none;">
-                      <img src="https://smarttechnologyexpo.mx/hoteles_es.jpg" alt="Hotels" width="266" border="0"
-                        style="display:block; width:266px; max-width:266px; height:auto; border:0; outline:none; text-decoration:none;" />
-                    </a>
-                  </td>
-
-                  <!-- Espacio entre columnas -->
-                  <td width="8" style="width:8px; padding:0; font-size:0; line-height:0;">
-                    &nbsp;
-                  </td>
-
-                  <td width="266" align="center" valign="top"
-                    style="width:266px; padding:0; font-size:0; line-height:0;">
-                    <a href="https://igeco.mx/" target="_blank"
-                      style="display:block; text-decoration:none;">
-                      <img src="https://smarttechnologyexpo.mx/otros_eventos_es.jpg" alt="Other Events" width="266" border="0"
-                        style="display:block; width:266px; max-width:266px; height:auto; border:0; outline:none; text-decoration:none;" />
-                    </a>
-                  </td>
-                </tr>
               </table>
             </td>
           </tr>
@@ -293,7 +310,8 @@ const email_template_ecomondo = async ({
               <table border="0" cellspacing="0" cellpadding="0" style="margin:0 auto;">
                 <tr>
                   <td align="center" style="background-color:#ef2b2d; border-radius:30px;">
-                    <a href="https://smarttechnologyexpo.mx/" target="_blank" style="display:inline-block; padding:14px 24px; font-size:16px; font-weight:bold; color:#ffffff; text-decoration:none;">
+                    <a href="https://smarttechnologyexpo.mx/" target="_blank"
+                      style="display:inline-block; padding:14px 24px; font-size:16px; font-weight:bold; color:#ffffff; text-decoration:none;">
                       INVITA A UN COLEGA, SOCIO O CLIENTE
                     </a>
                   </td>
@@ -315,7 +333,8 @@ const email_template_ecomondo = async ({
             <td style="padding:0 40px 30px 40px;">
               <div style="font-size:14px; line-height:1.7; color:#333333;">
                 <ul style="margin:0; padding-left:18px;">
-                  <li><strong>IMPORTANTE:</strong> Es indispensable llevar tu prerregistro impreso o en formato digital para agilizar tu acceso al evento.</li>
+                  <li><strong>IMPORTANTE:</strong> Es indispensable llevar tu prerregistro impreso o en formato digital
+                    para agilizar tu acceso al evento.</li>
                   <li>Recuerda llevar tu credencial oficial de empresa o negocio para verificar tus datos.</li>
                   <li>Tu acceso es único e intransferible y debe estar visible durante toda tu visita.</li>
                 </ul>
@@ -329,7 +348,8 @@ const email_template_ecomondo = async ({
               <div style="font-size:12px; line-height:1.6; color:#666666; text-align:center;">
                 Smart Technology Expo 2026<br />
                 IGECo, Blvrd Francisco Villa 102 - piso 14, Oriental, 37510 León, Guanajuato, México<br />
-                Tel. +52 55 7028 3335 | <a href="mailto:social.media@igeco.mx" style="color:#666666; text-decoration:underline;">social.media@igeco.mx</a><br />
+                Tel. +52 55 7028 3335 | <a href="mailto:social.media@igeco.mx"
+                  style="color:#666666; text-decoration:underline;">social.media@igeco.mx</a><br />
               </div>
             </td>
           </tr>
