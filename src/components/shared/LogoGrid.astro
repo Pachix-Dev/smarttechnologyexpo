@@ -2,87 +2,31 @@
 export interface LogoItem {
   src: string
   alt: string
-  href?: string
   width?: number
   height?: number
 }
 
 export interface Props {
   logos: LogoItem[]
-  title?: string
-  eyebrow?: string
-  description?: string
-  imageHeight?: string
-  columnsMin?: string
-  compact?: boolean
-  "class"?: string
 }
 
-const {
-  logos = [],
-  title,
-  eyebrow,
-  description,
-  compact = false,
-  class: className = "",
-} = Astro.props
+const { logos = [] } = Astro.props
 ---
 
-<section
-  class:list={[
-    "mx-auto w-full max-w-6xl px-4 text-neutral-900 sm:px-5",
-    compact ? "py-6 sm:py-8" : "py-8 sm:py-12",
-    className,
-  ]}
->
-  {
-    (eyebrow || title || description) && (
-      <div class="mx-auto mb-6 max-w-3xl text-center sm:mb-9">
-        {eyebrow && <p class="mb-2 text-xs font-extrabold uppercase tracking-wider text-[#ed332d]">{eyebrow}</p>}
-        {title && <h2 class="m-0 text-base font-bold leading-tight tracking-normal text-[#303846] sm:text-xl md:text-2xl">{title}</h2>}
-        {description && <p class="mx-auto mt-3 max-w-2xl text-sm leading-7 text-neutral-600 sm:text-base">{description}</p>}
-      </div>
-    )
-  }
-
-  <div
-    class="grid grid-cols-1 items-center justify-items-center gap-x-5 gap-y-6 min-[360px]:grid-cols-3 sm:grid-cols-3 sm:gap-x-8 sm:gap-y-8 lg:grid-cols-[repeat(auto-fit,minmax(100px,1fr))] lg:gap-x-12 lg:gap-y-10"
-    aria-label={title ?? "Logo grid"}
-  >
+<section class="mx-auto w-full max-w-6xl">
+  <div class="grid grid-cols-1 items-center justify-items-center gap-x-6 gap-y-8 min-[480px]:grid-cols-1 sm:grid-cols-1 lg:grid-cols-1 xl:grid-cols-1">
     {
       logos.map((logo) => (
-        <div class="relative flex min-h-[72px] w-full items-center justify-center overflow-hidden transition-transform duration-200 hover:-translate-y-0.5 sm:min-h-[76px]">
-          {logo.href ? (
-            <a
-              class="flex min-h-[72px] w-full items-center justify-center no-underline sm:min-h-[76px]"
-              href={logo.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={logo.alt}
-            >
-              <img
-                class="block h-auto max-h-11 w-auto max-w-full object-contain transition-transform duration-200 hover:scale-[1.02] sm:max-h-14"
-                src={logo.src}
-                alt={logo.alt}
-                width={logo.width}
-                height={logo.height}
-                loading="lazy"
-                decoding="async"
-              />
-            </a>
-          ) : (
-            <div class="flex min-h-[72px] w-full items-center justify-center sm:min-h-[76px]">
-              <img
-                class="block h-auto max-h-11 w-auto max-w-full object-contain transition-transform duration-200 hover:scale-[1.02] sm:max-h-14"
-                src={logo.src}
-                alt={logo.alt}
-                width={logo.width}
-                height={logo.height}
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-          )}
+        <div class="group flex min-h-20 w-full items-center justify-center overflow-hidden rounded-lg transition duration-300 hover:-translate-y-1 hover:drop-shadow-[0_12px_18px_rgba(0,0,0,0.14)] sm:min-h-24">
+          <img
+            class="block h-auto max-h-24 w-auto max-w-full object-contain p-2 transition duration-300 group-hover:scale-105 sm:max-h-32"
+            src={logo.src}
+            alt={logo.alt}
+            width={logo.width}
+            height={logo.height}
+            loading="lazy"
+            decoding="async"
+          />
         </div>
       ))
     }

@@ -11,4 +11,8 @@
   { src: "/img/media/global-industries_v2.webp", alt: "Global Energy", width: 300 },
 ];
 
-export { mediaPlanito, strategicPartners };
+  const sponsorsDiamond = [
+    { src: "/img/logos/sponsors/beckhoff.webp", alt: "Beckhoff", width: 300 },
+  ];
+
+export { mediaPlanito, strategicPartners, sponsorsDiamond };

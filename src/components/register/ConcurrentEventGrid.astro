@@ -1,0 +1,39 @@
+---
+import { useTranslations, getTranslation } from "../../utils/translations";
+// ✨ Una sola línea para cargar traducciones!
+const { locale, translations } = await useTranslations(Astro.props, Astro);
+
+// 🎯 Helper para traducciones más elegante
+const tr = (key: string, fallback: string = "") =>
+  getTranslation(translations, key, fallback);
+
+const base = locale === "en" ? "/en" : "";
+---
+<section class="w-full sm:p-10 sm:py-16 sm:px-4 ">
+    <h2 class="text-xl sm:text-3xl font-montserrat-extra-bold-italic text-center mb-6 uppercase">{locale === "es" ? "EVENTOS SIMULTÁNEOS" : "CONCURRENT EVENTS"}</h2>
+
+    <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-2 gap-4 justify-center items-center w-full max-w-4xl mx-auto px-4">
+        <a
+            href={`${base}/conferencias`}
+            class="group relative block overflow-hidden bg-neutral-950 transition duration-300 ease-out hover:z-10 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(0,0,0,0.28)] focus-visible:z-10 focus-visible:-translate-y-1 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-red-500/40"
+        >
+            <img
+                src={locale === "es" ? "/img/portada_conferencias.webp" : "/img/portada_conferencias_en.webp"}
+                alt={locale === "es" ? "Conferencias smart technology expo 2026" : "Smart Technology Expo 2026 Conferences"}
+                class="w-full h-full object-cover transition duration-500 ease-out group-hover:scale-105 group-hover:brightness-110 group-focus-visible:scale-105 group-focus-visible:brightness-110"
+            />
+            <span class="pointer-events-none absolute inset-0 bg-linear-to-t from-black/35 via-black/0 to-white/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-focus-visible:opacity-100"></span>
+        </a>
+        <a
+            href={`${base}/premio-itzamna-2026`}
+            class="group relative block overflow-hidden bg-neutral-950 transition duration-300 ease-out hover:z-10 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(0,0,0,0.28)] focus-visible:z-10 focus-visible:-translate-y-1 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-red-500/40"
+        >
+            <img
+                src={locale === "es" ? "/img/portada_premio.webp" : "/img/portada_premio_en.webp"}
+                alt={locale === "es" ? "Premio Itzamna en smart technology expo 2026" : "Itzamna Award at smart technology expo 2026"}
+                class="w-full h-full object-cover transition duration-500 ease-out group-hover:scale-105 group-hover:brightness-110 group-focus-visible:scale-105 group-focus-visible:brightness-110"
+            />
+            <span class="pointer-events-none absolute inset-0 bg-linear-to-t from-black/35 via-black/0 to-white/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-focus-visible:opacity-100"></span>
+        </a>
+    </div>
+</section>
