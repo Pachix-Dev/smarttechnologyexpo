@@ -1,0 +1,187 @@
+---
+// BioModal.astro — "Semblanza" modal for speakers/instructors. Shared by Insights and Skills.
+// Vanilla-JS driven: any element with [data-bio-trigger] carrying data-bio-name/role/org/bio
+// attributes opens this modal on click. Renders once per page; place near end of <body>/layout.
+---
+
+<div id="bio-modal-overlay" class="bm-overlay" hidden>
+  <div class="bm-card" role="dialog" aria-modal="true">
+    <div class="bm-header">
+      <button id="bio-modal-close" class="bm-close" aria-label="Cerrar">✕</button>
+      <div class="bm-header-row">
+        <span class="bm-avatar"></span>
+        <div>
+          <div id="bio-modal-name" class="bm-name"></div>
+          <div id="bio-modal-role" class="bm-role"></div>
+          <span id="bio-modal-org" class="bm-org"></span>
+        </div>
+      </div>
+    </div>
+    <div class="bm-body">
+      <div class="bm-body-title">
+        <span class="bm-body-line"></span>
+        <span>Semblanza</span>
+      </div>
+      <p id="bio-modal-text" class="bm-text"></p>
+    </div>
+  </div>
+</div>
+
+<script>
+  function initBioModal() {
+    const overlay = document.getElementById('bio-modal-overlay');
+    const nameEl = document.getElementById('bio-modal-name');
+    const roleEl = document.getElementById('bio-modal-role');
+    const orgEl = document.getElementById('bio-modal-org');
+    const textEl = document.getElementById('bio-modal-text');
+    const closeBtn = document.getElementById('bio-modal-close');
+    if (!overlay) return;
+
+    function open(data: { name: string; role: string; org: string; bio: string }) {
+      if (nameEl) nameEl.textContent = data.name || '';
+      if (roleEl) roleEl.textContent = data.role || '';
+      if (orgEl) orgEl.textContent = data.org || '';
+      if (textEl) textEl.textContent = data.bio || '';
+      overlay.hidden = false;
+    }
+    function close() {
+      overlay.hidden = true;
+    }
+
+    document.addEventListener('click', (e) => {
+      const trigger = (e.target as HTMLElement)?.closest('[data-bio-trigger]') as HTMLElement | null;
+      if (trigger) {
+        open({
+          name: trigger.dataset.bioName || '',
+          role: trigger.dataset.bioRole || '',
+          org: trigger.dataset.bioOrg || '',
+          bio: trigger.dataset.bioBio || '',
+        });
+      }
+    });
+
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) close();
+    });
+    closeBtn?.addEventListener('click', close);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') close();
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', initBioModal);
+</script>
+
+<style>
+  .bm-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: rgba(0, 0, 0, 0.78);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    font-family: 'Archivo', Helvetica, Arial, sans-serif;
+  }
+
+  .bm-card {
+    max-width: 460px;
+    width: 100%;
+    max-height: 86vh;
+    overflow-y: auto;
+    background: #0c0c0c;
+    border: 1px solid #262626;
+    border-radius: 12px;
+  }
+
+  .bm-header {
+    position: relative;
+    padding: 32px 28px 26px;
+    background: linear-gradient(135deg, #5a0f0f 0%, #e2101a 55%, #8b1414 100%);
+  }
+
+  .bm-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.3);
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .bm-header-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .bm-avatar {
+    width: 76px;
+    height: 76px;
+    flex: none;
+    border-radius: 50%;
+    background: repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0 8px, rgba(0, 0, 0, 0.15) 8px 16px);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+  }
+
+  .bm-name {
+    font-size: 22px;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.15;
+  }
+
+  .bm-role {
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    margin-top: 4px;
+  }
+
+  .bm-org {
+    display: inline-flex;
+    margin-top: 10px;
+    padding: 5px 12px;
+    background: rgba(0, 0, 0, 0.28);
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .bm-body {
+    padding: 26px 28px 30px;
+  }
+
+  .bm-body-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+    font-size: 15px;
+    font-weight: 800;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .bm-body-line {
+    width: 24px;
+    height: 2px;
+    background: #e2101a;
+  }
+
+  .bm-text {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #b9b9b9;
+    white-space: pre-line;
+  }
+</style>

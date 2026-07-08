@@ -1,0 +1,554 @@
+---
+// InsightsSchedule.astro — "Programa por día" for SMART INSIGHTS: PDF download, language
+// notice, day pills, day banner, legend, and session cards with type-colored top bars.
+// Pair with BioModal.astro: speaker rows use [data-bio-trigger].
+
+export interface Speaker {
+  name: string;
+  role: string;
+  bio?: string;
+}
+
+export interface Session {
+  time: string;
+  end: string;
+  type: 'keynote' | 'panel' | 'session' | 'break';
+  title: string;
+  room: string;
+  speakers?: string[];
+}
+
+export interface Day {
+  dayName: string;
+  num: string;
+  dateLong: string;
+  sessions: Session[];
+}
+
+export interface Props {
+  days?: Day[];
+  activeDay?: number;
+  speakers?: Speaker[];
+  pdfHref?: string;
+}
+
+const defaultSpeakers: Speaker[] = [
+  { name: 'Dra. Ana Martínez', role: 'Directora de Innovación', bio: 'Especialista en transformación digital con más de 15 años liderando proyectos de innovación en el sector industrial.' },
+  { name: 'Ing. Carlos Rivera', role: 'VP de Manufactura Inteligente', bio: 'Ingeniero industrial con amplia trayectoria en automatización y robótica aplicada a líneas de producción de alto volumen.' },
+  { name: 'Mtra. Laura Gómez', role: 'Líder de Transformación Digital', bio: 'Especialista en integración de sistemas IIoT y gemelos digitales para optimización de procesos productivos.' },
+  { name: 'Dr. Javier Soto', role: 'Especialista en Robótica', bio: 'Doctor en robótica industrial con investigación enfocada en sistemas autónomos aplicados a manufactura.' },
+];
+
+const defaultDays: Day[] = [
+  {
+    dayName: 'Martes', num: '10', dateLong: '10 de noviembre de 2026',
+    sessions: [
+      { time: '09:00', end: '09:30', type: 'session', title: 'Apertura y bienvenida', room: 'Escenario Smart Insights', speakers: [] },
+      { time: '09:30', end: '10:30', type: 'keynote', title: 'El futuro de la manufactura inteligente: hacia la fábrica autónoma', room: 'Escenario Smart Insights', speakers: ['Dra. Ana Martínez'] },
+      { time: '10:45', end: '11:45', type: 'panel', title: 'Industria 4.0 en México: retos y oportunidades de adopción', room: 'Escenario Smart Insights', speakers: ['Ing. Carlos Rivera', 'Mtra. Laura Gómez', 'Dr. Javier Soto'] },
+      { time: '12:00', end: '12:45', type: 'session', title: 'IA aplicada al control de procesos industriales', room: 'Escenario Smart Insights', speakers: ['Mtra. Laura Gómez'] },
+      { time: '13:00', end: '14:00', type: 'break', title: 'Comida y networking', room: 'Área de networking', speakers: [] },
+    ],
+  },
+];
+
+const { days = defaultDays, activeDay = 0, speakers = defaultSpeakers, pdfHref = '#' } = Astro.props;
+
+function findSpeaker(name: string) {
+  return speakers.find((sp) => sp.name === name);
+}
+
+const typeMeta: Record<string, { badge: string; bar: string; card: string }> = {
+  keynote: { badge: 'KEYNOTE', bar: '#E2101A', card: 'linear-gradient(135deg, rgba(139,26,26,0.55) 0%, rgba(226,16,26,0.16) 100%)' },
+  panel: { badge: 'PANEL', bar: '#FF8C1A', card: 'linear-gradient(135deg, rgba(122,61,10,0.55) 0%, rgba(255,140,26,0.16) 100%)' },
+  session: { badge: 'CONFERENCIA', bar: '#7C3AED', card: 'linear-gradient(135deg, rgba(59,31,107,0.55) 0%, rgba(124,58,237,0.16) 100%)' },
+  break: { badge: 'RECESO', bar: '#16A34A', card: 'linear-gradient(135deg, rgba(13,92,44,0.55) 0%, rgba(22,163,74,0.16) 100%)' },
+};
+
+const activeDayData = days[activeDay] || days[0];
+---
+
+<section class="isc-section">
+  <div class="isc-inner">
+    <div class="isc-eyebrow">AGENDA</div>
+    <h2 class="isc-title">Programa por día</h2>
+    <p class="isc-sub">Selecciona un día para ver las conferencias, paneles y horarios.</p>
+
+    <div class="isc-toprow">
+      <div>
+        <div class="isc-dl-label">DESCARGA GRATUITA</div>
+        <a href={pdfHref} class="isc-dl-btn">
+          <span class="isc-dl-icon">PDF</span>
+          DESCARGA PROGRAMA
+          <span>⬇</span>
+        </a>
+      </div>
+      <div class="isc-notice">
+        <span class="isc-notice-i">i</span>
+        <span>Todas las ponencias se realizarán en español.</span>
+      </div>
+    </div>
+
+    <div class="isc-day-label">SELECCIONA EL DÍA</div>
+    <div class="isc-day-pills">
+      {days.map((d, i) => (
+        <button class={i === activeDay ? 'isc-pill isc-pill--active' : 'isc-pill'} type="button" data-day-index={i}>
+          {d.dayName}
+        </button>
+      ))}
+    </div>
+
+    <div class="isc-banner">
+      <div class="isc-banner-left">
+        <div class="isc-banner-num">{activeDayData.num}</div>
+        <div>
+          <div class="isc-banner-name">{activeDayData.dayName}</div>
+          <div class="isc-banner-date">{activeDayData.dateLong}</div>
+        </div>
+      </div>
+      <span class="isc-banner-count">
+        <span class="isc-banner-dot"></span>{activeDayData.sessions.length} sesiones
+      </span>
+    </div>
+
+    <div class="isc-legend">
+      <div class="isc-legend-item"><span class="isc-legend-dot" style="background:#E2101A"></span>Keynote</div>
+      <div class="isc-legend-item"><span class="isc-legend-dot" style="background:#FF8C1A"></span>Panel</div>
+      <div class="isc-legend-item"><span class="isc-legend-dot" style="background:#7C3AED"></span>Conferencia</div>
+      <div class="isc-legend-item"><span class="isc-legend-dot" style="background:#16A34A"></span>Receso</div>
+    </div>
+
+    <div class="isc-sessions">
+      {activeDayData.sessions.map((s) => {
+        const meta = typeMeta[s.type] || typeMeta.session;
+        const names = s.speakers || [];
+        return (
+          <div class="isc-card" style={`background:${meta.card}; border-color:${meta.bar}`}>
+            <div class="isc-bar" style={`background:${meta.bar}`}>{meta.badge}</div>
+            <div class="isc-body">
+              <div class="isc-meta-row">
+                <span class="isc-time-pill" style={`background:${meta.bar}`}>{s.time} – {s.end}</span>
+                <span class="isc-room">{s.room}</span>
+              </div>
+              <div class="isc-session-title">{s.title}</div>
+              {names.length > 0 && (
+                <div class="isc-speakers">
+                  <div class="isc-speakers-label">{names.length > 1 ? 'Ponentes' : 'Ponente'}</div>
+                  <div class="isc-speakers-list">
+                    {names.map((name) => {
+                      const sp = findSpeaker(name);
+                      return (
+                        <div
+                          class="isc-speaker-row"
+                          data-bio-trigger={sp ? true : undefined}
+                          data-bio-name={sp?.name}
+                          data-bio-role={sp?.role}
+                          data-bio-bio={sp?.bio}
+                          style={sp ? 'cursor:pointer' : 'cursor:default'}
+                        >
+                          <span class="isc-avatar"></span>
+                          <div>
+                            <div class="isc-speaker-name">{name}</div>
+                            {sp && <div class="isc-speaker-role">{sp.role}</div>}
+                          </div>
+                          {sp && <span class="isc-chevron">›</span>}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('click', (e) => {
+    const btn = (e.target as HTMLElement)?.closest('[data-day-index]');
+    if (btn) {
+      // Hook this up to your framework's state/routing to switch the active day.
+      console.log('Selected day index:', btn.getAttribute('data-day-index'));
+    }
+  });
+</script>
+
+<style>
+  .isc-section {
+    background: #080808;
+    border-top: 1px solid #161616;
+    border-bottom: 1px solid #161616;
+    font-family: 'Archivo', Helvetica, Arial, sans-serif;
+    color: #fff;
+  }
+
+  .isc-inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: clamp(56px, 8vw, 96px) clamp(16px, 4vw, 40px);
+  }
+
+  .isc-eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+
+  .isc-title {
+    margin: 0 0 8px;
+    font-size: clamp(34px, 5vw, 56px);
+    font-weight: 900;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    line-height: 0.95;
+  }
+
+  .isc-sub {
+    margin: 0 0 28px;
+    color: #9a9a9a;
+    font-size: 16px;
+  }
+
+  .isc-toprow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 40px;
+  }
+
+  .isc-dl-label {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    font-weight: 700;
+    color: #e2101a;
+    margin-bottom: 10px;
+  }
+
+  .isc-dl-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 22px;
+    background: #e2101a;
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    box-shadow: 0 0 28px rgba(226, 16, 26, 0.35);
+  }
+
+  .isc-dl-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 20px;
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 3px;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+  }
+
+  .isc-notice {
+    flex: 1;
+    min-width: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 14px 20px;
+    background: rgba(226, 16, 26, 0.08);
+    border: 1px solid rgba(226, 16, 26, 0.4);
+    border-radius: 6px;
+    align-self: flex-end;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .isc-notice-i {
+    flex: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #e2101a;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 800;
+  }
+
+  .isc-day-label {
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    font-weight: 700;
+    color: #9a9a9a;
+    margin-bottom: 14px;
+  }
+
+  .isc-day-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+
+  .isc-pill {
+    padding: 10px 22px;
+    background: transparent;
+    color: #b9b9b9;
+    border: 1px solid #2a2a2a;
+    border-radius: 999px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 14px;
+    font-family: inherit;
+  }
+
+  .isc-pill--active {
+    background: #e2101a;
+    color: #fff;
+    border-color: #e2101a;
+    font-weight: 800;
+  }
+
+  .isc-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 20px 24px;
+    background: #111;
+    border: 1px solid #232323;
+    border-radius: 10px;
+    margin-bottom: 30px;
+  }
+
+  .isc-banner-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .isc-banner-num {
+    flex: none;
+    width: 56px;
+    height: 56px;
+    border-radius: 10px;
+    background: #e2101a;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: 900;
+  }
+
+  .isc-banner-name {
+    font-size: 20px;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.2;
+  }
+
+  .isc-banner-date {
+    font-size: 13px;
+    color: #9a9a9a;
+    font-weight: 600;
+    margin-top: 2px;
+  }
+
+  .isc-banner-count {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: #1c1c1c;
+    border: 1px solid #2a2a2a;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #cfcfcf;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .isc-banner-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid #e2101a;
+    flex-shrink: 0;
+  }
+
+  .isc-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-bottom: 30px;
+  }
+
+  .isc-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    color: #9a9a9a;
+    text-transform: uppercase;
+  }
+
+  .isc-legend-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    display: inline-block;
+  }
+
+  .isc-sessions {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .isc-card {
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid;
+  }
+
+  .isc-bar {
+    padding: 8px 20px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    color: #fff;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.35);
+  }
+
+  .isc-body {
+    padding: 18px 20px;
+  }
+
+  .isc-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+
+  .isc-time-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 13px;
+    white-space: nowrap;
+    font-weight: 800;
+    color: #fff;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.35);
+  }
+
+  .isc-room {
+    font-size: 12px;
+    color: #8a8a8a;
+    font-weight: 600;
+  }
+
+  .isc-session-title {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #fff;
+  }
+
+  .isc-speakers {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid #222;
+  }
+
+  .isc-speakers-label {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    font-weight: 700;
+    color: #777;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+
+  .isc-speakers-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .isc-speaker-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    margin: -2px -12px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+  }
+
+  .isc-speaker-row:hover {
+    background: rgba(226, 16, 26, 0.16);
+    border-color: #e2101a;
+    transform: translateX(2px);
+  }
+
+  .isc-speaker-row:hover .isc-avatar {
+    box-shadow: 0 0 0 2px #e2101a;
+  }
+
+  .isc-speaker-row:hover .isc-chevron {
+    opacity: 1;
+  }
+
+  .isc-avatar {
+    width: 32px;
+    height: 32px;
+    flex: none;
+    border-radius: 50%;
+    background: repeating-linear-gradient(135deg, #262626 0 6px, #1a1a1a 6px 12px);
+    border: 1px solid #3a3a3a;
+    transition: box-shadow 0.15s ease;
+  }
+
+  .isc-speaker-name {
+    font-size: 14px;
+    color: #fff;
+    font-weight: 700;
+  }
+
+  .isc-speaker-role {
+    font-size: 12px;
+    color: #8a8a8a;
+  }
+
+  .isc-chevron {
+    margin-left: auto;
+    color: #e2101a;
+    font-size: 20px;
+    font-weight: 800;
+    opacity: 0.55;
+    flex: none;
+    transition: opacity 0.15s ease;
+  }
+</style>

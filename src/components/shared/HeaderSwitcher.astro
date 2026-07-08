@@ -1,0 +1,120 @@
+---
+// HeaderSwitcher.astro — shared sticky header with logo + Conferencias/Talleres tab switcher.
+// Usage: <HeaderSwitcher active="conferencias" /> or active="talleres"
+// Links assume /conferencias and /talleres routes — adjust hrefs to your routing.
+
+export interface Props {
+  active?: 'conferencias' | 'talleres';
+  logoSrc?: string;
+}
+
+const { active = 'conferencias', logoSrc = '/img/conferencias/logo_conferencias.webp' } = Astro.props;
+const isConf = active === 'conferencias';
+const isSkills = active === 'talleres';
+---
+
+<header class="hs-header">
+  <div class="hs-inner">
+    <div class="hs-brand">
+      <div class="hs-logo" style={`background-image:url(${logoSrc})`}></div>
+      <div class="hs-brand-text">
+        <div class="hs-brand-title">SMART TECHNOLOGY EXPO</div>
+        <div class="hs-brand-sub">CON26 · PROGRAMA EDUCATIVO</div>
+      </div>
+    </div>
+    <div class="hs-tabs">
+      <a href="/conferencias" class={isConf ? 'hs-tab hs-tab--active' : 'hs-tab'}>CONFERENCIAS</a>
+      <a href="/talleres" class={isSkills ? 'hs-tab hs-tab--active' : 'hs-tab'}>TALLERES</a>
+    </div>
+  </div>
+</header>
+
+<style>
+  .hs-header {
+    position: sticky;
+    top: 0;
+    z-index: 60;
+    background: #000;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    font-family: 'Archivo', Helvetica, Arial, sans-serif;
+  }
+
+  .hs-inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 clamp(16px, 4vw, 40px);
+    height: 71px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .hs-brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-width: 0;
+  }
+
+  .hs-logo {
+    width: 127px;
+    height: 73px;
+    flex: none;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 2px;
+  }
+
+  .hs-brand-text {
+    line-height: 1;
+    min-width: 0;
+  }
+
+  .hs-brand-title {
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    color: #fff;
+    white-space: nowrap;
+  }
+
+  .hs-brand-sub {
+    font-weight: 600;
+    font-size: 10px;
+    letter-spacing: 0.32em;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 3px;
+  }
+
+  .hs-tabs {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(0, 0, 0, 0.32);
+    padding: 4px;
+    border-radius: 3px;
+    flex: none;
+  }
+
+  .hs-tab {
+    padding: 9px 18px;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.78);
+    border: none;
+    border-radius: 2px;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .hs-tab--active {
+    background: #fff;
+    color: #000;
+    font-weight: 800;
+  }
+</style>

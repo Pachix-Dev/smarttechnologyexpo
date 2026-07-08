@@ -1,0 +1,467 @@
+---
+// WorkshopForm.astro — Registration flow: email lookup against prior general-registration
+// records, auto-fills the form, then confirms workshop selection.
+// Vanilla JS: swap `mockLookup` for your real API call (e.g. fetch('/api/registrants?email=...')).
+
+export interface Workshop {
+  name: string;
+}
+
+export interface Props {
+  workshops?: Workshop[];
+  accent?: string;
+}
+
+const {
+  workshops = [
+    { name: 'Programación de robots colaborativos (cobots)' },
+    { name: 'Implementación de IIoT en planta' },
+    { name: 'Ciberseguridad industrial: fundamentos' },
+    { name: 'Visión artificial para control de calidad' },
+  ],
+  accent = '#E2101A',
+} = Astro.props;
+---
+
+<section class="wf-section" style={`--accent:${accent}`}>
+  <div class="wf-grid">
+    <div>
+      <div class="wf-eyebrow">REGISTRO</div>
+      <h2 class="wf-title">Inscríbete a un taller</h2>
+      <p class="wf-desc">Los talleres tienen cupo limitado. Busca tu registro con tu correo y confirma tu lugar en segundos.</p>
+
+      <div class="wf-notice">
+        <span class="wf-notice-i">!</span>
+        <span>Es indispensable contar con tu <strong>registro previo al evento general</strong> Smart Technology Expo 2026 para poder inscribirte a un taller.</span>
+      </div>
+
+      <div class="wf-perks">
+        <div class="wf-perk"><span class="wf-perk-n">1</span>Confirmación inmediata de tu lugar por correo</div>
+        <div class="wf-perk"><span class="wf-perk-n">2</span>Material y prácticas incluidas en cada taller</div>
+        <div class="wf-perk"><span class="wf-perk-n">3</span>Constancia de participación Smart Technology Expo</div>
+      </div>
+    </div>
+
+    <div class="wf-card">
+      <!-- STEP 1: lookup -->
+      <div id="wf-step-lookup" class="wf-step">
+        <div class="wf-step-label">PASO 1</div>
+        <h3 class="wf-step-title">Busca tu registro</h3>
+        <p class="wf-step-sub">Ingresa el correo con el que te registraste al evento general; recuperaremos tus datos automáticamente.</p>
+        <label class="wf-field">
+          <span>CORREO ELECTRÓNICO</span>
+          <input id="wf-lookup-email" type="email" placeholder="nombre@empresa.com" />
+        </label>
+        <div id="wf-lookup-error" class="wf-error" hidden>No encontramos un registro con ese correo. Verifica que hayas completado tu registro general al evento antes de inscribirte a un taller.</div>
+        <button id="wf-lookup-btn" class="wf-btn" type="button">BUSCAR MI REGISTRO</button>
+        <p class="wf-fineprint">¿Aún no tienes tu registro general? Complétalo primero en la página principal del evento.</p>
+      </div>
+
+      <!-- STEP 2: found + confirm -->
+      <div id="wf-step-found" class="wf-step" hidden>
+        <div class="wf-found-banner">
+          <span class="wf-found-check">✓</span>
+          <span>Datos recuperados de tu registro general.</span>
+        </div>
+        <div class="wf-fields-grid">
+          <label class="wf-field"><span>NOMBRE COMPLETO</span><input id="wf-nombre" disabled /></label>
+          <label class="wf-field"><span>CORREO ELECTRÓNICO</span><input id="wf-correo" disabled /></label>
+          <label class="wf-field"><span>TELÉFONO</span><input id="wf-telefono" disabled /></label>
+          <label class="wf-field"><span>EMPRESA</span><input id="wf-empresa" disabled /></label>
+        </div>
+        <label class="wf-field"><span>PUESTO / CARGO</span><input id="wf-puesto" disabled /></label>
+        <label class="wf-field">
+          <span>SELECCIONA UN TALLER</span>
+          <select id="wf-taller">
+            <option value="">— Elige un taller —</option>
+            {workshops.map((w) => <option value={w.name}>{w.name}</option>)}
+          </select>
+        </label>
+        <div id="wf-select-error" class="wf-error" hidden>Por favor selecciona un taller.</div>
+        <button id="wf-submit-btn" class="wf-btn" type="button">CONFIRMAR INSCRIPCIÓN</button>
+        <button id="wf-back-btn" class="wf-link-btn" type="button">Buscar con otro correo</button>
+        <p class="wf-fineprint">Al enviar aceptas el aviso de privacidad de Smart Technology Expo.</p>
+      </div>
+
+      <!-- STEP 3: success -->
+      <div id="wf-step-success" class="wf-step wf-step--center" hidden>
+        <div class="wf-success-icon">✓</div>
+        <h3 class="wf-success-title">¡Registro recibido!</h3>
+        <p class="wf-success-text">Gracias, <strong id="wf-success-name"></strong>. Te enviamos la confirmación de tu lugar a <strong id="wf-success-email"></strong>.</p>
+        <button id="wf-reset-btn" class="wf-outline-btn" type="button">REGISTRAR OTRO</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Mock database — replace with a real API call in production.
+  const registrants = [
+    { email: 'ana.lopez@empresa.com', nombre: 'Ana López', telefono: '+52 33 1234 5678', empresa: 'Manufacturas del Bajío', puesto: 'Gerente de Producción' },
+    { email: 'jorge.ramirez@industrias.mx', nombre: 'Jorge Ramírez', telefono: '+52 55 8765 4321', empresa: 'Industrias Ramírez', puesto: 'Jefe de Mantenimiento' },
+    { email: 'maria.torres@grupotec.com', nombre: 'María Torres', telefono: '+52 81 4455 6677', empresa: 'Grupo Tec Industrial', puesto: 'Coordinadora de Operaciones' },
+  ];
+
+  function mockLookup(email: string) {
+    return registrants.find((r) => r.email.toLowerCase() === email.trim().toLowerCase()) || null;
+  }
+
+  function initWorkshopForm() {
+    const stepLookup = document.getElementById('wf-step-lookup');
+    const stepFound = document.getElementById('wf-step-found');
+    const stepSuccess = document.getElementById('wf-step-success');
+    const emailInput = document.getElementById('wf-lookup-email') as HTMLInputElement | null;
+    const lookupError = document.getElementById('wf-lookup-error');
+    const lookupBtn = document.getElementById('wf-lookup-btn');
+    const backBtn = document.getElementById('wf-back-btn');
+    const submitBtn = document.getElementById('wf-submit-btn');
+    const resetBtn = document.getElementById('wf-reset-btn');
+    const selectError = document.getElementById('wf-select-error');
+    const tallerSelect = document.getElementById('wf-taller') as HTMLSelectElement | null;
+    if (!stepLookup || !stepFound || !stepSuccess || !emailInput) return;
+
+    let current = { nombre: '', correo: '' };
+
+    function showStep(step: 'lookup' | 'found' | 'success') {
+      stepLookup!.hidden = step !== 'lookup';
+      stepFound!.hidden = step !== 'found';
+      stepSuccess!.hidden = step !== 'success';
+    }
+
+    lookupBtn?.addEventListener('click', () => {
+      const found = mockLookup(emailInput.value);
+      if (!found) {
+        lookupError!.hidden = false;
+        return;
+      }
+      lookupError!.hidden = true;
+      (document.getElementById('wf-nombre') as HTMLInputElement).value = found.nombre;
+      (document.getElementById('wf-correo') as HTMLInputElement).value = found.email;
+      (document.getElementById('wf-telefono') as HTMLInputElement).value = found.telefono;
+      (document.getElementById('wf-empresa') as HTMLInputElement).value = found.empresa;
+      (document.getElementById('wf-puesto') as HTMLInputElement).value = found.puesto;
+      current = { nombre: found.nombre, correo: found.email };
+      showStep('found');
+    });
+
+    backBtn?.addEventListener('click', () => {
+      emailInput.value = '';
+      lookupError!.hidden = true;
+      showStep('lookup');
+    });
+
+    submitBtn?.addEventListener('click', () => {
+      if (!tallerSelect?.value) {
+        selectError!.hidden = false;
+        return;
+      }
+      selectError!.hidden = true;
+      document.getElementById('wf-success-name')!.textContent = current.nombre;
+      document.getElementById('wf-success-email')!.textContent = current.correo;
+      showStep('success');
+    });
+
+    resetBtn?.addEventListener('click', () => {
+      emailInput.value = '';
+      if (tallerSelect) tallerSelect.value = '';
+      showStep('lookup');
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', initWorkshopForm);
+</script>
+
+<style>
+  .wf-section {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: clamp(56px, 8vw, 104px) clamp(16px, 4vw, 40px);
+    font-family: 'Archivo', Helvetica, Arial, sans-serif;
+    color: #fff;
+  }
+
+  .wf-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: clamp(28px, 5vw, 64px);
+    align-items: start;
+  }
+
+  .wf-eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+
+  .wf-title {
+    margin: 0 0 16px;
+    font-size: clamp(34px, 5vw, 60px);
+    font-weight: 900;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    line-height: 0.92;
+  }
+
+  .wf-desc {
+    margin: 0 0 24px;
+    color: #9a9a9a;
+    font-size: 16px;
+    line-height: 1.6;
+    max-width: 420px;
+    text-wrap: pretty;
+  }
+
+  .wf-notice {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 18px;
+    background: rgba(226, 16, 26, 0.08);
+    border: 1px solid rgba(226, 16, 26, 0.4);
+    border-radius: 6px;
+    margin-bottom: 28px;
+    max-width: 440px;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
+  .wf-notice-i {
+    flex: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 800;
+    margin-top: 1px;
+  }
+
+  .wf-perks {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .wf-perk {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    color: #cfcfcf;
+    line-height: 1.4;
+  }
+
+  .wf-perk-n {
+    width: 32px;
+    height: 32px;
+    flex: none;
+    border-radius: 50%;
+    background: rgba(226, 16, 26, 0.12);
+    border: 1px solid var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    font-weight: 800;
+    font-size: 14px;
+  }
+
+  .wf-card {
+    background: #0c0c0c;
+    border: 1px solid #1f1f1f;
+    border-radius: 10px;
+    padding: clamp(24px, 3vw, 40px);
+  }
+
+  .wf-step-label {
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+
+  .wf-step-title {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 800;
+    color: #fff;
+  }
+
+  .wf-step-sub {
+    margin: 6px 0 22px;
+    font-size: 14px;
+    color: #9a9a9a;
+    line-height: 1.5;
+  }
+
+  .wf-fields-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 18px;
+    margin-bottom: 18px;
+  }
+
+  .wf-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+
+  .wf-field span {
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    font-weight: 700;
+    color: #9a9a9a;
+  }
+
+  .wf-field input,
+  .wf-field select {
+    padding: 13px 15px;
+    background: #000;
+    border: 1px solid #2a2a2a;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 15px;
+    font-family: inherit;
+  }
+
+  .wf-field input:disabled {
+    background: #111;
+    color: #cfcfcf;
+  }
+
+  .wf-error {
+    font-size: 13px;
+    color: #f0282a;
+    font-weight: 600;
+    line-height: 1.5;
+    margin-bottom: 14px;
+  }
+
+  .wf-btn {
+    width: 100%;
+    margin-top: 6px;
+    padding: 16px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-weight: 800;
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  .wf-btn:hover {
+    filter: brightness(1.1);
+  }
+
+  .wf-link-btn {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    background: transparent;
+    color: #9a9a9a;
+    border: none;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: underline;
+    font-family: inherit;
+  }
+
+  .wf-fineprint {
+    margin: 12px 0 0;
+    font-size: 12px;
+    color: #666;
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  .wf-step--center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 30px 10px;
+  }
+
+  .wf-success-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 22px;
+    font-size: 30px;
+    font-weight: 900;
+    color: #fff;
+  }
+
+  .wf-success-title {
+    margin: 0 0 10px;
+    font-size: 26px;
+    font-weight: 800;
+  }
+
+  .wf-success-text {
+    margin: 0 0 26px;
+    color: #9a9a9a;
+    font-size: 15px;
+    line-height: 1.55;
+    max-width: 340px;
+  }
+
+  .wf-outline-btn {
+    padding: 12px 26px;
+    background: transparent;
+    color: #fff;
+    border: 1px solid #444;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  .wf-found-banner {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    background: rgba(22, 163, 74, 0.1);
+    border: 1px solid #16a34a;
+    border-radius: 6px;
+    margin-bottom: 22px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .wf-found-check {
+    flex: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #16a34a;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 800;
+  }
+</style>

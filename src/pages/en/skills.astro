@@ -1,0 +1,22 @@
+---
+// src/pages/en/skills.astro
+import Layout from '../../layouts/Layout.astro'
+import SkillsHero from '../../components/skills/SkillsHero.astro'
+import SkillsWorkshops from '../../components/skills/SkillsWorkshops.astro'
+import SkillsSchedule from '../../components/skills/SkillsSchedule.astro'
+import WorkshopForm from '../../components/skills/WorkshopForm.astro'
+import SiteFooter from '../../components/shared/SiteFooter.astro'
+import BioModal from '../../components/shared/BioModal.astro'
+---
+
+<Layout
+  title="Smart Skills"
+  description="Practical workshops at Smart Technology Expo 2026: develop technical skills alongside industry experts."
+>
+  <SkillsHero />
+  <SkillsWorkshops />
+  <SkillsSchedule />
+  <WorkshopForm />
+  <SiteFooter />
+  <BioModal />
+</Layout>

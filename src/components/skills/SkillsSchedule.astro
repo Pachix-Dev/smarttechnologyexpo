@@ -1,0 +1,433 @@
+---
+// SkillsSchedule.astro — "Programa por día" for SMART SKILLS: PDF download, language
+// notice, day pills, and session cards with the TALLER top bar.
+// Pair with BioModal.astro: instructor rows use [data-bio-trigger].
+
+export interface Instructor {
+  name: string;
+  role: string;
+  bio?: string;
+}
+
+export interface Session {
+  time: string;
+  end: string;
+  title: string;
+  room: string;
+  speakers?: string[];
+}
+
+export interface Day {
+  dayName: string;
+  num: string;
+  dateLong: string;
+  sessions: Session[];
+}
+
+export interface Props {
+  days?: Day[];
+  activeDay?: number;
+  instructors?: Instructor[];
+  pdfHref?: string;
+  accent?: string;
+}
+
+const defaultInstructors: Instructor[] = [
+  { name: 'Ing. Carlos Rivera', role: 'Especialista en robótica industrial', bio: 'Ingeniero industrial con amplia trayectoria en automatización y robótica aplicada a líneas de producción de alto volumen.' },
+  { name: 'Mtra. Laura Gómez', role: 'Líder de transformación digital', bio: 'Especialista en integración de sistemas IIoT y gemelos digitales para optimización de procesos productivos.' },
+  { name: 'Dr. Javier Soto', role: 'Consultor en seguridad OT', bio: 'Doctor en robótica industrial con investigación enfocada en sistemas autónomos aplicados a manufactura.' },
+  { name: 'Dra. Ana Martínez', role: 'Directora de innovación', bio: 'Especialista en transformación digital con más de 15 años liderando proyectos de innovación en el sector industrial.' },
+];
+
+const defaultDays: Day[] = [
+  {
+    dayName: 'Martes', num: '10', dateLong: '10 de noviembre de 2026',
+    sessions: [
+      { time: '10:00', end: '14:00', title: 'Programación de robots colaborativos (cobots)', room: 'Lab Smart Skills A', speakers: ['Ing. Carlos Rivera'] },
+      { time: '10:00', end: '13:00', title: 'Implementación de IIoT en planta', room: 'Lab Smart Skills B', speakers: ['Mtra. Laura Gómez'] },
+      { time: '15:00', end: '18:00', title: 'Ciberseguridad industrial: fundamentos', room: 'Lab Smart Skills A', speakers: ['Dr. Javier Soto'] },
+    ],
+  },
+];
+
+const { days = defaultDays, activeDay = 0, instructors = defaultInstructors, pdfHref = '#', accent = '#E2101A' } = Astro.props;
+
+function findInstructor(name: string) {
+  return instructors.find((i) => i.name === name);
+}
+
+const activeDayData = days[activeDay] || days[0];
+---
+
+<section class="ssc-section">
+  <div class="ssc-inner">
+    <div class="ssc-eyebrow">AGENDA</div>
+    <h2 class="ssc-title">Programa por día</h2>
+    <p class="ssc-sub">Horarios de impartición de cada taller.</p>
+
+    <div class="ssc-toprow">
+      <div>
+        <div class="ssc-dl-label">DESCARGA GRATUITA</div>
+        <a href={pdfHref} class="ssc-dl-btn">
+          <span class="ssc-dl-icon">PDF</span>
+          DESCARGA PROGRAMA
+          <span>⬇</span>
+        </a>
+      </div>
+      <div class="ssc-notice">
+        <span class="ssc-notice-i">i</span>
+        <span>Todos los talleres serán impartidos en español.</span>
+      </div>
+    </div>
+
+    <div class="ssc-day-label">SELECCIONA EL DÍA</div>
+    <div class="ssc-day-pills">
+      {days.map((d, i) => (
+        <button class={i === activeDay ? 'ssc-pill ssc-pill--active' : 'ssc-pill'} type="button" data-day-index={i}>
+          {d.dayName}
+        </button>
+      ))}
+    </div>
+
+    <div class="ssc-sessions">
+      {activeDayData.sessions.map((s) => {
+        const names = s.speakers || [];
+        return (
+          <div class="ssc-card">
+            <div class="ssc-bar">TALLER</div>
+            <div class="ssc-body">
+              <div class="ssc-meta-row">
+                <span class="ssc-time-pill">{s.time} – {s.end}</span>
+                <span class="ssc-room">{s.room}</span>
+              </div>
+              <div class="ssc-session-title">{s.title}</div>
+              {names.length > 0 && (
+                <div class="ssc-speakers">
+                  <div class="ssc-speakers-label">{names.length > 1 ? 'Instructores' : 'Instructor'}</div>
+                  <div class="ssc-speakers-list">
+                    {names.map((name) => {
+                      const sp = findInstructor(name);
+                      return (
+                        <div
+                          class="ssc-speaker-row"
+                          data-bio-trigger={sp ? true : undefined}
+                          data-bio-name={sp?.name}
+                          data-bio-role={sp?.role}
+                          data-bio-bio={sp?.bio}
+                          style={sp ? 'cursor:pointer' : 'cursor:default'}
+                        >
+                          <span class="ssc-avatar"></span>
+                          <div>
+                            <div class="ssc-speaker-name">{name}</div>
+                            {sp && <div class="ssc-speaker-role">{sp.role}</div>}
+                          </div>
+                          {sp && <span class="ssc-chevron">›</span>}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('click', (e) => {
+    const btn = (e.target as HTMLElement)?.closest('[data-day-index]');
+    if (btn) {
+      console.log('Selected day index:', btn.getAttribute('data-day-index'));
+    }
+  });
+</script>
+
+<style define:vars={{ accent }}>
+  .ssc-section {
+    background: #080808;
+    border-top: 1px solid #161616;
+    border-bottom: 1px solid #161616;
+    font-family: 'Archivo', Helvetica, Arial, sans-serif;
+    color: #fff;
+  }
+
+  .ssc-inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: clamp(56px, 8vw, 96px) clamp(16px, 4vw, 40px);
+  }
+
+  .ssc-eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+
+  .ssc-title {
+    margin: 0 0 8px;
+    font-size: clamp(34px, 5vw, 56px);
+    font-weight: 900;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    line-height: 0.95;
+  }
+
+  .ssc-sub {
+    margin: 0 0 28px;
+    color: #9a9a9a;
+    font-size: 16px;
+  }
+
+  .ssc-toprow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 40px;
+  }
+
+  .ssc-dl-label {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+
+  .ssc-dl-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 22px;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    box-shadow: 0 0 28px rgba(226, 16, 26, 0.35);
+  }
+
+  .ssc-dl-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 20px;
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 3px;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+  }
+
+  .ssc-notice {
+    flex: 1;
+    min-width: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 14px 20px;
+    background: rgba(226, 16, 26, 0.08);
+    border: 1px solid rgba(226, 16, 26, 0.4);
+    border-radius: 6px;
+    align-self: flex-end;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .ssc-notice-i {
+    flex: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 800;
+  }
+
+  .ssc-day-label {
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    font-weight: 700;
+    color: #9a9a9a;
+    margin-bottom: 14px;
+  }
+
+  .ssc-day-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
+  }
+
+  .ssc-pill {
+    padding: 10px 22px;
+    background: transparent;
+    color: #b9b9b9;
+    border: 1px solid #2a2a2a;
+    border-radius: 999px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 14px;
+    font-family: inherit;
+  }
+
+  .ssc-pill--active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+    font-weight: 800;
+  }
+
+  .ssc-sessions {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .ssc-card {
+    border-radius: 8px;
+    overflow: hidden;
+    background: #141414;
+    border-left: 4px solid var(--accent);
+    border: 1px solid #242424;
+    border-left-width: 4px;
+  }
+
+  .ssc-bar {
+    padding: 8px 20px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    color: #fff;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.35);
+    background: var(--accent);
+  }
+
+  .ssc-body {
+    padding: 18px 20px;
+  }
+
+  .ssc-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+
+  .ssc-time-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 13px;
+    white-space: nowrap;
+    font-weight: 800;
+    color: #fff;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.35);
+    background: var(--accent);
+  }
+
+  .ssc-room {
+    font-size: 12px;
+    color: #8a8a8a;
+    font-weight: 600;
+  }
+
+  .ssc-session-title {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #fff;
+  }
+
+  .ssc-speakers {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid #222;
+  }
+
+  .ssc-speakers-label {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    font-weight: 700;
+    color: #777;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+
+  .ssc-speakers-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .ssc-speaker-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    margin: -2px -12px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+  }
+
+  .ssc-speaker-row:hover {
+    background: rgba(226, 16, 26, 0.16);
+    border-color: var(--accent);
+    transform: translateX(2px);
+  }
+
+  .ssc-speaker-row:hover .ssc-avatar {
+    box-shadow: 0 0 0 2px var(--accent);
+  }
+
+  .ssc-speaker-row:hover .ssc-chevron {
+    opacity: 1;
+  }
+
+  .ssc-avatar {
+    width: 32px;
+    height: 32px;
+    flex: none;
+    border-radius: 50%;
+    background: repeating-linear-gradient(135deg, #262626 0 6px, #1a1a1a 6px 12px);
+    border: 1px solid #3a3a3a;
+    transition: box-shadow 0.15s ease;
+  }
+
+  .ssc-speaker-name {
+    font-size: 14px;
+    color: #fff;
+    font-weight: 700;
+  }
+
+  .ssc-speaker-role {
+    font-size: 12px;
+    color: #8a8a8a;
+  }
+
+  .ssc-chevron {
+    margin-left: auto;
+    color: var(--accent);
+    font-size: 20px;
+    font-weight: 800;
+    opacity: 0.55;
+    flex: none;
+    transition: opacity 0.15s ease;
+  }
+</style>

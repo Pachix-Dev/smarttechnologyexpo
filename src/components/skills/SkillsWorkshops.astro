@@ -1,0 +1,361 @@
+---
+// SkillsWorkshops.astro — "Talleres disponibles" catalog for SMART SKILLS.
+// Pair with BioModal.astro: "Ver semblanza" buttons use [data-bio-trigger].
+
+export interface Workshop {
+  name: string;
+  nivel: 'BÁSICO' | 'INTERMEDIO' | 'AVANZADO';
+  instructor: string;
+  instructorRole: string;
+  instructorBio?: string;
+  duracion: string;
+  horario: string;
+  sala: string;
+  cupo: number;
+  disp: number;
+  requisitos: string[];
+}
+
+export interface Props {
+  eyebrow?: string;
+  title?: string;
+  note?: string;
+  workshops?: Workshop[];
+  accent?: string;
+}
+
+const {
+  eyebrow = 'CATÁLOGO',
+  title = 'Talleres disponibles',
+  note = 'Cada taller incluye instructor especializado, duración y requisitos. Inscríbete desde el formulario al final.',
+  workshops = [
+    { name: 'Programación de robots colaborativos (cobots)', nivel: 'INTERMEDIO', instructor: 'Ing. Carlos Rivera', instructorRole: 'Especialista en robótica industrial', instructorBio: 'Ingeniero industrial con amplia trayectoria en automatización y robótica aplicada a líneas de producción de alto volumen.', duracion: '4 horas', horario: '10:00 – 14:00', sala: 'Lab Smart Skills A', cupo: 25, disp: 7, requisitos: ['Laptop propia', 'Nociones básicas de programación'] },
+    { name: 'Implementación de IIoT en planta', nivel: 'AVANZADO', instructor: 'Mtra. Laura Gómez', instructorRole: 'Líder de transformación digital', instructorBio: 'Especialista en integración de sistemas IIoT y gemelos digitales para optimización de procesos productivos.', duracion: '3 horas', horario: '10:00 – 13:00', sala: 'Lab Smart Skills B', cupo: 20, disp: 12, requisitos: ['Conocimientos de redes', 'Laptop propia'] },
+    { name: 'Ciberseguridad industrial: fundamentos', nivel: 'BÁSICO', instructor: 'Dr. Javier Soto', instructorRole: 'Consultor en seguridad OT', instructorBio: 'Doctor en robótica industrial con investigación enfocada en sistemas autónomos aplicados a manufactura.', duracion: '3 horas', horario: '15:00 – 18:00', sala: 'Lab Smart Skills A', cupo: 30, disp: 22, requisitos: ['Sin requisitos previos'] },
+    { name: 'Visión artificial para control de calidad', nivel: 'INTERMEDIO', instructor: 'Dra. Ana Martínez', instructorRole: 'Directora de innovación', instructorBio: 'Especialista en transformación digital con más de 15 años liderando proyectos de innovación en el sector industrial.', duracion: '4 horas', horario: '10:00 – 14:00', sala: 'Lab Smart Skills B', cupo: 18, disp: 3, requisitos: ['Laptop propia', 'Python básico'] },
+  ],
+  accent = '#E2101A',
+} = Astro.props;
+
+const nivelColors: Record<string, string> = { 'BÁSICO': '#3a8f5a', 'INTERMEDIO': '#c79a2a', 'AVANZADO': accent };
+
+const workshopsView = workshops.map((w) => {
+  const ratio = (w.cupo - w.disp) / w.cupo;
+  const low = w.disp <= 5;
+  const nivelColor = nivelColors[w.nivel] || accent;
+  const fillPercent = Math.round(ratio * 100);
+  const cupoText = low ? `¡Últimos ${w.disp} lugares!` : `${w.disp} lugares disponibles`;
+  const cupoColor = low ? accent : '#cfcfcf';
+  const fillBg = low ? accent : `linear-gradient(90deg,#0D3B66,${accent})`;
+  return { ...w, low, nivelColor, fillPercent, cupoText, cupoColor, fillBg };
+});
+---
+
+<section class="sw-section">
+  <div class="sw-eyebrow">{eyebrow}</div>
+  <h2 class="sw-title">{title}</h2>
+  <p class="sw-note">{note}</p>
+
+  <div class="sw-grid">
+    {workshopsView.map((w) => (
+        <div class="sw-card">
+          <div class="sw-card-top"></div>
+          <div class="sw-card-body">
+            <div class="sw-card-head">
+              <span class="sw-nivel" style={`background:${w.nivelColor}`}>{w.nivel}</span>
+              <span class="sw-duracion">{w.duracion}</span>
+            </div>
+            <h3 class="sw-name">{w.name}</h3>
+
+            <div class="sw-instructor">
+              <span class="sw-avatar"></span>
+              <div>
+                <div class="sw-instructor-name">{w.instructor}</div>
+                <div class="sw-instructor-role">{w.instructorRole}</div>
+              </div>
+            </div>
+            <button
+              class="sw-bio-btn"
+              type="button"
+              data-bio-trigger
+              data-bio-name={w.instructor}
+              data-bio-role={w.instructorRole}
+              data-bio-org="Smart Technology Expo · Instructor"
+              data-bio-bio={w.instructorBio || ''}
+            >
+              VER SEMBLANZA
+            </button>
+
+            <div class="sw-info">
+              <div class="sw-info-row"><span>HORARIO</span><span>{w.horario}</span></div>
+              <div class="sw-info-row"><span>SALA</span><span>{w.sala}</span></div>
+            </div>
+
+            <div class="sw-req">
+              <div class="sw-req-label">REQUISITOS</div>
+              <ul class="sw-req-list">
+                {w.requisitos.map((req) => (
+                  <li><span class="sw-req-bullet">›</span>{req}</li>
+                ))}
+              </ul>
+            </div>
+
+            <div class="sw-footer">
+              <div class="sw-cupo-row">
+                <span class="sw-cupo-text" style={`color:${w.cupoColor}`}>
+                  {w.cupoText}
+                </span>
+                <span class="sw-cupo-total">Cupo {w.cupo}</span>
+              </div>
+              <div class="sw-cupo-bar">
+                <div
+                  class="sw-cupo-fill"
+                  style={`width:${w.fillPercent}%; background:${w.fillBg}`}
+                ></div>
+              </div>
+              <button class="sw-cta" style={`background:${accent}`} type="button">Inscribirme</button>
+            </div>
+          </div>
+        </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .sw-section {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: clamp(56px, 8vw, 96px) clamp(16px, 4vw, 40px);
+    font-family: 'Archivo', Helvetica, Arial, sans-serif;
+    color: #fff;
+  }
+
+  .sw-eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+
+  .sw-title {
+    margin: 0 0 8px;
+    font-size: clamp(34px, 5vw, 56px);
+    font-weight: 900;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    line-height: 0.95;
+  }
+
+  .sw-note {
+    margin: 0 0 38px;
+    color: #9a9a9a;
+    font-size: 16px;
+  }
+
+  .sw-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+    gap: 22px;
+  }
+
+  .sw-card {
+    display: flex;
+    flex-direction: column;
+    background: #0c0c0c;
+    border: 1px solid #1c1c1c;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .sw-card-top {
+    height: 5px;
+    background: linear-gradient(90deg, #8b1a1a, #e2101a);
+  }
+
+  .sw-card-body {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .sw-card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+
+  .sw-nivel {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    padding: 5px 11px;
+    border-radius: 4px;
+    color: #fff;
+  }
+
+  .sw-duracion {
+    font-size: 12px;
+    font-weight: 600;
+    color: #8a8a8a;
+  }
+
+  .sw-name {
+    margin: 0 0 16px;
+    font-size: 21px;
+    font-weight: 800;
+    line-height: 1.15;
+    text-wrap: pretty;
+  }
+
+  .sw-instructor {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    margin-bottom: 14px;
+  }
+
+  .sw-avatar {
+    width: 38px;
+    height: 38px;
+    flex: none;
+    border-radius: 50%;
+    background: repeating-linear-gradient(135deg, #262626 0 7px, #1a1a1a 7px 14px);
+    border: 1px solid #333;
+  }
+
+  .sw-instructor-name {
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .sw-instructor-role {
+    font-size: 12px;
+    color: #8a8a8a;
+    margin-top: 2px;
+  }
+
+  .sw-bio-btn {
+    margin-bottom: 18px;
+    padding: 9px;
+    background: transparent;
+    border: 1px solid #e2101a;
+    color: #e2101a;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  .sw-info {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin-bottom: 18px;
+    padding: 14px 16px;
+    background: #111;
+    border-radius: 6px;
+  }
+
+  .sw-info-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .sw-info-row span:first-child {
+    font-size: 12px;
+    color: #777;
+    font-weight: 600;
+  }
+
+  .sw-req {
+    margin-bottom: 18px;
+  }
+
+  .sw-req-label {
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    font-weight: 700;
+    color: #777;
+    margin-bottom: 9px;
+  }
+
+  .sw-req-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .sw-req-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 13px;
+    color: #b9b9b9;
+    line-height: 1.4;
+  }
+
+  .sw-req-bullet {
+    color: #e2101a;
+    font-weight: 800;
+    flex: none;
+  }
+
+  .sw-footer {
+    margin-top: auto;
+  }
+
+  .sw-cupo-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 7px;
+  }
+
+  .sw-cupo-text {
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .sw-cupo-total {
+    font-size: 11px;
+    color: #777;
+    font-weight: 600;
+  }
+
+  .sw-cupo-bar {
+    height: 6px;
+    background: #1e1e1e;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 18px;
+  }
+
+  .sw-cupo-fill {
+    height: 100%;
+  }
+
+  .sw-cta {
+    width: 100%;
+    padding: 13px;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    font-family: inherit;
+  }
+</style>

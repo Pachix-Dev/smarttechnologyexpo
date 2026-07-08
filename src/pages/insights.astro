@@ -1,0 +1,20 @@
+---
+// src/pages/insights.astro
+import Layout from '../layouts/Layout.astro'
+import InsightsHero from '../components/insights/InsightsHero.astro'
+import InsightsSpeakers from '../components/insights/InsightsSpeakers.astro'
+import InsightsSchedule from '../components/insights/InsightsSchedule.astro'
+import SiteFooter from '../components/shared/SiteFooter.astro'
+import BioModal from '../components/shared/BioModal.astro'
+---
+
+<Layout
+  title="Smart Insights"
+  description="Escenario principal del Smart Technology Expo 2026: conferencias magistrales y paneles de discusión."
+>
+  <InsightsHero />
+  <InsightsSpeakers />
+  <InsightsSchedule />
+  <SiteFooter />
+  <BioModal />
+</Layout>

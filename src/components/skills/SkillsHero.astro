@@ -1,0 +1,149 @@
+---
+// SkillsHero.astro — Header/switcher + hero for the SMART SKILLS (Talleres) interior.
+import HeaderSwitcher from '../shared/HeaderSwitcher.astro';
+
+export interface Props {
+  eyebrow?: string;
+  title1?: string;
+  title2?: string;
+  description?: string;
+  notice?: string;
+  logoSrc?: string;
+}
+
+const {
+  eyebrow = 'TALLERES PRÁCTICOS',
+  title1 = 'Smart',
+  title2 = 'Skills',
+  description = 'Aprendizaje práctico y aplicación real de la tecnología. Capacitaciones para desarrollar habilidades técnicas, conocer herramientas clave y profundizar en soluciones aplicables a entornos productivos.',
+  notice = 'CUPO LIMITADO · REGISTRO PREVIO REQUERIDO',
+  logoSrc,
+} = Astro.props;
+---
+
+<HeaderSwitcher active="talleres" logoSrc={logoSrc} />
+
+<section class="sh-hero">
+  <div class="sh-fill" aria-hidden="true"></div>
+  <div class="sh-dots" aria-hidden="true"></div>
+
+  <div class="sh-inner">
+    <div class="sh-eyebrow">
+      <span class="sh-eyebrow-line"></span>
+      <span class="sh-eyebrow-text">{eyebrow}</span>
+    </div>
+
+    <h1 class="sh-title">
+      <span class="sh-title-a">{title1}</span><br />
+      <span class="sh-title-b">{title2}</span>
+    </h1>
+
+    <p class="sh-description">{description}</p>
+
+    <div class="sh-notice">
+      <span class="sh-notice-dot"></span>
+      <span class="sh-notice-text">{notice}</span>
+    </div>
+  </div>
+</section>
+
+<style>
+  .sh-hero {
+    position: relative;
+    background: #000;
+    overflow: hidden;
+    border-bottom: 1px solid #161616;
+    font-family: 'Archivo', Helvetica, Arial, sans-serif;
+    color: #fff;
+  }
+
+  .sh-fill {
+    position: absolute;
+    inset: 0;
+    background: #e2101a;
+  }
+
+  .sh-dots {
+    position: absolute;
+    inset: 0;
+    background-image: repeating-radial-gradient(circle at 78% 42%, rgba(0, 0, 0, 0.14) 0 1px, transparent 1px 26px);
+  }
+
+  .sh-inner {
+    position: relative;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: clamp(48px, 9vw, 104px) clamp(16px, 4vw, 40px) clamp(40px, 7vw, 80px);
+  }
+
+  .sh-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+
+  .sh-eyebrow-line {
+    width: 30px;
+    height: 2px;
+    background: #000;
+  }
+
+  .sh-eyebrow-text {
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .sh-title {
+    margin: 0;
+    font-size: clamp(52px, 11vw, 128px);
+    line-height: 0.9;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+
+  .sh-title-a {
+    color: #fff;
+  }
+
+  .sh-title-b {
+    color: #8b1414;
+  }
+
+  .sh-description {
+    margin: 26px 0 0;
+    max-width: 640px;
+    font-size: clamp(16px, 2vw, 20px);
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.88);
+    text-wrap: pretty;
+  }
+
+  .sh-notice {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 30px;
+    padding: 12px 18px;
+    background: rgba(0, 0, 0, 0.28);
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    border-radius: 5px;
+  }
+
+  .sh-notice-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #000;
+  }
+
+  .sh-notice-text {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: #fff;
+  }
+</style>
