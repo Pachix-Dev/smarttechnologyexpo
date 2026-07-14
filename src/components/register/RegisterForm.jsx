@@ -1,13 +1,13 @@
-import { useRegisterForm } from '../../store/register-form'
-import { useForm } from 'react-hook-form'
-import PhoneInputWithCountry from 'react-phone-number-input/react-hook-form'
-import Select from 'react-select'
-import { countries } from '../../data/list_countries'
-import { PrivacyNoticeAcceptance } from './PrivacyNoticeAcceptance'
-import 'react-phone-number-input/style.css'
-import './Form.css'
-import { useEffect, useState } from 'react'
-import { flushSync } from 'react-dom'
+import { useRegisterForm } from "../../store/register-form";
+import { useForm } from "react-hook-form";
+import PhoneInputWithCountry from "react-phone-number-input/react-hook-form";
+import Select from "react-select";
+import { countries } from "../../data/list_countries";
+import { PrivacyNoticeAcceptance } from "./PrivacyNoticeAcceptance";
+import "react-phone-number-input/style.css";
+import "./Form.css";
+import { useEffect, useState } from "react";
+import { flushSync } from "react-dom";
 
 export function RegisterForm({ translates, currentLanguage }) {
   const {
@@ -75,7 +75,7 @@ export function RegisterForm({ translates, currentLanguage }) {
     setInvoiceDownToLoad,
 
     clear,
-  } = useRegisterForm()
+  } = useRegisterForm();
 
   const {
     register,
@@ -91,238 +91,238 @@ export function RegisterForm({ translates, currentLanguage }) {
       colonia,
       privacyNoticeAccepted: false,
     },
-  })
+  });
 
   useEffect(() => {
-    setValue('state', state)
-    setValue('municipality', municipality)
-    setValue('city', city)
-    setValue('colonia', colonia)
-  }, [state, municipality, city, colonia, setValue])
+    setValue("state", state);
+    setValue("municipality", municipality);
+    setValue("city", city);
+    setValue("colonia", colonia);
+  }, [state, municipality, city, colonia, setValue]);
 
   useEffect(() => {
-    if (typeRegister !== 'VISITANTE') {
-      setTypeRegister('VISITANTE')
+    if (typeRegister !== "VISITANTE") {
+      setTypeRegister("VISITANTE");
     }
-  }, [typeRegister, setTypeRegister])
+  }, [typeRegister, setTypeRegister]);
 
-  const [messagePostalCode, setMessagePostalCode] = useState('')
-  const urlcp = 'https://industrialtransformation.mx/server/'
+  const [messagePostalCode, setMessagePostalCode] = useState("");
+  const urlcp = "https://industrialtransformation.mx/server/";
 
   const handlePostalCode = async (e) => {
     // Verificar que hay un país seleccionado antes de procesar
     if (!country) {
       setMessagePostalCode(
-        translates.select_country_first || 'Selecciona un país primero',
-      )
-      return
+        translates.select_country_first || "Selecciona un país primero",
+      );
+      return;
     }
 
-    setPostalCode(e)
+    setPostalCode(e);
 
-    if (e.length === 5 && country === 'Mexico') {
-      const res = await fetch(urlcp + `get-postalcode/${e}`)
-      const data = await res.json()
+    if (e.length === 5 && country === "Mexico") {
+      const res = await fetch(urlcp + `get-postalcode/${e}`);
+      const data = await res.json();
       if (data.status) {
-        setMessagePostalCode('')
-        setPostalCode(e)
-        setMunicipality(data.records[0].D_mnpio)
-        setState(data.records[0].d_estado)
+        setMessagePostalCode("");
+        setPostalCode(e);
+        setMunicipality(data.records[0].D_mnpio);
+        setState(data.records[0].d_estado);
         setCity(
-          data.records[0].d_ciudad === ''
+          data.records[0].d_ciudad === ""
             ? data.records[0].d_estado
             : data.records[0].d_ciudad,
-        )
-        setColonias(data.records.map((record) => record.d_asenta))
-        setColonia('')
+        );
+        setColonias(data.records.map((record) => record.d_asenta));
+        setColonia("");
       } else {
-        setMessagePostalCode(translates.no_postal_code_valid)
-        setMunicipality('')
-        setState('')
-        setCity('')
-        setColonias([])
-        setColonia('')
+        setMessagePostalCode(translates.no_postal_code_valid);
+        setMunicipality("");
+        setState("");
+        setCity("");
+        setColonias([]);
+        setColonia("");
       }
     }
 
-    if (e.length > 5 && country === 'Mexico') {
-      setMessagePostalCode(translates.no_postal_code_valid)
-      setMunicipality('')
-      setState('')
-      setCity('')
-      setColonias([])
-      setColonia('')
+    if (e.length > 5 && country === "Mexico") {
+      setMessagePostalCode(translates.no_postal_code_valid);
+      setMunicipality("");
+      setState("");
+      setCity("");
+      setColonias([]);
+      setColonia("");
     }
 
     // Para otros países, simplemente almacenar el código postal
-    if (country && country !== 'Mexico') {
-      setMessagePostalCode('')
+    if (country && country !== "Mexico") {
+      setMessagePostalCode("");
     }
-  }
+  };
 
   const isDisabled =
-    country === 'Mexico'
-      ? 'w-full rounded-lg bg-gray-600 border border-gray-200 p-4 pe-12 text-sm shadow-sm text-white'
-      : 'w-full rounded-lg bg-transparent border border-gray-200 p-4 pe-12 text-sm shadow-sm'
+    country === "Mexico"
+      ? "w-full rounded-lg bg-gray-600 border border-gray-200 p-4 pe-12 text-sm shadow-sm text-white"
+      : "w-full rounded-lg bg-transparent border border-gray-200 p-4 pe-12 text-sm shadow-sm";
 
-  const [message, setMessage] = useState('')
-  const [processing, setProcessing] = useState(false)
+  const [message, setMessage] = useState("");
+  const [processing, setProcessing] = useState(false);
 
   useEffect(() => {
     const resetProcessingOnRestore = () => {
-      setProcessing(false)
-    }
+      setProcessing(false);
+    };
 
-    window.addEventListener('pageshow', resetProcessingOnRestore)
+    window.addEventListener("pageshow", resetProcessingOnRestore);
 
     return () => {
-      window.removeEventListener('pageshow', resetProcessingOnRestore)
-    }
-  })
+      window.removeEventListener("pageshow", resetProcessingOnRestore);
+    };
+  });
 
   const options = [
     {
-      label: 'CÁMARA VERDE',
-      value: 'CÁMARA VERDE',
+      label: "CÁMARA VERDE",
+      value: "CÁMARA VERDE",
     },
     {
       label:
-        'AMRRE (Asociación Mexicana de Recicladores de Residuos Electrónicos)',
+        "AMRRE (Asociación Mexicana de Recicladores de Residuos Electrónicos)",
       value:
-        'AMRRE (Asociación Mexicana de Recicladores de Residuos Electrónicos)',
+        "AMRRE (Asociación Mexicana de Recicladores de Residuos Electrónicos)",
     },
     {
-      label: 'ANES (Asociación Nacional de Energía Solar)',
-      value: 'ANES (Asociación Nacional de Energía Solar)',
+      label: "ANES (Asociación Nacional de Energía Solar)",
+      value: "ANES (Asociación Nacional de Energía Solar)",
     },
     {
-      label: 'HHM (Holland House México)',
-      value: 'HHM (Holland House México)',
+      label: "HHM (Holland House México)",
+      value: "HHM (Holland House México)",
     },
     {
-      label: 'PMRJ (Profesionales en Manejo de Residuos Jalisco)',
-      value: 'PMRJ (Profesionales en Manejo de Residuos Jalisco)',
+      label: "PMRJ (Profesionales en Manejo de Residuos Jalisco)",
+      value: "PMRJ (Profesionales en Manejo de Residuos Jalisco)",
     },
-    { label: 'EGB (El Gran Bajio)', value: 'EGB (El Gran Bajio)' },
+    { label: "EGB (El Gran Bajio)", value: "EGB (El Gran Bajio)" },
     {
       label:
-        'IER-UNAM (Instituto de Energías Renovables, Universidad Nacional Autónoma de México)',
+        "IER-UNAM (Instituto de Energías Renovables, Universidad Nacional Autónoma de México)",
       value:
-        'IER-UNAM (Instituto de Energías Renovables, Universidad Nacional Autónoma de México)',
+        "IER-UNAM (Instituto de Energías Renovables, Universidad Nacional Autónoma de México)",
     },
     {
-      label: 'AMH (Asociación Mexicana de Hidráulica)',
-      value: 'AMH (Asociación Mexicana de Hidráulica)',
-    },
-    {
-      label:
-        'ALADYR (Asociación Latinoamericana de Desalación y Reúso de Agua)',
-      value:
-        'ALADYR (Asociación Latinoamericana de Desalación y Reúso de Agua)',
-    },
-    {
-      label: 'CNBiogás (Consejo Nacional de Biogás)',
-      value: 'CNBiogás (Consejo Nacional de Biogás)',
-    },
-    {
-      label: 'AExC (Alianza Empresarial por el Clima)',
-      value: 'AExC (Alianza Empresarial por el Clima)',
-    },
-    {
-      label: 'ARS (Asociación para el Estudio de Residuos Sólidos)',
-      value: 'ARS (Asociación para el Estudio de Residuos Sólidos)',
+      label: "AMH (Asociación Mexicana de Hidráulica)",
+      value: "AMH (Asociación Mexicana de Hidráulica)",
     },
     {
       label:
-        'ONUDI - UNIDO (Organización de las Naciones Unidas para el desarrollo Industrial)',
+        "ALADYR (Asociación Latinoamericana de Desalación y Reúso de Agua)",
       value:
-        'ONUDI - UNIDO (Organización de las Naciones Unidas para el desarrollo Industrial)',
+        "ALADYR (Asociación Latinoamericana de Desalación y Reúso de Agua)",
+    },
+    {
+      label: "CNBiogás (Consejo Nacional de Biogás)",
+      value: "CNBiogás (Consejo Nacional de Biogás)",
+    },
+    {
+      label: "AExC (Alianza Empresarial por el Clima)",
+      value: "AExC (Alianza Empresarial por el Clima)",
+    },
+    {
+      label: "ARS (Asociación para el Estudio de Residuos Sólidos)",
+      value: "ARS (Asociación para el Estudio de Residuos Sólidos)",
     },
     {
       label:
-        'COMCE (Consejo Empresarial Mexicano de Comercio Exterior, Inversión y Tecnología)',
+        "ONUDI - UNIDO (Organización de las Naciones Unidas para el desarrollo Industrial)",
       value:
-        'COMCE (Consejo Empresarial Mexicano de Comercio Exterior, Inversión y Tecnología)',
-    },
-    {
-      label: 'ANEAS (Asociación Nacional de Entidades de Agua y Saneamiento)',
-      value: 'ANEAS (Asociación Nacional de Entidades de Agua y Saneamiento)',
+        "ONUDI - UNIDO (Organización de las Naciones Unidas para el desarrollo Industrial)",
     },
     {
       label:
-        'CIDETT (Centro de Innovación, Desarrollo Empresarial y Transferencia de Tecnología)',
+        "COMCE (Consejo Empresarial Mexicano de Comercio Exterior, Inversión y Tecnología)",
       value:
-        'CIDETT (Centro de Innovación, Desarrollo Empresarial y Transferencia de Tecnología)',
+        "COMCE (Consejo Empresarial Mexicano de Comercio Exterior, Inversión y Tecnología)",
     },
     {
-      label: 'AMB (Asociación Mexicana de Bioplásticos)',
-      value: 'AMB (Asociación Mexicana de Bioplásticos)',
+      label: "ANEAS (Asociación Nacional de Entidades de Agua y Saneamiento)",
+      value: "ANEAS (Asociación Nacional de Entidades de Agua y Saneamiento)",
     },
     {
       label:
-        'CANACINTRA León (Cámara Nacional de la industria de Transformación)',
+        "CIDETT (Centro de Innovación, Desarrollo Empresarial y Transferencia de Tecnología)",
       value:
-        'CANACINTRA León (Cámara Nacional de la industria de Transformación)',
+        "CIDETT (Centro de Innovación, Desarrollo Empresarial y Transferencia de Tecnología)",
+    },
+    {
+      label: "AMB (Asociación Mexicana de Bioplásticos)",
+      value: "AMB (Asociación Mexicana de Bioplásticos)",
     },
     {
       label:
-        'CCP (Clúster de la Industrial del Plástico y Economía Circular del Estado de Puebla)',
+        "CANACINTRA León (Cámara Nacional de la industria de Transformación)",
       value:
-        'CCP (Clúster de la Industrial del Plástico y Economía Circular del Estado de Puebla)',
-    },
-    {
-      label: 'COMURE (Comunidad de Mujeres en el Reciclaje)',
-      value: 'COMURE (Comunidad de Mujeres en el Reciclaje)',
-    },
-    {
-      label: 'CICEJ (Colegio de Ingenieros Civiles del Estado de Jalisco)',
-      value: 'CICEJ (Colegio de Ingenieros Civiles del Estado de Jalisco)',
-    },
-    {
-      label: 'H2 México (Asociación Mexicana de Hidrógeno)',
-      value: 'H2 México (Asociación Mexicana de Hidrógeno)',
+        "CANACINTRA León (Cámara Nacional de la industria de Transformación)",
     },
     {
       label:
-        'Coparmex, Sustainability Committee (Confederación Patronal de la República Mexicana)',
+        "CCP (Clúster de la Industrial del Plástico y Economía Circular del Estado de Puebla)",
       value:
-        'Coparmex, Sustainability Committee (Confederación Patronal de la República Mexicana)',
-    },
-    { label: 'COGENERA MÉXICO', value: 'COGENERA MÉXICO' },
-    {
-      label: 'CANCHAM (Cámara de Comercio de Canadá en México)',
-      value: 'CANCHAM (Cámara de Comercio de Canadá en México)',
+        "CCP (Clúster de la Industrial del Plástico y Economía Circular del Estado de Puebla)",
     },
     {
-      label: 'Embajada Británica en México',
-      value: 'Embajada Británica en México',
+      label: "COMURE (Comunidad de Mujeres en el Reciclaje)",
+      value: "COMURE (Comunidad de Mujeres en el Reciclaje)",
     },
     {
-      label: 'SMAAC (Sociedad Mexicana De Aguas)',
-      value: 'SMAAC (Sociedad Mexicana De Aguas)',
+      label: "CICEJ (Colegio de Ingenieros Civiles del Estado de Jalisco)",
+      value: "CICEJ (Colegio de Ingenieros Civiles del Estado de Jalisco)",
+    },
+    {
+      label: "H2 México (Asociación Mexicana de Hidrógeno)",
+      value: "H2 México (Asociación Mexicana de Hidrógeno)",
     },
     {
       label:
-        'IMEI - BOMA (Asociación Mexicana del Edificio Inteligente y Sustentable)',
+        "Coparmex, Sustainability Committee (Confederación Patronal de la República Mexicana)",
       value:
-        'IMEI - BOMA (Asociación Mexicana del Edificio Inteligente y Sustentable)',
+        "Coparmex, Sustainability Committee (Confederación Patronal de la República Mexicana)",
+    },
+    { label: "COGENERA MÉXICO", value: "COGENERA MÉXICO" },
+    {
+      label: "CANCHAM (Cámara de Comercio de Canadá en México)",
+      value: "CANCHAM (Cámara de Comercio de Canadá en México)",
     },
     {
-      label: 'AMEE (Asociación Mexicana de Envase y Embalaje)',
-      value: 'AMEE (Asociación Mexicana de Envase y Embalaje)',
+      label: "Embajada Británica en México",
+      value: "Embajada Británica en México",
     },
-  ]
+    {
+      label: "SMAAC (Sociedad Mexicana De Aguas)",
+      value: "SMAAC (Sociedad Mexicana De Aguas)",
+    },
+    {
+      label:
+        "IMEI - BOMA (Asociación Mexicana del Edificio Inteligente y Sustentable)",
+      value:
+        "IMEI - BOMA (Asociación Mexicana del Edificio Inteligente y Sustentable)",
+    },
+    {
+      label: "AMEE (Asociación Mexicana de Envase y Embalaje)",
+      value: "AMEE (Asociación Mexicana de Envase y Embalaje)",
+    },
+  ];
 
   const urlbase = import.meta.env.DEV
-    ? 'http://localhost:3005/'
-    : 'https://smarttechnologyexpo.mx/server/'
+    ? "http://localhost:3005/"
+    : "https://smarttechnologyexpo.mx/server/";
 
   const handleRegister = async () => {
-    setProcessing(true)
-    const response = await fetch(urlbase + 'free-register-ste', {
-      method: 'POST',
+    setProcessing(true);
+    const response = await fetch(urlbase + "free-register-ste", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         name,
@@ -330,7 +330,7 @@ export function RegisterForm({ translates, currentLanguage }) {
         maternSurname,
         email,
         phone,
-        typeRegister: 'VISITANTE',
+        typeRegister: "VISITANTE",
         genre,
         nacionality,
         code_invitation,
@@ -355,27 +355,30 @@ export function RegisterForm({ translates, currentLanguage }) {
         alreadyVisited,
         currentLanguage,
       }),
-    })
-    const orderData = await response.json()
+    });
+    const orderData = await response.json();
     if (orderData?.status) {
-      clear()
-      setCompleteRegister(true)
-      setInvoiceDownToLoad(orderData?.invoice)
+      clear();
+      setCompleteRegister(true);
+      setInvoiceDownToLoad(orderData?.invoice);
 
-      flushSync(() => {// Aseguramos que el estado se actualice antes de redirigir
-        setProcessing(false)
-      })
-      const thankYouPath = currentLanguage === 'es' ? '/gracias-por-registrarte' : '/en/gracias-por-registrarte'
-      window.location.replace(thankYouPath)
-
+      flushSync(() => {
+        // Aseguramos que el estado se actualice antes de redirigir
+        setProcessing(false);
+      });
+      const thankYouPath =
+        currentLanguage === "es"
+          ? "/gracias-por-registrarte"
+          : "/en/gracias-por-registrarte";
+      window.location.replace(thankYouPath);
     } else {
-      setProcessing(false)
-      setMessage(orderData?.message)
+      setProcessing(false);
+      setMessage(orderData?.message);
       setTimeout(() => {
-        setMessage('')
-      }, 8000)
+        setMessage("");
+      }, 8000);
     }
-  }
+  };
 
   return (
     <section className="py-5">
@@ -1055,18 +1058,14 @@ export function RegisterForm({ translates, currentLanguage }) {
                 defaultValue={industry}
                 className="mt-2 w-full rounded-lg bg-transparent border border-gray-200 p-4 pe-12 text-sm *:text-black"
               >
-                <option value="">
-                  {translates.select_option}
-                </option>
+                <option value="">{translates.select_option}</option>
                 <option value="ACADÉMICO">
                   {translates.industry_option_1}
                 </option>
                 <option value="AEROESPACIAL">
                   {translates.industry_option_2}
                 </option>
-                <option value="AGRÍCOLA">
-                  {translates.industry_option_3}
-                </option>
+                <option value="AGRÍCOLA">{translates.industry_option_3}</option>
                 <option value="ALIMENTOS Y BEBIDAS">
                   {translates.industry_option_4}
                 </option>
@@ -1082,9 +1081,7 @@ export function RegisterForm({ translates, currentLanguage }) {
                 <option value="CELULOSA Y PAPEL">
                   {translates.industry_option_8}
                 </option>
-                <option value="DRONES">
-                  {translates.industry_option_9}
-                </option>
+                <option value="DRONES">{translates.industry_option_9}</option>
                 <option value="FINANCIERO">
                   {translates.industry_option_10}
                 </option>
@@ -1109,24 +1106,18 @@ export function RegisterForm({ translates, currentLanguage }) {
                 <option value="PETROQUÍMICA">
                   {translates.industry_option_17}
                 </option>
-                <option value="QUÍMICA">
-                  {translates.industry_option_18}
-                </option>
+                <option value="QUÍMICA">{translates.industry_option_18}</option>
                 <option value="RESTAURANTERA">
                   {translates.industry_option_19}
                 </option>
                 <option value="SECTOR MÉDICO">
                   {translates.industry_option_20}
                 </option>
-                <option value="SEGUROS">
-                  {translates.industry_option_21}
-                </option>
+                <option value="SEGUROS">{translates.industry_option_21}</option>
                 <option value="TECNOLOGÍA Y ELECTRÓNICA">
                   {translates.industry_option_22}
                 </option>
-                <option value="TEXTIL">
-                  {translates.industry_option_23}
-                </option>
+                <option value="TEXTIL">{translates.industry_option_23}</option>
                 <option value="TRANSPORTE">
                   {translates.industry_option_24}
                 </option>
@@ -1285,8 +1276,30 @@ export function RegisterForm({ translates, currentLanguage }) {
             </div>
 
             <div>
-              <p className="text-black">
+              <p className="text-black flex items-center gap-2">
                 {translates.postal_code} <span className="text-red-600">*</span>
+                <span className="text-amber-600 flex items-center gap-1 text-sm font-light">
+                  (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0-18 0m9-4v4m0 4h.01"
+                    />
+                  </svg>
+                  {currentLanguage === "es"
+                    ? "Selecciona un país primero "
+                    : "Select a country first "} 
+                  )
+                </span>
               </p>
               <div className="relative mt-2">
                 <input
@@ -1346,17 +1359,19 @@ export function RegisterForm({ translates, currentLanguage }) {
               {/* Mensaje de advertencia cuando no hay país seleccionado */}
               {!country && (
                 <p className="text-amber-600 font-light text-sm mt-1 flex items-center gap-1">
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
+                   <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="14"
+                    height="14"
                     viewBox="0 0 24 24"
                   >
                     <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0-18 0m9-4v4m0 4h.01"
                     />
                   </svg>
                   {translates.select_country_first ||
