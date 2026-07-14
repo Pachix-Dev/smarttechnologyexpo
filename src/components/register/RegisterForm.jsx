@@ -1276,7 +1276,7 @@ export function RegisterForm({ translates, currentLanguage }) {
             </div>
 
             <div>
-              <p className="text-black flex items-center gap-2">
+              <p className="text-black flex flex-wrap items-center gap-2">
                 {translates.postal_code} <span className="text-red-600">*</span>
                 <span className="text-amber-600 flex items-center gap-1 text-sm font-light">
                   (
