@@ -8,6 +8,7 @@ interface Props {
   description: string
   keywords?: string
   ogImage?: string
+  ogImageAlt?: string
   ogType?: string
   canonical?: string
 }
@@ -25,6 +26,7 @@ const {
   description,
   keywords = defaultKeywords,
   ogImage = '/img/og-image.jpg',
+  ogImageAlt = 'Smart Technology Expo 2026 en Expo Guadalajara',
   ogType = 'website',
   canonical = Astro.url.pathname,
 } = Astro.props
@@ -57,6 +59,11 @@ const fullOgImage = new URL(ogImage, siteUrl).href
     <meta property='og:title' content={title} />
     <meta property='og:description' content={description} />
     <meta property='og:image' content={fullOgImage} />
+    <meta property='og:image:secure_url' content={fullOgImage} />
+    <meta property='og:image:type' content='image/jpeg' />
+    <meta property='og:image:width' content='1200' />
+    <meta property='og:image:height' content='630' />
+    <meta property='og:image:alt' content={ogImageAlt} />
     <meta
       property='og:locale'
       content={currentLocale === 'es' ? 'es_MX' : 'en_US'}
@@ -69,6 +76,7 @@ const fullOgImage = new URL(ogImage, siteUrl).href
     <meta name='twitter:title' content={title} />
     <meta name='twitter:description' content={description} />
     <meta name='twitter:image' content={fullOgImage} />
+    <meta name='twitter:image:alt' content={ogImageAlt} />
 
     <!-- Alternate Languages -->
     <link
