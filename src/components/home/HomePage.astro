@@ -3,6 +3,7 @@
 import Welcome from "./Welcome.astro";
 import Layout from "../../layouts/Layout.astro";
 import { useTranslations, getTranslation } from "../../utils/translations";
+import HeroHome from "./HeroHome.astro";
 import Description from "./Description.astro";
 import Highlights from "./Highlights.astro";
 import { events } from "../../data/constans_events";
@@ -26,7 +27,7 @@ const tr = (key: string, fallback: string = "") =>
 
 <Layout title={tr("site.title", "Smart Technology Expo")} description={tr("site.description", "Expo de tecnología inteligente")}>
   <HomePopup client:load language={locale}/>
-  <Welcome />
+  <HeroHome />
   <UserGuideButtons />
   <Description />
   <Highlights />

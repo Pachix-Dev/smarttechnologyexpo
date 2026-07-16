@@ -1,0 +1,130 @@
+---
+import { useTranslations, getTranslation } from "../../utils/translations";
+
+const { locale, translations } = await useTranslations(Astro.props, Astro);
+const tr = (key: string, fallback: string = "") =>
+  getTranslation(translations, key, fallback);
+
+const isEnglish = locale === "en";
+const base = isEnglish ? "/en" : "";
+const exhibitorAlt = isEnglish ? "Become an exhibitor" : "Quiero ser expositor";
+const registerAlt = isEnglish   ? "Register for Smart Technology Expo"   : "Registrarme a Smart Technology Expo";
+---
+
+<section
+  class="hero-home relative isolate min-h-[calc(100svh-4rem)] overflow-hidden bg-[#111111] text-white md:min-h-[calc(100svh-3rem)] flex items-end justify-center"
+>
+  <img
+    class="hero-home__bg absolute inset-0 z-0 h-full w-full object-cover animate-fade-in animate-duration-2000"
+    src="/img/hero_home_bg.webp"
+    alt="Smart Technology Expo Background Image"
+    loading="eager"
+    decoding="async"
+    fetchpriority="high"
+  />
+
+  <!-- <div
+    class="absolute inset-0 z-[1] bg-[linear-gradient(90deg,rgba(0,0,0,.78)_0%,rgba(0,0,0,.48)_46%,rgba(0,0,0,.2)_100%)]"
+  >
+  </div>
+  <div
+    class="absolute inset-x-0 bottom-0 z-[1] h-36 bg-gradient-to-t from-black/5 to-transparent"
+  >
+  </div> -->
+
+  <div
+    class="relative z-10 mx-auto grid min-h-[calc(100svh-4rem)] w-full max-w-8xl items-center gap-10 px-4 py-12 text-center sm:px-6 md:min-h-[calc(100svh-6rem)] md:grid-cols-[minmax(0,1fr)_auto_minmax(20rem,.82fr)] md:gap-12 md:py-16 md:text-left "
+  >
+    <div
+      class="mx-auto flex w-full max-w-xl sm:gap-y-7 flex-col items-center md:mx-0 md:items-left animate-fade-up animate-delay-500 animate-duration-1000"
+      data-aos="fade-right"
+      data-aos-delay="200"
+      data-aos-duration="1000"
+    >
+      <p
+        class="text-lg font-semibold uppercase text-white md:text-2xl text-center md:text-left"
+      >
+        Your business is our business.
+      </p>
+      <img
+        src="/img/smarttecexpo_logo.svg"
+        alt="Smart Technology Expo"
+        loading="eager"
+        decoding="async"
+        class="mt-5 w-full max-w-[17rem] drop-shadow-[0_18px_35px_rgba(0,0,0,.45)] sm:max-w-sm md:max-w-md"
+      />
+      <a
+        href={`${base}/expositor-smarttechnologyexpo`}
+        class="mt-7 inline-flex w-full max-w-[17rem] justify-center transition duration-300 hover:-translate-y-1 hover:scale-[1.02] focus-visible:outline-offset-4 focus-visible:outline-white sm:max-w-sm md:max-w-md animate-fade-up animate-delay-1500 animate-duration-1000"
+      >
+        <img
+          src={ locale === "en" ? "/img/btn_quiero_ser_expositor_en.webp" : "/img/btn_quiero_ser_expositor_es.webp" }
+          alt={exhibitorAlt}
+          class="h-auto w-full"
+          loading="eager"
+          decoding="async"
+        />
+      </a>
+    </div>
+
+    <div
+      class="hidden h-[24rem] w-px md:block"
+      data-aos="zoom-in"
+      data-aos-delay="450"
+      data-aos-duration="900"
+    >
+    </div>
+
+    <div
+      class="mx-auto w-full md:mx-0 text-center text-2xl text-white"
+      data-aos="fade-left"
+      data-aos-delay="350"
+      data-aos-duration="1000"
+    >
+      <div>
+        <span class="block text-5xl font-black leading-none md:text-7xl">
+          18 - 20
+        </span>
+      </div>
+      <p
+        class="mt-3 text-4xl font-extrabold uppercase leading-none md:text-[3.5rem]"
+      >
+        {tr("home.month")} 2026
+      </p>
+      <p
+        class="mt-5 text-2xl font-bold uppercase text-white md:text-3xl animate-fade-up animate-delay-3000 animate-duration-1000"
+      >
+        EXPO GUADALAJARA
+      </p>
+      <a
+        href={`${base}/registro`}
+        class="mt-8 inline-flex w-full max-w-[17rem] justify-center transition duration-300 hover:-translate-y-1 hover:scale-[1.02] focus-visible:outline focus-visible:outline-offset-4 focus-visible:outline-white sm:max-w-sm md:max-w-md animate-fade-up animate-delay-3500 animate-duration-1000"
+      >
+        <img
+          src={ locale === "en" ? "/img/btn_registro_en.webp" : "/img/btn_registro_es.webp" }
+          alt={registerAlt}
+          class="h-auto w-full"
+          loading="eager"
+          decoding="async"
+        />
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .hero-home {
+    text-shadow: 0 2px 18px rgba(0, 0, 0, 0.45);
+  }
+
+  .hero-home__bg {
+    object-position: 50% 50%;
+  }
+
+  @media (max-width: 767px) {
+    .hero-home__bg {
+      object-position: 58% 50%;
+    }
+  }
+</style>
