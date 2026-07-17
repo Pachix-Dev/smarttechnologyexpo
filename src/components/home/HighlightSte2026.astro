@@ -1,0 +1,108 @@
+---
+import { useTranslations, getTranslation } from "../../utils/translations";
+// ✨ Una sola línea para cargar traducciones!
+const { locale, translations } = await useTranslations(Astro.props, Astro)
+// 🎯 Helper para traducciones más elegante
+const tr = (key: string, fallback: string = "") =>
+  getTranslation(translations, key, fallback);
+
+import { Numbers } from "../shared/Numbers";
+
+const highlights = [
+  {
+    imageClass: "highlight-card-01",
+    simbol01: "+",
+    simbol02: "",
+    number: "8000",
+    label_es: "COMPRADORES PROFESIONALES",
+    label_en: "PROFESSIONAL BUYERS",
+  },
+  {
+    imageClass: "highlight-card-02",
+    simbol01: "",
+    simbol02: "%",
+    number: "80",
+    label_es: "DE LOS VISITANTES PARTICIPAN EN EL PROCESO DE COMPRA",
+    label_en: "OF VISITORS PARTICIPATE IN THE PURCHASE PROCESS",
+    
+  },
+  {
+    imageClass: "highlight-card-03",
+    simbol01: "+",
+    simbol02: "%",
+    number: "65",
+    label_es: "DE LOS VISITANTES SON DIRECTIVOS",
+    label_en: "OF VISITORS ARE EXECUTIVES",
+    
+  },
+  {
+    imageClass: "highlight-card-04",
+    simbol01: "+",
+    simbol02: "",
+    number: "40",
+    label_es: "SPEAKERS DE ALTO NIVEL",
+    label_en: "HIGH-LEVEL SPEAKERS",
+    
+  },
+];
+---
+
+<section>
+  <div class="mx-auto text-center">
+    <div class="grid grid-cols-2 gap-3 sm:grid-cols-2 sm:gap-4 lg:gap-6">
+      {
+        highlights.map((item) => (
+          <article
+            class={`bg-item-color ${item.imageClass} flex min-h-[180px] flex-col items-center justify-center bg-cover bg-center px-5 py-8 text-center text-white sm:min-h-[260px] sm:px-6 lg:min-h-[320px] lg:px-8`}
+          >
+            <h3 class="relative text-5xl font-extrabold leading-none sm:text-6xl md:text-7xl lg:text-8xl">
+             {item.simbol01}<Numbers client:only="react" number={item.number} duration="5" />{item.simbol02}   
+            </h3>
+            <span class="mt-3 max-w-[20rem] text-sm font-semibold leading-tight sm:text-lg md:text-xl lg:text-2xl">
+              {locale === "es" ? item.label_es : item.label_en}
+            </span>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .highlight-card-01 {
+    background-image: url("/img/hg_item_01.webp");
+  }
+
+  .highlight-card-02 {
+    background-image: url("/img/hg_item_02.webp");
+  }
+
+  .highlight-card-03 {
+    background-image: url("/img/hg_item_03.webp");
+  }
+
+  .highlight-card-04 {
+    background-image: url("/img/hg_item_04.webp");
+  }
+
+  .bg-item-color {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+  }
+
+  .bg-item-color::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-color: #e30613;
+    opacity: 65%;
+    pointer-events: none;
+  }
+
+  .bg-item-color > * {
+    position: relative;
+    z-index: 1;
+  }
+</style>
