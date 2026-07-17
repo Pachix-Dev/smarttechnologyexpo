@@ -7,7 +7,7 @@ const { locale, translations } = await useTranslations(Astro.props, Astro);
 const tr = (key: string, fallback: string = "") =>
   getTranslation(translations, key, fallback);
 
-import { mediaPlanito, strategicPartners } from "../../logos.js";
+import { mediaPlanito, strategicPartners, sponsorsGold } from "../../logos.js";
 ---
 
 <section class="my-10 p-2">
@@ -17,14 +17,14 @@ import { mediaPlanito, strategicPartners } from "../../logos.js";
       {tr("home.strategic_partners")}
     </h2>
     <div class="flex justify-center w-full">
-      <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-5 lg:grid-cols-5 gap-2 sm:gap-8 place-items-center place-content-center">
+      <div class="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-5 gap-2 sm:gap-8 place-items-center place-content-center max-w-4xl">
         {
           strategicPartners.map((partner, index) => (
             <div class="flex justify-center items-center">
               <img
                 src={partner.src}
                 alt={partner.alt}
-                class="w-auto object-contain h-16 sm:h-28" 
+                class="w-auto object-contain" 
               />
             </div>
           ))
@@ -32,22 +32,47 @@ import { mediaPlanito, strategicPartners } from "../../logos.js";
       </div>
     </div>
   </div>
+
+  <!-- ALIADOS PLATINUM -->
   <div class="mx-auto">
-    <!-- ALIADOS MEDIOS -->
     <h2
-      class="w-fit mx-auto square_red font-extrabold text-3xl md:text-4xl uppercase py-5 px-10 text-red-600 text-center"
+      class="w-fit mx-auto square_red font-extrabold text-xl md:text-4xl uppercase py-5 px-10 text-red-600 text-center"
     >
       {tr("home.platinum_allies")}
     </h2>
     <div class="flex justify-center w-full">
-      <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-8 place-items-center place-content-center">
+      <div class="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-8 place-items-center place-content-center max-w-3xl">
         {
           mediaPlanito.map((medio, index) => (
             <div class="flex justify-center items-center">
               <img
                 src={medio.src}
                 alt={medio.alt}
-                class="h-16 w-auto object-contain"
+                class="w-auto object-contain"
+              />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+
+  <!-- MEDIOS GOLD -->
+   <div class="mx-auto">
+    <h2
+      class="w-fit mx-auto square_red font-extrabold text-xl md:text-4xl uppercase py-5 px-10 text-red-600 text-center"
+    >
+      {tr("home.media_allies")}
+    </h2>
+    <div class="flex justify-center w-full">
+      <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-8 place-items-center place-content-center max-w-xl">
+        {
+          sponsorsGold.map((medio, index) => (
+            <div class="flex justify-center items-center">
+              <img
+                src={medio.src}
+                alt={medio.alt}
+                class="w-auto object-contain"
               />
             </div>
           ))
