@@ -1,0 +1,65 @@
+---
+import { useTranslations } from "../../utils/translations";
+
+const { locale } = await useTranslations(Astro.props, Astro);
+const videoSrc = locale === "en" ? "/video/ste_video_es_web.mp4" : "/video/ste_video_en_web.mp4";
+const videoLabel =
+  locale === "en"
+    ? "Smart Technology Expo promotional video"
+    : "Video promocional de Smart Technology Expo";
+---
+
+<section class="promotional-video" >
+  <div class="promotional-video__inner">
+    <video
+      class="promotional-video__media"
+      controls
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="metadata"
+    >
+      <source src={videoSrc} type="video/mp4" />
+      {locale === "en"
+        ? "Your browser does not support the video tag."
+        : "Tu navegador no soporta la etiqueta de video."}
+    </video>
+  </div>
+</section>
+
+<style>
+  .promotional-video {
+    width: 100%;
+    padding: clamp(2rem, 5vw, 4.5rem) 1rem;
+    background: #fff;
+  }
+
+  .promotional-video__inner {
+    width: min(100%, 1120px);
+    margin: 0 auto;
+  }
+
+  .promotional-video__media {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    height: auto;
+    max-height: min(72vh, 720px);
+    border-radius: 8px;
+    background: #050505;
+    object-fit: contain;
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.16);
+  }
+
+  @media (max-width: 640px) {
+    .promotional-video {
+      padding: 2rem 0.75rem;
+    }
+
+    .promotional-video__media {
+      border-radius: 6px;
+      max-height: none;
+    }
+  }
+</style>
