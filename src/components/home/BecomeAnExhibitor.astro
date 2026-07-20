@@ -13,6 +13,7 @@ const floorplanLabel = locale === "es" ? "Plano" : "Floorplan";
 const titleLineOne = locale === "es" ? "Conviértete" : "Become";
 const titleLineTwo = locale === "es" ? "en" : "an";
 const titleLineThree = locale === "es" ? "expositor" : "exhibitor";
+const textMoreInfo = locale === "es" ? "Da click para más información" : "Click for more information";
 ---
 
 <section
@@ -29,7 +30,7 @@ const titleLineThree = locale === "es" ? "expositor" : "exhibitor";
       ></span>
       <a
         id="become-exhibitor-title"
-        class="group flex items-center gap-4 text-3xl sm:text-6xl leading-[1.08] font-normal tracking-normal text-white uppercase no-underline transition-colors duration-200"
+        class="group flex flex-col items-center gap-4 text-3xl sm:text-6xl leading-[1.08] font-normal tracking-normal text-white uppercase no-underline transition-colors duration-200"
         href={`${base}/expositor-smarttechnologyexpo`}
       >
         <span>
@@ -39,7 +40,9 @@ const titleLineThree = locale === "es" ? "expositor" : "exhibitor";
             <strong class="font-extrabold">{titleLineThree}</strong>
           </span>
         </span>
-        <svg
+        <span class="text-base sm:text-xl flex flex-row items-center gap-2 font-normal sm:tracking-[0.13em] text-white uppercase transition-transform duration-200 group-hover:translate-x-1 max-[520px]:tracking-[0.1em] hover:underline focus-visible:underline">
+          {textMoreInfo}
+          <svg
           class="size-10 flex-none transition-transform duration-200 group-hover:translate-x-1 max-[520px]:size-8"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
@@ -50,6 +53,7 @@ const titleLineThree = locale === "es" ? "expositor" : "exhibitor";
             d="M4 11v2h12l-5.5 5.5l1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5L16 11z"
           ></path>
         </svg>
+        </span>
       </a>
     </div>
 
