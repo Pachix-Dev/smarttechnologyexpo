@@ -1,71 +1,120 @@
 ---
-import { useTranslations, getTranslation } from '../../utils/translations'
+import { useTranslations, getTranslation } from "../../utils/translations";
 
 export interface Props {
-  locale?: string
+  locale?: string;
 }
 
-const { locale, translations } = await useTranslations(Astro.props, Astro)
-const tr = (key: string, fallback: string = '') =>
-  getTranslation(translations, key, fallback)
+const { locale, translations } = await useTranslations(Astro.props, Astro);
+const tr = (key: string, fallback: string = "") =>
+  getTranslation(translations, key, fallback);
 
-const base = locale === 'en' ? '/en' : ''
+const base = locale === "en" ? "/en" : "";
 
 const segments = [
-  { titleKey: 'segments.automatizacion', icon: '/img/segmentos/Automatizacion_Robótica.webp',                  url: `${base}/automatizacion-robotica`   },
-  { titleKey: 'segments.manufactura',    icon: '/img/segmentos/Manufactura_Inteligente_Industria_4_0.webp',    url: `${base}/manufactura-inteligente`   },
-  { titleKey: 'segments.motion',         icon: '/img/segmentos/Motion_Control_Sistemas_De_Accionamiento.webp', url: `${base}/motion-control`            },
-  { titleKey: 'segments.ia',             icon: '/img/segmentos/Inteligencia_Artificial_Machine_Learning.webp', url: `${base}/inteligencia-artificial`   },
-  { titleKey: 'segments.logistica',      icon: '/img/segmentos/Logística_Manejo_Materiales.webp',              url: `${base}/logistica-almacenes`       },
-  { titleKey: 'segments.seguridad',      icon: '/img/segmentos/Seguridad_Industrial.webp',                     url: `${base}/seguridad-industrial`      },
-  { titleKey: 'segments.software',       icon: '/img/segmentos/Software_Automatización.webp',                  url: `${base}/software-automatizacion`   },
-  { titleKey: 'segments.drone',          icon: '/img/segmentos/Drone_Innovators.webp',                         url: `${base}/drones`          },
-]
+  {
+    titleKey: "segments.automatizacion",
+    icon: "/img/segmentos/Automatizacion_Robótica.webp",
+    url: `${base}/automatizacion-robotica`,
+  },
+  {
+    titleKey: "segments.manufactura",
+    icon: "/img/segmentos/Manufactura_Inteligente_Industria_4_0.webp",
+    url: `${base}/manufactura-inteligente`,
+  },
+  {
+    titleKey: "segments.motion",
+    icon: "/img/segmentos/Motion_Control_Sistemas_De_Accionamiento.webp",
+    url: `${base}/motion-control`,
+  },
+  {
+    titleKey: "segments.ia",
+    icon: "/img/segmentos/Inteligencia_Artificial_Machine_Learning.webp",
+    url: `${base}/inteligencia-artificial`,
+  },
+  {
+    titleKey: "segments.logistica",
+    icon: "/img/segmentos/Logística_Manejo_Materiales.webp",
+    url: `${base}/logistica-almacenes`,
+  },
+  {
+    titleKey: "segments.seguridad",
+    icon: "/img/segmentos/Seguridad_Industrial.webp",
+    url: `${base}/seguridad-industrial`,
+  },
+  {
+    titleKey: "segments.software",
+    icon: "/img/segmentos/Software_Automatización.webp",
+    url: `${base}/software-automatizacion`,
+  },
+  {
+    titleKey: "segments.drone",
+    icon: "/img/segmentos/Drone_Innovators.webp",
+    url: `${base}/drones`,
+  },
+];
 ---
 
-<section class="ds-section">
-  <h2
-    class="ds-heading"
-    data-aos="fade-up"
-    data-aos-duration="800"
-  >{tr('segments.heading', 'SEGMENTOS DE INTERÉS')}</h2>
+<section class="ds-section my-6 px-2">
+  <h2 class="ds-heading" data-aos="fade-up" data-aos-duration="800">
+    {tr("segments.heading", "SEGMENTOS DE INTERÉS")}
+  </h2>
   <div class="ds-grid">
-    {segments.map((seg, i) => (
-      <a
-        href={seg.url}
-        class="ds-card"
-        data-aos="fade-up"
-        data-aos-duration="600"
-        data-aos-delay={i * 40}
-      >
-        <div class="ds-icon-wrap">
-          <img src={seg.icon} alt={tr(seg.titleKey)} class="ds-icon" width="44" height="44" loading="lazy" />
-        </div>
-        <p class="ds-title">{tr(seg.titleKey)}</p>
-        <span class="ds-cta">
-          {tr('segments.cta', 'Ver más')}
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </span>
-      </a>
-    ))}
+    {
+      segments.map((seg, i) => (
+        <a
+          href={seg.url}
+          class="ds-card"
+          data-aos="fade-up"
+          data-aos-duration="600"
+          data-aos-delay={i * 40}
+        >
+          <div class="ds-icon-wrap">
+            <img
+              src={seg.icon}
+              alt={tr(seg.titleKey)}
+              class="ds-icon"
+              width="44"
+              height="44"
+              loading="lazy"
+            />
+          </div>
+          <p class="ds-title">{tr(seg.titleKey)}</p>
+          <span class="ds-cta">
+            {tr("segments.cta", "Ver más")}
+            <svg
+              width="11"
+              height="11"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </span>
+        </a>
+      ))
+    }
   </div>
 </section>
 
 <style is:global>
   .ds-section {
     width: 100%;
-    padding: 2rem 4rem 2.5rem;
     background: #fff;
     box-sizing: border-box;
     margin-top: 0;
   }
 
   .ds-heading {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(2.5rem, 3vw, 2rem);
+    font-family: "Montserrat", sans-serif;
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
     font-weight: 900;
     font-style: italic;
-    color: #B71C1C;
+    color: #b71c1c;
     margin: 0 0 1.5rem 0;
     letter-spacing: -0.01em;
     line-height: 1.1;
@@ -102,8 +151,13 @@ const segments = [
   }
 
   @keyframes ds-float {
-    0%, 100% { transform: translateY(0); }
-    50%       { transform: translateY(-5px); }
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-5px);
+    }
   }
 
   .ds-icon-wrap {
@@ -114,13 +168,13 @@ const segments = [
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.12));
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.12));
     animation: ds-float 3s ease-in-out infinite;
     transition: filter 0.3s ease;
   }
 
   .ds-card:hover .ds-icon-wrap {
-    filter: drop-shadow(0 6px 16px rgba(183,28,28,0.35));
+    filter: drop-shadow(0 6px 16px rgba(183, 28, 28, 0.35));
     animation: none;
     transform: translateY(-3px) scale(1.06);
   }
@@ -138,11 +192,12 @@ const segments = [
   }
 
   .ds-card:hover .ds-icon {
-    filter: brightness(0) saturate(100%) invert(14%) sepia(90%) saturate(4000%) hue-rotate(345deg) brightness(85%);
+    filter: brightness(0) saturate(100%) invert(14%) sepia(90%) saturate(4000%)
+      hue-rotate(345deg) brightness(85%);
   }
 
   .ds-title {
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-size: clamp(1rem, 0.95vw, 1rem);
     font-weight: 700;
     color: #444;
@@ -154,22 +209,24 @@ const segments = [
   }
 
   .ds-card:hover .ds-title {
-    color: #B71C1C;
+    color: #b71c1c;
   }
 
   .ds-cta {
     display: inline-flex;
     align-items: center;
     gap: 4px;
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-size: 9.5px;
     font-weight: 700;
-    color: #B71C1C;
+    color: #b71c1c;
     letter-spacing: 0.06em;
     text-transform: uppercase;
     opacity: 0;
     transform: translateY(4px);
-    transition: opacity 0.22s ease, transform 0.22s ease;
+    transition:
+      opacity 0.22s ease,
+      transform 0.22s ease;
     margin: 0;
     padding: 0;
   }
@@ -179,23 +236,36 @@ const segments = [
     transform: translateY(0);
   }
 
-  @media (max-width: 1024px) {
-    .ds-section { padding: 1.5rem 2rem 2rem; }
-  }
-
   @media (max-width: 768px) {
-    .ds-section { padding: 1.5rem 1.25rem 2rem; }
-    .ds-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .ds-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
     .ds-card {
       padding: 1.25rem 0.75rem 1rem;
     }
-    .ds-icon-wrap { width: 52px; height: 52px; }
-    .ds-icon { width: 70px; height: 70px; }
+    .ds-icon-wrap {
+      width: 52px;
+      height: 52px;
+    }
+    .ds-icon {
+      width: 70px;
+      height: 70px;
+    }
   }
 
   @media (max-width: 420px) {
-    .ds-card { padding: 1rem 0.5rem 0.85rem; gap: 8px; }
-    .ds-icon-wrap { width: 48px; height: 48px; }
-    .ds-icon { width: 57px; height: 57px; }
+    .ds-card {
+      padding: 1rem 0.5rem 0.85rem;
+      gap: 8px;
+    }
+    .ds-icon-wrap {
+      width: 48px;
+      height: 48px;
+    }
+    .ds-icon {
+      width: 57px;
+      height: 57px;
+    }
   }
 </style>

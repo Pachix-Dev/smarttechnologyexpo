@@ -4,6 +4,7 @@ import Welcome from "./Welcome.astro";
 import Layout from "../../layouts/Layout.astro";
 import { useTranslations, getTranslation } from "../../utils/translations";
 import PromotionalVideo from "../shared/PromotionalVideo.astro";
+import StandPrice from "../../components/exhibitor/StandPrice.astro";
 import HeroHome from "./HeroHome.astro";
 import BecomeAnExhibitor from "./BecomeAnExhibitor.astro";
 import DisplaySegments from "./DisplaySegments.astro";
@@ -35,6 +36,7 @@ const tr = (key: string, fallback: string = "") =>
   <PromotionalVideo />
   <DisplaySegments />
   <BecomeAnExhibitor />
+  <StandPrice />
   <Buyers />
   <CollaboratorsDisplay />
   <!-- <Events events={events} isLeftToRight={true} /> -->
