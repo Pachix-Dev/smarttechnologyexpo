@@ -35,17 +35,18 @@
     const orgEl = document.getElementById('bio-modal-org');
     const textEl = document.getElementById('bio-modal-text');
     const closeBtn = document.getElementById('bio-modal-close');
-    if (!overlay) return;
+    if (!(overlay instanceof HTMLElement)) return;
+    const overlayEl = overlay;
 
     function open(data: { name: string; role: string; org: string; bio: string }) {
       if (nameEl) nameEl.textContent = data.name || '';
       if (roleEl) roleEl.textContent = data.role || '';
       if (orgEl) orgEl.textContent = data.org || '';
       if (textEl) textEl.textContent = data.bio || '';
-      overlay.hidden = false;
+      overlayEl.hidden = false;
     }
     function close() {
-      overlay.hidden = true;
+      overlayEl.hidden = true;
     }
 
     document.addEventListener('click', (e) => {
@@ -60,8 +61,8 @@
       }
     });
 
-    overlay.addEventListener('click', (e) => {
-      if (e.target === overlay) close();
+    overlayEl.addEventListener('click', (e) => {
+      if (e.target === overlayEl) close();
     });
     closeBtn?.addEventListener('click', close);
     document.addEventListener('keydown', (e) => {
