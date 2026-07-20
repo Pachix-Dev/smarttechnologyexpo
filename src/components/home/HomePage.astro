@@ -28,7 +28,7 @@ const tr = (key: string, fallback: string = "") =>
 ---
 
 <Layout title={tr("site.title", "Smart Technology Expo")} description={tr("site.description", "Expo de tecnología inteligente")}>
-  <!-- <HomePopup client:load language={locale}/> -->
+  <HomePopup client:load language={locale}/>
   <HeroHome />
   <ConcurrentEventGrid />
   <HighlightSte2026 />
