@@ -15,6 +15,7 @@ import HomePopup from '../../components/home/HomePopup.jsx'
 import Buyers from "./Buyers.astro";
 import CollaboratorsDisplay from "./CollaboratorsDisplay.astro";
 import HighlightSte2026 from "./HighlightSte2026.astro";
+import ConcurrentEventGrid from "../register/ConcurrentEventGrid.astro";
 
 export interface Props {
   locale?: string;
@@ -30,10 +31,11 @@ const tr = (key: string, fallback: string = "") =>
 <Layout title={tr("site.title", "Smart Technology Expo")} description={tr("site.description", "Expo de tecnología inteligente")}>
   <HomePopup client:load language={locale}/>
   <HeroHome />
-  <PromotionalVideo />
-  <UserGuideButtons />
-  <Description />
+  <ConcurrentEventGrid />
   <HighlightSte2026 />
+   <PromotionalVideo />
+  <!-- <UserGuideButtons /> -->
+  <Description />
   <Buyers />
   <CollaboratorsDisplay />
   <!-- <Events events={events} isLeftToRight={true} /> -->
