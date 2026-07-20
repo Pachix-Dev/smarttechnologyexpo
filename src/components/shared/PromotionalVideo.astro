@@ -2,7 +2,7 @@
 import { useTranslations } from "../../utils/translations";
 
 const { locale } = await useTranslations(Astro.props, Astro);
-const videoSrc = locale === "en" ? "/video/ste_video_es_web.mp4" : "/video/ste_video_en_web.mp4";
+const videoSrc = locale === "es" ? "/video/ste_video_es_web.mp4" : "/video/ste_video_en_web.mp4";
 const videoLabel =
   locale === "en"
     ? "Smart Technology Expo promotional video"
