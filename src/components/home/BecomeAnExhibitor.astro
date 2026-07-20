@@ -1,0 +1,123 @@
+---
+import { useTranslations, getTranslation } from "../../utils/translations";
+// ✨ Una sola línea para cargar traducciones!
+const { locale, translations } = await useTranslations(Astro.props, Astro);
+
+// 🎯 Helper para traducciones más elegante
+const tr = (key: string, fallback: string = "") =>
+  getTranslation(translations, key, fallback);
+
+const base = locale === "es" ? "" : "/en";
+const factsheetLabel = locale === "es" ? "Factsheet" : "Factsheet";
+const floorplanLabel = locale === "es" ? "Plano" : "Floorplan";
+const titleLineOne = locale === "es" ? "Conviértete" : "Become";
+const titleLineTwo = locale === "es" ? "en" : "an";
+const titleLineThree = locale === "es" ? "expositor" : "exhibitor";
+---
+
+<section
+  class="w-full bg-[#1d1d1b] text-white font-[Montserrat]"
+  aria-labelledby="become-exhibitor-title"
+>
+  <div
+    class="mx-auto flex min-h-[180px] max-w-[1120px] items-center justify-between gap-14 px-6 py-[30px] max-[1024px]:gap-[34px] max-[820px]:min-h-0 max-[820px]:flex-col max-[820px]:items-start max-[820px]:justify-center max-[820px]:py-[34px] max-[520px]:items-center max-[520px]:gap-7 max-[520px]:px-[18px] max-[520px]:py-8"
+  >
+    <div class="flex flex-none items-start gap-6 max-[520px]:gap-3.5">
+      <span
+        class="mt-[18px] block size-[30px] bg-[#ed001b] max-[520px]:mt-2.5 max-[520px]:size-[22px]"
+        aria-hidden="true"
+      ></span>
+      <a
+        id="become-exhibitor-title"
+        class="group flex items-center gap-4 text-3xl sm:text-6xl leading-[1.08] font-normal tracking-normal text-white uppercase no-underline transition-colors duration-200"
+        href={`${base}/expositor-smarttechnologyexpo`}
+      >
+        <span>
+          <span class="block">{titleLineOne}</span>
+          <span class="block">
+            {titleLineTwo}
+            <strong class="font-extrabold">{titleLineThree}</strong>
+          </span>
+        </span>
+        <svg
+          class="size-10 flex-none transition-transform duration-200 group-hover:translate-x-1 max-[520px]:size-8"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path
+            fill="currentColor"
+            d="M4 11v2h12l-5.5 5.5l1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5L16 11z"
+          ></path>
+        </svg>
+      </a>
+    </div>
+
+    <div
+      class="flex flex-auto items-center justify-end gap-[34px] max-[1024px]:gap-[18px] max-[820px]:w-full max-[820px]:flex-wrap max-[820px]:justify-start max-[520px]:justify-center max-[520px]:gap-3.5"
+    >
+      <a
+        class="inline-flex h-[55px] min-w-[248px] items-center justify-between gap-5 rounded-full border-2 border-white bg-white py-1 pr-1 pl-[30px] text-[1.45rem] leading-none font-extrabold tracking-[0.13em] text-[#1d1d1b] uppercase no-underline transition-transform duration-200 hover:-translate-y-px focus-visible:-translate-y-px focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-white max-[1024px]:min-w-[214px] max-[1024px]:pl-6 max-[1024px]:text-[1.18rem] max-[520px]:h-[52px] max-[520px]:w-full max-[520px]:max-w-[280px] max-[520px]:min-w-0 max-[520px]:pl-[22px] max-[520px]:text-[1.02rem] max-[520px]:tracking-[0.1em]"
+        href={locale === "es" ? "/files/STE_FACTSHEET_ESP_2026_V2.pdf" : "/files/STE_FACTSHEET_ENG_2026_V2.pdf"}
+      >
+        <span>{factsheetLabel}</span>
+        <span
+          class="inline-flex size-[45px] flex-none items-center justify-center rounded-full bg-[#ed001b] text-white max-[520px]:size-[42px]"
+          aria-hidden="true"
+        >
+          <svg
+            class="size-[34px] fill-none stroke-current stroke-[3.6]"
+            viewBox="0 0 24 24"
+            role="presentation"
+          >
+            <path d="M5 12h12" />
+            <path d="m12 6 6 6-6 6" />
+          </svg>
+        </span>
+      </a>
+
+      <a
+        class="inline-flex h-[55px] min-w-[248px] items-center justify-between gap-5 rounded-full border-2 border-white bg-transparent py-1 pr-1 pl-[30px] text-[1.45rem] leading-none font-extrabold tracking-[0.13em] text-white uppercase no-underline transition-transform duration-200 hover:-translate-y-px focus-visible:-translate-y-px focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-white max-[1024px]:min-w-[214px] max-[1024px]:pl-6 max-[1024px]:text-[1.18rem] max-[520px]:h-[52px] max-[520px]:w-full max-[520px]:max-w-[280px] max-[520px]:min-w-0 max-[520px]:pl-[22px] max-[520px]:text-[1.02rem] max-[520px]:tracking-[0.1em]"
+        href="/files/PLANO_STE_2026_16_07_2026.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={floorplanLabel}
+      >
+        <span>{floorplanLabel}</span>
+        <span
+          class="inline-flex size-[45px] flex-none items-center justify-center rounded-full bg-[#ed001b] text-white max-[520px]:size-[42px]"
+          aria-hidden="true"
+        >
+          <svg
+            class="size-[34px] fill-none stroke-current stroke-[3.6]"
+            viewBox="0 0 24 24"
+            role="presentation"
+          >
+            <path d="M5 12h12" />
+            <path d="m12 6 6 6-6 6" />
+          </svg>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  @font-face {
+    font-family: "Montserrat";
+    src: url("/fonts/Montserrat/static/Montserrat-Regular.ttf")
+      format("truetype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Montserrat";
+    src: url("/fonts/Montserrat/static/Montserrat-ExtraBold.ttf")
+      format("truetype");
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+  }
+</style>
