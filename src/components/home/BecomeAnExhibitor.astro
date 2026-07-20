@@ -62,6 +62,8 @@ const textMoreInfo = locale === "es" ? "Da click para más información" : "Clic
       <a
         class="inline-flex h-[55px] min-w-[248px] items-center justify-between gap-5 rounded-full border-2 border-white bg-white py-1 pr-1 pl-[30px] text-[1.45rem] leading-none font-extrabold tracking-[0.13em] text-[#1d1d1b] uppercase no-underline transition-transform duration-200 hover:-translate-y-px focus-visible:-translate-y-px focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-white max-[1024px]:min-w-[214px] max-[1024px]:pl-6 max-[1024px]:text-[1.18rem] max-[520px]:h-[52px] max-[520px]:w-full max-[520px]:max-w-[280px] max-[520px]:min-w-0 max-[520px]:pl-[22px] max-[520px]:text-[1.02rem] max-[520px]:tracking-[0.1em]"
         href={locale === "es" ? "/files/STE_FACTSHEET_ESP_2026_V2.pdf" : "/files/STE_FACTSHEET_ENG_2026_V2.pdf"}
+        target="_blank"
+        rel="noopener noreferrer"
       >
         <span>{factsheetLabel}</span>
         <span
@@ -78,7 +80,6 @@ const textMoreInfo = locale === "es" ? "Da click para más información" : "Clic
           </svg>
         </span>
       </a>
-
       <a
         class="inline-flex h-[55px] min-w-[248px] items-center justify-between gap-5 rounded-full border-2 border-white bg-transparent py-1 pr-1 pl-[30px] text-[1.45rem] leading-none font-extrabold tracking-[0.13em] text-white uppercase no-underline transition-transform duration-200 hover:-translate-y-px focus-visible:-translate-y-px focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-white max-[1024px]:min-w-[214px] max-[1024px]:pl-6 max-[1024px]:text-[1.18rem] max-[520px]:h-[52px] max-[520px]:w-full max-[520px]:max-w-[280px] max-[520px]:min-w-0 max-[520px]:pl-[22px] max-[520px]:text-[1.02rem] max-[520px]:tracking-[0.1em]"
         href={`${base}/plano`}
