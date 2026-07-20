@@ -3,7 +3,7 @@
     { src: "/img/logos/strategic_partners/a_tres.webp", alt: "A Tres", width: 300 },
     { src: "/img/logos/strategic_partners/csia.webp", alt: "CSIA", width: 300 },
     { src: "/img/logos/strategic_partners/giz.webp", alt: "GIZ", width: 400 },
-    { src: "/img/logos/strategic_partners/swe.webp", alt: "SWE", width: 300 },
+    // { src: "/img/logos/strategic_partners/swe.webp", alt: "SWE", width: 300 },
   ];
   
   const mediaPlanito = [
