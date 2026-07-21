@@ -1,0 +1,79 @@
+---
+import { useTranslations, getTranslation } from "../../utils/translations";
+
+const { locale, translations } = await useTranslations(Astro.props, Astro);
+const tr = (key: string, fallback: string = "") =>
+  getTranslation(translations, key, fallback);
+
+const isEnglish = locale === "en";
+const conferenceHref = isEnglish ? "/en/conferencias" : "/conferencias";
+
+const programCta = isEnglish ? "View program" : "Conoce mas sobre el programa";
+---
+
+<section class="relative overflow-hidden bg-[#080b12] px-5 py-14 text-white sm:px-8 lg:px-12 lg:py-20">
+  <div
+    class="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(228,0,68,0.34),transparent_34%),radial-gradient(circle_at_82%_34%,rgba(0,169,186,0.22),transparent_30%)]"
+    aria-hidden="true"
+  >
+  </div>
+  <div
+    class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/35 to-transparent"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div class="relative mx-auto grid max-w-6xl items-center gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:gap-12">
+    <div
+      class="order-2 flex flex-col items-center justify-center gap-8 text-center lg:order-1 lg:items-center lg:text-left"
+      data-aos="fade-right"
+      data-aos-duration="800"
+    >
+      <h2 class="text-3xl font-black uppercase leading-none tracking-normal text-white sm:text-4xl lg:text-5xl">
+        KEYNOTE SPEAKERS
+      </h2>
+
+      <img
+        src="/img/conferencias/logo_conferencias.webp"
+        alt={tr("home.keynote.logo_alt", "Con26 by Smart Technology Expo")}
+        class="h-auto w-full max-w-[300px] sm:max-w-[480px] lg:max-w-[630px]"
+        loading="lazy"
+      />
+
+      <a
+        href={conferenceHref}
+        class="inline-flex min-h-12 w-full max-w-sm items-center justify-center gap-3 rounded-md bg-[#e40044] px-6 py-3 text-sm font-black uppercase tracking-wide text-white shadow-[0_18px_36px_rgba(228,0,68,0.28)] transition hover:bg-[#ff155c] focus:outline-none focus:ring-2 focus:ring-white/70 sm:w-auto"
+      >
+        {tr("home.keynote.program_cta", programCta)}
+        <svg
+          class="h-4 w-4"
+          viewBox="0 0 24 24"
+          fill="none"
+          aria-hidden="true"
+        >
+          <path
+            d="M5 12h14m-6-6 6 6-6 6"
+            stroke="currentColor"
+            stroke-width="2.4"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </a>
+    </div>
+
+    <article
+      class="order-1 mx-auto w-full max-w-[430px] overflow-hidden rounded-lg border border-white/[0.12] bg-white shadow-2xl shadow-black/30 sm:max-w-[500px] lg:order-2 lg:max-w-[440px] lg:justify-self-end xl:max-w-[480px]"
+      data-aos="fade-left"
+      data-aos-duration="800"
+      data-aos-delay="120"
+    >
+      <img
+        src="/img/speakers2026/valeria_moy.webp"
+        alt={tr("home.keynote.image_alt", "Valeria Moy, keynote speaker de Smart Technology Expo 2026")}
+        class="aspect-[4/5] w-full object-cover object-top sm:aspect-[16/13] lg:aspect-[4/5]"
+        loading="lazy"
+      />
+    </article>
+  </div>
+</section>
