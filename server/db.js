@@ -646,4 +646,110 @@ export class RegisterModel {
     }
   }
 
+  // ============================================================
+  //  TALLERES — Consultas y registro de asistencia
+  // ============================================================
+
+  // -------------------------------------------------------------------
+  // Buscar un VISITANTE por su correo.
+  // Se usa en el Paso 1 del formulario y también antes de registrar.
+  // -------------------------------------------------------------------
+  static async get_visitor_ste_by_email(email) {
+    // Abrimos una conexión a la base con la configuración (host, user, etc.).
+    const connection = await mysql.createConnection(config)
+    try {
+      // Consulta: traer los datos del visitante cuyo correo coincida.
+      //   El "?" es un parámetro seguro: evita inyección SQL (el correo
+      //   entra como dato, no como código).
+      //   LIMIT 1: nos basta con el primero (el correo es único).
+      const [rows] = await connection.query(
+        'SELECT id, uuid, name, paternSurname, email, phone, company, position ' +
+        'FROM visitors_ste_2026 WHERE email = ? LIMIT 1',
+        [email]
+      )
+      // rows es un arreglo. Si hay resultado devolvemos el primero;
+      //   si no, devolvemos null (no existe ese visitante).
+      return rows[0] || null
+    } finally {
+      // finally se ejecuta SIEMPRE (haya o no error): cerramos la conexión
+      //   para no dejar conexiones abiertas.
+      await connection.end()
+    }
+  }
+
+
+  // -------------------------------------------------------------------
+  // Listar los TALLERES activos con su cupo y sus inscritos.
+  // Alimenta el catálogo (barra de cupo) y la lista del formulario.
+  // -------------------------------------------------------------------
+  static async get_active_workshops() {
+    const connection = await mysql.createConnection(config)
+    try {
+      const [rows] = await connection.query(
+        // Traemos id, nombres y capacity (el cupo total). Y con una
+        //   subconsulta contamos cuántas inscripciones hay para CADA taller
+        //   (esto es "registered" = inscritos reales).
+        //   Así el cupo disponible siempre es exacto: capacity - registered.
+        // WHERE is_active = 1: solo talleres visibles.
+        // ORDER BY workshop_id: orden estable (1, 2, 3, 4).
+        `SELECT w.workshop_id, w.name_es, w.name_en, w.capacity,
+                (SELECT COUNT(*) FROM workshop_attendance a WHERE a.workshop_id = w.workshop_id) AS registered
+         FROM workshops w WHERE w.is_active = 1 ORDER BY w.workshop_id`
+      )
+      // Devolvemos todas las filas (cada taller con capacity y registered).
+      return rows
+    } finally {
+      await connection.end()
+    }
+  }
+
+
+  // -------------------------------------------------------------------
+  // Traer UN taller por su id (para validarlo antes de inscribir).
+  // -------------------------------------------------------------------
+  static async get_workshop_by_id(id) {
+    const connection = await mysql.createConnection(config)
+    try {
+      const [rows] = await connection.query(
+        // Solo talleres activos (is_active = 1) y con ese id.
+        'SELECT * FROM workshops WHERE workshop_id = ? AND is_active = 1 LIMIT 1',
+        [id]
+      )
+      // El taller si existe, o null si no.
+      return rows[0] || null
+    } finally {
+      await connection.end()
+    }
+  }
+
+
+  // -------------------------------------------------------------------
+  // Registrar la ASISTENCIA (inscripción) de un visitante a un taller.
+  // La restricción única de la tabla evita duplicados automáticamente.
+  // -------------------------------------------------------------------
+  static async register_workshop_attendance({ workshop_id, visitor_id, uuid }) {
+    const connection = await mysql.createConnection(config)
+    try {
+      // Insertamos la inscripción. Si el visitante YA estaba inscrito a ese
+      //   taller, la base lanza un error de "entrada duplicada".
+      await connection.query(
+        'INSERT INTO workshop_attendance (workshop_id, visitor_id, uuid) VALUES (?,?,?)',
+        [workshop_id, visitor_id, uuid]
+      )
+      // Si llegó aquí, se guardó bien.
+      return { status: true }
+    } catch (error) {
+      // Detectamos el error de duplicado (código ER_DUP_ENTRY / sqlState 23000)
+      //   y respondemos amablemente en vez de romper: "ya estás registrado".
+      if (error?.code === 'ER_DUP_ENTRY' || error?.sqlState === '23000') {
+        return { status: false, duplicate: true, message: 'Ya estás registrado a este taller.' }
+      }
+      // Cualquier otro error: lo registramos y devolvemos un mensaje genérico.
+      console.log(error)
+      return { status: false, message: 'Error al registrar tu asistencia.' }
+    } finally {
+      await connection.end()
+    }
+  }
+
 }

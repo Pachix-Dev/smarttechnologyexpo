@@ -2,14 +2,17 @@
 // BioModal.astro — "Semblanza" modal for speakers/instructors. Shared by Insights and Skills.
 // Vanilla-JS driven: any element with [data-bio-trigger] carrying data-bio-name/role/org/bio
 // attributes opens this modal on click. Renders once per page; place near end of <body>/layout.
+import { useTranslations, getTranslation } from "../../utils/translations";
+const { translations, locale } = await useTranslations(Astro.props, Astro);
+const tr = (key: string, fallback: string = "") => getTranslation(translations, key, fallback);
 ---
 
 <div id="bio-modal-overlay" class="bm-overlay" hidden>
   <div class="bm-card" role="dialog" aria-modal="true">
     <div class="bm-header">
-      <button id="bio-modal-close" class="bm-close" aria-label="Cerrar">✕</button>
+      <button id="bio-modal-close" class="bm-close" aria-label={tr("bioModal.close", "Cerrar")}>✕</button>
       <div class="bm-header-row">
-        <span class="bm-avatar"></span>
+        <span id="bio-modal-avatar" class="bm-avatar"></span>
         <div>
           <div id="bio-modal-name" class="bm-name"></div>
           <div id="bio-modal-role" class="bm-role"></div>
@@ -20,7 +23,7 @@
     <div class="bm-body">
       <div class="bm-body-title">
         <span class="bm-body-line"></span>
-        <span>Semblanza</span>
+        <span>{tr("bioModal.title", "Semblanza")}</span>
       </div>
       <p id="bio-modal-text" class="bm-text"></p>
     </div>
@@ -34,15 +37,29 @@
     const roleEl = document.getElementById('bio-modal-role');
     const orgEl = document.getElementById('bio-modal-org');
     const textEl = document.getElementById('bio-modal-text');
+    const avatarEl = document.getElementById('bio-modal-avatar');
     const closeBtn = document.getElementById('bio-modal-close');
     if (!(overlay instanceof HTMLElement)) return;
     const overlayEl = overlay;
 
-    function open(data: { name: string; role: string; org: string; bio: string }) {
+    function open(data: { name: string; role: string; org: string; bio: string; photo: string }) {
       if (nameEl) nameEl.textContent = data.name || '';
       if (roleEl) roleEl.textContent = data.role || '';
       if (orgEl) orgEl.textContent = data.org || '';
       if (textEl) textEl.textContent = data.bio || '';
+      if (avatarEl) {
+        if (data.photo) {
+          avatarEl.style.backgroundImage = `url("${data.photo}")`;
+          avatarEl.style.backgroundSize = 'cover';
+          avatarEl.style.backgroundPosition = 'center';
+          avatarEl.style.backgroundRepeat = 'no-repeat';
+        } else {
+          avatarEl.style.backgroundImage = '';
+          avatarEl.style.backgroundSize = '';
+          avatarEl.style.backgroundPosition = '';
+          avatarEl.style.backgroundRepeat = '';
+        }
+      }
       overlayEl.hidden = false;
     }
     function close() {
@@ -57,6 +74,7 @@
           role: trigger.dataset.bioRole || '',
           org: trigger.dataset.bioOrg || '',
           bio: trigger.dataset.bioBio || '',
+          photo: trigger.dataset.bioPhoto || '',
         });
       }
     });
@@ -87,7 +105,7 @@
   }
 
   .bm-card {
-    max-width: 460px;
+    max-width: 720px;
     width: 100%;
     max-height: 86vh;
     overflow-y: auto;
@@ -184,5 +202,8 @@
     line-height: 1.7;
     color: #b9b9b9;
     white-space: pre-line;
+    text-align: justify;
+    text-justify: inter-word;
+    hyphens: auto;
   }
 </style>

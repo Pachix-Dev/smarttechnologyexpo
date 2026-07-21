@@ -1,196 +1,28 @@
 ---
-// InsightsSpeakers.astro — "Keynote Speakers" grid for SMART INSIGHTS.
-// Pair with BioModal.astro on the page: each card is a [data-bio-trigger] that opens it.
-
-export interface Speaker {
-  name: string;
-  role: string;
-  company: string;
-  bio?: string;
-}
+// InsightsSpeakers.astro — Wrapper: monta la isla React con la grid de Keynote Speakers
+// construida DESDE LA API (ponentes únicos del escenario) y le pasa los textos de
+// interfaz desde tus locales (tr / getTranslation). La semblanza sale de bio_esp/bio_eng.
+import InsightsSpeakersLive from './InsightsSpeakersLive.jsx';
+import './insights.css';
+import { useTranslations, getTranslation } from '../../utils/translations';
 
 export interface Props {
-  eyebrow?: string;
-  title?: string;
-  note?: string;
-  speakers?: Speaker[];
+  stageId?: number;
 }
 
-const {
-  eyebrow = 'PONENTES DESTACADOS',
-  title = 'Keynote Speakers',
-  note = 'Programa preliminar · sujeto a cambios',
-  speakers = [
-    { name: 'Dra. Ana Martínez', role: 'Directora de Innovación', company: 'Compañía Global de Automatización', bio: 'Especialista en transformación digital con más de 15 años liderando proyectos de innovación en el sector industrial.' },
-    { name: 'Ing. Carlos Rivera', role: 'VP de Manufactura Inteligente', company: 'Grupo Industrial [Empresa]', bio: 'Ingeniero industrial con amplia trayectoria en automatización y robótica aplicada a líneas de producción de alto volumen.' },
-    { name: 'Mtra. Laura Gómez', role: 'Líder de Transformación Digital', company: 'Tecnológica [Empresa]', bio: 'Especialista en integración de sistemas IIoT y gemelos digitales para optimización de procesos productivos.' },
-    { name: 'Dr. Javier Soto', role: 'Especialista en Robótica', company: 'Centro de Innovación [Empresa]', bio: 'Doctor en robótica industrial con investigación enfocada en sistemas autónomos aplicados a manufactura.' },
-  ],
-} = Astro.props;
+const { translations, locale } = await useTranslations(Astro.props, Astro);
+const tr = (key: string, fallback: string = '') => getTranslation(translations, key, fallback);
+
+const { stageId } = Astro.props;
+const lang = locale === 'en' ? 'en' : 'es';
+
+const labels = {
+  eyebrow: tr('insights.speakers.eyebrow', 'PONENTES DESTACADOS'),
+  title: tr('insights.speakers.title', 'Keynote Speakers'),
+  note: tr('insights.speakers.note', 'Programa preliminar · sujeto a cambios'),
+  photo: tr('insights.speakers.photo', 'foto ponente'),
+  bioBtn: tr('insights.speakers.bio_btn', 'VER SEMBLANZA'),
+};
 ---
 
-<section class="isp-section">
-  <div class="isp-head">
-    <div>
-      <div class="isp-eyebrow">{eyebrow}</div>
-      <h2 class="isp-title">{title}</h2>
-    </div>
-    <span class="isp-note">{note}</span>
-  </div>
-
-  <div class="isp-grid">
-    {speakers.map((sp) => (
-      <div
-        class="isp-card"
-        data-bio-trigger
-        data-bio-name={sp.name}
-        data-bio-role={sp.role}
-        data-bio-org={sp.company}
-        data-bio-bio={sp.bio || ''}
-      >
-        <div class="isp-photo">
-          <span class="isp-badge">KEYNOTE</span>
-          <span class="isp-photo-label">foto ponente</span>
-        </div>
-        <div class="isp-body">
-          <div class="isp-name">{sp.name}</div>
-          <div class="isp-role">{sp.role}</div>
-          <div class="isp-company">{sp.company}</div>
-          <button class="isp-cta" type="button">VER SEMBLANZA</button>
-        </div>
-      </div>
-    ))}
-  </div>
-</section>
-
-<style>
-  .isp-section {
-    max-width: 1240px;
-    margin: 0 auto;
-    padding: clamp(56px, 8vw, 96px) clamp(16px, 4vw, 40px);
-    font-family: 'Archivo', Helvetica, Arial, sans-serif;
-    color: #fff;
-  }
-
-  .isp-head {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 20px;
-    flex-wrap: wrap;
-    margin-bottom: 38px;
-  }
-
-  .isp-eyebrow {
-    font-size: 12px;
-    letter-spacing: 0.3em;
-    font-weight: 700;
-    color: #fff;
-    margin-bottom: 12px;
-  }
-
-  .isp-title {
-    margin: 0;
-    font-size: clamp(34px, 5vw, 56px);
-    font-weight: 900;
-    letter-spacing: -0.01em;
-    text-transform: uppercase;
-    line-height: 0.95;
-  }
-
-  .isp-note {
-    font-size: 13px;
-    color: #777;
-    font-weight: 500;
-  }
-
-  .isp-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 20px;
-  }
-
-  .isp-card {
-    display: flex;
-    flex-direction: column;
-    background: #0c0c0c;
-    border: 1px solid #1c1c1c;
-    border-radius: 6px;
-    overflow: hidden;
-    cursor: pointer;
-  }
-
-  .isp-photo {
-    position: relative;
-    aspect-ratio: 4 / 5;
-    background: repeating-linear-gradient(135deg, #1b1b1b 0 11px, #121212 11px 22px);
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-start;
-  }
-
-  .isp-badge {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 0.16em;
-    padding: 5px 9px;
-    background: #e2101a;
-    color: #fff;
-    border-radius: 3px;
-  }
-
-  .isp-photo-label {
-    font-family: 'Archivo Narrow', monospace;
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    color: #555;
-    padding: 12px 14px;
-    text-transform: uppercase;
-  }
-
-  .isp-body {
-    padding: 18px 18px 20px;
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-  }
-
-  .isp-name {
-    font-size: 19px;
-    font-weight: 800;
-    line-height: 1.1;
-    margin-bottom: 8px;
-  }
-
-  .isp-role {
-    font-size: 13px;
-    font-weight: 600;
-    color: #fff;
-    line-height: 1.35;
-  }
-
-  .isp-company {
-    font-size: 13px;
-    color: #8a8a8a;
-    line-height: 1.35;
-    margin-top: 3px;
-    margin-bottom: 16px;
-  }
-
-  .isp-cta {
-    margin-top: auto;
-    padding: 10px;
-    background: transparent;
-    border: 1px solid #e2101a;
-    color: #e2101a;
-    border-radius: 5px;
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 0.06em;
-    cursor: pointer;
-    font-family: inherit;
-  }
-</style>
+<InsightsSpeakersLive client:only="react" lang={lang} stageId={stageId} labels={labels} />

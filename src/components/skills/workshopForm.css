@@ -1,0 +1,313 @@
+/* workshopForm.css — Estilos del formulario de talleres (isla React).
+   Globales (no scoped) para que apliquen al DOM que genera React. */
+
+.wf-section {
+  background: #000;
+  font-family: 'Archivo', Helvetica, Arial, sans-serif;
+  color: #fff;
+}
+
+.wf-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: clamp(56px, 8vw, 104px) clamp(16px, 4vw, 40px);
+}
+
+.wf-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: clamp(28px, 5vw, 64px);
+  align-items: start;
+}
+
+.wf-eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 12px;
+}
+
+.wf-title {
+  margin: 0 0 16px;
+  font-size: clamp(34px, 5vw, 60px);
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  line-height: 0.92;
+}
+
+.wf-desc {
+  margin: 0 0 24px;
+  color: #9a9a9a;
+  font-size: 16px;
+  line-height: 1.6;
+  max-width: 420px;
+  text-wrap: pretty;
+}
+
+.wf-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 18px;
+  background: rgba(226, 16, 26, 0.08);
+  border: 1px solid rgba(226, 16, 26, 0.4);
+  border-radius: 6px;
+  margin-bottom: 28px;
+  max-width: 440px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.wf-notice-i {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 800;
+  margin-top: 1px;
+}
+
+.wf-perks {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.wf-perk {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: #cfcfcf;
+  line-height: 1.4;
+}
+
+.wf-perk-n {
+  width: 32px;
+  height: 32px;
+  flex: none;
+  border-radius: 50%;
+  background: rgba(226, 16, 26, 0.12);
+  border: 1px solid var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  font-weight: 800;
+  font-size: 14px;
+}
+
+.wf-card {
+  background: #0c0c0c;
+  border: 1px solid #1f1f1f;
+  border-radius: 10px;
+  padding: clamp(24px, 3vw, 40px);
+}
+
+.wf-step-label {
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+
+.wf-step-title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 800;
+  color: #fff;
+}
+
+.wf-step-sub {
+  margin: 6px 0 22px;
+  font-size: 14px;
+  color: #9a9a9a;
+  line-height: 1.5;
+}
+
+.wf-fields-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+.wf-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.wf-field span {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  color: #9a9a9a;
+}
+
+.wf-field input,
+.wf-field select {
+  padding: 13px 15px;
+  background: #000;
+  border: 1px solid #2a2a2a;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 15px;
+  font-family: inherit;
+}
+
+.wf-field input:disabled {
+  background: #111;
+  color: #cfcfcf;
+}
+
+.wf-error {
+  font-size: 13px;
+  color: #f0282a;
+  font-weight: 600;
+  line-height: 1.5;
+  margin-bottom: 14px;
+}
+
+.wf-btn {
+  width: 100%;
+  margin-top: 6px;
+  padding: 16px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.wf-btn:hover {
+  filter: brightness(1.1);
+}
+
+.wf-btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.wf-link-btn {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px;
+  background: transparent;
+  color: #9a9a9a;
+  border: none;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  font-family: inherit;
+}
+
+.wf-fineprint {
+  margin: 12px 0 0;
+  font-size: 12px;
+  color: #666;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.wf-fineprint-link {
+  color: #999;
+  text-decoration: underline;
+}
+
+.wf-fineprint-link:hover {
+  color: var(--accent);
+}
+
+.wf-step--center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 30px 10px;
+}
+
+.wf-success-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 22px;
+  font-size: 30px;
+  font-weight: 900;
+  color: #fff;
+}
+
+.wf-success-title {
+  margin: 0 0 10px;
+  font-size: 26px;
+  font-weight: 800;
+}
+
+.wf-success-text {
+  margin: 0 0 26px;
+  color: #9a9a9a;
+  font-size: 15px;
+  line-height: 1.55;
+  max-width: 340px;
+}
+
+.wf-outline-btn {
+  padding: 12px 26px;
+  background: transparent;
+  color: #fff;
+  border: 1px solid #444;
+  border-radius: 5px;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.wf-found-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: rgba(22, 163, 74, 0.1);
+  border: 1px solid #16a34a;
+  border-radius: 6px;
+  margin-bottom: 22px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.wf-found-check {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #16a34a;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 800;
+}

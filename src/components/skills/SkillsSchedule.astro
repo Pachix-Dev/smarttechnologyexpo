@@ -30,16 +30,35 @@ export interface Props {
   instructors?: Instructor[];
   pdfHref?: string;
   accent?: string;
+  typeAccent?: string;
 }
 
-const defaultInstructors: Instructor[] = [
+import { useTranslations, getTranslation } from "../../utils/translations";
+const { translations, locale } = await useTranslations(Astro.props, Astro);
+const tr = (key: string, fallback: string = "") => getTranslation(translations, key, fallback);
+
+const defaultInstructors: Instructor[] = locale === 'en' ? [
+  { name: 'Ing. Carlos Rivera', role: 'Industrial robotics specialist', bio: 'Industrial engineer with broad experience in automation and robotics applied to high-volume production lines.' },
+  { name: 'Mtra. Laura Gómez', role: 'Digital transformation lead', bio: 'Specialist in IIoT systems integration and digital twins for production process optimization.' },
+  { name: 'Dr. Javier Soto', role: 'OT security consultant', bio: 'PhD in industrial robotics with research focused on autonomous systems applied to manufacturing.' },
+  { name: 'Dra. Ana Martínez', role: 'Innovation director', bio: 'Digital transformation specialist with over 15 years leading innovation projects in the industrial sector.' },
+] : [
   { name: 'Ing. Carlos Rivera', role: 'Especialista en robótica industrial', bio: 'Ingeniero industrial con amplia trayectoria en automatización y robótica aplicada a líneas de producción de alto volumen.' },
   { name: 'Mtra. Laura Gómez', role: 'Líder de transformación digital', bio: 'Especialista en integración de sistemas IIoT y gemelos digitales para optimización de procesos productivos.' },
   { name: 'Dr. Javier Soto', role: 'Consultor en seguridad OT', bio: 'Doctor en robótica industrial con investigación enfocada en sistemas autónomos aplicados a manufactura.' },
   { name: 'Dra. Ana Martínez', role: 'Directora de innovación', bio: 'Especialista en transformación digital con más de 15 años liderando proyectos de innovación en el sector industrial.' },
 ];
 
-const defaultDays: Day[] = [
+const defaultDays: Day[] = locale === 'en' ? [
+  {
+    dayName: 'Tuesday', num: '10', dateLong: 'November 10, 2026',
+    sessions: [
+      { time: '10:00', end: '14:00', title: 'Collaborative robot (cobot) programming', room: 'Lab Smart Skills A', speakers: ['Ing. Carlos Rivera'] },
+      { time: '10:00', end: '13:00', title: 'IIoT implementation on the plant floor', room: 'Lab Smart Skills B', speakers: ['Mtra. Laura Gómez'] },
+      { time: '15:00', end: '18:00', title: 'Industrial cybersecurity: fundamentals', room: 'Lab Smart Skills A', speakers: ['Dr. Javier Soto'] },
+    ],
+  },
+] : [
   {
     dayName: 'Martes', num: '10', dateLong: '10 de noviembre de 2026',
     sessions: [
@@ -50,7 +69,7 @@ const defaultDays: Day[] = [
   },
 ];
 
-const { days = defaultDays, activeDay = 0, instructors = defaultInstructors, pdfHref = '#', accent = '#E2101A' } = Astro.props;
+const { days = defaultDays, activeDay = 0, instructors = defaultInstructors, pdfHref = '#', accent = '#E2101A', typeAccent = '#C2410C' } = Astro.props;
 
 function findInstructor(name: string) {
   return instructors.find((i) => i.name === name);
@@ -62,25 +81,25 @@ const activeDayData = days[activeDay] || days[0];
 <section class="ssc-section">
   <div class="ssc-inner">
     <div class="ssc-eyebrow">AGENDA</div>
-    <h2 class="ssc-title">Programa por día</h2>
-    <p class="ssc-sub">Horarios de impartición de cada taller.</p>
+    <h2 class="ssc-title">{tr("skills.schedule.title", "Programa por día")}</h2>
+    <p class="ssc-sub">{tr("skills.schedule.sub", "Horarios de impartición de cada taller.")}</p>
 
     <div class="ssc-toprow">
       <div>
-        <div class="ssc-dl-label">DESCARGA GRATUITA</div>
+        <div class="ssc-dl-label">{tr("skills.schedule.dl_label", "DESCARGA GRATUITA")}</div>
         <a href={pdfHref} class="ssc-dl-btn">
           <span class="ssc-dl-icon">PDF</span>
-          DESCARGA PROGRAMA
+          {tr("skills.schedule.dl_btn", "DESCARGA PROGRAMA")}
           <span>⬇</span>
         </a>
       </div>
       <div class="ssc-notice">
         <span class="ssc-notice-i">i</span>
-        <span>Todos los talleres serán impartidos en español.</span>
+        <span>{tr("skills.schedule.notice", "Todos los talleres serán impartidos en español.")}</span>
       </div>
     </div>
 
-    <div class="ssc-day-label">SELECCIONA EL DÍA</div>
+    <div class="ssc-day-label">{tr("skills.schedule.select_day", "SELECCIONA EL DÍA")}</div>
     <div class="ssc-day-pills">
       {days.map((d, i) => (
         <button class={i === activeDay ? 'ssc-pill ssc-pill--active' : 'ssc-pill'} type="button" data-day-index={i}>
@@ -93,17 +112,17 @@ const activeDayData = days[activeDay] || days[0];
       {activeDayData.sessions.map((s) => {
         const names = s.speakers || [];
         return (
-          <div class="ssc-card">
-            <div class="ssc-bar">TALLER</div>
+          <div class="ssc-card" style={`--hover:${typeAccent}`}>
+            <div class="ssc-bar" style={`background:${typeAccent}`}>{tr("skills.schedule.badge", "TALLER")}</div>
             <div class="ssc-body">
               <div class="ssc-meta-row">
-                <span class="ssc-time-pill">{s.time} – {s.end}</span>
+                <span class="ssc-time-pill" style={`background:${typeAccent}`}>{s.time} – {s.end}</span>
                 <span class="ssc-room">{s.room}</span>
               </div>
               <div class="ssc-session-title">{s.title}</div>
               {names.length > 0 && (
                 <div class="ssc-speakers">
-                  <div class="ssc-speakers-label">{names.length > 1 ? 'Instructores' : 'Instructor'}</div>
+                  <div class="ssc-speakers-label">{names.length > 1 ? tr("skills.schedule.instructors_word", "Instructores") : tr("skills.schedule.instructor_word", "Instructor")}</div>
                   <div class="ssc-speakers-list">
                     {names.map((name) => {
                       const sp = findInstructor(name);
@@ -300,10 +319,8 @@ const activeDayData = days[activeDay] || days[0];
   .ssc-card {
     border-radius: 8px;
     overflow: hidden;
-    background: #141414;
-    border-left: 4px solid var(--accent);
+    background: #111;
     border: 1px solid #242424;
-    border-left-width: 4px;
   }
 
   .ssc-bar {
@@ -313,7 +330,6 @@ const activeDayData = days[activeDay] || days[0];
     letter-spacing: 0.16em;
     color: #fff;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.35);
-    background: var(--accent);
   }
 
   .ssc-body {
@@ -338,7 +354,6 @@ const activeDayData = days[activeDay] || days[0];
     font-weight: 800;
     color: #fff;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.35);
-    background: var(--accent);
   }
 
   .ssc-room {
@@ -370,9 +385,9 @@ const activeDayData = days[activeDay] || days[0];
   }
 
   .ssc-speakers-list {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 6px 16px;
   }
 
   .ssc-speaker-row {
@@ -387,13 +402,13 @@ const activeDayData = days[activeDay] || days[0];
   }
 
   .ssc-speaker-row:hover {
-    background: rgba(226, 16, 26, 0.16);
-    border-color: var(--accent);
+    background: rgba(255, 255, 255, 0.06);
+    border-color: var(--hover);
     transform: translateX(2px);
   }
 
   .ssc-speaker-row:hover .ssc-avatar {
-    box-shadow: 0 0 0 2px var(--accent);
+    box-shadow: 0 0 0 2px var(--hover);
   }
 
   .ssc-speaker-row:hover .ssc-chevron {
@@ -423,7 +438,7 @@ const activeDayData = days[activeDay] || days[0];
 
   .ssc-chevron {
     margin-left: auto;
-    color: var(--accent);
+    color: var(--hover);
     font-size: 20px;
     font-weight: 800;
     opacity: 0.55;

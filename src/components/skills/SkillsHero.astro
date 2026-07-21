@@ -1,6 +1,7 @@
 ---
 // SkillsHero.astro — Header/switcher + hero for the SMART SKILLS (Talleres) interior.
 import HeaderSwitcher from '../shared/HeaderSwitcher.astro';
+import { useTranslations, getTranslation } from "../../utils/translations";
 
 export interface Props {
   eyebrow?: string;
@@ -11,12 +12,15 @@ export interface Props {
   logoSrc?: string;
 }
 
+const { translations, locale } = await useTranslations(Astro.props, Astro);
+const tr = (key: string, fallback: string = "") => getTranslation(translations, key, fallback);
+
 const {
-  eyebrow = 'TALLERES PRÁCTICOS',
+  eyebrow = tr('skills.hero.eyebrow', 'TALLERES PRÁCTICOS'),
   title1 = 'Smart',
   title2 = 'Skills',
-  description = 'Aprendizaje práctico y aplicación real de la tecnología. Capacitaciones para desarrollar habilidades técnicas, conocer herramientas clave y profundizar en soluciones aplicables a entornos productivos.',
-  notice = 'CUPO LIMITADO · REGISTRO PREVIO REQUERIDO',
+  description = tr('skills.hero.description', 'Aprendizaje práctico y aplicación real de la tecnología. Capacitaciones para desarrollar habilidades técnicas, conocer herramientas clave y profundizar en soluciones aplicables a entornos productivos.'),
+  notice = tr('skills.hero.notice', 'CUPO LIMITADO · REGISTRO PREVIO REQUERIDO'),
   logoSrc,
 } = Astro.props;
 ---
@@ -107,10 +111,19 @@ const {
 
   .sh-title-a {
     color: #fff;
+    text-shadow:
+      0 0 2px  #fff,
+      0 0 6px  #fff,
+      0 0 12px rgba(255, 255, 255, 0.55),
+      0 0 24px rgba(255, 255, 255, 0.35),
+      0 0 48px rgba(255, 255, 255, 0.2);
   }
 
   .sh-title-b {
     color: #8b1414;
+  text-shadow:
+    0 0 4px  rgba(139, 20, 20, 0.9),
+    0 0 14px rgba(139, 20, 20, 0.5);
   }
 
   .sh-description {

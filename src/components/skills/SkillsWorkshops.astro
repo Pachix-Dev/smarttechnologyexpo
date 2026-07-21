@@ -24,11 +24,20 @@ export interface Props {
   accent?: string;
 }
 
+import { useTranslations, getTranslation } from "../../utils/translations";
+const { translations, locale } = await useTranslations(Astro.props, Astro);
+const tr = (key: string, fallback: string = "") => getTranslation(translations, key, fallback);
+
 const {
-  eyebrow = 'CATÁLOGO',
-  title = 'Talleres disponibles',
-  note = 'Cada taller incluye instructor especializado, duración y requisitos. Inscríbete desde el formulario al final.',
-  workshops = [
+  eyebrow = tr('skills.workshops.eyebrow', 'CATÁLOGO'),
+  title = tr('skills.workshops.title', 'Talleres disponibles'),
+  note = tr('skills.workshops.note', 'Cada taller incluye instructor especializado, duración y requisitos. Inscríbete desde el formulario al final.'),
+  workshops = locale === 'en' ? [
+    { name: 'Collaborative robot (cobot) programming', nivel: 'INTERMEDIO', instructor: 'Ing. Carlos Rivera', instructorRole: 'Industrial robotics specialist', instructorBio: 'Industrial engineer with broad experience in automation and robotics applied to high-volume production lines.', duracion: '4 hours', horario: '10:00 – 14:00', sala: 'Lab Smart Skills A', cupo: 25, disp: 7, requisitos: ['Your own laptop', 'Basic programming knowledge'] },
+    { name: 'IIoT implementation on the plant floor', nivel: 'AVANZADO', instructor: 'Mtra. Laura Gómez', instructorRole: 'Digital transformation lead', instructorBio: 'Specialist in IIoT systems integration and digital twins for production process optimization.', duracion: '3 hours', horario: '10:00 – 13:00', sala: 'Lab Smart Skills B', cupo: 20, disp: 12, requisitos: ['Networking knowledge', 'Your own laptop'] },
+    { name: 'Industrial cybersecurity: fundamentals', nivel: 'BÁSICO', instructor: 'Dr. Javier Soto', instructorRole: 'OT security consultant', instructorBio: 'PhD in industrial robotics with research focused on autonomous systems applied to manufacturing.', duracion: '3 hours', horario: '15:00 – 18:00', sala: 'Lab Smart Skills A', cupo: 30, disp: 22, requisitos: ['No prior requirements'] },
+    { name: 'Machine vision for quality control', nivel: 'INTERMEDIO', instructor: 'Dra. Ana Martínez', instructorRole: 'Innovation director', instructorBio: 'Digital transformation specialist with over 15 years leading innovation projects in the industrial sector.', duracion: '4 hours', horario: '10:00 – 14:00', sala: 'Lab Smart Skills B', cupo: 18, disp: 3, requisitos: ['Your own laptop', 'Basic Python'] },
+  ] : [
     { name: 'Programación de robots colaborativos (cobots)', nivel: 'INTERMEDIO', instructor: 'Ing. Carlos Rivera', instructorRole: 'Especialista en robótica industrial', instructorBio: 'Ingeniero industrial con amplia trayectoria en automatización y robótica aplicada a líneas de producción de alto volumen.', duracion: '4 horas', horario: '10:00 – 14:00', sala: 'Lab Smart Skills A', cupo: 25, disp: 7, requisitos: ['Laptop propia', 'Nociones básicas de programación'] },
     { name: 'Implementación de IIoT en planta', nivel: 'AVANZADO', instructor: 'Mtra. Laura Gómez', instructorRole: 'Líder de transformación digital', instructorBio: 'Especialista en integración de sistemas IIoT y gemelos digitales para optimización de procesos productivos.', duracion: '3 horas', horario: '10:00 – 13:00', sala: 'Lab Smart Skills B', cupo: 20, disp: 12, requisitos: ['Conocimientos de redes', 'Laptop propia'] },
     { name: 'Ciberseguridad industrial: fundamentos', nivel: 'BÁSICO', instructor: 'Dr. Javier Soto', instructorRole: 'Consultor en seguridad OT', instructorBio: 'Doctor en robótica industrial con investigación enfocada en sistemas autónomos aplicados a manufactura.', duracion: '3 horas', horario: '15:00 – 18:00', sala: 'Lab Smart Skills A', cupo: 30, disp: 22, requisitos: ['Sin requisitos previos'] },
@@ -38,31 +47,45 @@ const {
 } = Astro.props;
 
 const nivelColors: Record<string, string> = { 'BÁSICO': '#3a8f5a', 'INTERMEDIO': '#c79a2a', 'AVANZADO': accent };
+const nivelText: Record<string, string> = {
+  'BÁSICO': tr('skills.workshops.nivel_basic', 'BÁSICO'),
+  'INTERMEDIO': tr('skills.workshops.nivel_intermediate', 'INTERMEDIO'),
+  'AVANZADO': tr('skills.workshops.nivel_advanced', 'AVANZADO'),
+};
 
-const workshopsView = workshops.map((w) => {
+const workshopsView = workshops.map((w, idx) => {
   const ratio = (w.cupo - w.disp) / w.cupo;
   const low = w.disp <= 5;
   const nivelColor = nivelColors[w.nivel] || accent;
   const fillPercent = Math.round(ratio * 100);
-  const cupoText = low ? `¡Últimos ${w.disp} lugares!` : `${w.disp} lugares disponibles`;
+  const cupoText = low
+    ? tr('skills.workshops.seats_last', '¡Últimos {n} lugares!').replace('{n}', String(w.disp))
+    : `${w.disp} ${tr('skills.workshops.seats_available', 'lugares disponibles')}`;
+  const nivelLabel = nivelText[w.nivel] || w.nivel;
   const cupoColor = low ? accent : '#cfcfcf';
   const fillBg = low ? accent : `linear-gradient(90deg,#0D3B66,${accent})`;
-  return { ...w, low, nivelColor, fillPercent, cupoText, cupoColor, fillBg };
+  return { ...w, workshopId: idx + 1, low, nivelColor, fillPercent, cupoText, cupoColor, fillBg, nivelLabel };
 });
 ---
 
-<section class="sw-section">
+<section class="sw-section"
+  data-accent={accent}
+  data-seats-available={tr('skills.workshops.seats_available', 'lugares disponibles')}
+  data-seats-last={tr('skills.workshops.seats_last', '¡Últimos {n} lugares!')}
+  data-sold-out={locale === 'en' ? 'Sold out' : 'Cupo lleno'}
+  data-capacity-label={tr('skills.workshops.capacity', 'Cupo')}>
+  <div class="sw-inner">
   <div class="sw-eyebrow">{eyebrow}</div>
   <h2 class="sw-title">{title}</h2>
   <p class="sw-note">{note}</p>
 
   <div class="sw-grid">
     {workshopsView.map((w) => (
-        <div class="sw-card">
+        <div class="sw-card" data-ws-id={w.workshopId}>
           <div class="sw-card-top"></div>
           <div class="sw-card-body">
             <div class="sw-card-head">
-              <span class="sw-nivel" style={`background:${w.nivelColor}`}>{w.nivel}</span>
+              <span class="sw-nivel" style={`background:${w.nivelColor}`}>{w.nivelLabel}</span>
               <span class="sw-duracion">{w.duracion}</span>
             </div>
             <h3 class="sw-name">{w.name}</h3>
@@ -83,16 +106,16 @@ const workshopsView = workshops.map((w) => {
               data-bio-org="Smart Technology Expo · Instructor"
               data-bio-bio={w.instructorBio || ''}
             >
-              VER SEMBLANZA
+              {tr("skills.workshops.bio_btn", "VER SEMBLANZA")}
             </button>
 
             <div class="sw-info">
-              <div class="sw-info-row"><span>HORARIO</span><span>{w.horario}</span></div>
-              <div class="sw-info-row"><span>SALA</span><span>{w.sala}</span></div>
+              <div class="sw-info-row"><span>{tr("skills.workshops.schedule", "HORARIO")}</span><span>{w.horario}</span></div>
+              <div class="sw-info-row"><span>{tr("skills.workshops.room", "SALA")}</span><span>{w.sala}</span></div>
             </div>
 
             <div class="sw-req">
-              <div class="sw-req-label">REQUISITOS</div>
+              <div class="sw-req-label">{tr("skills.workshops.reqs", "REQUISITOS")}</div>
               <ul class="sw-req-list">
                 {w.requisitos.map((req) => (
                   <li><span class="sw-req-bullet">›</span>{req}</li>
@@ -105,7 +128,7 @@ const workshopsView = workshops.map((w) => {
                 <span class="sw-cupo-text" style={`color:${w.cupoColor}`}>
                   {w.cupoText}
                 </span>
-                <span class="sw-cupo-total">Cupo {w.cupo}</span>
+                <span class="sw-cupo-total">{tr("skills.workshops.capacity", "Cupo")} {w.cupo}</span>
               </div>
               <div class="sw-cupo-bar">
                 <div
@@ -113,21 +136,107 @@ const workshopsView = workshops.map((w) => {
                   style={`width:${w.fillPercent}%; background:${w.fillBg}`}
                 ></div>
               </div>
-              <button class="sw-cta" style={`background:${accent}`} type="button">Inscribirme</button>
+              <button class="sw-cta" style={`background:${accent}`} type="button">{tr("skills.workshops.enroll", "Inscribirme")}</button>
             </div>
           </div>
         </div>
     ))}
   </div>
+  </div>
 </section>
+
+<script>
+  // Solo la BARRA DE CUPO se consume de la base de datos (endpoint /workshops).
+  // La info de cada card (nombre, instructor, etc.) es estática / de tu API.
+  const API = import.meta.env.DEV
+    ? 'http://localhost:3010/'
+    : 'https://smarttechnologyexpo.mx/server/';
+
+  function initSkillsWorkshops() {
+    const section = document.querySelector('.sw-section') as HTMLElement | null;
+    if (!section) return;
+    const accent = section.getAttribute('data-accent') || '#E2101A';
+    const T_AVAIL = section.getAttribute('data-seats-available') || 'lugares disponibles';
+    const T_LAST = section.getAttribute('data-seats-last') || '¡Últimos {n} lugares!';
+    const T_FULL = section.getAttribute('data-sold-out') || 'Cupo lleno';
+    const T_CAP = section.getAttribute('data-capacity-label') || 'Cupo';
+
+    async function refresh() {
+      const map: Record<number, any> = {};
+      try {
+        const res = await fetch(API + 'workshops');
+        const data = await res.json();
+        if (!data.status || !Array.isArray(data.workshops)) return;
+        for (const w of data.workshops) map[Number(w.workshop_id)] = w;
+      } catch (e) { console.error('No se pudo obtener el cupo', e); return; }
+
+      document.querySelectorAll('.sw-card[data-ws-id]').forEach((cardEl) => {
+        const card = cardEl as HTMLElement;
+        const id = Number(card.getAttribute('data-ws-id'));
+        const w = map[id];
+        if (!w) return;
+        const capacity = Number(w.capacity) || 0;
+        const registered = Number(w.registered) || 0;
+        const disp = Math.max(capacity - registered, 0);
+        const soldOut = disp <= 0;
+        const low = disp > 0 && disp <= 5;
+        const fillPercent = capacity > 0 ? Math.round(((capacity - disp) / capacity) * 100) : 0;
+
+        const textEl = card.querySelector('.sw-cupo-text') as HTMLElement | null;
+        const totalEl = card.querySelector('.sw-cupo-total') as HTMLElement | null;
+        const fillEl = card.querySelector('.sw-cupo-fill') as HTMLElement | null;
+        const ctaEl = card.querySelector('.sw-cta') as HTMLButtonElement | null;
+
+        if (textEl) {
+          textEl.textContent = soldOut ? T_FULL : (low ? T_LAST.replace('{n}', String(disp)) : disp + ' ' + T_AVAIL);
+          textEl.style.color = (low || soldOut) ? accent : '#cfcfcf';
+        }
+        if (totalEl) totalEl.textContent = T_CAP + ' ' + capacity;
+        if (fillEl) {
+          fillEl.style.transition = 'width .6s ease';
+          fillEl.style.width = fillPercent + '%';
+          fillEl.style.background = (low || soldOut) ? accent : ('linear-gradient(90deg,#0D3B66,' + accent + ')');
+        }
+        if (ctaEl) {
+          ctaEl.disabled = soldOut;
+          ctaEl.style.background = soldOut ? '#333' : accent;
+          ctaEl.textContent = soldOut ? T_FULL : (ctaEl.getAttribute('data-enroll-label') || ctaEl.textContent || '');
+        }
+      });
+    }
+
+    document.querySelectorAll('.sw-card[data-ws-id] .sw-cta').forEach((btnEl) => {
+      const btn = btnEl as HTMLButtonElement;
+      btn.setAttribute('data-enroll-label', (btn.textContent || '').trim());
+      btn.addEventListener('click', () => {
+        if (btn.disabled) return;
+        const card = btn.closest('.sw-card');
+        const id = card ? card.getAttribute('data-ws-id') : null;
+        if (id) window.dispatchEvent(new CustomEvent('workshop:preselect', { detail: { workshop_id: Number(id) } }));
+        const form = document.querySelector('#wf-form');
+        if (form) form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    refresh();
+    setInterval(refresh, 20000);
+    window.addEventListener('workshop:registered', refresh);
+  }
+
+  document.addEventListener('DOMContentLoaded', initSkillsWorkshops);
+</script>
 
 <style>
   .sw-section {
+    background: #000;
+    font-family: 'Archivo', Helvetica, Arial, sans-serif;
+    color: #fff;
+  }
+
+  .sw-inner {
     max-width: 1240px;
     margin: 0 auto;
     padding: clamp(56px, 8vw, 96px) clamp(16px, 4vw, 40px);
-    font-family: 'Archivo', Helvetica, Arial, sans-serif;
-    color: #fff;
   }
 
   .sw-eyebrow {

@@ -3,28 +3,34 @@
 // Usage: <HeaderSwitcher active="conferencias" /> or active="talleres"
 // Links assume /conferencias and /talleres routes — adjust hrefs to your routing.
 
+import { useTranslations, getTranslation } from "../../utils/translations";
+
 export interface Props {
   active?: 'conferencias' | 'talleres';
   logoSrc?: string;
+  navbarOffset?: number;
 }
 
-const { active = 'conferencias', logoSrc = '/img/conferencias/logo_conferencias.webp' } = Astro.props;
+const { active = 'conferencias', logoSrc = '/img/conferencias/logo_conferencias.webp', navbarOffset = 80 } = Astro.props;
 const isConf = active === 'conferencias';
 const isSkills = active === 'talleres';
+const { translations, locale } = await useTranslations(Astro.props, Astro);
+const tr = (key: string, fallback: string = "") => getTranslation(translations, key, fallback);
+const base = locale === 'en' ? '/en' : '';
 ---
 
-<header class="hs-header">
+<header class="hs-header" style={`top:${navbarOffset}px`}>
   <div class="hs-inner">
     <div class="hs-brand">
       <div class="hs-logo" style={`background-image:url(${logoSrc})`}></div>
       <div class="hs-brand-text">
         <div class="hs-brand-title">SMART TECHNOLOGY EXPO</div>
-        <div class="hs-brand-sub">CON26 · PROGRAMA EDUCATIVO</div>
+        <div class="hs-brand-sub">{tr("programSwitch.sub", "CON26 · PROGRAMA EDUCATIVO")}</div>
       </div>
     </div>
     <div class="hs-tabs">
-      <a href="/conferencias" class={isConf ? 'hs-tab hs-tab--active' : 'hs-tab'}>CONFERENCIAS</a>
-      <a href="/talleres" class={isSkills ? 'hs-tab hs-tab--active' : 'hs-tab'}>TALLERES</a>
+      <a href={`${base}/insights`} class={isConf ? 'hs-tab hs-tab--active' : 'hs-tab'}>{tr("programSwitch.conferences", "CONFERENCIAS")}</a>
+      <a href={`${base}/skills`} class={isSkills ? 'hs-tab hs-tab--active' : 'hs-tab'}>{tr("programSwitch.workshops", "TALLERES")}</a>
     </div>
   </div>
 </header>
@@ -32,8 +38,8 @@ const isSkills = active === 'talleres';
 <style>
   .hs-header {
     position: sticky;
-    top: 0;
-    z-index: 60;
+    top: 0; /* overridden inline via navbarOffset prop */
+    z-index: 40; /* keep below your main navbar (typically z-index 50+) */
     background: #000;
     border-bottom: 1px solid rgba(0, 0, 0, 0.4);
     font-family: 'Archivo', Helvetica, Arial, sans-serif;

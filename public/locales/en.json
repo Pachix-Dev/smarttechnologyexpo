@@ -811,7 +811,11 @@
       "desc_insights": "Strategic content for leaders driving the direction of the industry. Keynote conferences and discussion panels analyzing the forces redefining markets, innovation and the future of business.",
       "desc_skills": "Hands-on learning and real application of technology. Training sessions to develop technical skills, discover key tools and dive deep into solutions applicable to productive environments.",
       "bullet_insights": "KEYNOTE CONFERENCES - DISCUSSION PANELS",
-      "bullet_skills": "LIMITED SPOTS - PRIOR REGISTRATION REQUIRED"
+      "bullet_skills": "LIMITED SPOTS - PRIOR REGISTRATION REQUIRED",
+      "cta_insights": "VIEW FULL PROGRAM",
+      "cta_link_insights": "/en/insights",
+      "cta_skills": "VIEW FULL PROGRAM",
+      "cta_link_skills": "/en/skills"
     },
     "banner": {
       "title": "Conference Agenda",
@@ -894,12 +898,12 @@
         },
         "networking": {
           "title": "Networking and interaction spaces",
-            "description": "A platform for building strategic connections with suppliers, industry leaders, and decision-makers."
-          }
+          "description": "A platform for building strategic connections with suppliers, industry leaders, and decision-makers."
+        }
       }
     }
   },
-   "droneInnovators": {
+  "droneInnovators": {
     "exhibitors": {
       "heading_bold": "DRONE INNOVATORS FORUM",
       "heading_rest": "is a",
@@ -935,6 +939,123 @@
     },
     "bannerPases": {
       "cta": "GET YOUR PASSES!"
+    }
+  },
+  "programSwitch": {
+    "sub": "CON26 · EDUCATIONAL PROGRAM",
+    "conferences": "CONFERENCES",
+    "workshops": "WORKSHOPS"
+  },
+  "bioModal": {
+    "title": "Biography",
+    "close": "Close"
+  },
+  "insights": {
+    "hero": {
+      "eyebrow": "MAIN STAGE",
+      "description": "Strategic content for the leaders shaping the direction of industry. Keynotes and discussion panels on the forces redefining markets, innovation and the future of business.",
+      "chip1_label": "DATES",
+      "chip1_value": "Nov 18 – 20, 2026",
+      "chip2_label": "VENUE",
+      "chip2_value": "Expo Guadalajara, Jalisco",
+      "chip3_label": "FORMAT",
+      "chip3_value": "Keynotes and panels"
+    },
+    "speakers": {
+      "eyebrow": "FEATURED SPEAKERS",
+      "title": "Keynote Speakers",
+      "note": "Preliminary program · subject to change",
+      "photo": "speaker photo",
+      "bio_btn": "VIEW BIO"
+    },
+    "schedule": {
+      "eyebrow": "AGENDA",
+      "title": "Daily program",
+      "sub": "Pick a day to see the conferences, panels and schedule.",
+      "dl_label": "FREE DOWNLOAD",
+      "dl_btn": "DOWNLOAD PROGRAM",
+      "notice": "All presentations will be held in Spanish.",
+      "select_day": "SELECT A DAY",
+      "sessions_word": "sessions",
+      "speakers_word": "Speakers",
+      "speaker_word": "Speaker",
+      "badge_keynote": "KEYNOTE",
+      "badge_panel": "PANEL",
+      "badge_conference": "CONFERENCE",
+      "badge_break": "BREAK",
+      "legend_keynote": "Keynote",
+      "legend_panel": "Panel",
+      "legend_conference": "Conference",
+      "legend_break": "Break"
+    }
+  },
+  "skills": {
+    "hero": {
+      "eyebrow": "HANDS-ON WORKSHOPS",
+      "description": "Hands-on learning and real application of technology. Training sessions to build technical skills, get to know key tools and dive deeper into solutions for production environments.",
+      "notice": "LIMITED SEATS · PRIOR REGISTRATION REQUIRED"
+    },
+    "workshops": {
+      "eyebrow": "CATALOG",
+      "title": "Available workshops",
+      "note": "Each workshop includes a specialized instructor, duration and requirements. Sign up from the form at the end.",
+      "schedule": "SCHEDULE",
+      "room": "ROOM",
+      "reqs": "REQUIREMENTS",
+      "capacity": "Capacity",
+      "enroll": "Enroll",
+      "bio_btn": "VIEW BIO",
+      "nivel_basic": "BASIC",
+      "nivel_intermediate": "INTERMEDIATE",
+      "nivel_advanced": "ADVANCED",
+      "seats_available": "seats available",
+      "seats_last": "Last {n} seats!"
+    },
+    "schedule": {
+      "eyebrow": "AGENDA",
+      "title": "Daily program",
+      "sub": "Delivery times for each workshop.",
+      "dl_label": "FREE DOWNLOAD",
+      "dl_btn": "DOWNLOAD PROGRAM",
+      "notice": "All workshops will be delivered in Spanish.",
+      "select_day": "SELECT A DAY",
+      "badge": "WORKSHOP",
+      "instructors_word": "Instructors",
+      "instructor_word": "Instructor"
+    },
+    "form": {
+      "eyebrow": "REGISTRATION",
+      "title": "Sign up for a workshop",
+      "desc": "Workshops have limited seats. Look up your registration with your email and confirm your spot in seconds.",
+      "notice_a": "You must have your ",
+      "notice_b": "prior general event registration",
+      "notice_c": " for Smart Technology Expo 2026 to sign up for a workshop.",
+      "perk1": "Immediate spot confirmation by email",
+      "perk2": "Materials and hands-on practice included in each workshop",
+      "perk3": "Smart Technology Expo certificate of participation",
+      "step1": "STEP 1",
+      "step1_title": "Find your registration",
+      "step1_sub": "Enter the email you used to register for the general event; we'll pull your details automatically.",
+      "email": "EMAIL",
+      "email_ph": "name@company.com",
+      "lookup_err": "We couldn't find a registration with that email. Make sure you completed your general event registration before signing up for a workshop.",
+      "lookup_btn": "FIND MY REGISTRATION",
+      "fine1": "Don't have your general registration yet? Complete it first on the event's main page.",
+      "found": "Details retrieved from your general registration.",
+      "full_name": "FULL NAME",
+      "phone": "PHONE",
+      "company": "COMPANY",
+      "position": "POSITION / ROLE",
+      "select_ws": "SELECT A WORKSHOP",
+      "choose_ws": "— Choose a workshop —",
+      "select_err": "Please select a workshop.",
+      "submit": "CONFIRM REGISTRATION",
+      "other_email": "Search with another email",
+      "fine2": "By submitting you accept the Smart Technology Expo privacy notice.",
+      "success_title": "Registration received!",
+      "thanks": "Thank you, ",
+      "sent_to": ". We've sent your spot confirmation to ",
+      "another": "REGISTER ANOTHER"
     }
   }
 }

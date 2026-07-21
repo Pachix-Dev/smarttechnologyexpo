@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 import {RegisterModel} from './db.js';
 import {email_template_ecomondo} from './TemplateEmailEcomondo.js';
 import {email_template_ecomondo_eng} from './TemplateEmailEcomondoEng.js';
+import { email_template_workshop } from './TemplateEmailWorkshop.js';
 
 import {email_template_ecomondo_student } from './TemplateEmailEcomondo_student.js';
 import {email_template_ecomondo_eng_student} from './TemplateEmailEcomondoEng_student.js';
@@ -638,6 +639,148 @@ app.get('/template-email', async (req, res) => {
     const emailContent = await email_template_ecomondo({ ...data });
     res.send(emailContent);
 });
+
+app.get('/template-email-workshop', async (req, res) => {
+    const lang = req.query.lang === 'en' ? 'en' : 'es';
+    const emailContent = await email_template_workshop({
+        lang,
+        name: 'José de Jesús',
+        paternSurname: 'Zermeño',
+        maternSurname: 'Rodríguez',
+        workshopName: 'Programación de robots colaborativos (cobots)',
+        dateText: lang === 'en' ? 'November 10, 2026' : '10 de noviembre de 2026',
+        timeText: '10:00 – 14:00 hrs.',
+        durationText: lang === 'en' ? '4 hours' : '4 horas',
+        location: 'Lab Smart Skills A',
+        description: 'Taller práctico donde aprenderás a programar y operar robots colaborativos aplicados a líneas de producción.',
+    });
+    res.send(emailContent);
+});
+
+// ============================================================
+//  TALLERES — Registro y asistencia
+// ============================================================
+
+
+// ---------------------------------------------------------------------
+// GET /workshop-visitor?email=CORREO
+// Busca al visitante por su correo. Lo usa el Paso 1 del formulario.
+// ---------------------------------------------------------------------
+app.get('/workshop-visitor', async (req, res) => {
+    // Sacamos el correo de la URL (?email=...).
+    const { email } = req.query;
+
+    // Si no mandaron correo, respondemos 400 (petición incorrecta).
+    if (!email) return res.status(400).send({ status: false, message: 'Correo requerido' });
+
+    // Buscamos al visitante en la base (método de db.js).
+    const visitor = await RegisterModel.get_visitor_ste_by_email(email);
+
+    // Si no existe, respondemos 404 (no encontrado) con un mensaje.
+    if (!visitor) {
+        return res.status(404).send({ status: false, message: 'No encontramos un registro con ese correo.' });
+    }
+
+    // Si existe, devolvemos sus datos para autollenar el formulario.
+    return res.send({ status: true, visitor });
+});
+
+
+// ---------------------------------------------------------------------
+// GET /workshops
+// Devuelve la lista de talleres activos con su cupo e inscritos.
+// Lo usa: el catálogo (barra de cupo) y la lista del formulario.
+// ---------------------------------------------------------------------
+app.get('/workshops', async (req, res) => {
+    // Traemos todos los talleres activos (con capacity y registered).
+    const workshops = await RegisterModel.get_active_workshops();
+    // Los devolvemos al sitio.
+    return res.send({ status: true, workshops });
+});
+
+
+// ---------------------------------------------------------------------
+// POST /workshop-register
+// Registra la inscripción y envía el correo de confirmación.
+// Recibe en el cuerpo (body): { email, workshop_id, currentLanguage }
+// ---------------------------------------------------------------------
+app.post('/workshop-register', async (req, res) => {
+    try {
+        // Datos que manda el formulario.
+        const { email, workshop_id, currentLanguage = 'es' } = req.body;
+        // Idioma del correo (es/en); por defecto español.
+        const lang = currentLanguage === 'en' ? 'en' : 'es';
+
+        // 1) Verificar que el visitante exista.
+        const visitor = await RegisterModel.get_visitor_ste_by_email(email);
+        if (!visitor) return res.status(404).send({ status: false, message: 'No encontramos un registro con ese correo.' });
+
+        // 2) Verificar que el taller exista y esté activo.
+        const workshop = await RegisterModel.get_workshop_by_id(workshop_id);
+        if (!workshop) return res.status(404).send({ status: false, message: 'Taller no disponible.' });
+
+        // 3) GUARDAR LA INSCRIPCIÓN (lo esencial).
+        //    La restricción única evita que se inscriba dos veces al mismo taller.
+        const reg = await RegisterModel.register_workshop_attendance({
+            workshop_id: workshop.workshop_id, visitor_id: visitor.id, uuid: visitor.uuid,
+        });
+        if (!reg.status) {
+            // 409 = conflicto (ya estaba inscrito); 500 = otro error.
+            return res.status(reg.duplicate ? 409 : 500).send(reg);
+        }
+
+        // 4) ENVIAR EL CORREO — aislado en su propio try/catch:
+        //    si el correo fallara, la inscripción YA quedó guardada y el
+        //    servidor NO se cae; solo deja un aviso en la consola.
+        try {
+            // Preparamos los textos de fecha/hora/duración para el correo.
+            const start = new Date(workshop.start_date);
+            const dateText = start.toLocaleDateString(lang === 'en' ? 'en-US' : 'es-MX', { year: 'numeric', month: 'long', day: 'numeric' });
+            const timeText = start.toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit' }) + ' hrs.';
+            const durationText = lang === 'en' ? `${workshop.duration_minutes} minutes` : `${workshop.duration_minutes} minutos`;
+
+            // Armamos el HTML del correo con la plantilla bilingüe.
+            const html = await email_template_workshop({
+                lang, name: visitor.name, paternSurname: visitor.paternSurname,
+                workshopName: lang === 'en' ? workshop.name_en : workshop.name_es,
+                dateText, timeText, durationText, location: workshop.location,
+                description: lang === 'en' ? workshop.description_en : workshop.description_es,
+            });
+
+            // Enviamos el correo con Resend.
+            //   to: si existe TEST_EMAIL_OVERRIDE (para pruebas) va a ese correo;
+            //       si no, va al correo real del visitante.
+            //   attachments: adjunta el pase con QR del visitante (ya existe en
+            //       /invoices/ desde su registro general; no se genera aquí).
+            await resend.emails.send({
+                from: 'SMART TECHNOLOGY EXPO 2026 <noreply@smarttechnologyexpo.mx>',
+                to: process.env.TEST_EMAIL_OVERRIDE || visitor.email,
+                subject: lang === 'en'
+                    ? 'Workshop registration confirmed - Smart Technology Expo 2026'
+                    : 'Registro a taller confirmado - Smart Technology Expo 2026',
+                html,
+                attachments: [
+                    {
+                        filename: `${visitor.uuid}.pdf`,
+                        path: `https://smarttechnologyexpo.mx/invoices/${visitor.uuid}.pdf`,
+                        content_type: 'application/pdf',
+                    },
+                ],
+            });
+        } catch (mailErr) {
+            // Si el correo falla, no rompemos nada: la inscripción ya se guardó.
+            console.log('Aviso: correo no enviado (el registro sí se guardó):', mailErr?.message);
+        }
+
+        // 5) Respondemos éxito al formulario.
+        return res.send({ status: true, message: 'Registro a taller confirmado.', visitor: { name: visitor.name, email: visitor.email } });
+    } catch (err) {
+        // Si algo falla antes de guardar (BD caída, etc.), respondemos error 500.
+        console.log(err);
+        return res.status(500).send({ status: false, message: 'Error al procesar tu registro.' });
+    }
+});
+
 
 /* Permite enviar correos electrónicos de confirmación de registro */ 
 async function sendEmailEcomondo(data, pdfAtch = null, paypal_id_transaction = null){    

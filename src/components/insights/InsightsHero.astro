@@ -1,6 +1,7 @@
 ---
 // InsightsHero.astro — Header/switcher + hero for the SMART INSIGHTS (Conferencias) interior.
 import HeaderSwitcher from '../shared/HeaderSwitcher.astro';
+import { useTranslations, getTranslation } from "../../utils/translations";
 
 export interface Chip {
   label: string;
@@ -16,15 +17,18 @@ export interface Props {
   logoSrc?: string;
 }
 
+const { translations, locale } = await useTranslations(Astro.props, Astro);
+const tr = (key: string, fallback: string = "") => getTranslation(translations, key, fallback);
+
 const {
-  eyebrow = 'ESCENARIO PRINCIPAL',
+  eyebrow = tr('insights.hero.eyebrow', 'ESCENARIO PRINCIPAL'),
   title1 = 'Smart',
   title2 = 'Insights',
-  description = 'Contenido estratégico para líderes que impulsan el rumbo de la industria. Conferencias magistrales y paneles de discusión sobre las fuerzas que redefinen los mercados, la innovación y el futuro de los negocios.',
+  description = tr('insights.hero.description', 'Contenido estratégico para líderes que impulsan el rumbo de la industria. Conferencias magistrales y paneles de discusión sobre las fuerzas que redefinen los mercados, la innovación y el futuro de los negocios.'),
   chips = [
-    { label: 'FECHAS', value: '18 – 20 Nov 2026' },
-    { label: 'SEDE', value: 'Expo Guadalajara, Jalisco' },
-    { label: 'FORMATO', value: 'Conferencias magistrales y paneles' },
+    { label: tr('insights.hero.chip1_label', 'FECHAS'), value: tr('insights.hero.chip1_value', '18 – 20 Nov 2026') },
+    { label: tr('insights.hero.chip2_label', 'SEDE'), value: tr('insights.hero.chip2_value', 'Expo Guadalajara, Jalisco') },
+    { label: tr('insights.hero.chip3_label', 'FORMATO'), value: tr('insights.hero.chip3_value', 'Conferencias magistrales y paneles') },
   ],
   logoSrc,
 } = Astro.props;
@@ -121,10 +125,19 @@ const {
 
   .ih-title-a {
     color: #fff;
+    text-shadow:
+      0 0 2px  #fff,
+      0 0 6px  #fff,
+      0 0 12px rgba(255, 255, 255, 0.55),
+      0 0 24px rgba(255, 255, 255, 0.35),
+      0 0 48px rgba(255, 255, 255, 0.2);
   }
 
   .ih-title-b {
     color: #4a3636;
+  text-shadow:
+    0 0 6px  rgba(74, 54, 54, 0.9),
+    0 0 16px rgba(74, 54, 54, 0.5);
   }
 
   .ih-description {

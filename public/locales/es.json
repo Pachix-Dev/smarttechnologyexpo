@@ -705,7 +705,7 @@
     "industry_option_13": "HOTELERÍA Y TURISMO",
     "industry_option_14": "LOGÍSTICA E INTRALOGÍSTICA",
     "industry_option_15": "MINERA, METALÚRGICA Y SIDERÚRGICA",
-     "industry_option_16": "OTRAS MANUFACTURAS",
+    "industry_option_16": "OTRAS MANUFACTURAS",
     "industry_option_17": "PETROQUÍMICA",
     "industry_option_18": "QUÍMICA",
     "industry_option_19": "RESTAURANTERA",
@@ -809,7 +809,11 @@
       "desc_insights": "Contenido estratégico para líderes que impulsan el rumbo de la industria. Conferencias magistrales y paneles de discusión que analizan las fuerzas redefiniendo los mercados, la innovación y el futuro de los negocios.",
       "desc_skills": "Aprendizaje práctico y aplicación real de la tecnología. Capacitaciones para desarrollar habilidades técnicas, conocer herramientas clave y profundizar en soluciones aplicables a entornos productivos.",
       "bullet_insights": "CONFERENCIAS MAGISTRALES - PANELES DE DISCUSIÓN",
-      "bullet_skills": "CUPO LIMITADO - REGISTRO PREVIO REQUERIDO"
+      "bullet_skills": "CUPO LIMITADO - REGISTRO PREVIO REQUERIDO",
+      "cta_insights": "VER PROGRAMA COMPLETO",
+      "cta_link_insights": "/insights",
+      "cta_skills": "VER PROGRAMA COMPLETO",
+      "cta_link_skills": "/skills"
     },
     "banner": {
       "title": "Agenda de Conferencias",
@@ -861,7 +865,7 @@
       "email": "daniela.hernandez@igeco.mx"
     }
   },
-   "mediaPage": {
+  "mediaPage": {
     "title": "Acreditación de prensa",
     "description": "Estimados medios de comunicación:<br/>Convocamos a los medios interesados a realizar el siguiente registro de prensa para obtener su acreditación para la cobertura de Smart Technology Expo.<br/>La fecha límite para acreditarte es el viernes 6 de noviembre de 2026. Y se comunicará el status de tu acreditación a más tardar el 13 de noviembre.<br/>Cabe mencionar que la acreditación de prensa de Smart Technology Expo se otorga de dos maneras; por invitación y a través de este registro.<br/>Si en ediciones anteriores tu medio ha recibido una invitación para realizar la cobertura de los evento organizados por Italian German Exhibition Company Mexico, esta invitación te llegará antes del 6 de noviembre de 2026.<br/>Recuerda que Smart Technology Expo es un evento gratuito dirigido para profesionales de la industria y que cualquier persona interesada puede acceder sin costo realizando su registro como visitante profesional. "
   },
@@ -933,6 +937,123 @@
     },
     "bannerPases": {
       "cta": "¡ADQUIERE TUS PASES!"
+    }
+  },
+  "programSwitch": {
+    "sub": "CON26 · PROGRAMA EDUCATIVO",
+    "conferences": "CONFERENCIAS",
+    "workshops": "TALLERES"
+  },
+  "bioModal": {
+    "title": "Semblanza",
+    "close": "Cerrar"
+  },
+  "insights": {
+    "hero": {
+      "eyebrow": "ESCENARIO PRINCIPAL",
+      "description": "Contenido estratégico para líderes que impulsan el rumbo de la industria. Conferencias magistrales y paneles de discusión sobre las fuerzas que redefinen los mercados, la innovación y el futuro de los negocios.",
+      "chip1_label": "FECHAS",
+      "chip1_value": "18 – 20 Nov 2026",
+      "chip2_label": "SEDE",
+      "chip2_value": "Expo Guadalajara, Jalisco",
+      "chip3_label": "FORMATO",
+      "chip3_value": "Conferencias magistrales y paneles"
+    },
+    "speakers": {
+      "eyebrow": "PONENTES DESTACADOS",
+      "title": "Keynote Speakers",
+      "note": "Programa preliminar · sujeto a cambios",
+      "photo": "foto ponente",
+      "bio_btn": "VER SEMBLANZA"
+    },
+    "schedule": {
+      "eyebrow": "AGENDA",
+      "title": "Programa por día",
+      "sub": "Selecciona un día para ver las conferencias, paneles y horarios.",
+      "dl_label": "DESCARGA GRATUITA",
+      "dl_btn": "DESCARGA PROGRAMA",
+      "notice": "Todas las ponencias se realizarán en español.",
+      "select_day": "SELECCIONA EL DÍA",
+      "sessions_word": "sesiones",
+      "speakers_word": "Ponentes",
+      "speaker_word": "Ponente",
+      "badge_keynote": "KEYNOTE",
+      "badge_panel": "PANEL",
+      "badge_conference": "CONFERENCIA",
+      "badge_break": "RECESO",
+      "legend_keynote": "Keynote",
+      "legend_panel": "Panel",
+      "legend_conference": "Conferencia",
+      "legend_break": "Receso"
+    }
+  },
+  "skills": {
+    "hero": {
+      "eyebrow": "TALLERES PRÁCTICOS",
+      "description": "Aprendizaje práctico y aplicación real de la tecnología. Capacitaciones para desarrollar habilidades técnicas, conocer herramientas clave y profundizar en soluciones aplicables a entornos productivos.",
+      "notice": "CUPO LIMITADO · REGISTRO PREVIO REQUERIDO"
+    },
+    "workshops": {
+      "eyebrow": "CATÁLOGO",
+      "title": "Talleres disponibles",
+      "note": "Cada taller incluye instructor especializado, duración y requisitos. Inscríbete desde el formulario al final.",
+      "schedule": "HORARIO",
+      "room": "SALA",
+      "reqs": "REQUISITOS",
+      "capacity": "Cupo",
+      "enroll": "Inscribirme",
+      "bio_btn": "VER SEMBLANZA",
+      "nivel_basic": "BÁSICO",
+      "nivel_intermediate": "INTERMEDIO",
+      "nivel_advanced": "AVANZADO",
+      "seats_available": "lugares disponibles",
+      "seats_last": "¡Últimos {n} lugares!"
+    },
+    "schedule": {
+      "eyebrow": "AGENDA",
+      "title": "Programa por día",
+      "sub": "Horarios de impartición de cada taller.",
+      "dl_label": "DESCARGA GRATUITA",
+      "dl_btn": "DESCARGA PROGRAMA",
+      "notice": "Todos los talleres serán impartidos en español.",
+      "select_day": "SELECCIONA EL DÍA",
+      "badge": "TALLER",
+      "instructors_word": "Instructores",
+      "instructor_word": "Instructor"
+    },
+    "form": {
+      "eyebrow": "REGISTRO",
+      "title": "Inscríbete a un taller",
+      "desc": "Los talleres tienen cupo limitado. Busca tu registro con tu correo y confirma tu lugar en segundos.",
+      "notice_a": "Es indispensable contar con tu ",
+      "notice_b": "registro previo al evento general",
+      "notice_c": " Smart Technology Expo 2026 para poder inscribirte a un taller.",
+      "perk1": "Confirmación inmediata de tu lugar por correo",
+      "perk2": "Material y prácticas incluidas en cada taller",
+      "perk3": "Constancia de participación Smart Technology Expo",
+      "step1": "PASO 1",
+      "step1_title": "Busca tu registro",
+      "step1_sub": "Ingresa el correo con el que te registraste al evento general; recuperaremos tus datos automáticamente.",
+      "email": "CORREO ELECTRÓNICO",
+      "email_ph": "nombre@empresa.com",
+      "lookup_err": "No encontramos un registro con ese correo. Verifica que hayas completado tu registro general al evento antes de inscribirte a un taller.",
+      "lookup_btn": "BUSCAR MI REGISTRO",
+      "fine1": "¿Aún no tienes tu registro general? Complétalo primero en la página principal del evento.",
+      "found": "Datos recuperados de tu registro general.",
+      "full_name": "NOMBRE COMPLETO",
+      "phone": "TELÉFONO",
+      "company": "EMPRESA",
+      "position": "PUESTO / CARGO",
+      "select_ws": "SELECCIONA UN TALLER",
+      "choose_ws": "— Elige un taller —",
+      "select_err": "Por favor selecciona un taller.",
+      "submit": "CONFIRMAR INSCRIPCIÓN",
+      "other_email": "Buscar con otro correo",
+      "fine2": "Al enviar aceptas el aviso de privacidad de Smart Technology Expo.",
+      "success_title": "¡Registro recibido!",
+      "thanks": "Gracias, ",
+      "sent_to": ". Te enviamos la confirmación de tu lugar a ",
+      "another": "REGISTRAR OTRO"
     }
   }
 }

@@ -1,27 +1,17 @@
 ---
 // src/components/conferencias/DisplayScenarios.astro
 import { useTranslations, getTranslation } from '../../utils/translations'
-
 export interface Props {
   locale?: string
 }
-
 const { locale, translations } = await useTranslations(Astro.props, Astro)
 const tr = (key: string, fallback: string = '') =>
   getTranslation(translations, key, fallback)
 ---
-
 <section class="ds-section">
-
-  <!-- Puntos decorativos esquina inferior izquierda -->
   <img src="/img/conferencias/puntos_izquierda.webp" class="ds-dots ds-dots--left" alt="" aria-hidden="true" />
-
-  <!-- Puntos decorativos esquina inferior derecha -->
   <img src="/img/conferencias/puntos_derecha.webp" class="ds-dots ds-dots--right" alt="" aria-hidden="true" />
-
   <div class="ds-inner">
-
-    <!-- Tarjeta Izquierda: Smart Insights -->
     <div class="ds-card ds-card--dark" data-aos="fade-right" data-aos-duration="800">
       <span class="ds-label">{tr('conferencias.scenarios.label_insights', 'ESCENARIO PRINCIPAL')}</span>
       <h2 class="ds-title">
@@ -35,9 +25,12 @@ const tr = (key: string, fallback: string = '') =>
         <span class="ds-dot"></span>
         <span>{tr('conferencias.scenarios.bullet_insights', 'CONFERENCIAS MAGISTRALES - PANELES DE DISCUSIÓN')}</span>
       </div>
+      <a href={tr('conferencias.scenarios.cta_link_insights', '/insights')} class="ds-cta">
+        <span class="ds-cta-bar"></span>
+        <span class="ds-cta-text">{tr('conferencias.scenarios.cta_insights', 'VER PROGRAMA COMPLETO')}</span>
+        <span class="ds-cta-arrow">&#8594;</span>
+      </a>
     </div>
-
-    <!-- Tarjeta Derecha: Smart Skills -->
     <div class="ds-card ds-card--red" data-aos="fade-left" data-aos-duration="800" data-aos-delay="150">
       <span class="ds-label">{tr('conferencias.scenarios.label_skills', 'TALLERES PRÁCTICOS')}</span>
       <h2 class="ds-title">
@@ -51,11 +44,14 @@ const tr = (key: string, fallback: string = '') =>
         <span class="ds-dot"></span>
         <span>{tr('conferencias.scenarios.bullet_skills', 'CUPO LIMITADO - REGISTRO PREVIO REQUERIDO')}</span>
       </div>
+      <a href={tr('conferencias.scenarios.cta_link_skills', '/skills')} class="ds-cta">
+        <span class="ds-cta-bar"></span>
+        <span class="ds-cta-text">{tr('conferencias.scenarios.cta_skills', 'VER PROGRAMA COMPLETO')}</span>
+        <span class="ds-cta-arrow">&#8594;</span>
+      </a>
     </div>
-
   </div>
 </section>
-
 <style>
   .ds-section {
     width: 100%;
@@ -66,7 +62,6 @@ const tr = (key: string, fallback: string = '') =>
     position: relative;
     overflow: hidden;
   }
-
   .ds-dots {
     position: absolute;
     bottom: 0;
@@ -76,10 +71,8 @@ const tr = (key: string, fallback: string = '') =>
     z-index: 0;
     display: block;
   }
-
   .ds-dots--left  { left: 0; }
   .ds-dots--right { right: 0; }
-
   .ds-inner {
     width: 90%;
     max-width: 1100px;
@@ -93,7 +86,6 @@ const tr = (key: string, fallback: string = '') =>
     position: relative;
     z-index: 1;
   }
-
   .ds-card {
     padding: 2.5rem 2rem;
     border-radius: 4px;
@@ -103,16 +95,13 @@ const tr = (key: string, fallback: string = '') =>
     box-sizing: border-box;
     min-height: 380px;
   }
-
   .ds-card--dark {
     background: #141414;
     border: 1px solid rgba(255,255,255,0.06);
   }
-
   .ds-card--red {
     background: #db0c15;
   }
-
   .ds-label {
     font-family: "Montserrat", sans-serif;
     font-size: 0.72rem;
@@ -125,18 +114,15 @@ const tr = (key: string, fallback: string = '') =>
       0 0 6px  rgba(255, 255, 255, 0.5),
       0 0 14px rgba(255, 255, 255, 0.2);
   }
-
   .ds-card--red .ds-label {
     color: #ff979e;
     text-shadow:
       0 0 6px  rgba(255, 151, 158, 0.5),
       0 0 14px rgba(255, 151, 158, 0.2);
   }
-
   .ds-card--red .ds-desc {
     color: rgba(255, 255, 255, 0.85);
   }
-
   .ds-title {
     display: flex;
     flex-direction: column;
@@ -144,7 +130,6 @@ const tr = (key: string, fallback: string = '') =>
     line-height: 0.95;
     gap: 0;
   }
-
   .ds-title--white {
     font-family: "Montserrat", sans-serif;
     font-size: clamp(3rem, 5.5vw, 5.5rem);
@@ -156,7 +141,6 @@ const tr = (key: string, fallback: string = '') =>
       0 0 8px  rgba(255, 255, 255, 0.6),
       0 0 20px rgba(255, 255, 255, 0.2);
   }
-
   .ds-title--muted {
     font-family: "Montserrat", sans-serif;
     font-size: clamp(3rem, 5.5vw, 5.5rem);
@@ -165,7 +149,6 @@ const tr = (key: string, fallback: string = '') =>
     text-transform: uppercase;
     letter-spacing: -0.01em;
   }
-
   .ds-title--dark-red {
     font-family: "Montserrat", sans-serif;
     font-size: clamp(3rem, 5.5vw, 5.5rem);
@@ -174,7 +157,6 @@ const tr = (key: string, fallback: string = '') =>
     text-transform: uppercase;
     letter-spacing: -0.01em;
   }
-
   .ds-desc {
     font-family: "Montserrat", sans-serif;
     font-size: 17.5px;
@@ -186,14 +168,12 @@ const tr = (key: string, fallback: string = '') =>
     text-align: justify;
     flex: 1;
   }
-
   .ds-bullet {
     display: flex;
     align-items: flex-start;
     gap: 0.75rem;
     margin-top: auto;
   }
-
   .ds-dot {
     width: 11px;
     height: 11px;
@@ -207,7 +187,6 @@ const tr = (key: string, fallback: string = '') =>
       0 0 10px rgba(255,255,255,0.8),
       0 0 20px rgba(255,255,255,0.4);
   }
-
   @keyframes ds-flicker {
     0%   { opacity: 1; box-shadow: 0 0 4px rgba(255,255,255,1), 0 0 10px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.4); }
     8%   { opacity: 0.2; box-shadow: none; }
@@ -219,7 +198,6 @@ const tr = (key: string, fallback: string = '') =>
     64%  { opacity: 1; box-shadow: 0 0 4px rgba(255,255,255,1), 0 0 10px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.4); }
     100% { opacity: 1; box-shadow: 0 0 4px rgba(255,255,255,1), 0 0 10px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.4); }
   }
-
   .ds-bullet span:last-child {
     font-family: "Montserrat", sans-serif;
     font-size: 1.27rem;
@@ -232,7 +210,65 @@ const tr = (key: string, fallback: string = '') =>
       0 0 6px  rgba(255, 255, 255, 0.5),
       0 0 14px rgba(255, 255, 255, 0.2);
   }
+  .ds-cta {
+    display: inline-flex;
+    align-items: center;
+    align-self: center;
+    gap: 1.1rem;
+    margin-top: 0.5rem;
+    padding: 0.8rem 1rem;
+    border-radius: 18px;
+    border: 2px solid #fff;
+    text-decoration: none;
+    width: fit-content;
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+  .ds-cta:hover { transform: translateY(-2px); }
+  .ds-cta-bar {
+    width: 3px;
+    align-self: stretch;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+  .ds-cta-text {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #ffffffea;
+    text-transform: uppercase;
+    line-height: 1.2;
+    text-align: center;
+  }
 
+  .ds-cta-arrow {
+    font-size: 3rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .ds-card--dark .ds-cta {
+    background: #141414;
+  }
+  .ds-card--dark .ds-cta:hover {
+    background: #1e1e1e;
+  }
+  .ds-card--dark .ds-cta-bar {
+    background: #db0c15;
+  }
+  .ds-card--dark .ds-cta-arrow {
+    color: #db0c15;
+  }
+  .ds-card--red .ds-cta {
+    background: #db0c15;
+  }
+  .ds-card--red .ds-cta:hover {
+    background: #c50b13;
+  }
+  .ds-card--red .ds-cta-bar {
+    background: #141414;
+  }
+  .ds-card--red .ds-cta-arrow {
+    color: #141414;
+  }
   /* ── TABLET GRANDE 820px–1024px ──────────────────────────────── */
   @media (max-width: 1024px) and (min-width: 820px) {
     .ds-inner { width: 95%; gap: 0; }
@@ -240,14 +276,16 @@ const tr = (key: string, fallback: string = '') =>
     .ds-title--white,
     .ds-title--muted,
     .ds-title--dark-red { font-size: clamp(4rem, 4.5vw, 4.5rem); }
-    .ds-label  { font-size: 1.3rem; }
+    .ds-label   { font-size: 1.3rem; }
     .ds-desc    { font-size: 20px; }
-    .ds-dot    { width: 9px; height: 9px; margin-top: 9px; }
+    .ds-dot     { width: 9px; height: 9px; margin-top: 9px; }
     .ds-bullet  { margin-top: 0.5rem; }
     .ds-bullet span:last-child { font-size: 1.2rem; }
     .ds-dots    { width: 300px; }
+    .ds-cta       { padding: 0.9rem 1.5rem; gap: 1rem; }
+    .ds-cta-text  { font-size: 1.1rem; }
+    .ds-cta-arrow { font-size: 1.3rem; }
   }
-
   /* ── TABLET MEDIA 769px–819px ─────────────────────────────────── */
   @media (max-width: 819px) and (min-width: 769px) {
     .ds-inner { width: 95%; gap: 0; }
@@ -258,12 +296,13 @@ const tr = (key: string, fallback: string = '') =>
     .ds-desc   { font-size: 20px; max-width: 75%; }
     .ds-bullet { margin-top: 0.5rem; }
     .ds-dots   { width: 250px; }
+    .ds-cta       { padding: 0.85rem 1.4rem; gap: 0.9rem; }
+    .ds-cta-text  { font-size: 1rem; }
+    .ds-cta-arrow { font-size: 1.2rem; }
   }
-
   /* ── MOBILE ≤768px ────────────────────────────────────────────── */
   @media (max-width: 768px) {
     .ds-section { padding: 1.5rem 0; }
-
     .ds-inner {
       width: 80%;
       margin: 0 auto;
@@ -271,26 +310,26 @@ const tr = (key: string, fallback: string = '') =>
       padding: 0;
       gap: 0;
     }
-
     .ds-card {
       padding: 1rem 0.85rem;
       min-height: auto;
       border-radius: 0;
       gap: 0.5rem;
     }
-
     .ds-title--white,
     .ds-title--muted,
     .ds-title--dark-red { font-size: clamp(1.6rem, 5vw, 2.4rem); }
-
-    .ds-label  { font-size: 0.42rem; letter-spacing: 0.08em; }
+    .ds-label   { font-size: 0.42rem; letter-spacing: 0.08em; }
     .ds-desc   { font-size: 11px; max-width: 85%; line-height: 1.5; }
     .ds-bullet { gap: 0.35rem; margin-top: 0.35rem; }
     .ds-dot    { width: 6px; height: 6px; margin-top: 4px; }
     .ds-bullet span:last-child { font-size: 0.6rem; letter-spacing: 0.02em; }
     .ds-dots   { width: 80px; }
+    .ds-cta       { padding: 0.5rem 0.7rem; gap: 0.4rem; border-width: 1.5px; margin-top: 0.35rem; }
+    .ds-cta-text  { font-size: 0.5rem; letter-spacing: 0.01em; }
+    .ds-cta-arrow { font-size: 0.65rem; }
+    .ds-cta-bar   { width: 2px; }
   }
-
   /* ── MOBILE PEQUEÑO ≤480px ────────────────────────────────────── */
   @media (max-width: 480px) {
     .ds-inner  { width: 90%; }
@@ -304,5 +343,8 @@ const tr = (key: string, fallback: string = '') =>
     .ds-bullet { margin-top: 0.25rem; }
     .ds-bullet span:last-child { font-size: 0.5rem; }
     .ds-dots   { width: 65px; }
+    .ds-cta       { padding: 0.4rem 0.6rem; gap: 0.3rem; }
+    .ds-cta-text  { font-size: 0.42rem; }
+    .ds-cta-arrow { font-size: 0.55rem; }
   }
 </style>
