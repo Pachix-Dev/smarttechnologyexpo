@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 // Base de la API del backend: localhost en dev, dominio /server/ en prod.
 const API = import.meta.env.DEV
-  ? "http://localhost:3010/"
+  ? "http://localhost:3005/"
   : "https://smarttechnologyexpo.mx/server/";
 
 export default function WorkshopFormIsland({

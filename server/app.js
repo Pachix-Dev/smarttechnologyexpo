@@ -722,8 +722,10 @@ app.get('/workshop-visitor', async (req, res) => {
 // Lo usa: el catálogo (barra de cupo) y la lista del formulario.
 // ---------------------------------------------------------------------
 app.get('/workshops', async (req, res) => {
+    
     // Traemos todos los talleres activos (con capacity y registered).
     const workshops = await RegisterModel.get_active_workshops();
+
     // Los devolvemos al sitio.
     return res.send({ status: true, workshops });
 });
