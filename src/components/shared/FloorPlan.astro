@@ -5,7 +5,7 @@ const { locale, translations } = await useTranslations(Astro.props, Astro);
 const tr = (key: string, fallback: string = "") =>
   getTranslation(translations, key, fallback);
 
-const floorPlanFile = "/files/PLANO_STE_2026_16_07_2026.pdf";
+const floorPlanFile = "/files/PLANO_STE_2026_22_07_2026.pdf";
 const floorPlanTitle = tr(
   "floorPlan.title",
   locale === "en" ? "Floor plan" : "Plano del evento"
