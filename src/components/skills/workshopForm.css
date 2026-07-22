@@ -212,7 +212,7 @@
   background: transparent;
   color: #9a9a9a;
   border: none;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   text-decoration: underline;
@@ -221,7 +221,7 @@
 
 .wf-fineprint {
   margin: 12px 0 0;
-  font-size: 12px;
+  font-size: 14px;
   color: #666;
   text-align: center;
   line-height: 1.5;
@@ -233,7 +233,7 @@
 }
 
 .wf-fineprint-link:hover {
-  color: var(--accent);
+  color: #28d4ef;
 }
 
 .wf-step--center {

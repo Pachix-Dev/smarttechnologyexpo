@@ -11,6 +11,7 @@ import {
   confDesc,
   speakerBio,
   speakerPhoto,
+  companyLogo,
   typeMeta,
   formatTime,
   dayNumber,
@@ -197,6 +198,8 @@ export default function InsightsScheduleLive({
               const meta = typeMeta(s.type);
               const speakers = s.ponentes || [];
               const desc = confDesc(s, lang);
+              // Logo de la empresa de la conferencia (viene de la API en company_logo).
+              const logo = companyLogo(s.company_logo);
               return (
                 <div
                   key={s.id}
@@ -210,18 +213,33 @@ export default function InsightsScheduleLive({
                       meta.badge}
                   </div>
                   <div className="isc-body">
-                    <div className="isc-meta-row">
-                      <span
-                        className="isc-time-pill"
-                        style={{ background: meta.bar }}
-                      >
-                        {formatTime(s.start_time)} – {formatTime(s.end_time)}
-                      </span>
-                      {s.company ? (
-                        <span className="isc-room">{s.company}</span>
+                    {/* Duración y título en la MISMA fila; recuadro "Powered by" a la derecha */}
+                    <div className="isc-title-row">
+                      <div className="isc-title-left">
+                        <span
+                          className="isc-time-pill"
+                          style={{ background: meta.bar }}
+                        >
+                          {formatTime(s.start_time)} – {formatTime(s.end_time)}
+                        </span>
+                        <div className="isc-session-title">
+                          {confTitle(s, lang)}
+                        </div>
+                      </div>
+                      {logo ? (
+                        <div className="isc-powered">
+                          <span className="isc-powered-label">
+                            {lbl("poweredBy", "Powered by", "Powered by")}
+                          </span>
+                          <img
+                            className="isc-powered-logo"
+                            src={logo}
+                            alt={s.company || ""}
+                            loading="lazy"
+                          />
+                        </div>
                       ) : null}
                     </div>
-                    <div className="isc-session-title">{confTitle(s, lang)}</div>
                     {desc ? <p className="isc-session-desc">{desc}</p> : null}
 
                     {speakers.length > 0 && (

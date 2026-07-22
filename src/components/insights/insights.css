@@ -96,6 +96,17 @@
     transform: translateX(calc(-50% - 10px));
   }
 }
+
+/* AÑADIDO — layout estático para cuando hay pocos ponentes (sin duplicar/animar).
+   Lo usa InsightsSpeakersLive cuando speakers.length < 4: muestra las tarjetas
+   centradas y sin bucle, para que no se vean repetidas. */
+.isp-static {
+  display: flex;
+  gap: 20px;                 /* mismo gap que .isp-marquee */
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 @media (max-width: 640px) {
   .isp-carousel {
     -webkit-mask-image: none;
@@ -465,11 +476,76 @@
   color: #8a8a8a;
   font-weight: 600;
 }
+
+/* AÑADIDO — fila del título: título a la izquierda, recuadro "Powered by" a la derecha.
+   align-items: flex-start pega el recuadro arriba; margin-top negativo lo sube más. */
+.isc-title-row {
+  display: flex;
+  align-items: flex-start;   /* recuadro "Powered by" alineado arriba a la derecha */
+  justify-content: space-between;
+  gap: 18px;
+}
+
+/* AÑADIDO — duración + título EN LA MISMA FILA (pill a la izquierda, título a su derecha). */
+.isc-title-left {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;              /* permite que el título haga wrap correctamente */
+}
+.isc-title-left .isc-time-pill {
+  flex: none;               /* el pill no se encoge */
+  margin-top: 2px;          /* alinea el pill con la primera línea del título */
+}
+
+/* AÑADIDO — recuadro "Powered by" (esquina derecha), tamaño medio y centrado. */
+.isc-powered {
+  flex: none;
+  box-sizing: border-box;
+  width: 150px;              /* ancho fijo: todos miden igual */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+}
+.isc-powered-label {
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  color: #9a9a9a;
+  font-weight: 600;
+  text-transform: none;
+}
+.isc-powered-logo {
+  box-sizing: border-box;
+  width: 100%;               /* llena el recuadro a lo ancho */
+  height: 50px;              /* alto fijo: caja idéntica para toda imagen */
+  object-fit: contain;       /* la imagen se acopla sin deformarse ni recortarse */
+  background: #fff;
+  border-radius: 6px;
+  padding: 5px 9px;
+}
+/* En pantallas chicas, el recuadro pasa debajo del título. */
+@media (max-width: 560px) {
+  .isc-title-row {
+    flex-direction: column;
+  }
+  .isc-powered {
+    flex-direction: row;
+    align-self: flex-start;
+  }
+}
+
 .isc-session-title {
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 1.3;
+  font-size: clamp(17px, 1.7vw, 21px);   /* tamaño medio, equilibrado con el recuadro */
+  font-weight: 800;
+  line-height: 1.28;
   color: #fff;
+  flex: 1;                               /* ocupa el ancho disponible junto al recuadro */
 }
 .isc-session-desc {
   margin: 8px 0 0;

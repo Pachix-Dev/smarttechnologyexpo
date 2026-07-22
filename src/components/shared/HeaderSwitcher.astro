@@ -1,5 +1,5 @@
 ---
-// HeaderSwitcher.astro — shared sticky header with logo + Conferencias/Talleres tab switcher.
+// HeaderSwitcher.astro — shared sticky header with Conferencias/Talleres tab switcher.
 // Usage: <HeaderSwitcher active="conferencias" /> or active="talleres"
 // Links assume /conferencias and /talleres routes — adjust hrefs to your routing.
 
@@ -7,11 +7,10 @@ import { useTranslations, getTranslation } from "../../utils/translations";
 
 export interface Props {
   active?: 'conferencias' | 'talleres';
-  logoSrc?: string;
   navbarOffset?: number;
 }
 
-const { active = 'conferencias', logoSrc = '/img/conferencias/logo_conferencias.webp', navbarOffset = 80 } = Astro.props;
+const { active = 'conferencias', navbarOffset = 80 } = Astro.props;
 const isConf = active === 'conferencias';
 const isSkills = active === 'talleres';
 const { translations, locale } = await useTranslations(Astro.props, Astro);
@@ -21,13 +20,6 @@ const base = locale === 'en' ? '/en' : '';
 
 <header class="hs-header" style={`top:${navbarOffset}px`}>
   <div class="hs-inner">
-    <div class="hs-brand">
-      <div class="hs-logo" style={`background-image:url(${logoSrc})`}></div>
-      <div class="hs-brand-text">
-        <div class="hs-brand-title">SMART TECHNOLOGY EXPO</div>
-        <div class="hs-brand-sub">{tr("programSwitch.sub", "CON26 · PROGRAMA EDUCATIVO")}</div>
-      </div>
-    </div>
     <div class="hs-tabs">
       <a href={`${base}/insights`} class={isConf ? 'hs-tab hs-tab--active' : 'hs-tab'}>{tr("programSwitch.conferences", "CONFERENCIAS")}</a>
       <a href={`${base}/skills`} class={isSkills ? 'hs-tab hs-tab--active' : 'hs-tab'}>{tr("programSwitch.workshops", "TALLERES")}</a>
@@ -52,46 +44,7 @@ const base = locale === 'en' ? '/en' : '';
     height: 71px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-  }
-
-  .hs-brand {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    min-width: 0;
-  }
-
-  .hs-logo {
-    width: 127px;
-    height: 73px;
-    flex: none;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    border-radius: 2px;
-  }
-
-  .hs-brand-text {
-    line-height: 1;
-    min-width: 0;
-  }
-
-  .hs-brand-title {
-    font-weight: 800;
-    font-size: 13px;
-    letter-spacing: 0.14em;
-    color: #fff;
-    white-space: nowrap;
-  }
-
-  .hs-brand-sub {
-    font-weight: 600;
-    font-size: 10px;
-    letter-spacing: 0.32em;
-    color: rgba(255, 255, 255, 0.7);
-    margin-top: 3px;
+    justify-content: flex-end;
   }
 
   .hs-tabs {

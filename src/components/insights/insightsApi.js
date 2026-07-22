@@ -18,7 +18,7 @@ export const INSIGHTS_MEDIA_BASE =
 // Escenario a mostrar en Insights (igual que Ecomondo pasa stageId).
 // Cambia este número por el de tu evento cuando tengas tu API.
 export const INSIGHTS_STAGE_ID = Number(
-  import.meta.env.PUBLIC_INSIGHTS_STAGE_ID || 1,
+  import.meta.env.PUBLIC_INSIGHTS_STAGE_ID || 8,
 );
 
 // ---------------------------------------------------------------------------

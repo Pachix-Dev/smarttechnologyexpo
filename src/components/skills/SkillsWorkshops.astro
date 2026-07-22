@@ -3,6 +3,7 @@
 // Pair with BioModal.astro: "Ver semblanza" buttons use [data-bio-trigger].
 
 export interface Workshop {
+  workshopId?: number;
   name: string;
   nivel: 'BÁSICO' | 'INTERMEDIO' | 'AVANZADO';
   instructor: string;
@@ -25,6 +26,7 @@ export interface Props {
 }
 
 import { useTranslations, getTranslation } from "../../utils/translations";
+import { workshops as workshopsData } from "../../data/workshops.js";
 const { translations, locale } = await useTranslations(Astro.props, Astro);
 const tr = (key: string, fallback: string = "") => getTranslation(translations, key, fallback);
 
@@ -32,17 +34,20 @@ const {
   eyebrow = tr('skills.workshops.eyebrow', 'CATÁLOGO'),
   title = tr('skills.workshops.title', 'Talleres disponibles'),
   note = tr('skills.workshops.note', 'Cada taller incluye instructor especializado, duración y requisitos. Inscríbete desde el formulario al final.'),
-  workshops = locale === 'en' ? [
-    { name: 'Collaborative robot (cobot) programming', nivel: 'INTERMEDIO', instructor: 'Ing. Carlos Rivera', instructorRole: 'Industrial robotics specialist', instructorBio: 'Industrial engineer with broad experience in automation and robotics applied to high-volume production lines.', duracion: '4 hours', horario: '10:00 – 14:00', sala: 'Lab Smart Skills A', cupo: 25, disp: 7, requisitos: ['Your own laptop', 'Basic programming knowledge'] },
-    { name: 'IIoT implementation on the plant floor', nivel: 'AVANZADO', instructor: 'Mtra. Laura Gómez', instructorRole: 'Digital transformation lead', instructorBio: 'Specialist in IIoT systems integration and digital twins for production process optimization.', duracion: '3 hours', horario: '10:00 – 13:00', sala: 'Lab Smart Skills B', cupo: 20, disp: 12, requisitos: ['Networking knowledge', 'Your own laptop'] },
-    { name: 'Industrial cybersecurity: fundamentals', nivel: 'BÁSICO', instructor: 'Dr. Javier Soto', instructorRole: 'OT security consultant', instructorBio: 'PhD in industrial robotics with research focused on autonomous systems applied to manufacturing.', duracion: '3 hours', horario: '15:00 – 18:00', sala: 'Lab Smart Skills A', cupo: 30, disp: 22, requisitos: ['No prior requirements'] },
-    { name: 'Machine vision for quality control', nivel: 'INTERMEDIO', instructor: 'Dra. Ana Martínez', instructorRole: 'Innovation director', instructorBio: 'Digital transformation specialist with over 15 years leading innovation projects in the industrial sector.', duracion: '4 hours', horario: '10:00 – 14:00', sala: 'Lab Smart Skills B', cupo: 18, disp: 3, requisitos: ['Your own laptop', 'Basic Python'] },
-  ] : [
-    { name: 'Programación de robots colaborativos (cobots)', nivel: 'INTERMEDIO', instructor: 'Ing. Carlos Rivera', instructorRole: 'Especialista en robótica industrial', instructorBio: 'Ingeniero industrial con amplia trayectoria en automatización y robótica aplicada a líneas de producción de alto volumen.', duracion: '4 horas', horario: '10:00 – 14:00', sala: 'Lab Smart Skills A', cupo: 25, disp: 7, requisitos: ['Laptop propia', 'Nociones básicas de programación'] },
-    { name: 'Implementación de IIoT en planta', nivel: 'AVANZADO', instructor: 'Mtra. Laura Gómez', instructorRole: 'Líder de transformación digital', instructorBio: 'Especialista en integración de sistemas IIoT y gemelos digitales para optimización de procesos productivos.', duracion: '3 horas', horario: '10:00 – 13:00', sala: 'Lab Smart Skills B', cupo: 20, disp: 12, requisitos: ['Conocimientos de redes', 'Laptop propia'] },
-    { name: 'Ciberseguridad industrial: fundamentos', nivel: 'BÁSICO', instructor: 'Dr. Javier Soto', instructorRole: 'Consultor en seguridad OT', instructorBio: 'Doctor en robótica industrial con investigación enfocada en sistemas autónomos aplicados a manufactura.', duracion: '3 horas', horario: '15:00 – 18:00', sala: 'Lab Smart Skills A', cupo: 30, disp: 22, requisitos: ['Sin requisitos previos'] },
-    { name: 'Visión artificial para control de calidad', nivel: 'INTERMEDIO', instructor: 'Dra. Ana Martínez', instructorRole: 'Directora de innovación', instructorBio: 'Especialista en transformación digital con más de 15 años liderando proyectos de innovación en el sector industrial.', duracion: '4 horas', horario: '10:00 – 14:00', sala: 'Lab Smart Skills B', cupo: 18, disp: 3, requisitos: ['Laptop propia', 'Python básico'] },
-  ],
+  workshops = workshopsData.map((w) => ({
+    workshopId: w.workshopId,
+    name: locale === 'en' ? w.name_en : w.name,
+    nivel: w.nivel,
+    instructor: w.instructor,
+    instructorRole: locale === 'en' ? w.instructorRole_en : w.instructorRole,
+    instructorBio: locale === 'en' ? w.instructorBio_en : w.instructorBio,
+    duracion: locale === 'en' ? w.duracion_en : w.duracion,
+    horario: w.horario,
+    sala: w.sala,
+    cupo: w.cupo,
+    disp: w.cupo,          // inicial; el script pone el disponible real desde la BD
+    requisitos: locale === 'en' ? w.requisitos_en : w.requisitos,
+  })),
   accent = '#E2101A',
 } = Astro.props;
 
@@ -64,7 +69,7 @@ const workshopsView = workshops.map((w, idx) => {
   const nivelLabel = nivelText[w.nivel] || w.nivel;
   const cupoColor = low ? accent : '#cfcfcf';
   const fillBg = low ? accent : `linear-gradient(90deg,#0D3B66,${accent})`;
-  return { ...w, workshopId: idx + 1, low, nivelColor, fillPercent, cupoText, cupoColor, fillBg, nivelLabel };
+  return { ...w, workshopId: w.workshopId ?? idx + 1, low, nivelColor, fillPercent, cupoText, cupoColor, fillBg, nivelLabel };
 });
 ---
 
@@ -86,7 +91,13 @@ const workshopsView = workshops.map((w, idx) => {
           <div class="sw-card-body">
             <div class="sw-card-head">
               <span class="sw-nivel" style={`background:${w.nivelColor}`}>{w.nivelLabel}</span>
-              <span class="sw-duracion">{w.duracion}</span>
+              <span class="sw-duracion">
+                <svg class="sw-clock-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/>
+                  <path d="M12 7v5l3.5 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                {w.duracion}
+              </span>
             </div>
             <h3 class="sw-name">{w.name}</h3>
 
@@ -307,9 +318,18 @@ const workshopsView = workshops.map((w, idx) => {
   }
 
   .sw-duracion {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
     font-size: 12px;
     font-weight: 600;
     color: #8a8a8a;
+  }
+
+  .sw-clock-icon {
+    width: 14px;
+    height: 14px;
+    flex: none;
   }
 
   .sw-name {

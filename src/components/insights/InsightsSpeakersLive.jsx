@@ -31,7 +31,12 @@ export default function InsightsSpeakersLive({
     fetchStage(stageId)
       .then((stage) => {
         if (!alive) return;
-        setSpeakers(uniqueSpeakers(stage));
+        // Solo entran al carrusel los ponentes con foto: si la ficha aún está
+        // incompleta (sin foto), el ponente se omite hasta que la suban al CMS.
+        const conFoto = uniqueSpeakers(stage).filter((sp) =>
+          Boolean(speakerPhoto(sp.photo)),
+        );
+        setSpeakers(conFoto);
         setLoading(false);
       })
       .catch((err) => {

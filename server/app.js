@@ -15,6 +15,8 @@ import { generatePDF_freePass_ecomondo, generateQRDataURL, generatePDFInvoice, g
 import PDFDocument from 'pdfkit';
 import { Resend } from "resend";
 import { MercadoPagoConfig, Payment } from 'mercadopago';
+// SEGURIDAD (1): límite de peticiones
+import rateLimit from 'express-rate-limit';
 
 const { json } = pkg
 const app = express()
@@ -33,6 +35,22 @@ app.use(cors({
     return callback(new Error('Not allowed by CORS'))
   }
 }))
+
+// SEGURIDAD (1): RATE LIMITING — máx. 20 peticiones por IP cada 15 min a las
+// rutas de talleres. Frena enumeración de correos y spam/saturación automatizados.
+const talleresLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 20,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { status: false, message: 'Demasiadas peticiones, intenta más tarde.' },
+});
+app.use(['/workshop-visitor', '/workshop-register'], talleresLimiter);
+
+// SEGURIDAD (5): escape de HTML para datos del usuario que se insertan en correos
+// (evita inyección de HTML). Convierte < > & " ' en texto inofensivo.
+const escapeHtml = (s = '') => String(s).replace(/[&<>"']/g, c =>
+  ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
 
 
 const PORT = process.env.PORT || 3010
@@ -58,13 +76,13 @@ app.get('/check-user-visit', async (req, res) => {
 app.post('/create-order-ecomondo', async (req, res) => {
     try {
         const { body } = req;
-        
+
 
         let total = 0;
         // Check if the items are unique
-        const ids = [];        
+        const ids = [];
         body.items.forEach((item) => {
-            if (ids.includes(item.id)) {                
+            if (ids.includes(item.id)) {
                 return res.status(500).send({
                     status: false,
                     message: 'Tu compra no pudo ser procesada, la información no es válida...'
@@ -84,7 +102,7 @@ app.post('/create-order-ecomondo', async (req, res) => {
         }
 
         const products = get_products.result;
-        
+
         body.items.forEach(item => {
             const product = products.find(product => product.id == item.id);
             total += product.price;
@@ -94,9 +112,9 @@ app.post('/create-order-ecomondo', async (req, res) => {
                     status: false,
                     message: 'Error producto no encontrado...'
                 });
-            }            
+            }
         });
-        
+
         if (total !== body.total) {
             return res.status(400).send({
                 status: false,
@@ -104,9 +122,9 @@ app.post('/create-order-ecomondo', async (req, res) => {
             });
         }
 
-                
+
         const limit = await RegisterModel.get_ecomondo_trip();
-        
+
         if (limit.length >= 80) {
             return res.status(400).send({
                 status: false,
@@ -119,7 +137,7 @@ app.post('/create-order-ecomondo', async (req, res) => {
             transaction_amount: total,
             description: 'Field Trip Ecomondo Mexico 2025',
             payment_method_id: body?.paymentData.payment_method_id,
-            payer: { 
+            payer: {
                     first_name: body?.name,
                     last_name: body?.paternSurname,
                     email: body?.paymentData.payer.email },
@@ -128,12 +146,12 @@ app.post('/create-order-ecomondo', async (req, res) => {
             external_reference: body.uuid,
             installments: 1,
         };
-        
+
         const resp = await payment.create({ body: paymentData });
-        
-        if (resp.status === "approved") {                        
+
+        if (resp.status === "approved") {
             await RegisterModel.save_order(body.idUser, body.items.map(item => item.id), body.total, resp.id );
-                        
+
             const pdfAtch = await generatePDFInvoice(resp.id, body);
             const mailResponse = await sendEmailEcomondo(body, pdfAtch, resp.id);
 
@@ -141,7 +159,7 @@ app.post('/create-order-ecomondo', async (req, res) => {
                 ...mailResponse,
                 invoice: `${resp.id}.pdf`
             });
-           
+
         } else {
             return res.status(400).send({
                 status: false,
@@ -150,11 +168,12 @@ app.post('/create-order-ecomondo', async (req, res) => {
         }
 
     } catch (error) {
+        // SEGURIDAD (4): el detalle del error queda SOLO en el servidor (logs);
+        // NO se envía al cliente. (Antes se filtraba con: error: error.message)
         console.error('Error en /create-order-ecomondo:', error.message);
         return res.status(500).send({
             status: false,
-            message: 'Ocurrió un error al procesar la solicitud.',
-            error: error.message
+            message: 'Ocurrió un error al procesar la solicitud.'
         });
     }
 });
@@ -195,23 +214,24 @@ app.post('/expositor-landing-email', async (req, res) => {
             });
         }
 
-        await RegisterModel.create_expositor_lead_ecomondo({...body}); 
-        
+        await RegisterModel.create_expositor_lead_ecomondo({...body});
+
         await resend.emails.send({
             from: 'LEAD EXPOSITOR ECOMONDO 2026 <noreply@ecomondomexico.com.mx>',
             to: 'samuel.ramirez@igeco.mx',
             cc: 'jesus.zermeno@igeco.mx',
             subject: 'Nuevo Lead Expositor ECOMONDO MEXICO 2026',
+            // SEGURIDAD (5): escapamos los datos del usuario (anti inyección de HTML).
             html: `<h1>Un nuevo expositor ha solicitado información</h1>
-            <p>Sector: ${body.sector}</p>
-            <p>Nombre: ${body.name}</p>
-            <p>Correo: ${body.email}</p>
-            <p>Empresa: ${body.company}</p>
-            <p>Telefono: ${body.phone}</p>
-            <p>Mensaje: ${body.message}</p>
-            `, 
+            <p>Sector: ${escapeHtml(body.sector)}</p>
+            <p>Nombre: ${escapeHtml(body.name)}</p>
+            <p>Correo: ${escapeHtml(body.email)}</p>
+            <p>Empresa: ${escapeHtml(body.company)}</p>
+            <p>Telefono: ${escapeHtml(body.phone)}</p>
+            <p>Mensaje: ${escapeHtml(body.message)}</p>
+            `,
         })
-        
+
         return res.send({
             status: true,
             message: 'Gracias por registrarte, te hemos enviado un correo de confirmación a tu bandeja de entrada...'
@@ -222,13 +242,13 @@ app.post('/expositor-landing-email', async (req, res) => {
         return res.status(500).send({
             status: false,
             message: 'No pudimos enviarte el correo de confirmación de tu registro, por favor descarga tu registro en este pagina y presentalo hasta el dia del evento...'
-        });             
-    }          
+        });
+    }
 })
 
 app.post('/susbribe-email-ecomondo', async (req, res) => {
     const { body } = req;
-    
+
     try {
         // Validar que el usuario no exista previamente
         const subscriberExists = await RegisterModel.check_subscriber_exists(body.email);
@@ -238,16 +258,16 @@ app.post('/susbribe-email-ecomondo', async (req, res) => {
                 message: 'Ya estás suscrito con este correo electrónico...'
             });
         }
-        
-        const userResponse = await RegisterModel.create_suscriber_ecomondo({...body}); 
+
+        const userResponse = await RegisterModel.create_suscriber_ecomondo({...body});
 
         if(!userResponse.status){
             return  res.status(500).send({
                 ...userResponse
             });
-        }                    
+        }
         return res.send({
-            ...userResponse,            
+            ...userResponse,
         });
     } catch (err) {
         console.log(err);
@@ -261,7 +281,7 @@ app.post('/susbribe-email-ecomondo', async (req, res) => {
 // Registro gratuito para visitantes a Smart Technology Expo 2026
 app.post('/free-register-ste', async (req, res) => {
     const { body } = req;
-    
+
     try {
         // Validar que el usuario no exista previamente
         const userExists = await RegisterModel.check_user_exists_2026(body.email);
@@ -271,28 +291,28 @@ app.post('/free-register-ste', async (req, res) => {
                 message: 'Ya estás registrado con este correo electrónico...'
             });
         }
-        
-        const data = { 
-            uuid: uuidv4(),            
+
+        const data = {
+            uuid: uuidv4(),
             ...body,
             typeRegister: 'VISITANTE'
-        };          
-        const userResponse = await RegisterModel.create_user_ste({ ...data }); 
+        };
+        const userResponse = await RegisterModel.create_user_ste({ ...data });
 
         if(!userResponse.status){
             return  res.status(500).send({
                 ...userResponse
             });
         }
-                
+
         const pdfAtch = await generatePDF_freePass_ecomondo(body, data.uuid);
-        const mailResponse = await sendEmailEcomondo(data, pdfAtch, data.uuid);   
+        const mailResponse = await sendEmailEcomondo(data, pdfAtch, data.uuid);
 
         return res.send({
             ...mailResponse,
             invoice: `${data.uuid}.pdf`
-        });                
-               
+        });
+
     } catch (err) {
         console.log(err);
         res.status(500).send({
@@ -304,7 +324,7 @@ app.post('/free-register-ste', async (req, res) => {
 
 app.post('/free-register-student-ecomondo', async (req, res) => {
     const { body } = req;
-    
+
     try {
         // Validar que el usuario no exista previamente
         const userExists = await RegisterModel.check_student_user_exists_2026(body.email);
@@ -314,27 +334,27 @@ app.post('/free-register-student-ecomondo', async (req, res) => {
                 message: 'Ya estás registrado con este correo electrónico...'
             });
         }
-        
-        const data = { 
-            uuid: uuidv4(),            
+
+        const data = {
+            uuid: uuidv4(),
             ...body
-        };          
-        const userResponse = await RegisterModel.create_user_ecomondo_student({ ...data }); 
+        };
+        const userResponse = await RegisterModel.create_user_ecomondo_student({ ...data });
 
         if(!userResponse.status){
             return  res.status(500).send({
                 ...userResponse
             });
         }
-                
+
         const pdfAtch = await generatePDF_freePass_ecomondo_student(body, data.uuid);
-        const mailResponse = await sendEmailEcomondo_student(data, pdfAtch, data.uuid);   
+        const mailResponse = await sendEmailEcomondo_student(data, pdfAtch, data.uuid);
 
         return res.send({
             ...mailResponse,
             invoice: `${data.uuid}.pdf`
-        });                
-               
+        });
+
     } catch (err) {
         console.log(err);
         res.status(500).send({
@@ -346,7 +366,7 @@ app.post('/free-register-student-ecomondo', async (req, res) => {
 
 app.post('/free-register-ecomondo-sitio', async (req, res) => {
     const { body } = req;
-    
+
     try {
         // Validar que el usuario no exista previamente
         const userExists = await RegisterModel.check_user_exists_2026(body.email);
@@ -356,25 +376,25 @@ app.post('/free-register-ecomondo-sitio', async (req, res) => {
                 message: 'Ya estás registrado con este correo electrónico...'
             });
         }
-        
-        const data = { 
-            uuid: uuidv4(),            
+
+        const data = {
+            uuid: uuidv4(),
             ...body
-        };          
-        const userResponse = await RegisterModel.create_user_ecomondo({ ...data }); 
+        };
+        const userResponse = await RegisterModel.create_user_ecomondo({ ...data });
 
         if(!userResponse.status){
             return  res.status(500).send({
                 ...userResponse
             });
-        }                        
+        }
 
         return res.send({
             status: true,
             uuid: data.uuid,
             message: 'Tu registro fue exitoso...'
-        });                
-               
+        });
+
     } catch (err) {
         console.log(err);
         res.status(500).send({
@@ -429,7 +449,7 @@ app.get('/get-badge-to-print', async (req, res) => {
 app.use(express.static('public'));
 
 app.get('/generate-pdf', async (req, res) => {
-  
+
   const doc = new PDFDocument();
   // Set the response type to PDF
   res.setHeader('Content-Type', 'application/pdf');
@@ -460,7 +480,7 @@ app.get('/generate-pdf', async (req, res) => {
   // aqui iria el QR con info del usuario
   const imageQr = await generateQRDataURL('uuid-1234567890');
   doc.image(imageQr, 90, 120, { width: 120 });
-  
+
   doc
   .font('Helvetica-Bold')
   .fontSize(18)
@@ -483,7 +503,7 @@ app.get('/generate-pdf', async (req, res) => {
     .text('PARA TU VISITA', 310, 30, {
         width: 300,
         align: 'center'
-    })    
+    })
     .moveDown(0.2);
 
     doc.fontSize(14)
@@ -492,7 +512,7 @@ app.get('/generate-pdf', async (req, res) => {
         width: 300,
         align: 'center'
     }).moveDown(1);
-    
+
     doc.font('Helvetica-Bold')
     .fontSize(12)
     .text('Futuristic Minds', 330)
@@ -506,9 +526,9 @@ app.get('/generate-pdf', async (req, res) => {
         align: 'justify'
     })
     .moveDown(0.5);
-    
+
     doc.font('Helvetica-BoldOblique')
-    .fontSize(10)    
+    .fontSize(10)
     .list(['SEDE VELARIA'])
     .font('Helvetica')
     .fontSize(8)
@@ -529,7 +549,7 @@ app.get('/generate-pdf', async (req, res) => {
     })
     .moveDown(3);
 
-    doc.lineWidth(1);    
+    doc.lineWidth(1);
     doc.moveTo(320, 250)
         .lineTo( 600, 250 )
         .stroke();
@@ -548,32 +568,32 @@ app.get('/generate-pdf', async (req, res) => {
     .moveDown(2);
 
     doc
-    .font('Helvetica-Bold')    
+    .font('Helvetica-Bold')
     .moveDown(1)
     .text('ITALIAN GERMAN EXHIBITION COMPANY MEXICO', {
-        width: 250,    
+        width: 250,
         align: 'center'
     });
 
   doc.image('img/footer2_FUTURISTIC.jpg', 307, 328, { width: 306 });
-  
+
   doc.save();
   // Rotate and draw some text
   doc.rotate(180, {origin: [150, 305]})
-  .fillColor('#009FE3')  
-  .fontSize(20)  
+  .fillColor('#009FE3')
+  .fontSize(20)
   .text('HORARIOS', 50, -110, {
     width: 200,
     align: 'center'
-  
+
   })
   .moveDown(1)
-  .fillColor('black')  
+  .fillColor('black')
   .fontSize(14)
   .font('Helvetica-BoldOblique')
   .text('SEDE EXPLORA', {
     width: 200,
-    align: 'center'  
+    align: 'center'
   })
   .moveDown(1)
   .text('9 OCT ', {continued: true})
@@ -594,7 +614,7 @@ app.get('/generate-pdf', async (req, res) => {
   .font('Helvetica-BoldOblique')
   .text('SEDE VELARIA', {
     width: 200,
-    align: 'center'  
+    align: 'center'
   })
   .moveDown(1)
   .font('Helvetica-Bold')
@@ -619,7 +639,7 @@ app.get('/generate-pdf', async (req, res) => {
 
   // Restore the previous state to avoid rotating everything else
   doc.restore();
-  
+
   doc.end();
 });
 
@@ -667,11 +687,13 @@ app.get('/template-email-workshop', async (req, res) => {
 // Busca al visitante por su correo. Lo usa el Paso 1 del formulario.
 // ---------------------------------------------------------------------
 app.get('/workshop-visitor', async (req, res) => {
-    // Sacamos el correo de la URL (?email=...).
-    const { email } = req.query;
+    // Sacamos el correo de la URL (?email=...) y lo normalizamos.
+    const email = String(req.query.email || '').trim().toLowerCase();
 
-    // Si no mandaron correo, respondemos 400 (petición incorrecta).
-    if (!email) return res.status(400).send({ status: false, message: 'Correo requerido' });
+    // SEGURIDAD (3): validar formato de correo antes de tocar la base.
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        return res.status(400).send({ status: false, message: 'Correo inválido' });
+    }
 
     // Buscamos al visitante en la base (método de db.js).
     const visitor = await RegisterModel.get_visitor_ste_by_email(email);
@@ -681,8 +703,16 @@ app.get('/workshop-visitor', async (req, res) => {
         return res.status(404).send({ status: false, message: 'No encontramos un registro con ese correo.' });
     }
 
-    // Si existe, devolvemos sus datos para autollenar el formulario.
-    return res.send({ status: true, visitor });
+    // SEGURIDAD (2): devolvemos SOLO lo necesario (sin uuid ni id) al navegador.
+    const safeVisitor = {
+        name: visitor.name,
+        paternSurname: visitor.paternSurname,
+        email: visitor.email,
+        phone: visitor.phone,
+        company: visitor.company,
+        position: visitor.position,
+    };
+    return res.send({ status: true, visitor: safeVisitor });
 });
 
 
@@ -710,6 +740,11 @@ app.post('/workshop-register', async (req, res) => {
         const { email, workshop_id, currentLanguage = 'es' } = req.body;
         // Idioma del correo (es/en); por defecto español.
         const lang = currentLanguage === 'en' ? 'en' : 'es';
+
+        // SEGURIDAD (3): validar que el id del taller sea un entero positivo.
+        if (!Number.isInteger(Number(workshop_id)) || Number(workshop_id) <= 0) {
+            return res.status(400).send({ status: false, message: 'Taller inválido' });
+        }
 
         // 1) Verificar que el visitante exista.
         const visitor = await RegisterModel.get_visitor_ste_by_email(email);
@@ -782,8 +817,8 @@ app.post('/workshop-register', async (req, res) => {
 });
 
 
-/* Permite enviar correos electrónicos de confirmación de registro */ 
-async function sendEmailEcomondo(data, pdfAtch = null, paypal_id_transaction = null){    
+/* Permite enviar correos electrónicos de confirmación de registro */
+async function sendEmailEcomondo(data, pdfAtch = null, paypal_id_transaction = null){
     try{
 
         const emailContent = data.currentLanguage === 'es' ?  await email_template_ecomondo({ ...data }) : await email_template_ecomondo_eng({ ...data });
@@ -797,11 +832,11 @@ async function sendEmailEcomondo(data, pdfAtch = null, paypal_id_transaction = n
                 {
                     filename: `${paypal_id_transaction}.pdf`,
                     path: `https://smarttechnologyexpo.mx/invoices/${paypal_id_transaction}.pdf`,
-                    content_type: 'application/pdf'         
+                    content_type: 'application/pdf'
                 },
-              ],           
+              ],
         })
-        
+
         return {
             status: true,
             message: 'Gracias por registrarte, te hemos enviado un correo de confirmación a tu bandeja de entrada...'
@@ -812,11 +847,11 @@ async function sendEmailEcomondo(data, pdfAtch = null, paypal_id_transaction = n
         return {
             status: false,
             message: 'No pudimos enviarte el correo de confirmación de tu prerregistro, por favor descarga tu prerregistro en esta página y preséntalo hasta el día del evento...'
-        };              
-    }    
+        };
+    }
 }
 
-async function sendEmailEcomondo_student(data, pdfAtch = null, paypal_id_transaction = null){    
+async function sendEmailEcomondo_student(data, pdfAtch = null, paypal_id_transaction = null){
     try{
 
         const emailContent = data.currentLanguage === 'es' ?  await email_template_ecomondo_student({ ...data }) : await email_template_ecomondo_eng_student({ ...data });
@@ -832,9 +867,9 @@ async function sendEmailEcomondo_student(data, pdfAtch = null, paypal_id_transac
                     path: `https://smarttechnologyexpo.mx/invoices/${paypal_id_transaction}.pdf`,
                     content_type: 'application/pdf'
                 },
-              ],           
+              ],
         })
-        
+
         return {
             status: true,
             message: 'Gracias por registrarte, te hemos enviado un correo de confirmación a tu bandeja de entrada...'
@@ -845,8 +880,8 @@ async function sendEmailEcomondo_student(data, pdfAtch = null, paypal_id_transac
         return {
             status: false,
             message: 'No pudimos enviarte el correo de confirmación de tu prerregistro, por favor descarga tu prerregistro en esta página y preséntalo hasta el día del evento...'
-        };              
-    }    
+        };
+    }
 }
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`)
