@@ -160,7 +160,7 @@ const workshopsView = workshops.map((w, idx) => {
   // Solo la BARRA DE CUPO se consume de la base de datos (endpoint /workshops).
   // La info de cada card (nombre, instructor, etc.) es estática / de tu API.
   const API = import.meta.env.DEV
-    ? 'http://localhost:3010/'
+    ? 'http://localhost:3005/'
     : 'https://smarttechnologyexpo.mx/server/';
 
   function initSkillsWorkshops() {
