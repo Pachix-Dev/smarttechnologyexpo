@@ -15,8 +15,9 @@ import { generatePDF_freePass_ecomondo, generateQRDataURL, generatePDFInvoice, g
 import PDFDocument from 'pdfkit';
 import { Resend } from "resend";
 import { MercadoPagoConfig, Payment } from 'mercadopago';
-// SEGURIDAD (1): límite de peticiones
-import rateLimit from 'express-rate-limit';
+// SEGURIDAD (1): límite de peticiones — TEMPORALMENTE DESACTIVADO.
+// Para reactivarlo: instala en el server (npm install express-rate-limit) y descomenta.
+// import rateLimit from 'express-rate-limit';
 
 const { json } = pkg
 const app = express()
@@ -36,16 +37,15 @@ app.use(cors({
   }
 }))
 
-// SEGURIDAD (1): RATE LIMITING — máx. 20 peticiones por IP cada 15 min a las
-// rutas de talleres. Frena enumeración de correos y spam/saturación automatizados.
-const talleresLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 20,
-  standardHeaders: true,
-  legacyHeaders: false,
-  message: { status: false, message: 'Demasiadas peticiones, intenta más tarde.' },
-});
-app.use(['/workshop-visitor', '/workshop-register'], talleresLimiter);
+// SEGURIDAD (1): RATE LIMITING — TEMPORALMENTE DESACTIVADO (requiere express-rate-limit).
+// const talleresLimiter = rateLimit({
+//   windowMs: 15 * 60 * 1000,
+//   max: 20,
+//   standardHeaders: true,
+//   legacyHeaders: false,
+//   message: { status: false, message: 'Demasiadas peticiones, intenta más tarde.' },
+// });
+// app.use(['/workshop-visitor', '/workshop-register'], talleresLimiter);
 
 // SEGURIDAD (5): escape de HTML para datos del usuario que se insertan en correos
 // (evita inyección de HTML). Convierte < > & " ' en texto inofensivo.
@@ -722,7 +722,7 @@ app.get('/workshop-visitor', async (req, res) => {
 // Lo usa: el catálogo (barra de cupo) y la lista del formulario.
 // ---------------------------------------------------------------------
 app.get('/workshops', async (req, res) => {
-    
+
     // Traemos todos los talleres activos (con capacity y registered).
     const workshops = await RegisterModel.get_active_workshops();
 
