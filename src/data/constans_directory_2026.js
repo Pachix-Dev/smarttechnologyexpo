@@ -1060,7 +1060,7 @@ export const directory2026 =
     "id": 46,
     "tradename": "TELCEL EMPRESAS",
     "legal_company_name": "RADIOMOVIL DIPSA SA DE CV",
-    "logo": "https://drive.google.com/open?id=1vL7VwM8A0iBYclaQGFU7rTdp8iydBMyA",
+    "logo": "/img/exhibitors2026/telcel_empresas.webp",
     "description_es": "Telcel Empresas brinda soluciones de conectividad, IoT, nube y ciberseguridad para acelerar la transformación digital y la automatización de procesos, conectando a las empresas con la tecnología que impulsa la Industria 4.0.",
     "description_en": "Telcel Empresas provides connectivity, IoT, cloud, and cybersecurity solutions to accelerate digital transformation and process automation, connecting businesses with the technology driving Industry 4.0.",
     "linkedin": "https://mx.linkedin.com/company/telcel",
