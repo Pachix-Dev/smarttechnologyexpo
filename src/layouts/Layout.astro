@@ -1,131 +1,131 @@
 ---
-import Navigation from '../components/shared/Navigation.astro'
-import '../styles/global.css'
-import Footer from '../components/shared/Footer.astro'
+import Navigation from "../components/shared/Navigation.astro";
+import "../styles/global.css";
+import Footer from "../components/shared/Footer.astro";
 
 interface Props {
-  title: string
-  description: string
-  keywords?: string
-  ogImage?: string
-  ogImageAlt?: string
-  ogType?: string
-  canonical?: string
+  title: string;
+  description: string;
+  keywords?: string;
+  ogImage?: string;
+  ogImageAlt?: string;
+  ogType?: string;
+  canonical?: string;
 }
 
-const currentLocale = Astro.currentLocale || 'es'
-const siteUrl = Astro.site || 'https://smarttechnologyexpo.mx'
+const currentLocale = Astro.currentLocale || "es";
+const siteUrl = Astro.site || "https://smarttechnologyexpo.mx";
 
 const defaultKeywords =
-  currentLocale === 'es'
-    ? 'Smart Technology Expo, tecnología inteligente México, Industria 4.0, tecnología industrial México, manufactura inteligente, automatización industrial, robotización, Internet of Things, IIoT, transformación digital, fábrica inteligente, smart factory, manufactura aditiva, logística inteligente, expo tecnología, innovación industrial, maquinaria industrial, soluciones industriales, conferencias tecnología, networking industrial, León Guanajuato'
-    : 'Smart Technology Expo, smart technology Mexico, Industry 4.0, industrial technology Mexico, smart manufacturing, industrial automation, robotics, Internet of Things, IIoT, digital transformation, smart factory, additive manufacturing, intelligent logistics, technology expo, industrial innovation, industrial machinery, industrial solutions, technology conferences, industrial networking, León Guanajuato'
+  currentLocale === "es"
+    ? "Smart Technology Expo, tecnología inteligente México, Industria 4.0, tecnología industrial México, manufactura inteligente, automatización industrial, robotización, Internet of Things, IIoT, transformación digital, fábrica inteligente, smart factory, manufactura aditiva, logística inteligente, expo tecnología, innovación industrial, maquinaria industrial, soluciones industriales, conferencias tecnología, networking industrial, León Guanajuato"
+    : "Smart Technology Expo, smart technology Mexico, Industry 4.0, industrial technology Mexico, smart manufacturing, industrial automation, robotics, Internet of Things, IIoT, digital transformation, smart factory, additive manufacturing, intelligent logistics, technology expo, industrial innovation, industrial machinery, industrial solutions, technology conferences, industrial networking, León Guanajuato";
 
 const {
   title,
   description,
   keywords = defaultKeywords,
-  ogImage = '/img/og-image.webp',
-  ogImageAlt = 'Smart Technology Expo 2026 en Expo Guadalajara',
-  ogType = 'website',
+  ogImage = "/img/og-image.webp",
+  ogImageAlt = "Smart Technology Expo 2026 en Expo Guadalajara",
+  ogType = "website",
   canonical = Astro.url.pathname,
-} = Astro.props
+} = Astro.props;
 
-const canonicalURL = new URL(canonical, siteUrl).href
-const fullOgImage = new URL(ogImage, siteUrl).href
+const canonicalURL = new URL(canonical, siteUrl).href;
+const fullOgImage = new URL(ogImage, siteUrl).href;
 ---
 
 <!doctype html>
 <html lang={currentLocale} class="scroll-pt-16 lg:scroll-pt-24">
   <head>
-    <meta charset='UTF-8' />
-    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-    <link rel='icon' type='image/png' href='/img/smart_logo_red.png' />
-    <meta name='generator' content={Astro.generator} />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/img/smart_logo_red.png" />
+    <meta name="generator" content={Astro.generator} />
 
     <!-- Primary Meta Tags -->
     <title>{title}</title>
-    <meta name='title' content={title} />
-    <meta name='description' content={description} />
-    <meta name='keywords' content={keywords} />
-    <meta name='author' content='Italian German Exhibition Company Mexico' />
-    <meta name='robots' content='index, follow' />
-    <meta name='language' content={currentLocale} />
-    <link rel='canonical' href={canonicalURL} />
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content="Italian German Exhibition Company Mexico" />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content={currentLocale} />
+    <link rel="canonical" href={canonicalURL} />
 
     <!-- Open Graph / Facebook -->
-    <meta property='og:type' content={ogType} />
-    <meta property='og:url' content={canonicalURL} />
-    <meta property='og:title' content={title} />
-    <meta property='og:description' content={description} />
-    <meta property='og:image' content={fullOgImage} />
-    <meta property='og:image:secure_url' content={fullOgImage} />
-    <meta property='og:image:type' content='image/jpeg' />
-    <meta property='og:image:width' content='1200' />
-    <meta property='og:image:height' content='630' />
-    <meta property='og:image:alt' content={ogImageAlt} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={fullOgImage} />
+    <meta property="og:image:secure_url" content={fullOgImage} />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={ogImageAlt} />
     <meta
-      property='og:locale'
-      content={currentLocale === 'es' ? 'es_MX' : 'en_US'}
+      property="og:locale"
+      content={currentLocale === "es" ? "es_MX" : "en_US"}
     />
-    <meta property='og:site_name' content='Smart Technology Expo' />
+    <meta property="og:site_name" content="Smart Technology Expo" />
 
     <!-- Twitter Card -->
-    <meta name='twitter:card' content='summary_large_image' />
-    <meta name='twitter:url' content={canonicalURL} />
-    <meta name='twitter:title' content={title} />
-    <meta name='twitter:description' content={description} />
-    <meta name='twitter:image' content={fullOgImage} />
-    <meta name='twitter:image:alt' content={ogImageAlt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={fullOgImage} />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
 
     <!-- Alternate Languages -->
     <link
-      rel='alternate'
-      hreflang='es'
-      href={new URL(Astro.url.pathname.replace('/en/', '/'), siteUrl).href}
+      rel="alternate"
+      hreflang="es"
+      href={new URL(Astro.url.pathname.replace("/en/", "/"), siteUrl).href}
     />
     <link
-      rel='alternate'
-      hreflang='en'
-      href={new URL('/en' + Astro.url.pathname, siteUrl).href}
+      rel="alternate"
+      hreflang="en"
+      href={new URL("/en" + Astro.url.pathname, siteUrl).href}
     />
     <link
-      rel='alternate'
-      hreflang='x-default'
-      href={new URL('/', siteUrl).href}
+      rel="alternate"
+      hreflang="x-default"
+      href={new URL("/", siteUrl).href}
     />
 
     <!-- Preconnect for performance -->
-    <link rel='preconnect' href='https://unpkg.com' />
-    <link rel='dns-prefetch' href='https://unpkg.com' />
-    <link href='https://unpkg.com/aos@2.3.1/dist/aos.css' rel='stylesheet' />
+    <link rel="preconnect" href="https://unpkg.com" />
+    <link rel="dns-prefetch" href="https://unpkg.com" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
     <!-- Structured Data (JSON-LD) -->
     <script
-      type='application/ld+json'
+      type="application/ld+json"
       set:html={JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'Event',
-        name: 'Smart Technology Expo 2026',
+        "@context": "https://schema.org",
+        "@type": "Event",
+        name: "Smart Technology Expo 2026",
         description: description,
         url: siteUrl,
-        startDate: '2026-11-18',
-        endDate: '2026-11-20',
-        eventStatus: 'https://schema.org/EventScheduled',
-        eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+        startDate: "2026-11-18",
+        endDate: "2026-11-20",
+        eventStatus: "https://schema.org/EventScheduled",
+        eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
         location: {
-          '@type': 'Place',
-          name: 'EXPO GUADALAJARA',
+          "@type": "Place",
+          name: "EXPO GUADALAJARA",
           address: {
-            '@type': 'PostalAddress',
-            addressLocality: 'Guadalajara',
-            addressRegion: 'Jalisco',
-            addressCountry: 'MX',
+            "@type": "PostalAddress",
+            addressLocality: "Guadalajara",
+            addressRegion: "Jalisco",
+            addressCountry: "MX",
           },
         },
         organizer: {
-          '@type': 'Organization',
-          name: 'Italian German Exhibition Company Mexico',
+          "@type": "Organization",
+          name: "Italian German Exhibition Company Mexico",
           url: siteUrl,
         },
         image: fullOgImage,
@@ -135,69 +135,67 @@ const fullOgImage = new URL(ogImage, siteUrl).href
     <!-- Meta Pixel Code -->
     <script is:inline>
       !(function (f, b, e, v, n, t, s) {
-        if (f.fbq) return
+        if (f.fbq) return;
         n = f.fbq = function () {
           n.callMethod
             ? n.callMethod.apply(n, arguments)
-            : n.queue.push(arguments)
-        }
-        if (!f._fbq) f._fbq = n
-        n.push = n
-        n.loaded = !0
-        n.version = '2.0'
-        n.queue = []
-        t = b.createElement(e)
-        t.async = !0
-        t.src = v
-        s = b.getElementsByTagName(e)[0]
-        s.parentNode.insertBefore(t, s)
+            : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = "2.0";
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
       })(
         window,
         document,
-        'script',
-        'https://connect.facebook.net/en_US/fbevents.js'
-      )
-      fbq('init', '1384422539879050')
-      fbq('track', 'PageView')
+        "script",
+        "https://connect.facebook.net/en_US/fbevents.js",
+      );
+      fbq("init", "1384422539879050");
+      fbq("track", "PageView");
     </script>
     <noscript
       ><img
-        height='1'
-        width='1'
-        style='display:none'
-        src='https://www.facebook.com/tr?id=1384422539879050&ev=PageView&noscript=1'
+        height="1"
+        width="1"
+        style="display:none"
+        src="https://www.facebook.com/tr?id=1384422539879050&ev=PageView&noscript=1"
       /></noscript
     >
     <!-- End Meta Pixel Code -->
 
     <!-- Google tag (gtag.js) -->
-    <script async src='https://www.googletagmanager.com/gtag/js?id=G-L85LWY8KYH'
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L85LWY8KYH"
     ></script>
     <script is:inline>
-      window.dataLayer = window.dataLayer || []
+      window.dataLayer = window.dataLayer || [];
       function gtag() {
-        dataLayer.push(arguments)
+        dataLayer.push(arguments);
       }
-      gtag('js', new Date())
-      gtag('config', 'G-L85LWY8KYH')
+      gtag("js", new Date());
+      gtag("config", "G-L85LWY8KYH");
     </script>
 
     <!-- Google Tag Manager -->
     <script is:inline>
-      ;(function (w, d, s, l, i) {
-        w[l] = w[l] || []
-        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' })
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
         var f = d.getElementsByTagName(s)[0],
           j = d.createElement(s),
-          dl = l != 'dataLayer' ? '&l=' + l : ''
-        j.async = true
-        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl
-        f.parentNode.insertBefore(j, f)
-      })(window, document, 'script', 'dataLayer', 'GTM-KGV8VD5G')
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-KGV8VD5G");
     </script>
     <!-- End Google Tag Manager -->
-
-    
   </head>
   <body>
     <header>
@@ -210,55 +208,55 @@ const fullOgImage = new URL(ogImage, siteUrl).href
     <script
       is:inline
       data-astro-rerun
-      src='https://unpkg.com/aos@2.3.1/dist/aos.js'></script>
+      src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script data-astro-rerun>
-      AOS.init()
+      AOS.init();
     </script>
     <script is:inline data-astro-rerun>
       //  Agregar interactividad suave
-      document.addEventListener('DOMContentLoaded', function () {
+      document.addEventListener("DOMContentLoaded", function () {
         // Crear partículas flotantes ocasionales
         function createParticle() {
           // const particle = document.createElement('div')
-          particle.className = 'particle'
-          particle.style.left = Math.random() * 100 + '%'
-          particle.style.width = Math.random() * 4 + 2 + 'px'
-          particle.style.height = particle.style.width
-          particle.style.animationDelay = Math.random() * 2 + 's'
+          particle.className = "particle";
+          particle.style.left = Math.random() * 100 + "%";
+          particle.style.width = Math.random() * 4 + 2 + "px";
+          particle.style.height = particle.style.width;
+          particle.style.animationDelay = Math.random() * 2 + "s";
 
-          document.body.appendChild(particle)
+          document.body.appendChild(particle);
 
           setTimeout(() => {
-            particle.remove()
-          }, 8000)
+            particle.remove();
+          }, 8000);
         }
 
         // Crear partículas cada cierto tiempo
-        setInterval(createParticle, 3000)
+        setInterval(createParticle, 3000);
 
         // Efecto de partículas en el cursor
-        document.addEventListener('mousemove', function (e) {
-          const cursor = document.createElement('div')
-          cursor.style.position = 'fixed'
-          cursor.style.left = e.clientX + 'px'
-          cursor.style.top = e.clientY + 'px'
-          cursor.style.width = '6px'
-          cursor.style.height = '6px'
-          cursor.style.background = '#ED332D'
-          cursor.style.borderRadius = '50%'
-          cursor.style.pointerEvents = 'none'
-          cursor.style.zIndex = '9999'
-          cursor.style.animation = 'fadeOut 1s ease-out forwards'
+        document.addEventListener("mousemove", function (e) {
+          const cursor = document.createElement("div");
+          cursor.style.position = "fixed";
+          cursor.style.left = e.clientX + "px";
+          cursor.style.top = e.clientY + "px";
+          cursor.style.width = "6px";
+          cursor.style.height = "6px";
+          cursor.style.background = "#ED332D";
+          cursor.style.borderRadius = "50%";
+          cursor.style.pointerEvents = "none";
+          cursor.style.zIndex = "9999";
+          cursor.style.animation = "fadeOut 1s ease-out forwards";
 
-          document.body.appendChild(cursor)
+          document.body.appendChild(cursor);
 
           setTimeout(() => {
-            cursor.remove()
-          }, 1000)
-        })
+            cursor.remove();
+          }, 1000);
+        });
 
         // CSS para la animación de desvanecimiento
-        const style = document.createElement('style')
+        const style = document.createElement("style");
         style.textContent = `
                 @keyframes fadeOut {
                     0% {
@@ -270,18 +268,34 @@ const fullOgImage = new URL(ogImage, siteUrl).href
                         transform: scale(2);
                     }
                 }
-            `
-        document.head.appendChild(style)
-      })
+            `;
+        document.head.appendChild(style);
+      });
+    </script>
+
+    <!-- Pixel de redes sociales -->
+    <script is:inline>
+      function loadScript(a) {
+        var b = document.getElementsByTagName("head")[0],
+          c = document.createElement("script");
+        ((c.type = "text/javascript"),
+          (c.src = "https://tracker.metricool.com/resources/be.js"),
+          (c.onreadystatechange = a),
+          (c.onload = a),
+          b.appendChild(c));
+      }
+      loadScript(function () {
+        beTracker.t({ hash: "d12640665471ad0c7a2a33dbda21c09" });
+      });
     </script>
 
     <!-- Google Tag Manager (noscript) -->
     <noscript
       ><iframe
-        src='https://www.googletagmanager.com/ns.html?id=GTM-KGV8VD5G'
-        height='0'
-        width='0'
-        style='display:none;visibility:hidden'></iframe></noscript
+        src="https://www.googletagmanager.com/ns.html?id=GTM-KGV8VD5G"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"></iframe></noscript
     >
     <!-- End Google Tag Manager (noscript) -->
   </body>
