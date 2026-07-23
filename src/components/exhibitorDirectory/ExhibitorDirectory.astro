@@ -1,9 +1,17 @@
 ---
 import { ExhibitorSummary } from "./ExhibitorSummary.jsx";
 import { directory2026 } from "../../data/constans_directory_2026.js";
+
+import { useTranslations, getTranslation } from "../../utils/translations";
+const { locale, translations } = await useTranslations(Astro.props, Astro);
+const tr = (key: string, fallback: string = "") =>
+  getTranslation(translations, key, fallback);
+
+const currentLanguage = locale === "es" ? "es" : "en";
 ---
 
 <ExhibitorSummary
   exhibitors={directory2026}
+  language={currentLanguage}
   client:only="react"
 />
