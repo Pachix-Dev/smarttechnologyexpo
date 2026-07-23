@@ -6,7 +6,7 @@ export function ExhibitorSummary({ exhibitors }) {
 
   return (
     <>
-      <div className="exhibitor-summary grid grid-cols-2 gap-4 px-4 py-6 sm:grid-cols-2 sm:px-6 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 xl:px-10">
+      <div className="exhibitor-summary grid grid-cols-2 gap-4 px-4 py-6 sm:grid-cols-2 sm:p-14 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 xl:px-10">
         {exhibitors.map((exhibitor) => {
           const name = exhibitor.tradename || exhibitor.legal_company_name;
           const coexhibitors = exhibitor.coexhibitors || "Sin coexpositor";
