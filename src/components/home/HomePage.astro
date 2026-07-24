@@ -17,6 +17,7 @@ import CollaboratorsDisplay from "./CollaboratorsDisplay.astro";
 import HighlightSte2026 from "./HighlightSte2026.astro";
 import ConcurrentEventGrid from "../register/ConcurrentEventGrid.astro";
 import KeyNoteSpeakers from "./KeyNoteSpeakers.astro";
+import DirectorySection from "./DirectorySection.astro";
 
 export interface Props {
   locale?: string;
@@ -36,6 +37,7 @@ const tr = (key: string, fallback: string = "") =>
   <HighlightSte2026 />
   <PromotionalVideo />
   <KeyNoteSpeakers />
+  <DirectorySection />
   <DisplaySegments />
   <BecomeAnExhibitor />
   <StandPrice />

@@ -1,0 +1,80 @@
+---
+import { useTranslations } from "../../utils/translations";
+
+const { locale } = await useTranslations(Astro.props, Astro);
+
+const isSpanish = locale === "es";
+const title = isSpanish
+  ? "CONSULTA EL DIRECTORIO DE EXPOSITORES 2026"
+  : "CHECK THE EXHIBITOR DIRECTORY 2026";
+const directoryHref = isSpanish
+  ? "/directorio-expositores"
+  : "/en/directorio-expositores";
+const buttonLabel = isSpanish ? "VER DIRECTORIO" : "SEE DIRECTORY";
+---
+
+<section
+  class="flex min-h-[196px] w-full items-center bg-[#e30613]"
+  aria-labelledby="directory-section-title"
+>
+  <div
+    class="mx-auto grid w-full max-w-[1240px] grid-cols-1 items-center gap-8 px-5 py-9 sm:px-[26px] sm:py-[42px] lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-10 lg:py-[34px]"
+  >
+
+    <div class="flex max-w-[780px] items-start gap-3.5 text-white sm:gap-[23px]" data-aos="zoom-in-up" aos-delay="100" data-aos-easing="linear">
+      <span
+        class="mt-[7px] h-[18px] w-[18px] flex-none bg-white sm:mt-1.5 sm:h-[30px] sm:w-[31px]"
+        aria-hidden="true"
+      ></span>
+      <h2
+        id="directory-section-title"
+        class="[font-family:Montserrat,system-ui,sans-serif] text-xl sm:text-5xl font-normal uppercase"
+      >
+        {title}
+      </h2>
+    </div>
+
+    <div class="flex w-full justify-center sm:justify-end lg:w-auto mx-auto" data-aos="zoom-in-down" aos-delay="100" data-aos-easing="linear" data-aos-duration="500">
+      <a
+        class="[font-family:Montserrat,system-ui,sans-serif] flex min-h-[60px] w-auto max-w-[430px] items-center justify-between gap-4 rounded-full bg-white py-1.5 pl-[22px] pr-[7px] font-extrabold uppercase leading-none tracking-[0.08em] text-[#242424] no-underline transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_24px_rgba(0,0,0,0.2)] focus-visible:-translate-y-0.5 focus-visible:outline-offset-[5px] focus-visible:outline-white/70 sm:min-h-[68px] sm:gap-[18px] sm:pl-7 sm:tracking-[0.12em] lg:w-[430px]"
+        href={directoryHref}
+      >
+        <span class="whitespace-nowrap text-[clamp(1rem,3vw,1.85rem)]">
+          {buttonLabel}
+        </span>
+
+        <span
+          class="relative h-12 w-12 flex-none rounded-full bg-[#e30613] sm:h-14 sm:w-14"
+          aria-hidden="true"
+        >
+          <span
+            class="absolute left-3 top-1/2 h-[5px] w-[22px] -translate-y-1/2 rounded-full bg-white sm:left-3.5 sm:h-1.5 sm:w-[26px]"
+          ></span>
+          <span
+            class="absolute right-3 top-1/2 h-[17px] w-[17px] -translate-y-1/2 rotate-45 border-r-[5px] border-t-[5px] border-white sm:right-3.5 sm:h-5 sm:w-5 sm:border-r-[6px] sm:border-t-[6px]"
+          ></span>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  @font-face {
+    font-family: "Montserrat";
+    src: url("/fonts/Montserrat/static/Montserrat-Regular.ttf")
+      format("truetype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Montserrat";
+    src: url("/fonts/Montserrat/static/Montserrat-ExtraBold.ttf")
+      format("truetype");
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+  }
+</style>
