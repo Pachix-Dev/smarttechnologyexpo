@@ -8,10 +8,51 @@ const tr = (key: string, fallback: string = "") =>
   getTranslation(translations, key, fallback);
 
 const currentLanguage = locale === "es" ? "es" : "en";
+const labels =
+  currentLanguage === "es"
+    ? {
+        eyebrow: "Directorio 2026",
+        title: tr("exhibitorDirectory.title", "Directorio de Expositores"),
+        description:
+          "Explora las empresas participantes, consulta su stand y revisa sus datos de contacto antes de visitar Smart Technology Expo.",
+      }
+    : {
+        eyebrow: "2026 Directory",
+        title: "Exhibitor Directory",
+        description:
+          "Explore participating companies, check their booth location, and review contact details before visiting Smart Technology Expo.",
+      };
 ---
 
-<ExhibitorSummary
-  exhibitors={directory2026}
-  language={currentLanguage}
-  client:only="react"
-/>
+<section class="bg-[#f5f6f8]">
+  <header class="relative isolate overflow-hidden bg-[#151515]">
+    <img
+      src="/img/bgdirectorio.webp"
+      alt=""
+      class="absolute inset-0 -z-20 h-full w-full object-cover"
+      loading="eager"
+    />
+    <div class="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(0,0,0,0.88),rgba(0,0,0,0.62)_54%,rgba(227,6,19,0.74))]"></div>
+
+    <div class="mx-auto flex min-h-[255px] w-full max-w-[1240px] flex-col justify-end px-5 py-8 sm:min-h-[340px] sm:px-8 sm:py-14 lg:min-h-[430px] lg:px-10 lg:py-16">
+      <div class="max-w-4xl">
+        <p class="mb-3 inline-flex rounded-full border border-white/25 bg-white/10 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.2em] text-white backdrop-blur sm:mb-4 sm:px-4 sm:py-2 sm:text-xs sm:tracking-[0.24em]">
+          {labels.eyebrow}
+        </p>
+        <h1 class="text-[2.35rem] font-black uppercase leading-none tracking-normal text-white sm:text-6xl lg:text-7xl">
+          {labels.title}
+        </h1>
+        <p class="mt-3 max-w-2xl text-sm font-medium leading-6 text-white/80 sm:mt-5 sm:text-lg sm:leading-7">
+          {labels.description}
+        </p>
+      </div>
+
+    </div>
+  </header>
+
+  <ExhibitorSummary
+    exhibitors={directory2026}
+    language={currentLanguage}
+    client:only="react"
+  />
+</section>
