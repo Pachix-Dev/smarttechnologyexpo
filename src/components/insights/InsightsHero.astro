@@ -14,7 +14,6 @@ export interface Props {
   title2?: string;
   description?: string;
   chips?: Chip[];
-  logoSrc?: string;
 }
 
 const { translations, locale } = await useTranslations(Astro.props, Astro);
@@ -30,11 +29,10 @@ const {
     { label: tr('insights.hero.chip2_label', 'SEDE'), value: tr('insights.hero.chip2_value', 'Expo Guadalajara, Jalisco') },
     { label: tr('insights.hero.chip3_label', 'FORMATO'), value: tr('insights.hero.chip3_value', 'Conferencias magistrales y paneles') },
   ],
-  logoSrc,
 } = Astro.props;
 ---
 
-<HeaderSwitcher active="conferencias" logoSrc={logoSrc} />
+<HeaderSwitcher active="conferencias" />
 
 <section class="ih-hero">
   <div class="ih-dots" aria-hidden="true"></div>

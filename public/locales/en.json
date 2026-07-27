@@ -966,7 +966,8 @@
       "title": "Keynote Speakers",
       "note": "Preliminary program · subject to change",
       "photo": "speaker photo",
-      "bio_btn": "VIEW BIO"
+      "bio_btn": "VIEW BIO",
+      "powered_by": "Powered by"
     },
     "schedule": {
       "eyebrow": "AGENDA",
@@ -979,6 +980,7 @@
       "sessions_word": "sessions",
       "speakers_word": "Speakers",
       "speaker_word": "Speaker",
+      "powered_by": "Powered by",
       "badge_keynote": "KEYNOTE",
       "badge_panel": "PANEL",
       "badge_conference": "CONFERENCE",
@@ -1009,7 +1011,9 @@
       "nivel_intermediate": "INTERMEDIATE",
       "nivel_advanced": "ADVANCED",
       "seats_available": "seats available",
-      "seats_last": "Last {n} seats!"
+      "seats_last": "Last {n} seats!",
+      "sold_out": "Sold out",
+      "instructor_org": "Smart Technology Expo · Instructor"
     },
     "schedule": {
       "eyebrow": "AGENDA",
@@ -1041,6 +1045,8 @@
       "lookup_err": "We couldn't find a registration with that email. Make sure you completed your general event registration before signing up for a workshop.",
       "lookup_btn": "FIND MY REGISTRATION",
       "fine1": "Don't have your general registration yet? Complete it first on the event's main page.",
+      "fine1_a": "Don't have your general registration yet? ",
+      "fine1_b": "Register here.",
       "found": "Details retrieved from your general registration.",
       "full_name": "FULL NAME",
       "phone": "PHONE",

@@ -158,7 +158,7 @@
     "why_exhibit": {
       "title": "Por qué exhibir en",
       "reasons": {
-        "reason_1": "Nos transformamos para continuar impulsando el desarrollo industrial y la capacidad de innovación tecnológica en el país, reafirmando la posición estratégica de México en el ecosistema industrial a nivel global.​",
+        "reason_1": "Nos transformamos para continuar impulsando el desarrollo industrial y la capacidad de innovación tecnológica en el país, reafirmando la posición estratégica de México en el ecosistema industrial a nivel global.",
         "reason_2": "Smart Technology Expo 2026 es la nueva plataforma donde la tecnología industrial se traduce en crecimiento, posicionamiento y ventas.",
         "reason_3": "Conectando a proveedores de tecnología con tomadores de decisión, líderes de la industria, especialistas y ejecutivos que buscan soluciones reales para automatizar, digitalizar y hacer más competitiva su operación.",
         "reason_4": "Un espacio diseñado para generar leads calificados, impulsar relaciones comerciales y acelerar la transformación industrial."
@@ -867,7 +867,7 @@
   },
   "mediaPage": {
     "title": "Acreditación de prensa",
-    "description": "Estimados medios de comunicación:<br/>Convocamos a los medios interesados a realizar el siguiente registro de prensa para obtener su acreditación para la cobertura de Smart Technology Expo.<br/>La fecha límite para acreditarte es el viernes 6 de noviembre de 2026. Y se comunicará el status de tu acreditación a más tardar el 13 de noviembre.<br/>Cabe mencionar que la acreditación de prensa de Smart Technology Expo se otorga de dos maneras; por invitación y a través de este registro.<br/>Si en ediciones anteriores tu medio ha recibido una invitación para realizar la cobertura de los evento organizados por Italian German Exhibition Company Mexico, esta invitación te llegará antes del 6 de noviembre de 2026.<br/>Recuerda que Smart Technology Expo es un evento gratuito dirigido para profesionales de la industria y que cualquier persona interesada puede acceder sin costo realizando su registro como visitante profesional. "
+    "description": "Estimados medios de comunicación:<br/>Convocamos a los medios interesados a realizar el siguiente registro de prensa para obtener su acreditación para la cobertura de Smart Technology Expo.<br/>La fecha límite para acreditarte es el viernes 6 de noviembre de 2026. Y se comunicará el status de tu acreditación a más tardar el 13 de noviembre.<br/>Cabe mencionar que la acreditación de prensa de Smart Technology Expo se otorga de dos maneras; por invitación y a través de este registro.<br/>Si en ediciones anteriores tu medio ha recibido una invitación para realizar la cobertura de los evento organizados por Italian German Exhibition Company Mexico, esta invitación te llegará antes del 6 de noviembre de 2026.<br/>Recuerda que Smart Technology Expo es un evento gratuito dirigido para profesionales de la industria y que cualquier persona interesada puede acceder sin costo realizando su registro como visitante profesional. "
   },
   "registerHome": {
     "warningMessage": "Este evento está dirigido exclusivamente a profesionales de la industria, ejecutivos, tomadores de decisión, especialistas técnicos, directivos y representantes de empresas. Por la naturaleza especializada del programa y de las actividades de networking, el <strong class=text-red-700>registro no está disponible para estudiantes.</strong> Agradecemos su comprensión y les solicitamos amablemente evitar realizar registros que no cumplan con este criterio, ya que no será posible autorizar el acceso al recinto.",
@@ -964,7 +964,8 @@
       "title": "Keynote Speakers",
       "note": "Programa preliminar · sujeto a cambios",
       "photo": "foto ponente",
-      "bio_btn": "VER SEMBLANZA"
+      "bio_btn": "VER SEMBLANZA",
+      "powered_by": "Powered by"
     },
     "schedule": {
       "eyebrow": "AGENDA",
@@ -977,6 +978,7 @@
       "sessions_word": "sesiones",
       "speakers_word": "Ponentes",
       "speaker_word": "Ponente",
+      "powered_by": "Powered by",
       "badge_keynote": "KEYNOTE",
       "badge_panel": "PANEL",
       "badge_conference": "CONFERENCIA",
@@ -1007,7 +1009,9 @@
       "nivel_intermediate": "INTERMEDIO",
       "nivel_advanced": "AVANZADO",
       "seats_available": "lugares disponibles",
-      "seats_last": "¡Últimos {n} lugares!"
+      "seats_last": "¡Últimos {n} lugares!",
+      "sold_out": "Cupo lleno",
+      "instructor_org": "Smart Technology Expo · Instructor"
     },
     "schedule": {
       "eyebrow": "AGENDA",
@@ -1039,6 +1043,8 @@
       "lookup_err": "No encontramos un registro con ese correo. Verifica que hayas completado tu registro general al evento antes de inscribirte a un taller.",
       "lookup_btn": "BUSCAR MI REGISTRO",
       "fine1": "¿Aún no tienes tu registro general? Complétalo primero en la página principal del evento.",
+      "fine1_a": "¿Aún no tienes tu registro general? ",
+      "fine1_b": "Regístrate aquí.",
       "found": "Datos recuperados de tu registro general.",
       "full_name": "NOMBRE COMPLETO",
       "phone": "TELÉFONO",

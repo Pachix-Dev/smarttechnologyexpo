@@ -1,490 +1,63 @@
 ---
-// SkillsWorkshops.astro — "Talleres disponibles" catalog for SMART SKILLS.
-// Pair with BioModal.astro: "Ver semblanza" buttons use [data-bio-trigger].
-
-export interface Workshop {
-  workshopId?: number;
-  name: string;
-  nivel: 'BÁSICO' | 'INTERMEDIO' | 'AVANZADO';
-  instructor: string;
-  instructorRole: string;
-  instructorBio?: string;
-  duracion: string;
-  horario: string;
-  sala: string;
-  cupo: number;
-  disp: number;
-  requisitos: string[];
-}
+// SkillsWorkshops.astro — Wrapper delgado del catálogo "Talleres disponibles".
+// La lógica interactiva (barra de cupo en vivo, botón Inscribirme) vive AHORA en la
+// isla React SkillsWorkshopsLive.jsx — ya no hay <script> embebido en el .astro.
+// Este archivo solo: 1) arma la lista de talleres localizada (desde data/workshops.js),
+// 2) arma los textos con tr(), y 3) monta la isla pasándole todo por props.
+import SkillsWorkshopsLive from './SkillsWorkshopsLive.jsx';
+import './skillsWorkshops.css';
+import { useTranslations, getTranslation } from "../../utils/translations";
+import { workshops as workshopsData } from "../../data/workshops.js";
 
 export interface Props {
-  eyebrow?: string;
-  title?: string;
-  note?: string;
-  workshops?: Workshop[];
   accent?: string;
 }
 
-import { useTranslations, getTranslation } from "../../utils/translations";
-import { workshops as workshopsData } from "../../data/workshops.js";
 const { translations, locale } = await useTranslations(Astro.props, Astro);
 const tr = (key: string, fallback: string = "") => getTranslation(translations, key, fallback);
 
-const {
-  eyebrow = tr('skills.workshops.eyebrow', 'CATÁLOGO'),
-  title = tr('skills.workshops.title', 'Talleres disponibles'),
-  note = tr('skills.workshops.note', 'Cada taller incluye instructor especializado, duración y requisitos. Inscríbete desde el formulario al final.'),
-  workshops = workshopsData.map((w) => ({
-    workshopId: w.workshopId,
-    name: locale === 'en' ? w.name_en : w.name,
-    nivel: w.nivel,
-    instructor: w.instructor,
-    instructorRole: locale === 'en' ? w.instructorRole_en : w.instructorRole,
-    instructorBio: locale === 'en' ? w.instructorBio_en : w.instructorBio,
-    duracion: locale === 'en' ? w.duracion_en : w.duracion,
-    horario: w.horario,
-    sala: w.sala,
-    cupo: w.cupo,
-    disp: w.cupo,          // inicial; el script pone el disponible real desde la BD
-    requisitos: locale === 'en' ? w.requisitos_en : w.requisitos,
-  })),
-  accent = '#E2101A',
-} = Astro.props;
+const { accent = '#E2101A' } = Astro.props;
 
-const nivelColors: Record<string, string> = { 'BÁSICO': '#3a8f5a', 'INTERMEDIO': '#c79a2a', 'AVANZADO': accent };
-const nivelText: Record<string, string> = {
-  'BÁSICO': tr('skills.workshops.nivel_basic', 'BÁSICO'),
-  'INTERMEDIO': tr('skills.workshops.nivel_intermediate', 'INTERMEDIO'),
-  'AVANZADO': tr('skills.workshops.nivel_advanced', 'AVANZADO'),
+// Lista de talleres ya localizada (info estática desde data/workshops.js).
+// El cupo NO se pone aquí: lo trae la isla en vivo desde /workshops.
+const workshops = workshopsData.map((w) => ({
+  workshopId: w.workshopId,
+  name: locale === 'en' ? w.name_en : w.name,
+  nivel: w.nivel,
+  instructor: w.instructor,
+  instructorRole: locale === 'en' ? w.instructorRole_en : w.instructorRole,
+  instructorBio: locale === 'en' ? w.instructorBio_en : w.instructorBio,
+  duracion: locale === 'en' ? w.duracion_en : w.duracion,
+  horario: w.horario,
+  sala: w.sala,
+  cupo: w.cupo,                 // cupo inicial (se sustituye por el real de la BD)
+  requisitos: locale === 'en' ? w.requisitos_en : w.requisitos,
+}));
+
+// Todos los textos de interfaz, ya traducidos, para la isla.
+const labels = {
+  eyebrow: tr('skills.workshops.eyebrow', 'CATÁLOGO'),
+  title: tr('skills.workshops.title', 'Talleres disponibles'),
+  note: tr('skills.workshops.note', 'Cada taller incluye instructor especializado, duración y requisitos. Inscríbete desde el formulario al final.'),
+  schedule: tr('skills.workshops.schedule', 'HORARIO'),
+  room: tr('skills.workshops.room', 'SALA'),
+  reqs: tr('skills.workshops.reqs', 'REQUISITOS'),
+  capacity: tr('skills.workshops.capacity', 'Cupo'),
+  enroll: tr('skills.workshops.enroll', 'Inscribirme'),
+  bioBtn: tr('skills.workshops.bio_btn', 'VER SEMBLANZA'),
+  nivelBasic: tr('skills.workshops.nivel_basic', 'BÁSICO'),
+  nivelIntermediate: tr('skills.workshops.nivel_intermediate', 'INTERMEDIO'),
+  nivelAdvanced: tr('skills.workshops.nivel_advanced', 'AVANZADO'),
+  seatsAvailable: tr('skills.workshops.seats_available', 'lugares disponibles'),
+  seatsLast: tr('skills.workshops.seats_last', '¡Últimos {n} lugares!'),
+  soldOut: tr('skills.workshops.sold_out', 'Cupo lleno'),
+  instructorOrg: tr('skills.workshops.instructor_org', 'Smart Technology Expo · Instructor'),
 };
-
-const workshopsView = workshops.map((w, idx) => {
-  const ratio = (w.cupo - w.disp) / w.cupo;
-  const low = w.disp <= 5;
-  const nivelColor = nivelColors[w.nivel] || accent;
-  const fillPercent = Math.round(ratio * 100);
-  const cupoText = low
-    ? tr('skills.workshops.seats_last', '¡Últimos {n} lugares!').replace('{n}', String(w.disp))
-    : `${w.disp} ${tr('skills.workshops.seats_available', 'lugares disponibles')}`;
-  const nivelLabel = nivelText[w.nivel] || w.nivel;
-  const cupoColor = low ? accent : '#cfcfcf';
-  const fillBg = low ? accent : `linear-gradient(90deg,#0D3B66,${accent})`;
-  return { ...w, workshopId: w.workshopId ?? idx + 1, low, nivelColor, fillPercent, cupoText, cupoColor, fillBg, nivelLabel };
-});
 ---
 
-<section class="sw-section"
-  data-accent={accent}
-  data-seats-available={tr('skills.workshops.seats_available', 'lugares disponibles')}
-  data-seats-last={tr('skills.workshops.seats_last', '¡Últimos {n} lugares!')}
-  data-sold-out={locale === 'en' ? 'Sold out' : 'Cupo lleno'}
-  data-capacity-label={tr('skills.workshops.capacity', 'Cupo')}>
-  <div class="sw-inner">
-  <div class="sw-eyebrow">{eyebrow}</div>
-  <h2 class="sw-title">{title}</h2>
-  <p class="sw-note">{note}</p>
-
-  <div class="sw-grid">
-    {workshopsView.map((w) => (
-        <div class="sw-card" data-ws-id={w.workshopId}>
-          <div class="sw-card-top"></div>
-          <div class="sw-card-body">
-            <div class="sw-card-head">
-              <span class="sw-nivel" style={`background:${w.nivelColor}`}>{w.nivelLabel}</span>
-              <span class="sw-duracion">
-                <svg class="sw-clock-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/>
-                  <path d="M12 7v5l3.5 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                {w.duracion}
-              </span>
-            </div>
-            <h3 class="sw-name">{w.name}</h3>
-
-            <div class="sw-instructor">
-              <span class="sw-avatar"></span>
-              <div>
-                <div class="sw-instructor-name">{w.instructor}</div>
-                <div class="sw-instructor-role">{w.instructorRole}</div>
-              </div>
-            </div>
-            <button
-              class="sw-bio-btn"
-              type="button"
-              data-bio-trigger
-              data-bio-name={w.instructor}
-              data-bio-role={w.instructorRole}
-              data-bio-org="Smart Technology Expo · Instructor"
-              data-bio-bio={w.instructorBio || ''}
-            >
-              {tr("skills.workshops.bio_btn", "VER SEMBLANZA")}
-            </button>
-
-            <div class="sw-info">
-              <div class="sw-info-row"><span>{tr("skills.workshops.schedule", "HORARIO")}</span><span>{w.horario}</span></div>
-              <div class="sw-info-row"><span>{tr("skills.workshops.room", "SALA")}</span><span>{w.sala}</span></div>
-            </div>
-
-            <div class="sw-req">
-              <div class="sw-req-label">{tr("skills.workshops.reqs", "REQUISITOS")}</div>
-              <ul class="sw-req-list">
-                {w.requisitos.map((req) => (
-                  <li><span class="sw-req-bullet">›</span>{req}</li>
-                ))}
-              </ul>
-            </div>
-
-            <div class="sw-footer">
-              <div class="sw-cupo-row">
-                <span class="sw-cupo-text" style={`color:${w.cupoColor}`}>
-                  {w.cupoText}
-                </span>
-                <span class="sw-cupo-total">{tr("skills.workshops.capacity", "Cupo")} {w.cupo}</span>
-              </div>
-              <div class="sw-cupo-bar">
-                <div
-                  class="sw-cupo-fill"
-                  style={`width:${w.fillPercent}%; background:${w.fillBg}`}
-                ></div>
-              </div>
-              <button class="sw-cta" style={`background:${accent}`} type="button">{tr("skills.workshops.enroll", "Inscribirme")}</button>
-            </div>
-          </div>
-        </div>
-    ))}
-  </div>
-  </div>
-</section>
-
-<script>
-  // Solo la BARRA DE CUPO se consume de la base de datos (endpoint /workshops).
-  // La info de cada card (nombre, instructor, etc.) es estática / de tu API.
-  const API = import.meta.env.DEV
-    ? 'http://localhost:3005/'
-    : 'https://smarttechnologyexpo.mx/server/';
-
-  function initSkillsWorkshops() {
-    const section = document.querySelector('.sw-section') as HTMLElement | null;
-    if (!section) return;
-    const accent = section.getAttribute('data-accent') || '#E2101A';
-    const T_AVAIL = section.getAttribute('data-seats-available') || 'lugares disponibles';
-    const T_LAST = section.getAttribute('data-seats-last') || '¡Últimos {n} lugares!';
-    const T_FULL = section.getAttribute('data-sold-out') || 'Cupo lleno';
-    const T_CAP = section.getAttribute('data-capacity-label') || 'Cupo';
-
-    async function refresh() {
-      const map: Record<number, any> = {};
-      try {
-        const res = await fetch(API + 'workshops');
-        const data = await res.json();
-        if (!data.status || !Array.isArray(data.workshops)) return;
-        for (const w of data.workshops) map[Number(w.workshop_id)] = w;
-      } catch (e) { console.error('No se pudo obtener el cupo', e); return; }
-
-      document.querySelectorAll('.sw-card[data-ws-id]').forEach((cardEl) => {
-        const card = cardEl as HTMLElement;
-        const id = Number(card.getAttribute('data-ws-id'));
-        const w = map[id];
-        if (!w) return;
-        const capacity = Number(w.capacity) || 0;
-        const registered = Number(w.registered) || 0;
-        const disp = Math.max(capacity - registered, 0);
-        const soldOut = disp <= 0;
-        const low = disp > 0 && disp <= 5;
-        const fillPercent = capacity > 0 ? Math.round(((capacity - disp) / capacity) * 100) : 0;
-
-        const textEl = card.querySelector('.sw-cupo-text') as HTMLElement | null;
-        const totalEl = card.querySelector('.sw-cupo-total') as HTMLElement | null;
-        const fillEl = card.querySelector('.sw-cupo-fill') as HTMLElement | null;
-        const ctaEl = card.querySelector('.sw-cta') as HTMLButtonElement | null;
-
-        if (textEl) {
-          textEl.textContent = soldOut ? T_FULL : (low ? T_LAST.replace('{n}', String(disp)) : disp + ' ' + T_AVAIL);
-          textEl.style.color = (low || soldOut) ? accent : '#cfcfcf';
-        }
-        if (totalEl) totalEl.textContent = T_CAP + ' ' + capacity;
-        if (fillEl) {
-          fillEl.style.transition = 'width .6s ease';
-          fillEl.style.width = fillPercent + '%';
-          fillEl.style.background = (low || soldOut) ? accent : ('linear-gradient(90deg,#0D3B66,' + accent + ')');
-        }
-        if (ctaEl) {
-          ctaEl.disabled = soldOut;
-          ctaEl.style.background = soldOut ? '#333' : accent;
-          ctaEl.textContent = soldOut ? T_FULL : (ctaEl.getAttribute('data-enroll-label') || ctaEl.textContent || '');
-        }
-      });
-    }
-
-    document.querySelectorAll('.sw-card[data-ws-id] .sw-cta').forEach((btnEl) => {
-      const btn = btnEl as HTMLButtonElement;
-      btn.setAttribute('data-enroll-label', (btn.textContent || '').trim());
-      btn.addEventListener('click', () => {
-        if (btn.disabled) return;
-        const card = btn.closest('.sw-card');
-        const id = card ? card.getAttribute('data-ws-id') : null;
-        if (id) window.dispatchEvent(new CustomEvent('workshop:preselect', { detail: { workshop_id: Number(id) } }));
-        const form = document.querySelector('#wf-form');
-        if (form) form.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
-    });
-
-    refresh();
-    setInterval(refresh, 20000);
-    window.addEventListener('workshop:registered', refresh);
-  }
-
-  document.addEventListener('DOMContentLoaded', initSkillsWorkshops);
-</script>
-
-<style>
-  .sw-section {
-    background: #000;
-    font-family: 'Archivo', Helvetica, Arial, sans-serif;
-    color: #fff;
-  }
-
-  .sw-inner {
-    max-width: 1240px;
-    margin: 0 auto;
-    padding: clamp(56px, 8vw, 96px) clamp(16px, 4vw, 40px);
-  }
-
-  .sw-eyebrow {
-    font-size: 12px;
-    letter-spacing: 0.3em;
-    font-weight: 700;
-    color: #fff;
-    margin-bottom: 12px;
-  }
-
-  .sw-title {
-    margin: 0 0 8px;
-    font-size: clamp(34px, 5vw, 56px);
-    font-weight: 900;
-    letter-spacing: -0.01em;
-    text-transform: uppercase;
-    line-height: 0.95;
-  }
-
-  .sw-note {
-    margin: 0 0 38px;
-    color: #9a9a9a;
-    font-size: 16px;
-  }
-
-  .sw-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
-    gap: 22px;
-  }
-
-  .sw-card {
-    display: flex;
-    flex-direction: column;
-    background: #0c0c0c;
-    border: 1px solid #1c1c1c;
-    border-radius: 8px;
-    overflow: hidden;
-  }
-
-  .sw-card-top {
-    height: 5px;
-    background: linear-gradient(90deg, #8b1a1a, #e2101a);
-  }
-
-  .sw-card-body {
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-  }
-
-  .sw-card-head {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    margin-bottom: 14px;
-  }
-
-  .sw-nivel {
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 0.14em;
-    padding: 5px 11px;
-    border-radius: 4px;
-    color: #fff;
-  }
-
-  .sw-duracion {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 12px;
-    font-weight: 600;
-    color: #8a8a8a;
-  }
-
-  .sw-clock-icon {
-    width: 14px;
-    height: 14px;
-    flex: none;
-  }
-
-  .sw-name {
-    margin: 0 0 16px;
-    font-size: 21px;
-    font-weight: 800;
-    line-height: 1.15;
-    text-wrap: pretty;
-  }
-
-  .sw-instructor {
-    display: flex;
-    align-items: center;
-    gap: 11px;
-    margin-bottom: 14px;
-  }
-
-  .sw-avatar {
-    width: 38px;
-    height: 38px;
-    flex: none;
-    border-radius: 50%;
-    background: repeating-linear-gradient(135deg, #262626 0 7px, #1a1a1a 7px 14px);
-    border: 1px solid #333;
-  }
-
-  .sw-instructor-name {
-    font-size: 14px;
-    font-weight: 700;
-  }
-
-  .sw-instructor-role {
-    font-size: 12px;
-    color: #8a8a8a;
-    margin-top: 2px;
-  }
-
-  .sw-bio-btn {
-    margin-bottom: 18px;
-    padding: 9px;
-    background: transparent;
-    border: 1px solid #e2101a;
-    color: #e2101a;
-    border-radius: 5px;
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 0.06em;
-    cursor: pointer;
-    font-family: inherit;
-  }
-
-  .sw-info {
-    display: flex;
-    flex-direction: column;
-    gap: 7px;
-    margin-bottom: 18px;
-    padding: 14px 16px;
-    background: #111;
-    border-radius: 6px;
-  }
-
-  .sw-info-row {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    font-size: 13px;
-    font-weight: 600;
-  }
-
-  .sw-info-row span:first-child {
-    font-size: 12px;
-    color: #777;
-    font-weight: 600;
-  }
-
-  .sw-req {
-    margin-bottom: 18px;
-  }
-
-  .sw-req-label {
-    font-size: 11px;
-    letter-spacing: 0.16em;
-    font-weight: 700;
-    color: #777;
-    margin-bottom: 9px;
-  }
-
-  .sw-req-list {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  .sw-req-list li {
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-    font-size: 13px;
-    color: #b9b9b9;
-    line-height: 1.4;
-  }
-
-  .sw-req-bullet {
-    color: #e2101a;
-    font-weight: 800;
-    flex: none;
-  }
-
-  .sw-footer {
-    margin-top: auto;
-  }
-
-  .sw-cupo-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 7px;
-  }
-
-  .sw-cupo-text {
-    font-size: 12px;
-    font-weight: 700;
-  }
-
-  .sw-cupo-total {
-    font-size: 11px;
-    color: #777;
-    font-weight: 600;
-  }
-
-  .sw-cupo-bar {
-    height: 6px;
-    background: #1e1e1e;
-    border-radius: 3px;
-    overflow: hidden;
-    margin-bottom: 18px;
-  }
-
-  .sw-cupo-fill {
-    height: 100%;
-  }
-
-  .sw-cta {
-    width: 100%;
-    padding: 13px;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-weight: 800;
-    font-size: 13px;
-    letter-spacing: 0.08em;
-    cursor: pointer;
-    font-family: inherit;
-  }
-</style>
+<SkillsWorkshopsLive
+  client:load
+  workshops={workshops}
+  labels={labels}
+  accent={accent}
+/>

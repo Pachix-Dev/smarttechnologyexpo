@@ -3,10 +3,14 @@
 // desde el wrapper .astro vía la prop `labels` (que sale de tus locales).
 
 import { useEffect, useState } from "react";
+// Los NOMBRES de los talleres del <select> salen de la MISMA fuente estática
+// que el catálogo (src/data/workshops.js), no del backend. Así las opciones
+// siempre están presentes y no dependen de que /workshops responda.
+import { workshops as workshopsData } from "../../data/workshops.js";
 
 // Base de la API del backend: localhost en dev, dominio /server/ en prod.
 const API = import.meta.env.DEV
-  ? "http://localhost:3005/"
+  ? "http://localhost:3010/"
   : "https://smarttechnologyexpo.mx/server/";
 
 export default function WorkshopFormIsland({
@@ -17,31 +21,37 @@ export default function WorkshopFormIsland({
 }) {
   const L = labels; // atajo
 
+  // Opciones del <select>, localizadas. workshopId debe coincidir con el
+  // workshop_id de la base de datos (ya lo garantiza src/data/workshops.js).
+  const workshopOptions = workshopsData.map((w) => ({
+    id: w.workshopId,
+    name: lang === "en" ? w.name_en : w.name,
+  }));
+
   // --- Estado ---
   const [step, setStep] = useState("lookup"); // 'lookup' | 'found' | 'success'
   const [email, setEmail] = useState("");
   const [lookupError, setLookupError] = useState(false);
   const [loadingLookup, setLoadingLookup] = useState(false);
 
-  const [workshops, setWorkshops] = useState([]);
   const [visitor, setVisitor] = useState(null); // { name, paternSurname, email, phone, company, position }
   const [workshopId, setWorkshopId] = useState("");
   const [selectError, setSelectError] = useState("");
   const [loadingSubmit, setLoadingSubmit] = useState(false);
 
-  // --- Cargar talleres activos al montar ---
+  // --- Preselección desde el catálogo ---
+  // Cuando en una card se pulsa "Inscribirme", SkillsWorkshopsLive dispara el
+  // evento global "workshop:preselect" con el id del taller. Aquí lo escuchamos
+  // y lo guardamos en `workshopId`; como el estado persiste entre pasos, cuando
+  // el usuario llegue al Paso 2 el <select> ya aparecerá con ese taller elegido
+  // (y como las opciones ya existen, se marca explícitamente).
   useEffect(() => {
-    let alive = true;
-    fetch(API + "workshops")
-      .then((r) => r.json())
-      .then((data) => {
-        if (!alive) return;
-        if (data.status && Array.isArray(data.workshops)) setWorkshops(data.workshops);
-      })
-      .catch((e) => console.error("No se pudieron cargar los talleres", e));
-    return () => {
-      alive = false;
+    const onPreselect = (e) => {
+      const id = e.detail?.workshop_id;
+      if (id != null) setWorkshopId(String(id)); // string, para que case con el <option>
     };
+    window.addEventListener("workshop:preselect", onPreselect);
+    return () => window.removeEventListener("workshop:preselect", onPreselect);
   }, []);
 
   // --- PASO 1: buscar visitante por correo ---
@@ -92,6 +102,8 @@ export default function WorkshopFormIsland({
         return;
       }
       setStep("success");
+      // Avisa al catálogo para que la barra de cupo se actualice al instante.
+      window.dispatchEvent(new CustomEvent("workshop:registered"));
     } catch (e) {
       setSelectError("Error de conexión. Intenta de nuevo.");
     } finally {
@@ -110,7 +122,7 @@ export default function WorkshopFormIsland({
   const fullName = visitor ? `${visitor.name} ${visitor.paternSurname}` : "";
 
   return (
-    <section className="wf-section" style={{ "--accent": accent }}>
+    <section className="wf-section" id="wf-form" style={{ "--accent": accent }}>
       <div className="wf-inner">
         <div className="wf-grid">
           {/* Columna izquierda: copy */}
@@ -216,9 +228,9 @@ export default function WorkshopFormIsland({
                     onChange={(e) => setWorkshopId(e.target.value)}
                   >
                     <option value="">{L.choose_ws}</option>
-                    {workshops.map((w) => (
-                      <option key={w.workshop_id} value={w.workshop_id}>
-                        {lang === "en" ? w.name_en : w.name_es}
+                    {workshopOptions.map((w) => (
+                      <option key={w.id} value={w.id}>
+                        {w.name}
                       </option>
                     ))}
                   </select>
