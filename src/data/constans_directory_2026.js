@@ -310,7 +310,7 @@ export const directory2026 =
     "contact_phone": "+52(462)628-1426",
     "directory_consent": "Acepto / Agree.",
     "has_coexhibitors": "Sí",
-    "coexhibitors": "Manuel Alejandro González González, Eduardo Lee Martínez, Cesar Barbosa"
+    "coexhibitors": ""
   },
   {
     "id": 15,

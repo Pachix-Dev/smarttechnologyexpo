@@ -15,7 +15,7 @@ const getInitials = (name = "") =>
 const copy = {
   es: {
     searchLabel: "Buscar expositor",
-    searchPlaceholder: "Buscar por empresa, stand, país o ciudad",
+    searchPlaceholder: "Buscar por empresa o stand",
     showing: "Mostrando",
     of: "de",
     exhibitors: "expositores",
@@ -28,7 +28,7 @@ const copy = {
   },
   en: {
     searchLabel: "Search exhibitor",
-    searchPlaceholder: "Search by company, booth, country, or city",
+    searchPlaceholder: "Search by company or booth",
     showing: "Showing",
     of: "of",
     exhibitors: "exhibitors",
@@ -92,8 +92,7 @@ export function ExhibitorSummary({ exhibitors, language }) {
         <div className="sm:mt-8 border border-slate-200 bg-white p-4 shadow-[0_18px_45px_rgba(15,23,42,0.14)] sm:p-5 lg:flex lg:items-center lg:justify-between lg:gap-6">
           <div>
             <p className="text-sm font-bold uppercase tracking-[0.18em] text-[#e30613]">
-              {labels.showing} {filteredExhibitors.length} {labels.of}
-              {exhibitors.length} {labels.exhibitors}
+              {labels.showing} {filteredExhibitors.length} {labels.of} {exhibitors.length} {labels.exhibitors}
             </p>
           </div>
 

@@ -112,7 +112,7 @@ export function ExhibitorInfo({ exhibitor, onClose }) {
               <InfoRow label="Estado" value={exhibitor.state} />
               <InfoRow label="País" value={exhibitor.country} />
               <InfoRow label="Código postal" value={exhibitor.zip_code} />
-              <InfoRow label="Contacto" value={exhibitor.contact_name} />
+              {/* <InfoRow label="Contacto" value={exhibitor.contact_name} />
               <InfoRow
                 label="Correo"
                 value={exhibitor.contact_email}
@@ -122,7 +122,7 @@ export function ExhibitorInfo({ exhibitor, onClose }) {
                 label="Teléfono"
                 value={exhibitor.contact_phone}
                 href={exhibitor.contact_phone ? `tel:${exhibitor.contact_phone}` : null}
-              />
+              /> */}
             </dl>
           </aside>
         </div>
