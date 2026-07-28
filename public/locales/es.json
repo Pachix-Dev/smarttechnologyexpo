@@ -813,7 +813,8 @@
       "cta_insights": "VER PROGRAMA COMPLETO",
       "cta_link_insights": "/insights",
       "cta_skills": "VER PROGRAMA COMPLETO",
-      "cta_link_skills": "/skills"
+      "cta_link_skills": "/skills",
+      "text-coming-soon": "PRÓXIMAMENTE MÁS INFORMACIÓN"
     },
     "banner": {
       "title": "Agenda de Conferencias",

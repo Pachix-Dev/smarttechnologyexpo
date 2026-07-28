@@ -815,7 +815,8 @@
       "cta_insights": "VIEW FULL PROGRAM",
       "cta_link_insights": "/en/insights",
       "cta_skills": "VIEW FULL PROGRAM",
-      "cta_link_skills": "/en/skills"
+      "cta_link_skills": "/en/skills",
+      "text-coming-soon": "COMING SOON MORE INFORMATION"
     },
     "banner": {
       "title": "Conference Agenda",
