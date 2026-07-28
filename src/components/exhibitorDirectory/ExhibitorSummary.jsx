@@ -3,6 +3,9 @@ import { ExhibitorInfo } from "./ExhibitorInfo.jsx";
 
 const hasValue = (value) => value !== null && value !== undefined && value !== "";
 
+const hasCoexhibitorRecord = (exhibitor) =>
+  exhibitor.has_coexhibitors === "Sí" && hasValue(exhibitor.coexhibitors?.trim());
+
 const getInitials = (name = "") =>
   name
     .split(" ")
@@ -128,7 +131,8 @@ export function ExhibitorSummary({ exhibitors, language }) {
           <div className="grid grid-cols-3 gap-2 py-10 sm:gap-3 sm:py-16 md:grid-cols-4 lg:grid-cols-5 lg:gap-4 xl:grid-cols-6">
             {filteredExhibitors.map((exhibitor) => {
               const name = exhibitor.tradename || exhibitor.legal_company_name;
-              const coexhibitors = exhibitor.coexhibitors || "Sin coexpositor";
+              const shouldShowCoexhibitors = hasCoexhibitorRecord(exhibitor);
+              const coexhibitors = exhibitor.coexhibitors?.trim();
 
               return (
                 <article
@@ -150,6 +154,9 @@ export function ExhibitorSummary({ exhibitors, language }) {
                   </div>
 
                   <div className="flex flex-1 flex-col p-2 sm:p-3">
+                    <span className="text-[8px] font-bold uppercase tracking-[0.06em] text-slate-500 sm:text-[9px]">
+                      {language === "es" ? "Expositor" : "Exhibitor"}
+                    </span>
                     <h2 className="overflow-hidden break-words text-[10px] font-bold uppercase leading-4 text-slate-950 [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:3] sm:text-xs sm:leading-5 lg:text-[13px]">
                       {name}
                     </h2>
@@ -160,8 +167,9 @@ export function ExhibitorSummary({ exhibitors, language }) {
                         </p>
                       )}
                     </div>
+
                     <div className="my-1.5 flex flex-col gap-1 sm:mt-2">
-                      {coexhibitors && (
+                      {shouldShowCoexhibitors && (
                         <div className="mt-2 border-t border-slate-200 pt-2 sm:mt-3">
                           <TextBlock label={labels.coexhibitor}>
                             {coexhibitors}

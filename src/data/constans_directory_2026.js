@@ -70,7 +70,7 @@ export const directory2026 =
     "contact_phone": "442 126 8886",
     "directory_consent": "Acepto / Agree.",
     "has_coexhibitors": "Sí",
-    "coexhibitors": "Ángeles N., Paola T., Francisco D., Luis F., Edgar S."
+    "coexhibitors": ""
   },
   {
     "id": 4,
@@ -718,7 +718,7 @@ export const directory2026 =
     "contact_phone": "+52 33 1314 5892",
     "directory_consent": "Acepto / Agree.",
     "has_coexhibitors": "Sí",
-    "coexhibitors": "Jesus Martinez Perrusquia"
+    "coexhibitors": ""
   },
   {
     "id": 32,
@@ -778,7 +778,7 @@ export const directory2026 =
     "linkedin": "https://www.linkedin.com/showcase/prevost-us/",
     "facebook": null,
     "instagram": null,
-    "stand_number": "?",
+    "stand_number": "",
     "webpage": "https://www.prevostusa.com/",
     "address": "74 Brookfield Oaks Dr #3,",
     "zip_code": "29607",
@@ -1078,7 +1078,7 @@ export const directory2026 =
     "contact_phone": "+52 1 999 641 7888",
     "directory_consent": "Acepto / Agree.",
     "has_coexhibitors": "Sí",
-    "coexhibitors": "Xavier Erbessd Graf Zu Rantsau, César Castellanos Escalante, Otros Pendientes por confirmar"
+    "coexhibitors": ""
   },
   {
     "id": 48,
