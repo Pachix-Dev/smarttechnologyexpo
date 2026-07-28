@@ -1,11 +1,48 @@
 ---
-import DisplaySegments from "../home/DisplaySegments.astro";
 import { useTranslations, getTranslation } from "../../utils/translations";
 // ✨ Una sola línea para cargar traducciones!
 const { locale, translations } = await useTranslations(Astro.props, Astro);
 // 🎯 Helper para traducciones más elegante
 const tr = (key: string, fallback: string = "") =>
   getTranslation(translations, key, fallback);
+
+
+const benefits = locale === "en"
+  ? [
+      {
+        title: "The Bajio-Occidente is now the engine of industrial growth in the country",
+      },
+      {
+        title: "Innovation and talent ecosystem",
+      },
+      {
+        title: "International connectivity with Canada, Europe, and the U.S.",
+      },
+      {
+        title: "Expo Guadalajara: world-class infrastructure",
+      },
+      {
+        title: "Extensive business collaboration network",
+      }
+    ]
+  : [
+      {
+        title: "El Bajío-Occidente es hoy el motor del crecimiento industrial del país",
+      },
+      {
+        title: "Ecosistema de innovación y talento",
+      },
+      {
+        title: "Conectividad internacional con Canadá, Europa y EE. UU.",
+      },
+      {
+        title: "Expo Guadalajara: infraestructura de clase mundial",
+      },
+      {
+        title: "Amplia red de colaboración empresarial",
+      }
+    ];
+ 
 ---
 
 <section
@@ -14,6 +51,7 @@ const tr = (key: string, fallback: string = "") =>
   <div class="container mx-auto px-4 relative z-10">
     <!-- Hero Section -->
     <div class="max-w-6xl mx-auto">
+
       <!-- Sede Card -->
       <div
         class="relative overflow-hidden rounded-3xl shadow-2xl group"
@@ -96,60 +134,34 @@ const tr = (key: string, fallback: string = "") =>
           </div>
         </div>
       </div>
+
       <!-- Benefits Section -->
-      <div class="my-20" data-aos="fade-up">
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {
-            ["topic_1", "topic_2", "topic_3", "topic_4", "topic_5"].map(
-              (topicKey, index) => {
-                const topic = tr(`expositorsSection.topics_list.${topicKey}`);
-                return (
-                  <div
-                    class="group relative"
-                    data-aos="zoom-in"
-                    data-aos-delay={index * 100}
-                  >
-                    {/* Tarjeta con sombra y efecto elevación */}
-                    <div class="relative h-full bg-white rounded-3xl p-8 shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border-t-4 border-[#c7312a]">
-                      {/* Gradiente sutil de fondo */}
-                      <div class="absolute inset-0 bg-linear-to-br from-gray-50/50 to-white pointer-events-none" />
-
-                      {/* Elemento decorativo circular */}
-                      <div class="absolute -right-8 -bottom-8 w-32 h-32 bg-[#c7312a]/5 rounded-full" />
-
-                      <div class="relative">
-                        {/* Ícono con círculo de fondo */}
-                        <div class="inline-flex items-center justify-center w-16 h-16 bg-linear-to-br from-[#c7312a] to-[#8a2b23] rounded-2xl shadow-lg mb-6">
-                          <svg
-                            class="w-8 h-8 text-white"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M13 10V3L4 14h7v7l9-11h-7z"
-                            />
-                          </svg>
-                        </div>
-
-                        {/* Texto */}
-                        <h4 class="text-xl font-bold text-gray-900 leading-tight">
-                          {topic}
-                        </h4>
-                      </div>
-                    </div>
-                  </div>
-                );
-              },
-            )
-          }
+      <div class="mt-16 md:mt-20">
+        <div class="relative overflow-hidden rounded-[2rem] border border-[#c7312a]/10 bg-gradient-to-br from-[#fff7f7] via-white to-[#fff3f2] p-4 sm:p-6 md:p-8 shadow-[0_25px_80px_-30px_rgba(199,49,42,0.35)]">
+          <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(199,49,42,0.09),_transparent_55%)]"></div>
+          <div class="relative grid grid-cols-2 gap-3 sm:gap-4 md:gap-5 lg:grid-cols-3 xl:grid-cols-5">
+            {benefits.map((benefit, index) => (
+              <div
+                class="group relative overflow-hidden rounded-[1.25rem] border border-gray-200/80 bg-white p-4 shadow-[0_10px_25px_-18px_rgba(0,0,0,0.28)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_10px_24px_-16px_rgba(199,49,42,0.2)] hover:border-[#c7312a]/15 sm:p-5 md:p-6"
+                data-aos="fade-up"
+                data-aos-delay={index * 100}
+              >
+                <div class="absolute inset-x-0 top-0 h-[2px] bg-linear-to-r from-[#c7312a]/70 via-[#e85d4b]/60 to-[#8a2b23]/70"></div>
+                <div class="absolute -right-6 -top-6 h-16 w-16 rounded-full bg-[#c7312a]/6 transition-all duration-200 group-hover:scale-105"></div>
+                <div class="relative mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-[#c7312a]/10 to-[#8a2b23]/8 text-[#c7312a] shadow-inner">
+                  <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                </div>
+                <h3 class="relative text-xs sm:text-lg font-semibold leading-snug text-gray-900">
+                  {benefit.title}
+                </h3>
+                <div class="mt-4 h-1.5 w-24 rounded-full bg-gradient-to-r from-[#c7312a]/40 to-transparent"></div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-      <!-- Segmentos -->
-      <DisplaySegments />
     </div>
   </div>
   <style>

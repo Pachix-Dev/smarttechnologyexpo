@@ -5,13 +5,17 @@ import WhyExhibit from "../components/exhibitor/WhyExhibit.astro";
 import ContactTeam from "../components/home/ContactTeam.astro";
 import Layout from "../layouts/Layout.astro";
 import KeyResourceButton from "../components/exhibitor/KeyResourceButton.astro";
+import DisplaySegments from "../components/home/DisplaySegments.astro";
+import ExhibitorForm from "../components/formExpositores/ExhibitorForm.astro";
 ---
 <Layout title="Expositores | Smart Technology Expo" description="Página para expositores Smart Technology Expo">
   <section class="mx-auto w-auto">
     <WhyExhibit />
     <KeyResourceButton />
     <BuyerConnection />
+    <DisplaySegments />
     <StandPrice />
+    <ExhibitorForm />
     <ContactTeam />
   </section>
 </Layout>
