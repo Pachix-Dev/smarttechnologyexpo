@@ -1,7 +1,7 @@
 ---
 import { useTranslations, getTranslation } from '../../utils/translations'
 // ✨ Una sola línea para cargar traducciones!
-const { translations } = await useTranslations(Astro.props, Astro)
+const { translations, locale } = await useTranslations(Astro.props, Astro)
 
 // 🎯 Helper para traducciones más elegante
 const tr = (key: string, fallback: string = '') =>
@@ -13,7 +13,8 @@ const exhibitorsTestimonials = [
     text: tr('testimonials.exhibitors.exhibitors_1'),
     name: 'Filiberto Cruz Morales',
     company: 'Beckhoff México',
-    role: 'Director General',
+    role_es: 'Director General',
+    role_en: 'General Manager',
     color: 'from-blue-500 to-purple-600',
     image: '/img/testimoniales/filibertoCruz.webp'
   },
@@ -21,7 +22,8 @@ const exhibitorsTestimonials = [
     text: tr('testimonials.exhibitors.exhibitors_2'),
     name: 'Caroline Hoarau',
     company: 'Schneider Electric México y CentroaméricaNo',
-    role: 'Directora de Automatización',
+    role_es: 'Directora de Automatización',
+    role_en: 'Automation Director',
     color: 'from-purple-500 to-pink-600',
     image: '/img/testimoniales/carolinehoarau.webp'
   },
@@ -29,7 +31,8 @@ const exhibitorsTestimonials = [
     text: tr('testimonials.exhibitors.exhibitors_3'),
     name: 'Santiago Escalona Vázquez',
     company: 'Nokia Networks México',
-    role: 'Director de Marketing Estratégico',
+    role_es: 'Director de Marketing Estratégico',
+    role_en: 'Strategic Marketing Director',
     color: 'from-pink-500 to-red-600',
     image: '/img/testimoniales/santiagoEscalona.webp'
   },
@@ -37,7 +40,8 @@ const exhibitorsTestimonials = [
     text: tr('testimonials.exhibitors.exhibitors_4'),
     name: 'Javier Cardenas',
     company: 'Mitsubishi Electric México',
-    role: 'Línea de negocios de soluciones digitales',
+    role_es: 'Línea de negocios de soluciones digitales',
+    role_en: 'Digital Solutions Business Line',
     color: 'from-red-500 to-orange-600',
     image: '/img/testimoniales/javierCardenas.webp'
   }
@@ -49,7 +53,8 @@ const visitorsTestimonials = [
     text: tr('testimonials.visitors.visitors_1'),
     name: 'Mauricio Rubio',
     company: 'Global Automation de Bogotá',
-    role: '',
+    role_es: 'Global Automation de Bogotá',
+    role_en: 'Global Automation of Bogotá',
     color: 'from-emerald-500 to-teal-600',
     image: '/img/testimoniales/mauricioRublo.webp'
   },
@@ -57,7 +62,8 @@ const visitorsTestimonials = [
     text: tr('testimonials.visitors.visitors_2'),
     name: 'Directora comercial',
     company: 'Airmat Del Caribe de Barranquilla, Colombia',
-    role: '',
+    role_es: 'Airmat Del Caribe de Barranquilla, Colombia',
+    role_en: 'Airmat of the Caribbean of Barranquilla, Colombia',
     color: 'from-teal-500 to-cyan-600',
     image: '/img/testimoniales/visitante.webp'
   },
@@ -65,7 +71,8 @@ const visitorsTestimonials = [
     text: tr('testimonials.visitors.visitors_3'),
     name: 'Miguel Ángel Lara',
     company: 'Emprededor de negocio de maquinaria',
-    role: '',
+    role_es: 'Emprendedor de negocio de maquinaria',
+    role_en: 'Entrepreneur of machinery business',
     color: 'from-cyan-500 to-blue-600',
     image: '/img/testimoniales/miguelAngel.webp'
   },
@@ -73,7 +80,8 @@ const visitorsTestimonials = [
     text: tr('testimonials.visitors.visitors_4'),
     name: 'Jorge Estrada',
     company: 'Director de Inversiones del gobierno de Tabasco',
-    role: '',
+    role_es: 'Director de Inversiones del gobierno de Tabasco',
+    role_en: 'Director of Investments of the Government of Tabasco',
     color: 'from-indigo-500 to-purple-600',
     image: '/img/testimoniales/jorgeEstrada.webp'
   }
@@ -136,7 +144,7 @@ const visitorsTestimonials = [
                 {testimonial.name}
               </h3>
               <p class='text-sm font-semibold text-gray-700 mb-0.5'>{testimonial.company}</p>
-              <p class='text-xs text-gray-600 mb-3'>{testimonial.role}</p>
+              <p class='text-xs text-gray-600 mb-3'>{locale === 'es' ? testimonial.role_es : testimonial.role_en}</p>
               
               <!-- Icono de cita -->
               <svg class='w-6 h-6 text-red-600 mx-auto mb-2' fill='currentColor' viewBox='0 0 24 24'>
@@ -191,8 +199,8 @@ const visitorsTestimonials = [
               <h3 class='text-lg font-bold text-gray-900 mb-1'>
                 {testimonial.name}
               </h3>
-              <p class='text-sm font-semibold text-gray-700 mb-0.5'>{testimonial.company}</p>
-              <p class='text-xs text-gray-600 mb-3'>{testimonial.role}</p>
+              {/* <p class='text-sm font-semibold text-gray-700 mb-0.5'>{testimonial.company}</p> */}
+              <p class='text-sm font-semibold text-gray-700 mb-0.5'>{locale === 'es' ? testimonial.role_es : testimonial.role_en}</p>
               
               <!-- Icono de cita -->
               <svg class='w-6 h-6 text-red-600 mx-auto mb-2' fill='currentColor' viewBox='0 0 24 24'>
