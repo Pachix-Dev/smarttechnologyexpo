@@ -1,0 +1,424 @@
+/* SkillsSchedule.css — Estilos del "Programa por día" de SMART SKILLS.
+   Clases ssc-* propias (independientes de insights.css). Se cargan como CSS
+   global porque la isla React SkillsScheduleLive no recibe estilos scoped.
+   El acento rojo de varias piezas (barra, pill activa, banner-num, time-pill)
+   se aplica por estilo inline desde el .jsx; aquí van los colores por defecto. */
+
+.ssc-section {
+  background: #080808;
+  border-top: 1px solid #161616;
+  border-bottom: 1px solid #161616;
+  font-family: 'Archivo', Helvetica, Arial, sans-serif;
+  color: #fff;
+}
+.ssc-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: clamp(56px, 8vw, 96px) clamp(16px, 4vw, 40px);
+}
+.ssc-eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 12px;
+}
+.ssc-title {
+  margin: 0 0 8px;
+  font-size: clamp(34px, 5vw, 56px);
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  line-height: 0.95;
+}
+
+/* ---- Fila superior: (descarga oculta) + aviso ---- */
+.ssc-toprow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 40px;
+}
+.ssc-dl-label {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  font-weight: 700;
+  color: #e2101a;
+  margin-bottom: 10px;
+}
+.ssc-dl-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 22px;
+  background: #e2101a;
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  box-shadow: 0 0 28px rgba(226, 16, 26, 0.35);
+}
+.ssc-dl-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 20px;
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 3px;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+.ssc-notice {
+  flex: 1;
+  min-width: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 14px 20px;
+  background: rgba(226, 16, 26, 0.08);
+  border: 1px solid rgba(226, 16, 26, 0.4);
+  border-radius: 6px;
+  align-self: flex-end;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+}
+.ssc-notice-i {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #e2101a;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+/* ---- Selector de día (pills) ---- */
+.ssc-day-label {
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  font-weight: 700;
+  color: #9a9a9a;
+  margin-bottom: 14px;
+}
+.ssc-day-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+.ssc-pill {
+  padding: 10px 22px;
+  background: transparent;
+  color: #b9b9b9;
+  border: 1px solid #2a2a2a;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 14px;
+  font-family: inherit;
+}
+.ssc-pill--active {
+  color: #fff;
+  font-weight: 800;
+}
+
+/* ---- Banner de fecha por día ---- */
+.ssc-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 20px 24px;
+  background: #111;
+  border: 1px solid #232323;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+.ssc-banner-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.ssc-banner-num {
+  flex: none;
+  width: 56px;
+  height: 56px;
+  border-radius: 10px;
+  background: #e2101a;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 900;
+}
+.ssc-banner-name {
+  font-size: 20px;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.2;
+  text-transform: capitalize;
+}
+.ssc-banner-date {
+  font-size: 13px;
+  color: #9a9a9a;
+  font-weight: 600;
+  margin-top: 2px;
+  text-transform: capitalize;
+}
+.ssc-banner-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: #1c1c1c;
+  border: 1px solid #2a2a2a;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #cfcfcf;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.ssc-banner-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid #e2101a;
+  flex-shrink: 0;
+}
+
+/* ---- Tarjetas de sesión ---- */
+.ssc-sessions {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.ssc-card {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid;
+  background: #111;
+}
+.ssc-bar {
+  padding: 8px 20px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  color: #fff;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.35);
+}
+.ssc-body {
+  padding: 18px 20px;
+}
+
+/* Fila del título: duración + título a la izquierda, "Powered by" a la derecha. */
+.ssc-title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+}
+.ssc-title-left {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+.ssc-title-left .ssc-time-pill {
+  flex: none;
+  margin-top: 2px;
+}
+.ssc-time-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  white-space: nowrap;
+  font-weight: 800;
+  color: #fff;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.35);
+}
+.ssc-session-title {
+  font-size: clamp(17px, 1.7vw, 21px);
+  font-weight: 800;
+  line-height: 1.28;
+  color: #fff;
+  flex: 1;
+}
+.ssc-session-desc {
+  margin: 8px 0 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: #a8a8a8;
+}
+
+/* Recuadro "Powered by" con logo de empresa. */
+.ssc-powered {
+  flex: none;
+  box-sizing: border-box;
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+}
+.ssc-powered-label {
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  color: #9a9a9a;
+  font-weight: 600;
+}
+.ssc-powered-logo {
+  box-sizing: border-box;
+  width: 100%;
+  height: 50px;
+  object-fit: contain;
+  background: #fff;
+  border-radius: 6px;
+  padding: 5px 9px;
+}
+@media (max-width: 560px) {
+  .ssc-title-row { flex-direction: column; }
+  .ssc-powered { flex-direction: row; align-self: flex-start; }
+}
+
+/* ---- Instructores (más grandes, estilo RE+) ---- */
+.ssc-speakers {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid #222;
+}
+.ssc-speakers-label {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  font-weight: 700;
+  color: #777;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+.ssc-speakers-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 12px 16px;
+}
+.ssc-speaker-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  margin: 0;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid #2a2a2a;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+.ssc-speaker-row[data-bio-trigger]:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--hover, #e2101a);
+  transform: translateX(2px);
+}
+.ssc-speaker-row[data-bio-trigger]:hover .ssc-avatar {
+  box-shadow: 0 0 0 2px var(--hover, #e2101a);
+}
+.ssc-speaker-row[data-bio-trigger]:hover .ssc-chevron {
+  opacity: 1;
+}
+.ssc-avatar {
+  width: 52px;
+  height: 52px;
+  flex: none;
+  border-radius: 50%;
+  background: repeating-linear-gradient(135deg, #262626 0 6px, #1a1a1a 6px 12px);
+  border: 1px solid #3a3a3a;
+  object-fit: cover;
+  transition: box-shadow 0.15s ease;
+}
+.ssc-speaker-name {
+  font-size: 17px;
+  color: #fff;
+  font-weight: 800;
+  line-height: 1.2;
+}
+.ssc-speaker-role {
+  font-size: 14px;
+  color: #cfcfcf;
+  margin-top: 2px;
+}
+.ssc-speaker-org {
+  font-size: 13px;
+  color: #8a8a8a;
+  margin-top: 1px;
+}
+.ssc-chevron {
+  margin-left: auto;
+  color: var(--hover, #e2101a);
+  font-size: 24px;
+  font-weight: 800;
+  opacity: 0.7;
+  flex: none;
+  transition: opacity 0.15s ease;
+}
+
+/* ---- Estados: loading / error / vacío ---- */
+.ssc-state {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: clamp(40px, 7vw, 80px) clamp(16px, 4vw, 40px);
+  font-family: 'Archivo', Helvetica, Arial, sans-serif;
+  color: #fff;
+}
+.ssc-spinner-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 64px 0;
+}
+.ssc-spinner {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 3px solid #2a2a2a;
+  border-top-color: #e2101a;
+  animation: ssc-spin 0.9s linear infinite;
+}
+@keyframes ssc-spin {
+  to { transform: rotate(360deg); }
+}
+.ssc-error {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 18px 22px;
+  background: rgba(226, 16, 26, 0.08);
+  border: 1px solid rgba(226, 16, 26, 0.4);
+  border-radius: 8px;
+  color: #ffb3b7;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+}
+.ssc-empty {
+  padding: 40px;
+  text-align: center;
+  color: #8a8a8a;
+  border: 1px solid #232323;
+  border-radius: 10px;
+  background: #111;
+}

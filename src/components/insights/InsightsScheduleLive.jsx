@@ -2,6 +2,11 @@
 // InsightsSchedule por el programa en vivo de la API (mismo patrón que Ecomondo).
 // Conserva el look oscuro: usa las mismas clases isc-* de insights.css.
 // Los ponentes con semblanza abren el BioModal.astro compartido vía data-bio-*.
+//
+// AJUSTES STE 2026 (nada se borró; lo que se oculta queda COMENTADO):
+//  - "Descarga programa" comentado (queda solo el aviso de idioma).
+//  - La fecha del banner ahora muestra solo mes + año (p. ej. "Noviembre 2026").
+//  - Categoría "Conferencia" de la leyenda comentada (quedan Keynote y Panel).
 
 import { useEffect, useMemo, useState } from "react";
 import {
@@ -15,7 +20,6 @@ import {
   typeMeta,
   formatTime,
   dayNumber,
-  formatDateLong,
   daySessions,
 } from "./insightsApi.js";
 
@@ -55,6 +59,18 @@ export default function InsightsScheduleLive({
 
   const t = (es, en) => (lang === "en" ? en : es);
   const lbl = (key, es, en) => (labels && labels[key]) || t(es, en);
+
+  // Fecha del banner: SOLO mes + año, sin día de la semana ni "de".
+  // ES -> "Noviembre 2026", EN -> "November 2026".
+  const monthYear = (dateStr) => {
+    const d = new Date(dateStr);
+    if (isNaN(d)) return "";
+    const month = d.toLocaleDateString(lang === "en" ? "en-US" : "es-MX", {
+      month: "long",
+    });
+    const cap = month.charAt(0).toUpperCase() + month.slice(1);
+    return `${cap} ${d.getFullYear()}`;
+  };
 
   const days = stage?.dias || [];
   const dia = days[activeDay] || days[0] || null;
@@ -114,6 +130,8 @@ export default function InsightsScheduleLive({
         </p>
 
         <div className="isc-toprow">
+          {/* OCULTO POR AHORA (ajuste STE 2026): sección "Descarga programa".
+              No se borró; para reactivarla, descomenta este bloque.
           <div>
             <div className="isc-dl-label">
               {lbl("dlLabel", "DESCARGA GRATUITA", "FREE DOWNLOAD")}
@@ -124,13 +142,14 @@ export default function InsightsScheduleLive({
               <span>⬇</span>
             </a>
           </div>
+          */}
           <div className="isc-notice">
             <span className="isc-notice-i">i</span>
             <span>
               {lbl(
                 "notice",
-                "Todas las ponencias se realizarán en español.",
-                "All presentations will be held in Spanish.",
+                "Todas las ponencias se realizarán en español",
+                "All presentations will be held in Spanish",
               )}
             </span>
           </div>
@@ -160,9 +179,7 @@ export default function InsightsScheduleLive({
               <div className="isc-banner-num">{dayNumber(dia.date)}</div>
               <div>
                 <div className="isc-banner-name">{dia.name}</div>
-                <div className="isc-banner-date">
-                  {formatDateLong(dia.date, lang)}
-                </div>
+                <div className="isc-banner-date">{monthYear(dia.date)}</div>
               </div>
             </div>
             <span className="isc-banner-count">
@@ -172,7 +189,6 @@ export default function InsightsScheduleLive({
           </div>
         )}
 
-        {/* Paleta actualizada: sin rojo, sin receso */}
         <div className="isc-legend">
           <div className="isc-legend-item">
             <span className="isc-legend-dot" style={{ background: "#2563EB" }} />
@@ -182,10 +198,12 @@ export default function InsightsScheduleLive({
             <span className="isc-legend-dot" style={{ background: "#0D9488" }} />
             Panel
           </div>
+          {/* OCULTO (ajuste STE 2026): categoría "Conferencia". No se borró.
           <div className="isc-legend-item">
             <span className="isc-legend-dot" style={{ background: "#9333EA" }} />
             {lbl("legendConference", "Conferencia", "Conference")}
           </div>
+          */}
         </div>
 
         <div className="isc-sessions">
@@ -254,14 +272,24 @@ export default function InsightsScheduleLive({
                           className="isc-speakers-list"
                           style={{
                             display: "grid",
-                            gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-                            gap: "6px 16px",
+                            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+                            gap: "12px 16px",
                           }}
                         >
                           {speakers.map((p) => {
                             const bio = speakerBio(p, lang);
                             const photo = speakerPhoto(p.photo);
                             const hasBio = Boolean(bio);
+                            // Cargo/empresa en inglés si la API los trae (position_en/
+                            // company_en); si no, cae al valor en español. Ajuste STE 2026.
+                            const role =
+                              lang === "en"
+                                ? p.position_en || p.position || p.role || ""
+                                : p.position || p.role || "";
+                            const org =
+                              lang === "en"
+                                ? p.company_en || p.company || ""
+                                : p.company || "";
                             return (
                               <div
                                 key={p.id ?? p.name}
@@ -270,9 +298,8 @@ export default function InsightsScheduleLive({
                                   ? {
                                       "data-bio-trigger": true,
                                       "data-bio-name": p.name || "",
-                                      "data-bio-role":
-                                        p.position || p.role || "",
-                                      "data-bio-org": p.company || "",
+                                      "data-bio-role": role,
+                                      "data-bio-org": org,
                                       "data-bio-bio": bio,
                                       "data-bio-photo": photo || "",
                                       style: { cursor: "pointer" },
@@ -293,10 +320,11 @@ export default function InsightsScheduleLive({
                                   <div className="isc-speaker-name">
                                     {p.name}
                                   </div>
-                                  {(p.position || p.role) && (
-                                    <div className="isc-speaker-role">
-                                      {p.position || p.role}
-                                    </div>
+                                  {role && (
+                                    <div className="isc-speaker-role">{role}</div>
+                                  )}
+                                  {org && (
+                                    <div className="isc-speaker-org">{org}</div>
                                   )}
                                 </div>
                                 {hasBio && (

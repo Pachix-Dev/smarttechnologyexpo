@@ -149,10 +149,13 @@ export default function WorkshopFormIsland({
                 <span className="wf-perk-n">2</span>
                 {L.perk2}
               </div>
+              {/* OMITIDO (ajuste STE 2026): perk "Constancia de participación
+                  Smart Technology Expo". No se borró; para reactivarlo, descomenta.
               <div className="wf-perk">
                 <span className="wf-perk-n">3</span>
                 {L.perk3}
               </div>
+              */}
             </div>
           </div>
 

@@ -84,9 +84,10 @@
 .isp-carousel:hover .isp-marquee {
   animation-play-state: paused;
 }
+/* Tarjetas del carrusel MÁS GRANDES (ajuste STE 2026, referencia RE+). */
 .isp-carousel .isp-card {
-  flex: 0 0 260px;
-  max-width: 260px;
+  flex: 0 0 320px;
+  max-width: 320px;
 }
 @keyframes isp-scroll {
   from {
@@ -112,11 +113,13 @@
     -webkit-mask-image: none;
     mask-image: none;
   }
+  /* En móvil la tarjeta ocupa casi todo el ancho de pantalla. */
   .isp-carousel .isp-card {
     flex: 0 0 78vw;
     max-width: 78vw;
   }
 }
+
 @media (prefers-reduced-motion: reduce) {
   .isp-viewport {
     overflow-x: auto;
@@ -136,7 +139,7 @@
   border: 1px solid #1c1c1c;
   border-radius: 6px;
   overflow: hidden;
-  cursor: pointer;
+  cursor: default;   /* ya no abre semblanza en el carrusel */
 }
 .isp-photo {
   position: relative;
@@ -181,23 +184,23 @@
   flex: 1;
 }
 .isp-name {
-  font-size: 19px;
+  font-size: 22px;   /* antes 19px */
   font-weight: 800;
-  line-height: 1.1;
+  line-height: 1.15;
   margin-bottom: 8px;
 }
 .isp-role {
-  font-size: 13px;
+  font-size: 14px;   /* antes 13px */
   font-weight: 600;
   color: #fff;
   line-height: 1.35;
 }
 .isp-company {
-  font-size: 13px;
+  font-size: 14px;   /* antes 13px */
   color: #8a8a8a;
   line-height: 1.35;
   margin-top: 3px;
-  margin-bottom: 16px;
+  margin-bottom: 16px;   /* ya sin botón, este margen inferior queda de respiro */
 }
 .isp-cta {
   margin-top: auto;
@@ -572,14 +575,17 @@
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 6px 16px;
 }
+/* Ponente MÁS GRANDE y con presencia (estilo RE+, ajuste STE 2026):
+   recuadro con fondo y borde visibles, más padding. */
 .isc-speaker-row {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 10px 12px;
-  margin: -2px -12px;
-  border-radius: 8px;
-  border: 1px solid transparent;
+  gap: 14px;
+  padding: 16px 18px;
+  margin: 0;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid #2a2a2a;
   transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
 }
 .isc-speaker-row[data-bio-trigger]:hover {
@@ -594,8 +600,8 @@
   opacity: 1;
 }
 .isc-avatar {
-  width: 32px;
-  height: 32px;
+  width: 52px;              /* antes 32px — avatar más grande (RE+) */
+  height: 52px;
   flex: none;
   border-radius: 50%;
   background: repeating-linear-gradient(135deg, #262626 0 6px, #1a1a1a 6px 12px);
@@ -604,20 +610,27 @@
   transition: box-shadow 0.15s ease;
 }
 .isc-speaker-name {
-  font-size: 14px;
+  font-size: 17px;         /* antes 14px */
   color: #fff;
-  font-weight: 700;
+  font-weight: 800;
+  line-height: 1.2;
 }
 .isc-speaker-role {
-  font-size: 12px;
+  font-size: 14px;         /* antes 12px */
+  color: #cfcfcf;
+  margin-top: 2px;
+}
+.isc-speaker-org {
+  font-size: 13px;         /* empresa del ponente */
   color: #8a8a8a;
+  margin-top: 1px;
 }
 .isc-chevron {
   margin-left: auto;
   color: var(--hover, #e2101a);
-  font-size: 20px;
+  font-size: 24px;         /* antes 20px */
   font-weight: 800;
-  opacity: 0.55;
+  opacity: 0.7;
   flex: none;
   transition: opacity 0.15s ease;
 }

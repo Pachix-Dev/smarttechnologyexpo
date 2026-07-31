@@ -4,13 +4,19 @@
 // El CUPO en vivo NO se toma de aquí, viene de la base de datos.
 // IMPORTANTE: `workshopId` debe coincidir con el `workshop_id` de la tabla
 // `workshops` en la base de datos, para que la barra de cupo se conecte bien.
+//
+// AJUSTE STE 2026: los talleres de PRUEBA quedan OCULTOS (comentados, no borrados).
+// Mientras el array esté vacío, el catálogo no muestra tarjetas y el <select> del
+// formulario solo tendrá el placeholder. Para volver a mostrarlos (o cuando lleguen
+// los talleres reales), descomenta / reemplaza el bloque de abajo.
 
 export const workshops = [
+  /* ── TALLERES DE PRUEBA OCULTOS (ajuste STE 2026) ──────────────────────────
   {
     workshopId: 1,
     name: 'Programación de robots colaborativos (cobots)',
     name_en: 'Collaborative robot (cobot) programming',
-    nivel: 'INTERMEDIO', 
+    nivel: 'INTERMEDIO',
     instructor: 'Ing. Carlos Rivera',
     instructorRole: 'Especialista en robótica industrial',
     instructorRole_en: 'Industrial robotics specialist',
@@ -20,7 +26,7 @@ export const workshops = [
     duracion_en: '4 hours',
     horario: '10:00 – 14:00',
     sala: 'Lab Smart Skills A',
-    cupo: 25, // cupo inicial que se muestra antes de que el script traiga el real
+    cupo: 25,
     requisitos: ['Laptop propia', 'Nociones básicas de programación'],
     requisitos_en: ['Your own laptop', 'Basic programming knowledge'],
   },
@@ -78,4 +84,5 @@ export const workshops = [
     requisitos: ['Laptop propia', 'Python básico'],
     requisitos_en: ['Your own laptop', 'Basic Python'],
   },
-];  
+  ────────────────────────────────────────────────────────────────────────── */
+];

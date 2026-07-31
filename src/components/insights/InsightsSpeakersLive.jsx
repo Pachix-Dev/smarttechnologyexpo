@@ -2,13 +2,16 @@
 // construida desde la API (ponentes únicos del escenario). Se muestran en un
 // carrusel horizontal AUTOMÁTICO (marquee con animación CSS) que se desliza solo,
 // en bucle sin cortes y sin botones. Se pausa al pasar el mouse. Respeta
-// prefers-reduced-motion. Cada tarjeta con semblanza abre el BioModal.astro.
+// prefers-reduced-motion.
+//
+// NOTA (ajustes STE 2026): en el carrusel se OMITE la opción "VER SEMBLANZA"
+// (ya no hay botón ni apertura del BioModal desde aquí) y se quitó el eyebrow
+// "PONENTES DESTACADOS": queda únicamente el encabezado "Keynote Speakers".
 
 import { useEffect, useState } from "react";
 import {
   fetchStage,
   INSIGHTS_STAGE_ID,
-  speakerBio,
   speakerPhoto,
   uniqueSpeakers,
 } from "./insightsApi.js";
@@ -53,24 +56,19 @@ export default function InsightsSpeakersLive({
   const lbl = (key, es, en) => (labels && labels[key]) || t(es, en);
 
   const renderCard = (sp, i) => {
-    const bio = speakerBio(sp, lang);
     const photo = speakerPhoto(sp.photo);
-    const hasBio = Boolean(bio);
+    // Cargo/empresa en inglés si la API los trae (position_en/company_en);
+    // si no, cae al valor en español. Ajuste STE 2026.
+    const role =
+      lang === "en"
+        ? sp.position_en || sp.position || sp.role || ""
+        : sp.position || sp.role || "";
+    const org =
+      lang === "en"
+        ? sp.company_en || sp.company || ""
+        : sp.company || "";
     return (
-      <div
-        key={`${sp.id ?? sp.name}-${i}`}
-        className="isp-card"
-        {...(hasBio
-          ? {
-              "data-bio-trigger": true,
-              "data-bio-name": sp.name || "",
-              "data-bio-role": sp.position || sp.role || "",
-              "data-bio-org": sp.company || "",
-              "data-bio-bio": bio,
-              "data-bio-photo": photo || "",
-            }
-          : {})}
-      >
+      <div key={`${sp.id ?? sp.name}-${i}`} className="isp-card">
         <div className="isp-photo">
           <span className="isp-badge">KEYNOTE</span>
           {photo ? (
@@ -88,15 +86,8 @@ export default function InsightsSpeakersLive({
         </div>
         <div className="isp-body">
           <div className="isp-name">{sp.name}</div>
-          {(sp.position || sp.role) && (
-            <div className="isp-role">{sp.position || sp.role}</div>
-          )}
-          {sp.company && <div className="isp-company">{sp.company}</div>}
-          {hasBio && (
-            <button className="isp-cta" type="button">
-              {lbl("bioBtn", "VER SEMBLANZA", "VIEW BIO")}
-            </button>
-          )}
+          {role && <div className="isp-role">{role}</div>}
+          {org && <div className="isp-company">{org}</div>}
         </div>
       </div>
     );
@@ -112,9 +103,6 @@ export default function InsightsSpeakersLive({
       <div className="isp-inner">
         <div className="isp-head">
           <div>
-            <div className="isp-eyebrow">
-              {lbl("eyebrow", "PONENTES DESTACADOS", "FEATURED SPEAKERS")}
-            </div>
             <h2 className="isp-title">
               {lbl("title", "Keynote Speakers", "Keynote Speakers")}
             </h2>
