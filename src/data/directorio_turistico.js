@@ -7,7 +7,7 @@ const hotels = [
     phone: '+52 (55) 33 3880 2700',
     email: 'reservaciones.gdl@westinhotels.com',
     code: 'RE+ MEXICO / ECOMONDO MEXICO',
-    link: 'https://www.marriott.com/es/event-reservations/reservation-link.mi?id=1761175449045&key=GRP&dtt=true&guestreslink2=true&app=resvlink',
+    link: 'https://app.marriott.com/reslink?id=1785344438140&key=GRP&app=resvlink',
     time_walk: '1',
     time_drive: '1',
     whatsapp: ''
