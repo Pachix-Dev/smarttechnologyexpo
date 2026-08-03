@@ -15,13 +15,19 @@
   { src: "/img/logos/media/manufactura_latam.webp", alt: "Manufactura Latam", href: "https://new.siemens.com/mx/es.html", width: 300 },
 ];
 
-  const sponsorsDiamond = [
-    { src: "/img/logos/sponsors/beckhoff.webp", alt: "Beckhoff", href: "https://www.beckhoff.com/es-mx/", width: 300 },
-  ];
-
-  const sponsorsGold = [
+const mediaGold = [
     { src: "/img/logos/media/revista_consultoria.webp", alt: "Revista Consultoria", href: "https://new.siemens.com/mx/es.html", width: 300 },
     { src: "/img/logos/media/industry_energy_magazine.webp", alt: "Industry Energy Magazine", href: "https://www.otromedio.com", width: 300 },
   ];
 
-export { mediaPlanito, strategicPartners, sponsorsDiamond, sponsorsGold };
+const sponsorsDiamond = [
+    { src: "/img/logos/sponsors/beckhoff.webp", alt: "Beckhoff", href: "https://www.beckhoff.com/es-mx/", width: 300 },
+  ];
+
+const sponsorsBronze = [
+    { src: "/img/logos/sponsors/robustel.webp", alt: "Robustel", href: "https://robustel.com", width: 300 },
+  ];
+  
+
+
+export { mediaPlanito, strategicPartners, sponsorsDiamond, mediaGold, sponsorsBronze };
