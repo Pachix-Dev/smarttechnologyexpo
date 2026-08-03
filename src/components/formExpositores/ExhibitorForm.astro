@@ -10,6 +10,6 @@ const currentLanguage = locale === 'es' ? 'es' : 'en';
 
 ---
 <section class="my-12 p-6 rounded-lg bg-zinc-100">
-  <h2 class="text-center text-4xl md:text-4xl font-black text-gray-900 mb-4" set:html={tr('expositorsSection.title_section')}></h2>
+  <h2 class="text-center text-2xl md:text-3xl font-black text-gray-900 mb-4" set:html={tr('expositorsSection.title_section')}></h2>
   <ContactForm language={currentLanguage}  client:visible  />
 </section>
