@@ -1,0 +1,1020 @@
+/* ============================================================================
+    HOJA DE ESTILOS skills.css — Escenario SMART SKILLS (Schedule + Workshops + Form)
+    Autor: Donovan Oswaldo Villalba Hernandez
+
+    Hoja única con todos los estilos del escenario Skills. Antes vivían en tres
+    archivos separados (SkillsSchedule.css, skillsWorkshops.css, workshopForm.css);
+    aquí se unifican, igual que insights.css hace con el escenario Insights.
+    Se cargan como CSS global (no scoped) porque las islas React generan el DOM
+    en cliente y no reciben estilos scoped de Astro. Prefijos por sección:
+      · ssc-  → Schedule  (programa por día)
+      · sw-   → Workshops (catálogo "Talleres disponibles")
+      · wf-   → Form      (formulario de inscripción)
+    El acento rojo de varias piezas de Schedule (barra, pill activa, banner-num,
+    time-pill) se aplica por estilo inline desde el .jsx; aquí van los colores
+    por defecto. En Form, el acento llega por la variable CSS --accent.
+   ============================================================================ */
+
+
+/* ############################################################################
+   #  SECCIÓN 1 — SCHEDULE (ssc-)  ·  Programa por día de SMART SKILLS
+   ############################################################################ */
+
+.ssc-section {
+  background: #080808;
+  border-top: 1px solid #161616;
+  border-bottom: 1px solid #161616;
+  font-family: 'Archivo', Helvetica, Arial, sans-serif;
+  color: #fff;
+}
+.ssc-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: clamp(56px, 8vw, 96px) clamp(16px, 4vw, 40px);
+}
+.ssc-eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 12px;
+}
+.ssc-title {
+  margin: 0 0 8px;
+  font-size: clamp(34px, 5vw, 56px);
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  line-height: 0.95;
+}
+
+/* ---- Fila superior: (descarga oculta) + aviso ---- */
+.ssc-toprow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 40px;
+}
+.ssc-dl-label {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  font-weight: 700;
+  color: #e2101a;
+  margin-bottom: 10px;
+}
+.ssc-dl-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 22px;
+  background: #e2101a;
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  box-shadow: 0 0 28px rgba(226, 16, 26, 0.35);
+}
+.ssc-dl-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 20px;
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 3px;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+.ssc-notice {
+  flex: 1;
+  min-width: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 14px 20px;
+  background: rgba(226, 16, 26, 0.08);
+  border: 1px solid rgba(226, 16, 26, 0.4);
+  border-radius: 6px;
+  align-self: flex-end;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+}
+.ssc-notice-i {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #e2101a;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+/* ---- Selector de día (pills) ---- */
+.ssc-day-label {
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  font-weight: 700;
+  color: #9a9a9a;
+  margin-bottom: 14px;
+}
+.ssc-day-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+.ssc-pill {
+  padding: 10px 22px;
+  background: transparent;
+  color: #b9b9b9;
+  border: 1px solid #2a2a2a;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 14px;
+  font-family: inherit;
+}
+.ssc-pill--active {
+  color: #fff;
+  font-weight: 800;
+}
+
+/* ---- Banner de fecha por día ---- */
+.ssc-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 20px 24px;
+  background: #111;
+  border: 1px solid #232323;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+.ssc-banner-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.ssc-banner-num {
+  flex: none;
+  width: 56px;
+  height: 56px;
+  border-radius: 10px;
+  background: #e2101a;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 900;
+}
+.ssc-banner-name {
+  font-size: 20px;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.2;
+  text-transform: capitalize;
+}
+.ssc-banner-date {
+  font-size: 13px;
+  color: #9a9a9a;
+  font-weight: 600;
+  margin-top: 2px;
+  text-transform: capitalize;
+}
+.ssc-banner-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: #1c1c1c;
+  border: 1px solid #2a2a2a;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #cfcfcf;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.ssc-banner-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid #e2101a;
+  flex-shrink: 0;
+}
+
+/* ---- Tarjetas de sesión ---- */
+.ssc-sessions {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.ssc-card {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid;
+  background: #111;
+}
+.ssc-bar {
+  padding: 8px 20px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  color: #fff;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.35);
+}
+.ssc-body {
+  padding: 18px 20px;
+}
+
+/* Fila del título: duración + título a la izquierda, "Powered by" a la derecha. */
+.ssc-title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+}
+.ssc-title-left {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+.ssc-title-left .ssc-time-pill {
+  flex: none;
+  margin-top: 2px;
+}
+.ssc-time-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  white-space: nowrap;
+  font-weight: 800;
+  color: #fff;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.35);
+}
+.ssc-session-title {
+  font-size: clamp(17px, 1.7vw, 21px);
+  font-weight: 800;
+  line-height: 1.28;
+  color: #fff;
+  flex: 1;
+}
+.ssc-session-desc {
+  margin: 8px 0 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: #a8a8a8;
+}
+
+/* Recuadro "Powered by" con logo de empresa. */
+.ssc-powered {
+  flex: none;
+  box-sizing: border-box;
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+}
+.ssc-powered-label {
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  color: #9a9a9a;
+  font-weight: 600;
+}
+.ssc-powered-logo {
+  box-sizing: border-box;
+  width: 100%;
+  height: 50px;
+  object-fit: contain;
+  background: #fff;
+  border-radius: 6px;
+  padding: 5px 9px;
+}
+@media (max-width: 560px) {
+  .ssc-title-row { flex-direction: column; }
+  .ssc-powered { flex-direction: row; align-self: flex-start; }
+}
+
+/* ---- Instructores (más grandes, estilo RE+) ---- */
+.ssc-speakers {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid #222;
+}
+.ssc-speakers-label {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  font-weight: 700;
+  color: #777;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+.ssc-speakers-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 12px 16px;
+}
+.ssc-speaker-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  margin: 0;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid #2a2a2a;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+.ssc-speaker-row[data-bio-trigger]:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--hover, #e2101a);
+  transform: translateX(2px);
+}
+.ssc-speaker-row[data-bio-trigger]:hover .ssc-avatar {
+  box-shadow: 0 0 0 2px var(--hover, #e2101a);
+}
+.ssc-speaker-row[data-bio-trigger]:hover .ssc-chevron {
+  opacity: 1;
+}
+.ssc-avatar {
+  width: 52px;
+  height: 52px;
+  flex: none;
+  border-radius: 50%;
+  background: repeating-linear-gradient(135deg, #262626 0 6px, #1a1a1a 6px 12px);
+  border: 1px solid #3a3a3a;
+  object-fit: cover;
+  transition: box-shadow 0.15s ease;
+}
+.ssc-speaker-name {
+  font-size: 17px;
+  color: #fff;
+  font-weight: 800;
+  line-height: 1.2;
+}
+.ssc-speaker-role {
+  font-size: 14px;
+  color: #cfcfcf;
+  margin-top: 2px;
+}
+.ssc-speaker-org {
+  font-size: 13px;
+  color: #8a8a8a;
+  margin-top: 1px;
+}
+.ssc-chevron {
+  margin-left: auto;
+  color: var(--hover, #e2101a);
+  font-size: 24px;
+  font-weight: 800;
+  opacity: 0.7;
+  flex: none;
+  transition: opacity 0.15s ease;
+}
+
+/* ---- Estados: loading / error / vacío ---- */
+.ssc-state {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: clamp(40px, 7vw, 80px) clamp(16px, 4vw, 40px);
+  font-family: 'Archivo', Helvetica, Arial, sans-serif;
+  color: #fff;
+}
+.ssc-spinner-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 64px 0;
+}
+.ssc-spinner {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 3px solid #2a2a2a;
+  border-top-color: #e2101a;
+  animation: ssc-spin 0.9s linear infinite;
+}
+@keyframes ssc-spin {
+  to { transform: rotate(360deg); }
+}
+.ssc-error {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 18px 22px;
+  background: rgba(226, 16, 26, 0.08);
+  border: 1px solid rgba(226, 16, 26, 0.4);
+  border-radius: 8px;
+  color: #ffb3b7;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+}
+.ssc-empty {
+  padding: 40px;
+  text-align: center;
+  color: #8a8a8a;
+  border: 1px solid #232323;
+  border-radius: 10px;
+  background: #111;
+}
+
+
+/* ############################################################################
+   #  SECCIÓN 2 — WORKSHOPS (sw-)  ·  Catálogo "Talleres disponibles"
+   #  Antes vivían en el <style> del .astro; ahora son CSS global porque la isla
+   #  React (SkillsWorkshopsLive.jsx) no recibe estilos scoped de Astro.
+   ############################################################################ */
+
+.sw-section {
+  background: #000;
+  font-family: 'Archivo', Helvetica, Arial, sans-serif;
+  color: #fff;
+}
+
+.sw-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: clamp(56px, 8vw, 96px) clamp(16px, 4vw, 40px);
+}
+
+.sw-eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 12px;
+}
+
+.sw-title {
+  margin: 0 0 8px;
+  font-size: clamp(34px, 5vw, 56px);
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  line-height: 0.95;
+}
+
+.sw-note {
+  margin: 0 0 38px;
+  color: #9a9a9a;
+  font-size: 16px;
+}
+
+.sw-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  gap: 22px;
+}
+
+.sw-card {
+  display: flex;
+  flex-direction: column;
+  background: #0c0c0c;
+  border: 1px solid #1c1c1c;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.sw-card-top {
+  height: 5px;
+  background: linear-gradient(90deg, #8b1a1a, #e2101a);
+}
+
+.sw-card-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.sw-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.sw-nivel {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  padding: 5px 11px;
+  border-radius: 4px;
+  color: #fff;
+}
+
+.sw-duracion {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #8a8a8a;
+}
+
+.sw-clock-icon {
+  width: 14px;
+  height: 14px;
+  flex: none;
+}
+
+.sw-name {
+  margin: 0 0 16px;
+  font-size: 21px;
+  font-weight: 800;
+  line-height: 1.15;
+  text-wrap: pretty;
+}
+
+.sw-instructor {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-bottom: 14px;
+}
+
+.sw-avatar {
+  width: 38px;
+  height: 38px;
+  flex: none;
+  border-radius: 50%;
+  background: repeating-linear-gradient(135deg, #262626 0 7px, #1a1a1a 7px 14px);
+  border: 1px solid #333;
+}
+
+.sw-instructor-name {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.sw-instructor-role {
+  font-size: 12px;
+  color: #8a8a8a;
+  margin-top: 2px;
+}
+
+.sw-bio-btn {
+  margin-bottom: 18px;
+  padding: 9px;
+  background: transparent;
+  border: 1px solid #e2101a;
+  color: #e2101a;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.sw-info {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 18px;
+  padding: 14px 16px;
+  background: #111;
+  border-radius: 6px;
+}
+
+.sw-info-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.sw-info-row span:first-child {
+  font-size: 12px;
+  color: #777;
+  font-weight: 600;
+}
+
+.sw-req {
+  margin-bottom: 18px;
+}
+
+.sw-req-label {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  font-weight: 700;
+  color: #777;
+  margin-bottom: 9px;
+}
+
+.sw-req-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sw-req-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 13px;
+  color: #b9b9b9;
+  line-height: 1.4;
+}
+
+.sw-req-bullet {
+  color: #e2101a;
+  font-weight: 800;
+  flex: none;
+}
+
+.sw-footer {
+  margin-top: auto;
+}
+
+.sw-cupo-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 7px;
+}
+
+.sw-cupo-text {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.sw-cupo-total {
+  font-size: 11px;
+  color: #777;
+  font-weight: 600;
+}
+
+.sw-cupo-bar {
+  height: 6px;
+  background: #1e1e1e;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 18px;
+}
+
+.sw-cupo-fill {
+  height: 100%;
+  transition: width .6s ease;
+}
+
+.sw-cta {
+  width: 100%;
+  padding: 13px;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.sw-cta:disabled {
+  cursor: default;
+}
+
+
+/* ############################################################################
+   #  SECCIÓN 3 — FORM (wf-)  ·  Formulario de inscripción a talleres
+   #  Globales (no scoped) para que apliquen al DOM que genera React.
+   #  El acento llega por la variable CSS --accent (definida por la isla).
+   ############################################################################ */
+
+.wf-section {
+  background: #000;
+  font-family: 'Archivo', Helvetica, Arial, sans-serif;
+  color: #fff;
+}
+
+.wf-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: clamp(56px, 8vw, 104px) clamp(16px, 4vw, 40px);
+}
+
+.wf-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: clamp(28px, 5vw, 64px);
+  align-items: start;
+}
+
+.wf-eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 12px;
+}
+
+.wf-title {
+  margin: 0 0 16px;
+  font-size: clamp(34px, 5vw, 60px);
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  line-height: 0.92;
+}
+
+.wf-desc {
+  margin: 0 0 24px;
+  color: #9a9a9a;
+  font-size: 16px;
+  line-height: 1.6;
+  max-width: 420px;
+  text-wrap: pretty;
+}
+
+.wf-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 18px;
+  background: rgba(226, 16, 26, 0.08);
+  border: 1px solid rgba(226, 16, 26, 0.4);
+  border-radius: 6px;
+  margin-bottom: 28px;
+  max-width: 440px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.wf-notice-i {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 800;
+  margin-top: 1px;
+}
+
+.wf-perks {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.wf-perk {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: #cfcfcf;
+  line-height: 1.4;
+}
+
+.wf-perk-n {
+  width: 32px;
+  height: 32px;
+  flex: none;
+  border-radius: 50%;
+  background: rgba(226, 16, 26, 0.12);
+  border: 1px solid var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  font-weight: 800;
+  font-size: 14px;
+}
+
+.wf-card {
+  background: #0c0c0c;
+  border: 1px solid #1f1f1f;
+  border-radius: 10px;
+  padding: clamp(24px, 3vw, 40px);
+}
+
+.wf-step-label {
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+
+.wf-step-title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 800;
+  color: #fff;
+}
+
+.wf-step-sub {
+  margin: 6px 0 22px;
+  font-size: 14px;
+  color: #9a9a9a;
+  line-height: 1.5;
+}
+
+.wf-fields-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+.wf-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.wf-field span {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  color: #9a9a9a;
+}
+
+.wf-field input,
+.wf-field select {
+  padding: 13px 15px;
+  background: #000;
+  border: 1px solid #2a2a2a;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 15px;
+  font-family: inherit;
+}
+
+.wf-field input:disabled {
+  background: #111;
+  color: #cfcfcf;
+}
+
+.wf-error {
+  font-size: 13px;
+  color: #f0282a;
+  font-weight: 600;
+  line-height: 1.5;
+  margin-bottom: 14px;
+}
+
+.wf-btn {
+  width: 100%;
+  margin-top: 6px;
+  padding: 16px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.wf-btn:hover {
+  filter: brightness(1.1);
+}
+
+.wf-btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.wf-link-btn {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px;
+  background: transparent;
+  color: #9a9a9a;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  font-family: inherit;
+}
+
+.wf-fineprint {
+  margin: 12px 0 0;
+  font-size: 14px;
+  color: #666;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.wf-fineprint-link {
+  color: #999;
+  text-decoration: underline;
+}
+
+.wf-fineprint-link:hover {
+  color: #00e1ff;
+}
+
+.wf-step--center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 30px 10px;
+}
+
+.wf-success-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 22px;
+  font-size: 30px;
+  font-weight: 900;
+  color: #fff;
+}
+
+.wf-success-title {
+  margin: 0 0 10px;
+  font-size: 26px;
+  font-weight: 800;
+}
+
+.wf-success-text {
+  margin: 0 0 26px;
+  color: #9a9a9a;
+  font-size: 15px;
+  line-height: 1.55;
+  max-width: 340px;
+}
+
+.wf-outline-btn {
+  padding: 12px 26px;
+  background: transparent;
+  color: #fff;
+  border: 1px solid #444;
+  border-radius: 5px;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.wf-found-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: rgba(22, 163, 74, 0.1);
+  border: 1px solid #16a34a;
+  border-radius: 6px;
+  margin-bottom: 22px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.wf-found-check {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #16a34a;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 800;
+}

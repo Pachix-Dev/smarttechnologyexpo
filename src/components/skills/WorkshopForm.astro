@@ -1,9 +1,23 @@
 ---
-// WorkshopForm.astro — Wrapper delgado del formulario de talleres.
-// Lee las traducciones con tr() (desde tus locales), arma un objeto `labels`
-// y monta la isla React WorkshopFormIsland, pasándole idioma y textos.
+// ============================================================================
+//  COMPONENTE WORKSHOP FORM (Wrapper) — Escenario SMART SKILLS
+//  Autor: Donovan Oswaldo Villalba Hernandez
+//
+//  Envoltorio delgado del formulario de inscripción a talleres. Su única tarea
+//  (lado servidor) es leer las traducciones con tr(), armar el objeto `labels`
+//  con TODOS los textos del formulario ya traducidos, y montar la isla React
+//  `WorkshopFormIsland`, pasándole idioma, labels, color de acento y el enlace
+//  de registro. Así la isla no depende del sistema i18n.
+//  Estilos: clases wf-*, ahora servidas desde skills.css.
+//
+//  Props:
+//    - accent: color principal del formulario.
+//    - registroHref: URL del registro general (para quien aún no lo tiene).
+//
+//  i18n: los textos salen de los locales vía tr('clave', 'fallback').
+// ============================================================================
 import WorkshopFormIsland from './WorkshopFormIsland.jsx';
-import './workshopForm.css';
+import './skills.css';
 import { useTranslations, getTranslation } from '../../utils/translations';
 
 export interface Props {
@@ -11,10 +25,12 @@ export interface Props {
   registroHref?: string;
 }
 
+// Idioma + diccionario de traducciones.
 const { translations, locale } = await useTranslations(Astro.props, Astro);
 const tr = (key: string, fallback: string = '') => getTranslation(translations, key, fallback);
 
 const { accent = '#E2101A', registroHref = '/registro/' } = Astro.props;
+// Normaliza el idioma a 'es'/'en'.
 const lang = locale === 'en' ? 'en' : 'es';
 
 // Todos los textos del formulario, ya traducidos, para pasarlos a la isla.
@@ -22,7 +38,7 @@ const labels = {
   eyebrow: tr('skills.form.eyebrow', 'REGISTRO'),
   title: tr('skills.form.title', 'Inscríbete a un taller'),
   desc: tr('skills.form.desc', 'Los talleres tienen cupo limitado. Busca tu registro con tu correo y confirma tu lugar en segundos.'),
-  notice_a: tr('skills.form.notice_a', 'Es indispensable contar con tu '),
+  notice_a: tr('skills.form.notice_a', 'Los talleres son gratuitos, pero es indispensable contar con tu vc'),
   notice_b: tr('skills.form.notice_b', 'registro previo al evento general'),
   notice_c: tr('skills.form.notice_c', ' Smart Technology Expo 2026 para poder inscribirte a un taller.'),
   perk1: tr('skills.form.perk1', 'Confirmación inmediata de tu lugar por correo'),
@@ -55,10 +71,12 @@ const labels = {
 };
 ---
 
+<!-- Isla React (client:load): se hidrata al cargar. Recibe idioma, labels
+     traducidos, color de acento y el enlace de registro general. -->
 <WorkshopFormIsland
   client:load
   lang={lang}
   labels={labels}
   accent={accent}
   registroHref={registroHref}
-/> 
+/>

@@ -1,7 +1,25 @@
 ---
-// InsightsSchedule.astro — Wrapper: monta la isla React que trae el PROGRAMA EN VIVO
-// desde la API (elige title/title_en, description/description_en según idioma, como
-// Ecomondo) y le pasa los textos de interfaz desde tus locales (tr / getTranslation).
+// ============================================================================
+//  COMPONENTE INSIGHTS SCHEDULE (Wrapper) — Escenario SMART INSIGHTS
+//  Autor: Donovan Oswaldo Villalba Hernandez
+//
+//  Envoltorio .astro que monta la isla React `InsightsScheduleLive`, la cual
+//  trae el PROGRAMA EN VIVO desde la API (elige title/title_en, description/
+//  description_en según el idioma, igual que Ecomondo).
+//
+//  Responsabilidad de este wrapper (lado servidor):
+//    - Resolver el idioma activo (lang: 'es' | 'en').
+//    - Armar el objeto `labels` con TODOS los textos de interfaz traducidos
+//      (eyebrow, títulos, botones, leyendas, badges…) y pasárselo a la isla.
+//    Así la isla React no depende del sistema i18n: recibe ya los textos listos.
+//
+//  Props:
+//    - stageId: opcional, fuerza un escenario concreto de la API.
+//    - pdfHref: opcional, enlace del PDF de descarga del programa.
+//
+//  i18n: los textos salen de los locales vía tr('clave', 'fallback').
+//        Si la clave no existe en el idioma actual, se usa el texto de respaldo.
+// ============================================================================
 import InsightsScheduleLive from './InsightsScheduleLive.jsx';
 import './insights.css';
 import { useTranslations, getTranslation } from '../../utils/translations';
@@ -11,12 +29,16 @@ export interface Props {
   pdfHref?: string;   // opcional: link del PDF de descarga
 }
 
+// Idioma + diccionario de traducciones.
 const { translations, locale } = await useTranslations(Astro.props, Astro);
 const tr = (key: string, fallback: string = '') => getTranslation(translations, key, fallback);
 
 const { stageId, pdfHref = '#' } = Astro.props;
+// Normaliza el idioma a 'es'/'en' (cualquier otro cae en 'es').
 const lang = locale === 'en' ? 'en' : 'es';
 
+// labels: paquete de textos de interfaz que se le pasa a la isla React ya
+// traducidos. Incluye un sub-objeto `badges` para las etiquetas por tipo de sesión.
 const labels = {
   eyebrow: tr('insights.schedule.eyebrow', 'AGENDA'),
   title: tr('insights.schedule.title', 'Programa por día'),
@@ -39,6 +61,8 @@ const labels = {
 };
 ---
 
+<!-- Isla React (client:only): se renderiza en el navegador y hace el fetch a la
+     API. Recibe idioma, escenario, PDF y el paquete de labels ya traducido. -->
 <InsightsScheduleLive
   client:only="react"
   lang={lang}

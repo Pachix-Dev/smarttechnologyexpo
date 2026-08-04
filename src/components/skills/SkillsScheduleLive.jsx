@@ -1,12 +1,24 @@
-// SkillsScheduleLive.jsx — Isla React del "Programa por día" de SMART SKILLS.
-// Consume EN VIVO la misma API que Insights, pero con OTRO escenario (stageId=9).
-// Estilos propios en skillsSchedule.css (clases ssc-*), con el look de Skills:
-// acento rojo y badge "TALLER". Instructores con semblanza abren el BioModal.
+// ============================================================================
+//  ISLA REACT SkillsScheduleLive.jsx — Programa en vivo (SMART SKILLS)
+//  Autor: Donovan Oswaldo Villalba Hernandez
 //
-// AJUSTES STE 2026 incluidos:
-//  - "Descarga programa" oculto (comentado).
-//  - Fecha del banner: solo mes + año ("Noviembre 2026").
-//  - Cargo/empresa en inglés vía speakerRole/speakerOrg (API en > diccionario > es).
+//  Isla React del "Programa por día" de SMART SKILLS. Consume EN VIVO la misma
+//  API que Insights, pero con OTRO escenario (stageId = 9). Usa las clases ssc-*
+//  (ahora servidas desde skills.css) con el look de Skills: acento rojo y badge
+//  "TALLER". Los instructores con semblanza abren el BioModal compartido.
+//
+//  AJUSTES STE 2026 incluidos:
+//   - "Descarga programa" oculto (comentado).
+//   - Fecha del banner: solo mes + año ("Noviembre 2026").
+//   - Cargo/empresa en inglés vía speakerRole/speakerOrg (API en > diccionario > es).
+//
+//  Flujo:
+//   - Al montar, fetchStage(stageId) y guarda el escenario en estado.
+//   - Maneja 3 estados de carga: loading (spinner) / error / vacío.
+//   - El usuario cambia de día con los "pills"; se muestran sus sesiones.
+//   - Los textos de interfaz llegan ya traducidos en `labels` desde el wrapper.
+//   - El color de acento se aplica inline (barra, pill activa, banner, time-pill).
+// ============================================================================
 
 import { useEffect, useMemo, useState } from "react";
 import {
@@ -31,11 +43,14 @@ export default function SkillsScheduleLive({
   accent = "#E2101A",
   labels = {},
 }) {
+  // Estado: escenario cargado, banderas de carga/error y día activo.
   const [stage, setStage] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [activeDay, setActiveDay] = useState(0);
 
+  // Carga los datos al montar (y cada vez que cambie stageId).
+  // `alive` evita actualizar estado si el componente se desmontó a mitad del fetch.
   useEffect(() => {
     let alive = true;
     setLoading(true);
@@ -43,6 +58,7 @@ export default function SkillsScheduleLive({
       .then((data) => {
         if (!alive) return;
         setStage(data);
+        // Selecciona por defecto el primer día que tenga sesiones.
         const idx = (data?.dias || []).findIndex(
           (d) => (d.conferencias || []).length > 0,
         );
@@ -59,6 +75,7 @@ export default function SkillsScheduleLive({
     };
   }, [stageId]);
 
+  // t: elige texto por idioma. lbl: usa el label traducido si existe, si no t().
   const t = (es, en) => (lang === "en" ? en : es);
   const lbl = (key, es, en) => (labels && labels[key]) || t(es, en);
 
@@ -69,14 +86,17 @@ export default function SkillsScheduleLive({
     const month = d.toLocaleDateString(lang === "en" ? "en-US" : "es-MX", {
       month: "long",
     });
+    // Capitaliza la primera letra del mes (locale ES lo da en minúscula).
     const cap = month.charAt(0).toUpperCase() + month.slice(1);
     return `${cap} ${d.getFullYear()}`;
   };
 
+  // Día activo y sus sesiones (memorizadas para no reordenar en cada render).
   const days = stage?.dias || [];
   const dia = days[activeDay] || days[0] || null;
   const sessions = useMemo(() => daySessions(dia), [dia]);
 
+  // ── ESTADO: cargando (spinner) ───────────────────────────────────────────
   if (loading) {
     return (
       <section className="ssc-section">
@@ -89,6 +109,7 @@ export default function SkillsScheduleLive({
     );
   }
 
+  // ── ESTADO: error ────────────────────────────────────────────────────────
   if (error) {
     return (
       <section className="ssc-section">
@@ -102,6 +123,7 @@ export default function SkillsScheduleLive({
     );
   }
 
+  // ── ESTADO: sin datos ────────────────────────────────────────────────────
   if (!stage || days.length === 0) {
     return (
       <section className="ssc-section">
@@ -117,12 +139,15 @@ export default function SkillsScheduleLive({
     );
   }
 
+  // ── RENDER PRINCIPAL ─────────────────────────────────────────────────────
   return (
     <section className="ssc-section">
       <div className="ssc-inner">
+        {/* Encabezado: eyebrow + título */}
         <div className="ssc-eyebrow">{lbl("eyebrow", "AGENDA", "AGENDA")}</div>
         <h2 className="ssc-title">{lbl("title", "Programa por día", "Daily program")}</h2>
 
+        {/* Fila superior: (descarga oculta en STE 2026) + aviso de idioma */}
         <div className="ssc-toprow">
           {/* OCULTO POR AHORA (ajuste STE 2026): sección "Descarga programa". No se borró.
           <div>
@@ -148,6 +173,7 @@ export default function SkillsScheduleLive({
           </div>
         </div>
 
+        {/* Selector de día: un "pill" por cada día (acento inline en el activo) */}
         <div className="ssc-day-label">
           {lbl("selectDay", "SELECCIONA EL DÍA", "SELECT A DAY")}
         </div>
@@ -165,6 +191,7 @@ export default function SkillsScheduleLive({
           ))}
         </div>
 
+        {/* Banner del día activo: número, nombre, mes+año y conteo de sesiones */}
         {dia && (
           <div className="ssc-banner">
             <div className="ssc-banner-left">
@@ -183,6 +210,7 @@ export default function SkillsScheduleLive({
           </div>
         )}
 
+        {/* Lista de sesiones del día activo */}
         <div className="ssc-sessions">
           {sessions.length === 0 ? (
             <div className="ssc-empty">
@@ -192,6 +220,7 @@ export default function SkillsScheduleLive({
             sessions.map((s) => {
               const speakers = s.ponentes || [];
               const desc = confDesc(s, lang);
+              // Logo de la empresa del taller (viene de la API en company_logo).
               const logo = companyLogo(s.company_logo);
               return (
                 <div
@@ -199,10 +228,12 @@ export default function SkillsScheduleLive({
                   className="ssc-card"
                   style={{ background: "#111", borderColor: accent, "--hover": accent }}
                 >
+                  {/* Barra "TALLER" con el color de acento */}
                   <div className="ssc-bar" style={{ background: accent }}>
                     {lbl("badge", "TALLER", "WORKSHOP")}
                   </div>
                   <div className="ssc-body">
+                    {/* Duración + título a la izquierda; recuadro "Powered by" a la derecha */}
                     <div className="ssc-title-row">
                       <div className="ssc-title-left">
                         <span className="ssc-time-pill" style={{ background: accent }}>
@@ -210,6 +241,7 @@ export default function SkillsScheduleLive({
                         </span>
                         <div className="ssc-session-title">{confTitle(s, lang)}</div>
                       </div>
+                      {/* Recuadro "Powered by": solo si la sesión trae logo */}
                       {logo ? (
                         <div className="ssc-powered">
                           <span className="ssc-powered-label">
@@ -226,6 +258,7 @@ export default function SkillsScheduleLive({
                     </div>
                     {desc ? <p className="ssc-session-desc">{desc}</p> : null}
 
+                    {/* Bloque de instructores de la sesión (si los hay) */}
                     {speakers.length > 0 && (
                       <div className="ssc-speakers">
                         <div className="ssc-speakers-label">
@@ -245,12 +278,15 @@ export default function SkillsScheduleLive({
                             const bio = speakerBio(p, lang);
                             const photo = speakerPhoto(p.photo);
                             const hasBio = Boolean(bio);
+                            // Cargo y empresa resueltos por idioma (helpers del API).
                             const role = speakerRole(p, lang);
                             const org = speakerOrg(p, lang);
                             return (
                               <div
                                 key={p.id ?? p.name}
                                 className="ssc-speaker-row"
+                                // Si el instructor tiene semblanza, la fila es clickeable
+                                // y expone los data-bio-* que abren el BioModal compartido.
                                 {...(hasBio
                                   ? {
                                       "data-bio-trigger": true,
@@ -282,6 +318,7 @@ export default function SkillsScheduleLive({
                                     <div className="ssc-speaker-org">{org}</div>
                                   )}
                                 </div>
+                                {/* Chevron: solo cuando hay semblanza que abrir */}
                                 {hasBio && <span className="ssc-chevron">›</span>}
                               </div>
                             );

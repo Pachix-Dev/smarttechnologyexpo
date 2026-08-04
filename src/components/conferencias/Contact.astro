@@ -1,26 +1,54 @@
 ---
-// src/components/conferencias/Contact.astro
+// ============================================================================
+//  COMPONENTE CONTACT — Sección Conferencias
+//  Autor: Donovan Oswaldo Villalba Hernandez
+//
+//  Bloque de contacto de la sección Conferencias. Presenta a la persona
+//  responsable del programa para resolver dudas o aclaraciones.
+//
+//  Estructura visual (de fondo a frente):
+//    - Fondo negro con patrón de puntos (radial-gradient repetido).
+//    - Encabezado centrado: título con efecto glow + subtítulo introductorio.
+//    - Tarjeta glassmorphism (blur) en grid de 2 columnas:
+//        · Columna IZQUIERDA: foto circular con anillo y sombra.
+//        · Columna DERECHA: nombre, puesto y botón-correo (pill).
+//    - En móvil la tarjeta colapsa a 1 columna y todo se centra.
+//
+//  i18n: todos los textos salen de los locales vía tr('clave', 'fallback').
+//        Si la clave no existe en el idioma actual, se usa el texto de respaldo.
+//        El href del correo arma el mailto: con la misma clave para no duplicar.
+// ============================================================================
 import { useTranslations, getTranslation } from '../../utils/translations'
 
 export interface Props {
   locale?: string
 }
 
+// useTranslations resuelve el idioma activo a partir de las props y del contexto
+// de Astro, y devuelve el diccionario de traducciones (translations).
 const { locale, translations } = await useTranslations(Astro.props, Astro)
+
+// tr(): atajo para leer una clave del diccionario. El segundo argumento es el
+// texto que se muestra si la clave no existe (fallback).
 const tr = (key: string, fallback: string = '') =>
   getTranslation(translations, key, fallback)
 ---
 
+<!-- ── SECCIÓN CONTACTO ─────────────────────────────────────────────── -->
 <section class="ct-section">
 
+  <!-- data-aos: animación de entrada (fade-up) al hacer scroll -->
   <div class="ct-inner" data-aos="fade-up" data-aos-duration="800">
 
+    <!-- Encabezado: título + subtítulo introductorio -->
     <div class="ct-header">
       <h2 class="ct-title">{tr('conferencias.contact.title', 'Dudas o comentarios')}</h2>
       <p class="ct-subtitle">{tr('conferencias.contact.subtitle', 'Para cualquier duda o aclaración, favor de contactar a')}</p>
     </div>
 
+    <!-- Tarjeta de la persona de contacto -->
     <div class="ct-card">
+      <!-- Foto circular -->
       <div class="ct-photo-wrap">
         <img
           src="/img/conferencias/daniela_hernandez.webp"
@@ -28,6 +56,8 @@ const tr = (key: string, fallback: string = '') =>
           class="ct-photo"
         />
       </div>
+      <!-- Datos: nombre, puesto y correo. El href arma el mailto: con la misma
+           clave del correo para no duplicar el valor. -->
       <div class="ct-info">
         <p class="ct-name">{tr('conferencias.contact.name', 'Daniela Hernández')}</p>
         <p class="ct-role">{tr('conferencias.contact.role', 'Fringe Programs')}</p>
@@ -42,6 +72,8 @@ const tr = (key: string, fallback: string = '') =>
 
 <style>
 
+  /* ── SECCIÓN: contenedor de fondo ─────────────────────────────────── */
+  /* Fondo negro con patrón de puntos (radial-gradient repetido). */
   .ct-section {
     position: relative;
     width: 100%;
@@ -51,9 +83,11 @@ const tr = (key: string, fallback: string = '') =>
     background-size: 18px 18px;
     padding: 5rem 2rem;
     box-sizing: border-box;
-    border-top: 0px solid rgba(255, 255, 255, 0.845); 
+    border-top: 0px solid rgba(255, 255, 255, 0.845);
   }
 
+  /* ── CONTENEDOR INTERNO ───────────────────────────────────────────── */
+  /* Centra el contenido y lo limita a 800px de ancho. */
   .ct-inner {
     position: relative;
     z-index: 1;
@@ -67,12 +101,14 @@ const tr = (key: string, fallback: string = '') =>
     text-align: center;
   }
 
+  /* ── ENCABEZADO ───────────────────────────────────────────────────── */
   .ct-header {
     display: flex;
     flex-direction: column;
     gap: 0.6rem;
   }
 
+  /* Título con efecto glow (text-shadow en capas). */
   .ct-title {
     font-family: "Montserrat", sans-serif;
     font-size: clamp(1.8rem, 3.5vw, 2.8rem);
@@ -93,7 +129,9 @@ const tr = (key: string, fallback: string = '') =>
     margin: 0;
   }
 
-  /* Card transparente blanca — glassmorphism */
+  /* ── TARJETA ──────────────────────────────────────────────────────── */
+  /* Card transparente blanca — glassmorphism (backdrop-filter: blur).
+     Grid de 2 columnas: foto | información. */
   .ct-card {
     width: 100%;
     display: grid;
@@ -109,12 +147,14 @@ const tr = (key: string, fallback: string = '') =>
     -webkit-backdrop-filter: blur(8px);
   }
 
+  /* ── FOTO ─────────────────────────────────────────────────────────── */
   .ct-photo-wrap {
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
+  /* Imagen circular con anillo y sombra. */
   .ct-photo {
     width: 12rem;
     height: 12rem;
@@ -128,6 +168,7 @@ const tr = (key: string, fallback: string = '') =>
       0 8px 24px rgba(0,0,0,0.3);
   }
 
+  /* ── INFORMACIÓN (nombre / puesto / correo) ───────────────────────── */
   .ct-info {
     display: flex;
     flex-direction: column;
@@ -152,6 +193,7 @@ const tr = (key: string, fallback: string = '') =>
     margin: 0;
   }
 
+  /* Botón-correo: pill blanca con texto oscuro. */
   .ct-email {
     display: inline-flex;
     align-items: center;
@@ -179,6 +221,7 @@ const tr = (key: string, fallback: string = '') =>
   }
 
   /* ── MOBILE ───────────────────────────────────────────────────── */
+  /* La tarjeta pasa a 1 columna y todo se centra. */
   @media (max-width: 640px) {
     .ct-section { padding: 3rem 1.25rem; }
 
@@ -198,6 +241,7 @@ const tr = (key: string, fallback: string = '') =>
     .ct-role    { font-size: 0.95rem; }
   }
 
+  /* ── MOBILE PEQUEÑO ───────────────────────────────────────────── */
   @media (max-width: 480px) {
     .ct-card  { padding: 1.5rem 1rem; }
     .ct-photo { width: 7.5rem; height: 7.5rem; }

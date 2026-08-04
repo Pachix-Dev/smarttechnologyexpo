@@ -1,13 +1,33 @@
 ---
-// InsightsHero.astro — Header/switcher + hero for the SMART INSIGHTS (Conferencias) interior.
+// ============================================================================
+//  COMPONENTE INSIGHTS HERO — Escenario SMART INSIGHTS (Conferencias)
+//  Autor: Donovan Oswaldo Villalba Hernandez
+//
+//  Cabecera (header/switcher) + hero de la página interior de SMART INSIGHTS.
+//  Es la portada del escenario de conferencias: eyebrow, título en 2 líneas,
+//  descripción y una fila de "chips" con datos clave (fechas, sede, formato).
+//
+//  Estructura visual (de fondo a frente):
+//    - HeaderSwitcher compartido (marca activa: "conferencias").
+//    - Fondo negro con textura de puntos (.ih-dots) y un glow rojo (.ih-glow).
+//    - Contenido: eyebrow con línea, título Smart/Insights, descripción y chips.
+//
+//  Props: todo es configurable desde fuera (eyebrow, title1/2, description,
+//         chips); si no se pasa, se usan los valores por defecto de abajo.
+//
+//  i18n: los textos por defecto salen de los locales vía tr('clave', 'fallback').
+//        Si la clave no existe en el idioma actual, se usa el texto de respaldo.
+// ============================================================================
 import HeaderSwitcher from '../shared/HeaderSwitcher.astro';
 import { useTranslations, getTranslation } from "../../utils/translations";
 
+// Chip: cada dato clave del hero (etiqueta + valor).
 export interface Chip {
   label: string;
   value: string;
 }
 
+// Props del componente: todas opcionales (tienen default más abajo).
 export interface Props {
   eyebrow?: string;
   title1?: string;
@@ -16,9 +36,13 @@ export interface Props {
   chips?: Chip[];
 }
 
+// useTranslations resuelve el idioma activo y devuelve el diccionario (translations).
 const { translations, locale } = await useTranslations(Astro.props, Astro);
+// tr(): lee una clave del diccionario; el 2º argumento es el fallback si no existe.
 const tr = (key: string, fallback: string = "") => getTranslation(translations, key, fallback);
 
+// Desestructura las props con valores por defecto (traducidos). Si quien usa el
+// componente pasa una prop, esa gana; si no, se usa el fallback en el idioma actual.
 const {
   eyebrow = tr('insights.hero.eyebrow', 'ESCENARIO PRINCIPAL'),
   title1 = 'Smart',
@@ -32,18 +56,23 @@ const {
 } = Astro.props;
 ---
 
+<!-- Cabecera compartida con selector de escenario (marca "conferencias" activa) -->
 <HeaderSwitcher active="conferencias" />
 
+<!-- ── HERO ─────────────────────────────────────────────────────────── -->
 <section class="ih-hero">
+  <!-- Capas decorativas de fondo (no aportan contenido: aria-hidden) -->
   <div class="ih-dots" aria-hidden="true"></div>
   <div class="ih-glow" aria-hidden="true"></div>
 
   <div class="ih-inner">
+    <!-- Eyebrow: línea roja + texto pequeño en mayúsculas -->
     <div class="ih-eyebrow">
       <span class="ih-eyebrow-line"></span>
       <span class="ih-eyebrow-text">{eyebrow}</span>
     </div>
 
+    <!-- Título en 2 líneas: "Smart" arriba, "Insights" abajo -->
     <h1 class="ih-title">
       <span class="ih-title-a">{title1}</span><br />
       <span class="ih-title-b">{title2}</span>
@@ -51,6 +80,7 @@ const {
 
     <p class="ih-description">{description}</p>
 
+    <!-- Chips de datos clave: se generan recorriendo el array `chips` -->
     <div class="ih-chips">
       {chips.map((chip) => (
         <div class="ih-chip">
@@ -63,6 +93,7 @@ const {
 </section>
 
 <style>
+  /* ── HERO: contenedor ─────────────────────────────────────────────── */
   .ih-hero {
     position: relative;
     background: #000;
@@ -72,6 +103,7 @@ const {
     color: #fff;
   }
 
+  /* Textura de puntos repetida sobre el fondo. */
   .ih-dots {
     position: absolute;
     inset: 0;
@@ -79,12 +111,14 @@ const {
     opacity: 0.9;
   }
 
+  /* Resplandor rojo difuso en la esquina superior derecha. */
   .ih-glow {
     position: absolute;
     inset: 0;
     background: radial-gradient(circle at 78% 42%, rgba(226, 16, 26, 0.16), transparent 46%);
   }
 
+  /* ── CONTENEDOR INTERNO ───────────────────────────────────────────── */
   .ih-inner {
     position: relative;
     max-width: 1240px;
@@ -92,6 +126,7 @@ const {
     padding: clamp(48px, 9vw, 104px) clamp(16px, 4vw, 40px) clamp(40px, 7vw, 80px);
   }
 
+  /* ── EYEBROW (línea + texto) ──────────────────────────────────────── */
   .ih-eyebrow {
     display: inline-flex;
     align-items: center;
@@ -112,6 +147,7 @@ const {
     color: #fff;
   }
 
+  /* ── TÍTULO ───────────────────────────────────────────────────────── */
   .ih-title {
     margin: 0;
     font-size: clamp(52px, 11vw, 128px);
@@ -121,6 +157,7 @@ const {
     text-transform: uppercase;
   }
 
+  /* Ambas líneas del título llevan el mismo glow blanco en capas. */
   .ih-title-a {
     color: #fff;
     text-shadow:
@@ -141,6 +178,7 @@ const {
       0 0 48px rgba(255, 255, 255, 0.2);
   }
 
+  /* ── DESCRIPCIÓN ──────────────────────────────────────────────────── */
   .ih-description {
     margin: 26px 0 0;
     max-width: 640px;
@@ -150,6 +188,7 @@ const {
     text-wrap: pretty;
   }
 
+  /* ── CHIPS (datos clave) ──────────────────────────────────────────── */
   .ih-chips {
     display: flex;
     flex-wrap: wrap;

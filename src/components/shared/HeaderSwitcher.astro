@@ -1,25 +1,41 @@
 ---
-// HeaderSwitcher.astro — shared sticky header with Conferencias/Talleres tab switcher.
-// Usage: <HeaderSwitcher active="conferencias" /> or active="talleres"
-// Links assume /conferencias and /talleres routes — adjust hrefs to your routing.
+// ============================================================================
+//  COMPONENTE HEADER SWITCHER — Selector Conferencias/Talleres (compartido)
+//  Autor: Donovan Oswaldo Villalba Hernandez
+//
+//  Header sticky compartido con el conmutador de pestañas Conferencias/Talleres.
+//  Lo usan los heros de Insights y Skills para saltar entre ambos escenarios.
+//
+//  Uso: <HeaderSwitcher active="conferencias" />  o  active="talleres".
+//  Los enlaces asumen las rutas /insights y /skills (con prefijo /en en inglés);
+//  ajusta los href a tu enrutamiento si cambian.
+//
+//  Estilos: clases hs-* en el <style> scoped de abajo.
+//
+//  i18n: los textos de las pestañas salen de los locales vía tr('clave', 'fallback').
+// ============================================================================
 
 import { useTranslations, getTranslation } from "../../utils/translations";
 
 export interface Props {
-  active?: 'conferencias' | 'talleres';
-  navbarOffset?: number;
+  active?: 'conferencias' | 'talleres';   // pestaña activa
+  navbarOffset?: number;                   // desplazamiento del sticky (bajo tu navbar)
 }
 
-const { active = 'conferencias', navbarOffset = 80 } = Astro.props;
+const { active = 'conferencias', navbarOffset = 75 } = Astro.props;
+// Banderas de pestaña activa (para aplicar la clase --active).
 const isConf = active === 'conferencias';
 const isSkills = active === 'talleres';
 const { translations, locale } = await useTranslations(Astro.props, Astro);
 const tr = (key: string, fallback: string = "") => getTranslation(translations, key, fallback);
+// Prefijo de ruta según idioma (/en para inglés, vacío para español).
 const base = locale === 'en' ? '/en' : '';
 ---
 
+<!-- Header sticky: el top se fija inline con navbarOffset para quedar bajo tu navbar -->
 <header class="hs-header" style={`top:${navbarOffset}px`}>
   <div class="hs-inner">
+    <!-- Conmutador de pestañas: la activa lleva la clase hs-tab--active -->
     <div class="hs-tabs">
       <a href={`${base}/insights`} class={isConf ? 'hs-tab hs-tab--active' : 'hs-tab'}>{tr("programSwitch.conferences", "CONFERENCIAS")}</a>
       <a href={`${base}/skills`} class={isSkills ? 'hs-tab hs-tab--active' : 'hs-tab'}>{tr("programSwitch.workshops", "TALLERES")}</a>
@@ -28,6 +44,7 @@ const base = locale === 'en' ? '/en' : '';
 </header>
 
 <style>
+  /* ── HEADER (sticky) ──────────────────────────────────────────────── */
   .hs-header {
     position: sticky;
     top: 0; /* overridden inline via navbarOffset prop */
@@ -37,6 +54,7 @@ const base = locale === 'en' ? '/en' : '';
     font-family: 'Archivo', Helvetica, Arial, sans-serif;
   }
 
+  /* Contenedor interno: alinea el conmutador a la derecha. */
   .hs-inner {
     max-width: 1240px;
     margin: 0 auto;
@@ -47,6 +65,7 @@ const base = locale === 'en' ? '/en' : '';
     justify-content: flex-end;
   }
 
+  /* ── CONMUTADOR DE PESTAÑAS ───────────────────────────────────────── */
   .hs-tabs {
     display: flex;
     align-items: center;
@@ -71,6 +90,7 @@ const base = locale === 'en' ? '/en' : '';
     display: inline-block;
   }
 
+  /* Pestaña activa: fondo blanco, texto negro. */
   .hs-tab--active {
     background: #fff;
     color: #000;

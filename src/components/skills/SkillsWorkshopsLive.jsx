@@ -1,10 +1,21 @@
-// SkillsWorkshopsLive.jsx — Isla React del catálogo "Talleres disponibles".
-// La info de cada taller es ESTÁTICA (llega como prop `workshops` desde el .astro,
-// tomada de src/data/workshops.js). Lo ÚNICO que se consume en vivo de la base de
-// datos es la BARRA DE CUPO (endpoint /workshops): capacidad e inscritos.
+// ============================================================================
+//  ISLA REACT SkillsWorkshopsLive.jsx — Catálogo "Talleres disponibles"
+//  Autor: Donovan Oswaldo Villalba Hernandez
 //
-// Reemplaza al <script> que antes vivía dentro del .astro (mala práctica). Aquí la
-// lógica de fetch/estado/eventos está encapsulada en React.
+//  Isla React del catálogo de talleres de SMART SKILLS. La info de cada taller
+//  es ESTÁTICA (llega como prop `workshops` desde el .astro, tomada de
+//  src/data/workshops.js). Lo ÚNICO que se consume en vivo de la base de datos
+//  es la BARRA DE CUPO (endpoint /workshops): capacidad e inscritos.
+//
+//  Reemplaza al <script> que antes vivía dentro del .astro (mala práctica): aquí
+//  la lógica de fetch/estado/eventos está encapsulada en React. Usa las clases
+//  sw-*, servidas desde skills.css.
+//
+//  Flujo:
+//   - Al montar, hace fetch a /workshops y guarda el cupo en `cupoMap`; refresca
+//     cada 20 s y cada vez que se dispara el evento "workshop:registered".
+//   - "Inscribirme" emite "workshop:preselect" y hace scroll al formulario (#wf-form).
+// ============================================================================
 
 import { useEffect, useState } from "react";
 
@@ -32,9 +43,11 @@ export default function SkillsWorkshopsLive(props) {
   // null mientras no se ha cargado (se muestra el cupo estático inicial).
   const [cupoMap, setCupoMap] = useState(null);
 
+  // Trae el cupo en vivo al montar y lo mantiene actualizado (intervalo + evento).
   useEffect(() => {
     let alive = true;
 
+    // refresh: consulta /workshops e indexa el resultado por workshop_id.
     async function refresh() {
       try {
         const res = await fetch(API + "workshops");
@@ -70,11 +83,13 @@ export default function SkillsWorkshopsLive(props) {
     if (form) form.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
+  // Atajos de textos de cupo (con respaldo por si falta el label traducido).
   const t_avail = labels.seatsAvailable || "lugares disponibles";
   const t_last = labels.seatsLast || "¡Últimos {n} lugares!";
   const t_full = labels.soldOut || "Cupo lleno";
   const t_cap = labels.capacity || "Cupo";
 
+  // Traduce la etiqueta de nivel según los labels recibidos.
   const nivelLabel = (nivel) =>
     ({
       "BÁSICO": labels.nivelBasic || "BÁSICO",
@@ -85,10 +100,12 @@ export default function SkillsWorkshopsLive(props) {
   return (
     <section className="sw-section">
       <div className="sw-inner">
+        {/* Encabezado: eyebrow + título + nota */}
         <div className="sw-eyebrow">{labels.eyebrow || "CATÁLOGO"}</div>
         <h2 className="sw-title">{labels.title || "Talleres disponibles"}</h2>
         <p className="sw-note">{labels.note || ""}</p>
 
+        {/* Rejilla de tarjetas: una por taller */}
         <div className="sw-grid">
           {workshops.map((w, idx) => {
             const workshopId = w.workshopId ?? idx + 1;
@@ -103,6 +120,7 @@ export default function SkillsWorkshopsLive(props) {
             const low = disp > 0 && disp <= 5;
             const fillPercent = capacity > 0 ? Math.round(((capacity - disp) / capacity) * 100) : 0;
 
+            // Texto y colores del cupo según disponibilidad (agotado / pocos / normal).
             const cupoText = soldOut
               ? t_full
               : low
@@ -111,12 +129,12 @@ export default function SkillsWorkshopsLive(props) {
             const cupoColor = low || soldOut ? accent : "#cfcfcf";
             const fillBg = low || soldOut ? accent : `linear-gradient(90deg,#0D3B66,${accent})`;
             const nivelColor = NIVEL_COLORS[w.nivel] || accent;
-            const hasBio = Boolean(w.instructorBio);
 
             return (
               <div className="sw-card" data-ws-id={workshopId} key={workshopId}>
                 <div className="sw-card-top"></div>
                 <div className="sw-card-body">
+                  {/* Cabecera: nivel + duración (con ícono de reloj) */}
                   <div className="sw-card-head">
                     <span className="sw-nivel" style={{ background: nivelColor }}>
                       {nivelLabel(w.nivel)}
@@ -131,35 +149,22 @@ export default function SkillsWorkshopsLive(props) {
                   </div>
                   <h3 className="sw-name">{w.name}</h3>
 
+                  {/* Instructor: nombre + cargo (sin foto ni botón de semblanza) */}
                   <div className="sw-instructor">
-                    <span className="sw-avatar"></span>
                     <div>
                       <div className="sw-instructor-name">{w.instructor}</div>
                       <div className="sw-instructor-role">{w.instructorRole}</div>
                     </div>
                   </div>
 
-                  <button
-                    className="sw-bio-btn"
-                    type="button"
-                    {...(hasBio
-                      ? {
-                          "data-bio-trigger": true,
-                          "data-bio-name": w.instructor,
-                          "data-bio-role": w.instructorRole,
-                          "data-bio-org": labels.instructorOrg || "Smart Technology Expo · Instructor",
-                          "data-bio-bio": w.instructorBio || "",
-                        }
-                      : {})}
-                  >
-                    {labels.bioBtn || "VER SEMBLANZA"}
-                  </button>
-
+                  {/* Datos: día, horario y sala */}
                   <div className="sw-info">
+                    <div className="sw-info-row"><span>{labels.day || "DÍA"}</span><span>{w.dia}</span></div>
                     <div className="sw-info-row"><span>{labels.schedule || "HORARIO"}</span><span>{w.horario}</span></div>
                     <div className="sw-info-row"><span>{labels.room || "SALA"}</span><span>{w.sala}</span></div>
                   </div>
 
+                  {/* Requisitos del taller */}
                   <div className="sw-req">
                     <div className="sw-req-label">{labels.reqs || "REQUISITOS"}</div>
                     <ul className="sw-req-list">
@@ -169,6 +174,7 @@ export default function SkillsWorkshopsLive(props) {
                     </ul>
                   </div>
 
+                  {/* Pie: barra de cupo en vivo + botón Inscribirme (deshabilitado si lleno) */}
                   <div className="sw-footer">
                     <div className="sw-cupo-row">
                       <span className="sw-cupo-text" style={{ color: cupoColor }}>{cupoText}</span>

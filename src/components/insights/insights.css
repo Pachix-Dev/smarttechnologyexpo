@@ -1,7 +1,14 @@
-/* insights.css — Estilos del apartado SMART INSIGHTS (Schedule + Speakers).
-   Se cargan como CSS global (no scoped) para que apliquen al DOM que generan
-   las islas React. Las clases isc-/isp- son específicas, sin colisiones.
-   Copiados 1:1 de los componentes .astro originales + añadidos (fotos, spinner, error). */
+/* ============================================================================
+    HOJA DE ESTILOS insights.css — Apartado SMART INSIGHTS (Schedule + Speakers)
+    Autor: Donovan Oswaldo Villalba Hernandez
+
+    Estilos del apartado SMART INSIGHTS. Se cargan como CSS global (no scoped)
+    para que apliquen al DOM que generan las islas React. Prefijos por sección:
+      · isp-  → Speakers (carrusel de ponentes)
+      · isc-  → Schedule (programa por día)
+      · ins-  → estados compartidos (loading / error / vacío)
+    Copiados 1:1 de los componentes .astro originales + añadidos (fotos, spinner, error).
+   ============================================================================ */
 
 /* =====================  SPEAKERS (isp-)  ===================== */
 .isp-section {
@@ -84,7 +91,6 @@
 .isp-carousel:hover .isp-marquee {
   animation-play-state: paused;
 }
-/* Tarjetas del carrusel MÁS GRANDES (ajuste STE 2026, referencia RE+). */
 .isp-carousel .isp-card {
   flex: 0 0 320px;
   max-width: 320px;
@@ -98,12 +104,9 @@
   }
 }
 
-/* AÑADIDO — layout estático para cuando hay pocos ponentes (sin duplicar/animar).
-   Lo usa InsightsSpeakersLive cuando speakers.length < 4: muestra las tarjetas
-   centradas y sin bucle, para que no se vean repetidas. */
 .isp-static {
   display: flex;
-  gap: 20px;                 /* mismo gap que .isp-marquee */
+  gap: 20px;                
   justify-content: center;
   flex-wrap: wrap;
 }
@@ -113,7 +116,6 @@
     -webkit-mask-image: none;
     mask-image: none;
   }
-  /* En móvil la tarjeta ocupa casi todo el ancho de pantalla. */
   .isp-carousel .isp-card {
     flex: 0 0 78vw;
     max-width: 78vw;
@@ -139,7 +141,7 @@
   border: 1px solid #1c1c1c;
   border-radius: 6px;
   overflow: hidden;
-  cursor: default;   /* ya no abre semblanza en el carrusel */
+  cursor: default;   
 }
 .isp-photo {
   position: relative;
@@ -184,23 +186,23 @@
   flex: 1;
 }
 .isp-name {
-  font-size: 22px;   /* antes 19px */
+  font-size: 22px;   
   font-weight: 800;
   line-height: 1.15;
   margin-bottom: 8px;
 }
 .isp-role {
-  font-size: 14px;   /* antes 13px */
+  font-size: 14px;   
   font-weight: 600;
   color: #fff;
   line-height: 1.35;
 }
 .isp-company {
-  font-size: 14px;   /* antes 13px */
+  font-size: 14px;   
   color: #8a8a8a;
   line-height: 1.35;
   margin-top: 3px;
-  margin-bottom: 16px;   /* ya sin botón, este margen inferior queda de respiro */
+  margin-bottom: 16px;   
 }
 .isp-cta {
   margin-top: auto;
@@ -443,7 +445,7 @@
   border-radius: 8px;
   overflow: hidden;
   border: 1px solid;
-  background: #111; /* tarjeta neutra: el color de tipo vive en barra/pill/borde/hover */
+  background: #111; 
 }
 .isc-bar {
   padding: 8px 20px;
@@ -480,33 +482,30 @@
   font-weight: 600;
 }
 
-/* AÑADIDO — fila del título: título a la izquierda, recuadro "Powered by" a la derecha.
-   align-items: flex-start pega el recuadro arriba; margin-top negativo lo sube más. */
 .isc-title-row {
   display: flex;
-  align-items: flex-start;   /* recuadro "Powered by" alineado arriba a la derecha */
+  align-items: flex-start;   
   justify-content: space-between;
   gap: 18px;
 }
 
-/* AÑADIDO — duración + título EN LA MISMA FILA (pill a la izquierda, título a su derecha). */
 .isc-title-left {
   display: flex;
   align-items: flex-start;
   gap: 12px;
   flex: 1;
-  min-width: 0;              /* permite que el título haga wrap correctamente */
+  min-width: 0;              
 }
 .isc-title-left .isc-time-pill {
-  flex: none;               /* el pill no se encoge */
-  margin-top: 2px;          /* alinea el pill con la primera línea del título */
+  flex: none;               
+  margin-top: 2px;        
 }
 
-/* AÑADIDO — recuadro "Powered by" (esquina derecha), tamaño medio y centrado. */
+
 .isc-powered {
   flex: none;
   box-sizing: border-box;
-  width: 150px;              /* ancho fijo: todos miden igual */
+  width: 150px;              
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -525,14 +524,14 @@
 }
 .isc-powered-logo {
   box-sizing: border-box;
-  width: 100%;               /* llena el recuadro a lo ancho */
-  height: 50px;              /* alto fijo: caja idéntica para toda imagen */
-  object-fit: contain;       /* la imagen se acopla sin deformarse ni recortarse */
+  width: 100%;               
+  height: 50px;              
+  object-fit: contain;       
   background: #fff;
   border-radius: 6px;
   padding: 5px 9px;
 }
-/* En pantallas chicas, el recuadro pasa debajo del título. */
+
 @media (max-width: 560px) {
   .isc-title-row {
     flex-direction: column;
@@ -544,11 +543,11 @@
 }
 
 .isc-session-title {
-  font-size: clamp(17px, 1.7vw, 21px);   /* tamaño medio, equilibrado con el recuadro */
+  font-size: clamp(17px, 1.7vw, 21px);   
   font-weight: 800;
   line-height: 1.28;
   color: #fff;
-  flex: 1;                               /* ocupa el ancho disponible junto al recuadro */
+  flex: 1;                               
 }
 .isc-session-desc {
   margin: 8px 0 0;
@@ -570,13 +569,11 @@
   text-transform: uppercase;
 }
 .isc-speakers-list {
-  /* grid en vez de columna única: aprovecha el ancho cuando hay 2+ ponentes */
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 6px 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 16px;
 }
-/* Ponente MÁS GRANDE y con presencia (estilo RE+, ajuste STE 2026):
-   recuadro con fondo y borde visibles, más padding. */
+
 .isc-speaker-row {
   display: flex;
   align-items: center;
@@ -586,6 +583,8 @@
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid #2a2a2a;
+  flex: 0 0 auto;
+  max-width: 100%;
   transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
 }
 .isc-speaker-row[data-bio-trigger]:hover {
@@ -599,36 +598,37 @@
 .isc-speaker-row[data-bio-trigger]:hover .isc-chevron {
   opacity: 1;
 }
+
 .isc-avatar {
-  width: 52px;              /* antes 32px — avatar más grande (RE+) */
-  height: 52px;
+  width: 90px;             
+  height: 100px;           
   flex: none;
-  border-radius: 50%;
+  border-radius: 10px;    
   background: repeating-linear-gradient(135deg, #262626 0 6px, #1a1a1a 6px 12px);
   border: 1px solid #3a3a3a;
   object-fit: cover;
   transition: box-shadow 0.15s ease;
 }
 .isc-speaker-name {
-  font-size: 17px;         /* antes 14px */
+  font-size: 17px;         
   color: #fff;
   font-weight: 800;
   line-height: 1.2;
 }
 .isc-speaker-role {
-  font-size: 14px;         /* antes 12px */
+  font-size: 14px;         
   color: #cfcfcf;
   margin-top: 2px;
 }
 .isc-speaker-org {
-  font-size: 13px;         /* empresa del ponente */
+  font-size: 13px;         
   color: #8a8a8a;
   margin-top: 1px;
 }
 .isc-chevron {
   margin-left: auto;
   color: var(--hover, #e2101a);
-  font-size: 24px;         /* antes 20px */
+  font-size: 24px;         
   font-weight: 800;
   opacity: 0.7;
   flex: none;

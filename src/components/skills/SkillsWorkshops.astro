@@ -1,11 +1,26 @@
 ---
-// SkillsWorkshops.astro — Wrapper delgado del catálogo "Talleres disponibles".
-// La lógica interactiva (barra de cupo en vivo, botón Inscribirme) vive AHORA en la
-// isla React SkillsWorkshopsLive.jsx — ya no hay <script> embebido en el .astro.
-// Este archivo solo: 1) arma la lista de talleres localizada (desde data/workshops.js),
-// 2) arma los textos con tr(), y 3) monta la isla pasándole todo por props.
+// ============================================================================
+//  COMPONENTE SKILLS WORKSHOPS (Wrapper) — Escenario SMART SKILLS
+//  Autor: Donovan Oswaldo Villalba Hernandez
+//
+//  Envoltorio delgado del catálogo "Talleres disponibles". La lógica interactiva
+//  (barra de cupo en vivo, botón "Inscribirme") vive AHORA en la isla React
+//  `SkillsWorkshopsLive.jsx`; ya no hay <script> embebido en el .astro.
+//
+//  Responsabilidad de este wrapper (lado servidor):
+//    1) Armar la lista de talleres localizada (info estática desde data/workshops.js).
+//    2) Armar los textos de interfaz con tr().
+//    3) Montar la isla pasándole todo por props.
+//  El cupo NO se define aquí: lo trae la isla en vivo desde el endpoint /workshops.
+//  Estilos: clases sw-*, ahora servidas desde skills.css.
+//
+//  Props:
+//    - accent: color de acento del escenario.
+//
+//  i18n: los textos salen de los locales vía tr('clave', 'fallback').
+// ============================================================================
 import SkillsWorkshopsLive from './SkillsWorkshopsLive.jsx';
-import './SkillsWorkshops.css';
+import './skills.css';
 import { useTranslations, getTranslation } from "../../utils/translations";
 import { workshops as workshopsData } from "../../data/workshops.js";
 
@@ -13,6 +28,7 @@ export interface Props {
   accent?: string;
 }
 
+// Idioma + diccionario de traducciones.
 const { translations, locale } = await useTranslations(Astro.props, Astro);
 const tr = (key: string, fallback: string = "") => getTranslation(translations, key, fallback);
 
@@ -20,6 +36,7 @@ const { accent = '#E2101A' } = Astro.props;
 
 // Lista de talleres ya localizada (info estática desde data/workshops.js).
 // El cupo NO se pone aquí: lo trae la isla en vivo desde /workshops.
+// Cada campo bilingüe se resuelve según el idioma activo (_en o base).
 const workshops = workshopsData.map((w) => ({
   workshopId: w.workshopId,
   name: locale === 'en' ? w.name_en : w.name,
@@ -28,9 +45,10 @@ const workshops = workshopsData.map((w) => ({
   instructorRole: locale === 'en' ? w.instructorRole_en : w.instructorRole,
   instructorBio: locale === 'en' ? w.instructorBio_en : w.instructorBio,
   duracion: locale === 'en' ? w.duracion_en : w.duracion,
+  dia: locale === 'en' ? w.dia_en : w.dia,   
   horario: w.horario,
   sala: w.sala,
-  cupo: w.cupo,                 // cupo inicial (se sustituye por el real de la BD)
+  cupo: w.cupo,
   requisitos: locale === 'en' ? w.requisitos_en : w.requisitos,
 }));
 
@@ -55,6 +73,8 @@ const labels = {
 };
 ---
 
+<!-- Isla React (client:load): se hidrata al cargar. Recibe la lista de talleres,
+     los labels ya traducidos y el color de acento; el cupo lo trae ella en vivo. -->
 <SkillsWorkshopsLive
   client:load
   workshops={workshops}

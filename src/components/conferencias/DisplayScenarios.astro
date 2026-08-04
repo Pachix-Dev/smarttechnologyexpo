@@ -1,19 +1,48 @@
 ---
-// src/components/conferencias/DisplayScenarios.astro
+// ============================================================================
+//  COMPONENTE DISPLAY SCENARIOS — Sección Conferencias
+//  Autor: Donovan Oswaldo Villalba Hernandez
+//
+//  Bloque que presenta los DOS escenarios del evento uno junto al otro, para
+//  que el visitante elija a cuál entrar. NO es el programa de ninguno de los
+//  dos: es la bifurcación entre ambas experiencias.
+//
+//  Estructura visual (de fondo a frente):
+//    - Fondo negro con patrón de puntos (radial-gradient repetido) y dos
+//      imágenes decorativas de puntos ancladas a las esquinas inferiores.
+//    - Grid de 2 columnas con dos tarjetas:
+//        · IZQUIERDA (oscura): SMART INSIGHTS — escenario principal.
+//        · DERECHA (roja):     SMART SKILLS   — talleres prácticos.
+//    - Cada tarjeta lleva: label, título en 2 líneas (SMART + nombre), párrafo
+//      descriptivo, bullet con punto parpadeante y CTA hacia su programa.
+//
+//  i18n: todos los textos salen de los locales vía tr('clave', 'fallback').
+//        Si la clave no existe en el idioma actual, se usa el texto de respaldo.
+//        Los href de los CTA también salen de traducciones (rutas /insights y /skills).
+// ============================================================================
 import { useTranslations, getTranslation } from '../../utils/translations'
 export interface Props {
   locale?: string
 }
+// useTranslations resuelve el idioma activo y devuelve el diccionario (translations).
 const { locale, translations } = await useTranslations(Astro.props, Astro)
+// tr(): lee una clave del diccionario; el 2º argumento es el fallback si no existe.
 const tr = (key: string, fallback: string = '') =>
   getTranslation(translations, key, fallback)
 ---
+<!-- ── SECCIÓN ESCENARIOS ───────────────────────────────────────────── -->
 <section class="ds-section">
+  <!-- Imágenes decorativas de puntos en las esquinas (aria-hidden: no aportan
+       contenido, solo estética). -->
   <img src="/img/conferencias/puntos_izquierda.webp" class="ds-dots ds-dots--left" alt="" aria-hidden="true" />
   <img src="/img/conferencias/puntos_derecha.webp" class="ds-dots ds-dots--right" alt="" aria-hidden="true" />
   <div class="ds-inner">
+
+    <!-- ── TARJETA IZQUIERDA: SMART INSIGHTS (oscura) ─────────────────── -->
+    <!-- data-aos="fade-right": entra deslizándose desde la derecha. -->
     <div class="ds-card ds-card--dark" data-aos="fade-right" data-aos-duration="800">
       <span class="ds-label">{tr('conferencias.scenarios.label_insights', 'ESCENARIO PRINCIPAL')}</span>
+      <!-- Título en 2 líneas: "SMART" (blanco) + "INSIGHTS" (gris apagado). -->
       <h2 class="ds-title">
         <span class="ds-title--white">SMART</span>
         <span class="ds-title--muted">INSIGHTS</span>
@@ -21,18 +50,24 @@ const tr = (key: string, fallback: string = '') =>
       <p class="ds-desc">
         {tr('conferencias.scenarios.desc_insights', 'Contenido estratégico para líderes que impulsan el rumbo de la industria. Conferencias magistrales y paneles de discusión que analizan las fuerzas redefiniendo los mercados, la innovación y el futuro de los negocios.')}
       </p>
+      <!-- Bullet con punto parpadeante (animación ds-flicker). -->
       <div class="ds-bullet">
         <span class="ds-dot"></span>
         <span>{tr('conferencias.scenarios.bullet_insights', 'CONFERENCIAS MAGISTRALES - PANELES DE DISCUSIÓN')}</span>
       </div>
+      <!-- CTA hacia el programa de Insights (barra + texto + flecha). -->
       <a href={tr('conferencias.scenarios.cta_link_insights', '/insights')} class="ds-cta">
         <span class="ds-cta-bar"></span>
         <span class="ds-cta-text">{tr('conferencias.scenarios.cta_insights', 'VER PROGRAMA COMPLETO')}</span>
         <span class="ds-cta-arrow">&#8594;</span>
       </a>
     </div>
+
+    <!-- ── TARJETA DERECHA: SMART SKILLS (roja) ───────────────────────── -->
+    <!-- data-aos="fade-left" + delay: entra desde la izquierda, con retardo. -->
     <div class="ds-card ds-card--red" data-aos="fade-left" data-aos-duration="800" data-aos-delay="150">
       <span class="ds-label">{tr('conferencias.scenarios.label_skills', 'TALLERES PRÁCTICOS')}</span>
+      <!-- Título en 2 líneas: "SMART" (blanco) + "SKILLS" (rojo oscuro). -->
       <h2 class="ds-title">
         <span class="ds-title--white">SMART</span>
         <span class="ds-title--dark-red">SKILLS</span>
@@ -44,11 +79,13 @@ const tr = (key: string, fallback: string = '') =>
         <span class="ds-dot"></span>
         <span>{tr('conferencias.scenarios.bullet_skills', 'CUPO LIMITADO - REGISTRO PREVIO REQUERIDO')}</span>
       </div>
+      <!-- CTA hacia el programa de Skills. -->
       <a href={tr('conferencias.scenarios.cta_link_skills', '/skills')} class="ds-cta">
         <span class="ds-cta-bar"></span>
         <span class="ds-cta-text">{tr('conferencias.scenarios.cta_skills', 'VER PROGRAMA COMPLETO')}</span>
         <span class="ds-cta-arrow">&#8594;</span>
       </a>
+      <!-- Bullet "próximamente" desactivado: se conserva por si se reactiva. -->
       <!-- <div class="ds-bullet">
         <span class="ds-dot"></span>
         <span>{tr('conferencias.scenarios.text-coming-soon')}</span>
@@ -57,6 +94,9 @@ const tr = (key: string, fallback: string = '') =>
   </div>
 </section>
 <style>
+  /* ── SECCIÓN: contenedor de fondo ─────────────────────────────────── */
+  /* Fondo negro con patrón de puntos; overflow hidden recorta las imágenes
+     decorativas que asoman por las esquinas. */
   .ds-section {
     width: 100%;
     background-color: #000000;
@@ -66,6 +106,8 @@ const tr = (key: string, fallback: string = '') =>
     position: relative;
     overflow: hidden;
   }
+
+  /* ── PUNTOS DECORATIVOS (esquinas inferiores) ─────────────────────── */
   .ds-dots {
     position: absolute;
     bottom: 0;
@@ -77,6 +119,8 @@ const tr = (key: string, fallback: string = '') =>
   }
   .ds-dots--left  { left: 0; }
   .ds-dots--right { right: 0; }
+
+  /* ── CONTENEDOR INTERNO (grid de 2 tarjetas) ──────────────────────── */
   .ds-inner {
     width: 90%;
     max-width: 1100px;
@@ -90,6 +134,8 @@ const tr = (key: string, fallback: string = '') =>
     position: relative;
     z-index: 1;
   }
+
+  /* ── TARJETA (base común a ambas) ─────────────────────────────────── */
   .ds-card {
     padding: 2.5rem 2rem;
     border-radius: 4px;
@@ -99,13 +145,17 @@ const tr = (key: string, fallback: string = '') =>
     box-sizing: border-box;
     min-height: 380px;
   }
+  /* Variante oscura (Insights). */
   .ds-card--dark {
     background: #141414;
     border: 1px solid rgba(255,255,255,0.06);
   }
+  /* Variante roja (Skills). */
   .ds-card--red {
     background: #db0c15;
   }
+
+  /* ── LABEL (etiqueta superior) ────────────────────────────────────── */
   .ds-label {
     font-family: "Montserrat", sans-serif;
     font-size: 0.72rem;
@@ -118,6 +168,7 @@ const tr = (key: string, fallback: string = '') =>
       0 0 6px  rgba(255, 255, 255, 0.5),
       0 0 14px rgba(255, 255, 255, 0.2);
   }
+  /* En la tarjeta roja el label es rosado y la descripción más clara. */
   .ds-card--red .ds-label {
     color: #ff979e;
     text-shadow:
@@ -127,6 +178,8 @@ const tr = (key: string, fallback: string = '') =>
   .ds-card--red .ds-desc {
     color: rgba(255, 255, 255, 0.85);
   }
+
+  /* ── TÍTULO (2 líneas apiladas) ───────────────────────────────────── */
   .ds-title {
     display: flex;
     flex-direction: column;
@@ -134,6 +187,7 @@ const tr = (key: string, fallback: string = '') =>
     line-height: 0.95;
     gap: 0;
   }
+  /* Primera línea "SMART" con glow blanco. */
   .ds-title--white {
     font-family: "Montserrat", sans-serif;
     font-size: clamp(3rem, 5.5vw, 5.5rem);
@@ -145,6 +199,7 @@ const tr = (key: string, fallback: string = '') =>
       0 0 8px  rgba(255, 255, 255, 0.6),
       0 0 20px rgba(255, 255, 255, 0.2);
   }
+  /* Segunda línea "INSIGHTS" en gris apagado. */
   .ds-title--muted {
     font-family: "Montserrat", sans-serif;
     font-size: clamp(3rem, 5.5vw, 5.5rem);
@@ -153,6 +208,7 @@ const tr = (key: string, fallback: string = '') =>
     text-transform: uppercase;
     letter-spacing: -0.01em;
   }
+  /* Segunda línea "SKILLS" en rojo oscuro. */
   .ds-title--dark-red {
     font-family: "Montserrat", sans-serif;
     font-size: clamp(3rem, 5.5vw, 5.5rem);
@@ -161,6 +217,9 @@ const tr = (key: string, fallback: string = '') =>
     text-transform: uppercase;
     letter-spacing: -0.01em;
   }
+
+  /* ── DESCRIPCIÓN ──────────────────────────────────────────────────── */
+  /* flex:1 empuja el bullet hacia abajo para alinear ambas tarjetas. */
   .ds-desc {
     font-family: "Montserrat", sans-serif;
     font-size: 17.5px;
@@ -172,12 +231,16 @@ const tr = (key: string, fallback: string = '') =>
     text-align: justify;
     flex: 1;
   }
+
+  /* ── BULLET (punto + texto) ───────────────────────────────────────── */
+  /* margin-top:auto lo ancla al fondo de la tarjeta. */
   .ds-bullet {
     display: flex;
     align-items: flex-start;
     gap: 0.75rem;
     margin-top: auto;
   }
+  /* Punto luminoso con parpadeo tipo neón (ver keyframes ds-flicker). */
   .ds-dot {
     width: 11px;
     height: 11px;
@@ -191,6 +254,7 @@ const tr = (key: string, fallback: string = '') =>
       0 0 10px rgba(255,255,255,0.8),
       0 0 20px rgba(255,255,255,0.4);
   }
+  /* Animación de parpadeo del punto (efecto letrero de neón). */
   @keyframes ds-flicker {
     0%   { opacity: 1; box-shadow: 0 0 4px rgba(255,255,255,1), 0 0 10px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.4); }
     8%   { opacity: 0.2; box-shadow: none; }
@@ -202,6 +266,7 @@ const tr = (key: string, fallback: string = '') =>
     64%  { opacity: 1; box-shadow: 0 0 4px rgba(255,255,255,1), 0 0 10px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.4); }
     100% { opacity: 1; box-shadow: 0 0 4px rgba(255,255,255,1), 0 0 10px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.4); }
   }
+  /* Texto del bullet (segundo span). */
   .ds-bullet span:last-child {
     font-family: "Montserrat", sans-serif;
     font-size: 1.27rem;
@@ -214,6 +279,8 @@ const tr = (key: string, fallback: string = '') =>
       0 0 6px  rgba(255, 255, 255, 0.5),
       0 0 14px rgba(255, 255, 255, 0.2);
   }
+
+  /* ── CTA (botón "Ver programa completo") ──────────────────────────── */
   .ds-cta {
     display: inline-flex;
     align-items: center;
@@ -228,6 +295,7 @@ const tr = (key: string, fallback: string = '') =>
     transition: transform 0.2s ease, background 0.2s ease;
   }
   .ds-cta:hover { transform: translateY(-2px); }
+  /* Barra vertical decorativa a la izquierda del texto. */
   .ds-cta-bar {
     width: 3px;
     align-self: stretch;
@@ -249,6 +317,7 @@ const tr = (key: string, fallback: string = '') =>
     font-weight: 700;
     flex-shrink: 0;
   }
+  /* Colores del CTA según la tarjeta (oscura: acento rojo; roja: acento negro). */
   .ds-card--dark .ds-cta {
     background: #141414;
   }
