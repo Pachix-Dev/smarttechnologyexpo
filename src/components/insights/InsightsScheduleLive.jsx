@@ -304,8 +304,8 @@ export default function InsightsScheduleLive({
                         <div
                           className="isc-speakers-list"
                           style={{
-                            display: "grid",
-                            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+                            display: "flex",
+                            flexWrap: "wrap",
                             gap: "12px 16px",
                           }}
                         >

@@ -168,12 +168,11 @@ const tr = (key: string, fallback: string = "") => getTranslation(translations, 
     gap: 16px;
   }
 
-  /* Avatar circular (fondo por defecto; el script le pone la foto). */
   .bm-avatar {
-    width: 76px;
-    height: 76px;
+    width: 90px;
+    height: 110px;
     flex: none;
-    border-radius: 50%;
+    border-radius: 12px;
     background: repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0 8px, rgba(0, 0, 0, 0.15) 8px 16px);
     border: 2px solid rgba(255, 255, 255, 0.5);
   }
@@ -192,7 +191,6 @@ const tr = (key: string, fallback: string = "") => getTranslation(translations, 
     margin-top: 4px;
   }
 
-  /* Chip de organización (pill oscura). */
   .bm-org {
     display: inline-flex;
     margin-top: 10px;
