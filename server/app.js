@@ -15,6 +15,7 @@ import { generatePDF_freePass_ecomondo, generateQRDataURL, generatePDFInvoice, g
 import PDFDocument from 'pdfkit';
 import { Resend } from "resend";
 import { MercadoPagoConfig, Payment } from 'mercadopago';
+import ecommerceRoutes from './ecommerce/routes/ecommerceRoutes.js';
 const { json } = pkg
 const app = express()
 app.use(json())
@@ -39,7 +40,7 @@ const escapeHtml = (s = '') => String(s).replace(/[&<>"']/g, c =>
   ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
 
 
-const PORT = process.env.PORT || 3010
+const PORT = process.env.PORT || 3005
 const mercadopago =  new MercadoPagoConfig({
     accessToken: process.env.MP_ACCESS_TOKEN,
     options: {
@@ -48,6 +49,11 @@ const mercadopago =  new MercadoPagoConfig({
 });
 const payment = new Payment(mercadopago);
 const resend = new Resend(process.env.RESEND_APIKEY)
+
+// ============================================
+// RUTAS DEL E-COMMERCE
+// ============================================
+app.use('/ecommerce', ecommerceRoutes);
 
 app.get('/check-user-visit', async (req, res) => {
     const { email } = req.query;

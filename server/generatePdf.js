@@ -40,6 +40,25 @@ function getSpanishDateString(date) {
     return `${day} de ${months[monthIndex]} de ${year}`;
 }
 
+function formatAmountUSD(amount) {
+        return new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+            minimumFractionDigits: 2,
+        }).format(Number(amount || 0));
+}
+
+function formatAmountByCurrency(amount, currency = 'MXN') {
+    const normalizedCurrency = String(currency || 'MXN').toUpperCase();
+    const locale = normalizedCurrency === 'MXN' ? 'es-MX' : 'en-US';
+
+    return new Intl.NumberFormat(locale, {
+        style: 'currency',
+        currency: normalizedCurrency,
+        minimumFractionDigits: 2,
+    }).format(Number(amount || 0));
+}
+
 // Function to generate PDF invoice
 async function generatePDFInvoice(paypal_id_transaction, body) {
 
@@ -147,6 +166,142 @@ async function generatePDFInvoice(paypal_id_transaction, body) {
 
     doc.end();
     return pdfSave;
+}
+
+// Generate ecommerce purchase receipt with detailed table
+async function generatePDFEcommercePurchaseReceipt({
+        orderId,
+        transactionId,
+        purchaseDate,
+        visitor,
+        items,
+        pricing,
+        currency = 'MXN',
+}) {
+        const __filename = fileURLToPath(import.meta.url);
+        const __dirname = dirname(__filename);
+
+    const outputPath = path.resolve(__dirname, '../ecommerceInvoices');
+        if (!fs.existsSync(outputPath)) {
+            fs.mkdirSync(outputPath, { recursive: true });
+        }
+
+        const safeTxId = transactionId || `ORDER-${orderId}`;
+        const pdfSave = path.join(outputPath, `${safeTxId}-receipt.pdf`);
+
+        const doc = new PDFDocument({ margin: 45 });
+        const pdfStream = fs.createWriteStream(pdfSave);
+
+        doc.pipe(pdfStream);
+
+        doc
+            .font('Helvetica-Bold')
+            .fontSize(18)
+            .text('Smart Technology Expo 2026', { align: 'left' })
+            .fontSize(12)
+            .text('Purchase Receipt', { align: 'left' })
+            .moveDown(1);
+
+        doc
+            .font('Helvetica')
+            .fontSize(10)
+            .text(`Order ID: ${orderId}`)
+            .text(`Transaction ID: ${transactionId || 'N/A'}`)
+            .text(`Date: ${getSpanishDateString(new Date(purchaseDate || Date.now()))}`)
+            .moveDown(1);
+
+        doc
+            .font('Helvetica-Bold')
+            .fontSize(11)
+            .text('Billing Information')
+            .font('Helvetica')
+            .fontSize(10)
+            .text(`Name: ${(visitor?.name || '')} ${(visitor?.paternSurname || '')}`.trim())
+            .text(`Email: ${visitor?.email || 'N/A'}`)
+            .text(`Phone: ${visitor?.phone || 'N/A'}`)
+            .text(`Company: ${visitor?.company || 'N/A'}`)
+            .text(`RFC/NIF: ${visitor?.rfcNif || 'N/A'}`)
+            .text(
+                `Address: ${[
+                    visitor?.address,
+                    visitor?.colonia,
+                    visitor?.municipality,
+                    visitor?.city,
+                    visitor?.state,
+                    visitor?.postalCode,
+                    visitor?.country,
+                ]
+                    .filter(Boolean)
+                    .join(', ') || 'N/A'}`
+            )
+            .moveDown(1.4);
+
+        const tableTop = doc.y;
+        const colProduct = 50;
+        const colQty = 320;
+        const colUnit = 390;
+        const colTotal = 480;
+
+        doc
+            .font('Helvetica-Bold')
+            .fontSize(10)
+            .text('Product', colProduct, tableTop)
+            .text('Qty', colQty, tableTop, { width: 50, align: 'right' })
+            .text('Unit Price', colUnit, tableTop, { width: 80, align: 'right' })
+            .text('Total', colTotal, tableTop, { width: 80, align: 'right' });
+
+        doc
+            .moveTo(45, tableTop + 16)
+            .lineTo(565, tableTop + 16)
+            .strokeColor('#b7b7b7')
+            .stroke();
+
+        let currentY = tableTop + 24;
+        doc.font('Helvetica').fontSize(10);
+
+        for (const item of items || []) {
+            const itemTotal = Number(item.total ?? Number(item.unit_price || 0) * Number(item.quantity || 0));
+            doc.text(item.name || '-', colProduct, currentY, { width: 250 });
+            doc.text(String(item.quantity || 0), colQty, currentY, { width: 50, align: 'right' });
+            doc.text(formatAmountByCurrency(item.unit_price, currency), colUnit, currentY, { width: 80, align: 'right' });
+            doc.text(formatAmountByCurrency(itemTotal, currency), colTotal, currentY, { width: 80, align: 'right' });
+            currentY += 24;
+        }
+
+        doc
+            .moveTo(45, currentY)
+            .lineTo(565, currentY)
+            .strokeColor('#b7b7b7')
+            .stroke();
+
+        currentY += 10;
+
+        doc
+            .font('Helvetica')
+            .text(`Subtotal: ${formatAmountByCurrency(pricing?.subtotal, currency)}`, 360, currentY, { width: 200, align: 'right' });
+        currentY += 18;
+        doc
+            .text(`Discount: -${formatAmountByCurrency(pricing?.discount, currency)}`, 360, currentY, { width: 200, align: 'right' });
+        currentY += 18;
+        doc
+            .font('Helvetica-Bold')
+            .text(`Total: ${formatAmountByCurrency(pricing?.final_amount, currency)}`, 360, currentY, { width: 200, align: 'right' });
+
+        doc.moveDown(3);
+        doc
+            .font('Helvetica')
+            .fontSize(10)
+            .text('For invoicing support, contact:', 45, currentY + 45)
+            .text('emmanuel.heredia@igeco.mx', 45, currentY + 60)
+            .text('jesus.zermeno@igeco.mx', 45, currentY + 75);
+
+        doc.end();
+        await new Promise((resolve, reject) => {
+            pdfStream.on('finish', resolve);
+            pdfStream.on('error', reject);
+        });
+
+        return pdfSave;
 }
 
 //generate pdf for ecomondo pass visitor
@@ -450,4 +605,10 @@ async function generatePDF_freePass_ecomondo_student( body, uuid) {
 }
 
 // Export the functions to be used in other parts of the application
-export { generatePDFInvoice, generatePDF_freePass_ecomondo, generateQRDataURL, generatePDF_freePass_ecomondo_student };
+export {
+    generatePDFInvoice,
+    generatePDF_freePass_ecomondo,
+    generateQRDataURL,
+    generatePDF_freePass_ecomondo_student,
+    generatePDFEcommercePurchaseReceipt,
+};

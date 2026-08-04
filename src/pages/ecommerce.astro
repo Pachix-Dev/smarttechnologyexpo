@@ -1,0 +1,466 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+---
+
+<Layout title="E-Commerce - Smart Technology Expo" description="Smart Technology Expo - E-Commerce page" >
+  <div class="min-h-screen bg-gradient-to-br from-blue-900 via-blue-700 to-indigo-900">
+    {/* Hero Section */}
+    <section class="py-20 px-4">
+      <div class="max-w-6xl mx-auto text-center">
+        <h1 class="text-6xl font-bold text-white mb-6">
+          🎫 E-Commerce de Eventos
+        </h1>
+        <p class="text-2xl text-blue-100 mb-8 max-w-3xl mx-auto">
+          Acceso a los mejores eventos, talleres y conferencias de tecnología. 
+          Compra individual o grupal con PayPal seguro.
+        </p>
+
+        {/* CTA Buttons */}
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+          <a
+            href="/productos"
+            class="px-8 py-4 bg-green-500 hover:bg-green-600 text-white font-bold rounded-lg text-lg transition transform hover:scale-105"
+          >
+            🛍️ Ver Productos
+          </a>
+          <a
+            href="/checkout"
+            class="px-8 py-4 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-lg text-lg transition transform hover:scale-105"
+          >
+            🛒 Ir al Checkout
+          </a>
+        </div>
+      </div>
+    </section>
+
+    {/* Stats Section */}
+    <section class="py-12 px-4 bg-black/20">
+      <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 text-center">
+          <div class="text-4xl font-bold text-green-400 mb-2">3</div>
+          <p class="text-white text-lg">Categorías de Eventos</p>
+          <p class="text-blue-200 text-sm mt-2">Mujeres Networking, Drones, CSIA</p>
+        </div>
+
+        <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 text-center">
+          <div class="text-4xl font-bold text-blue-400 mb-2">7+</div>
+          <p class="text-white text-lg">Talleres Disponibles</p>
+          <p class="text-blue-200 text-sm mt-2">De $50 a $85 MXN</p>
+        </div>
+
+        <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 text-center">
+          <div class="text-4xl font-bold text-purple-400 mb-2">100%</div>
+          <p class="text-white text-lg">Seguro PayPal</p>
+          <p class="text-blue-200 text-sm mt-2">Compra sin preocupaciones</p>
+        </div>
+
+        <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 text-center">
+          <div class="text-4xl font-bold text-yellow-400 mb-2">$0</div>
+          <p class="text-white text-lg">Comisión Oculta</p>
+          <p class="text-blue-200 text-sm mt-2">Precio transparente</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  {/* Features Section */}
+  <section class="py-16 px-4 bg-white">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-4xl font-bold text-center text-gray-900 mb-12">
+        ¿Cómo Funciona?
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {/* Step 1 */}
+        <div class="text-center">
+          <div class="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
+            1
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">Regístrate</h3>
+          <p class="text-gray-600">
+            Si aún no estás registrado en el evento, hazlo primero. Necesitaremos tu email.
+          </p>
+        </div>
+
+        {/* Step 2 */}
+        <div class="text-center">
+          <div class="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
+            2
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">Elige Productos</h3>
+          <p class="text-gray-600">
+            Selecciona los eventos y talleres que deseas. Puedes elegir cantidad.
+          </p>
+        </div>
+
+        {/* Step 3 */}
+        <div class="text-center">
+          <div class="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
+            3
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">Aplica Cupón</h3>
+          <p class="text-gray-600">
+            Usa códigos de descuento si los tienes. Ahorra dinero en tu compra.
+          </p>
+        </div>
+
+        {/* Step 4 */}
+        <div class="text-center">
+          <div class="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
+            4
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">Paga y Recibe</h3>
+          <p class="text-gray-600">
+            Paga seguro con PayPal. Recibe tus boletos por email.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Products Preview Section */}
+  <section class="py-16 px-4 bg-gray-50">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-4xl font-bold text-center text-gray-900 mb-12">
+        Categorías de Eventos
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Mujeres Networking */}
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
+          <div class="bg-gradient-to-r from-pink-500 to-rose-500 h-32 flex items-center justify-center">
+            <span class="text-6xl">🎀</span>
+          </div>
+          <div class="p-6">
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">
+              Mujeres Networking
+            </h3>
+            <p class="text-gray-600 mb-4">
+              Desayuno inspirador con conferencias de mujeres líderes en tecnología. 
+              Expande tu red profesional.
+            </p>
+            <ul class="text-sm text-gray-600 space-y-2 mb-4">
+              <li>✓ 1 evento</li>
+              <li>✓ $50 MXN</li>
+              <li>✓ 150 lugares disponibles</li>
+            </ul>
+            <a
+              href="/productos"
+              class="w-full px-4 py-2 bg-pink-500 text-white rounded-lg hover:bg-pink-600 transition text-center font-semibold"
+            >
+              Ver Detalles
+            </a>
+          </div>
+        </div>
+
+        {/* Drone Innovations */}
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
+          <div class="bg-gradient-to-r from-sky-500 to-blue-500 h-32 flex items-center justify-center">
+            <span class="text-6xl">🚁</span>
+          </div>
+          <div class="p-6">
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">
+              Drone Innovations Forum
+            </h3>
+            <p class="text-gray-600 mb-4">
+              3 talleres especializados en drones comerciales, mapeo y regulación.
+              Aprende de expertos.
+            </p>
+            <ul class="text-sm text-gray-600 space-y-2 mb-4">
+              <li>✓ 3 talleres</li>
+              <li>✓ $60-$85 MXN c/u</li>
+              <li>✓ Máximo 50 asistentes</li>
+            </ul>
+            <a
+              href="/productos"
+              class="w-full px-4 py-2 bg-sky-500 text-white rounded-lg hover:bg-sky-600 transition text-center font-semibold"
+            >
+              Ver Detalles
+            </a>
+          </div>
+        </div>
+
+        {/* CSIA */}
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
+          <div class="bg-gradient-to-r from-purple-500 to-indigo-500 h-32 flex items-center justify-center">
+            <span class="text-6xl">🔧</span>
+          </div>
+          <div class="p-6">
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">
+              Talleres CSIA
+            </h3>
+            <p class="text-gray-600 mb-4">
+              Ciberseguridad, IoT y compliance. Talleres intensivos de seguridad
+              informática.
+            </p>
+            <ul class="text-sm text-gray-600 space-y-2 mb-4">
+              <li>✓ 3 talleres</li>
+              <li>✓ $65-$80 MXN c/u</li>
+              <li>✓ Máximo 45 asistentes</li>
+            </ul>
+            <a
+              href="/productos"
+              class="w-full px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition text-center font-semibold"
+            >
+              Ver Detalles
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Benefits Section */}
+  <section class="py-16 px-4 bg-white">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-4xl font-bold text-center text-gray-900 mb-12">
+        Por Qué Comprar Aquí
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+        {/* Left Column */}
+        <div class="space-y-6">
+          <div class="flex gap-4">
+            <div class="flex-shrink-0">
+              <div class="flex items-center justify-center h-12 w-12 rounded-md bg-blue-600 text-white">
+                ✓
+              </div>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-gray-900">Compra Segura</h3>
+              <p class="text-gray-600 mt-2">
+                Procesamos pagos a través de PayPal. Tu información es 100% segura.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <div class="flex-shrink-0">
+              <div class="flex items-center justify-center h-12 w-12 rounded-md bg-blue-600 text-white">
+                ✓
+              </div>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-gray-900">Acceso Inmediato</h3>
+              <p class="text-gray-600 mt-2">
+                Recibe tus boletos por email al instante después del pago.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <div class="flex-shrink-0">
+              <div class="flex items-center justify-center h-12 w-12 rounded-md bg-blue-600 text-white">
+                ✓
+              </div>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-gray-900">Precios Transparentes</h3>
+              <p class="text-gray-600 mt-2">
+                Sin cargos ocultos. El precio que ves es el que pagas.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Right Column */}
+        <div class="space-y-6">
+          <div class="flex gap-4">
+            <div class="flex-shrink-0">
+              <div class="flex items-center justify-center h-12 w-12 rounded-md bg-blue-600 text-white">
+                ✓
+              </div>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-gray-900">Compra Grupal</h3>
+              <p class="text-gray-600 mt-2">
+                Un visitante puede comprar múltiples accesos en una sola transacción.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <div class="flex-shrink-0">
+              <div class="flex items-center justify-center h-12 w-12 rounded-md bg-blue-600 text-white">
+                ✓
+              </div>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-gray-900">Cupones de Descuento</h3>
+              <p class="text-gray-600 mt-2">
+                Aplica códigos promocionales para ahorrar en tu compra.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <div class="flex-shrink-0">
+              <div class="flex items-center justify-center h-12 w-12 rounded-md bg-blue-600 text-white">
+                ✓
+              </div>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-gray-900">Soporte 24/7</h3>
+              <p class="text-gray-600 mt-2">
+                ¿Preguntas? Contacta a nuestro equipo en cualquier momento.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* FAQ Section */}
+  <section class="py-16 px-4 bg-gray-50">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-4xl font-bold text-center text-gray-900 mb-12">
+        Preguntas Frecuentes
+      </h2>
+
+      <div class="space-y-6">
+        <details class="bg-white rounded-lg shadow-md p-6 cursor-pointer group">
+          <summary class="text-xl font-bold text-gray-900 flex justify-between items-center">
+            ¿Necesito estar registrado para comprar?
+            <span class="group-open:rotate-180 transition">▼</span>
+          </summary>
+          <p class="text-gray-600 mt-4">
+            Sí, necesitas estar registrado con tu email en nuestra base de datos. 
+            Si no lo estás, puedes registrarte en el formulario de registro del evento.
+          </p>
+        </details>
+
+        <details class="bg-white rounded-lg shadow-md p-6 cursor-pointer group">
+          <summary class="text-xl font-bold text-gray-900 flex justify-between items-center">
+            ¿Puedo comprar para otras personas?
+            <span class="group-open:rotate-180 transition">▼</span>
+          </summary>
+          <p class="text-gray-600 mt-4">
+            Sí. Puedes comprar múltiples accesos en una sola transacción usando la compra grupal.
+          </p>
+        </details>
+
+        <details class="bg-white rounded-lg shadow-md p-6 cursor-pointer group">
+          <summary class="text-xl font-bold text-gray-900 flex justify-between items-center">
+            ¿Puedo usar cupones de descuento?
+            <span class="group-open:rotate-180 transition">▼</span>
+          </summary>
+          <p class="text-gray-600 mt-4">
+            Sí. Si tienes un código de cupón, puedes aplicarlo en el checkout 
+            antes de proceder al pago.
+          </p>
+        </details>
+
+        <details class="bg-white rounded-lg shadow-md p-6 cursor-pointer group">
+          <summary class="text-xl font-bold text-gray-900 flex justify-between items-center">
+            ¿Qué métodos de pago aceptan?
+            <span class="group-open:rotate-180 transition">▼</span>
+          </summary>
+          <p class="text-gray-600 mt-4">
+            Aceptamos pagos a través de PayPal. Puedes usar tarjeta de crédito, 
+            débito o saldo de PayPal.
+          </p>
+        </details>
+
+        <details class="bg-white rounded-lg shadow-md p-6 cursor-pointer group">
+          <summary class="text-xl font-bold text-gray-900 flex justify-between items-center">
+            ¿Cuándo recibo mis boletos?
+            <span class="group-open:rotate-180 transition">▼</span>
+          </summary>
+          <p class="text-gray-600 mt-4">
+            Recibirás tus boletos por email inmediatamente después de que se procese 
+            el pago en PayPal.
+          </p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  {/* CTA Section */}
+  <section class="py-20 px-4 bg-gradient-to-r from-blue-600 to-indigo-600">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-4xl font-bold text-white mb-6">
+        ¿Listo para Comprar?
+      </h2>
+      <p class="text-xl text-blue-100 mb-8">
+        Accede a los mejores eventos de tecnología. Compra ahora y garantiza tu lugar.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="/productos"
+          class="px-8 py-4 bg-white text-blue-600 font-bold rounded-lg hover:bg-gray-100 transition text-lg"
+        >
+          🛍️ Ver Todos los Productos
+        </a>
+        <a
+          href="/checkout"
+          class="px-8 py-4 bg-green-500 text-white font-bold rounded-lg hover:bg-green-600 transition text-lg"
+        >
+          🛒 Ir al Carrito
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {/* Footer Info */}
+  <section class="py-12 px-4 bg-gray-900 text-gray-200">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+        <div>
+          <h4 class="text-white font-bold mb-3">Sobre E-Commerce</h4>
+          <p class="text-sm">
+            Plataforma oficial de venta de accesos para eventos de Smart Technology Expo 2026.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="text-white font-bold mb-3">Navegación</h4>
+          <ul class="text-sm space-y-1">
+            <li><a href="/productos" class="hover:text-white">Productos</a></li>
+            <li><a href="/checkout" class="hover:text-white">Checkout</a></li>
+            <li><a href="/" class="hover:text-white">Inicio</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-white font-bold mb-3">Contacto</h4>
+          <p class="text-sm">
+            📧 contacto@smarttechnologyexpo.mx<br>
+            📞 +52 (33) XXXX-XXXX<br>
+            🌐 smarttechnologyexpo.mx
+          </p>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-700 pt-8 text-center text-sm">
+        <p>
+          © 2026 Smart Technology Expo. Todos los derechos reservados. | 
+          <a href="#" class="hover:text-white ml-2">Política de Privacidad</a> | 
+          <a href="#" class="hover:text-white ml-2">Términos de Servicio</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    /* Smooth scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Details animation */
+    details {
+      transition: all 0.3s ease;
+    }
+
+    details[open] {
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    details summary::-webkit-details-marker {
+      display: none;
+    }
+  </style>
+</Layout>

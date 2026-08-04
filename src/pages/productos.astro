@@ -1,0 +1,22 @@
+---
+
+import ProductList from '../components/ecommerce/ProductList.jsx';
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Productos - Smart Technology Expo" description="Smart Technology Expo - Productos page">
+  <div class="bg-gradient-to-br from-blue-50 to-indigo-100 py-10">
+    <div class="max-w-6xl mx-auto px-4">
+      <h1 class="text-5xl font-bold text-center text-gray-900 mb-4">
+        Accesos a Eventos y Talleres
+      </h1>
+      <p class="text-xl text-center text-gray-700 max-w-2xl mx-auto">
+        Elige los eventos y talleres que deseas asistir
+      </p>
+    </div>
+  </div>
+
+  <div class="min-h-screen bg-white">
+    <ProductList client:load />
+  </div>
+</Layout>
