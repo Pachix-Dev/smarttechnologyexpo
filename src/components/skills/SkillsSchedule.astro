@@ -1,10 +1,27 @@
 ---
-// SkillsSchedule.astro — Wrapper delgado del "Programa por día" de SMART SKILLS.
-// Ya NO usa datos de ejemplo: monta la isla React SkillsScheduleLive, que consume
-// EN VIVO la misma API que Insights pero con OTRO escenario (stageId = 9).
-// Reutiliza los estilos isc-* de insights.css (mismo layout que Insights).
+// ============================================================================
+//  COMPONENTE SKILLS SCHEDULE (Wrapper) — Escenario SMART SKILLS
+//  Autor: Donovan Oswaldo Villalba Hernandez
+//
+//  Envoltorio delgado del "Programa por día" de SMART SKILLS. Ya NO usa datos de
+//  ejemplo: monta la isla React `SkillsScheduleLive`, que consume EN VIVO la
+//  misma API que Insights pero con OTRO escenario (stageId = 9 por defecto).
+//  Reutiliza el mismo layout (clases ssc-*), ahora servidas desde skills.css.
+//
+//  Responsabilidad de este wrapper (lado servidor):
+//    - Resolver el idioma activo (lang: 'es' | 'en').
+//    - Armar el objeto `labels` con los textos de interfaz traducidos y
+//      pasárselo a la isla, junto con escenario, PDF y color de acento.
+//
+//  Props:
+//    - stageId: escenario de la API (por defecto 9, el de talleres).
+//    - pdfHref: enlace del PDF de descarga del programa.
+//    - accent: color de acento del escenario.
+//
+//  i18n: los textos salen de los locales vía tr('clave', 'fallback').
+// ============================================================================
 import SkillsScheduleLive from './SkillsScheduleLive.jsx';
-import './SkillsSchedule.css';
+import './skills.css';
 import { useTranslations, getTranslation } from '../../utils/translations';
 
 export interface Props {
@@ -13,10 +30,12 @@ export interface Props {
   accent?: string;
 }
 
+// Idioma + diccionario de traducciones.
 const { translations, locale } = await useTranslations(Astro.props, Astro);
 const tr = (key: string, fallback: string = '') => getTranslation(translations, key, fallback);
 
 const { stageId = 9, pdfHref = '#', accent = '#E2101A' } = Astro.props;
+// Normaliza el idioma a 'es'/'en'.
 const lang = locale === 'en' ? 'en' : 'es';
 
 // Textos de interfaz, ya traducidos, para la isla.
@@ -35,6 +54,8 @@ const labels = {
 };
 ---
 
+<!-- Isla React (client:only): se renderiza en el navegador y hace el fetch a la
+     API. Recibe idioma, escenario, PDF, acento y el paquete de labels ya traducido. -->
 <SkillsScheduleLive
   client:only="react"
   lang={lang}

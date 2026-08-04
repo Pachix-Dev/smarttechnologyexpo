@@ -1,7 +1,14 @@
-/* insights.css — Estilos del apartado SMART INSIGHTS (Schedule + Speakers).
-   Se cargan como CSS global (no scoped) para que apliquen al DOM que generan
-   las islas React. Las clases isc-/isp- son específicas, sin colisiones.
-   Copiados 1:1 de los componentes .astro originales + añadidos (fotos, spinner, error). */
+/* ============================================================================
+    HOJA DE ESTILOS insights.css — Apartado SMART INSIGHTS (Schedule + Speakers)
+    Autor: Donovan Oswaldo Villalba Hernandez
+
+    Estilos del apartado SMART INSIGHTS. Se cargan como CSS global (no scoped)
+    para que apliquen al DOM que generan las islas React. Prefijos por sección:
+      · isp-  → Speakers (carrusel de ponentes)
+      · isc-  → Schedule (programa por día)
+      · ins-  → estados compartidos (loading / error / vacío)
+    Copiados 1:1 de los componentes .astro originales + añadidos (fotos, spinner, error).
+   ============================================================================ */
 
 /* =====================  SPEAKERS (isp-)  ===================== */
 .isp-section {

@@ -812,7 +812,7 @@
       "desc_insights": "Strategic content for leaders driving the direction of the industry. Keynote conferences and discussion panels analyzing the forces redefining markets, innovation and the future of business.",
       "desc_skills": "Hands-on learning and real application of technology. Training sessions to develop technical skills, discover key tools and dive deep into solutions applicable to productive environments.",
       "bullet_insights": "KEYNOTE CONFERENCES - DISCUSSION PANELS",
-      "bullet_skills": "LIMITED SPOTS - PRIOR REGISTRATION REQUIRED",
+      "bullet_skills": "FREE WORKSHOPS - LIMITED SPOTS - PRIOR REGISTRATION REQUIRED",
       "cta_insights": "VIEW FULL PROGRAM",
       "cta_link_insights": "/en/insights",
       "cta_skills": "VIEW FULL PROGRAM",
@@ -997,7 +997,7 @@
     "hero": {
       "eyebrow": "HANDS-ON WORKSHOPS",
       "description": "Hands-on learning and real application of technology. Training sessions to build technical skills, get to know key tools and dive deeper into solutions for production environments.",
-      "notice": "LIMITED SEATS · PRIOR REGISTRATION REQUIRED"
+      "notice": "FREE WORKSHOPS · LIMITED SEATS · PRIOR REGISTRATION REQUIRED"
     },
     "workshops": {
       "eyebrow": "CATALOG",
@@ -1033,7 +1033,7 @@
       "eyebrow": "REGISTRATION",
       "title": "Sign up for a workshop",
       "desc": "Workshops have limited seats. Look up your registration with your email and confirm your spot in seconds.",
-      "notice_a": "You must have your ",
+      "notice_a": "Workshops are free, but you must have your ",
       "notice_b": "prior general event registration",
       "notice_c": " for Smart Technology Expo 2026 to sign up for a workshop.",
       "perk1": "Immediate spot confirmation by email",
@@ -1064,6 +1064,9 @@
       "thanks": "Thank you, ",
       "sent_to": ". We've sent your spot confirmation to ",
       "another": "REGISTER ANOTHER"
+    },
+    "sponsors": {
+      "title": "Sponsors"
     }
   }
 }

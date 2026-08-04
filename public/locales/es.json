@@ -810,7 +810,7 @@
       "desc_insights": "Contenido estratégico para líderes que impulsan el rumbo de la industria. Conferencias magistrales y paneles de discusión que analizan las fuerzas redefiniendo los mercados, la innovación y el futuro de los negocios.",
       "desc_skills": "Aprendizaje práctico y aplicación real de la tecnología. Capacitaciones para desarrollar habilidades técnicas, conocer herramientas clave y profundizar en soluciones aplicables a entornos productivos.",
       "bullet_insights": "CONFERENCIAS MAGISTRALES - PANELES DE DISCUSIÓN",
-      "bullet_skills": "CUPO LIMITADO - REGISTRO PREVIO REQUERIDO",
+      "bullet_skills": "TALLERES GRATUITOS - CUPO LIMITADO - REGISTRO PREVIO REQUERIDO",
       "cta_insights": "VER PROGRAMA COMPLETO",
       "cta_link_insights": "/insights",
       "cta_skills": "VER PROGRAMA COMPLETO",
@@ -995,7 +995,7 @@
     "hero": {
       "eyebrow": "TALLERES PRÁCTICOS",
       "description": "Aprendizaje práctico y aplicación real de la tecnología. Capacitaciones para desarrollar habilidades técnicas, conocer herramientas clave y profundizar en soluciones aplicables a entornos productivos.",
-      "notice": "CUPO LIMITADO · REGISTRO PREVIO REQUERIDO"
+      "notice": "TALLERES GRATUITOS · CUPO LIMITADO · REGISTRO PREVIO REQUERIDO"
     },
     "workshops": {
       "eyebrow": "CATÁLOGO",
@@ -1031,7 +1031,7 @@
       "eyebrow": "REGISTRO",
       "title": "Inscríbete a un taller",
       "desc": "Los talleres tienen cupo limitado. Busca tu registro con tu correo y confirma tu lugar en segundos.",
-      "notice_a": "Es indispensable contar con tu ",
+      "notice_a": "Los talleres son gratuitos, pero es indispensable contar con tu ",
       "notice_b": "registro previo al evento general",
       "notice_c": " Smart Technology Expo 2026 para poder inscribirte a un taller.",
       "perk1": "Confirmación inmediata de tu lugar por correo",
@@ -1062,6 +1062,9 @@
       "thanks": "Gracias, ",
       "sent_to": ". Te enviamos la confirmación de tu lugar a ",
       "another": "REGISTRAR OTRO"
-    }
+    },
+    "sponsors": {
+    "title": "Patrocinadores"
+  }
   }
 }

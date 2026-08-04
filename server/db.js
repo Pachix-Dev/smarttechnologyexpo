@@ -606,98 +606,129 @@ export class RegisterModel {
     }
   }
 
-  // ============================================================
-  //  TALLERES — Consultas y registro de asistencia
-  // ============================================================
+// ============================================================================
+//  MÓDULO DE TALLERES — Métodos de db.js (dentro de la clase RegisterModel)
+//  Autor: Donovan Oswaldo Villalba Hernandez
+//
+//  Métodos de acceso a datos para el registro y asistencia a talleres.
+//  Cada método:
+//    - Abre una conexión a MySQL con la configuración `config` (host, user…).
+//    - Ejecuta su consulta con PARÁMETROS (marcadores `?`), lo que previene
+//      la INYECCIÓN SQL: el valor viaja como dato, nunca como código.
+//    - Cierra la conexión SIEMPRE en el bloque `finally` (haya error o no),
+//      para no dejar conexiones abiertas.
+//
+// ============================================================================
 
-  // -------------------------------------------------------------------
-  // Buscar un VISITANTE por su correo.
-  // Se usa en el Paso 1 del formulario y también antes de registrar.
-  // -------------------------------------------------------------------
+
+  // --------------------------------------------------------------------------
+  //  get_visitor_ste_by_email(email)
+  //  Busca un VISITANTE por su correo en `visitors_ste_2026`.
+  //  Se usa en el Paso 1 del formulario (autollenado) y también dentro del
+  //  registro (POST /workshop-register) para obtener su id y uuid.
+  //
+  //  Devuelve: el objeto del visitante, o null si no existe.
+  //  Nota: incluye `uuid` para USO INTERNO del backend; el endpoint es quien
+  //        decide qué campos expone al navegador (allí se omite el uuid).
+  // --------------------------------------------------------------------------
   static async get_visitor_ste_by_email(email) {
-    // Abrimos una conexión a la base con la configuración (host, user, etc.).
     const connection = await mysql.createConnection(config);
     try {
-      // Consulta: traer los datos del visitante cuyo correo coincida.
-      //   El "?" es un parámetro seguro: evita inyección SQL (el correo
-      //   entra como dato, no como código).
-      //   LIMIT 1: nos basta con el primero (el correo es único).
+      // `?` = parámetro seguro (anti inyección SQL). LIMIT 1 porque el correo
+      // es único: basta con el primer resultado.
       const [rows] = await connection.query(
         "SELECT id, uuid, name, paternSurname, email, phone, company, position " +
           "FROM visitors_ste_2026 WHERE email = ? LIMIT 1",
         [email],
       );
-      // rows es un arreglo. Si hay resultado devolvemos el primero;
-      //   si no, devolvemos null (no existe ese visitante).
+      // rows es un arreglo: devolvemos el primero, o null si no hubo resultados.
       return rows[0] || null;
     } finally {
-      // finally se ejecuta SIEMPRE (haya o no error): cerramos la conexión
-      //   para no dejar conexiones abiertas.
       await connection.end();
     }
   }
 
-  // -------------------------------------------------------------------
-  // Listar los TALLERES activos con su cupo y sus inscritos.
-  // Alimenta el catálogo (barra de cupo) y la lista del formulario.
-  // Traemos id, nombres y capacity (el cupo total). Y con una
-  //   subconsulta contamos cuántas inscripciones hay para CADA taller
-  //   (esto es "registered" = inscritos reales).
-  //   Así el cupo disponible siempre es exacto: capacity - registered.
-  // WHERE is_active = 1: solo talleres visibles.
-  // ORDER BY workshop_id: orden estable (1, 2, 3, 4).
-  // -------------------------------------------------------------------
+
+  // --------------------------------------------------------------------------
+  //  get_active_workshops()
+  //  Lista los TALLERES ACTIVOS con su cupo total y su número de inscritos.
+  //  Alimenta el catálogo (barra de cupo) y la lista del formulario.
+  //
+  //  Detalle de la consulta:
+  //    - Trae workshop_id, nombres y `capacity` (cupo total).
+  //    - Una SUBCONSULTA cuenta cuántas filas hay en `workshop_attendance` para
+  //      CADA taller → alias `registered` (inscritos reales). Así el cupo
+  //      disponible siempre es exacto: capacity - registered.
+  //    - WHERE is_active = 1: solo talleres visibles.
+  //    - ORDER BY workshop_id: orden estable (1, 2, 3…).
+  //
+  //  Devuelve: arreglo de filas { workshop_id, name_es, name_en, capacity, registered }.
+  // --------------------------------------------------------------------------
   static async get_active_workshops() {
     const connection = await mysql.createConnection(config);
-
     try {
       const [rows] = await connection.query(
-        `SELECT w.workshop_id, w.name_es, w.name_en, w.capacity,(SELECT COUNT(*) FROM workshop_attendance a WHERE a.workshop_id = w.workshop_id) AS registered FROM workshops w WHERE w.is_active = 1 ORDER BY w.workshop_id`,
+        `SELECT w.workshop_id, w.name_es, w.name_en, w.capacity,` +
+          ` (SELECT COUNT(*) FROM workshop_attendance a WHERE a.workshop_id = w.workshop_id) AS registered` +
+          ` FROM workshops w WHERE w.is_active = 1 ORDER BY w.workshop_id`,
       );
-      
-      // Devolvemos todas las filas (cada taller con capacity y registered).
+      // Cada fila = un taller con su capacity y su conteo de inscritos.
       return rows;
     } finally {
       await connection.end();
     }
   }
 
-  // -------------------------------------------------------------------
-  // Traer UN taller por su id (para validarlo antes de inscribir).
-  // -------------------------------------------------------------------
+
+  // --------------------------------------------------------------------------
+  //  get_workshop_by_id(id)
+  //  Trae UN taller por su id. Se usa para validar que el taller exista y esté
+  //  activo ANTES de guardar una inscripción.
+  //
+  //  Devuelve: la fila completa del taller, o null si no existe / está inactivo.
+  // --------------------------------------------------------------------------
   static async get_workshop_by_id(id) {
     const connection = await mysql.createConnection(config);
     try {
+      // Solo si existe con ese id Y está activo (is_active = 1).
       const [rows] = await connection.query(
-        // Solo talleres activos (is_active = 1) y con ese id.
         "SELECT * FROM workshops WHERE workshop_id = ? AND is_active = 1 LIMIT 1",
         [id],
       );
-      // El taller si existe, o null si no.
       return rows[0] || null;
     } finally {
       await connection.end();
     }
   }
 
-  // -------------------------------------------------------------------
-  // Registrar la ASISTENCIA (inscripción) de un visitante a un taller.
-  // La restricción única de la tabla evita duplicados automáticamente.
-  // -------------------------------------------------------------------
+
+  // --------------------------------------------------------------------------
+  //  register_workshop_attendance({ workshop_id, visitor_id, uuid })
+  //  Registra la ASISTENCIA (inscripción) de un visitante a un taller,
+  //  insertando una fila en `workshop_attendance`.
+  //
+  //  Anti-duplicados: la tabla tiene una llave única (visitor_id, workshop_id),
+  //  así que si el visitante ya estaba inscrito a ese taller, MySQL lanza el
+  //  error ER_DUP_ENTRY / sqlState 23000; aquí lo detectamos y respondemos con
+  //  un mensaje amable en vez de romper.
+  //
+  //  Devuelve:
+  //    { status: true }                          → inscripción guardada.
+  //    { status: false, duplicate: true, ... }   → ya estaba inscrito.
+  //    { status: false, message: ... }           → cualquier otro error.
+  // --------------------------------------------------------------------------
   static async register_workshop_attendance({ workshop_id, visitor_id, uuid }) {
     const connection = await mysql.createConnection(config);
     try {
-      // Insertamos la inscripción. Si el visitante YA estaba inscrito a ese
-      //   taller, la base lanza un error de "entrada duplicada".
+      // Insertamos la inscripción (valores parametrizados).
       await connection.query(
         "INSERT INTO workshop_attendance (workshop_id, visitor_id, uuid) VALUES (?,?,?)",
         [workshop_id, visitor_id, uuid],
       );
-      // Si llegó aquí, se guardó bien.
+      // Si llegó aquí, se guardó sin problemas.
       return { status: true };
     } catch (error) {
-      // Detectamos el error de duplicado (código ER_DUP_ENTRY / sqlState 23000)
-      //   y respondemos amablemente en vez de romper: "ya estás registrado".
+      // Error de duplicado → el visitante ya estaba inscrito a ese taller.
       if (error?.code === "ER_DUP_ENTRY" || error?.sqlState === "23000") {
         return {
           status: false,
@@ -705,7 +736,7 @@ export class RegisterModel {
           message: "Ya estás registrado a este taller.",
         };
       }
-      // Cualquier otro error: lo registramos y devolvemos un mensaje genérico.
+      // Cualquier otro error: se registra en logs y se devuelve mensaje genérico.
       console.log(error);
       return { status: false, message: "Error al registrar tu asistencia." };
     } finally {

@@ -33,8 +33,13 @@ app.use(cors({
   }
 }))
 
-// SEGURIDAD (5): escape de HTML para datos del usuario que se insertan en correos
-// (evita inyección de HTML). Convierte < > & " ' en texto inofensivo.
+// ----------------------------------------------------------------------------
+//  SEGURIDAD (5): escape de HTML
+//  Neutraliza los caracteres especiales (< > & " ') de cualquier texto que el
+//  usuario haya escrito y que se inserte dentro del HTML de un correo. Asi se
+//  evita la INYECCION DE HTML (que alguien meta etiquetas o enlaces maliciosos
+//  a traves de los campos del formulario). Se usa tambien en el contacto Ecomondo.
+// ----------------------------------------------------------------------------
 const escapeHtml = (s = '') => String(s).replace(/[&<>"']/g, c =>
   ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
 
@@ -646,6 +651,14 @@ app.get('/template-email', async (req, res) => {
     res.send(emailContent);
 });
 
+
+// ----------------------------------------------------------------------------
+//  GET /template-email-workshop?lang=es|en
+//  Utilidad de DESARROLLO: renderiza en el navegador la plantilla del correo
+//  de taller con datos de ejemplo, para revisar cómo se ve sin tener que
+//  registrarse. No envía nada; solo devuelve el HTML.
+//    - lang: 'en' fuerza inglés; cualquier otro valor cae a español.
+// ----------------------------------------------------------------------------
 app.get('/template-email-workshop', async (req, res) => {
     const lang = req.query.lang === 'en' ? 'en' : 'es';
     const emailContent = await email_template_workshop({
@@ -662,34 +675,59 @@ app.get('/template-email-workshop', async (req, res) => {
     });
     res.send(emailContent);
 });
+ 
+// ============================================================================
+//  MÓDULO DE TALLERES (Smart Skills) — Endpoints de app.js
+//  Autor: Donovan Oswaldo Villalba Hernandez
+//
+//  Parte del backend correspondiente al registro y asistencia a talleres, más
+//  los helpers de seguridad. NO incluye el resto de la API (Ecomondo, registro
+//  general, PDFs), que es preexistente.
+//
+//  Dependencias (definidas arriba en app.js):
+//    - RegisterModel .......... capa de acceso a la base (db.js).
+//    - email_template_workshop  plantilla bilingüe del correo (TemplateEmailWorkshop.js).
+//    - resend ................. cliente de Resend para enviar correos.
+//    - escapeHtml ............. helper de seguridad (anti inyección de HTML).
+//
+//  Flujo del registro a un taller (frontend → backend):
+//    1) Buscar al visitante por correo      → GET  /workshop-visitor
+//    2) Listar los talleres y su cupo        → GET  /workshops
+//    3) Confirmar la inscripción a un taller → POST /workshop-register
+// ============================================================================
 
-// ============================================================
-//  TALLERES — Registro y asistencia
-// ============================================================
-
-
-// ---------------------------------------------------------------------
-// GET /workshop-visitor?email=CORREO
-// Busca al visitante por su correo. Lo usa el Paso 1 del formulario.
-// ---------------------------------------------------------------------
+//  GET /workshop-visitor?email=CORREO
+//  PASO 1 del formulario: busca al visitante por su correo para autollenar sus
+//  datos. Devuelve solo información no sensible.
+//
+//  Seguridad aplicada:
+//    (3) Valida el FORMATO del correo antes de consultar la base.
+//    (2) Devuelve un objeto "safeVisitor" SIN uuid ni id (esos no deben viajar
+//        al navegador; el uuid es el pase de acceso del visitante).
+//
+//  Respuestas:
+//    400 → correo con formato inválido.
+//    404 → no existe un visitante con ese correo.
+//    200 → { status: true, visitor: {...datos no sensibles...} }
+// ----------------------------------------------------------------------------
 app.get('/workshop-visitor', async (req, res) => {
-    // Sacamos el correo de la URL (?email=...) y lo normalizamos.
+    // Tomamos el correo de la query (?email=...), lo limpiamos y normalizamos.
     const email = String(req.query.email || '').trim().toLowerCase();
-
-    // SEGURIDAD (3): validar formato de correo antes de tocar la base.
+ 
+    // (3) Rechazamos correos mal formados sin tocar la base de datos.
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
         return res.status(400).send({ status: false, message: 'Correo inválido' });
     }
-
-    // Buscamos al visitante en la base (método de db.js).
+ 
+    // Buscamos al visitante (consulta parametrizada en db.js).
     const visitor = await RegisterModel.get_visitor_ste_by_email(email);
-
-    // Si no existe, respondemos 404 (no encontrado) con un mensaje.
+ 
+    // Si no existe, 404.
     if (!visitor) {
         return res.status(404).send({ status: false, message: 'No encontramos un registro con ese correo.' });
     }
-
-    // SEGURIDAD (2): devolvemos SOLO lo necesario (sin uuid ni id) al navegador.
+ 
+    // (2) Enviamos SOLO lo necesario al navegador (sin uuid ni id).
     const safeVisitor = {
         name: visitor.name,
         paternSurname: visitor.paternSurname,
@@ -700,81 +738,99 @@ app.get('/workshop-visitor', async (req, res) => {
     };
     return res.send({ status: true, visitor: safeVisitor });
 });
-
-
-// ---------------------------------------------------------------------
-// GET /workshops
-// Devuelve la lista de talleres activos con su cupo e inscritos.
-// Lo usa: el catálogo (barra de cupo) y la lista del formulario.
-// ---------------------------------------------------------------------
+ 
+ 
+// ----------------------------------------------------------------------------
+//  GET /workshops
+//  Devuelve la lista de talleres ACTIVOS con su cupo total (capacity) y el
+//  número de inscritos (registered). Lo consumen:
+//    - El catálogo, para pintar la barra de cupo en tiempo real.
+//    - El formulario, si toma de aquí las opciones.
+//
+//  Respuesta: { status: true, workshops: [ { workshop_id, name_es, name_en,
+//               capacity, registered }, ... ] }
+// ----------------------------------------------------------------------------
 app.get('/workshops', async (req, res) => {
-
-    // Traemos todos los talleres activos (con capacity y registered).
+    // Traemos los talleres activos con capacity y su conteo de inscritos.
     const workshops = await RegisterModel.get_active_workshops();
-
+ 
     // Los devolvemos al sitio.
     return res.send({ status: true, workshops });
 });
-
-
-// ---------------------------------------------------------------------
-// POST /workshop-register
-// Registra la inscripción y envía el correo de confirmación.
-// Recibe en el cuerpo (body): { email, workshop_id, currentLanguage }
-// ---------------------------------------------------------------------
+ 
+ 
+// ----------------------------------------------------------------------------
+//  POST /workshop-register
+//  PASO 2 del formulario: registra la inscripción del visitante a un taller y
+//  le envía el correo de confirmación (en su idioma).
+//
+//  Body esperado: { email, workshop_id, currentLanguage }
+//    - currentLanguage: 'en' | 'es' (idioma de la página desde donde se registra;
+//      determina el idioma del correo).
+//
+//  Diseño importante:
+//    - El envío del correo va en un try/catch AISLADO: si el correo falla, la
+//      inscripción YA quedó guardada y el servidor no se cae (solo deja aviso).
+//    - El cupo disponible NO se guarda; se calcula como capacity - inscritos.
+//
+//  Respuestas:
+//    400 → workshop_id inválido.
+//    404 → visitante o taller inexistente.
+//    409 → el visitante ya estaba inscrito a ese taller (restricción única).
+//    500 → error inesperado.
+//    200 → { status: true, ... } inscripción confirmada.
+// ----------------------------------------------------------------------------
 app.post('/workshop-register', async (req, res) => {
     try {
-        // Datos que manda el formulario.
+        // Datos que envía el formulario.
         const { email, workshop_id, currentLanguage = 'es' } = req.body;
         // Idioma del correo (es/en); por defecto español.
         const lang = currentLanguage === 'en' ? 'en' : 'es';
-
-        // SEGURIDAD (3): validar que el id del taller sea un entero positivo.
+ 
+        // (3) Validar que el id del taller sea un entero positivo.
         if (!Number.isInteger(Number(workshop_id)) || Number(workshop_id) <= 0) {
             return res.status(400).send({ status: false, message: 'Taller inválido' });
         }
-
-        // 1) Verificar que el visitante exista.
+ 
+        // 1) El visitante debe existir (aquí sí recuperamos su uuid, uso interno).
         const visitor = await RegisterModel.get_visitor_ste_by_email(email);
         if (!visitor) return res.status(404).send({ status: false, message: 'No encontramos un registro con ese correo.' });
-
-        // 2) Verificar que el taller exista y esté activo.
+ 
+        // 2) El taller debe existir y estar activo (validación contra la BD).
         const workshop = await RegisterModel.get_workshop_by_id(workshop_id);
         if (!workshop) return res.status(404).send({ status: false, message: 'Taller no disponible.' });
-
-        // 3) GUARDAR LA INSCRIPCIÓN (lo esencial).
-        //    La restricción única evita que se inscriba dos veces al mismo taller.
+ 
+        // 3) GUARDAR LA INSCRIPCIÓN (lo esencial). La restricción única de la
+        //    tabla evita que el mismo visitante se inscriba dos veces al mismo taller.
         const reg = await RegisterModel.register_workshop_attendance({
             workshop_id: workshop.workshop_id, visitor_id: visitor.id, uuid: visitor.uuid,
         });
         if (!reg.status) {
-            // 409 = conflicto (ya estaba inscrito); 500 = otro error.
+            // 409 = ya estaba inscrito (duplicado); 500 = cualquier otro error.
             return res.status(reg.duplicate ? 409 : 500).send(reg);
         }
-
-        // 4) ENVIAR EL CORREO — aislado en su propio try/catch:
-        //    si el correo fallara, la inscripción YA quedó guardada y el
-        //    servidor NO se cae; solo deja un aviso en la consola.
+ 
+        // 4) ENVIAR EL CORREO — aislado: si falla, la inscripción ya se guardó.
         try {
-            // Preparamos los textos de fecha/hora/duración para el correo.
+            // Preparamos fecha/hora/duración según el idioma.
             const start = new Date(workshop.start_date);
             const dateText = start.toLocaleDateString(lang === 'en' ? 'en-US' : 'es-MX', { year: 'numeric', month: 'long', day: 'numeric' });
             const timeText = start.toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit' }) + ' hrs.';
             const durationText = lang === 'en' ? `${workshop.duration_minutes} minutes` : `${workshop.duration_minutes} minutos`;
-
-            // Armamos el HTML del correo con la plantilla bilingüe.
+ 
+            // Armamos el HTML con la plantilla bilingüe (elige nombre/descr. por idioma).
             const html = await email_template_workshop({
                 lang, name: visitor.name, paternSurname: visitor.paternSurname,
                 workshopName: lang === 'en' ? workshop.name_en : workshop.name_es,
                 dateText, timeText, durationText, location: workshop.location,
                 description: lang === 'en' ? workshop.description_en : workshop.description_es,
             });
-
-            // Enviamos el correo con Resend.
-            //   to: si existe TEST_EMAIL_OVERRIDE (para pruebas) va a ese correo;
-            //       si no, va al correo real del visitante.
-            //   attachments: adjunta el pase con QR del visitante (ya existe en
-            //       /invoices/ desde su registro general; no se genera aquí).
+ 
+            // Enviamos con Resend.
+            //   to: en pruebas, TEST_EMAIL_OVERRIDE redirige TODO a un correo fijo;
+            //       en producción (sin esa variable) va al correo real del visitante.
+            //   attachments: adjunta el pase con QR del visitante, que ya existe en
+            //       /invoices/ desde su registro general (no se genera aquí).
             await resend.emails.send({
                 from: 'SMART TECHNOLOGY EXPO 2026 <noreply@smarttechnologyexpo.mx>',
                 to: process.env.TEST_EMAIL_OVERRIDE || visitor.email,
@@ -794,17 +850,15 @@ app.post('/workshop-register', async (req, res) => {
             // Si el correo falla, no rompemos nada: la inscripción ya se guardó.
             console.log('Aviso: correo no enviado (el registro sí se guardó):', mailErr?.message);
         }
-
-        // 5) Respondemos éxito al formulario.
+ 
+        // 5) Respondemos éxito (sin exponer el uuid).
         return res.send({ status: true, message: 'Registro a taller confirmado.', visitor: { name: visitor.name, email: visitor.email } });
     } catch (err) {
-        // Si algo falla antes de guardar (BD caída, etc.), respondemos error 500.
+        // Falla antes de guardar (BD caída, body malformado, etc.) → 500.
         console.log(err);
         return res.status(500).send({ status: false, message: 'Error al procesar tu registro.' });
     }
 });
-
-
 /* Permite enviar correos electrónicos de confirmación de registro */
 async function sendEmailEcomondo(data, pdfAtch = null, paypal_id_transaction = null){
     try{

@@ -1,6 +1,20 @@
-// WorkshopFormIsland.jsx — Isla React del registro a talleres (3 pasos).
-// La lógica vive aquí con estado (useState); los textos llegan traducidos
-// desde el wrapper .astro vía la prop `labels` (que sale de tus locales).
+// ============================================================================
+//  ISLA REACT WorkshopFormIsland.jsx — Registro a talleres (3 pasos)
+//  Autor: Donovan Oswaldo Villalba Hernandez
+//
+//  Formulario de inscripción a talleres, implementado como flujo de 3 pasos:
+//    1) lookup  → el usuario busca su registro general por correo.
+//    2) found   → se muestran sus datos (solo lectura) y elige un taller.
+//    3) success → confirmación de inscripción.
+//
+//  Toda la lógica y el estado (useState) viven aquí; los textos llegan ya
+//  traducidos desde el wrapper .astro vía la prop `labels` (L). Habla con el
+//  backend (API) para: buscar visitante y registrar. Usa clases wf-* (skills.css).
+//
+//  Integración con el catálogo:
+//    - Escucha "workshop:preselect" para dejar el <select> con el taller elegido.
+//    - Al registrar, emite "workshop:registered" para refrescar la barra de cupo.
+// ============================================================================
 
 import { useEffect, useState } from "react";
 // Los NOMBRES de los talleres del <select> salen de la MISMA fuente estática
@@ -55,6 +69,7 @@ export default function WorkshopFormIsland({
   }, []);
 
   // --- PASO 1: buscar visitante por correo ---
+  // Consulta el registro general; si existe, guarda el visitante y pasa a 'found'.
   const handleLookup = async () => {
     const value = email.trim();
     if (!value) return;
@@ -79,6 +94,7 @@ export default function WorkshopFormIsland({
   };
 
   // --- PASO 2: confirmar inscripción ---
+  // Valida que haya taller elegido y envía el registro; si todo va bien, 'success'.
   const handleSubmit = async () => {
     if (!workshopId) {
       setSelectError(L.select_err || "Por favor selecciona un taller.");
@@ -111,6 +127,7 @@ export default function WorkshopFormIsland({
     }
   };
 
+  // Reinicia el flujo para registrar a otra persona.
   const resetAll = () => {
     setEmail("");
     setWorkshopId("");
@@ -119,6 +136,7 @@ export default function WorkshopFormIsland({
     setStep("lookup");
   };
 
+  // Nombre completo derivado del visitante (para mostrar en pantalla).
   const fullName = visitor ? `${visitor.name} ${visitor.paternSurname}` : "";
 
   return (
@@ -131,6 +149,7 @@ export default function WorkshopFormIsland({
             <h2 className="wf-title">{L.title}</h2>
             <p className="wf-desc">{L.desc}</p>
 
+            {/* Aviso: es obligatorio el registro general previo */}
             <div className="wf-notice">
               <span className="wf-notice-i">!</span>
               <span>
@@ -140,6 +159,7 @@ export default function WorkshopFormIsland({
               </span>
             </div>
 
+            {/* Beneficios (perks) numerados */}
             <div className="wf-perks">
               <div className="wf-perk">
                 <span className="wf-perk-n">1</span>
@@ -177,6 +197,7 @@ export default function WorkshopFormIsland({
                     onKeyDown={(e) => e.key === "Enter" && handleLookup()}
                   />
                 </label>
+                {/* Error si el correo no tiene registro general */}
                 {lookupError && <div className="wf-error">{L.lookup_err}</div>}
                 <button
                   className="wf-btn"
@@ -198,10 +219,12 @@ export default function WorkshopFormIsland({
             {/* PASO 2: found + confirm */}
             {step === "found" && visitor && (
               <div className="wf-step">
+                {/* Banner verde: datos recuperados del registro general */}
                 <div className="wf-found-banner">
                   <span className="wf-found-check">✓</span>
                   <span>{L.found}</span>
                 </div>
+                {/* Datos del visitante (solo lectura) */}
                 <div className="wf-fields-grid">
                   <label className="wf-field">
                     <span>{L.full_name}</span>
@@ -224,6 +247,7 @@ export default function WorkshopFormIsland({
                   <span>{L.position}</span>
                   <input value={visitor.position || ""} disabled />
                 </label>
+                {/* Selector de taller: opciones desde la fuente estática localizada */}
                 <label className="wf-field">
                   <span>{L.select_ws}</span>
                   <select
@@ -247,6 +271,7 @@ export default function WorkshopFormIsland({
                 >
                   {loadingSubmit ? "..." : L.submit}
                 </button>
+                {/* Volver al paso 1 para buscar con otro correo */}
                 <button
                   className="wf-link-btn"
                   type="button"

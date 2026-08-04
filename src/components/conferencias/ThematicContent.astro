@@ -1,15 +1,43 @@
 ---
-// src/components/conferencias/ThematicContent.astro
+// ============================================================================
+//  COMPONENTE THEMATIC CONTENT — Sección Conferencias
+//  Autor: Donovan Oswaldo Villalba Hernandez
+//
+//  Rejilla de 6 ejes temáticos del evento. Cada tarjeta muestra un ícono y su
+//  título; al pasar el cursor, un panel sube desde abajo revelando la lista de
+//  subtemas (features) de ese eje.
+//
+//  Estructura visual (de fondo a frente):
+//    - Fondo negro con patrón de puntos + dos imágenes decorativas en esquinas.
+//    - Encabezado centrado con el título de la sección.
+//    - Grid de 6 columnas con las tarjetas generadas por .map() desde el array
+//      `cards`. Cada tarjeta tiene 3 capas apiladas:
+//        · tc-bg + tc-overlay: imagen de fondo + degradado oscuro.
+//        · tc-front:  ícono, título y flecha (visible en reposo).
+//        · tc-panel:  panel deslizante con la lista de subtemas (visible en hover).
+//
+//  Datos: el array `cards` centraliza id, título, ícono, fondo y features de
+//         cada eje. Los textos salen de traducciones (tr) con fallback en español.
+//
+//  i18n: todos los textos salen de los locales vía tr('clave', 'fallback').
+//        Si la clave no existe en el idioma actual, se usa el texto de respaldo.
+// ============================================================================
 import { useTranslations, getTranslation } from '../../utils/translations'
 
 export interface Props {
   locale?: string
 }
 
+// useTranslations resuelve el idioma activo y devuelve el diccionario (translations).
 const { locale, translations } = await useTranslations(Astro.props, Astro)
+// tr(): lee una clave del diccionario; el 2º argumento es el fallback si no existe.
 const tr = (key: string, fallback: string = '') =>
   getTranslation(translations, key, fallback)
 
+// ── DATOS DE LAS TARJETAS ───────────────────────────────────────────────────
+// Cada objeto = un eje temático. `id` sirve de key y para ajustes puntuales de
+// estilo (ej. object-position en 'automatizacion'); `bg`/`icon` son rutas de
+// imagen; `features` es la lista de subtemas mostrada en el panel de hover.
 const cards = [
   {
     id: 'automatizacion',
@@ -90,15 +118,20 @@ const cards = [
 ]
 ---
 
+<!-- ── SECCIÓN CONTENIDO TEMÁTICO ───────────────────────────────────── -->
 <section class="tc-section">
 
+  <!-- Imágenes decorativas de puntos en esquinas opuestas (aria-hidden). -->
   <img src="/img/conferencias/puntos_superior_izquierda.webp" class="tc-dots tc-dots--top-left" alt="" aria-hidden="true" />
   <img src="/img/conferencias/puntos_inferior_derecha.webp" class="tc-dots tc-dots--bottom-right" alt="" aria-hidden="true" />
 
+  <!-- Encabezado de la sección -->
   <div class="tc-header" data-aos="fade-up" data-aos-duration="800">
     <h2 class="tc-title">{tr('conferencias.thematic.title', 'Contenido Temático')}</h2>
   </div>
 
+  <!-- Rejilla de tarjetas: se genera recorriendo el array `cards`.
+       data-aos-delay usa el índice i para un retardo escalonado entre tarjetas. -->
   <div class="tc-grid">
     {cards.map((card, i) => (
       <div
@@ -107,9 +140,11 @@ const cards = [
         data-aos-duration="700"
         data-aos-delay={`${i * 80}`}
       >
+        <!-- Fondo: la clase extra tc-bg--automatizacion reencuadra esa imagen -->
         <img src={card.bg} alt="" class={`tc-bg${card.id === 'automatizacion' ? ' tc-bg--automatizacion' : ''}`} aria-hidden="true" />
         <div class="tc-overlay"></div>
 
+        <!-- FRENTE: lo que se ve en reposo (ícono, título, flecha) -->
         <div class="tc-front">
           <div class="tc-icon-wrap">
             <img src={card.icon} alt={card.title} class="tc-icon" />
@@ -118,6 +153,7 @@ const cards = [
           <span class="tc-arrow">→</span>
         </div>
 
+        <!-- PANEL: sube desde abajo en hover, con la lista de subtemas -->
         <div class="tc-panel">
           <span class="tc-panel-title">{card.title}</span>
           <ul class="tc-features">
@@ -137,6 +173,7 @@ const cards = [
 </section>
 
 <style>
+  /* ── SECCIÓN: contenedor de fondo ─────────────────────────────────── */
   .tc-section {
     width: 100%;
     background-color: #000;
@@ -148,6 +185,7 @@ const cards = [
     overflow: hidden;
   }
 
+  /* ── PUNTOS DECORATIVOS (esquinas) ────────────────────────────────── */
   .tc-dots {
     position: absolute;
     width: 320px;
@@ -159,6 +197,7 @@ const cards = [
   .tc-dots--top-left     { top: 0; left: 0; }
   .tc-dots--bottom-right { bottom: 0; right: 0; }
 
+  /* ── ENCABEZADO ───────────────────────────────────────────────────── */
   .tc-header {
     text-align: center;
     margin-bottom: 2em;
@@ -166,6 +205,7 @@ const cards = [
     z-index: 1;
   }
 
+  /* Título con efecto glow (text-shadow en capas). */
   .tc-title {
     font-family: "Montserrat", sans-serif;
     font-size: clamp(2.2rem, 4vw, 3.5rem);
@@ -178,6 +218,7 @@ const cards = [
       0 0 50px rgba(255,255,255,0.2);
   }
 
+  /* ── REJILLA DE TARJETAS (6 columnas en desktop) ──────────────────── */
   .tc-grid {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -188,6 +229,8 @@ const cards = [
     z-index: 1;
   }
 
+  /* ── TARJETA (contenedor de las 3 capas) ──────────────────────────── */
+  /* overflow:hidden recorta el panel deslizante y el zoom del fondo. */
   .tc-card {
     position: relative;
     aspect-ratio: 3 / 4;
@@ -197,6 +240,7 @@ const cards = [
     background: #1a1a1a;
   }
 
+  /* Capa 0: imagen de fondo (con zoom suave en hover). */
   .tc-bg {
     position: absolute;
     inset: 0;
@@ -211,6 +255,7 @@ const cards = [
   .tc-bg--automatizacion { object-position: left center; }
   .tc-card:hover .tc-bg  { transform: scale(1.06); }
 
+  /* Capa 1: degradado oscuro para legibilidad; se oscurece en hover. */
   .tc-overlay {
     position: absolute;
     inset: 0;
@@ -226,7 +271,9 @@ const cards = [
 
   .tc-card:hover .tc-overlay { background: rgba(0,0,0,0.75); }
 
+  /* ── FRENTE (reposo) ──────────────────────────────────────────────── */
   /* FRENTE: grid 3 filas — ícono / título / flecha */
+  /* Se desvanece y sube ligeramente al hacer hover. */
   .tc-front {
     position: absolute;
     inset: 0;
@@ -255,6 +302,7 @@ const cards = [
     align-self: center;
   }
 
+  /* filter brightness(0) invert(1): fuerza el ícono a blanco puro. */
   .tc-icon {
     width: 100%;
     height: 100%;
@@ -282,7 +330,8 @@ const cards = [
     padding-bottom: 0.25rem;
   }
 
-  /* Panel slide-up */
+  /* ── PANEL DESLIZANTE (hover) ─────────────────────────────────────── */
+  /* Panel slide-up: parte fuera de vista (translateY 100%) y sube a 0. */
   .tc-panel {
     position: absolute;
     inset: 0;
@@ -314,6 +363,7 @@ const cards = [
     flex-shrink: 0;
   }
 
+  /* Lista de subtemas: scrollable si no cabe (overflow-y auto). */
   .tc-features {
     list-style: none;
     margin: 0;
@@ -321,9 +371,9 @@ const cards = [
     display: flex;
     flex-direction: column;
     gap: 0.35rem;
-    flex: 1 1 auto;      
-    min-height: 0;       
-    overflow-y: auto;    
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
   }
 
   .tc-feature {
@@ -331,12 +381,13 @@ const cards = [
     align-items: flex-start;
     gap: 0.4rem;
     font-family: "Montserrat", sans-serif;
-    font-size: 0.9rem;   
+    font-size: 0.9rem;
     font-weight: 400;
     color: rgba(255,255,255,0.9);
     line-height: 1.25;
   }
 
+  /* Viñeta roja de cada subtema. */
   .tc-feature-dot {
     width: 6px;
     height: 6px;
@@ -347,6 +398,7 @@ const cards = [
   }
 
   /* ── TABLET GRANDE 820–1024px ────────────────────────────────── */
+  /* La rejilla pasa de 6 a 3 columnas y las tarjetas se vuelven cuadradas. */
   @media (max-width: 1024px) and (min-width: 820px) {
     .tc-section    { padding: 1rem 2rem 2.5rem; }
     .tc-grid       { grid-template-columns: repeat(3, 1fr); max-width: 750px; gap: 0.75rem; }
@@ -373,6 +425,7 @@ const cards = [
   }
 
   /* ── MOBILE ≤768px ────────────────────────────────────────────── */
+  /* Rejilla a 2 columnas; tamaños fluidos con clamp(). */
   @media (max-width: 768px) {
     .tc-section    { padding: 1rem 0.75rem 1.5rem; }
     .tc-grid       { grid-template-columns: repeat(2, 1fr); max-width: 480px; margin: 0 auto; gap: 0.5rem; }

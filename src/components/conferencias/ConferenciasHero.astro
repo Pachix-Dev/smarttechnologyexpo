@@ -1,4 +1,23 @@
 ---
+// ============================================================================
+//  COMPONENTE HERO — CON 2026 (Home de presentación)
+//  Autor: Donovan Oswaldo Villalba Hernandez
+//
+//  Portada del programa educativo CON 2026. NO pertenece a ningún escenario
+//  concreto (no es Insights ni Skills): es el home que presenta AMBAS
+//  experiencias en un mismo evento.
+//
+//  Estructura visual (de fondo a frente):
+//    - Video de fondo en escala de grises + overlay oscuro con máscara lateral
+//      (los extremos se ven más claros para dar profundidad).
+//    - Columna IZQUIERDA: logo CON26 + descripción del evento.
+//    - Divisor vertical con degradado.
+//    - Columna DERECHA: label (STE 2026 · PROGRAMA EDUCATIVO), título y subtítulo.
+//
+//  i18n: todos los textos salen de los locales vía tr('clave', 'fallback').
+//        Si la clave no existe en el idioma actual, se usa el texto de respaldo.
+// ============================================================================
+
 // src/components/conferencias/ConferenciasHero.astro
 import { useTranslations, getTranslation } from '../../utils/translations'
 
@@ -6,6 +25,7 @@ export interface Props {
   locale?: string
 }
 
+// Carga las traducciones del idioma activo y arma el helper tr().
 const { locale, translations } = await useTranslations(Astro.props, Astro)
 const tr = (key: string, fallback: string = '') =>
   getTranslation(translations, key, fallback)
@@ -13,6 +33,8 @@ const tr = (key: string, fallback: string = '') =>
 
 <section class="ch-hero">
 
+  <!-- Video de fondo: decorativo (aria-hidden), en silencio y en bucle.
+       playsinline evita que iOS lo abra en pantalla completa. -->
   <video
     class="ch-video"
     src="/video/bg_conferencias.mp4"
@@ -23,6 +45,7 @@ const tr = (key: string, fallback: string = '') =>
     aria-hidden="true"
   ></video>
 
+  <!-- Capa oscura sobre el video (mejora la lectura del texto). -->
   <div class="ch-box"></div>
 
   <div class="ch-inner">
@@ -36,22 +59,30 @@ const tr = (key: string, fallback: string = '') =>
           class="ch-logo"
         />
       </div>
+      <!-- Descripción: la primera parte va en negrita (desc_bold) y el resto
+           en peso normal (desc_rest); ambas se concatenan en el mismo párrafo. -->
       <p class="ch-desc">
         <strong>{tr('conferencias.hero.desc_bold', 'CON 2026 es tu oportunidad para explorar tendencias globales, innovación tecnológica y nuevos modelos de negocio')}</strong>
         {tr('conferencias.hero.desc_rest', ' — conecta con los líderes que están transformando el futuro de la industria.')}
       </p>
     </div>
 
+    <!-- Divisor vertical entre ambas columnas. -->
     <div class="ch-divider"></div>
 
     <!-- Derecha: Label + título + párrafo -->
     <div class="ch-right" data-aos="fade-left" data-aos-duration="900" data-aos-delay="200">
+      <!-- Label: se inyecta como HTML (set:html) para permitir el salto de línea.
+           El .replace convierte el separador ' · ' en ' ·<br/>' para partirlo en dos renglones. -->
       <span class="ch-label" set:html={tr('conferencias.hero.label', 'STE 2026 ·<br/>PROGRAMA EDUCATIVO').replace(' · ', ' ·<br/>')}></span>
+      <!-- Título multilínea: el texto trae saltos '\n'; se divide y se inserta
+           un <br/> entre cada renglón (menos después del último). -->
       <h1 class="ch-title">
         {tr('conferencias.hero.title', 'Dos\nexperiencias,\nun mismo\nevento').split('\n').map((line, i) => (
           <>{line}{i < 3 && <br />}</>
         ))}
       </h1>
+      <!-- Subtítulo de apoyo. -->
       <p class="ch-sub">
         {tr('conferencias.hero.sub', 'Desde conferencias estratégicas hasta talleres técnicos de aplicación real en entornos productivos e industriales.')}
       </p>
@@ -61,6 +92,10 @@ const tr = (key: string, fallback: string = '') =>
 </section>
 
 <style>
+  /* ===========================================================================
+     LAYOUT BASE — contenedor del hero
+     Ocupa todo el ancho, centra el contenido y recorta lo que se desborde.
+     =========================================================================== */
   .ch-hero {
     position: relative;
     width: 100%;
@@ -72,6 +107,8 @@ const tr = (key: string, fallback: string = '') =>
     background: #060606;
   }
 
+  /* Video de fondo: cubre todo el hero (object-fit: cover) y se le aplica
+     escala de grises + oscurecido para que no compita con el texto. */
   .ch-video {
     position: absolute;
     inset: 0;
@@ -105,6 +142,9 @@ const tr = (key: string, fallback: string = '') =>
     );
   }
 
+  /* ===========================================================================
+     REJILLA DE CONTENIDO — 3 columnas: izquierda (70) | divisor | derecha (30)
+     =========================================================================== */
   .ch-inner {
     position: relative;
     z-index: 2;
@@ -119,6 +159,7 @@ const tr = (key: string, fallback: string = '') =>
     gap: 0;
   }
 
+  /* ── Columna izquierda (logo + descripción) ── */
   .ch-left {
     display: flex;
     flex-direction: column;
@@ -168,6 +209,7 @@ const tr = (key: string, fallback: string = '') =>
     font-weight: 700;
   }
 
+  /* ── Divisor vertical con degradado (se desvanece arriba y abajo) ── */
   .ch-divider {
     width: 2px;
     height: 450px;
@@ -182,6 +224,7 @@ const tr = (key: string, fallback: string = '') =>
     );
   }
 
+  /* ── Columna derecha (label + título + subtítulo) ── */
   .ch-right {
     display: flex;
     overflow: hidden;
@@ -190,6 +233,7 @@ const tr = (key: string, fallback: string = '') =>
     padding-left: 1rem;
   }
 
+  /* Label superior con resplandor (text-shadow blanco). */
   .ch-label {
     font-family: "Montserrat", sans-serif;
     font-size: 1.11rem;
@@ -203,6 +247,7 @@ const tr = (key: string, fallback: string = '') =>
       0 0 18px rgb(255, 255, 255);
   }
 
+  /* Título principal: tamaño fluido (clamp) y resplandor sutil. */
   .ch-title {
     font-family: "Montserrat", sans-serif;
     font-size: clamp(2rem, 2.18vw, 5rem);
@@ -224,6 +269,11 @@ const tr = (key: string, fallback: string = '') =>
     line-height: 1.75;
     margin: 0;
   }
+
+  /* ===========================================================================
+     RESPONSIVE — ajustes por rango de ancho de pantalla.
+     Solo cambian tamaños/proporciones; la estructura es la misma.
+     =========================================================================== */
 
   /* ── TABLET GRANDE 820px–1024px ───────────────────────────────── */
   @media (max-width: 1024px) and (min-width: 820px) {

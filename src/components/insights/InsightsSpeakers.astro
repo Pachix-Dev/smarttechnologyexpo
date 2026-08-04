@@ -1,7 +1,23 @@
 ---
-// InsightsSpeakers.astro — Wrapper: monta la isla React con la grid de Keynote Speakers
-// construida DESDE LA API (ponentes únicos del escenario) y le pasa los textos de
-// interfaz desde tus locales (tr / getTranslation). La semblanza sale de bio_esp/bio_eng.
+// ============================================================================
+//  COMPONENTE INSIGHTS SPEAKERS (Wrapper) — Escenario SMART INSIGHTS
+//  Autor: Donovan Oswaldo Villalba Hernandez
+//
+//  Envoltorio .astro que monta la isla React `InsightsSpeakersLive`, la cual
+//  construye la grid/carrusel de "Keynote Speakers" DESDE LA API (ponentes
+//  únicos del escenario). La semblanza de cada ponente sale de bio_esp/bio_eng.
+//
+//  Responsabilidad de este wrapper (lado servidor):
+//    - Resolver el idioma activo (lang: 'es' | 'en').
+//    - Armar el objeto `labels` con los textos de interfaz traducidos y
+//      pasárselo a la isla, para que la isla no dependa del sistema i18n.
+//
+//  Props:
+//    - stageId: opcional, fuerza un escenario concreto de la API.
+//
+//  i18n: los textos salen de los locales vía tr('clave', 'fallback').
+//        Si la clave no existe en el idioma actual, se usa el texto de respaldo.
+// ============================================================================
 import InsightsSpeakersLive from './InsightsSpeakersLive.jsx';
 import './insights.css';
 import { useTranslations, getTranslation } from '../../utils/translations';
@@ -10,12 +26,15 @@ export interface Props {
   stageId?: number;
 }
 
+// Idioma + diccionario de traducciones.
 const { translations, locale } = await useTranslations(Astro.props, Astro);
 const tr = (key: string, fallback: string = '') => getTranslation(translations, key, fallback);
 
 const { stageId } = Astro.props;
+// Normaliza el idioma a 'es'/'en'.
 const lang = locale === 'en' ? 'en' : 'es';
 
+// labels: textos de interfaz de la sección de ponentes, ya traducidos.
 const labels = {
   eyebrow: tr('insights.speakers.eyebrow', 'PONENTES DESTACADOS'),
   title: tr('insights.speakers.title', 'Keynote Speakers'),
@@ -25,4 +44,6 @@ const labels = {
 };
 ---
 
+<!-- Isla React (client:only): hace el fetch a la API y arma el carrusel de
+     ponentes. Recibe idioma, escenario y los labels ya traducidos. -->
 <InsightsSpeakersLive client:only="react" lang={lang} stageId={stageId} labels={labels} />

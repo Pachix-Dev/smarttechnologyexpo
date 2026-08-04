@@ -1,12 +1,24 @@
-// InsightsScheduleLive.jsx — Isla React que reemplaza los datos estáticos de
-// InsightsSchedule por el programa en vivo de la API (mismo patrón que Ecomondo).
-// Conserva el look oscuro: usa las mismas clases isc-* de insights.css.
-// Los ponentes con semblanza abren el BioModal.astro compartido vía data-bio-*.
+// ============================================================================
+//  ISLA REACT InsightsScheduleLive.jsx — Programa en vivo (SMART INSIGHTS)
+//  Autor: Donovan Oswaldo Villalba Hernandez
 //
-// AJUSTES STE 2026 (nada se borró; lo que se oculta queda COMENTADO):
-//  - "Descarga programa" comentado (queda solo el aviso de idioma).
-//  - La fecha del banner ahora muestra solo mes + año (p. ej. "Noviembre 2026").
-//  - Categoría "Conferencia" de la leyenda comentada (quedan Keynote y Panel).
+//  Isla React que reemplaza los datos estáticos de InsightsSchedule por el
+//  programa en vivo de la API (mismo patrón que Ecomondo). Conserva el look
+//  oscuro: usa las mismas clases isc-* de insights.css. Los ponentes con
+//  semblanza abren el BioModal.astro compartido vía atributos data-bio-*.
+//
+//  AJUSTES STE 2026 (nada se borró; lo que se oculta queda COMENTADO):
+//   - "Descarga programa" comentado (queda solo el aviso de idioma).
+//   - La fecha del banner ahora muestra solo mes + año (p. ej. "Noviembre 2026").
+//   - Categoría "Conferencia" de la leyenda comentada (quedan Keynote y Panel).
+//   - Cargo/empresa del ponente pueden venir en inglés (position_en/company_en).
+//
+//  Flujo:
+//   - Al montar, fetchStage(stageId) y guarda el escenario en estado.
+//   - Maneja 3 estados de carga: loading (spinner) / error / vacío.
+//   - El usuario cambia de día con los "pills"; se muestran sus sesiones.
+//   - Los textos de interfaz llegan ya traducidos en `labels` desde el wrapper.
+// ============================================================================
 
 import { useEffect, useMemo, useState } from "react";
 import {
@@ -29,11 +41,14 @@ export default function InsightsScheduleLive({
   pdfHref = "#",
   labels = {},
 }) {
+  // Estado: escenario cargado, banderas de carga/error y día activo.
   const [stage, setStage] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [activeDay, setActiveDay] = useState(0);
 
+  // Carga los datos al montar (y cada vez que cambie stageId).
+  // `alive` evita actualizar estado si el componente se desmontó a mitad del fetch.
   useEffect(() => {
     let alive = true;
     setLoading(true);
@@ -41,6 +56,7 @@ export default function InsightsScheduleLive({
       .then((data) => {
         if (!alive) return;
         setStage(data);
+        // Selecciona por defecto el primer día que tenga conferencias.
         const idx = (data?.dias || []).findIndex(
           (d) => (d.conferencias || []).length > 0,
         );
@@ -57,6 +73,7 @@ export default function InsightsScheduleLive({
     };
   }, [stageId]);
 
+  // t: elige texto por idioma. lbl: usa el label traducido si existe, si no t().
   const t = (es, en) => (lang === "en" ? en : es);
   const lbl = (key, es, en) => (labels && labels[key]) || t(es, en);
 
@@ -68,14 +85,17 @@ export default function InsightsScheduleLive({
     const month = d.toLocaleDateString(lang === "en" ? "en-US" : "es-MX", {
       month: "long",
     });
+    // Capitaliza la primera letra del mes (locale ES lo da en minúscula).
     const cap = month.charAt(0).toUpperCase() + month.slice(1);
     return `${cap} ${d.getFullYear()}`;
   };
 
+  // Día activo y sus sesiones (memorizadas para no reordenar en cada render).
   const days = stage?.dias || [];
   const dia = days[activeDay] || days[0] || null;
   const sessions = useMemo(() => daySessions(dia), [dia]);
 
+  // ── ESTADO: cargando (spinner) ───────────────────────────────────────────
   if (loading) {
     return (
       <section className="isc-section">
@@ -88,6 +108,7 @@ export default function InsightsScheduleLive({
     );
   }
 
+  // ── ESTADO: error ────────────────────────────────────────────────────────
   if (error) {
     return (
       <section className="isc-section">
@@ -101,6 +122,7 @@ export default function InsightsScheduleLive({
     );
   }
 
+  // ── ESTADO: sin datos ────────────────────────────────────────────────────
   if (!stage || days.length === 0) {
     return (
       <section className="isc-section">
@@ -116,9 +138,11 @@ export default function InsightsScheduleLive({
     );
   }
 
+  // ── RENDER PRINCIPAL ─────────────────────────────────────────────────────
   return (
     <section className="isc-section">
       <div className="isc-inner">
+        {/* Encabezado: eyebrow + título + subtítulo */}
         <div className="isc-eyebrow">{lbl("eyebrow", "AGENDA", "AGENDA")}</div>
         <h2 className="isc-title">{lbl("title", "Programa por día", "Daily program")}</h2>
         <p className="isc-sub">
@@ -129,6 +153,7 @@ export default function InsightsScheduleLive({
           )}
         </p>
 
+        {/* Fila superior: (descarga oculta en STE 2026) + aviso de idioma */}
         <div className="isc-toprow">
           {/* OCULTO POR AHORA (ajuste STE 2026): sección "Descarga programa".
               No se borró; para reactivarla, descomenta este bloque.
@@ -155,6 +180,7 @@ export default function InsightsScheduleLive({
           </div>
         </div>
 
+        {/* Selector de día: un "pill" por cada día del escenario */}
         <div className="isc-day-label">
           {lbl("selectDay", "SELECCIONA EL DÍA", "SELECT A DAY")}
         </div>
@@ -173,6 +199,7 @@ export default function InsightsScheduleLive({
           ))}
         </div>
 
+        {/* Banner del día activo: número, nombre, mes+año y conteo de sesiones */}
         {dia && (
           <div className="isc-banner">
             <div className="isc-banner-left">
@@ -189,6 +216,7 @@ export default function InsightsScheduleLive({
           </div>
         )}
 
+        {/* Leyenda de tipos (en STE 2026 solo Keynote y Panel) */}
         <div className="isc-legend">
           <div className="isc-legend-item">
             <span className="isc-legend-dot" style={{ background: "#2563EB" }} />
@@ -206,6 +234,7 @@ export default function InsightsScheduleLive({
           */}
         </div>
 
+        {/* Lista de sesiones del día activo */}
         <div className="isc-sessions">
           {sessions.length === 0 ? (
             <div className="ins-empty">
@@ -213,6 +242,7 @@ export default function InsightsScheduleLive({
             </div>
           ) : (
             sessions.map((s) => {
+              // meta: estilo (badge + color) según el tipo de sesión.
               const meta = typeMeta(s.type);
               const speakers = s.ponentes || [];
               const desc = confDesc(s, lang);
@@ -225,6 +255,7 @@ export default function InsightsScheduleLive({
                   // tarjeta neutra: el color de tipo vive en la barra/pill/hover, no en el fondo
                   style={{ background: "#111", borderColor: meta.bar, "--hover": meta.bar }}
                 >
+                  {/* Barra de color con el badge del tipo (traducido si hay label) */}
                   <div className="isc-bar" style={{ background: meta.bar }}>
                     {(labels.badges &&
                       labels.badges[String(s.type || "").toLowerCase()]) ||
@@ -244,6 +275,7 @@ export default function InsightsScheduleLive({
                           {confTitle(s, lang)}
                         </div>
                       </div>
+                      {/* Recuadro "Powered by": solo si la sesión trae logo */}
                       {logo ? (
                         <div className="isc-powered">
                           <span className="isc-powered-label">
@@ -260,6 +292,7 @@ export default function InsightsScheduleLive({
                     </div>
                     {desc ? <p className="isc-session-desc">{desc}</p> : null}
 
+                    {/* Bloque de ponentes de la sesión (si los hay) */}
                     {speakers.length > 0 && (
                       <div className="isc-speakers">
                         <div className="isc-speakers-label">
@@ -294,6 +327,8 @@ export default function InsightsScheduleLive({
                               <div
                                 key={p.id ?? p.name}
                                 className="isc-speaker-row"
+                                // Si el ponente tiene semblanza, la fila es clickeable y
+                                // expone los data-bio-* que abren el BioModal compartido.
                                 {...(hasBio
                                   ? {
                                       "data-bio-trigger": true,
@@ -327,6 +362,7 @@ export default function InsightsScheduleLive({
                                     <div className="isc-speaker-org">{org}</div>
                                   )}
                                 </div>
+                                {/* Chevron: solo cuando hay semblanza que abrir */}
                                 {hasBio && (
                                   <span className="isc-chevron">›</span>
                                 )}
