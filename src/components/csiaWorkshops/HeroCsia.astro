@@ -6,6 +6,14 @@ const tr = (key: string, fallback: string = "") =>
   getTranslation(translations, key, fallback);
 
 const isEnglish = locale === "en";
+const heroDescriptionFallback = isEnglish
+  ? "The Control System Integrators Association (CSIA) is the world's leading organization dedicated to strengthening system integrator companies. Through methodologies, tools, and international standards, CSIA helps companies optimize their management, increase profitability, improve competitiveness, and build organizations prepared for sustainable growth.\n\nWe invite you to participate in the CSIA Best Practices Program 2026, which will take place on November 19-20, 2026, as part of Smart Technology Expo. During this program, you will learn proven strategies and world-class best practices that will allow you to strengthen your processes, improve your organization's performance, and generate a competitive advantage in the market.\n\nHundreds of integrator companies worldwide trust CSIA to drive their growth and achieve operational excellence. And if your company already has mature processes and consolidated management, you can take the next step towards CSIA Certification, the only certification program developed exclusively for system integrator companies. This internationally recognized certification validates the adoption of best business practices and represents a high-value differentiator for clients, business partners, and manufacturers.\n\nDiscover how CSIA can help you transform your company, strengthen your market position, and become part of a global community of leaders in system integration. Visit our website and learn about all the benefits of being a CSIA member and advancing towards CSIA Certification."
+  : "La Control System Integrators Association (CSIA) es la organización líder a nivel mundial dedicada al fortalecimiento de las empresas integradoras de sistemas. A través de metodologías, herramientas y estándares internacionales, CSIA ayuda a las empresas a optimizar su gestión, incrementar su rentabilidad, mejorar su competitividad y construir organizaciones preparadas para un crecimiento sostenible.\n\nLo invitamos a participar en el Programa de Mejores Prácticas CSIA 2026, que se llevará a cabo los 19 y 20 de noviembre de 2026, en el marco de Smart Technology Expo. Durante este programa, conocerá estrategias comprobadas y mejores prácticas de clase mundial que le permitirán fortalecer sus procesos, mejorar el desempeño de su organización y generar una ventaja competitiva en el mercado.\n\nCientos de empresas integradoras en todo el mundo confían en CSIA para impulsar su crecimiento y alcanzar la excelencia operativa. Y si su empresa ya cuenta con procesos maduros y una gestión consolidada, podrá dar el siguiente paso hacia la Certificación CSIA, el único programa de certificación desarrollado exclusivamente para empresas integradoras de sistemas. Esta certificación, reconocida internacionalmente, valida la adopción de las mejores prácticas empresariales y representa un diferenciador de alto valor para clientes, socios comerciales y fabricantes.\n\nDescubra cómo CSIA puede ayudarle a transformar su empresa, fortalecer su posición en el mercado y formar parte de una comunidad global de líderes en integración de sistemas. Visite nuestro sitio web y conozca todos los beneficios de ser miembro de CSIA y de avanzar hacia la Certificación CSIA.";
+const heroDescription = tr("csia.hero.description", heroDescriptionFallback);
+const heroDescriptionParagraphs = heroDescription
+  .split(/\n\s*\n/)
+  .map((paragraph) => paragraph.trim())
+  .filter(Boolean);
 ---
 
 <section
@@ -39,20 +47,31 @@ const isEnglish = locale === "en";
           CSIA 2026
         </span>
       </h1>
-      <p
-        class="mx-auto mt-6 max-w-3xl text-base font-medium leading-relaxed text-slate-200 [text-wrap:pretty] sm:text-lg lg:mx-0 lg:text-xl"
+      <div
+        class="mx-auto mt-6 w-full max-w-4xl space-y-4 text-justify text-base font-medium leading-relaxed text-slate-200 [text-wrap:pretty] sm:text-base lg:mx-0 lg:text-base lg:leading-relaxed"
         data-aos="fade-down"
         data-aos-delay="300"
       >
         {
-          tr(
-            "csia.hero.description",
-            isEnglish
-              ? "The Control System Integrators Association (CSIA) invites you to participate in the CSIA Best Practices Program 2026, which will take place on November 19 and 20, 2026, as part of Smart Technology Expo."
-              : "La Control System Integrators Association (CSIA) le invita a participar en el Programa de Mejores Prácticas CSIA 2026, que se llevará a cabo los 19 y 20 de noviembre de 2026, en el marco de Smart Technology Expo.",
-          )
+          heroDescriptionParagraphs.map((paragraph) => (
+            <p class="m-0">{paragraph}</p>
+          ))
         }
-      </p>
+      </div>
+      <div
+        class="mt-6 flex justify-center lg:justify-start"
+        data-aos="fade-down"
+        data-aos-delay="400"
+      >
+        <a
+          class="inline-flex min-h-12 items-center justify-center rounded-lg bg-sky-500 px-6 py-3 text-center text-sm font-black uppercase tracking-[0.08em] text-white no-underline shadow-lg shadow-sky-950/30 transition duration-200 hover:-translate-y-px hover:bg-blue-600 focus-visible:-translate-y-px focus-visible:bg-blue-600 focus-visible:outline-offset-2 focus-visible:outline-white"
+          href="https://controlsys.org/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {isEnglish ? "Learn more of CSIA" : "Saber más sobre CSIA"}
+        </a>
+      </div>
       <div class="mt-8 grid max-w-2xl grid-cols-2 gap-3 sm:gap-5 lg:mx-0">
         <div class="flex flex-col items-center gap-2 p-2 lg:items-start">
           <p
