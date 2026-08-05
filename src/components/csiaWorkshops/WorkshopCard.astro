@@ -10,11 +10,11 @@ const isEnglish = locale === "en";
 const content = {
   intro: isEnglish
     ? "This two-day executive program is designed to provide system integration companies with the tools, methodologies and strategies they need to strengthen management, increase profitability and build a more competitive, future-ready organization."
-    : "Este programa ejecutivo de dos dias esta disenado para brindar a las empresas integradoras de sistemas las herramientas, metodologias y estrategias que les permitiran fortalecer su gestion, incrementar su rentabilidad y desarrollar una organizacion mas competitiva y preparada para el futuro.",
+    : "Este programa ejecutivo de dos días está diseñado para brindar a las empresas integradoras de sistemas las herramientas, metodologías y estrategias que les permitirán fortalecer su gestión, incrementar su rentabilidad y desarrollar una organización más competitiva y preparada para el futuro.",
   basedOn: isEnglish
     ? "Based on the internationally recognized CSIA Best Practices, the program combines practical knowledge, real-world experience and proven methodologies to help companies improve performance across every area of the business."
-    : "Basado en las Mejores Practicas de la CSIA, reconocidas internacionalmente, el programa combina conocimientos practicos, experiencias reales y metodologias comprobadas para ayudar a las empresas a mejorar su desempeno en todas las areas del negocio.",
-  learnTitle: isEnglish ? "During the program you will learn to:" : "Durante el programa aprendera a:",
+    : "Basado en las Mejores Prácticas de la CSIA, reconocidas internacionalmente, el programa combina conocimientos prácticos, experiencias reales y metodologías comprobadas para ayudar a las empresas a mejorar su desempeño en todas las áreas del negocio.",
+  learnTitle: isEnglish ? "During the program you will learn to:" : "Durante el programa aprenderá a:",
   learnItems: isEnglish
     ? [
         "Implement CSIA Best Practices in your organization.",
@@ -25,12 +25,12 @@ const content = {
         "Understand the path to CSIA Certification and its benefits for your company.",
       ]
     : [
-        "Implementar las Mejores Practicas de la CSIA en su organizacion.",
-        "Fortalecer la direccion estrategica y el liderazgo empresarial.",
-        "Optimizar la gestion de proyectos y las operaciones.",
+        "Implementar las Mejores Prácticas de la CSIA en su organización.",
+        "Fortalecer la dirección estratégica y el liderazgo empresarial.",
+        "Optimizar la gestión de proyectos y las operaciones.",
         "Mejorar los procesos comerciales, financieros y de servicio al cliente.",
         "Reducir riesgos e incrementar la rentabilidad del negocio.",
-        "Conocer el camino hacia la Certificacion CSIA y los beneficios que representa para su empresa.",
+        "Conocer el camino hacia la Certificación CSIA y los beneficios que representa para su empresa.",
       ],
   audienceTitle: isEnglish ? "Who should attend" : "Dirigido a",
   audienceItems: isEnglish
@@ -46,7 +46,7 @@ const content = {
         "Propietarios de empresas integradoras",
         "Gerentes de operaciones",
         "Gerentes de proyectos",
-        "Lideres tecnicos y comerciales",
+        "Líderes técnicos y comerciales",
       ],
   detailsTitle: isEnglish ? "Program details" : "Detalles del programa",
   details: [
@@ -69,7 +69,7 @@ const content = {
       value: "Control System Integrators Association (CSIA)",
     },
   ],
-  priceTitle: isEnglish ? "Investment" : "Inversion",
+  priceTitle: isEnglish ? "Investment" : "Inversión",
   earlyPrice: isEnglish
     ? "Early bird rate: August and September"
     : "Preventa: Agosto y septiembre",
@@ -79,7 +79,7 @@ const content = {
   limit: isEnglish ? "Limited to 50 participants" : "Limitado a 50 personas",
   closing: isEnglish
     ? "Transform your company. Adopt CSIA Best Practices and take your organization to the next level."
-    : "Transforme su empresa. Adopte las Mejores Practicas de la CSIA y lleve su organizacion al siguiente nivel.",
+    : "Transforme su empresa. Adopte las Mejores Prácticas de la CSIA y lleve su organización al siguiente nivel.",
   cta: isEnglish ? "Buy workshop" : "Comprar taller",
 };
 ---
@@ -105,11 +105,11 @@ const content = {
           <p>
             {isEnglish ? "Based on the " : "Basado en las "}
             <strong class="font-black text-slate-950">
-              {isEnglish ? "CSIA Best Practices" : "Mejores Practicas de la CSIA"}
+              {isEnglish ? "CSIA Best Practices" : "Mejores Prácticas de la CSIA"}
             </strong>
             {isEnglish
               ? ", internationally recognized, the program combines practical knowledge, real-world experience and proven methodologies to help companies improve performance across every area of the business."
-              : ", reconocidas internacionalmente, el programa combina conocimientos practicos, experiencias reales y metodologias comprobadas para ayudar a las empresas a mejorar su desempeno en todas las areas del negocio."}
+              : ", reconocidas internacionalmente, el programa combina conocimientos prácticos, experiencias reales y metodologías comprobadas para ayudar a las empresas a mejorar su desempeño en todas las áreas del negocio."}
           </p>
         </div>
 
@@ -186,15 +186,14 @@ const content = {
               <p class="text-xs font-semibold uppercase tracking-[0.1em] text-amber-300">
                 {content.earlyPrice}
               </p>
-              <p class="mt-1 text-3xl font-black text-white">$5,000 MXN <span class="text-base font-black uppercase tracking-[0.1em] text-slate-300">{locale === 'es' ? '+ IVA' : '+ VAT'}</span></p>
+              <p class="mt-1 text-3xl font-black text-white">$5,000 MXN <span class="text-base font-black uppercase tracking-[0.1em] text-slate-300">{locale === "es" ? "+ IVA" : "+ VAT"}</span></p>
             </div>
 
             <div class="rounded-lg border border-slate-500/50 bg-white/5 p-4">
               <p class="text-xs font-semibold uppercase tracking-[0.1em] text-slate-300">
                 {content.regularPrice}
               </p>
-              <p class="mt-1 text-3xl font-black text-white">$6,000 MXN <span class="text-base font-black uppercase tracking-[0.1em] text-slate-300">{locale === 'es' ? '+ IVA' : '+ VAT'}</span></p>
-              
+              <p class="mt-1 text-3xl font-black text-white">$6,000 MXN <span class="text-base font-black uppercase tracking-[0.1em] text-slate-300">{locale === "es" ? "+ IVA" : "+ VAT"}</span></p>
             </div>
           </div>
 
@@ -220,7 +219,6 @@ const content = {
             </svg>
           </a>
         </section>
-
       </aside>
     </div>
   </div>
