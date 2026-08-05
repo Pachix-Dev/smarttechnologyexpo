@@ -23,7 +23,7 @@ export const PAYPAL_CURRENCY = process.env.PAYPAL_CURRENCY || 'MXN';
 
 const PAYPAL_API_BASE = 
   PAYPAL_ENVIRONMENT === 'production'
-    ? 'https://api.paypal.com'
+    ? 'https://api-m.paypal.com'
     : 'https://api-m.sandbox.paypal.com';
 
 const getPrimaryOrigin = () => {
