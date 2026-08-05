@@ -1,0 +1,60 @@
+// IDs deben coincidir exactamente con los id_product de la tabla products en la DB.
+// Verificar con: SELECT id_product, name, price FROM products WHERE status = 'active';
+// capacity_limit: null → el componente muestra "Disponible" (la disponibilidad real se valida en checkout).
+
+export const ECOMMERCE_PRODUCTS = [
+  {
+    id_product: 1, // ID del producto en la DB
+    name_es: 'Mujeres Networking 2026',
+    name_en: 'Women Networking 2026',
+    description_es:'Únete a un desayuno inspirador con conferencias de mujeres líderes en tecnología. Conoce a profesionales, expande tu red y descubre nuevas oportunidades en el sector tech.',
+    description_en:'Join an inspiring breakfast with talks from leading women in technology. Network with professionals, expand your connections, and discover new opportunities in the tech sector.',
+    product_type: 'event',
+    category: 'womens_networking',
+    event_date_es: '19 y 20 de noviembre, 2026',
+    event_date_en: 'November 19 - 20, 2026',
+    schedule: '9:00 am - 5:00 pm',
+    venue_es: 'Smart Technology Expo, dentro de Expo Guadalajara',
+    venue_en: 'Smart Technology Expo, inside Expo Guadalajara',
+    price: 1300, // Precio original en bd
+    final_price: 1500,
+    capacity_limit: 50,
+    status: 'inactive', // Cambiado a inactive para pruebas, cambiar a 'active' para producción
+  },
+  {
+    id_product: 2,
+    name_es: 'Curso para Drones Micro: Normativa y Buenas Prácticas',
+    name_en: 'Micro Drones Course: Regulations and Best Practices',
+    description_es:'Este curso está diseñado para propietarios y entusiastas de drones de categoría micro (menos de 2 kilogramos), que buscan comprender la normativa vigente y aplicar las mejores prácticas para el uso responsable y prolongado de sus equipos.',
+    description_en:'This course is designed for owners and enthusiasts of micro drones (under 2 kilograms), who seek to understand current regulations and apply best practices for the responsible and prolonged use of their equipment.',
+    product_type: 'workshop',
+    category: 'drone_innovations',
+    event_date_es: '19 de noviembre, 2026',
+    event_date_en: 'November 19, 2026',
+    schedule: '03:00 pm - 06:00 pm',
+    venue_es: 'Drone Theater, Smart Technology Expo, dentro de Expo Guadalajara',
+    venue_en: 'Drone Theater, Smart Technology Expo, inside Expo Guadalajara',
+    price: 2300,
+    final_price: 2800,
+    capacity_limit: 60,
+    status: 'active',
+  },
+  {
+    id_product: 3,
+    name_es: 'Programa de Mejores Prácticas CSIA 2026',
+    name_en: 'CSIA Best Practices Program 2026',
+    description_es:'Programa ejecutivo basado en las Mejores Prácticas de la CSIA, que brinda a empresas integradoras de sistemas las herramientas y metodologías para fortalecer su gestión, aumentar su rentabilidad y mejorar su desempeño en todas las áreas del negocio.',
+    description_en:'Executive program based on CSIA Best Practices, providing system integrator companies with the tools and methodologies to strengthen their management, increase profitability, and improve performance across all areas of the business.',
+    product_type: 'workshop',
+    category: 'csia',
+    event_date_es: '19 y 20 de noviembre, 2026',
+    event_date_en: 'November 19 - 20, 2026',
+    schedule: '9:00 am - 5:00 pm',
+    venue_es: 'Smart Technology Expo, dentro de Expo Guadalajara',
+    venue_en: 'Smart Technology Expo, inside Expo Guadalajara',
+    price: 5000,
+    final_price: 6000,
+    capacity_limit: 50,
+    status: 'active',
+  },
+];

@@ -1,0 +1,41 @@
+---
+import { useTranslations, getTranslation } from "../../utils/translations";
+import ProductList from "./ProductList";
+// ✨ Una sola línea para cargar traducciones!
+const { locale, translations } = await useTranslations(Astro.props, Astro);
+// 🎯 Helper para traducciones más elegante
+const tr = (key: string, fallback: string = "") =>
+  getTranslation(translations, key, fallback);
+
+const currenLanguage = locale === "es" ? "es" : "en";
+---
+<section>
+  <header class="text-center bg-[url(/img/registerPage/hero_register_bg.png)] h-auto bg-cover bg-center"
+  >
+    <div class="grid grid-cols-1 sm:grid-cols-2 items-center justify-center text-2xl font-semibold text-white gap-x-36 gap-y-4 p-10 max-w-6xl mx-auto">
+        <div class="flex flex-col items-center justify-center gap-y-4">
+        <img
+          src="/img/smarttecexpo_logo.svg"
+          alt="smart technology expo"
+          loading="lazy"
+          decoding="async"
+          class="w-[150px] sm:w-[300px]"
+        />
+    </div>
+    <div class="flex flex-col items-start justify-center gap-y-4">
+      <h2
+        class="text-2xl sm:text-5xl text-center sm:text-start font-montserrat-extra-bold-italic"
+      >
+        {locale === "es" ? "APRENDE PARA" : "LEARN TO"} <br /> {locale === "es" ? "TRASCENDER" : "GO BEYOND"}
+      </h2>
+      <span class="text-base sm:text-xl text-center sm:text-start">
+        {locale === "es" ? "Adquiere tus accesos a talleres y conferencias magistrales y sé parte de la transformación." : "Get your access to workshops and master conferences and be part of the transformation."}
+      </span>
+    </div>
+    </div>
+  </header>
+
+  <div class="min-h-screen bg-white">
+    <ProductList language={currenLanguage} client:load  />
+  </div>
+</section>

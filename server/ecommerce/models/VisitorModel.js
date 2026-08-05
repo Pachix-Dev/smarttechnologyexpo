@@ -1,12 +1,4 @@
-import mysql from 'mysql2/promise';
-import 'dotenv/config';
-
-const config = {
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
-};
+import { pool } from './db-pool.js';
 
 export class VisitorModel {
   /**
@@ -15,9 +7,8 @@ export class VisitorModel {
    * @returns {Promise<Object|null>} Objeto visitante o null
    */
   static async findByEmail(email) {
-    const connection = await mysql.createConnection(config);
     try {
-      const [rows] = await connection.query(
+      const [rows] = await pool.query(
         'SELECT * FROM visitors_ste_2026 WHERE email = ?',
         [email]
       );
@@ -25,8 +16,6 @@ export class VisitorModel {
     } catch (error) {
       console.error('Error fetching visitor by email:', error);
       throw error;
-    } finally {
-      await connection.end();
     }
   }
 
@@ -36,9 +25,8 @@ export class VisitorModel {
    * @returns {Promise<Object|null>} Objeto visitante o null
    */
   static async findById(id) {
-    const connection = await mysql.createConnection(config);
     try {
-      const [rows] = await connection.query(
+      const [rows] = await pool.query(
         'SELECT * FROM visitors_ste_2026 WHERE id = ?',
         [id]
       );
@@ -46,8 +34,6 @@ export class VisitorModel {
     } catch (error) {
       console.error('Error fetching visitor by ID:', error);
       throw error;
-    } finally {
-      await connection.end();
     }
   }
 

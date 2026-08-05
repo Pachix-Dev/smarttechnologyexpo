@@ -1,12 +1,4 @@
-import mysql from 'mysql2/promise';
-import 'dotenv/config';
-
-const config = {
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
-};
+import { pool } from './db-pool.js';
 
 export class OrderModel {
   /**
@@ -15,7 +7,6 @@ export class OrderModel {
    * @returns {Promise<Object>} Objeto con id_order
    */
   static async create(orderData) {
-    const connection = await mysql.createConnection(config);
     try {
       const {
         visitor_id,
@@ -25,10 +16,9 @@ export class OrderModel {
         coupon_id,
         paypal_order_id,
         paypal_transaction_id,
-      } =
-        orderData;
+      } = orderData;
 
-      const [result] = await connection.query(
+      const [result] = await pool.query(
         `INSERT INTO orders (
           visitor_id,
           total_amount,
@@ -57,8 +47,6 @@ export class OrderModel {
     } catch (error) {
       console.error('Error creating order:', error);
       throw error;
-    } finally {
-      await connection.end();
     }
   }
 
@@ -68,9 +56,8 @@ export class OrderModel {
    * @returns {Promise<Object|null>}
    */
   static async findById(id_order) {
-    const connection = await mysql.createConnection(config);
     try {
-      const [rows] = await connection.query(
+      const [rows] = await pool.query(
         'SELECT * FROM orders WHERE id_order = ?',
         [id_order]
       );
@@ -78,8 +65,6 @@ export class OrderModel {
     } catch (error) {
       console.error('Error fetching order by ID:', error);
       throw error;
-    } finally {
-      await connection.end();
     }
   }
 
@@ -89,9 +74,8 @@ export class OrderModel {
    * @returns {Promise<Object|null>}
    */
   static async findByPayPalOrderId(paypal_order_id) {
-    const connection = await mysql.createConnection(config);
     try {
-      const [rows] = await connection.query(
+      const [rows] = await pool.query(
         'SELECT * FROM orders WHERE paypal_order_id = ?',
         [paypal_order_id]
       );
@@ -99,8 +83,6 @@ export class OrderModel {
     } catch (error) {
       console.error('Error fetching order by PayPal Order ID:', error);
       throw error;
-    } finally {
-      await connection.end();
     }
   }
 
@@ -111,19 +93,15 @@ export class OrderModel {
    * @returns {Promise<void>}
    */
   static async updatePayPalData(id_order, paypalData) {
-    const connection = await mysql.createConnection(config);
     try {
       const { paypal_order_id, paypal_transaction_id } = paypalData;
-
-      await connection.query(
+      await pool.query(
         `UPDATE orders SET paypal_order_id = ?, paypal_transaction_id = ? WHERE id_order = ?`,
         [paypal_order_id, paypal_transaction_id, id_order]
       );
     } catch (error) {
       console.error('Error updating PayPal data:', error);
       throw error;
-    } finally {
-      await connection.end();
     }
   }
 
@@ -133,9 +111,8 @@ export class OrderModel {
    * @returns {Promise<Array>}
    */
   static async getByVisitorId(visitor_id) {
-    const connection = await mysql.createConnection(config);
     try {
-      const [orders] = await connection.query(
+      const [orders] = await pool.query(
         `SELECT * FROM orders WHERE visitor_id = ? ORDER BY purchase_date DESC`,
         [visitor_id]
       );
@@ -143,8 +120,6 @@ export class OrderModel {
     } catch (error) {
       console.error('Error fetching orders by visitor ID:', error);
       throw error;
-    } finally {
-      await connection.end();
     }
   }
 
@@ -154,9 +129,8 @@ export class OrderModel {
    * @returns {Promise<boolean>}
    */
   static async hasPayPalTransaction(id_order) {
-    const connection = await mysql.createConnection(config);
     try {
-      const [rows] = await connection.query(
+      const [rows] = await pool.query(
         'SELECT paypal_transaction_id FROM orders WHERE id_order = ?',
         [id_order]
       );
@@ -164,8 +138,6 @@ export class OrderModel {
     } catch (error) {
       console.error('Error checking PayPal transaction:', error);
       throw error;
-    } finally {
-      await connection.end();
     }
   }
 
@@ -174,17 +146,14 @@ export class OrderModel {
    * @returns {Promise<number>}
    */
   static async getTotalPaidOrders() {
-    const connection = await mysql.createConnection(config);
     try {
-      const [result] = await connection.query(
+      const [result] = await pool.query(
         `SELECT COUNT(*) as count FROM orders WHERE paypal_transaction_id IS NOT NULL`
       );
       return result[0].count || 0;
     } catch (error) {
       console.error('Error getting total paid orders:', error);
       throw error;
-    } finally {
-      await connection.end();
     }
   }
 }

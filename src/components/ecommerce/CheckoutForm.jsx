@@ -31,6 +31,7 @@ export default function CheckoutForm({ onOrderCreated }) {
       const cartItems = cart.map((item) => ({
         product_id: item.product_id,
         quantity: item.quantity,
+        expected_price: item.price,
       }));
 
       // Preparar orden temporal: pricing + orden PayPal (sin persistir en DB)

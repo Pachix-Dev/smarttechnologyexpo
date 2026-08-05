@@ -1,12 +1,4 @@
-import mysql from 'mysql2/promise';
-import 'dotenv/config';
-
-const config = {
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
-};
+import { pool } from './db-pool.js';
 
 export class CouponModel {
   /**
@@ -15,9 +7,8 @@ export class CouponModel {
    * @returns {Promise<Object|null>}
    */
   static async findByCode(code) {
-    const connection = await mysql.createConnection(config);
     try {
-      const [rows] = await connection.query(
+      const [rows] = await pool.query(
         'SELECT * FROM coupons WHERE code = ? AND status = "active"',
         [code]
       );
@@ -25,8 +16,6 @@ export class CouponModel {
     } catch (error) {
       console.error('Error fetching coupon by code:', error);
       throw error;
-    } finally {
-      await connection.end();
     }
   }
 
@@ -36,9 +25,8 @@ export class CouponModel {
    * @returns {Promise<Object|null>}
    */
   static async findById(id_coupon) {
-    const connection = await mysql.createConnection(config);
     try {
-      const [rows] = await connection.query(
+      const [rows] = await pool.query(
         'SELECT * FROM coupons WHERE id_coupon = ?',
         [id_coupon]
       );
@@ -46,8 +34,6 @@ export class CouponModel {
     } catch (error) {
       console.error('Error fetching coupon by ID:', error);
       throw error;
-    } finally {
-      await connection.end();
     }
   }
 
@@ -57,7 +43,6 @@ export class CouponModel {
    * @returns {Promise<Object>} { valid: boolean, coupon: Object|null, message: string }
    */
   static async validate(code) {
-    const connection = await mysql.createConnection(config);
     try {
       const coupon = await this.findByCode(code);
 
@@ -77,8 +62,6 @@ export class CouponModel {
     } catch (error) {
       console.error('Error validating coupon:', error);
       throw error;
-    } finally {
-      await connection.end();
     }
   }
 
@@ -118,9 +101,8 @@ export class CouponModel {
    * @returns {Promise<number>} Cantidad de usos
    */
   static async countUsageByVisitor(coupon_id, visitor_id) {
-    const connection = await mysql.createConnection(config);
     try {
-      const [result] = await connection.query(
+      const [result] = await pool.query(
         `SELECT COUNT(*) as usage_count FROM orders 
          WHERE coupon_id = ? AND visitor_id = ? AND paypal_transaction_id IS NOT NULL`,
         [coupon_id, visitor_id]
@@ -129,8 +111,6 @@ export class CouponModel {
     } catch (error) {
       console.error('Error counting coupon usage:', error);
       throw error;
-    } finally {
-      await connection.end();
     }
   }
 }

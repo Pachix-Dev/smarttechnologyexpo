@@ -47,6 +47,21 @@ export class PricingService {
           throw new Error(`Producto ${item.product_id} no encontrado`);
         }
 
+        if (product.status !== 'active') {
+          throw new Error(`Producto ${item.product_id} no está disponible`);
+        }
+
+        // Validar que el precio del archivo estático coincida con el de la DB
+        if (item.expected_price !== undefined) {
+          const dbPrice = parseFloat(product.price).toFixed(2);
+          const sentPrice = parseFloat(item.expected_price).toFixed(2);
+          if (dbPrice !== sentPrice) {
+            throw new Error(
+              `El precio del producto "${product.name}" ha cambiado. Recarga la página e intenta de nuevo.`
+            );
+          }
+        }
+
         const itemTotal = parseFloat(product.price) * parseInt(item.quantity);
         subtotal += itemTotal;
 
