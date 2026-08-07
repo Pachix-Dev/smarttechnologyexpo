@@ -440,6 +440,9 @@
   display: flex;
   flex-direction: column;
   gap: 14px;
+  /* Permite que cada tarjeta se adapte a SU PROPIO ancho (no al del viewport),
+     con lo que escala bien aunque la sección viva en una columna angosta. */
+  container-type: inline-size;
 }
 .isc-card {
   border-radius: 8px;
@@ -532,22 +535,67 @@
   padding: 5px 9px;
 }
 
-@media (max-width: 560px) {
-  .isc-title-row {
-    flex-direction: column;
-  }
+/* --- Escalado responsivo de la tarjeta (reacciona al ancho de la tarjeta) ---
+   Tarjeta angosta: el título pasa a ocupar todo el ancho (debajo del horario),
+   se reduce su tamaño y el recuadro "Powered by" se compacta y se alinea a la
+   izquierda (label + logo en una fila), evitando que se descuadre. */
+@container (max-width: 620px) {
+  .isc-title-row { flex-direction: column; gap: 12px; }
+  .isc-title-left { flex-direction: column; gap: 8px; }
   .isc-powered {
+    width: auto;
+    max-width: 100%;
     flex-direction: row;
+    align-items: center;
     align-self: flex-start;
+    gap: 8px;
+    padding: 6px 10px;
   }
+  .isc-powered-logo { width: auto; height: 34px; padding: 4px 8px; }
+  .isc-powered-label { font-size: 10px; white-space: nowrap; }
+}
+
+@container (max-width: 380px) {
+  .isc-body { padding: 14px; }
+  .isc-time-pill { font-size: 12px; padding: 5px 10px; }
+  .isc-powered-logo { height: 30px; }
+}
+
+/* Respaldo por viewport (por si el navegador no soporta container queries):
+   mismas reglas de apilado en pantallas chicas. */
+@media (max-width: 640px) {
+  .isc-title-row { flex-direction: column; gap: 12px; }
+  .isc-title-left { flex-direction: column; gap: 8px; }
+  .isc-powered {
+    width: auto;
+    flex-direction: row;
+    align-items: center;
+    align-self: flex-start;
+    gap: 8px;
+    padding: 6px 10px;
+  }
+  .isc-powered-logo { width: auto; height: 34px; padding: 4px 8px; }
 }
 
 .isc-session-title {
-  font-size: clamp(17px, 1.7vw, 21px);   
+  font-size: clamp(17px, 1.7vw, 21px);
   font-weight: 800;
   line-height: 1.28;
   color: #fff;
-  flex: 1;                               
+  flex: 1;
+}
+
+/* Título más pequeño y menos grueso SOLO en pantallas/tarjetas menores al
+   desktop (el desktop conserva su tamaño y peso). Se colocan DESPUÉS de la
+   regla base para que ganen en la cascada cuando el media/container aplica. */
+@container (max-width: 620px) {
+  .isc-session-title { font-size: 15px; font-weight: 600; line-height: 1.35; }
+}
+@container (max-width: 380px) {
+  .isc-session-title { font-size: 14px; }
+}
+@media (max-width: 640px) {
+  .isc-session-title { font-size: 15px; font-weight: 600; line-height: 1.35; }
 }
 .isc-session-desc {
   margin: 8px 0 0;
@@ -600,8 +648,8 @@
 }
 
 .isc-avatar {
-  width: 90px;             
-  height: 100px;           
+  width: 100px;
+  height: 120px;
   flex: none;
   border-radius: 10px;    
   background: repeating-linear-gradient(135deg, #262626 0 6px, #1a1a1a 6px 12px);

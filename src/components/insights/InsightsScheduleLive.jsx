@@ -27,6 +27,8 @@ import {
   confTitle,
   confDesc,
   speakerBio,
+  speakerRole,
+  speakerOrg,
   speakerPhoto,
   companyLogo,
   typeMeta,
@@ -313,16 +315,10 @@ export default function InsightsScheduleLive({
                             const bio = speakerBio(p, lang);
                             const photo = speakerPhoto(p.photo);
                             const hasBio = Boolean(bio);
-                            // Cargo/empresa en inglés si la API los trae (position_en/
-                            // company_en); si no, cae al valor en español. Ajuste STE 2026.
-                            const role =
-                              lang === "en"
-                                ? p.position_en || p.position || p.role || ""
-                                : p.position || p.role || "";
-                            const org =
-                              lang === "en"
-                                ? p.company_en || p.company || ""
-                                : p.company || "";
+                            // Cargo (position_esp/position_eng) y empresa
+                            // (company/company_eng) según idioma, con respaldo.
+                            const role = speakerRole(p, lang);
+                            const org = speakerOrg(p, lang);
                             return (
                               <div
                                 key={p.id ?? p.name}

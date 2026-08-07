@@ -712,35 +712,64 @@ export class RegisterModel {
   //  error ER_DUP_ENTRY / sqlState 23000; aquí lo detectamos y respondemos con
   //  un mensaje amable en vez de romper.
   //
+  //  CONTROL DE CUPO: antes de insertar se valida, DENTRO de una
+  //  transacción, que el taller aún tenga lugares. Se bloquea la fila del taller
+  //  con SELECT ... FOR UPDATE para serializar las inscripciones concurrentes al
+  //  MISMO taller; así dos personas no pueden rebasar el cupo al mismo tiempo.
+  //
   //  Devuelve:
   //    { status: true }                          → inscripción guardada.
+  //    { status: false, full: true, ... }        → el taller ya está lleno.
   //    { status: false, duplicate: true, ... }   → ya estaba inscrito.
   //    { status: false, message: ... }           → cualquier otro error.
   // --------------------------------------------------------------------------
   static async register_workshop_attendance({ workshop_id, visitor_id, uuid }) {
-    const connection = await mysql.createConnection(config);
-    try {
-      // Insertamos la inscripción (valores parametrizados).
-      await connection.query(
-        "INSERT INTO workshop_attendance (workshop_id, visitor_id, uuid) VALUES (?,?,?)",
-        [workshop_id, visitor_id, uuid],
-      );
-      // Si llegó aquí, se guardó sin problemas.
-      return { status: true };
-    } catch (error) {
-      // Error de duplicado → el visitante ya estaba inscrito a ese taller.
-      if (error?.code === "ER_DUP_ENTRY" || error?.sqlState === "23000") {
-        return {
-          status: false,
-          duplicate: true,
-          message: "Ya estás registrado a este taller.",
-        };
-      }
-      // Cualquier otro error: se registra en logs y se devuelve mensaje genérico.
-      console.log(error);
-      return { status: false, message: "Error al registrar tu asistencia." };
-    } finally {
-      await connection.end();
+  const connection = await mysql.createConnection(config);
+  try {
+    await connection.beginTransaction();
+
+    // 1) Bloqueamos la fila del taller (FOR UPDATE) para serializar las
+    //    inscripciones concurrentes a este mismo taller.
+    const [wrows] = await connection.query(
+      "SELECT capacity FROM workshops WHERE workshop_id = ? AND is_active = 1 FOR UPDATE",
+      [workshop_id],
+    );
+    if (!wrows[0]) {
+      await connection.rollback();
+      return { status: false, message: "Taller no disponible." };
     }
+    const capacity = Number(wrows[0].capacity);
+
+    // 2) Contamos los inscritos actuales dentro de la misma transacción.
+    const [crows] = await connection.query(
+      "SELECT COUNT(*) AS registered FROM workshop_attendance WHERE workshop_id = ?",
+      [workshop_id],
+    );
+    const registered = Number(crows[0].registered);
+
+    // 3) Si ya se alcanzó el cupo, rechazamos ANTES de insertar.
+    if (registered >= capacity) {
+      await connection.rollback();
+      return { status: false, full: true, message: "El taller alcanzó su cupo máximo." };
+    }
+
+    // 4) Guardamos la inscripción (valores parametrizados).
+    await connection.query(
+      "INSERT INTO workshop_attendance (workshop_id, visitor_id, uuid) VALUES (?,?,?)",
+      [workshop_id, visitor_id, uuid],
+    );
+
+    await connection.commit();
+    return { status: true };
+  } catch (error) {
+    try { await connection.rollback(); } catch (_) { /* noop */ }
+    if (error?.code === "ER_DUP_ENTRY" || error?.sqlState === "23000") {
+      return { status: false, duplicate: true, message: "Ya estás registrado a este taller." };
+    }
+    console.log(error);
+    return { status: false, message: "Error al registrar tu asistencia." };
+  } finally {
+    await connection.end();
   }
+}
 }

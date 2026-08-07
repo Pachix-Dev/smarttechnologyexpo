@@ -812,9 +812,11 @@ app.post('/workshop-register', async (req, res) => {
             workshop_id: workshop.workshop_id, visitor_id: visitor.id, uuid: visitor.uuid,
         });
         if (!reg.status) {
-            // 409 = ya estaba inscrito (duplicado); 500 = cualquier otro error.
-            return res.status(reg.duplicate ? 409 : 500).send(reg);
+        // 409 = taller lleno (cupo) o ya estaba inscrito (duplicado); 
+        // 500 = otro error.
+            return res.status(reg.full || reg.duplicate ? 409 : 500).send(reg);
         }
+        
  
         // 4) ENVIAR EL CORREO — aislado: si falla, la inscripción ya se guardó.
         try {

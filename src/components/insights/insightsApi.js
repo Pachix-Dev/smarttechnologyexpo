@@ -68,6 +68,10 @@ export const pick = (lang, es, en) => (lang === "en" ? en || es : es || en);
 export const confTitle = (c, lang) => pick(lang, c.title, c.title_en);
 export const confDesc = (c, lang) => pick(lang, c.description, c.description_en);
 export const speakerBio = (p, lang) => pick(lang, p.bio_esp, p.bio_eng);
+// Cargo del ponente: position_esp / position_eng (con respaldo al otro idioma).
+export const speakerRole = (p, lang) => pick(lang, p.position_esp, p.position_eng);
+// Empresa del ponente: company (español) / company_eng (inglés).
+export const speakerOrg = (p, lang) => pick(lang, p.company, p.company_eng);
 
 // ---------------------------------------------------------------------------
 // HELPERS DE IMÁGENES

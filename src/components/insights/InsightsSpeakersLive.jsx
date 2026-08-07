@@ -22,6 +22,8 @@ import {
   fetchStage,
   INSIGHTS_STAGE_ID,
   speakerPhoto,
+  speakerRole,
+  speakerOrg,
   uniqueSpeakers,
 } from "./insightsApi.js";
 
@@ -71,16 +73,10 @@ export default function InsightsSpeakersLive({
   // En STE 2026 ya no incluye botón de semblanza.
   const renderCard = (sp, i) => {
     const photo = speakerPhoto(sp.photo);
-    // Cargo/empresa en inglés si la API los trae (position_en/company_en);
-    // si no, cae al valor en español. Ajuste STE 2026.
-    const role =
-      lang === "en"
-        ? sp.position_en || sp.position || sp.role || ""
-        : sp.position || sp.role || "";
-    const org =
-      lang === "en"
-        ? sp.company_en || sp.company || ""
-        : sp.company || "";
+    // Cargo (position_esp/position_eng) y empresa (company/company_eng) según el
+    // idioma, con respaldo automático al otro idioma si falta la traducción.
+    const role = speakerRole(sp, lang);
+    const org = speakerOrg(sp, lang);
     return (
       <div key={`${sp.id ?? sp.name}-${i}`} className="isp-card">
         <div className="isp-photo">
