@@ -1,0 +1,17 @@
+---
+import { useTranslations, getTranslation } from "../../utils/translations";
+import BannerPases from "./BannerPases.astro";
+import BannerPromocional from "./BannerPromocional.astro";
+import DroneHero from "./DroneHero.astro";
+import PricingSection from "./PricingSection.astro";
+
+// ✨ Una sola línea para cargar traducciones!
+const { locale, translations } = await useTranslations(Astro.props, Astro);
+// 🎯 Helper para traducciones más elegante
+const tr = (key: string, fallback: string = "") =>
+  getTranslation(translations, key, fallback);
+---
+<DroneHero />
+<BannerPromocional />
+<PricingSection />
+<BannerPases />

@@ -1,0 +1,47 @@
+---
+// src/components/drone-innovators/BannerPromocional.astro
+import { useTranslations, getTranslation } from '../../utils/translations'
+
+export interface Props {
+  locale?: string
+}
+
+const { locale, translations } = await useTranslations(Astro.props, Astro)
+const tr = (key: string, fallback: string = '') =>
+  getTranslation(translations, key, fallback)
+---
+
+<section
+  class="relative isolate h-[clamp(180px,25vw,512px)] overflow-hidden bg-[#0d3748] text-white"
+  aria-labelledby="drone-promo-title"
+>
+  <img
+    src="/img/drone-innovators/bg-bannerpromocional.webp"
+    alt=""
+    class="absolute inset-0 -z-10 h-full w-full object-cover object-center"
+    aria-hidden="true"
+  />
+
+  <div
+    class="absolute inset-0 mx-auto flex w-full max-w-[1600px] flex-col items-center justify-center px-4 pb-[3.4%] pt-[2.4%] sm:px-8"
+    data-aos="fade-up"
+    data-aos-duration="700"
+  >
+    <p
+      class="m-0 max-w-full text-center text-[clamp(1.5rem,8.4vw,2.5rem)] font-black uppercase leading-none tracking-[0.04em] text-white sm:text-[clamp(2rem,3.85vw,4.6rem)]"
+    >
+      {tr('droneInnovators.banner.pre', 'NO PIERDAS')}
+    </p>
+    <h2
+      id="drone-promo-title"
+      class="m-0 mt-1 max-w-full whitespace-nowrap text-center text-[clamp(1.65rem,8.6vw,3.25rem)] font-montserrat-extra-bold-italic uppercase leading-none tracking-normal text-white sm:mt-[1.2%] sm:text-[clamp(3.2rem,6.25vw,7.3rem)]"
+    >
+      {tr('droneInnovators.banner.title', 'LA OPORTUNIDAD')}
+    </h2>
+    <p
+      class="m-0 mt-1 w-full max-w-[92%] text-center text-[clamp(1rem,4.6vw,1.5rem)] font-normal leading-tight text-white sm:mt-[0.5%] sm:max-w-[74%] sm:text-center sm:text-[clamp(1.35rem,2.1vw,2.45rem)] sm:leading-none"
+    >
+      {tr('droneInnovators.banner.sub', 'de ser parte del evento ...')}
+    </p>
+  </div>
+</section>

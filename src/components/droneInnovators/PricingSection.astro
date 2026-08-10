@@ -1,0 +1,154 @@
+---
+// ✨ Una sola línea para cargar traducciones!
+const { locale, translations } = await useTranslations(Astro.props, Astro);
+// 🎯 Helper para traducciones más elegante
+const tr = (key: string, fallback: string = "") =>
+  getTranslation(translations, key, fallback);
+
+import { useTranslations, getTranslation } from "../../utils/translations";
+import { ECOMMERCE_PRODUCTS } from "../../data/ecommerce_products";
+---
+
+<section
+  class="relative w-full box-border bg-white px-4 pt-6 pb-10 before:absolute before:left-0 before:right-0 before:top-[14%] before:z-0 before:h-[5px] before:bg-[#103347] before:content-[''] after:absolute after:left-0 after:right-0 after:top-[60%] after:z-0 after:h-[5px] after:bg-[#103347] after:content-[''] sm:px-6 sm:pt-10 sm:pb-14 sm:before:top-[12.5%] sm:after:top-[55%] md:px-10 md:pt-12 md:pb-16 md:before:top-[24.4%] md:after:hidden lg:px-12 lg:pt-14 lg:pb-[4.5rem] xl:px-16 xl:pt-16 xl:pb-20"
+>
+  <div
+    class="relative z-[1] mx-auto grid max-w-full grid-cols-1 gap-4 sm:max-w-[300px] sm:gap-6 md:max-w-[400px] md:gap-5"
+    data-aos="fade-up"
+    data-aos-duration="700"
+  >
+    {
+      ECOMMERCE_PRODUCTS.map(
+        (product) =>
+          product.category === "drone_innovations" && (
+            <div class="flex h-auto flex-col overflow-hidden rounded-xl bg-white shadow-[8px_8px_20px_rgba(0,0,0,0.25)] sm:rounded-2xl xl:rounded-[18px]">
+              <div class="shrink-0 bg-gradient-to-r from-[#c60c15] to-[#921113] px-3 py-2 text-center font-['Montserrat',sans-serif] text-[0.6rem] font-extrabold uppercase tracking-[0.05em] text-white sm:text-[0.65rem] md:text-[0.7rem] lg:text-[0.75rem] xl:text-[0.8rem]">
+                {tr("pricingSection.tag", "\u00a1Oferta especial!")}
+              </div>
+
+              <div class="flex flex-1 flex-col px-4 py-3 sm:px-5 sm:py-4">
+                <h3 class="border-b border-[#296684]/25 pb-2 font-['Montserrat',sans-serif] text-[0.95rem] font-bold leading-tight text-[#1d1d1b] sm:text-[1.05rem] md:text-[1.15rem] lg:text-[1.25rem] xl:text-[1.35rem]">
+                  {locale === "es" ? product.name_es : product.name_en}
+                </h3>
+
+                <p class="mt-2 font-['Montserrat',sans-serif] text-[0.68rem] font-normal leading-snug text-[#4b5563] sm:text-[0.72rem] md:text-[0.78rem] lg:text-[0.84rem] xl:text-[0.9rem]">
+                  {locale === "es" ? product.description_es : product.description_en}
+                </p>
+
+                <div class="mt-3 grid gap-2">
+                  <div class="flex items-start gap-2 rounded-md bg-[#f4f8fa] px-2.5 py-2 font-['Montserrat',sans-serif] text-[0.68rem] font-semibold leading-snug text-[#1d1d1b] sm:text-[0.72rem] md:text-[0.78rem]">
+                    <svg
+                      class="mt-0.5 h-4 w-4 shrink-0 text-[#296684]"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fill="currentColor"
+                        d="M5.673 0a.7.7 0 0 1 .7.7v1.309h7.517v-1.3a.7.7 0 0 1 1.4 0v1.3H18a2 2 0 0 1 2 1.999v13.993A2 2 0 0 1 18 20H2a2 2 0 0 1-2-1.999V4.008a2 2 0 0 1 2-1.999h2.973V.699a.7.7 0 0 1 .7-.699M1.4 7.742v10.259a.6.6 0 0 0 .6.6h16a.6.6 0 0 0 .6-.6V7.756zm5.267 6.877v1.666H5v-1.666zm4.166 0v1.666H9.167v-1.666zm4.167 0v1.666h-1.667v-1.666zm-8.333-3.977v1.666H5v-1.666zm4.166 0v1.666H9.167v-1.666zm4.167 0v1.666h-1.667v-1.666zM4.973 3.408H2a.6.6 0 0 0-.6.6v2.335l17.2.014V4.008a.6.6 0 0 0-.6-.6h-2.71v.929a.7.7 0 0 1-1.4 0v-.929H6.373v.92a.7.7 0 0 1-1.4 0z"
+                      />
+                    </svg>
+                    <span>{locale === "es" ? product.event_date_es : product.event_date_en}</span>
+                  </div>
+
+                  <div class="flex items-start gap-2 rounded-md bg-[#f4f8fa] px-2.5 py-2 font-['Montserrat',sans-serif] text-[0.68rem] font-semibold leading-snug text-[#1d1d1b] sm:text-[0.72rem] md:text-[0.78rem]">
+                    <svg
+                      class="mt-0.5 h-4 w-4 shrink-0 text-[#296684]"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <g fill="none">
+                        <path d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12" />
+                        <path
+                          stroke="currentColor"
+                          stroke-linecap="square"
+                          stroke-width="2"
+                          d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12Z"
+                        />
+                        <path
+                          stroke="currentColor"
+                          stroke-linecap="square"
+                          stroke-width="2"
+                          d="M12 6.5V12l3 3"
+                        />
+                      </g>
+                    </svg>
+                    <span>{product.schedule}</span>
+                  </div>
+
+                  <div class="flex items-start gap-2 rounded-md bg-[#f4f8fa] px-2.5 py-2 font-['Montserrat',sans-serif] text-[0.68rem] font-semibold leading-snug text-[#1d1d1b] sm:text-[0.72rem] md:text-[0.78rem]">
+                    <svg
+                      class="mt-0.5 h-4 w-4 shrink-0 text-[#296684]"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fill="currentColor"
+                        d="M12 12c-1.1 0-2-.9-2-2s.9-2 2-2s2 .9 2 2s-.9 2-2 2m6-1.8C18 6.57 15.35 4 12 4s-6 2.57-6 6.2c0 2.34 1.95 5.44 6 9.14c4.05-3.7 6-6.8 6-9.14M12 2c4.2 0 8 3.22 8 8.2c0 3.32-2.67 7.25-8 11.8c-5.33-4.55-8-8.48-8-11.8C4 5.22 7.8 2 12 2"
+                      />
+                    </svg>
+                    <span>{locale === "es" ? product.venue_es : product.venue_en}</span>
+                  </div>
+
+                  <div class="flex items-start gap-2 rounded-md bg-[#f4f8fa] px-2.5 py-2 font-['Montserrat',sans-serif] text-[0.68rem] font-semibold leading-snug text-[#1d1d1b] sm:text-[0.72rem] md:text-[0.78rem]">
+                    <svg
+                      class="mt-0.5 h-4 w-4 shrink-0 text-[#296684]"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fill="currentColor"
+                        d="M9.175 10.825Q8 9.65 8 8t1.175-2.825T12 4t2.825 1.175T16 8t-1.175 2.825T12 12t-2.825-1.175M4 20v-2.8q0-.85.438-1.562T5.6 14.55q1.55-.775 3.15-1.162T12 13t3.25.388t3.15 1.162q.725.375 1.163 1.088T20 17.2V20z"
+                      />
+                    </svg>
+                    <span>
+                      {
+                        product.capacity_limit === null
+                          ? locale === "es"
+                            ? "Disponible"
+                            : "Available"
+                          : `${product.capacity_limit} ${
+                              locale === "es" ? "lugares disponibles" : "available seats"
+                            }`
+                      }
+                    </span>
+                  </div>
+                </div>
+
+                <div class="mt-4 overflow-hidden rounded-lg border-2 border-[#296684] bg-[#296684] font-['Montserrat',sans-serif] shadow-[0_10px_22px_rgba(41,102,132,0.22)]">
+                  <div class="bg-gradient-to-r from-[#c60c15] to-[#921113] px-3 py-1.5 text-center text-[0.62rem] font-extrabold uppercase tracking-[0.08em] text-white sm:text-[0.68rem]">
+                    {locale === "es" ? "Preventa especial" : "Special presale"}
+                  </div>
+                  <div class="bg-white px-3 py-3 text-center">
+                    <div class="flex items-end justify-center leading-none">
+                      <span class="mb-1 mr-1 text-[1rem] font-bold text-[#1d1d1b] sm:text-[1.1rem]">$</span>
+                      <span class="text-[2.45rem] font-black text-[#296684] sm:text-[2.75rem] md:text-[3rem]">
+                        {Number(product.price).toLocaleString("en-US")}
+                      </span>
+                      <span class="mb-1 ml-1 text-[0.78rem] font-extrabold text-[#1d1d1b] sm:text-[0.85rem]">MXN</span>
+                    </div>
+                    <p class="mt-1 text-[0.62rem] font-semibold uppercase tracking-[0.04em] text-[#4b5563] sm:text-[0.68rem]">
+                      {locale === "es" ? "por persona + IVA" : "per person + VAT"}
+                    </p>
+                    {
+                      product.final_price && product.final_price > product.price && (
+                        <p class="mt-2 text-[0.65rem] font-medium text-[#6b7280] sm:text-[0.72rem]">
+                          {locale === "es" ? "Precio regular: " : "Regular price: "}
+                          <span class="font-bold line-through">
+                            ${Number(product.final_price).toLocaleString("en-US")} MXN
+                          </span>
+                        </p>
+                      )
+                    }
+                  </div>
+                </div>
+              </div>
+            </div>
+          ),
+      )
+    }
+  </div>
+</section>

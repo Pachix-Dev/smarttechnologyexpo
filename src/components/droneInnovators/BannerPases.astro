@@ -23,7 +23,7 @@ const tr = (key: string, fallback: string = '') =>
 
   <!-- Botón pill centrado sobre el fondo -->
   <div class="bp-inner" data-aos="zoom-in" data-aos-duration="700">
-    <a href="#" class="bp-btn">
+    <a href={locale === 'es' ? '/productos' : '/en/productos'} class="bp-btn">
       {tr('droneInnovators.bannerPases.cta', '¡ADQUIERE TUS PASES!')}
     </a>
   </div>
