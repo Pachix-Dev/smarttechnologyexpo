@@ -1,0 +1,71 @@
+---
+import { useTranslations } from "../../utils/translations";
+
+const { locale } = await useTranslations(Astro.props, Astro);
+
+const isSpanish = locale === "es";
+const basePath = isSpanish ? "" : "/en";
+const factsheetHref = isSpanish
+  ? "/files/STE26_PATROCINIOS_ESP_110826.pdf"
+  : "/files/STE26_PATROCINIOS_ENG_110826.pdf";
+
+const content = {
+  titleTop: isSpanish ? "CONVIERTETE" : "BECOME",
+  titleMiddle: isSpanish ? "EN" : "A",
+  titleStrong: isSpanish ? "PATROCINADOR" : "SPONSOR",
+  downloadLabel: isSpanish ? "MAS INFORMACION" : "MORE INFO",
+  titleAria: isSpanish
+    ? "Conviertete en patrocinador de Smart Technology Expo 2026"
+    : "Become a Smart Technology Expo 2026 sponsor",
+};
+---
+
+<section class="w-full bg-[#1d1d1b] px-5 py-12 text-white sm:px-8 lg:px-12">
+  <div
+    class="mx-auto flex max-w-7xl flex-col items-start justify-between gap-8 lg:min-h-[220px] lg:flex-row lg:items-center"
+    data-aos="fade-up"
+  >
+    <a
+      href={`${basePath}/expositor-smarttechnologyexpo`}
+      class="group flex max-w-3xl flex-col no-underline"
+      aria-label={content.titleAria}
+    >
+      <div class="flex items-start gap-5 sm:gap-8">
+        <span
+          class="mt-1.5 block size-6 shrink-0 bg-[#ed001b] sm:mt-4 sm:size-9"
+          aria-hidden="true"
+        ></span>
+
+        <div>
+          <h2 class="text-[2rem] leading-[0.98] font-light tracking-normal text-white uppercase sm:text-[3.5rem] lg:text-[5rem]">
+            <span class="block">{content.titleTop} {content.titleMiddle}</span>
+            <span class="block font-black">{content.titleStrong}</span>
+          </h2>
+        </div>
+      </div>
+    </a>
+
+    <div class="flex w-full flex-col gap-4 sm:w-auto sm:flex-row lg:pt-10">
+      <a
+        href={factsheetHref}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="group inline-flex h-[58px] w-full min-w-0 items-center justify-between gap-4 rounded-full border-2 border-white bg-white py-1 pr-1 pl-6 text-base font-black tracking-[0.14em] text-[#1d1d1b] uppercase no-underline transition duration-200 hover:-translate-y-px hover:border-white hover:bg-white focus-visible:outline-[3px] focus-visible:outline-offset-4 focus-visible:outline-white sm:w-auto sm:min-w-[250px] sm:gap-5 sm:pl-7 sm:text-[1.35rem] sm:tracking-[0.2em]"
+        >
+        <span>{content.downloadLabel}</span>
+        <span
+          class="inline-flex size-12 shrink-0 items-center justify-center rounded-full bg-[#ed001b] text-white"
+          aria-hidden="true"
+        >
+          <svg
+            class="size-8 fill-none stroke-current stroke-[3.5] transition duration-200 group-hover:translate-x-1"
+            viewBox="0 0 24 24"
+          >
+            <path d="M5 12h12"></path>
+            <path d="m12 6 6 6-6 6"></path>
+          </svg>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
