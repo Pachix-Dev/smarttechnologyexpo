@@ -6,15 +6,15 @@ import ContactTeam from "../../components/home/ContactTeam.astro";
 import Layout from "../../layouts/Layout.astro";
 import KeyResourceButton from "../../components/exhibitor/KeyResourceButton.astro";
 import ExhibitorForm from "../../components/formExpositores/ExhibitorForm.astro";
-import SponsorshipSection from "../../components/exhibitor/SponsorshipSection.astro";
+import BecomeAnExhibitor from "../../components/home/BecomeAnExhibitor.astro";
 ---
 <Layout title="Expositores | Smart Technology Expo" description="Página para expositores Smart Technology Expo">
    <section class="mx-auto w-auto">
     <WhyExhibit locale='en'/>
-    <KeyResourceButton locale='en'/>
+    <BecomeAnExhibitor locale='en' />
+    <!-- <KeyResourceButton locale='en'/> -->
     <BuyerConnection locale='en'/>
     <StandPrice locale='en'/>
-    <SponsorshipSection locale='en' />
     <ExhibitorForm locale='en' />
     <ContactTeam locale='en'/>
   </section>
