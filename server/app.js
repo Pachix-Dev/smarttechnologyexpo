@@ -763,6 +763,23 @@ app.get('/workshops', async (req, res) => {
     // Los devolvemos al sitio.
     return res.send({ status: true, workshops });
 });
+
+// Este endpoint es para obtener el código postal de un visitante, se utiliza en el formulario de registro para autocompletar la dirección.
+app.get("/get-postalcode/:cp", async (req, res) => {
+  const { cp } = req.params;
+  const response = await RegisterModel.get_postal_code({ cp });
+  if (response.status) {
+    return res.send({
+      status: true,
+      records: response.result,
+    });
+  } else {
+    return res.status(500).send({
+      status: false,
+      message: "No se encontraron resultados...",
+    });
+  }
+});
  
  
 // ----------------------------------------------------------------------------
