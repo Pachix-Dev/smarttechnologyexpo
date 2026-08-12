@@ -107,7 +107,7 @@ export function RegisterForm({ translates, currentLanguage }) {
   }, [typeRegister, setTypeRegister]);
 
   const [messagePostalCode, setMessagePostalCode] = useState("");
-  const urlcp = "https://industrialtransformation.mx/server/";
+  const urlcp = "https://smarttechnologyexpo.mx/server/";
 
   const handlePostalCode = async (e) => {
     // Verificar que hay un país seleccionado antes de procesar
