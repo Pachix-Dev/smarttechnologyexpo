@@ -882,8 +882,10 @@
       "venue": "Expo Guadalajara",
       "dateLabel": "Date",
       "date": "November 18 - 20, 2026",
-      "scheduleLabel": "Hours",
-      "schedule": "11:00  - 18:00 hrs"
+      "scheduleLabelOne": "Hours for November 18 and 19",
+      "scheduleLabelTwo": "Hours for November 20",
+      "scheduleOne": "11:00 a 18:00 hrs",
+      "scheduleTwo": "11:00 a 17:00 hrs"
     },
     "freeAccess": {
       "title": "Your Free Access Includes:",

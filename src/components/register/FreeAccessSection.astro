@@ -9,32 +9,39 @@ const tr = (key: string, fallback: string = "") =>
 
 const base = locale === "en" ? "/en" : "";
 ---
+
 <section aria-labelledby="free-access-title" class="p-4">
   <div class="free-access-shell">
-    
     <!-- sección de beneficios de acceso gratuito -->
     <div class="benefits-card h-full flex flex-col justify-center">
-      <h2 id="free-access-title" class="benefits-title text-center sm:text-start uppercase">
+      <h2
+        id="free-access-title"
+        class="benefits-title text-center sm:text-start uppercase"
+      >
         {tr("registerHome.freeAccess.title")}
       </h2>
       <div class="benefits-list">
         <article class="benefit-item">
           <span class="benefit-icon" aria-hidden="true">
-            <img src="/img/check_icon.svg" alt="">
+            <img src="/img/check_icon.svg" alt="" />
           </span>
           <div class="text-sm">
             <h3>{tr("registerHome.freeAccess.benefits.exhibition.title")}</h3>
-            <p>{tr("registerHome.freeAccess.benefits.exhibition.description")}</p>
+            <p>
+              {tr("registerHome.freeAccess.benefits.exhibition.description")}
+            </p>
           </div>
         </article>
 
         <article class="benefit-item">
           <span class="benefit-icon" aria-hidden="true">
-            <img src="/img/check_icon.svg" alt="">
+            <img src="/img/check_icon.svg" alt="" />
           </span>
           <div class="text-sm">
             <h3>{tr("registerHome.freeAccess.benefits.conferences.title")}</h3>
-            <p>{tr("registerHome.freeAccess.benefits.conferences.description")}</p>
+            <p>
+              {tr("registerHome.freeAccess.benefits.conferences.description")}
+            </p>
           </div>
         </article>
 
@@ -50,55 +57,79 @@ const base = locale === "en" ? "/en" : "";
 
         <article class="benefit-item">
           <span class="benefit-icon" aria-hidden="true">
-            <img src="/img/check_icon.svg" alt="">
+            <img src="/img/check_icon.svg" alt="" />
           </span>
           <div class="text-sm">
             <h3>{tr("registerHome.freeAccess.benefits.networking.title")}</h3>
-            <p>{tr("registerHome.freeAccess.benefits.networking.description")}</p>
+            <p>
+              {tr("registerHome.freeAccess.benefits.networking.description")}
+            </p>
           </div>
         </article>
       </div>
     </div>
 
     <div class="access-side">
-
       <!-- sección de acceso al evento -->
       <aside class="pass-card">
         <div class="event-info">
           <div class="event-info-item">
-            <span>{tr("registerHome.eventInfo.venueLabel")}</span>
-            <strong>{tr("registerHome.eventInfo.venue")}</strong>
-          </div>
-          <div class="event-info-item">
             <span>{tr("registerHome.eventInfo.dateLabel")}</span>
             <strong>{tr("registerHome.eventInfo.date")}</strong>
           </div>
+          <div class="flex flex-row gap-x-2 w-full">
+            <div class="event-info-item w-1/2">
+              <span>{tr("registerHome.eventInfo.scheduleLabelOne")}</span>
+              <strong>{tr("registerHome.eventInfo.scheduleOne")}</strong>
+            </div>
+            <div class="event-info-item border-e-2 border-gray-300"></div>
+            <div class="event-info-item w-1/2">
+              <span>{tr("registerHome.eventInfo.scheduleLabelTwo")}</span>
+              <strong>{tr("registerHome.eventInfo.scheduleTwo")}</strong>
+            </div>
+          </div>
           <div class="event-info-item">
-            <span>{tr("registerHome.eventInfo.scheduleLabel")}</span>
-            <strong>{tr("registerHome.eventInfo.schedule")}</strong>
+            <span>{tr("registerHome.eventInfo.venueLabel")}</span>
+            <strong>{tr("registerHome.eventInfo.venue")}</strong>
           </div>
         </div>
 
-        <a class="register-button uppercase text-xl" href={`${base}/registro-nuevo`}>
-          {locale === 'es' ? 'Regístrate gratis' : 'Register for free'}
+        <a
+          class="register-button uppercase text-xl"
+          href={`${base}/registro-nuevo`}
+        >
+          {locale === "es" ? "Regístrate gratis" : "Register for free"}
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path
+              d="M5 12h14M13 5l7 7-7 7"
+              stroke="currentColor"
+              stroke-width="2.4"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
           </svg>
         </a>
-        <p class="pass-note">{locale === 'es' ? 'Confirmación inmediata vía correo electrónico.' : 'Immediate confirmation via email.'}</p>
+
+        <p class="text-sm text-gray-500 font-semibold mt-6">
+          {
+            locale === "es"
+              ? "Confirmación inmediata vía correo electrónico."
+              : "Immediate confirmation via email."
+          }
+        </p>
       </aside>
 
       <!-- sección de aviso B2B -->
       <aside class="b2b-notice" aria-label="Evento exclusivo B2B">
-        <div class="flex flex-row gap-x-2   " >
+        <div class="flex flex-row gap-x-2">
           <span class="notice-icon" aria-hidden="true">!</span>
-          <h3 class="uppercase">{locale === 'es' ? 'Evento exclusivo B2B' : 'Exclusive B2B Event'}</h3>
+          <h3 class="uppercase">
+            {locale === "es" ? "Evento exclusivo B2B" : "Exclusive B2B Event"}
+          </h3>
         </div>
         <div>
-          <p set:html={tr('registerHome.warningMessage')}/>
+          <p set:html={tr("registerHome.warningMessage")} />
         </div>
       </aside>
-
     </div>
   </div>
 </section>
@@ -392,7 +423,35 @@ const base = locale === "en" ? "/en" : "";
 
     .benefits-title {
       align-items: flex-start;
-      font-size: 1.10rem;
+      font-size: 1.1rem;
+      margin-bottom: 24px;
+    }
+
+    .benefit-item {
+      grid-template-columns: 40px minmax(0, 1fr);
+      gap: 12px;
+    }
+
+    .benefit-item h3 {
+      font-size: 0.88rem;
+      line-height: 1.3;
+    }
+
+    .benefit-item p {
+      font-size: 0.8rem;
+      line-height: 1.4;
+    }
+
+    .benefit-icon {
+      width: 30px;
+      height: 30px;
+    }
+
+    .pass-card {
+      min-height: auto;
+ts-title {
+      align-items: flex-start;
+      font-size: 1.1rem;
       margin-bottom: 24px;
     }
 
