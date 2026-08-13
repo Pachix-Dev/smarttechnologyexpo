@@ -34,7 +34,7 @@ export const ECOMMERCE_PRODUCTS = [
     category: 'drone_innovations',
     event_date_es: '19 de noviembre, 2026',
     event_date_en: 'November 19, 2026',
-    schedule: '14:40 hrs - 18:30 hrs',
+    schedule: '14:40 hrs - 18:10 hrs',
     venue_es: 'Drone Theater, Smart Technology Expo, dentro de Expo Guadalajara',
     venue_en: 'Drone Theater, Smart Technology Expo, inside Expo Guadalajara',
     price: 2300,
