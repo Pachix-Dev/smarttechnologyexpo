@@ -32,7 +32,9 @@ import { ECOMMERCE_PRODUCTS } from "../../data/ecommerce_products";
                 </h3>
 
                 <p class="mt-2 font-['Montserrat',sans-serif] text-[0.68rem] font-normal leading-snug text-[#4b5563] sm:text-[0.72rem] md:text-[0.78rem] lg:text-[0.84rem] xl:text-[0.9rem] text-justify">
-                  {locale === "es" ? product.description_es : product.description_en}
+                  {locale === "es"
+                    ? product.description_es
+                    : product.description_en}
                 </p>
 
                 <div class="mt-3 grid gap-2">
@@ -48,7 +50,11 @@ import { ECOMMERCE_PRODUCTS } from "../../data/ecommerce_products";
                         d="M5.673 0a.7.7 0 0 1 .7.7v1.309h7.517v-1.3a.7.7 0 0 1 1.4 0v1.3H18a2 2 0 0 1 2 1.999v13.993A2 2 0 0 1 18 20H2a2 2 0 0 1-2-1.999V4.008a2 2 0 0 1 2-1.999h2.973V.699a.7.7 0 0 1 .7-.699M1.4 7.742v10.259a.6.6 0 0 0 .6.6h16a.6.6 0 0 0 .6-.6V7.756zm5.267 6.877v1.666H5v-1.666zm4.166 0v1.666H9.167v-1.666zm4.167 0v1.666h-1.667v-1.666zm-8.333-3.977v1.666H5v-1.666zm4.166 0v1.666H9.167v-1.666zm4.167 0v1.666h-1.667v-1.666zM4.973 3.408H2a.6.6 0 0 0-.6.6v2.335l17.2.014V4.008a.6.6 0 0 0-.6-.6h-2.71v.929a.7.7 0 0 1-1.4 0v-.929H6.373v.92a.7.7 0 0 1-1.4 0z"
                       />
                     </svg>
-                    <span>{locale === "es" ? product.event_date_es : product.event_date_en}</span>
+                    <span>
+                      {locale === "es"
+                        ? product.event_date_es
+                        : product.event_date_en}
+                    </span>
                   </div>
 
                   <div class="flex items-start gap-2 rounded-md bg-[#f4f8fa] px-2.5 py-2 font-['Montserrat',sans-serif] text-[0.68rem] font-semibold leading-snug text-[#1d1d1b] sm:text-[0.72rem] md:text-[0.78rem]">
@@ -89,7 +95,9 @@ import { ECOMMERCE_PRODUCTS } from "../../data/ecommerce_products";
                         d="M12 12c-1.1 0-2-.9-2-2s.9-2 2-2s2 .9 2 2s-.9 2-2 2m6-1.8C18 6.57 15.35 4 12 4s-6 2.57-6 6.2c0 2.34 1.95 5.44 6 9.14c4.05-3.7 6-6.8 6-9.14M12 2c4.2 0 8 3.22 8 8.2c0 3.32-2.67 7.25-8 11.8c-5.33-4.55-8-8.48-8-11.8C4 5.22 7.8 2 12 2"
                       />
                     </svg>
-                    <span>{locale === "es" ? product.venue_es : product.venue_en}</span>
+                    <span>
+                      {locale === "es" ? product.venue_es : product.venue_en}
+                    </span>
                   </div>
 
                   <div class="flex items-start gap-2 rounded-md bg-[#f4f8fa] px-2.5 py-2 font-['Montserrat',sans-serif] text-[0.68rem] font-semibold leading-snug text-[#1d1d1b] sm:text-[0.72rem] md:text-[0.78rem]">
@@ -105,9 +113,9 @@ import { ECOMMERCE_PRODUCTS } from "../../data/ecommerce_products";
                       />
                     </svg>
                     <span>
-                      {
-                        locale === "es" ? product.capacity_desc_es : product.capacity_desc_en
-                      }
+                      {locale === "es"
+                        ? product.capacity_desc_es
+                        : product.capacity_desc_en}
                     </span>
                   </div>
                 </div>
@@ -117,26 +125,44 @@ import { ECOMMERCE_PRODUCTS } from "../../data/ecommerce_products";
                     {locale === "es" ? "Preventa especial" : "Special presale"}
                   </div>
                   <div class="bg-white px-3 py-3 text-center">
-                    <div class="flex items-end justify-center leading-none">
-                      <span class="mb-1 mr-1 text-[1rem] font-bold text-[#1d1d1b] sm:text-[1.1rem]">$</span>
-                      <span class="text-[2.45rem] font-black text-[#296684] sm:text-[2.75rem] md:text-[3rem] font-montserrat-extra-bold">
-                        {Number(product.price).toLocaleString("en-US")}
-                      </span>
-                      <span class="mb-1 ml-1 text-[0.78rem] font-extrabold text-[#1d1d1b] sm:text-[0.85rem]">MXN</span>
+                    <div class="flex flex-col items-center justify-center leading-none">
+                      <h4 class="text-xs font-extrabold mb-2 uppercase text-green-600">
+                        {locale === "es"
+                          ? "Preventa : Agosto y septiembre"
+                          : "Presale : August and September"}
+                      </h4>
+                      <div>
+                        <span class="mb-1 mr-1 text-[1rem] font-bold text-[#1d1d1b] sm:text-[1.1rem]">
+                          $
+                        </span>
+                        <span class="text-[2.45rem] font-black text-[#296684] sm:text-[2.75rem] md:text-[3rem] font-montserrat-extra-bold">
+                          {Number(product.price).toLocaleString("en-US")}
+                        </span>
+                        <span class="mb-1 ml-1 text-[0.78rem] font-extrabold text-[#1d1d1b] sm:text-[0.85rem]">
+                          MXN
+                        </span>
+                      </div>
                     </div>
                     <p class="mt-1 text-[0.62rem] font-semibold uppercase tracking-[0.04em] text-[#4b5563] sm:text-[0.68rem]">
-                      {locale === "es" ? "por persona + IVA" : "per person + VAT"}
+                      {locale === "es"
+                        ? "por persona + IVA"
+                        : "per person + VAT"}
                     </p>
-                    {
-                      product.final_price && product.final_price > product.price && (
+                    {product.final_price &&
+                      product.final_price > product.price && (
                         <p class="mt-2 text-[0.65rem] font-medium text-[#6b7280] sm:text-[0.72rem]">
-                          {locale === "es" ? "Precio regular: " : "Regular price: "}
+                          {locale === "es"
+                            ? "Precio regular octubre y noviembre : "
+                            : "Regular price October and November : "}
                           <span class="font-bold">
-                            ${Number(product.final_price).toLocaleString("en-US")} MXN
+                            $
+                            {Number(product.final_price).toLocaleString(
+                              "en-US",
+                            )}{" "}
+                            MXN
                           </span>
                         </p>
-                      )
-                    }
+                      )}
                   </div>
                 </div>
               </div>
