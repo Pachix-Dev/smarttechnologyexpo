@@ -13,7 +13,7 @@ import { ECOMMERCE_PRODUCTS } from "../../data/ecommerce_products";
   class="relative w-full box-border bg-white px-4 pt-6 pb-10 before:absolute before:left-0 before:right-0 before:top-[14%] before:z-0 before:h-[5px] before:bg-[#103347] before:content-[''] after:absolute after:left-0 after:right-0 after:top-[60%] after:z-0 after:h-[5px] after:bg-[#103347] after:content-[''] sm:px-6 sm:pt-10 sm:pb-14 sm:before:top-[12.5%] sm:after:top-[55%] md:px-10 md:pt-12 md:pb-16 md:before:top-[24.4%] md:after:hidden lg:px-12 lg:pt-14 lg:pb-[4.5rem] xl:px-16 xl:pt-16 xl:pb-20"
 >
   <div
-    class="relative z-[1] mx-auto grid max-w-full grid-cols-1 gap-4 sm:max-w-[300px] sm:gap-6 md:max-w-[400px] md:gap-5"
+    class="relative z-[1] mx-auto grid max-w-full grid-cols-1 sm:grid-cols-2 gap-4 sm:max-w-[800px] sm:gap-6 md:gap-5"
     data-aos="fade-up"
     data-aos-duration="700"
   >
@@ -23,7 +23,7 @@ import { ECOMMERCE_PRODUCTS } from "../../data/ecommerce_products";
           product.category === "drone_innovations" && (
             <div class="flex h-auto flex-col overflow-hidden rounded-xl bg-white shadow-[8px_8px_20px_rgba(0,0,0,0.25)] sm:rounded-2xl xl:rounded-[18px]">
               <div class="shrink-0 bg-gradient-to-r from-[#c60c15] to-[#921113] px-3 py-2 text-center font-['Montserrat',sans-serif] text-[0.6rem] font-extrabold uppercase tracking-[0.05em] text-white sm:text-[0.65rem] md:text-[0.7rem] lg:text-[0.75rem] xl:text-[0.8rem]">
-                {tr("pricingSection.tag", "\u00a1Oferta especial!")}
+                {tr("pricingSection.tag", "¡Oferta especial!")}
               </div>
 
               <div class="flex flex-1 flex-col px-4 py-3 sm:px-5 sm:py-4">
@@ -31,7 +31,7 @@ import { ECOMMERCE_PRODUCTS } from "../../data/ecommerce_products";
                   {locale === "es" ? product.name_es : product.name_en}
                 </h3>
 
-                <p class="mt-2 font-['Montserrat',sans-serif] text-[0.68rem] font-normal leading-snug text-[#4b5563] sm:text-[0.72rem] md:text-[0.78rem] lg:text-[0.84rem] xl:text-[0.9rem]">
+                <p class="mt-2 font-['Montserrat',sans-serif] text-[0.68rem] font-normal leading-snug text-[#4b5563] sm:text-[0.72rem] md:text-[0.78rem] lg:text-[0.84rem] xl:text-[0.9rem] text-justify">
                   {locale === "es" ? product.description_es : product.description_en}
                 </p>
 
@@ -106,13 +106,7 @@ import { ECOMMERCE_PRODUCTS } from "../../data/ecommerce_products";
                     </svg>
                     <span>
                       {
-                        product.capacity_limit === null
-                          ? locale === "es"
-                            ? "Disponible"
-                            : "Available"
-                          : `${product.capacity_limit} ${
-                              locale === "es" ? "lugares disponibles" : "available seats"
-                            }`
+                        locale === "es" ? product.capacity_desc_es : product.capacity_desc_en
                       }
                     </span>
                   </div>
@@ -125,7 +119,7 @@ import { ECOMMERCE_PRODUCTS } from "../../data/ecommerce_products";
                   <div class="bg-white px-3 py-3 text-center">
                     <div class="flex items-end justify-center leading-none">
                       <span class="mb-1 mr-1 text-[1rem] font-bold text-[#1d1d1b] sm:text-[1.1rem]">$</span>
-                      <span class="text-[2.45rem] font-black text-[#296684] sm:text-[2.75rem] md:text-[3rem]">
+                      <span class="text-[2.45rem] font-black text-[#296684] sm:text-[2.75rem] md:text-[3rem] font-montserrat-extra-bold">
                         {Number(product.price).toLocaleString("en-US")}
                       </span>
                       <span class="mb-1 ml-1 text-[0.78rem] font-extrabold text-[#1d1d1b] sm:text-[0.85rem]">MXN</span>
@@ -137,7 +131,7 @@ import { ECOMMERCE_PRODUCTS } from "../../data/ecommerce_products";
                       product.final_price && product.final_price > product.price && (
                         <p class="mt-2 text-[0.65rem] font-medium text-[#6b7280] sm:text-[0.72rem]">
                           {locale === "es" ? "Precio regular: " : "Regular price: "}
-                          <span class="font-bold line-through">
+                          <span class="font-bold">
                             ${Number(product.final_price).toLocaleString("en-US")} MXN
                           </span>
                         </p>

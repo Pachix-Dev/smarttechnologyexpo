@@ -72,14 +72,14 @@ export default function ProductCard({ product, languageProp, onAddToCart }) {
                 <path d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12" />
                 <path
                   stroke="currentColor"
-                  stroke-linecap="square"
-                  stroke-width="2"
+                  strokeLinecap="square"
+                  strokeWidth="2"
                   d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12Z"
                 />
                 <path
                   stroke="currentColor"
-                  stroke-linecap="square"
-                  stroke-width="2"
+                  strokeLinecap="square"
+                  strokeWidth="2"
                   d="M12 6.5V12l3 3"
                 />
               </g>
