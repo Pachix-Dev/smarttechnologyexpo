@@ -1,18 +1,15 @@
 ---
 // src/components/drone-innovators/BannerPases.astro
-import { useTranslations, getTranslation } from '../../utils/translations'
+import { useTranslations } from '../../utils/translations'
 
 export interface Props {
   locale?: string
 }
 
-const { locale, translations } = await useTranslations(Astro.props, Astro)
-const tr = (key: string, fallback: string = '') =>
-  getTranslation(translations, key, fallback)
+const { locale } = await useTranslations(Astro.props, Astro)
 ---
 
 <section class="bp-section">
-
   <!-- Fondo — imagen dicta la altura, sin recortes -->
   <img
     src="/img/drone-innovators/bg-bannerpases.webp"
@@ -23,8 +20,12 @@ const tr = (key: string, fallback: string = '') =>
 
   <!-- Botón pill centrado sobre el fondo -->
   <div class="bp-inner" data-aos="zoom-in" data-aos-duration="700">
-    <a href={locale === 'es' ? '/productos' : '/en/productos'} class="bp-btn">
-      {tr('droneInnovators.bannerPases.cta', '¡ADQUIERE TUS PASES!')}
+    <a
+      href={locale === 'es' ? '/productos' : '/en/productos'}
+      class="inline-flex w-fit max-w-[92vw] items-center justify-center gap-4 whitespace-nowrap rounded-full border-3 border-[#ffffff] bg-[#e30613] px-[2rem] py-[1rem] text-center font-['Montserrat',sans-serif] text-[1.6rem] font-black uppercase leading-none tracking-[0.03em] text-white no-underline shadow-lg transition-colors duration-200 hover:bg-[#fa7c07] hover:shadow-xl focus-visible:outline-offset-4 focus-visible:outline-white max-[768px]:max-w-[88vw] max-[768px]:whitespace-normal max-[768px]:px-[1.35rem] max-[768px]:py-[0.8rem] max-[768px]:text-[1.08rem] max-[480px]:max-w-[84vw] max-[480px]:gap-2 max-[480px]:px-[1rem] max-[480px]:py-[0.66rem] max-[480px]:text-[0.9rem] max-[380px]:px-[0.82rem] max-[380px]:py-[0.56rem] max-[380px]:text-[0.8rem] min-[769px]:max-[1024px]:px-[1.65rem] min-[769px]:max-[1024px]:py-[0.86rem] min-[769px]:max-[1024px]:text-[1.32rem] min-[1281px]:max-w-[40rem] min-[1281px]:px-[2.35rem] min-[1281px]:py-[1.08rem] min-[1281px]:text-[1.85rem]"
+    >
+      {locale === 'es' ? 'Comprar pases ahora' : 'Buy passes now'}
+      <svg xmlns="http://www.w3.org/2000/svg" class="size-[1.85rem] flex-none max-[768px]:size-[1.3rem] max-[480px]:size-[1.08rem] min-[769px]:max-[1024px]:size-[1.55rem] min-[1281px]:size-[2.05rem]" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M13.47 5.47a.75.75 0 0 1 1.06 0l6 6a.75.75 0 0 1 0 1.06l-6 6a.75.75 0 1 1-1.06-1.06l4.72-4.72H4a.75.75 0 0 1 0-1.5h14.19l-4.72-4.72a.75.75 0 0 1 0-1.06" clip-rule="evenodd"/></svg>
     </a>
   </div>
 
@@ -34,13 +35,17 @@ const tr = (key: string, fallback: string = '') =>
   .bp-section {
     position: relative;
     width: 100%;
+    height: clamp(7rem, 20vw, 15rem);
+    overflow: hidden;
     background: #0b1627;
   }
 
   .bp-bg {
     display: block;
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
   }
 
   .bp-inner {
@@ -49,67 +54,36 @@ const tr = (key: string, fallback: string = '') =>
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 4rem;
     box-sizing: border-box;
-  }
-
-  .bp-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: #fff;
-    color: #111;
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(1rem, 4.5vw, 3.9rem);
-    font-weight: 900;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    text-decoration: none;
-    padding: 1.1rem 4rem;
-    border-radius: 60px;
-    white-space: nowrap;
-    transition: background 0.2s, color 0.2s, transform 0.2s;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
-  }
-
-  .bp-btn:hover {
-    background: #f0f0f0;
-    transform: translateY(-2px);
   }
 
   /* ── DESKTOP ≥1281px ── */
   @media (min-width: 1281px) {
     .bp-inner { padding: 0 4rem; }
-    .bp-btn   { font-size: 3.9rem; padding: 1.1rem 4rem; border-radius: 60px; white-space: nowrap; }
   }
 
   /* ── TABLET GRANDE 1025px–1280px ── */
   @media (max-width: 1280px) and (min-width: 1025px) {
-    .bp-inner { padding: 0 4rem; }
-    .bp-btn   { font-size: 3rem; padding: 1rem 3.5rem; border-radius: 55px; white-space: nowrap; }
+    .bp-inner { padding: 0 3rem; }
   }
 
   /* ── TABLET 769px–1024px ── */
   @media (max-width: 1024px) and (min-width: 769px) {
-    .bp-inner { padding: 0 3rem; }
-    .bp-btn   { font-size: 2.4rem; padding: 1rem 3rem; border-radius: 50px; white-space: nowrap; }
+    .bp-inner { padding: 0 2rem; }
   }
 
   /* ── MOBILE ≤768px ── */
   @media (max-width: 768px) {
-    .bp-inner { padding: 0 2rem; }
-    .bp-btn   { font-size: 1.6rem; padding: 0.9rem 2.5rem; border-radius: 40px; white-space: normal; text-align: center; }
+    .bp-inner { padding: 0 1.25rem; }
   }
 
   /* ── MOBILE PEQUEÑO ≤480px ── */
   @media (max-width: 480px) {
-    .bp-inner { padding: 0 1.5rem; }
-    .bp-btn   { font-size: 1.2rem; padding: 0.8rem 2rem; border-radius: 30px; white-space: normal; text-align: center; }
+    .bp-inner { padding: 0 1rem; }
   }
 
   /* ── MOBILE MUY PEQUEÑO ≤380px ── */
   @media (max-width: 380px) {
-    .bp-inner { padding: 0 1rem; }
-    .bp-btn   { font-size: 1rem; padding: 0.7rem 1.5rem; border-radius: 24px; white-space: normal; text-align: center; }
+    .bp-inner { padding: 0 0.75rem; }
   }
 </style>
