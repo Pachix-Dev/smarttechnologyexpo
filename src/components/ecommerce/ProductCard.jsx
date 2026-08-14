@@ -120,7 +120,9 @@ export default function ProductCard({ product, languageProp, onAddToCart }) {
                 d="M9.175 10.825Q8 9.65 8 8t1.175-2.825T12 4t2.825 1.175T16 8t-1.175 2.825T12 12t-2.825-1.175M4 20v-2.8q0-.85.438-1.562T5.6 14.55q1.55-.775 3.15-1.162T12 13t3.25.388t3.15 1.162q.725.375 1.163 1.088T20 17.2V20z"
               />
             </svg>
-            { languageProp === "es" ? product.capacity_desc_es : product.capacity_desc_en }
+            {languageProp === "es"
+              ? product.capacity_desc_es
+              : product.capacity_desc_en}
           </p>
         </div>
 
@@ -135,21 +137,24 @@ export default function ProductCard({ product, languageProp, onAddToCart }) {
             <span className="text-3xl font-bold text-green-800">
               ${parseFloat(product.price).toFixed(2)}
             </span>
-            <span className="text-gray-600 text-sm ml-2">MXN</span> / (
-            {languageProp === "es" ? "por persona" : "per person"}{" "}
-            {languageProp === "es" ? "+ IVA" : "+ VAT"})
+            <span className="text-gray-600 text-sm ml-2 font-bold">MXN</span> /
+            {languageProp === "es" ? "por persona + IVA" : "per person + VAT"}
           </div>
           <div className="flex flex-col">
-            <span>
+            <span className="uppercase">
               {languageProp === "es"
                 ? "Precio regular: octubre y noviembre "
                 : "Regular price: October and November "}
             </span>
-            {product.final_price && product.final_price > product.price && (
-              <span className="text-gray-500 text-sm">
-                ${parseFloat(product.final_price).toFixed(2)} MXN
+            <span className="text-gray-600 text-base font-bold">
+              ${parseFloat(product.final_price).toFixed(2)}
+              <span className="text-sm ml-2 font-normal">
+                MXN /
+                {languageProp === "es"
+                  ? "por persona + IVA"
+                  : "per person + VAT"}
               </span>
-            )}
+            </span>
           </div>
           {/* <span className="text-gray-500 text-sm ml-2">
             {product.capacity_limit === null
@@ -208,7 +213,13 @@ export default function ProductCard({ product, languageProp, onAddToCart }) {
               : "bg-blue-600 text-white hover:bg-blue-700"
           }`}
         >
-          {isOutOfStock ? (languageProp === "es" ? "Agotado" : "Out of Stock") : (languageProp === "es" ? "Añadir al Carrito" : "Add to Cart")}
+          {isOutOfStock
+            ? languageProp === "es"
+              ? "Agotado"
+              : "Out of Stock"
+            : languageProp === "es"
+              ? "Añadir al Carrito"
+              : "Add to Cart"}
         </button>
 
         {/* Mensaje de producto añadido */}

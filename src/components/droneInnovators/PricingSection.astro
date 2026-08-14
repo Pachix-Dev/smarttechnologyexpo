@@ -154,14 +154,16 @@ import { ECOMMERCE_PRODUCTS } from "../../data/ecommerce_products";
                           {locale === "es"
                             ? "Precio regular octubre y noviembre : "
                             : "Regular price October and November : "}
+                        </p>
+                        <p class="mt-1 text-[0.62rem] font-semibold uppercase tracking-[0.04em] text-[#4b5563] sm:text-[0.68rem]">
                           <span class="font-bold">
                             $
                             {Number(product.final_price).toLocaleString(
                               "en-US",
-                            )}{" "}
+                            )}
                             MXN
                           </span>
-                        </p>
+                          {locale === "es" ? " por persona + IVA" : " per person + VAT"}</p>
                       )}
                   </div>
                 </div>
