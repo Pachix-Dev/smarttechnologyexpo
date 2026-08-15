@@ -1,0 +1,172 @@
+---
+import { useTranslations, getTranslation } from "../../utils/translations";
+import ProductList from "./ProductList";
+// ✨ Una sola línea para cargar traducciones!
+const { locale, translations } = await useTranslations(Astro.props, Astro);
+// 🎯 Helper para traducciones más elegante
+const tr = (key: string, fallback: string = "") =>
+  getTranslation(translations, key, fallback);
+const currenLanguage = locale === "es" ? "es" : "en";
+const base = locale === "es" ? "" : "/en";
+---
+
+<section>
+  <div
+    class="min-h-screen bg-gradient-to-br from-green-50 to-emerald-100 py-20"
+  >
+    <div class="max-w-2xl mx-auto px-4">
+      {/* Éxito */}
+      <div class="text-center mb-12">
+        <h1 class="text-4xl font-bold text-gray-900 mb-4">
+          {
+            currenLanguage === "es"
+              ? "¡Gracias por tu compra!"
+              : "Thank you for your purchase!"
+          }
+        </h1>
+
+        <p class="text-xl text-gray-700 mb-8">
+          {
+            currenLanguage === "es"
+              ? "Tu pago ha sido procesado exitosamente. Recibirás un email con los detalles de tu orden y tus accesos."
+              : "Your payment has been successfully processed. You will receive an email with your order details and access information."
+          }
+        </p>
+      </div>
+
+      {/* Tarjeta de información */}
+      <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">
+          {currenLanguage === "es" ? "Siguiente:" : "Next:"}
+        </h2>
+
+        <div class="space-y-4">
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0">
+              <div
+                class="flex items-center justify-center h-8 w-8 rounded-md bg-blue-600 text-white font-bold"
+              >
+                1
+              </div>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-gray-900">
+                {
+                  currenLanguage === "es"
+                    ? "Revisa tu Email"
+                    : "Check your Email"
+                }
+              </h3>
+              <p class="text-gray-600">
+                {
+                  currenLanguage === "es"
+                    ? "Recibirás un correo con tu recibo y los accesos a los eventos."
+                    : "You will receive an email with your receipt and access information for the events."
+                }
+              </p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0">
+              <div
+                class="flex items-center justify-center h-8 w-8 rounded-md bg-blue-600 text-white font-bold"
+              >
+                2
+              </div>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-gray-900">
+                {
+                  currenLanguage === "es"
+                    ? "Guarda tus Accesos"
+                    : "Save your Access"
+                }
+              </h3>
+              <p class="text-gray-600">
+                {
+                  currenLanguage === "es"
+                    ? "Descarga y guarda los QR o boletos. Los necesitarás para acceder a los eventos."
+                    : "Download and save the QR codes or tickets. You will need them to access the events."
+                }
+              </p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0">
+              <div
+                class="flex items-center justify-center h-8 w-8 rounded-md bg-blue-600 text-white font-bold"
+              >
+                3
+              </div>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-gray-900">
+                {
+                  currenLanguage === "es"
+                    ? "Presenta en el Evento"
+                    : "Present at the Event"
+                }
+              </h3>
+              <p class="text-gray-600">
+                {
+                  currenLanguage === "es"
+                    ? "Lleva tu boleto o QR el día del evento. ¡Te esperamos!"
+                    : "Bring your ticket or QR code on the day of the event. We look forward to seeing you!"
+                }
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Preguntas */}
+      <div class="bg-blue-50 rounded-lg border border-blue-200 p-8 mb-8">
+        <h3 class="text-lg font-bold text-gray-900 mb-4">
+          {currenLanguage === "es" ? "¿Preguntas?" : "Questions?"}
+        </h3>
+        <p class="text-gray-700 mb-4">
+          {
+            currenLanguage === "es"
+              ? "Si tienes dudas sobre tu compra o tus accesos, por favor:"
+              : "If you have questions about your purchase or access, please:"
+          }
+        </p>
+        <ul class="space-y-2 text-gray-700">
+          <li>📧 Envía un email a: contacto@smarttechnologyexpo.mx</li>
+          <li>📞 Llama al: +52 (33) XXXX-XXXX</li>
+          <li>💬 Contacta a través de nuestro sitio web</li>
+        </ul>
+      </div>
+
+      {/* Botones de acción */}
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a
+          href="/productos"
+          class="flex-1 px-6 py-3 bg-white text-blue-600 border-2 border-blue-600 font-bold rounded-lg hover:bg-blue-50 text-center transition"
+        >
+          {currenLanguage === "es" ? "Ver Más Productos" : "See More Products"}
+        </a>
+        <a
+          href="/"
+          class="flex-1 px-6 py-3 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 text-center transition"
+        >
+          {currenLanguage === "es" ? "Volver al Inicio" : "Back to Home"}
+        </a>
+      </div>
+
+      {/* Aviso legal */}
+      <div class="mt-12 p-6 bg-gray-100 rounded-lg border border-gray-300">
+        <p class="text-sm text-gray-700">
+          <strong>{currenLanguage === "es" ? "Aviso Legal :" : "Legal Notice : "}</strong>
+          {
+            currenLanguage === "es"
+              ? "Tu información de pago ha sido procesada de forma segura mediante PayPal. No guardamos detalles de tu tarjeta de crédito en nuestros servidores. Para más información sobre seguridad, consulta nuestra política de privacidad."
+              : "Your payment information has been securely processed through PayPal. We do not store your credit card details on our servers. For more information about security, please refer to our privacy policy."
+          }
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
