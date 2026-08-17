@@ -4,7 +4,7 @@ import { ExhibitorInfo } from "./ExhibitorInfo.jsx";
 const hasValue = (value) => value !== null && value !== undefined && value !== "";
 
 const hasCoexhibitorRecord = (exhibitor) =>
-  exhibitor.has_coexhibitors === "Sí" && hasValue(exhibitor.coexhibitors?.trim());
+  exhibitor.has_coexhibitors === "si" && hasValue(exhibitor.coexhibitors?.trim());
 
 const getInitials = (name = "") =>
   name
