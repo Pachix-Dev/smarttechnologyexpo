@@ -2,6 +2,7 @@ export const directory2026 =
 [
   {
     "id": 1,
+    "type":"exhibitor",
     "tradename": "Chuck Industrial De México",
     "legal_company_name": "Chuck Industrial De México",
     "logo": "/img/exhibitors2026/chuck_industrial.webp",
@@ -26,6 +27,7 @@ export const directory2026 =
   },
   {
     "id": 2,
+    "type":"exhibitor",
     "tradename": "IDICSA",
     "legal_company_name": "IDI Coding & Marking",
     "logo": "/img/exhibitors2026/idicsa.webp",
@@ -50,6 +52,7 @@ export const directory2026 =
   },
   {
     "id": 3,
+    "type":"exhibitor",
     "tradename": "SEN",
     "legal_company_name": "SOLUCIONES EN EXTRUSIONES NORESTE",
     "logo": "/img/exhibitors2026/sen.webp",
@@ -69,11 +72,12 @@ export const directory2026 =
     "contact_email": "admin@solucionesen.mx",
     "contact_phone": "442 126 8886",
     "directory_consent": "Acepto / Agree.",
-    "has_coexhibitors": "Sí",
+    "has_coexhibitors": "No",
     "coexhibitors": ""
   },
   {
     "id": 4,
+    "type":"exhibitor",
     "tradename": "Autsol",
     "legal_company_name": "AUTSOL",
     "logo": "",
@@ -98,6 +102,7 @@ export const directory2026 =
   },
   {
     "id": 5,
+    "type":"exhibitor",
     "tradename": "Eurokabel México",
     "legal_company_name": "Eurokabel México",
     "logo": "",
@@ -117,11 +122,12 @@ export const directory2026 =
     "contact_email": "hector.lopez@kabelgruppe.com",
     "contact_phone": "+523313114869",
     "directory_consent": "Acepto / Agree.",
-    "has_coexhibitors": "Sí",
+    "has_coexhibitors": "si",
     "coexhibitors": "Beghelli, Fenix, Top Cable, Unzerk, Pemsa"
   },
   {
     "id": 6,
+    "type":"exhibitor",
     "tradename": "Asic Mexico",
     "legal_company_name": "Automatizacion y Control Asic de Mexico",
     "logo": "/img/exhibitors2026/asic_mexico.webp",
@@ -146,6 +152,7 @@ export const directory2026 =
   },
   {
     "id": 7,
+    "type":"exhibitor",
     "tradename": "Sensify",
     "legal_company_name": "SENSIFY IOT SOLUTIONS",
     "logo": "/img/exhibitors2026/sensify.webp",
@@ -170,6 +177,7 @@ export const directory2026 =
   },
   {
     "id": 8,
+    "type":"exhibitor",
     "tradename": "Modular Assembly Technology",
     "legal_company_name": "Modular Aluminio Estructural",
     "logo": "",
@@ -194,6 +202,7 @@ export const directory2026 =
   },
   {
     "id": 9,
+    "type":"exhibitor",
     "tradename": "ABSOGER",
     "legal_company_name": "ABSOGER",
     "logo": "/img/exhibitors2026/absoger.webp",
@@ -218,6 +227,7 @@ export const directory2026 =
   },
   {
     "id": 10,
+    "type":"exhibitor",
     "tradename": "igus México",
     "legal_company_name": "igus México",
     "logo": "/img/exhibitors2026/igus.webp",
@@ -242,6 +252,7 @@ export const directory2026 =
   },
   {
     "id": 11,
+    "type":"exhibitor",
     "tradename": "Octave",
     "legal_company_name": "INTERGRAPH DE MEXICO, S.A. DE C.V.",
     "logo": "/img/exhibitors2026/octave.webp",
@@ -266,6 +277,7 @@ export const directory2026 =
   },
   {
     "id": 12,
+    "type":"exhibitor",
     "tradename": "KAESER COMPRESORES",
     "legal_company_name": "KAESER COMPRESORES DE MEXICO S DE RL DE CV",
     "logo": "/img/exhibitors2026/kaeser_compresores.webp",
@@ -290,6 +302,7 @@ export const directory2026 =
   },
   {
     "id": 14,
+    "type":"exhibitor",
     "tradename": "ATEQ",
     "legal_company_name": "ATEQ CORP",
     "logo": "/img/exhibitors2026/ateq.webp",
@@ -309,11 +322,12 @@ export const directory2026 =
     "contact_email": "maria-jose.perez@ateq.com.mx",
     "contact_phone": "+52(462)628-1426",
     "directory_consent": "Acepto / Agree.",
-    "has_coexhibitors": "Sí",
+    "has_coexhibitors": "No",
     "coexhibitors": ""
   },
   {
     "id": 15,
+    "type":"exhibitor",
     "tradename": "Avant Assembly Systems",
     "legal_company_name": "Avant Robotics",
     "logo": "/img/exhibitors2026/avant.webp",
@@ -333,11 +347,12 @@ export const directory2026 =
     "contact_email": "vfernandez@avantrobotics.com",
     "contact_phone": "+52 8110490961",
     "directory_consent": "Acepto / Agree.",
-    "has_coexhibitors": "Sí",
+    "has_coexhibitors": "si",
     "coexhibitors": "TBD"
   },
   {
     "id": 16,
+    "type":"exhibitor",
     "tradename": "Mean Well",
     "legal_company_name": "GCM Comercial",
     "logo": "/img/exhibitors2026/mean_well.webp",
@@ -362,6 +377,7 @@ export const directory2026 =
   },
   {
     "id": 17,
+    "type":"exhibitor",
     "tradename": "Risoul RS",
     "legal_company_name": "Risoul y Cia",
     "logo": "/img/exhibitors2026/risoul.webp",
@@ -381,11 +397,12 @@ export const directory2026 =
     "contact_email": "mario.pichardo@rsgroup.com",
     "contact_phone": "5550733040",
     "directory_consent": "Acepto / Agree.",
-    "has_coexhibitors": "Sí",
-    "coexhibitors": "Por definir"
+    "has_coexhibitors": "No",
+    "coexhibitors": null
   },
   {
     "id": 18,
+    "type":"exhibitor",
     "tradename": "Uber para Empresas",
     "legal_company_name": "Uber",
     "logo": "/img/exhibitors2026/uber_empresas.webp",
@@ -410,6 +427,7 @@ export const directory2026 =
   },
   {
     "id": 19,
+    "type":"exhibitor",
     "tradename": "Keyence Mexico",
     "legal_company_name": "Keyence Mexico S.A. D.E C.V.",
     "logo": "/img/exhibitors2026/keyence.webp",
@@ -434,6 +452,7 @@ export const directory2026 =
   },
   {
     "id": 20,
+    "type":"exhibitor",
     "tradename": "RemBrain",
     "legal_company_name": "RemBrain",
     "logo": "/img/exhibitors2026/rembrain.webp",
@@ -453,11 +472,12 @@ export const directory2026 =
     "contact_email": "aecheverria@rembrain.ai",
     "contact_phone": "+51 3322453470",
     "directory_consent": "Acepto / Agree.",
-    "has_coexhibitors": "Sí",
-    "coexhibitors": "Juan Carlos Jaime \nMax Goncharov\nMargo Goncharova"
+    "has_coexhibitors": "No",
+    "coexhibitors": ""
   },
   {
     "id": 21,
+    "type":"exhibitor",
     "tradename": "EUCHNER MEXICO",
     "legal_company_name": "EUCHNER MEXICO",
     "logo": "/img/exhibitors2026/euchner.webp",
@@ -482,6 +502,7 @@ export const directory2026 =
   },
   {
     "id": 22,
+    "type":"exhibitor",
     "tradename": "InduSol America",
     "legal_company_name": "InduSol America, LLC",
     "logo": "/img/exhibitors2026/indusol.webp",
@@ -501,11 +522,12 @@ export const directory2026 =
     "contact_email": "hugo.mora@indusolamerica.com",
     "contact_phone": "+52 921 274 1636",
     "directory_consent": "Acepto / Agree.",
-    "has_coexhibitors": "Sí",
+    "has_coexhibitors": "No",
     "coexhibitors": null
   },
   {
     "id": 23,
+    "type":"exhibitor",
     "tradename": "Win Source Electronics",
     "legal_company_name": "Win Source Electronic Technology Limited",
     "logo": "/img/exhibitors2026/winsource.webp",
@@ -530,6 +552,7 @@ export const directory2026 =
   },
   {
     "id": 24,
+    "type":"exhibitor",
     "tradename": "ManWinWin Software",
     "legal_company_name": "Navaltik Management, Lda.",
     "logo": "/img/exhibitors2026/manwinwin.webp",
@@ -554,6 +577,7 @@ export const directory2026 =
   },
   {
     "id": 25,
+    "type":"exhibitor",
     "tradename": "maxon",
     "legal_company_name": "maxon precision motors, inc.",
     "logo": "/img/exhibitors2026/maxon.webp",
@@ -578,6 +602,7 @@ export const directory2026 =
   },
   {
     "id": 26,
+    "type":"exhibitor",
     "tradename": "Packaging & Robotic Solutions",
     "legal_company_name": "Federico Barrera",
     "logo": "",
@@ -602,6 +627,7 @@ export const directory2026 =
   },
   {
     "id": 27,
+    "type":"exhibitor",
     "tradename": "INTERLAKEN MAQUINARIA",
     "legal_company_name": "INTERLAKEN MAQUINARIA",
     "logo": "",
@@ -626,6 +652,7 @@ export const directory2026 =
   },
   {
     "id": 28,
+    "type":"exhibitor",
     "tradename": "Beckhoff Automation",
     "legal_company_name": "Beckhoff Automation",
     "logo": "/img/exhibitors2026/beckhoff.webp",
@@ -650,6 +677,7 @@ export const directory2026 =
   },
   {
     "id": 29,
+    "type":"exhibitor",
     "tradename": "Infotech Automation",
     "legal_company_name": "Infotech Automation",
     "logo": "/img/exhibitors2026/infotech_automation.webp",
@@ -674,6 +702,7 @@ export const directory2026 =
   },
   {
     "id": 30,
+    "type":"exhibitor",
     "tradename": "KNIPEX",
     "legal_company_name": "KNIPEX MÉXICO",
     "logo": "/img/exhibitors2026/knipex.webp",
@@ -698,6 +727,7 @@ export const directory2026 =
   },
   {
     "id": 31,
+    "type":"exhibitor",
     "tradename": "Process Think Engineering",
     "legal_company_name": "HOVLAND SA de CV",
     "logo": "",
@@ -717,11 +747,12 @@ export const directory2026 =
     "contact_email": "felipe@thkengineering.com",
     "contact_phone": "+52 33 1314 5892",
     "directory_consent": "Acepto / Agree.",
-    "has_coexhibitors": "Sí",
-    "coexhibitors": ""
+    "has_coexhibitors": "No",
+    "coexhibitors": null
   },
   {
     "id": 32,
+    "type":"exhibitor",
     "tradename": "3D MARKET",
     "legal_company_name": "DMA1408294E1",
     "logo": "/img/exhibitors2026/3d_market.webp",
@@ -746,6 +777,7 @@ export const directory2026 =
   },
   {
     "id": 33,
+    "type":"exhibitor",
     "tradename": "JHCTECH",
     "legal_company_name": "JHC Technology Development Co., Ltd.",
     "logo": "/img/exhibitors2026/jhctech.webp",
@@ -770,6 +802,7 @@ export const directory2026 =
   },
   {
     "id": 34,
+    "type":"exhibitor",
     "tradename": "PREVOST",
     "legal_company_name": "PREVOST CORP",
     "logo": "/img/exhibitors2026/prevost.webp",
@@ -794,6 +827,7 @@ export const directory2026 =
   },
   {
     "id": 35,
+    "type":"exhibitor",
     "tradename": "InHand Networks",
     "legal_company_name": "InHand Networks Inc.",
     "logo": "/img/exhibitors2026/inhand_networks.webp",
@@ -818,6 +852,7 @@ export const directory2026 =
   },
   {
     "id": 36,
+    "type":"exhibitor",
     "tradename": "Electro Controles Industriales",
     "legal_company_name": "Electro Controles Industriales S.A. de C.V.",
     "logo": "/img/exhibitors2026/electro_controles_industriales.webp",
@@ -837,11 +872,12 @@ export const directory2026 =
     "contact_email": "marketing@ecisacv.com",
     "contact_phone": "+55 332 646 8915",
     "directory_consent": "Acepto / Agree.",
-    "has_coexhibitors": "Sí",
+    "has_coexhibitors": "si",
     "coexhibitors": "RITTAL, HELU y BRADY"
   },
   {
     "id": 37,
+    "type":"exhibitor",
     "tradename": "Hitachi Energy",
     "legal_company_name": "Hitachi Energy México",
     "logo": "/img/exhibitors2026/hitachi.webp",
@@ -866,6 +902,7 @@ export const directory2026 =
   },
   {
     "id": 38,
+    "type":"exhibitor",
     "tradename": "NIDEC DRIVES",
     "legal_company_name": "NIDEC MEXICO SHARED SERVICES",
     "logo": "/img/exhibitors2026/nidec_dives.webp",
@@ -890,6 +927,7 @@ export const directory2026 =
   },
   {
     "id": 39,
+    "type":"exhibitor",
     "tradename": "SHIFT 3D",
     "legal_company_name": "GLV2 DE MÉXICO",
     "logo": "/img/exhibitors2026/shift_3d.webp",
@@ -914,6 +952,7 @@ export const directory2026 =
   },
   {
     "id": 40,
+    "type":"exhibitor",
     "tradename": "TIERRA TECH",
     "legal_company_name": "TT OPERADORA DEL BAJIO",
     "logo": "/img/exhibitors2026/tierra_tech.webp",
@@ -938,6 +977,7 @@ export const directory2026 =
   },
   {
     "id": 41,
+    "type":"exhibitor",
     "tradename": "SERVOMOTION",
     "legal_company_name": "PPR ROBOTICS",
     "logo": "/img/exhibitors2026/servo_motion.webp",
@@ -962,6 +1002,7 @@ export const directory2026 =
   },
   {
     "id": 42,
+    "type":"exhibitor",
     "tradename": "TRACTIAN",
     "legal_company_name": "Tractian Tecnología Industrial, S. de R.L. de C.V.",
     "logo": "/img/exhibitors2026/tractian.webp",
@@ -986,6 +1027,7 @@ export const directory2026 =
   },
   {
     "id": 44,
+    "type":"exhibitor",
     "tradename": "Servus Intralogistics",
     "legal_company_name": "Servus Intralogistics GmbH",
     "logo": "/img/exhibitors2026/servus.webp",
@@ -1010,6 +1052,7 @@ export const directory2026 =
   },
   {
     "id": 45,
+    "type":"exhibitor",
     "tradename": "Endress+Hauser",
     "legal_company_name": "Endress+Hauser S.A de C.V",
     "logo": "/img/exhibitors2026/endress_hauser.webp",
@@ -1029,11 +1072,12 @@ export const directory2026 =
     "contact_email": "Uriel.ibarra@endress.com",
     "contact_phone": "5528926123",
     "directory_consent": "Acepto / Agree.",
-    "has_coexhibitors": "Sí",
+    "has_coexhibitors": "si",
     "coexhibitors": "ECN"
   },
   {
     "id": 46,
+    "type":"exhibitor",
     "tradename": "TELCEL EMPRESAS",
     "legal_company_name": "RADIOMOVIL DIPSA SA DE CV",
     "logo": "/img/exhibitors2026/telcel_empresas.webp",
@@ -1058,6 +1102,7 @@ export const directory2026 =
   },
   {
     "id": 47,
+    "type":"exhibitor",
     "tradename": "ERBESSD INSTRUMENTS",
     "legal_company_name": "Erbessd Instruments Technologies Inc.",
     "logo": "/img/exhibitors2026/erbessd_instruments.webp",
@@ -1077,11 +1122,12 @@ export const directory2026 =
     "contact_email": "info@erbessd-instruments.com / diana@erbessd-instruments.com",
     "contact_phone": "+52 1 999 641 7888",
     "directory_consent": "Acepto / Agree.",
-    "has_coexhibitors": "Sí",
+    "has_coexhibitors": "No",
     "coexhibitors": ""
   },
   {
     "id": 48,
+    "type":"exhibitor",
     "tradename": "Weidmüller",
     "legal_company_name": "W INTERCONNECTIONS",
     "logo": "/img/exhibitors2026/weidmuller.webp",
@@ -1106,6 +1152,7 @@ export const directory2026 =
   },
   {
     "id": 49,
+    "type":"exhibitor",
     "tradename": "Robustel",
     "legal_company_name": "Robustel Limited",
     "logo": "/img/exhibitors2026/robustel.webp",
@@ -1130,6 +1177,7 @@ export const directory2026 =
   },
   {
     "id": 50,
+    "type":"exhibitor",
     "tradename": "HIKVISION MEXICO",
     "legal_company_name": "HME180717DZ5",
     "logo": "",
@@ -1154,6 +1202,7 @@ export const directory2026 =
   },
   {
     "id": 51,
+    "type":"exhibitor",
     "tradename": "Otennlux Lighting Technology Co.,Ltd.",
     "legal_company_name": "Otennlux Lighting Technology Co.,Ltd.",
     "logo": "/img/exhibitors2026/otennlux.webp",
@@ -1178,6 +1227,7 @@ export const directory2026 =
   },
   {
     "id": 52,
+    "type":"exhibitor",
     "tradename": "Flytek Innovations",
     "legal_company_name": "FLYTEK INNOVAIONS S. DE R.L. DE C.V.",
     "logo": "/img/exhibitors2026/flytek.webp",
@@ -1202,6 +1252,7 @@ export const directory2026 =
   },
   {
     "id": 53,
+    "type":"exhibitor",
     "tradename": "SMarTsol Technologies",
     "legal_company_name": "Smartsol Technologies",
     "logo": "/img/exhibitors2026/smartsol_technologies.webp",
@@ -1226,6 +1277,7 @@ export const directory2026 =
   },
   {
     "id": 54,
+    "type":"exhibitor",
     "tradename": "WAGO",
     "legal_company_name": "WAGO",
     "logo": "/img/exhibitors2026/wago.webp",
@@ -1250,6 +1302,7 @@ export const directory2026 =
   },
   {
     "id": 55,
+    "type":"exhibitor",
     "tradename": "PULSAR",
     "legal_company_name": "Pulsar Global Corp",
     "logo": "/img/exhibitors2026/pulsar.webp",
@@ -1271,5 +1324,105 @@ export const directory2026 =
     "directory_consent": "Acepto / Agree.",
     "has_coexhibitors": "No",
     "coexhibitors": null
-  }
+  },
+  {
+    "id": 56,
+    "type":"coexhibitor",
+    "tradename": "RITTAL",
+    "legal_company_name": "RITTAL",
+    "logo": "/img/exhibitors2026/rittal.webp",
+    "description_es": "",
+    "description_en": "",
+    "linkedin": "",
+    "facebook": "",
+    "instagram": "",
+    "stand_number": "G30",
+    "webpage": "",
+    "address": "",
+    "zip_code": "",
+    "city": "",
+    "state": "",
+    "country": "",
+    "contact_name": "",
+    "contact_email": "",
+    "contact_phone": "",
+    "directory_consent": "",
+    "has_coexhibitors": "No",
+    "coexhibitors": null
+  },
+  {
+    "id": 57,
+    "type":"coexhibitor",
+    "tradename": "HELU",
+    "legal_company_name": "HELU",
+    "logo": "/img/exhibitors2026/helu.webp",
+    "description_es": "",
+    "description_en": "",
+    "linkedin": "",
+    "facebook": "",
+    "instagram": "",
+    "stand_number": "G30",
+    "webpage": "",
+    "address": "",
+    "zip_code": "",
+    "city": "",
+    "state": "",
+    "country": "",
+    "contact_name": "",
+    "contact_email": "",
+    "contact_phone": "",
+    "directory_consent": "",
+    "has_coexhibitors": "No",
+    "coexhibitors": null
+  },
+  {
+    "id": 58,
+    "type":"coexhibitor",
+    "tradename": "BRADY",
+    "legal_company_name": "BRADY",
+    "logo": "/img/exhibitors2026/brady.webp",
+    "description_es": "",
+    "description_en": "",
+    "linkedin": "",
+    "facebook": "",
+    "instagram": "",
+    "stand_number": "G30",
+    "webpage": "",
+    "address": "",
+    "zip_code": "",
+    "city": "",
+    "state": "",
+    "country": "",
+    "contact_name": "",
+    "contact_email": "",
+    "contact_phone": "",
+    "directory_consent": "",
+    "has_coexhibitors": "No",
+    "coexhibitors": null
+  },
+  // {
+  //   "id": 56,
+  //   "type":"coexhibitor",
+  //   "tradename": "",
+  //   "legal_company_name": "",
+  //   "logo": "/img/exhibitors2026/",
+  //   "description_es": "",
+  //   "description_en": "",
+  //   "linkedin": "",
+  //   "facebook": "",
+  //   "instagram": "",
+  //   "stand_number": "",
+  //   "webpage": "",
+  //   "address": "",
+  //   "zip_code": "",
+  //   "city": "",
+  //   "state": "",
+  //   "country": "",
+  //   "contact_name": "",
+  //   "contact_email": "",
+  //   "contact_phone": "",
+  //   "directory_consent": "",
+  //   "has_coexhibitors": "No",
+  //   "coexhibitors": null
+  // },
 ].sort((a, b) => a.tradename.localeCompare(b.tradename, "es", { sensitivity: "base" }));

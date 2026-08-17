@@ -22,6 +22,7 @@ const copy = {
     showing: "Mostrando",
     of: "de",
     exhibitors: "expositores",
+    exhibitor: "Expositor",
     stand: "Stand",
     noStand: "Stand por confirmar",
     coexhibitor: "Coexpositor",
@@ -35,6 +36,7 @@ const copy = {
     showing: "Showing",
     of: "of",
     exhibitors: "exhibitors",
+    exhibitor: "Exhibitor",
     stand: "Booth",
     noStand: "Booth pending",
     coexhibitor: "Co-exhibitor",
@@ -59,6 +61,20 @@ const TextBlock = ({ label, children }) => {
   );
 };
 
+const isExhibitorType = (type) =>
+  String(type || "").trim().toLowerCase() === "exhibitor";
+
+const getTypeLabel = (type, labels) =>
+  isExhibitorType(type) ? labels.exhibitor : labels.coexhibitor;
+
+const sortByExhibitorType = (items) =>
+  [...items].sort((a, b) => {
+    const aPriority = isExhibitorType(a.type) ? 0 : 1;
+    const bPriority = isExhibitorType(b.type) ? 0 : 1;
+
+    return aPriority - bPriority;
+  });
+
 export function ExhibitorSummary({ exhibitors, language }) {
   const [selectedExhibitor, setSelectedExhibitor] = useState(null);
   const [query, setQuery] = useState("");
@@ -67,9 +83,7 @@ export function ExhibitorSummary({ exhibitors, language }) {
   const filteredExhibitors = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
 
-    if (!normalizedQuery) return exhibitors;
-
-    return exhibitors.filter((exhibitor) => {
+    const matchingExhibitors = !normalizedQuery ? exhibitors : exhibitors.filter((exhibitor) => {
       const fields = [
         exhibitor.tradename,
         exhibitor.legal_company_name,
@@ -87,6 +101,8 @@ export function ExhibitorSummary({ exhibitors, language }) {
         .toLowerCase()
         .includes(normalizedQuery);
     });
+
+    return sortByExhibitorType(matchingExhibitors);
   }, [exhibitors, query]);
 
   return (
@@ -133,6 +149,7 @@ export function ExhibitorSummary({ exhibitors, language }) {
               const name = exhibitor.tradename || exhibitor.legal_company_name;
               const shouldShowCoexhibitors = hasCoexhibitorRecord(exhibitor);
               const coexhibitors = exhibitor.coexhibitors?.trim();
+              const typeLabel = getTypeLabel(exhibitor.type, labels);
 
               return (
                 <article
@@ -155,7 +172,7 @@ export function ExhibitorSummary({ exhibitors, language }) {
 
                   <div className="flex flex-1 flex-col p-2 sm:p-3">
                     <span className="text-[8px] font-bold uppercase tracking-[0.06em] text-slate-500 sm:text-[9px]">
-                      {language === "es" ? "Expositor" : "Exhibitor"}
+                      {typeLabel}
                     </span>
                     <h2 className="overflow-hidden break-words text-[10px] font-bold uppercase leading-4 text-slate-950 [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:3] sm:text-xs sm:leading-5 lg:text-[13px]">
                       {name}
