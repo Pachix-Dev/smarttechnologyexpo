@@ -7,13 +7,13 @@ const { locale, translations } = await useTranslations(Astro.props, Astro);
 const tr = (key: string, fallback: string = "") =>
   getTranslation(translations, key, fallback);
 
-import { mediaPlanito, strategicPartners, mediaGold, sponsorsDiamond, sponsorsBronze } from "../../logos.js";
+import { mediaPlanito, strategicPartners, mediaGold, sponsorsDiamond, sponsorsBronze, sponsorsSilver } from "../../logos.js";
 ---
 
 <section class="my-10 p-2">
 
 <!-- PATROCINADORES GOLD -->
-<div class="mx-auto mb-0 sm:mb-10">
+<div class="mx-auto mb-0 sm:mb-8">
     <h2 class="w-fit mx-auto square_red font-extrabold text-xl md:text-4xl uppercase py-5 px-10 text-black font-montserrat-extra-bold-italic text-center">
       {locale === "es" ? "PATROCINADORES DIAMANTE" : "DIAMOND SPONSORS"}
     </h2>
@@ -21,6 +21,28 @@ import { mediaPlanito, strategicPartners, mediaGold, sponsorsDiamond, sponsorsBr
       <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-2 sm:gap-8 place-items-center place-content-center max-w-4xl">
         {
           sponsorsDiamond.map((partner, index) => (
+            <div class="flex justify-center items-center">
+              <img
+                src={partner.src}
+                alt={partner.alt}
+                class="w-[200px] sm:w-[280px] object-contain" 
+              />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+</div>
+
+<!-- PATROCINADORES SILVER -->
+<div class="mx-auto mb-0 sm:mb-10">
+    <h2 class="w-fit mx-auto square_red font-extrabold text-xl md:text-4xl uppercase py-5 px-10 text-black font-montserrat-extra-bold-italic text-center">
+      {locale === "es" ? "PATROCINADORES PLATA" : "SILVER SPONSORS"}
+    </h2>
+    <div class="flex justify-center w-full">
+      <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-2 sm:gap-8 place-items-center place-content-center max-w-4xl">
+        {
+          sponsorsSilver.map((partner, index) => (
             <div class="flex justify-center items-center">
               <img
                 src={partner.src}

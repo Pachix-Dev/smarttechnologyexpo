@@ -28,10 +28,13 @@ const sponsorsBronze = [
     { src: "/img/logos/sponsors/robustel.webp", alt: "Robustel", href: "https://robustel.com", width: 300 },
   ];
   
-
 const skillsSponsors = [
   { src: "/img/exhibitors2026/euchner.webp", alt: "Euchner México", href: "https://www.euchner.mx/", width: 300 },
   { src: "/img/logos/sponsors/beckhoff.webp", alt: "Beckhoff", href: "https://www.beckhoff.com/es-mx/", width: 300 },
 ];
 
-export { mediaPlanito, strategicPartners, sponsorsDiamond, mediaGold, sponsorsBronze, skillsSponsors };
+const sponsorsSilver = [
+  { src: "/img/exhibitors2026/telcel_empresas.webp", alt: "Robustel", href: "https://robustel.com", width: 300 },
+];
+
+export { mediaPlanito, strategicPartners, sponsorsDiamond, mediaGold, sponsorsBronze, skillsSponsors, sponsorsSilver };
