@@ -1,11 +1,13 @@
 ---
 import { useTranslations, getTranslation } from "../../utils/translations";
+import DownloadReceipt from "./DownloadReceipt";
 import ProductList from "./ProductList";
 // ✨ Una sola línea para cargar traducciones!
 const { locale, translations } = await useTranslations(Astro.props, Astro);
 // 🎯 Helper para traducciones más elegante
 const tr = (key: string, fallback: string = "") =>
   getTranslation(translations, key, fallback);
+
 const currenLanguage = locale === "es" ? "es" : "en";
 const base = locale === "es" ? "" : "/en";
 ---
@@ -34,6 +36,8 @@ const base = locale === "es" ? "" : "/en";
         </p>
       </div>
 
+      <!-- <DownloadReceipt language={currenLanguage} client:only="react" /> -->
+
       {/* Tarjeta de información */}
       <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
         <h2 class="text-2xl font-bold text-gray-900 mb-6">
@@ -60,8 +64,8 @@ const base = locale === "es" ? "" : "/en";
               <p class="text-gray-600">
                 {
                   currenLanguage === "es"
-                    ? "Recibirás un correo con tu recibo y los accesos a los eventos."
-                    : "You will receive an email with your receipt and access information for the events."
+                    ? "Recibirás un correo con tu recibo y los accesos a los talleres."
+                    : "You will receive an email with your receipt and access to the workshops."
                 }
               </p>
             </div>
@@ -86,8 +90,8 @@ const base = locale === "es" ? "" : "/en";
               <p class="text-gray-600">
                 {
                   currenLanguage === "es"
-                    ? "Descarga y guarda los QR o boletos. Los necesitarás para acceder a los eventos."
-                    : "Download and save the QR codes or tickets. You will need them to access the events."
+                    ? "Descarga y guarda los QR o boletos. Los necesitarás para acceder a los talleres."
+                    : "Download and save the QR codes or tickets. You will need them to access the workshops."
                 }
               </p>
             </div>
@@ -112,8 +116,8 @@ const base = locale === "es" ? "" : "/en";
               <p class="text-gray-600">
                 {
                   currenLanguage === "es"
-                    ? "Lleva tu boleto o QR el día del evento. ¡Te esperamos!"
-                    : "Bring your ticket or QR code on the day of the event. We look forward to seeing you!"
+                    ? "Muestra tu boleto o código QR el día del evento. ¡Te esperamos!"
+                    : "Show your ticket or QR code on the day of the event. We look forward to seeing you!"
                 }
               </p>
             </div>
@@ -121,6 +125,41 @@ const base = locale === "es" ? "" : "/en";
         </div>
       </div>
 
+      {/* Facturación */}
+      <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
+        <h3 class="text-lg font-bold text-gray-900 mb-4">
+          {currenLanguage === "es" ? "Facturación" : "Billing"}
+        </h3>
+        <p class="text-gray-700 mb-4">
+          {
+            currenLanguage === "es"
+              ? "Para solicitar tu factura, por favor envíanos la siguiente información a emmanuel.heredia@igeco.mx"
+              : "To request your invoice, please send us the following information to emmanuel.heredia@igeco.mx"
+          }
+        </p>
+        <p class="text-gray-700 mb-4 font-semibold">
+          {
+            currenLanguage === "es"
+              ? "Comprobante de pago, RFC vigente, nombre o razón social"
+              : "Payment receipt, valid RFC, name or business name"
+          }
+        </p>
+        <p class="text-gray-700 mb-4">
+          {
+            currenLanguage === "es"
+              ? "Por favor, asegúrate de incluir toda la información requerida para procesar tu factura."
+              : "Please make sure to include all the required information to process your invoice."
+          }
+        </p>
+        <span class="text-gray-500 mb-4">
+          {
+            currenLanguage === "es"
+              ? "Recuerda que tu solicitud debe realizarse dentro de los 15 días hábiles siguientes a tu compra."
+              : "Please remember that your request must be made within 15 business days following your purchase."
+          }
+        </span>
+      </div>
+   
       {/* Preguntas */}
       <div class="bg-blue-50 rounded-lg border border-blue-200 p-8 mb-8">
         <h3 class="text-lg font-bold text-gray-900 mb-4">
@@ -134,9 +173,7 @@ const base = locale === "es" ? "" : "/en";
           }
         </p>
         <ul class="space-y-2 text-gray-700">
-          <li>📧 Envía un email a: contacto@smarttechnologyexpo.mx</li>
-          <li>📞 Llama al: +52 (33) XXXX-XXXX</li>
-          <li>💬 Contacta a través de nuestro sitio web</li>
+          <li>Envía un email a: jesus.zermeno@igeco.mx</li>
         </ul>
       </div>
 
@@ -158,14 +195,28 @@ const base = locale === "es" ? "" : "/en";
 
       {/* Aviso legal */}
       <div class="mt-12 p-6 bg-gray-100 rounded-lg border border-gray-300">
-        <p class="text-sm text-gray-700">
-          <strong>{currenLanguage === "es" ? "Aviso Legal :" : "Legal Notice : "}</strong>
+        <p class="text-sm text-gray-700 text-justify">
           {
             currenLanguage === "es"
-              ? "Tu información de pago ha sido procesada de forma segura mediante PayPal. No guardamos detalles de tu tarjeta de crédito en nuestros servidores. Para más información sobre seguridad, consulta nuestra política de privacidad."
-              : "Your payment information has been securely processed through PayPal. We do not store your credit card details on our servers. For more information about security, please refer to our privacy policy."
+              ? "Tu información de pago ha sido procesada de forma segura a través de PayPal. No almacenamos los datos de tu método de pago en nuestros servidores. Para más detalles sobre cómo protegemos tu información, te invitamos a consultar nuestra política de privacidad."
+              : "Your payment information has been securely processed through PayPal. We do not store your payment method details on our servers. For more details on how we protect your information, we invite you to review our privacy policy."
           }
         </p>
+        <a
+          href={currenLanguage === "es"
+            ? "https://igeco.mx/aviso-de-privacidad/"
+            : "https://igeco.mx/en/aviso-de-privacidad/"}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mt-4 inline-flex items-center gap-1 text-blue-600 font-semibold hover:underline transition transform hover:scale-105"
+        >
+          {
+            currenLanguage === "es"
+              ? "Ver aviso de privacidad"
+              : "View Privacy Policy"
+          }
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M13.47 5.47a.75.75 0 0 1 1.06 0l6 6a.75.75 0 0 1 0 1.06l-6 6a.75.75 0 1 1-1.06-1.06l4.72-4.72H4a.75.75 0 0 1 0-1.5h14.19l-4.72-4.72a.75.75 0 0 1 0-1.06" clip-rule="evenodd"/></svg>
+        </a>
       </div>
     </div>
   </div>
