@@ -108,9 +108,9 @@ export function ExhibitorSummary({ exhibitors, language }) {
   return (
     <>
       <div className="mx-auto w-full max-w-[1240px] p-2 sm:p-4 sm:px-6 lg:px-8">
-        <div className="sm:mt-8 border border-slate-200 bg-white p-4 shadow-[0_18px_45px_rgba(15,23,42,0.14)] sm:p-5 lg:flex lg:items-center lg:justify-between lg:gap-6">
+        <div className="border border-slate-200 bg-white p-4 shadow-[0_18px_45px_rgba(15,23,42,0.14)] sm:p-5 lg:flex lg:items-center lg:justify-between lg:gap-6">
           <div>
-            <p className="text-sm font-bold uppercase tracking-[0.18em] text-[#e30613]">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#e30613] text-center sm:text-left">
               {labels.showing} {filteredExhibitors.length} {labels.of} {exhibitors.length} {labels.exhibitors}
             </p>
           </div>
