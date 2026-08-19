@@ -66,7 +66,7 @@ export default function ProductList({ language }) {
         </section>
 
         <aside className="lg:sticky lg:top-8 lg:self-start">
-          <CartSummary showCheckoutButton checkoutPath="/checkout" />
+          <CartSummary showCheckoutButton checkoutPath={language === "es" ? "/checkout" : "/en/checkout"} />
         </aside>
       </div>
     </div>
