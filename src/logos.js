@@ -25,7 +25,9 @@ const sponsorsDiamond = [
   ];
 
 const sponsorsBronze = [
+    { src: "/img/exhibitors2026/euchner.webp", alt: "Euchner", href: "https://www.euchner.mx/", width: 300 },
     { src: "/img/logos/sponsors/robustel.webp", alt: "Robustel", href: "https://robustel.com", width: 300 },
+    { src: "/img/logos/sponsors/smartsol.webp", alt: "SmartSol", href: "https://smartsol.mx/", width: 300 },
   ];
   
 const skillsSponsors = [

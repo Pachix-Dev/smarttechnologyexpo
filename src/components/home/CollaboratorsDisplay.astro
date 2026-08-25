@@ -62,14 +62,14 @@ import { mediaPlanito, strategicPartners, mediaGold, sponsorsDiamond, sponsorsBr
       {locale === "es" ? "PATROCINADORES BRONCE" : "BRONZE SPONSORS"}
     </h2>
     <div class="flex justify-center w-full">
-      <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-2 sm:gap-8 place-items-center place-content-center max-w-4xl">
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-2 sm:gap-8 place-items-center place-content-center max-w-4xl">
         {
           sponsorsBronze.map((partner, index) => (
             <div class="flex justify-center items-center">
               <img
                 src={partner.src}
                 alt={partner.alt}
-                class="w-[200px] sm:w-[280px] object-contain" 
+                class="w-[200px] sm:w-[220px] object-contain" 
               />
             </div>
           ))
