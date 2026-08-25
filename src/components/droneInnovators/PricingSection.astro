@@ -145,8 +145,8 @@ import { ECOMMERCE_PRODUCTS } from "../../data/ecommerce_products";
                     </div>
                     <p class="mt-1 text-[0.62rem] font-semibold uppercase tracking-[0.04em] text-[#4b5563] sm:text-[0.68rem]">
                       {locale === "es"
-                        ? "por persona + IVA"
-                        : "per person + VAT"}
+                        ? "por persona (IVA incluido)"
+                        : "per person (VAT included)"}
                     </p>
                     {product.final_price &&
                       product.final_price > product.price && (
@@ -163,7 +163,7 @@ import { ECOMMERCE_PRODUCTS } from "../../data/ecommerce_products";
                             )}
                             MXN
                           </span>
-                          {locale === "es" ? " por persona + IVA" : " per person + VAT"}</p>
+                          {locale === "es" ? " por persona  (IVA incluido)" : " per person (VAT included)"}</p>
                       )}
                     <a
                       href={locale === 'es' ? '/productos' : '/en/productos'}
