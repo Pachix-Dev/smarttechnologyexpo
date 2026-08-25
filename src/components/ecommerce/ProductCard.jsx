@@ -137,8 +137,8 @@ export default function ProductCard({ product, languageProp, onAddToCart }) {
             <span className="text-3xl font-bold text-green-800">
               ${parseFloat(product.price).toFixed(2)}
             </span>
-            <span className="text-gray-600 text-sm ml-2 font-bold">MXN</span> /
-            {languageProp === "es" ? "por persona + IVA" : "per person + VAT"}
+            <span className="text-gray-600 text-sm ml-2 font-bold">MXN</span>
+            {languageProp === "es" ? " con IVA incluido" : " with VAT included"}
           </div>
           <div className="flex flex-col">
             <span className="uppercase">
@@ -149,10 +149,10 @@ export default function ProductCard({ product, languageProp, onAddToCart }) {
             <span className="text-gray-600 text-base font-bold">
               ${parseFloat(product.final_price).toFixed(2)}
               <span className="text-sm ml-2 font-normal">
-                MXN /
+                MXN
                 {languageProp === "es"
-                  ? "por persona + IVA"
-                  : "per person + VAT"}
+                  ? " con IVA incluido"
+                  : " with VAT included"}
               </span>
             </span>
           </div>
