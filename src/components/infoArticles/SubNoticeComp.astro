@@ -1,0 +1,26 @@
+---
+import { useTranslations } from "../../utils/translations";
+
+const { locale } = await useTranslations(Astro.props, Astro);
+
+const baseUrl =
+  locale === "es"
+    ? "/expositor-smarttechnologyexpo"
+    : "/en/expositor-smarttechnologyexpo";
+
+const bannerSrc =
+  locale === "es" 
+  ? "/img/banner_ste_es_01.webp" 
+  : "/img/banner_ste_en_01.webp";
+---
+<div class="flex w-full justify-center lg:justify-start">
+  <a href={baseUrl} class="block w-full max-w-[240px] lg:max-w-[260px]">
+    <img
+      src={bannerSrc}
+      alt="Smart Technology Expo - Conviértete en expositor"
+      loading="lazy"
+      decoding="async"
+      class="h-auto w-full rounded-lg border border-gray-200 object-contain shadow-sm"
+    />
+  </a>
+</div>

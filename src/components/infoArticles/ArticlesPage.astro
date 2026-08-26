@@ -1,0 +1,71 @@
+---
+import { useTranslations, getTranslation } from "../../utils/translations";
+import GridArticles from "./GridArticles.astro";
+import SubNoticeComp from "./SubNoticeComp.astro";
+
+// ✨ Una sola línea para cargar traducciones!
+const { translations, locale } = await useTranslations(Astro.props, Astro);
+
+// 🎯 Helper para traducciones más elegante (opcional)
+const tr = (key: string, fallback: string = "") =>
+  getTranslation(translations, key, fallback);
+
+const currentLanguage = locale;
+---
+
+<section class="py-8 md:py-10">
+  <div class="bg-white">
+    <header class="border-b border-gray-200 bg-[#1D1D1B]">
+      <div
+        class="container mx-auto px-6 py-2 sm:py-12 md:px-12 md:py-16 lg:px-20"
+      >
+        <div
+          class="max-w-5xl"
+          data-aos="fade-up"
+          data-aos-duration="800"
+          data-aos-anchor-placement="top-center"
+        >
+          <div class="mb-5 flex items-center gap-3 text-white">
+            <h1
+              class="max-w-4xl text-3xl font-extrabold leading-tight md:text-5xl"
+            >
+              {
+                currentLanguage === "es"
+                  ? "Noticias, artículos y comunicados"
+                  : "News, articles and press releases"
+              }
+            </h1>
+          </div>
+
+          <p
+            class="mt-4 max-w-4xl leading-relaxed text-gray-50 text-sm md:text-lg"
+          >
+            {
+              currentLanguage === "es"
+                ? "Mantente al día con las novedades de Smart Technology Expo y los temas más relevantes para la industria."
+                : "Stay up to date with the latest news from Smart Technology Expo and the most relevant topics for the industry."
+            }
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <div class="mx-auto px-4 md:px-12 lg:px-20 flex flex-row gap-2 sm:gap-8 md:flex-row">
+      <main>
+        <GridArticles />
+        <footer class="col-span-2 border-t border-gray-200 py-6">
+          <p class="text-sm text-gray-600">
+            {
+              currentLanguage === "es"
+                ? "Sigue nuestras publicaciones para conocer las novedades más recientes."
+                : "Follow our posts to stay updated with the latest news."
+            }
+          </p>
+        </footer>
+      </main>
+      <aside class="sticky top-20 self-start py-8 md:top-24 md:py-10 lg:top-32">
+        <SubNoticeComp />
+      </aside>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,95 @@
+---
+import { useTranslations, getTranslation } from "../../utils/translations";
+// ✨ Una sola línea para cargar traducciones!
+const { translations, locale } = await useTranslations(Astro.props, Astro);
+
+// 🎯 Helper para traducciones más elegante (opcional)
+const tr = (key: string, fallback: string = "") =>
+  getTranslation(translations, key, fallback);
+
+const currentLanguage = locale;
+
+const LinkedInPost = [
+  {
+    title_es:
+      "El Renacimiento Industrial de México: Por qué 2026 es el Año del Smart Manufacturing",
+    title_en:
+      "The Industrial Renaissance of Mexico: Why 2026 is the Year of Smart Manufacturing",
+    src: "https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7472322329214144512?collapsed=1",
+    title: "Publicacion integrada de LinkedIn",
+    height: 480,
+    mobileHeight: 320,
+  },
+  {
+    title_es: "Los 8 Pilares que definen a Smart Technology Expo 2026",
+    title_en: "The 8 Pillars that define Smart Technology Expo 2026",
+    src: "https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7470240493302550529?collapsed=1",
+    title: "Publicacion integrada de LinkedIn",
+    height: 480,
+    mobileHeight: 320,
+  },
+  {
+    title_es: "¿Por qué a Guadalajara le dicen el “Silicon Valley Mexicano”?",
+    title_en: "Why Guadalajara is called the 'Mexican Silicon Valley'?",
+    src: "https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7462229652393218048?collapsed=1",
+    title: "Publicacion integrada de LinkedIn",
+    height: 480,
+    mobileHeight: 320,
+  },
+];
+---
+
+<section class="py-8 md:py-10">
+  <div class="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3">
+    {
+      LinkedInPost.map((post) => (
+        <article
+          class="mx-auto w-full max-w-[430px] border border-gray-200 bg-white p-2 shadow-sm sm:p-3"
+          style={`--iframe-height: ${post.height ?? 480}px; --iframe-mobile-height: ${
+            post.mobileHeight ?? 320
+          }px;`}
+        >
+          <div  class="flex flex-row gap-2" >
+            <svg
+              viewBox="0 0 24 24"
+              class="h-4 w-4 sm:h-6 sm:w-6 shrink-0 text-[#0077b5]"
+            >
+              <path
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                d="m17.942 6.076l2.442 2.442a1.22 1.22 0 0 1-.147 1.855l-1.757.232a1.7 1.7 0 0 0-.94.452c-.72.696-1.453 1.428-2.674 2.637c-.21.212-.358.478-.427.769l-.94 3.772a1.22 1.22 0 0 1-1.978.379l-3.04-3.052l-3.052-3.04a1.22 1.22 0 0 1 .379-1.978l3.747-.964a1.8 1.8 0 0 0 .77-.44c1.379-1.355 1.88-1.855 2.66-2.698c.233-.25.383-.565.428-.903l.232-1.783a1.22 1.22 0 0 1 1.856-.146zm-9.51 9.498L3.256 20.75"
+              />
+            </svg>
+            <h2 class="mb-2 text-sm sm:text-base text-gray-800 font-black">
+              {currentLanguage === "es" ? post.title_es : post.title_en}
+            </h2>
+          </div>
+          <iframe
+            src={post.src}
+            height={post.height ?? 480}
+            width="504"
+            frameborder="0"
+            allowfullscreen=""
+            title={post.title}
+            class="linkedin-post-iframe block w-full max-w-full"
+          />
+        </article>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .linkedin-post-iframe {
+    height: var(--iframe-mobile-height);
+  }
+
+  @media (min-width: 768px) {
+    .linkedin-post-iframe {
+      height: var(--iframe-height);
+    }
+  }
+</style>
