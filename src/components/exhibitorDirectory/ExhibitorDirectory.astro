@@ -8,6 +8,8 @@ const tr = (key: string, fallback: string = "") =>
   getTranslation(translations, key, fallback);
 
 const currentLanguage = locale === "es" ? "es" : "en";
+const basePath = locale === "en" ? "/en" : "";
+
 const labels =
   currentLanguage === "es"
     ? {
@@ -68,7 +70,7 @@ const labels =
   >
     <!-- Primer aside -->
     <aside
-      class="order-1 w-auto lg:sticky lg:top-[88px] lg:order-1 lg:w-[140px] lg:shrink-0 2xl:w-[160px] flex sm:flex-col gap-1       lg:gap-2"
+      class="order-1 w-auto lg:sticky lg:top-[88px] lg:order-1 lg:w-[140px] lg:shrink-0 2xl:w-[160px] flex sm:flex-col gap-1 lg:gap-2"
     >
       <img
         src={currentLanguage === "es"
@@ -98,15 +100,19 @@ const labels =
     </main>
 
     <!-- Segundo aside -->
-    <aside class="order-2 w-auto lg:sticky lg:top-[88px] lg:order-3 lg:w-[140px] lg:shrink-0 2xl:w-[160px]" >
-      <img
-        src={currentLanguage === "es"
-          ? "/img/banner_ste_es_01.webp"
-          : "/img/banner_ste_en_01.webp"}
-        alt="Expositor Smart Technology Expo"
-        class="mx-auto h-auto w-[90px] object-contain
+    <aside
+      class="order-2 w-auto lg:sticky lg:top-[88px] lg:order-3 lg:w-[140px] lg:shrink-0 2xl:w-[160px]"
+    >
+      <a href={`${basePath}/expositor-smarttechnologyexpo`}>
+        <img
+          src={currentLanguage === "es"
+            ? "/img/banner_ste_es_01.webp"
+            : "/img/banner_ste_en_01.webp"}
+          alt="Expositor Smart Technology Expo"
+          class="mx-auto h-auto w-[90px] object-contain
              sm:w-[140px] lg:w-full"
-      />
+        />
+      </a>
     </aside>
   </div>
 </section>
