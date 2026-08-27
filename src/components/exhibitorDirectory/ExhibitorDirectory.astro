@@ -80,14 +80,16 @@ const labels =
         class="mx-auto h-auto w-[90px] object-contain
              sm:w-[140px] lg:w-full"
       />
-      <img
-        src={currentLanguage === "es"
-          ? "/img/banner_ste_es_01.webp"
-          : "/img/banner_ste_en_01.webp"}
-        alt="Expositor Smart Technology Expo"
-        class="mx-auto h-auto w-[90px] object-contain
+      <a href={`${basePath}/expositor-smarttechnologyexpo`}>
+        <img
+          src={currentLanguage === "es"
+            ? "/img/banner_ste_es_01.webp"
+            : "/img/banner_ste_en_01.webp"}
+          alt="Expositor Smart Technology Expo"
+          class="mx-auto h-auto w-[90px] object-contain
              sm:w-[140px] lg:w-full"
-      />
+        />
+      </a>
     </aside>
 
     <!-- Contenido principal -->
@@ -103,16 +105,14 @@ const labels =
     <aside
       class="order-2 w-auto lg:sticky lg:top-[88px] lg:order-3 lg:w-[140px] lg:shrink-0 2xl:w-[160px]"
     >
-      <a href={`${basePath}/expositor-smarttechnologyexpo`}>
-        <img
-          src={currentLanguage === "es"
-            ? "/img/banner_backoff_es.webp"
-            : "/img/banner_backoff_en.webp"}
-          alt="Backoffice"
-          class="mx-auto h-auto w-[90px] object-contain
+      <img
+        src={currentLanguage === "es"
+          ? "/img/banner_backoff_es.webp"
+          : "/img/banner_backoff_en.webp"}
+        alt="Backoffice"
+        class="mx-auto h-auto w-[90px] object-contain
              sm:w-[140px] lg:w-full"
-        />
-      </a>
+      />
     </aside>
   </div>
 </section>
