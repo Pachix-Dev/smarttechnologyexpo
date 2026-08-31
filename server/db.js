@@ -12,13 +12,15 @@ const hableError = (error) => {
   if (error?.sqlState === '23000') {
     return {
       status: false,
-      message: 'Ya estas registrado con este correo electrónico...',
+      statusCode: 400,
+      message: 'Ya estás registrado con este correo electrónico...',
     }
   }
 
 
   return {
     status: false,
+    statusCode: 500,
     message: 'Error al guardar tus datos, por favor intenta de nuevo.',
   }
 }
@@ -545,34 +547,6 @@ export class RegisterModel {
         return { status: false, error: "No se encontró el usuario" };
       }
       return { status: true, user: users[0] };
-    } finally {
-      await connection.end();
-    }
-  }
-
-  // Validar si un usuario ya existe en tabla users_ste_2026
-  static async check_user_exists_2026(email) {
-    const connection = await mysql.createConnection(config);
-    try {
-      const [users] = await connection.query(
-        "SELECT id FROM visitors_ste_2026 WHERE email = ? LIMIT 1",
-        [email],
-      );
-      return users.length > 0;
-    } finally {
-      await connection.end();
-    }
-  }
-
-  // Validar si un usuario ya existe en tabla users_ste_students_2026
-  static async check_student_user_exists_2026(email) {
-    const connection = await mysql.createConnection(config);
-    try {
-      const [users] = await connection.query(
-        "SELECT id FROM users_ste_students_2026 WHERE email = ? LIMIT 1",
-        [email],
-      );
-      return users.length > 0;
     } finally {
       await connection.end();
     }
