@@ -3,10 +3,12 @@ import { hotels } from "../../data/directorio_turistico";
 
 import { useTranslations, getTranslation } from "../../utils/translations";
 // ✨ Una sola línea para cargar traducciones!
-const { translations } = await useTranslations(Astro.props, Astro);
+const { locale, translations } = await useTranslations(Astro.props, Astro);
 // 🎯 Helper para traducciones más elegante
 const tr = (key: string, fallback: string = "") =>
   getTranslation(translations, key, fallback);
+
+const currentLanguage = locale;
 ---
 
 <section
@@ -115,12 +117,18 @@ const tr = (key: string, fallback: string = "") =>
                 </svg>
                 <span class="text-xs break-all">{hotel.email}</span>
               </div>
-              {hotel.code && (
-                <div class="bg-amber-50 border border-amber-200 p-2.5 rounded-lg">
-                  <p class="text-xs text-amber-800 mb-1">{tr("hotels.code")}</p>
-                  <p class="text-base font-bold text-amber-900">{hotel.code}</p>
-                </div>
-              )}
+              <div class="bg-amber-50 border border-amber-200 p-2.5 rounded-lg">
+                <p class="text-xs text-amber-800 mb-1">{tr("hotels.code")}</p>
+
+                <p class="text-base font-bold text-amber-900 uppercase">
+                  {
+                    hotel.code?.trim() ||
+                      (currentLanguage === "es"
+                        ? hotel.code_label_es
+                        : hotel.code_label_en)
+                  }
+                </p>
+              </div>
             </div>
 
             <div class="flex gap-3">
