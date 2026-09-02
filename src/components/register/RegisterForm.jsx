@@ -712,7 +712,7 @@ export function RegisterForm({ translates, currentLanguage }) {
                       value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                       message: `${translates.no_email_valid}`,
                     },
-                    onChange: (e) => setEmail(e.target.value),
+                    onChange: (e) => setEmail(e.target.value.trim()),
                   })}
                   name="email"
                   id="email"
