@@ -124,15 +124,18 @@ export function RegisterForm({ translates, currentLanguage }) {
       const res = await fetch(urlcp + `get-postalcode/${e}`);
       const data = await res.json();
       if (data.status) {
+        const record = data.records[0];
+        const resolvedCity =
+          record.d_ciudad?.trim() || record.D_mnpio || record.d_estado || "";
+
         setMessagePostalCode("");
         setPostalCode(e);
-        setMunicipality(data.records[0].D_mnpio);
-        setState(data.records[0].d_estado);
-        setCity(
-          data.records[0].d_ciudad === ""
-            ? data.records[0].d_estado
-            : data.records[0].d_ciudad,
-        );
+        setMunicipality(record.D_mnpio);
+        setState(record.d_estado);
+        setCity(resolvedCity);
+        setValue("municipality", record.D_mnpio);
+        setValue("state", record.d_estado);
+        setValue("city", resolvedCity);
         setColonias(data.records.map((record) => record.d_asenta));
         setColonia("");
       } else {
