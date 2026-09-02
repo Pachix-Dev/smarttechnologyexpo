@@ -8,12 +8,27 @@ const config = {
 }
 
 const hableError = (error) => {
+  if (error?.code === 'ER_DUP_ENTRY') {
+    return {
+      status: false,
+      statusCode: 409,
+      message: 'Ya estás registrado con este correo electrónico...',
+    }
+  }
+
+  if (error?.code === 'ER_BAD_NULL_ERROR') {
+    return {
+      status: false,
+      statusCode: 400,
+      message: 'Faltan campos obligatorios para completar el registro.',
+    }
+  }
 
   if (error?.sqlState === '23000') {
     return {
       status: false,
-      statusCode: 400,
-      message: 'Ya estás registrado con este correo electrónico...',
+      statusCode: 409,
+      message: 'Valida los datos capturados.',
     }
   }
 
