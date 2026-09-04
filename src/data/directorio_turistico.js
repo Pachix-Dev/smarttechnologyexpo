@@ -36,7 +36,7 @@ const hotels = [
     address:
       "Av. Las Rosas 2911, colonia Verde Valle, C.P. 44530, Guadalajara, Jalisco.",
     rate: "$135.00 USD",
-    phone: "+52 (55) 33 3880 2700",
+    phone: "+52 33 3880 2700",
     email: "reservaciones.gdl@westin.com",
     code: "",
     code_label_es: "La promoción aplica directo con el hotel",
