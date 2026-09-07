@@ -53,7 +53,7 @@ const tr = (key: string, fallback: string = "") => getTranslation(translations, 
     // Referencias a los nodos que el modal rellena/controla.
     const overlay = document.getElementById('bio-modal-overlay');
     const nameEl = document.getElementById('bio-modal-name');
-    const roleEl = document.getElementById('bio-modal-role');
+    const postEl = document.getElementById('bio-modal-role');
     const orgEl = document.getElementById('bio-modal-org');
     const textEl = document.getElementById('bio-modal-text');
     const avatarEl = document.getElementById('bio-modal-avatar');
@@ -62,9 +62,9 @@ const tr = (key: string, fallback: string = "") => getTranslation(translations, 
     const overlayEl = overlay;
 
     // open: vuelca los datos recibidos en el modal y lo muestra.
-    function open(data: { name: string; role: string; org: string; bio: string; photo: string }) {
+    function open(data: { name: string; position: string; org: string; bio: string; photo: string }) {
       if (nameEl) nameEl.textContent = data.name || '';
-      if (roleEl) roleEl.textContent = data.role || '';
+      if (postEl) postEl.textContent = data.position || '';
       if (orgEl) orgEl.textContent = data.org || '';
       if (textEl) textEl.textContent = data.bio || '';
       // Avatar: si hay foto la pinta como fondo; si no, limpia estilos previos.
@@ -94,7 +94,7 @@ const tr = (key: string, fallback: string = "") => getTranslation(translations, 
       if (trigger) {
         open({
           name: trigger.dataset.bioName || '',
-          role: trigger.dataset.bioRole || '',
+          position: trigger.dataset.bioPosition || '',
           org: trigger.dataset.bioOrg || '',
           bio: trigger.dataset.bioBio || '',
           photo: trigger.dataset.bioPhoto || '',

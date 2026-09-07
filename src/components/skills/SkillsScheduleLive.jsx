@@ -308,7 +308,7 @@ export default function SkillsScheduleLive({
                                   ? {
                                       "data-bio-trigger": true,
                                       "data-bio-name": p.name || "",
-                                      "data-bio-role": role,
+                                      "data-bio-position": (lang === "es" ? p.position_esp : p.position_eng) || "",
                                       "data-bio-org": org,
                                       "data-bio-bio": bio,
                                       "data-bio-photo": photo || "",
