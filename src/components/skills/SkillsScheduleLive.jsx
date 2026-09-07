@@ -312,7 +312,9 @@ export default function SkillsScheduleLive({
                                 <div>
                                   <div className="ssc-speaker-name">{p.name}</div>
                                   {role && (
-                                    <div className="ssc-speaker-role">{role}</div>
+                                    <div className="ssc-speaker-role">
+                                      {lang === "es" ? p.position_esp  : p.position_eng}
+                                    </div>
                                   )}
                                   {org && (
                                     <div className="ssc-speaker-org">{org}</div>
