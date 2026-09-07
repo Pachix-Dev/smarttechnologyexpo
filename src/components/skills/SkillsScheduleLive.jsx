@@ -145,7 +145,9 @@ export default function SkillsScheduleLive({
       <div className="ssc-inner">
         {/* Encabezado: eyebrow + título */}
         <div className="ssc-eyebrow">{lbl("eyebrow", "AGENDA", "AGENDA")}</div>
-        <h2 className="ssc-title">{lbl("title", "Programa por día", "Daily program")}</h2>
+        <h2 className="ssc-title">
+          {lbl("title", "Programa por día", "Daily program")}
+        </h2>
 
         {/* Fila superior: (descarga oculta en STE 2026) + aviso de idioma */}
         <div className="ssc-toprow">
@@ -182,8 +184,14 @@ export default function SkillsScheduleLive({
             <button
               key={d.id ?? i}
               type="button"
-              className={i === activeDay ? "ssc-pill ssc-pill--active" : "ssc-pill"}
-              style={i === activeDay ? { background: accent, borderColor: accent } : undefined}
+              className={
+                i === activeDay ? "ssc-pill ssc-pill--active" : "ssc-pill"
+              }
+              style={
+                i === activeDay
+                  ? { background: accent, borderColor: accent }
+                  : undefined
+              }
               onClick={() => setActiveDay(i)}
             >
               {d.name || `${t("Día", "Day")} ${i + 1}`}
@@ -204,7 +212,10 @@ export default function SkillsScheduleLive({
               </div>
             </div>
             <span className="ssc-banner-count">
-              <span className="ssc-banner-dot" style={{ borderColor: accent }} />
+              <span
+                className="ssc-banner-dot"
+                style={{ borderColor: accent }}
+              />
               {sessions.length} {lbl("sessionsWord", "sesiones", "sessions")}
             </span>
           </div>
@@ -226,7 +237,11 @@ export default function SkillsScheduleLive({
                 <div
                   key={s.id}
                   className="ssc-card"
-                  style={{ background: "#111", borderColor: accent, "--hover": accent }}
+                  style={{
+                    background: "#111",
+                    borderColor: accent,
+                    "--hover": accent,
+                  }}
                 >
                   {/* Barra "TALLER" con el color de acento */}
                   <div className="ssc-bar" style={{ background: accent }}>
@@ -236,10 +251,15 @@ export default function SkillsScheduleLive({
                     {/* Duración + título a la izquierda; recuadro "Powered by" a la derecha */}
                     <div className="ssc-title-row">
                       <div className="ssc-title-left">
-                        <span className="ssc-time-pill" style={{ background: accent }}>
+                        <span
+                          className="ssc-time-pill"
+                          style={{ background: accent }}
+                        >
                           {formatTime(s.start_time)} – {formatTime(s.end_time)}
                         </span>
-                        <div className="ssc-session-title">{confTitle(s, lang)}</div>
+                        <div className="ssc-session-title">
+                          {confTitle(s, lang)}
+                        </div>
                       </div>
                       {/* Recuadro "Powered by": solo si la sesión trae logo */}
                       {logo ? (
@@ -263,17 +283,14 @@ export default function SkillsScheduleLive({
                       <div className="ssc-speakers">
                         <div className="ssc-speakers-label">
                           {speakers.length > 1
-                            ? lbl("instructorsWord", "Instructores", "Instructors")
+                            ? lbl(
+                                "instructorsWord",
+                                "Instructores",
+                                "Instructors",
+                              )
                             : lbl("instructorWord", "Instructor", "Instructor")}
                         </div>
-                        <div
-                          className="ssc-speakers-list"
-                          style={{
-                            display: "grid",
-                            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-                            gap: "12px 16px",
-                          }}
-                        >
+                        <div className="ssc-speakers-list">
                           {speakers.map((p) => {
                             const bio = speakerBio(p, lang);
                             const photo = speakerPhoto(p.photo);
@@ -284,7 +301,7 @@ export default function SkillsScheduleLive({
                             return (
                               <div
                                 key={p.id ?? p.name}
-                                className="ssc-speaker-row"
+                                className="ssc-speaker-row bg-amber-400"
                                 // Si el instructor tiene semblanza, la fila es clickeable
                                 // y expone los data-bio-* que abren el BioModal compartido.
                                 {...(hasBio
@@ -309,19 +326,31 @@ export default function SkillsScheduleLive({
                                 ) : (
                                   <span className="ssc-avatar" />
                                 )}
+
                                 <div>
-                                  <div className="ssc-speaker-name">{p.name}</div>
+                                  <div className="ssc-speaker-name">
+                                    {p.name}
+                                  </div>
                                   {role && (
                                     <div className="ssc-speaker-role">
-                                      {lang === "es" ? p.position_esp  : p.position_eng}
+                                      {lang === "es"
+                                        ? p.position_esp
+                                        : p.position_eng}
                                     </div>
                                   )}
                                   {org && (
                                     <div className="ssc-speaker-org">{org}</div>
                                   )}
+                                  {/* Chevron: solo cuando hay semblanza que abrir */}
+                                  {hasBio && (
+                                    <span className="text-base flex gap-1">
+                                      {lang === "es"
+                                        ? "Leer más"
+                                        : "Read more"}
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m13.172 12l-4.95-4.95l1.414-1.413L16 12l-6.364 6.364l-1.414-1.415z"/></svg>
+                                    </span>
+                                  )}
                                 </div>
-                                {/* Chevron: solo cuando hay semblanza que abrir */}
-                                {hasBio && <span className="ssc-chevron">›</span>}
                               </div>
                             );
                           })}

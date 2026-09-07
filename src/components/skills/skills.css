@@ -332,7 +332,7 @@
 }
 .ssc-speakers-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 320px));
   gap: 12px 16px;
 }
 .ssc-speaker-row {
@@ -351,19 +351,16 @@
   border-color: var(--hover, #e2101a);
   transform: translateX(2px);
 }
-.ssc-speaker-row[data-bio-trigger]:hover .ssc-avatar {
-  box-shadow: 0 0 0 2px var(--hover, #e2101a);
-}
+
 .ssc-speaker-row[data-bio-trigger]:hover .ssc-chevron {
   opacity: 1;
 }
 .ssc-avatar {
-  width: 52px;
-  height: 52px;
+  width: 135px;
+  height: 150px;
   flex: none;
-  border-radius: 50%;
+  border-radius: 10%;
   background: repeating-linear-gradient(135deg, #262626 0 6px, #1a1a1a 6px 12px);
-  border: 1px solid #3a3a3a;
   object-fit: cover;
   transition: box-shadow 0.15s ease;
 }
