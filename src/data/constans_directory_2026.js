@@ -1476,7 +1476,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 0,
+    "id": 62,
     "type":"exhibitor",
     "tradename": "Logicbus",
     "legal_company_name": "Logicbus SA de CV",
@@ -1501,7 +1501,7 @@ export const directory2026 =
     "coexhibitors": "3OneData"
   },
   {
-    "id": 0,
+    "id": 63,
     "type":"exhibitor",
     "tradename": "INDEQ",
     "legal_company_name": "INDEQ GDL S de RL",
@@ -1521,6 +1521,32 @@ export const directory2026 =
     "contact_name": "Juan Escareño",
     "contact_email": "juan.escareno@indeq.mx",
     "contact_phone": "33 3261 1701",
+    "directory_consent": "si",
+    "has_coexhibitors": "no",
+    "coexhibitors": null
+  },
+
+  {
+    "id": 64,
+    "type":"exhibitor",
+    "tradename": "NorthWind Technical Services",
+    "legal_company_name": "NorthWind Technical Services",
+    "logo": "/img/exhibitors2026/",
+    "description_es": "NorthWind es un integrador de sistemas que ofrece soluciones de automatización y control de procesos. Nuestras soluciones abarcan la gestión de datos, sistemas SCADA y MES, plataformas de IA, diseño eléctrico y servicios de soporte. Descubra las ventajas de una integración completa de la planta.",
+    "description_en": "NorthWind is a systems integrator offering process control and automation solutions. Our solutions include data management, SCADA and MES, AI platforms, electrical design, and support. Discover the benefits of complete plant integration.",
+    "linkedin": "https://www.linkedin.com/company/northwind-technical-services",
+    "facebook": "",
+    "instagram": "",
+    "stand_number": "E61",
+    "webpage": "https://www.northwindts.com/",
+    "address": "2751 Antelope RD",
+    "zip_code": "66534",
+    "city": "Sabetha",
+    "state": "Kansas",
+    "country": "USA",
+    "contact_name": "Beth Taylor",
+    "contact_email": "beth.taylor@northwindts.com",
+    "contact_phone": "785 284 0080",
     "directory_consent": "si",
     "has_coexhibitors": "no",
     "coexhibitors": null
