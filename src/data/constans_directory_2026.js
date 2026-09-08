@@ -1531,7 +1531,7 @@ export const directory2026 =
     "type":"exhibitor",
     "tradename": "NorthWind Technical Services",
     "legal_company_name": "NorthWind Technical Services",
-    "logo": "/img/exhibitors2026/",
+    "logo": "",
     "description_es": "NorthWind es un integrador de sistemas que ofrece soluciones de automatización y control de procesos. Nuestras soluciones abarcan la gestión de datos, sistemas SCADA y MES, plataformas de IA, diseño eléctrico y servicios de soporte. Descubra las ventajas de una integración completa de la planta.",
     "description_en": "NorthWind is a systems integrator offering process control and automation solutions. Our solutions include data management, SCADA and MES, AI platforms, electrical design, and support. Discover the benefits of complete plant integration.",
     "linkedin": "https://www.linkedin.com/company/northwind-technical-services",
