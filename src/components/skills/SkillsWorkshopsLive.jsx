@@ -174,7 +174,7 @@ export default function SkillsWorkshopsLive(props) {
 
                   {/* Requisitos del taller */}
                   <div className="sw-req">
-                    <div className="sw-req-label">{labels.reqs || "REQUISITOS"}</div>
+                    <div className="sw-req-label">{locale === 'es' ? "PERFIL DEL ASISTENTE" : "ATTENDEE PROFILE"}</div>
                     <ul className="sw-req-list">
                       {(w.profile || []).map((req, i) => (
                         <li key={i}><span className="sw-req-bullet">›</span>{req}</li>
