@@ -14,14 +14,17 @@ const workshops = [
  
   {
     workshopId: 1,
-    name: 'EUCHNER México',
-    name_en: 'EUCHNER México',
+    name: 'SEGURIDAD EN MAQUINARIA: ANÁLISIS Y MITIGACIÓN DE RIESGOS',
+    name_en: 'EMACHINE SAFETY: RISK ANALYSIS AND MITIGATION',
+    company: 'Euchner',
     nivel: 'INTERMEDIO',
-    instructor: '',
-    instructorRole: 'Por definir',
-    instructorRole_en: 'To be defined',
-    instructorBio: 'Por definir',
-    instructorBio_en: 'To be defined',
+    instructor: [
+      {
+        name: 'Timothy Castillejos',
+        role: 'Gerente Nacional',
+        role_en: 'National Manager',
+      }
+    ],
     duracion: '4 horas',
     duracion_en: '4 hours',
     dia: "18 Noviembre",    
@@ -29,19 +32,27 @@ const workshops = [
     horario: '11:00 – 15:00',
     sala: 'Smart Skills Stage',
     cupo: 50,
-    requisitos: ['No se requieren conocimientos previos'],
-    requisitos_en: ['No prior knowledge required'],
+    profile_es: ['Ingenieros de proyecto', 'Personal de seguridad e higiene', 'Integradores y fabricantes de máquinas'],
+    profile_en: ['Project engineers', 'Health and safety personnel', 'Machine integrators and manufacturers'],
   },
   {
     workshopId: 2,
-    name: 'BECKHOFF',
-    name_en: 'BECKHOFF',
+    name: 'CONTROL BASADO EN PC: LA PLATAFORMA IDEAL PARA LA MANUFACTURA INTELIGENTE',
+    name_en: 'PC-BASED CONTROL: THE IDEAL PLATFORM FOR SMART MANUFACTURING',
+    company: 'Beckhoff',
     nivel: 'INTERMEDIO',
-    instructor: '',
-    instructorRole: 'Por definir',
-    instructorRole_en: 'To be defined',
-    instructorBio: 'Por definir',
-    instructorBio_en: 'To be defined',
+    instructor: [
+      {
+        name: 'Juan Daniel Rodríguez',
+        role: 'Ingeniero de Aplicaciones',
+        role_en: 'Applications Engineer',
+      },
+      {
+        name: 'Rosario Ramírez',
+        role: 'Desarrollador de Negocios',
+        role_en: 'Business Developer',
+      }
+    ],
     duracion: '4 horas',
     duracion_en: '4 hours',
     dia: "19 Noviembre",    
@@ -49,8 +60,8 @@ const workshops = [
     horario: '11:00 – 15:00',
     sala: 'Smart Skills Stage',
     cupo: 50,
-    requisitos: ['No se requieren conocimientos previos'],
-    requisitos_en: ['No prior knowledge required'],
+    profile_es: ['Project managers', 'Ingenieros de automatización y control', 'Gerentes de ingeniería con conocimientos básicos de automatización industrial'],
+    profile_en: ['Project managers', 'Automation and control engineers', 'Engineering managers with basic knowledge of industrial automation'],
   }
   // {
   //   workshopId: 3,

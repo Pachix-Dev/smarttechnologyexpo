@@ -40,16 +40,15 @@ const { accent = '#E2101A' } = Astro.props;
 const workshops = workshopsData.map((w) => ({
   workshopId: w.workshopId,
   name: locale === 'en' ? w.name_en : w.name,
+  company: w.company,
   nivel: w.nivel,
   instructor: w.instructor,
-  instructorRole: locale === 'en' ? w.instructorRole_en : w.instructorRole,
-  instructorBio: locale === 'en' ? w.instructorBio_en : w.instructorBio,
   duracion: locale === 'en' ? w.duracion_en : w.duracion,
   dia: locale === 'en' ? w.dia_en : w.dia,   
   horario: w.horario,
   sala: w.sala,
   cupo: w.cupo,
-  requisitos: locale === 'en' ? w.requisitos_en : w.requisitos,
+  profile: locale === 'en' ? w.profile_en : w.profile_es,
 }));
 
 // Todos los textos de interfaz, ya traducidos, para la isla.
@@ -80,4 +79,5 @@ const labels = {
   workshops={workshops}
   labels={labels}
   accent={accent}
+  lang={locale}
 />

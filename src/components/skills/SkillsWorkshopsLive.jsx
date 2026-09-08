@@ -32,6 +32,7 @@ export default function SkillsWorkshopsLive(props) {
   const workshops = props.workshops || [];
   const labels = props.labels || {};
   const accent = props.accent || "#E2101A";
+  const locale = props.lang || "es";
 
   // Base del API. En DEV ajusta el puerto al de tu server local (aquí 3005,
   // igual que tenías en el .astro). En producción va contra /server/.
@@ -91,11 +92,11 @@ export default function SkillsWorkshopsLive(props) {
 
   // Traduce la etiqueta de nivel según los labels recibidos.
   const nivelLabel = (nivel) =>
-    ({
-      "BÁSICO": labels.nivelBasic || "BÁSICO",
-      "INTERMEDIO": labels.nivelIntermediate || "INTERMEDIO",
-      "AVANZADO": labels.nivelAdvanced || "AVANZADO",
-    }[nivel] || nivel);
+  ({
+    "BÁSICO": labels.nivelBasic || "BÁSICO",
+    "INTERMEDIO": labels.nivelIntermediate || "INTERMEDIO",
+    "AVANZADO": labels.nivelAdvanced || "AVANZADO",
+  }[nivel] || nivel);
 
   return (
     <section className="sw-section">
@@ -148,13 +149,20 @@ export default function SkillsWorkshopsLive(props) {
                     </span>
                   </div>
                   <h3 className="sw-name">{w.name}</h3>
+                  <p className="font-semibold text-xs sm:text-base uppercase flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256"><path fill="currentColor" d="M232 224h-24V32h8a8 8 0 0 0 0-16H40a8 8 0 0 0 0 16h8v192H24a8 8 0 0 0 0 16h208a8 8 0 0 0 0-16M64 32h128v192h-32v-40a8 8 0 0 0-8-8h-48a8 8 0 0 0-8 8v40H64Zm80 192h-32v-32h32ZM88 64a8 8 0 0 1 8-8h16a8 8 0 0 1 0 16H96a8 8 0 0 1-8-8m48 0a8 8 0 0 1 8-8h16a8 8 0 0 1 0 16h-16a8 8 0 0 1-8-8m-48 40a8 8 0 0 1 8-8h16a8 8 0 0 1 0 16H96a8 8 0 0 1-8-8m48 0a8 8 0 0 1 8-8h16a8 8 0 0 1 0 16h-16a8 8 0 0 1-8-8m-48 40a8 8 0 0 1 8-8h16a8 8 0 0 1 0 16H96a8 8 0 0 1-8-8m48 0a8 8 0 0 1 8-8h16a8 8 0 0 1 0 16h-16a8 8 0 0 1-8-8" /></svg>
+                    {w.company}
+                  </p>
 
                   {/* Instructor: nombre + cargo (sin foto ni botón de semblanza) */}
+                  <p className="py-2">Instructor</p>
                   <div className="sw-instructor">
-                    <div>
-                      <div className="sw-instructor-name">{w.instructor}</div>
-                      <div className="sw-instructor-role">{w.instructorRole}</div>
-                    </div>
+                    {(w.instructor || []).map((inst, i) => (
+                      <div key={i} className=" border-[0.01rem] border-white/50 rounded-lg p-1">
+                        <div className="font-bold sm:text-[0.850rem] text-xs">{inst.name}</div>
+                        <div className="font-medium text-xs">{inst.role}</div>
+                      </div>
+                    ))}
                   </div>
 
                   {/* Datos: día, horario y sala */}
@@ -168,7 +176,7 @@ export default function SkillsWorkshopsLive(props) {
                   <div className="sw-req">
                     <div className="sw-req-label">{labels.reqs || "REQUISITOS"}</div>
                     <ul className="sw-req-list">
-                      {(w.requisitos || []).map((req, i) => (
+                      {(w.profile || []).map((req, i) => (
                         <li key={i}><span className="sw-req-bullet">›</span>{req}</li>
                       ))}
                     </ul>
