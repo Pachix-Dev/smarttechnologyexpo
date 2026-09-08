@@ -1551,6 +1551,32 @@ export const directory2026 =
     "has_coexhibitors": "no",
     "coexhibitors": null
   },
+
+  {
+    "id": 65,
+    "type":"exhibitor",
+    "tradename": "Dinkle",
+    "legal_company_name": "Dinkle Corporation USA",
+    "logo": "",
+    "description_es": "DINKLE es un fabricante global de soluciones de conectividad industrial, especializado en bloques de terminales, conectores, fuentes de alimentación, relevadores y componentes para automatización.",
+    "description_en": "DINKLE is a global manufacturer of industrial connectivity, specializing in terminal blocks, connectors, power supplies, relays, and automation component",
+    "linkedin": "https://www.linkedin.com/company/dinkle-mexico",
+    "facebook": "",
+    "instagram": "",
+    "stand_number": "H50",
+    "webpage": "www.dinkle.com",
+    "address": "13748 Pike Rd",
+    "zip_code": "77489",
+    "city": "Missouri City",
+    "state": "Texas",
+    "country": "United States",
+    "contact_name": "Paulina Padilla",
+    "contact_email": "sergio.gonzalez@dinkle.com",
+    "contact_phone": "134 6664 9214",
+    "directory_consent": "si",
+    "has_coexhibitors": "no",
+    "coexhibitors": null
+  },
   // {
   //   "id": 0,
   //   "type":"coexhibitor",
