@@ -703,8 +703,28 @@ export function RegisterForm({ translates, currentLanguage }) {
           <div className="grid md:grid-cols-2 gap-6">
             {/* Email */}
             <div>
-              <p className="mt-5 text-black">
+              <p className="mt-5 text-black flex flex-wrap items-center gap-2">
                 {translates.email} <span className="text-red-600">*</span>
+                <span className="text-red-600 flex items-center gap-1 text-sm font-normal">
+                  (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0-18 0m9-4v4m0 4h.01"
+                    />
+                  </svg>
+                  {translates.no_email_business}
+                  )
+                </span>
               </p>
               <div className="relative mt-2 ">
                 <input
@@ -960,9 +980,9 @@ export function RegisterForm({ translates, currentLanguage }) {
           <div className="grid md:grid-cols-3 gap-6 mt-10">
             {/* Company Name */}
             <div>
-              <p className="text-black">
-                {translates.company_name}{" "}
-                <span className="text-red-600">*</span>
+              <p className="text-black font-semibold ">
+                {translates.company_name}
+                <span className="text-red-600"> * </span>
               </p>
               <div className="relative mt-2">
                 <input
@@ -1279,9 +1299,9 @@ export function RegisterForm({ translates, currentLanguage }) {
             </div>
 
             <div>
-              <p className="text-black flex flex-wrap items-center gap-2">
+              <p className="text-black flex flex-wrap items-center gap-2 font-semibold">
                 {translates.postal_code} <span className="text-red-600">*</span>
-                <span className="text-amber-600 flex items-center gap-1 text-sm font-light">
+                <span className="text-red-600 flex items-center gap-1 text-sm font-normal">
                   (
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -1298,9 +1318,7 @@ export function RegisterForm({ translates, currentLanguage }) {
                       d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0-18 0m9-4v4m0 4h.01"
                     />
                   </svg>
-                  {currentLanguage === "es"
-                    ? "Selecciona un país primero "
-                    : "Select a country first "} 
+                  {translates.no_country_valid}
                   )
                 </span>
               </p>
@@ -1360,7 +1378,7 @@ export function RegisterForm({ translates, currentLanguage }) {
               </div>
 
               {/* Mensaje de advertencia cuando no hay país seleccionado */}
-              {!country && (
+              {/* {!country && (
                 <p className="text-amber-600 font-light text-sm mt-1 flex items-center gap-1">
                    <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -1380,7 +1398,7 @@ export function RegisterForm({ translates, currentLanguage }) {
                   {translates.select_country_first ||
                     "Por favor selecciona un país primero"}
                 </p>
-              )}
+              )} */}
 
               <p className="text-red-600 font-light">{messagePostalCode}</p>
 
@@ -1394,7 +1412,7 @@ export function RegisterForm({ translates, currentLanguage }) {
 
           <div className="grid md:grid-cols-2 gap-6 mt-5">
             <div>
-              <p className="text-black">
+              <p className="text- font-semibold">
                 {translates.state} <span className="text-red-600">*</span>
               </p>
               <div className="relative mt-2">
@@ -1433,7 +1451,7 @@ export function RegisterForm({ translates, currentLanguage }) {
               )}
             </div>
             <div>
-              <p className="text-black">{translates.municipality}</p>
+              <p className="text-black font-semibold">{translates.municipality}</p>
               <div className="relative mt-2">
                 <input
                   type="text"
@@ -1577,8 +1595,8 @@ export function RegisterForm({ translates, currentLanguage }) {
 
           <div className="grid md:grid-cols-2 gap-6 mt-5">
             <div>
-              <p className="text-black">
-                {translates.website}{" "}
+              <p className="text-black font-semibold flex gap-x-2">
+                {translates.website}
                 <span className="text-gray-600 font-normal">
                   {translates.opcional}
                 </span>
@@ -1613,8 +1631,8 @@ export function RegisterForm({ translates, currentLanguage }) {
               </div>
             </div>
             <div>
-              <p className="text-black">
-                {translates.company_phone}{" "}
+              <p className="text-black font-semibold flex gap-x-2">
+                {translates.company_phone}
                 <span className="text-gray-600 font-normal">
                   {translates.opcional}
                 </span>
