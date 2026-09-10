@@ -9,9 +9,9 @@ const HomePopup = ({ language }) => {
       <div className="fixed inset-0 z-9999 flex items-center justify-center">
         <div className="w-[610px] text-center relative p-2">
           <div className="flex justify-center items-center w-full">
-            <a href={language === "es" ? "/premio-itzamna-2026" : "/en/premio-itzamna-2026"} rel="noopener noreferrer">
+            <a href={language === "es" ? "/talleres-csia" : "/en/talleres-csia"} rel="noopener noreferrer">
               <img
-              src={language === "es" ? "/img/banner_premio_itzmna_es.webp" : "/img/banner_premio_itzmna_en.webp"}
+              src={language === "es" ? "/img/banner_csia_es.webp" : "/img/banner_csia_en.webp"}
               alt={language === "es" ? "Premio ITZMNA 2026" : "ITZMNA Award 2026"}
               className="mb-4 rounded-lg block shadow-lg shadow-white/30"
             />
