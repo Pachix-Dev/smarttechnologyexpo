@@ -9,7 +9,11 @@ const { locale, translations } = await useTranslations(Astro.props, Astro);
 const tr = (key: string, fallback: string = "") =>
   getTranslation(translations, key, fallback);
 
-import { sponsorsDiamond, sponsorsBronze, sponsorsPlatinum } from "../../logos.js";
+import {
+  sponsorsDiamond,
+  sponsorsBronze,
+  sponsorsPlatinum,
+} from "../../logos.js";
 import ConcurrentEventGrid from "./ConcurrentEventGrid.astro";
 
 const base = locale === "en" ? "/en" : "";
@@ -53,17 +57,17 @@ const base = locale === "en" ? "/en" : "";
       <h2
         class="text-center text-xl sm:text-3xl font-montserrat-extra-bold-italic mt-8"
       >
-        {locale === "es" ? "PATROCINADORES PLATINUM" : "DIAMOND SPONSORS"}
+        {locale === "es" ? "PATROCINADORES DIAMANTE" : "DIAMOND SPONSORS"}
       </h2>
-      <LogoGrid logos={sponsorsPlatinum} />
+      <LogoGrid logos={sponsorsDiamond} />
     </div>
     <div class="w-full">
       <h2
         class="text-center text-xl sm:text-3xl font-montserrat-extra-bold-italic mt-8"
       >
-        {locale === "es" ? "PATROCINADORES DIAMANTE" : "DIAMOND SPONSORS"}
+        {locale === "es" ? "PATROCINADORES PLATINUM" : "DIAMOND SPONSORS"}
       </h2>
-      <LogoGrid logos={sponsorsDiamond} />
+      <LogoGrid logos={sponsorsPlatinum} />
     </div>
   </section>
 </section>
