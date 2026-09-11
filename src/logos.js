@@ -39,4 +39,9 @@ const sponsorsSilver = [
   { src: "/img/exhibitors2026/telcel_empresas.webp", alt: "Robustel", href: "https://robustel.com", width: 300 },
 ];
 
-export { mediaPlanito, strategicPartners, sponsorsDiamond, mediaGold, sponsorsBronze, skillsSponsors, sponsorsSilver };
+const sponsorsPlatinum = [
+  { src: "/img/logos/sponsors/mitsubishi_electric.webp", alt: "Mitsubishi Electric", href: "https://mx.mitsubishielectric.com/es/", width: 300 },
+]; 
+
+
+export { mediaPlanito, strategicPartners, sponsorsDiamond, mediaGold, sponsorsBronze, skillsSponsors, sponsorsSilver, sponsorsPlatinum };
