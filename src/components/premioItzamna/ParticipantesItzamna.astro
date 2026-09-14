@@ -1,0 +1,61 @@
+---
+import { useTranslations, getTranslation } from "../../utils/translations";
+// ✨ Una sola línea para cargar traducciones!
+const { locale, translations } = await useTranslations(Astro.props, Astro);
+// 🎯 Helper para traducciones más elegante
+const tr = (key: string, fallback: string = "") =>
+  getTranslation(translations, key, fallback);
+
+const videos = [
+  {
+    src: "https://www.youtube.com/embed/F12KxIjOS-w?si=PdORGdQHMPqxvJ-N",
+    title: "Participante Premio Itzamna 1",
+  },
+  {
+    src: "https://www.youtube.com/embed/PgBZ_U7tLxE?si=ndkkJuYGIiF858Tu",
+    title: "Participante Premio Itzamna 2",
+  },
+  {
+    src: "https://www.youtube.com/embed/bN6iyS5uKY8?si=sRgmRkK3-7QtbJyz",
+    title: "Participante Premio Itzamna 3",
+  },
+  {
+    src: "https://www.youtube.com/embed/2AtnNVNUffk?si=AAQ6qdrthOQumNpG",
+    title: "Participante Premio Itzamna 4",
+  },
+];
+---
+
+<section class="px-4 py-10 sm:px-6 lg:px-8">
+  <div class="mx-auto w-full max-w-6xl">
+    <h2
+      class="text-center text-2xl sm:text-4xl uppercase font-extrabold leading-tight text-black"
+    >
+      {locale === "es" ? "Conoce a los participantes y sus proyectos" : "Meet the participants and their projects"}
+    </h2>
+
+    <div class="mt-8 grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-2">
+      {
+        videos.map((video) => (
+          <div
+            class="relative w-full overflow-hidden rounded-lg bg-black shadow-lg"
+            style="padding-top: 56.25%;"
+          >
+            <iframe
+              class="absolute inset-0 h-full w-full"
+              width="560"
+              height="315"
+              src={video.src}
+              title={video.title}
+              frameborder="0"
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
