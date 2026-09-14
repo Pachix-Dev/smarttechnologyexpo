@@ -1630,6 +1630,31 @@ export const directory2026 =
     "coexhibitors": null
   },
   
+{
+    "id": 68,
+    "type":"exhibitor",
+    "tradename": "MLEAN",
+    "legal_company_name": "MOBILE LEAN SL",
+    "logo": "/img/exhibitors2026/mlean.webp",
+    "description_es": "Mlean es una plataforma global de Excelencia Operacional impulsada por IA que conecta equipos e integra las principales rutinas y procesos de planta para mejorar la ejecución, aumentar la eficiencia e impulsar la rentabilidad.",
+    "description_en": "Mlean is a global, AI-powered Operational Excellence platform that connects teams and integrates key routines and processes to improve shop floor execution, increase efficiency, and drive profitability.",
+    "linkedin": "https://www.linkedin.com/company/mlean/",
+    "facebook": "",
+    "instagram": "",
+    "stand_number": "F52",
+    "webpage": "https://www.mlean.com/",
+    "address": "Calle Duque de la Victoria 5, 5º",
+    "zip_code": "47001",
+    "city": "Valladolid",
+    "state": "Castilla y León",
+    "country": "España",
+    "contact_name": "David Rebollo Gutiérrez",
+    "contact_email": "drebollo@mlean.com",
+    "contact_phone": "34676151189",
+    "directory_consent": "si",
+    "has_coexhibitors": "no",
+    "coexhibitors": null
+  },
   // {
   //   "id": 0,
   //   "type":"coexhibitor",
