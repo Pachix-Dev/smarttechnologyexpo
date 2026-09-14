@@ -1,47 +1,46 @@
-import mysql from 'mysql2/promise';
-import 'dotenv/config';
+import mysql from "mysql2/promise";
+import "dotenv/config";
 const config = {
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
-}
+};
 
 const hableError = (error) => {
-  if (error?.code === 'ER_DUP_ENTRY') {
+  if (error?.code === "ER_DUP_ENTRY") {
     return {
       status: false,
       statusCode: 409,
-      message: 'Ya estás registrado con este correo electrónico...',
-    }
+      message: "Ya estás registrado con este correo electrónico...",
+    };
   }
 
-  if (error?.code === 'ER_BAD_NULL_ERROR') {
+  if (error?.code === "ER_BAD_NULL_ERROR") {
     return {
       status: false,
       statusCode: 400,
-      message: 'Faltan campos obligatorios para completar el registro.',
-    }
+      message: "Faltan campos obligatorios para completar el registro.",
+    };
   }
 
-  if (error?.sqlState === '23000') {
+  if (error?.sqlState === "23000") {
     return {
       status: false,
       statusCode: 409,
-      message: 'Valida los datos capturados.',
-    }
+      message: "Valida los datos capturados.",
+    };
   }
-
 
   return {
     status: false,
     statusCode: 500,
-    message: 'Error al guardar tus datos, por favor intenta de nuevo.',
-  }
-}
+    message: "Error al guardar tus datos, por favor intenta de nuevo.",
+  };
+};
 
 export class RegisterModel {
-  static async create_expositor_lead_ecomondo({
+  static async create_expositor_lead({
     sector,
     name,
     email,
@@ -52,7 +51,7 @@ export class RegisterModel {
     const connection = await mysql.createConnection(config);
     try {
       const [result] = await connection.query(
-        "INSERT INTO expositor_landing_ecomondo	 ( sector, name, email, phone, message, company ) VALUES (?,?,?,?,?,?)",
+        "INSERT INTO ste_exhibitor_leads_2026	( sector, name, email, phone, message, company ) VALUES (?,?,?,?,?,?)",
         [sector, name, email, phone, message, company],
       );
 
@@ -75,6 +74,34 @@ export class RegisterModel {
       const [result] = await connection.query(
         "INSERT INTO boletin_ecomondo ( name, email ) VALUES (?,?)",
         [name, email],
+      );
+
+      return {
+        status: true,
+        insertId: result.insertId,
+        ...result,
+      };
+    } catch (error) {
+      console.log(error);
+      return hableError(error);
+    } finally {
+      await connection.end();
+    }
+  }
+
+  static async create_expositor_lead({
+    sector,
+    name,
+    email,
+    phone,
+    message,
+    company,
+  }) {
+    const connection = await mysql.createConnection(config);
+    try {
+      const [result] = await connection.query(
+        "INSERT INTO ste_exhibitor_leads_2026	( sector, name, email, phone, message, company ) VALUES (?,?,?,?,?,?)",
+        [sector, name, email, phone, message, company],
       );
 
       return {
@@ -595,20 +622,19 @@ export class RegisterModel {
     }
   }
 
-// ============================================================================
-//  MÓDULO DE TALLERES — Métodos de db.js (dentro de la clase RegisterModel)
-//  Autor: Donovan Oswaldo Villalba Hernandez
-//
-//  Métodos de acceso a datos para el registro y asistencia a talleres.
-//  Cada método:
-//    - Abre una conexión a MySQL con la configuración `config` (host, user…).
-//    - Ejecuta su consulta con PARÁMETROS (marcadores `?`), lo que previene
-//      la INYECCIÓN SQL: el valor viaja como dato, nunca como código.
-//    - Cierra la conexión SIEMPRE en el bloque `finally` (haya error o no),
-//      para no dejar conexiones abiertas.
-//
-// ============================================================================
-
+  // ============================================================================
+  //  MÓDULO DE TALLERES — Métodos de db.js (dentro de la clase RegisterModel)
+  //  Autor: Donovan Oswaldo Villalba Hernandez
+  //
+  //  Métodos de acceso a datos para el registro y asistencia a talleres.
+  //  Cada método:
+  //    - Abre una conexión a MySQL con la configuración `config` (host, user…).
+  //    - Ejecuta su consulta con PARÁMETROS (marcadores `?`), lo que previene
+  //      la INYECCIÓN SQL: el valor viaja como dato, nunca como código.
+  //    - Cierra la conexión SIEMPRE en el bloque `finally` (haya error o no),
+  //      para no dejar conexiones abiertas.
+  //
+  // ============================================================================
 
   // --------------------------------------------------------------------------
   //  get_visitor_ste_by_email(email)
@@ -636,7 +662,6 @@ export class RegisterModel {
       await connection.end();
     }
   }
-
 
   // --------------------------------------------------------------------------
   //  get_active_workshops()
@@ -668,7 +693,6 @@ export class RegisterModel {
     }
   }
 
-
   // --------------------------------------------------------------------------
   //  get_workshop_by_id(id)
   //  Trae UN taller por su id. Se usa para validar que el taller exista y esté
@@ -689,7 +713,6 @@ export class RegisterModel {
       await connection.end();
     }
   }
-
 
   // --------------------------------------------------------------------------
   //  register_workshop_attendance({ workshop_id, visitor_id, uuid })
@@ -713,62 +736,74 @@ export class RegisterModel {
   //    { status: false, message: ... }           → cualquier otro error.
   // --------------------------------------------------------------------------
   static async register_workshop_attendance({ workshop_id, visitor_id, uuid }) {
-  const connection = await mysql.createConnection(config);
-  try {
-    await connection.beginTransaction();
+    const connection = await mysql.createConnection(config);
+    try {
+      await connection.beginTransaction();
 
-    // 1) Bloqueamos la fila del taller (FOR UPDATE) para serializar las
-    //    inscripciones concurrentes a este mismo taller.
-    const [wrows] = await connection.query(
-      "SELECT capacity FROM workshops WHERE workshop_id = ? AND is_active = 1 FOR UPDATE",
-      [workshop_id],
-    );
-    if (!wrows[0]) {
-      await connection.rollback();
-      return { status: false, message: "Taller no disponible." };
+      // 1) Bloqueamos la fila del taller (FOR UPDATE) para serializar las
+      //    inscripciones concurrentes a este mismo taller.
+      const [wrows] = await connection.query(
+        "SELECT capacity FROM workshops WHERE workshop_id = ? AND is_active = 1 FOR UPDATE",
+        [workshop_id],
+      );
+      if (!wrows[0]) {
+        await connection.rollback();
+        return { status: false, message: "Taller no disponible." };
+      }
+      const capacity = Number(wrows[0].capacity);
+
+      // 2) Contamos los inscritos actuales dentro de la misma transacción.
+      const [crows] = await connection.query(
+        "SELECT COUNT(*) AS registered FROM workshop_attendance WHERE workshop_id = ?",
+        [workshop_id],
+      );
+      const registered = Number(crows[0].registered);
+
+      // 3) Si ya se alcanzó el cupo, rechazamos ANTES de insertar.
+      if (registered >= capacity) {
+        await connection.rollback();
+        return {
+          status: false,
+          full: true,
+          message: "El taller alcanzó su cupo máximo.",
+        };
+      }
+
+      // 4) Guardamos la inscripción (valores parametrizados).
+      await connection.query(
+        "INSERT INTO workshop_attendance (workshop_id, visitor_id, uuid) VALUES (?,?,?)",
+        [workshop_id, visitor_id, uuid],
+      );
+
+      await connection.commit();
+      return { status: true };
+    } catch (error) {
+      try {
+        await connection.rollback();
+      } catch (_) {
+        /* noop */
+      }
+      if (error?.code === "ER_DUP_ENTRY" || error?.sqlState === "23000") {
+        return {
+          status: false,
+          duplicate: true,
+          message: "Ya estás registrado a este taller.",
+        };
+      }
+      console.log(error);
+      return { status: false, message: "Error al registrar tu asistencia." };
+    } finally {
+      await connection.end();
     }
-    const capacity = Number(wrows[0].capacity);
-
-    // 2) Contamos los inscritos actuales dentro de la misma transacción.
-    const [crows] = await connection.query(
-      "SELECT COUNT(*) AS registered FROM workshop_attendance WHERE workshop_id = ?",
-      [workshop_id],
-    );
-    const registered = Number(crows[0].registered);
-
-    // 3) Si ya se alcanzó el cupo, rechazamos ANTES de insertar.
-    if (registered >= capacity) {
-      await connection.rollback();
-      return { status: false, full: true, message: "El taller alcanzó su cupo máximo." };
-    }
-
-    // 4) Guardamos la inscripción (valores parametrizados).
-    await connection.query(
-      "INSERT INTO workshop_attendance (workshop_id, visitor_id, uuid) VALUES (?,?,?)",
-      [workshop_id, visitor_id, uuid],
-    );
-
-    await connection.commit();
-    return { status: true };
-  } catch (error) {
-    try { await connection.rollback(); } catch (_) { /* noop */ }
-    if (error?.code === "ER_DUP_ENTRY" || error?.sqlState === "23000") {
-      return { status: false, duplicate: true, message: "Ya estás registrado a este taller." };
-    }
-    console.log(error);
-    return { status: false, message: "Error al registrar tu asistencia." };
-  } finally {
-    await connection.end();
   }
-}
 
-// Este método obtiene información de un código postal desde la tabla `postal_code`.
-static async get_postal_code({ cp }) {
+  // Este método obtiene información de un código postal desde la tabla `postal_code`.
+  static async get_postal_code({ cp }) {
     const connection = await mysql.createConnection(config);
     try {
       const [result] = await connection.query(
         "SELECT * FROM postal_code WHERE d_CP = ? OR d_codigo = ?",
-        [cp, cp]
+        [cp, cp],
       );
       if (result.length === 0) {
         return {

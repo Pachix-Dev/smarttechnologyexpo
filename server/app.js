@@ -82,6 +82,68 @@ app.get("/check-user-visit", async (req, res) => {
   }
 });
 
+app.post("/expositor-landing-email", async (req, res) => {
+
+  try{
+        const { body } = req;
+
+        // Guardar el lead en la base de datos
+        await RegisterModel.create_expositor_lead({...body}); 
+        
+        await resend.emails.send({
+          from: "SMART TECHNOLOGY EXPO 2026 - LEAD EXPOSITOR <noreply@smarttechnologyexpo.mx>",
+          to: "jesus.zermeno@igeco.mx",
+          cc: ["jesus.zermeno@igeco.mx"],
+          subject: "NUEVO LEAD - SMART TECHNOLOGY EXPO",
+          html: `
+            <h1>Un nuevo expositor ha solicitado información</h1>
+                <table border="1" cellpadding="8" cellspacing="0">
+                    <tr>
+                        <td>Sector</td>
+                        <td>${body.sector}</td>
+                    </tr>
+                    <tr>
+                        <td>Nombre</td>
+                        <td>${body.name}</td>
+                    </tr>
+                    <tr>
+                        <td>Correo</td>
+                        <td>${body.email}</td>
+                    </tr>
+                    <tr>
+                        <td>Empresa</td>
+                        <td>${body.company}</td>
+                    </tr>
+                    <tr>
+                        <td>Teléfono</td>
+                        <td>${body.phone}</td>
+                    </tr>
+                    <tr>
+                        <td>Mensaje</td>
+                        <td>${body.message}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: center;"> Italian German Exhibition Company Mexico </td>
+                    </tr>
+                </table>
+            `,
+        });
+
+        return res.send({
+            status: true,
+            message: 'Gracias por registrarte, te hemos enviado un correo de confirmación a tu bandeja de entrada...'
+        });
+
+    } catch (err) {
+        console.log(err);
+        return res.status(500).send({
+            status: false,
+            message: 'No pudimos enviarte el correo de confirmación de tu registro, por favor descarga tu registro en este pagina y presentalo hasta el dia del evento...'
+        });             
+    }   
+
+});
+
 // Registro gratuito para visitantes a Smart Technology Expo 2026
 app.post("/free-register-ste", async (req, res) => {
   const { body } = req;

@@ -33,46 +33,43 @@ export function ContactForm({ language }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+
     const formData = Object.fromEntries(new window.FormData(event.target));
+    const leadData = {
+      ...formData,
+      phone: `${formData.countrycodes} ${formData.phone}`.trim(),
+    }
+    delete leadData.countrycodes
+
 
     const requestOptions = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ formData }),
+      body: JSON.stringify(leadData),
     };
 
     try {
       setSendStatus(true);
 
+      const urlbase = import.meta.env.DEV
+    ? 'http://localhost:3005/'
+    : 'https://smarttechnologyexpo.mx/server/'
+
       // Guardar datos en la base de datos
-      const res = await fetch(
-        "https://smarttechnologyexpo.mx/backend/landingPage.php",
+      const res = await fetch( urlbase + "expositor-landing-email",
         requestOptions,
       );
       const data = await res.json();
 
       if (data.status) {
-        // Enviar email de confirmación
-        const statusEmail = await fetch(
-          "https://hfmexico.mx/foro-electromovilidad/backend/email/send-email-ste-landing",
-          requestOptions,
-        );
-        const dataEmail = await statusEmail.json();
-
-        if (dataEmail.status) {
           useZustandStore.setState({ zustandState: true });
           document.getElementById("form-contact")?.reset();
           setSelectedCountryCode("52");
           setPhoneNumber("");
-          window.location.href = "/gracias-por-contactarnos";
-        } else {
-          setSendStatus(false);
-          setResponse(
-            "Lo sentimos en este momento no es posible enviar tu información...",
-          );
-        }
+          window.location.href = language === 'es' ? '/gracias-por-contactarnos' : '/en/gracias-por-contactarnos';
       } else {
         setSendStatus(false);
         setResponse(
