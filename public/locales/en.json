@@ -325,6 +325,8 @@
     "first_time": "Is this your first time with us?",
     "already_account": "Have you visited us before? Enter your email",
     "title": "Registration",
+    "subtitle": "GENERAL REGISTRATION FOR VISITORS",
+    "textInfo": "Complete the form to register as a visitor for the event.",
     "description": "Please check that your information is correct",
     "button": "Register for free",
     "text_1": "If you have already registered and want to improve your experience",

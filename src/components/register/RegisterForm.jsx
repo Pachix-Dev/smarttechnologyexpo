@@ -385,6 +385,14 @@ export function RegisterForm({ translates, currentLanguage }) {
 
   return (
     <section className="py-5">
+      <div className="text-center p-8">
+        <h2 className="text-2xl sm:text-4xl font-extrabold text-center">
+          {translates.subtitle}
+        </h2>
+        <p className="mt-2 text-base text-gray-600 sm:text-2xl">
+          {translates.textInfo}
+        </p>
+      </div>
       <form className="mx-auto" onSubmit={handleSubmit(handleRegister)}>
         {/* Personal Information */}
         <div className="rounded-lg shadow-lg border border-gray-800/20 p-8">
@@ -722,8 +730,7 @@ export function RegisterForm({ translates, currentLanguage }) {
                       d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0-18 0m9-4v4m0 4h.01"
                     />
                   </svg>
-                  {translates.no_email_business}
-                  )
+                  {translates.no_email_business})
                 </span>
               </p>
               <div className="relative mt-2 ">
@@ -1318,8 +1325,7 @@ export function RegisterForm({ translates, currentLanguage }) {
                       d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0-18 0m9-4v4m0 4h.01"
                     />
                   </svg>
-                  {translates.no_country_valid}
-                  )
+                  {translates.no_country_valid})
                 </span>
               </p>
               <div className="relative mt-2">
@@ -1451,7 +1457,9 @@ export function RegisterForm({ translates, currentLanguage }) {
               )}
             </div>
             <div>
-              <p className="text-black font-semibold">{translates.municipality}</p>
+              <p className="text-black font-semibold">
+                {translates.municipality}
+              </p>
               <div className="relative mt-2">
                 <input
                   type="text"
