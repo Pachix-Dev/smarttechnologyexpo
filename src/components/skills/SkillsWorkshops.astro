@@ -41,6 +41,7 @@ const workshops = workshopsData.map((w) => ({
   workshopId: w.workshopId,
   name: locale === 'en' ? w.name_en : w.name,
   company: w.company,
+  companyLogo: w.companyLogo,
   nivel: w.nivel,
   instructor: w.instructor,
   duracion: locale === 'en' ? w.duracion_en : w.duracion,
@@ -72,8 +73,7 @@ const labels = {
 };
 ---
 
-<!-- Isla React (client:load): se hidrata al cargar. Recibe la lista de talleres,
-     los labels ya traducidos y el color de acento; el cupo lo trae ella en vivo. -->
+<!-- Isla React (client:load): se hidrata al cargar. Recibe la lista de talleres, los labels ya traducidos y el color de acento; el cupo lo trae ella en vivo. -->
 <SkillsWorkshopsLive
   client:load
   workshops={workshops}

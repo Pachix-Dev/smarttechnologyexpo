@@ -10,6 +10,8 @@
 // formulario solo tendrá el placeholder. Para volver a mostrarlos (o cuando lleguen
 // los talleres reales), descomenta / reemplaza el bloque de abajo.
 
+import { companyLogo } from "../components/insights/insightsApi";
+
 const workshops = [
  
   {
@@ -17,6 +19,7 @@ const workshops = [
     name: 'SEGURIDAD EN MAQUINARIA: ANÁLISIS Y MITIGACIÓN DE RIESGOS',
     name_en: 'EMACHINE SAFETY: RISK ANALYSIS AND MITIGATION',
     company: 'Euchner',
+    companyLogo: '/img/exhibitors2026/euchner.webp',
     nivel: 'INTERMEDIO',
     instructor: [
       {
@@ -40,6 +43,7 @@ const workshops = [
     name: 'CONTROL BASADO EN PC: LA PLATAFORMA IDEAL PARA LA MANUFACTURA INTELIGENTE',
     name_en: 'PC-BASED CONTROL: THE IDEAL PLATFORM FOR SMART MANUFACTURING',
     company: 'Beckhoff',
+    companyLogo: '/img/exhibitors2026/beckhoff.webp',
     nivel: 'INTERMEDIO',
     instructor: [
       {

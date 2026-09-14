@@ -21,9 +21,9 @@ import { useEffect, useState } from "react";
 
 // Colores por nivel (la llave es el valor "crudo" del dato: BÁSICO/INTERMEDIO/AVANZADO).
 const NIVEL_COLORS = {
-  "BÁSICO": "#3a8f5a",
-  "INTERMEDIO": "#c79a2a",
-  "AVANZADO": "#E2101A",
+  BÁSICO: "#3a8f5a",
+  INTERMEDIO: "#c79a2a",
+  AVANZADO: "#E2101A",
 };
 
 export default function SkillsWorkshopsLive(props) {
@@ -64,7 +64,7 @@ export default function SkillsWorkshopsLive(props) {
     }
 
     refresh();
-    const id = setInterval(refresh, 20000);          // refresco cada 20 s
+    const id = setInterval(refresh, 20000); // refresco cada 20 s
     window.addEventListener("workshop:registered", refresh); // y al registrarse alguien
 
     return () => {
@@ -78,7 +78,9 @@ export default function SkillsWorkshopsLive(props) {
   const handleEnroll = (workshopId, disabled) => {
     if (disabled) return;
     window.dispatchEvent(
-      new CustomEvent("workshop:preselect", { detail: { workshop_id: Number(workshopId) } }),
+      new CustomEvent("workshop:preselect", {
+        detail: { workshop_id: Number(workshopId) },
+      }),
     );
     const form = document.querySelector("#wf-form");
     if (form) form.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -92,11 +94,11 @@ export default function SkillsWorkshopsLive(props) {
 
   // Traduce la etiqueta de nivel según los labels recibidos.
   const nivelLabel = (nivel) =>
-  ({
-    "BÁSICO": labels.nivelBasic || "BÁSICO",
-    "INTERMEDIO": labels.nivelIntermediate || "INTERMEDIO",
-    "AVANZADO": labels.nivelAdvanced || "AVANZADO",
-  }[nivel] || nivel);
+    ({
+      BÁSICO: labels.nivelBasic || "BÁSICO",
+      INTERMEDIO: labels.nivelIntermediate || "INTERMEDIO",
+      AVANZADO: labels.nivelAdvanced || "AVANZADO",
+    })[nivel] || nivel;
 
   return (
     <section className="sw-section">
@@ -119,7 +121,10 @@ export default function SkillsWorkshopsLive(props) {
             const disp = Math.max(capacity - registered, 0);
             const soldOut = disp <= 0;
             const low = disp > 0 && disp <= 5;
-            const fillPercent = capacity > 0 ? Math.round(((capacity - disp) / capacity) * 100) : 0;
+            const fillPercent =
+              capacity > 0
+                ? Math.round(((capacity - disp) / capacity) * 100)
+                : 0;
 
             // Texto y colores del cupo según disponibilidad (agotado / pocos / normal).
             const cupoText = soldOut
@@ -128,7 +133,10 @@ export default function SkillsWorkshopsLive(props) {
                 ? t_last.replace("{n}", String(disp))
                 : `${disp} ${t_avail}`;
             const cupoColor = low || soldOut ? accent : "#cfcfcf";
-            const fillBg = low || soldOut ? accent : `linear-gradient(90deg,#0D3B66,${accent})`;
+            const fillBg =
+              low || soldOut
+                ? accent
+                : `linear-gradient(90deg,#0D3B66,${accent})`;
             const nivelColor = NIVEL_COLORS[w.nivel] || accent;
 
             return (
@@ -137,29 +145,68 @@ export default function SkillsWorkshopsLive(props) {
                 <div className="sw-card-body">
                   {/* Cabecera: nivel + duración (con ícono de reloj) */}
                   <div className="sw-card-head">
-                    <span className="sw-nivel" style={{ background: nivelColor }}>
+                    <span
+                      className="sw-nivel"
+                      style={{ background: nivelColor }}
+                    >
                       {nivelLabel(w.nivel)}
                     </span>
                     <span className="sw-duracion">
-                      <svg className="sw-clock-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                        <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.8" />
-                        <path d="M12 7v5l3.5 2" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                      <svg
+                        className="sw-clock-icon"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true"
+                      >
+                        <circle
+                          cx="12"
+                          cy="12"
+                          r="9"
+                          stroke="currentColor"
+                          strokeWidth="1.8"
+                        />
+                        <path
+                          d="M12 7v5l3.5 2"
+                          stroke="currentColor"
+                          strokeWidth="1.8"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
                       </svg>
                       {w.duracion}
                     </span>
                   </div>
                   <h3 className="sw-name">{w.name}</h3>
-                  <p className="font-semibold text-xs sm:text-base uppercase flex items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256"><path fill="currentColor" d="M232 224h-24V32h8a8 8 0 0 0 0-16H40a8 8 0 0 0 0 16h8v192H24a8 8 0 0 0 0 16h208a8 8 0 0 0 0-16M64 32h128v192h-32v-40a8 8 0 0 0-8-8h-48a8 8 0 0 0-8 8v40H64Zm80 192h-32v-32h32ZM88 64a8 8 0 0 1 8-8h16a8 8 0 0 1 0 16H96a8 8 0 0 1-8-8m48 0a8 8 0 0 1 8-8h16a8 8 0 0 1 0 16h-16a8 8 0 0 1-8-8m-48 40a8 8 0 0 1 8-8h16a8 8 0 0 1 0 16H96a8 8 0 0 1-8-8m48 0a8 8 0 0 1 8-8h16a8 8 0 0 1 0 16h-16a8 8 0 0 1-8-8m-48 40a8 8 0 0 1 8-8h16a8 8 0 0 1 0 16H96a8 8 0 0 1-8-8m48 0a8 8 0 0 1 8-8h16a8 8 0 0 1 0 16h-16a8 8 0 0 1-8-8" /></svg>
-                    {w.company}
-                  </p>
+
+                  <p> {locale === 'es' ? 'Impartido por ' : 'Presented by' } </p>
+                  {(w.companyLogo || w.company) && (
+                    <div className="sw-company">
+                      {w.companyLogo ? (
+                        <img
+                          src={w.companyLogo}
+                          alt={w.company || "Logo de empresa"}
+                          className="sw-company-logo"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      ) : (
+                        <p className="sw-company-name">{w.company}</p>
+                      )}
+                    </div>
+                  )}
 
                   {/* Instructor: nombre + cargo (sin foto ni botón de semblanza) */}
                   <p className="py-2">Instructor</p>
                   <div className="sw-instructor">
                     {(w.instructor || []).map((inst, i) => (
-                      <div key={i} className=" border-[0.01rem] border-white/50 rounded-lg p-1">
-                        <div className="font-bold sm:text-[0.850rem] text-xs">{inst.name}</div>
+                      <div
+                        key={i}
+                        className=" border-[0.01rem] border-white/50 rounded-lg p-1"
+                      >
+                        <div className="font-bold sm:text-[0.850rem] text-xs">
+                          {inst.name}
+                        </div>
                         <div className="font-medium text-xs">{inst.role}</div>
                       </div>
                     ))}
@@ -167,17 +214,33 @@ export default function SkillsWorkshopsLive(props) {
 
                   {/* Datos: día, horario y sala */}
                   <div className="sw-info">
-                    <div className="sw-info-row"><span>{labels.day || "DÍA"}</span><span>{w.dia}</span></div>
-                    <div className="sw-info-row"><span>{labels.schedule || "HORARIO"}</span><span>{w.horario}</span></div>
-                    <div className="sw-info-row"><span>{labels.room || "SALA"}</span><span>{w.sala}</span></div>
+                    <div className="sw-info-row">
+                      <span>{labels.day || "DÍA"}</span>
+                      <span>{w.dia}</span>
+                    </div>
+                    <div className="sw-info-row">
+                      <span>{labels.schedule || "HORARIO"}</span>
+                      <span>{w.horario}</span>
+                    </div>
+                    <div className="sw-info-row">
+                      <span>{labels.room || "SALA"}</span>
+                      <span>{w.sala}</span>
+                    </div>
                   </div>
 
                   {/* Requisitos del taller */}
                   <div className="sw-req">
-                    <div className="sw-req-label">{locale === 'es' ? "PERFIL DEL ASISTENTE" : "ATTENDEE PROFILE"}</div>
+                    <div className="sw-req-label">
+                      {locale === "es"
+                        ? "PERFIL DEL ASISTENTE"
+                        : "ATTENDEE PROFILE"}
+                    </div>
                     <ul className="sw-req-list">
                       {(w.profile || []).map((req, i) => (
-                        <li key={i}><span className="sw-req-bullet">›</span>{req}</li>
+                        <li key={i}>
+                          <span className="sw-req-bullet">›</span>
+                          {req}
+                        </li>
                       ))}
                     </ul>
                   </div>
@@ -185,11 +248,21 @@ export default function SkillsWorkshopsLive(props) {
                   {/* Pie: barra de cupo en vivo + botón Inscribirme (deshabilitado si lleno) */}
                   <div className="sw-footer">
                     <div className="sw-cupo-row">
-                      <span className="sw-cupo-text" style={{ color: cupoColor }}>{cupoText}</span>
-                      <span className="sw-cupo-total">{t_cap} {capacity}</span>
+                      <span
+                        className="sw-cupo-text"
+                        style={{ color: cupoColor }}
+                      >
+                        {cupoText}
+                      </span>
+                      <span className="sw-cupo-total">
+                        {t_cap} {capacity}
+                      </span>
                     </div>
                     <div className="sw-cupo-bar">
-                      <div className="sw-cupo-fill" style={{ width: `${fillPercent}%`, background: fillBg }}></div>
+                      <div
+                        className="sw-cupo-fill"
+                        style={{ width: `${fillPercent}%`, background: fillBg }}
+                      ></div>
                     </div>
                     <button
                       className="sw-cta"
@@ -198,7 +271,7 @@ export default function SkillsWorkshopsLive(props) {
                       style={{ background: soldOut ? "#333" : accent }}
                       onClick={() => handleEnroll(workshopId, soldOut)}
                     >
-                      {soldOut ? t_full : (labels.enroll || "Inscribirme")}
+                      {soldOut ? t_full : labels.enroll || "Inscribirme"}
                     </button>
                   </div>
                 </div>
