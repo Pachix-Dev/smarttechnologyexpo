@@ -55,55 +55,20 @@ const registrationNotice =
       >
     </div>
 
-    <div class="w-full space-y-3">
-      <div class="grid gap-3 sm:grid-cols-3">
-
+    <nav
+      class="registration-tabs w-full space-y-3"
+      aria-labelledby="registration-notice-title"
+    >
+      <ul class="grid gap-3 sm:grid-cols-3">
         <!-- General registration section -->
-        <a
-          id="registro-general"
-          href="#register-form"
-          class="rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-left text-xs font-extrabold uppercase tracking-wide text-green-900 transition hover:bg-green-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 flex flex-row items-center justify-between"
-        >
-          {registrationNotice.generalRegistration}
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            ><path
-              fill="currentColor"
-              d="m13.172 12l-4.95-4.95l1.414-1.413L16 12l-6.364 6.364l-1.414-1.415z"
-            ></path></svg
+        <li class="flex">
+          <a
+            id="registro-general"
+            href="#register-form"
+            class="flex w-full flex-row items-center justify-between rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-left text-xs font-extrabold uppercase tracking-wide text-green-900 transition hover:bg-green-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
           >
-        </a>
-
-        <!-- Media registration section -->
-        <a
-          href={`${basePath}/medios`}
-          class="rounded-lg border border-blue-200 bg-blue-50 px-4 py-3 text-left text-xs font-extrabold uppercase tracking-wide text-blue-900 transition hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 flex flex-row items-center justify-between"
-        >
-          {registrationNotice.mediaButton}
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            ><path
-              fill="currentColor"
-              d="m13.172 12l-4.95-4.95l1.414-1.413L16 12l-6.364 6.364l-1.414-1.415z"
-            ></path></svg
-          >
-        </a>
-
-        <!-- Student registration section -->
-        <details class="group contents">
-
-          <summary
-            class="w-full rounded-lg border border-orange-200 bg-orange-50 px-4 py-3 text-left text-xs font-extrabold uppercase tracking-wide text-orange-900 transition hover:bg-orange-100 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 flex cursor-pointer list-none flex-row items-center justify-between [&::-webkit-details-marker]:hidden"
-          >
-            {registrationNotice.studentButton}
+            {registrationNotice.generalRegistration}
             <svg
-              class="transition-transform group-open:rotate-90"
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
@@ -113,42 +78,106 @@ const registrationNotice =
                 d="m13.172 12l-4.95-4.95l1.414-1.413L16 12l-6.364 6.364l-1.414-1.415z"
               ></path></svg
             >
-          </summary>
+          </a>
+        </li>
 
-          <div class="col-span-full w-full rounded-lg border border-orange-200 border-l-4 border-l-orange-500 bg-orange-50 p-3">
-            <div class="flex flex-row gap-x-2 justify-start items-center">
-              <svg
-                class="mb-2 size-5 text-orange-900"
-                aria-hidden="true"
-                viewBox="0 0 20 20"
+        <!-- Media registration section -->
+        <li class="flex">
+          <a
+            href={`${basePath}/medios`}
+            class="flex w-full flex-row items-center justify-between rounded-lg border border-blue-200 bg-blue-50 px-4 py-3 text-left text-xs font-extrabold uppercase tracking-wide text-blue-900 transition hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+          >
+            {registrationNotice.mediaButton}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              ><path
                 fill="currentColor"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.515 2.625H3.72c-1.345 0-2.188-1.458-1.515-2.625L8.485 2.495ZM10 5a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 10 5Zm0 8a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"
-                  clip-rule="evenodd"></path>
-              </svg>
-              <h4
-                class="mb-2 text-sm font-extrabold uppercase tracking-wide text-orange-900"
-              >
-                {registrationNotice.studentTitle}
-              </h4>
-            </div>
-            <div class="space-y-0">
-              {
-                registrationNotice.studentParagraphs.map((paragraph) => (
-                  <p class="text-xs leading-relaxed text-orange-950">
-                    {paragraph}
-                  </p>
-                ))
-              }
-            </div>
-          </div>
+                d="m13.172 12l-4.95-4.95l1.414-1.413L16 12l-6.364 6.364l-1.414-1.415z"
+              ></path></svg
+            >
+          </a>
+        </li>
 
-        </details>
+        <!-- Student registration tab -->
+        <li class="flex">
+          <a
+            href="#student-registration-message"
+            class="student-registration-tab flex w-full flex-row items-center justify-between rounded-lg border border-orange-200 bg-orange-50 px-4 py-3 text-left text-xs font-extrabold uppercase tracking-wide text-orange-900 transition hover:bg-orange-100 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+            aria-controls="student-registration-message"
+          >
+            {registrationNotice.studentButton}
+            <svg
+              class="transition-transform"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              ><path
+                fill="currentColor"
+                d="m13.172 12l-4.95-4.95l1.414-1.413L16 12l-6.364 6.364l-1.414-1.415z"
+              ></path></svg
+            >
+          </a>
+        </li>
+      </ul>
 
-        
+      <div
+        id="student-registration-message"
+        class="registration-tab-panel w-full scroll-mt-24 rounded-lg border border-orange-200 border-l-4 border-l-orange-500 bg-orange-50 p-3"
+      >
+        <div class="flex flex-row items-center justify-start gap-x-2">
+          <svg
+            class="mb-2 size-5 text-orange-900"
+            aria-hidden="true"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.515 2.625H3.72c-1.345 0-2.188-1.458-1.515-2.625L8.485 2.495ZM10 5a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 10 5Zm0 8a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"
+              clip-rule="evenodd"></path>
+          </svg>
+          <h4
+            class="mb-2 text-sm font-extrabold uppercase tracking-wide text-orange-900"
+          >
+            {registrationNotice.studentTitle}
+          </h4>
+        </div>
+        <div class="space-y-0">
+          {
+            registrationNotice.studentParagraphs.map((paragraph) => (
+              <p class="text-xs leading-relaxed text-orange-950">
+                {paragraph}
+              </p>
+            ))
+          }
+        </div>
       </div>
-    </div>
+    </nav>
   </div>
 </section>
+
+<style>
+  .registration-tab-panel {
+    display: none;
+  }
+
+  .registration-tab-panel:target {
+    display: block;
+  }
+
+  .registration-tabs:has(.registration-tab-panel:target)
+    .student-registration-tab {
+    border-color: rgb(251 146 60);
+    background-color: rgb(255 237 213);
+  }
+
+  .registration-tabs:has(.registration-tab-panel:target)
+    .student-registration-tab
+    svg {
+    transform: rotate(90deg);
+  }
+</style>
