@@ -10,6 +10,7 @@ import { email_template_workshop } from "./TemplateEmailWorkshop.js";
 
 import { email_template_ecomondo_student } from "./TemplateEmailEcomondo_student.js";
 import { email_template_ecomondo_eng_student } from "./TemplateEmailEcomondoEng_student.js";
+import { email_template_expositor } from "./TemplateEmailExpositor.js";
 
 import {
   generatePDF_freePass_ecomondo,
@@ -83,65 +84,28 @@ app.get("/check-user-visit", async (req, res) => {
 });
 
 app.post("/expositor-landing-email", async (req, res) => {
+  try {
+    const { body } = req;
 
-  try{
-        const { body } = req;
+    // Guardar el lead en la base de datos
+    await RegisterModel.create_expositor_lead({ ...body });
 
-        // Guardar el lead en la base de datos
-        await RegisterModel.create_expositor_lead({...body}); 
-        
-        await resend.emails.send({
-          from: "SMART TECHNOLOGY EXPO 2026 - LEAD EXPOSITOR <noreply@smarttechnologyexpo.mx>",
-          to: "jesus.zermeno@igeco.mx",
-          cc: ["jesus.zermeno@igeco.mx"],
-          subject: "NUEVO LEAD - SMART TECHNOLOGY EXPO",
-          html: `
-            <h1>Un nuevo expositor ha solicitado información</h1>
-                <table border="1" cellpadding="8" cellspacing="0">
-                    <tr>
-                        <td>Sector</td>
-                        <td>${body.sector}</td>
-                    </tr>
-                    <tr>
-                        <td>Nombre</td>
-                        <td>${body.name}</td>
-                    </tr>
-                    <tr>
-                        <td>Correo</td>
-                        <td>${body.email}</td>
-                    </tr>
-                    <tr>
-                        <td>Empresa</td>
-                        <td>${body.company}</td>
-                    </tr>
-                    <tr>
-                        <td>Teléfono</td>
-                        <td>${body.phone}</td>
-                    </tr>
-                    <tr>
-                        <td>Mensaje</td>
-                        <td>${body.message}</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" style="text-align: center;"> Italian German Exhibition Company Mexico </td>
-                    </tr>
-                </table>
-            `,
-        });
+    const data = { ...body };
+    await sendEmailExpositor(data);
 
-        return res.send({
-            status: true,
-            message: 'Gracias por registrarte, te hemos enviado un correo de confirmación a tu bandeja de entrada...'
-        });
-
-    } catch (err) {
-        console.log(err);
-        return res.status(500).send({
-            status: false,
-            message: 'No pudimos enviarte el correo de confirmación de tu registro, por favor descarga tu registro en este pagina y presentalo hasta el dia del evento...'
-        });             
-    }   
-
+    return res.send({
+      status: true,
+      message:
+        "Gracias por registrarte, te hemos enviado un correo de confirmación a tu bandeja de entrada...",
+    });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).send({
+      status: false,
+      message:
+        "No pudimos enviarte el correo de confirmación de tu registro, por favor descarga tu registro en este pagina y presentalo hasta el dia del evento...",
+    });
+  }
 });
 
 // Registro gratuito para visitantes a Smart Technology Expo 2026
@@ -815,12 +779,10 @@ app.get("/workshop-visitor", async (req, res) => {
 
   // Si no existe, 404.
   if (!visitor) {
-    return res
-      .status(404)
-      .send({
-        status: false,
-        message: "No encontramos un registro con ese correo.",
-      });
+    return res.status(404).send({
+      status: false,
+      message: "No encontramos un registro con ese correo.",
+    });
   }
 
   // (2) Enviamos SOLO lo necesario al navegador (sin uuid ni id).
@@ -908,12 +870,10 @@ app.post("/workshop-register", async (req, res) => {
     // 1) El visitante debe existir (aquí sí recuperamos su uuid, uso interno).
     const visitor = await RegisterModel.get_visitor_ste_by_email(email);
     if (!visitor)
-      return res
-        .status(404)
-        .send({
-          status: false,
-          message: "No encontramos un registro con ese correo.",
-        });
+      return res.status(404).send({
+        status: false,
+        message: "No encontramos un registro con ese correo.",
+      });
 
     // 2) El taller debe existir y estar activo (validación contra la BD).
     const workshop = await RegisterModel.get_workshop_by_id(workshop_id);
@@ -1091,6 +1051,34 @@ async function sendEmailEcomondo_student(
     };
   }
 }
+
+async function sendEmailExpositor(data) {
+  try {
+    const emailContent = await email_template_expositor({ ...data });
+
+    await resend.emails.send({
+      from: "SMART TECHNOLOGY EXPO 2026 - LEAD EXPOSITOR <noreply@smarttechnologyexpo.mx>",
+      to: "claudia.rodriguez@igeco.mx",
+      cc: ["brandom.magana@igeco.mx", "paulina.padilla@igeco.mx", "sofia.manriquez@igeco.mx", "jesus.zermeno@igeco.mx", "abigail.medina@Igeco.mx"],
+      subject: "NUEVO LEAD - SMART TECHNOLOGY EXPO",
+      html: emailContent,
+    });
+
+    return {
+      status: true,
+      message:
+        "Gracias por registrarte, te hemos enviado un correo de confirmación a tu bandeja de entrada...",
+    };
+  } catch (err) {
+    console.log(err);
+    return {
+      status: false,
+      message:
+        "No pudimos enviarte el correo de confirmación de tu prerregistro, por favor descarga tu prerregistro en esta página y preséntalo hasta el día del evento...",
+    };
+  }
+}
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
