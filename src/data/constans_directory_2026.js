@@ -630,7 +630,7 @@ export const directory2026 =
     "type":"exhibitor",
     "tradename": "INTERLAKEN MAQUINARIA",
     "legal_company_name": "INTERLAKEN MAQUINARIA",
-    "logo": "",
+    "logo": "/img/exhibitors2026/interlaken.webp",
     "description_es": "Distribuidor de la marca HELI, especializado en la venta y renta de maquinaria industrial, destacando por su compromiso con la calidad, el servicio y la satisfacción del cliente.",
     "description_en": "Distributor of the HELI brand, specializing in the sale and rental of industrial machinery, standing out for its commitment to quality, service and customer satisfaction.",
     "linkedin": "https://www.linkedin.com/company/75722418/admin/dashboard/",
