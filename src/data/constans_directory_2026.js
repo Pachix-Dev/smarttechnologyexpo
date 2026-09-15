@@ -605,7 +605,7 @@ export const directory2026 =
     "type":"exhibitor",
     "tradename": "Packaging & Robotic Solutions",
     "legal_company_name": "Federico Barrera",
-    "logo": "",
+    "logo": "/img/exhibitors2026/packaging.webp",
     "description_es": "Somos una Empresa Especializada en La Integración de Soluciones con Robots Industriales para Automatizar procesos de Paletizado, Soldadura, Pintura, Empacado, así como la automatización de procesos repetitivos. Con mas de 25 Años de experiencia en la Fabricación de Maquinaria de Empaque, Transportadores, Etiquetadoras, Envasadoras, así como el Desarrollo y Gestión de Proyectos Industriales.\nCon presencia Internacional y Representación Directa en Mexico de Proveedores Reconocidos a nivel mundial en la fabricación de Maquinaria de Empaque para la automatización de diferentes Procesos.\nSomos Proveedor de Maquinados Industriales y servicios de Ingeniería Inversa, con herramientas para el Escaneo 3D, procesamiento de Imágenes. Contamos con laboratorio de Impresión 3D para el desarrollo de Prototipos y piezas de ingeniería.\nEquipo de Ingeniería especializada en el desarrollo de proyectos de automatización, análisis de las necesidades del cliente, levantamiento especializado en campo, desarrollo de ingeniería, Layout 2D y 3D, proyección de diferentes soluciones, análisis de las velocidades y optimización de Líneas de producción. Instalación, puesta en marcha y capacitación de todas nuestras soluciones. Servicio técnico posventa y refaccionamiento en General.",
     "description_en": "We are a company specializing in the integration of industrial robot solutions to automate palletizing, welding, painting, and packaging processes, as well as the automation of repetitive tasks. With over 25 years of experience in the manufacture of packaging machinery, conveyors, labelers, and filling machines, we also develop and manage industrial projects.\n\nWe have an international presence and direct representation in Mexico of globally recognized suppliers of packaging machinery for the automation of various processes.\nWe are a provider of industrial machining and reverse engineering services, utilizing 3D scanning and image processing tools. We have a 3D printing laboratory for the development of prototypes and engineered parts.\nOur engineering team specializes in the development of automation projects, analyzing client needs, conducting specialized field surveys, developing engineering designs, creating 2D and 3D layouts, designing different solutions, analyzing speeds, and optimizing production lines. Installation, commissioning, and training for all our solutions. After-sales technical service and general spare parts.",
     "linkedin": "linkedin.com/company/packaging-and-robotic-solutions",
@@ -1630,7 +1630,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   
-{
+  {
     "id": 68,
     "type":"exhibitor",
     "tradename": "MLEAN",
@@ -1654,6 +1654,31 @@ export const directory2026 =
     "directory_consent": "si",
     "has_coexhibitors": "no",
     "coexhibitors": null
+  },
+  {
+  "id": 69,
+  "type":"exhibitor",
+  "tradename": "neoden mexico",
+  "legal_company_name": "DEL TORNO INGENIERIA YA SERVICIO SA DE CV",
+  "logo": "/img/exhibitors2026/neoden.webp",
+  "description_es": "NeoDen es un empresa China de soluciones en Tecnología de montaje superficial (SMT) para tarjetas electrónicas. Con más de 10 años en el mercado y presencia en mas de 130 países, NeoDen México se especializa en la gestión de proyectos SMT así como la venta de una gran cantidad de productos, para el montaje de lineas de producción de PCB.",
+  "description_en": "NeoDen is a Chinese company that provides surface-mount technology (SMT) solutions for electronic circuit boards. With more than 10 years in the market and a presence in over 130 countries, NeoDen Mexico specializes in SMT project management as well as the sale of a wide range of products for PCB production lines.",
+  "linkedin": "",
+  "facebook": "https://www.facebook.com/profile.php?id=100095240750343&mibextid=9R9pXO",
+  "instagram": "",
+  "stand_number": "B40",
+  "webpage": "https://neoden.com.mx/",
+  "address": "Calz. Simon Bolívar 1059-4",
+  "zip_code": "91910",
+  "city": "veracruz",
+  "state": "veracruz",
+  "country": "mexico",
+  "contact_name": "alcides del torno chavez",
+  "contact_email": "alcidesdtc@neoden.com.mx",
+  "contact_phone": "+52 2291810252",
+  "directory_consent": "si",
+  "has_coexhibitors": "no",
+  "coexhibitors": null
   },
   // {
   //   "id": 0,
