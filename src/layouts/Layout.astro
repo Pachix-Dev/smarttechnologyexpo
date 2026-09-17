@@ -2,6 +2,7 @@
 import Navigation from "../components/shared/Navigation.astro";
 import "../styles/global.css";
 import Footer from "../components/shared/Footer.astro";
+import BotonFlotante from "../components/shared/BotonFlotante.astro";
 
 interface Props {
   title: string;
@@ -200,6 +201,7 @@ const fullOgImage = new URL(ogImage, siteUrl).href;
   <body>
     <header>
       <Navigation />
+      <BotonFlotante />
     </header>
     <main class="pt-16 lg:pt-24">
       <slot />
