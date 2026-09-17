@@ -40,7 +40,7 @@ const sponsorsSilver = [
 ];
 
 const sponsorsPlatinum = [
-  { src: "/img/logos/sponsors/mitsubishi_electric.webp", alt: "Mitsubishi Electric", href: "https://mx.mitsubishielectric.com/es/", width: 300 },
+  { src: "/img/logos/sponsors/mitsubishi_electric_v2.webp", alt: "Mitsubishi Electric", href: "https://mx.mitsubishielectric.com/es/", width: 300 },
 ]; 
 
 
