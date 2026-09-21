@@ -1,0 +1,40 @@
+---
+
+import { useTranslations, getTranslation } from '../../utils/translations'
+
+const { locale, translations } = await useTranslations(Astro.props, Astro)
+
+const tr = (key: string, fallback: string = '') =>
+  getTranslation(translations, key, fallback)
+
+import { exhibitors } from '../../data/constants_exhibitors_2026.js'
+
+---
+
+<section class='px-4 py-4 sm:py-20 bg-white'>
+
+  <div
+    class='w-fit mx-auto square_red font-extrabold text-3xl md:text-4xl uppercase py-5 px-10 text-black text-center font-montserrat-extra-bold-italic'
+  >
+    {locale === "es" ? "EXPOSITORES 2026" : "EXHIBITORS 2026"}
+  </div>
+
+  <div class='mt-10 grid grid-cols-4 sm:grid-cols-3 md:grid-cols-8 gap-6 max-w-7xl mx-auto'>
+    {
+      exhibitors.map((exhibitor) => (
+        <div class='flex justify-center items-center'>
+          <img 
+            src={exhibitor.src} 
+            alt={exhibitor.alt} 
+            width={exhibitor.width} 
+          />
+        </div>
+      ))
+    }
+  </div>
+
+  <p class='text-center sm:text-right font-extrabold text-sm sm:text-2xl uppercase pe-10 sm:pe-40 pt-5 text-black font-montserrat-extra-bold-italic'>
+    {locale === "es" ? "ENTRE OTROS..." : "AMONG OTHERS..."}
+  </p>
+
+</section>
