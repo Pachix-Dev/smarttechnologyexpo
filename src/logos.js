@@ -16,11 +16,11 @@
 ];
 
 const mediaGold = [
-    { src: "/img/logos/media/revista_consultoria.webp", alt: "Revista Consultoria", href: "https://new.siemens.com/mx/es.html", width: 300 },
-    { src: "/img/logos/media/industry_energy_magazine.webp", alt: "Industry Energy Magazine", href: "https://www.otromedio.com", width: 300 },
     { src: "/img/logos/media/dime.webp", alt: "Dime Noticias", href: "https://www.otromedio.com", width: 300 },
     { src: "/img/logos/media/energy.webp", alt: "Energy & Commerce", href: "https://www.otromedio.com", width: 300 },
+    { src: "/img/logos/media/industry_energy_magazine.webp", alt: "Industry Energy Magazine", href: "https://www.otromedio.com", width: 300 },
     { src: "/img/logos/media/industry.webp", alt: "Industry News MX", href: "https://www.otromedio.com", width: 300 },
+    { src: "/img/logos/media/revista_consultoria.webp", alt: "Revista Consultoria", href: "https://new.siemens.com/mx/es.html", width: 300 },
 
   ];
 
