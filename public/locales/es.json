@@ -364,7 +364,7 @@
     "no_email_business": "Ingresa un correo electrónico empresarial válido",
     "no_email_valid": "Por favor ingresa un correo valido",
     "text_email": "Por favor ingresa un correo valido, a este correo se te enviara tu acceso",
-    "phone": "Teléfono",
+    "phone": "Teléfono con lada internacional (incluyendo código de país)",
     "placeholder_phone": "Ingresa tu teléfono",
     "no_phone_valid": "Por favor ingresa un teléfono valido",
     "nacionality": "Nacionalidad",

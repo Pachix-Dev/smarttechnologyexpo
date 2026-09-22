@@ -365,7 +365,7 @@
     "placeholder_email": "Enter your email",
     "no_email_valid": "Please enter a valid email address",
     "text_email": "Please enter a valid email address, your access will be sent to this email address.",
-    "phone": "Phone",
+    "phone": "Phone with international code (including country code)",
     "placeholder_phone": "Enter your phone",
     "no_phone_valid": "Please, enter a valid phone number",
     "nacionality": "Nationality",

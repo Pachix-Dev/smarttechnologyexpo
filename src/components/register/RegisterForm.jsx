@@ -8,6 +8,7 @@ import "react-phone-number-input/style.css";
 import "./Form.css";
 import { useEffect, useState } from "react";
 import { flushSync } from "react-dom";
+import { CountrySelectWithCode } from "./CountrySelectWithCode";
 
 export function RegisterForm({ translates, currentLanguage }) {
   const {
@@ -870,24 +871,12 @@ export function RegisterForm({ translates, currentLanguage }) {
                 <PhoneInputWithCountry
                   name="phone"
                   control={control}
-                  rules={{
-                    required: `${translates.requiered}`,
-                    validate: (value) => {
-                      if (!value) {
-                        return `${translates.requiered}`;
-                      }
-                      // Validación adicional para formato de teléfono
-                      if (value.length < 10) {
-                        return `${
-                          translates.phone_invalid ||
-                          "Número de teléfono inválido"
-                        }`;
-                      }
-                      return true;
-                    },
-                  }}
                   defaultValue={phone}
                   onChange={(e) => setPhone(e)}
+                  defaultCountry="MX"
+                  countrySelectComponent={CountrySelectWithCode}
+                  international
+                  withCountryCallingCode
                   className="w-full rounded-lg border border-gray-200 ps-4 text-sm shadow-sm"
                   placeholder={translates.placeholder_phone}
                 />
