@@ -1,8 +1,23 @@
+  /**
+ * Ordena un array de logos alfabéticamente por el nombre del archivo en src
+ * @param {Array} logos - Array de objetos con la propiedad src
+ * @return {Array} - Nuevo array ordenado alfabéticamente
+ **/
+const sortLogosAlphabetically = (logos) => {
+  return [...logos].sort((a, b) => {
+    const nameA = a.src.split("/").pop()?.toLowerCase() || "";
+    const nameB = b.src.split("/").pop()?.toLowerCase() || "";
+    return nameA.localeCompare(nameB);
+  });
+};
+  
   const strategicPartners = [
     { src: "/img/logos/strategic_partners/alianza_cuatro_cero.webp", alt: "Alianza Cuatro Cero", width: 300 },
     { src: "/img/logos/strategic_partners/a_tres.webp", alt: "A Tres", width: 300 },
     { src: "/img/logos/strategic_partners/csia.webp", alt: "CSIA", width: 300 },
     { src: "/img/logos/strategic_partners/giz.webp", alt: "GIZ", width: 400 },
+    { src: "/img/logos/strategic_partners/camara_verde.png", alt: "Cámara Verde", width: 300 },
+    { src: "/img/logos/strategic_partners/holland_house.webp", alt: "Holland House", width: 50 },
     // { src: "/img/logos/strategic_partners/swe.webp", alt: "SWE", width: 300 },
   ];
   
@@ -48,4 +63,4 @@ const sponsorsPlatinum = [
 ]; 
 
 
-export { mediaPlanito, strategicPartners, sponsorsDiamond, mediaGold, sponsorsBronze, skillsSponsors, sponsorsSilver, sponsorsPlatinum };
+export { mediaPlanito, strategicPartners, sponsorsDiamond, mediaGold, sponsorsBronze, skillsSponsors, sponsorsSilver, sponsorsPlatinum, sortLogosAlphabetically };
