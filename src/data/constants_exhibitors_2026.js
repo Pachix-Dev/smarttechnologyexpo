@@ -57,7 +57,7 @@ const exhibitors = [
   { src: "/img/exhibitors2026/movi_ruedas.webp", alt: "MOVI RUEDAS", width: 150 },
   { src: "/img/exhibitors2026/neoden.webp", alt: "neoden mexico", width: 150 },
   { src: "/img/exhibitors2026/nidec_dives.webp", alt: "NIDEC DRIVES", width: 150 },
-  { src: "/img/exhibitors2026/njx.webp", alt: "", width: 150 },
+  { src: "/img/exhibitors2026/nojoxten.webp", alt: "Nojoxten", width: 150 },
   { src: "/img/exhibitors2026/northwind.webp", alt: "NorthWind Technical Services", width: 150 },
   { src: "/img/exhibitors2026/nippon.webp", alt: "Nippon Bearing", width: 150 },
   { src: "/img/exhibitors2026/octave.webp", alt: "Octave", width: 150 },
