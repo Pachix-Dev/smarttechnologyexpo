@@ -62,5 +62,28 @@ const sponsorsPlatinum = [
   { src: "/img/logos/sponsors/mitsubishi_electric_v2.webp", alt: "Mitsubishi Electric", href: "https://mx.mitsubishielectric.com/es/", width: 300 },
 ]; 
 
+const bannerSponsors = [
+  {
+    src: {
+      es: "/img/logos/sponsors/banners/robustel_es.webp",
+      en: "/img/logos/sponsors/banners/robustel_en.webp",
+    },
+    alt: "Robustel",
+    href: "https://robustel.com/",
+    width: 540,
+  },
+  {
+    src: "/img/logos/sponsors/banners/smartechnologyexpo.webp",
+    alt: "Smart Technology Expo",
+    href: "https://smartsol.mx/",
+    width: 540,
+  },
+  {
+    src: "/img/logos/sponsors/banners/telcel.webp",
+    alt: "Telcel Empresas",
+    href: "https://www.telcel.com/empresas",
+    width: 540,
+  }
+];
 
-export { mediaPlanito, strategicPartners, sponsorsDiamond, mediaGold, sponsorsBronze, skillsSponsors, sponsorsSilver, sponsorsPlatinum, sortLogosAlphabetically };
+export { mediaPlanito, strategicPartners, sponsorsDiamond, mediaGold, sponsorsBronze, skillsSponsors, sponsorsSilver, sponsorsPlatinum, bannerSponsors, sortLogosAlphabetically };

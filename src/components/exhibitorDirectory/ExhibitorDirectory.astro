@@ -1,6 +1,7 @@
 ---
 import { ExhibitorSummary } from "./ExhibitorSummary.jsx";
 import { directory2026 } from "../../data/constans_directory_2026.js";
+import { bannerSponsors } from "../../logos.js";
 
 import { useTranslations, getTranslation } from "../../utils/translations";
 const { locale, translations } = await useTranslations(Astro.props, Astro);
@@ -9,6 +10,7 @@ const tr = (key: string, fallback: string = "") =>
 
 const currentLanguage = locale === "es" ? "es" : "en";
 const basePath = locale === "en" ? "/en" : "";
+const isExternalLink = (href = "") => /^https?:\/\//.test(href);
 
 const labels =
   currentLanguage === "es"
@@ -22,6 +24,25 @@ const labels =
         description:
           "Explore participating companies, check their booth location, and review contact details before visiting Smart Technology Expo.",
       };
+const sponsorCarouselLabel =
+  currentLanguage === "es" ? "Patrocinadores" : "Sponsors";
+
+const localizedBannerSponsors = bannerSponsors.map((sponsor) => {
+  const sponsorSrc =
+    typeof sponsor.src === "string"
+      ? sponsor.src
+      : sponsor.src[currentLanguage] ?? sponsor.src.en;
+  const sponsorHref = sponsor.href?.startsWith("/")
+    ? `${basePath}${sponsor.href}`
+    : sponsor.href;
+
+  return {
+    ...sponsor,
+    src: sponsorSrc,
+    href: sponsorHref,
+    isExternal: isExternalLink(sponsorHref),
+  };
+});
 ---
 
 <section class="bg-[#f5f6f8]">
@@ -53,15 +74,33 @@ const labels =
       </div>
     </div>
   </header>
-  <div class="mx-auto my-2 px-1 w-full max-w-[860px] sm:my-4 sm:px-8 lg:px-10">
-    <img
-      src={currentLanguage === "es"
-        ? "/img/robustel_es.webp"
-        : "/img/robustel_en.webp"}
-      alt="Robustel"
-      class="block h-auto w-full"
-      loading="lazy"
-    />
+  <!-- Carrusel de patrocinadores -->
+  <div
+    class="mx-auto my-3 w-full bg-gray-200 px-1 py-2 sm:my-5 sm:px-8 lg:px-10"
+    aria-label={sponsorCarouselLabel}
+  >
+    <marquee behavior="scroll" direction="left" scrollamount="5" class="block w-full">
+      <span class="inline-flex items-center gap-4">
+        {
+          localizedBannerSponsors.map((sponsor) => (
+            <a
+              href={sponsor.href}
+              target={sponsor.isExternal ? "_blank" : undefined}
+              rel={sponsor.isExternal ? "noopener noreferrer" : undefined}
+              class="inline-flex h-[90px] w-[280px] items-center justify-center overflow-hidden rounded-md p-1 sm:h-[120px] sm:w-[460px] lg:h-[135px] lg:w-[540px]"
+            >
+              <img
+                src={sponsor.src}
+                alt={sponsor.alt}
+                class="h-full w-full object-contain"
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
+          ))
+        }
+      </span>
+    </marquee>
   </div>
 
   <div
@@ -72,14 +111,6 @@ const labels =
     <aside
       class="order-1 w-auto lg:sticky lg:top-[88px] lg:order-1 lg:w-[140px] lg:shrink-0 2xl:w-[160px] flex sm:flex-col gap-1 lg:gap-2"
     >
-      <img
-        src={currentLanguage === "es"
-          ? "/img/banner_telcel_empresas_es.webp"
-          : "/img/banner_telcel_empresas_en.webp"}
-        alt="Telcel Empresas"
-        class="mx-auto h-auto w-[90px] object-contain
-             sm:w-[140px] lg:w-full"
-      />
       <a href={`${basePath}/expositor-smarttechnologyexpo`}>
         <img
           src={currentLanguage === "es"
