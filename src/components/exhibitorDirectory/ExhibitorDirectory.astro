@@ -1,7 +1,7 @@
 ---
 import { ExhibitorSummary } from "./ExhibitorSummary.jsx";
 import { directory2026 } from "../../data/constans_directory_2026.js";
-import { bannerSponsors } from "../../logos.js";
+import { bannerSponsors, bannerMedios } from "../../logos.js";
 
 import { useTranslations, getTranslation } from "../../utils/translations";
 import { MarqueeBanners } from "./MarqueeBanners";
@@ -106,4 +106,9 @@ const labels =
       />
     </aside>
   </div>
+
+<div class="mx-auto my-3 bg-whitew-full">
+      <MarqueeBanners listBanners={bannerMedios} client:load />
+</div>
+
 </section>

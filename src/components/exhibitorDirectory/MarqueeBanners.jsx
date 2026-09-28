@@ -6,7 +6,7 @@ export function MarqueeBanners({ listBanners }) {
   return (
     <div className="w-full">
       <Marquee
-        speed={50}
+        speed={65}
         gradient={true}
         gradientColor={[255, 255, 255]}
         pauseOnHover={true}
