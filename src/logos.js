@@ -64,10 +64,7 @@ const sponsorsPlatinum = [
 
 const bannerSponsors = [
   {
-    src: {
-      es: "/img/logos/sponsors/banners/robustel_es.webp",
-      en: "/img/logos/sponsors/banners/robustel_en.webp",
-    },
+    src: "/img/logos/sponsors/banners/robustel_es.webp",
     alt: "Robustel",
     href: "https://robustel.com/",
     width: 540,

@@ -23,6 +23,7 @@
     "flowbite": "^4.0.2",
     "react": "^19.2.1",
     "react-dom": "^19.2.1",
+    "react-fast-marquee": "^1.6.5",
     "react-hook-form": "^7.77.0",
     "react-phone-number-input": "^3.4.17",
     "react-select": "^5.10.2",
