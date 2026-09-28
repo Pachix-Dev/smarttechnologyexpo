@@ -83,6 +83,30 @@ const bannerSponsors = [
     alt: "Telcel Empresas",
     href: "https://www.telcel.com/empresas",
     width: 540,
+  },
+   {
+    src: "/img/logos/sponsors/banners/global_energy.webp",
+    alt: "Global Energy",
+    href: "",
+    width: 540,
+  },
+   {
+    src: "/img/logos/sponsors/banners/axioma.webp",
+    alt: "Axioma",
+    href: "",
+    width: 540,
+  },
+   {
+    src: "/img/logos/sponsors/banners/cluster_industrial.webp",
+    alt: "Cluster Industrial",
+    href: "",
+    width: 540,
+  },
+  {
+    src: "/img/logos/sponsors/banners/dime.webp",
+    alt: "Dime Noticias",
+    href: "",
+    width: 540,
   }
 ];
 
