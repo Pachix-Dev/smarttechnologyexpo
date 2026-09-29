@@ -178,11 +178,17 @@ const sponsorsPlatinum = [
 
 const sponsorsGold = [
   {
-    src: "/img/exhibitors2026/nojoxten_v2.webp",
+    src: "/img/exhibitors2026/nojoxten.webp",
     alt: "Nojoxten",
     href: "",
-    width: 400,
+    width: 250,
   },
+  {
+    src: "/img/exhibitors2026/b&r_logo.webp",
+    alt: "B&R",
+    href: "",
+    width: 250,
+  }
 ];
 
 const bannerSponsors = [

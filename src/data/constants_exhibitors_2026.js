@@ -100,7 +100,7 @@ const exhibitors = [
   { src: "/img/exhibitors2026/ecn_automation.webp", alt: "ECN", width: 150 },
   { src: "/img/exhibitors2026/helu.webp", alt: "HELU", width: 150 },
   { src: "/img/exhibitors2026/rittal.webp", alt: "RITTAL", width: 150 },
-  { src: "/img/exhibitors2026/br.webp", alt: "B&R", width: 100 }
+  { src: "/img/exhibitors2026/b&r_logo.webp", alt: "B&R", width: 150 }
 //{ src: "/img/exhibitors2026/", alt: "", width: 150 },
 
 ]
