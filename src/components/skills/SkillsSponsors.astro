@@ -16,26 +16,29 @@
 //  Datos: cada objeto de `skillsSponsors` tiene { src, alt, href?, width }.
 //  i18n: los textos salen de los locales vía tr('clave', 'fallback').
 // ============================================================================
-import { skillsSponsors } from '../../logos.js';
-import { useTranslations, getTranslation } from '../../utils/translations';
+import { skillsSponsors } from "../../logos.js";
+import { useTranslations, getTranslation } from "../../utils/translations";
 
 const { translations, locale } = await useTranslations(Astro.props, Astro);
-const tr = (key: string, fallback: string = '') => getTranslation(translations, key, fallback);
+const tr = (key: string, fallback: string = "") =>
+  getTranslation(translations, key, fallback);
 ---
 
 <!-- ── SECCIÓN PATROCINADORES ───────────────────────────────────────── -->
 <section class="sp-section">
   <div class="sp-inner" data-aos="fade-up" data-aos-duration="800">
     <!-- Encabezado: título -->
-    <h1 class="sp-title">{tr('skills.sponsors.title', 'Patrocinadores')}</h1>
+    <h1 class="text-2xl sm:text-5xl font-bold uppercase mb-8 mx-auto">{tr("skills.sponsors.title", "Patrocinadores")}</h1>
 
     <!-- Fila de logos: se genera recorriendo la constante skillsSponsors -->
-    <div class="sp-grid">
-      {skillsSponsors.map((s) => (
-        <a class="sp-card" href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.alt}>
-          <img class="sp-logo" src={s.src} alt={s.alt} style={`max-width:${s.width}px`} loading="lazy" />
-        </a>
-      ))}
+    <div class="grid grid-cols-3 justify-center items-center mx-auto max-w-4xl">
+      {
+        skillsSponsors.map((s) => (
+          <div class="bg-white h-full flex items-center justify-center p-2 sm:w-[250px]">
+            <img src={s.src} alt={s.alt} loading="lazy" />
+          </div>
+        ))
+      }
     </div>
   </div>
 </section>
@@ -45,7 +48,7 @@ const tr = (key: string, fallback: string = '') => getTranslation(translations, 
   .sp-section {
     width: 100%;
     background: #000;
-    font-family: 'Archivo', Helvetica, Arial, sans-serif;
+    font-family: "Archivo", Helvetica, Arial, sans-serif;
     color: #fff;
   }
 
@@ -96,7 +99,9 @@ const tr = (key: string, fallback: string = '') => getTranslation(translations, 
     border-radius: 12px;
     min-width: 220px;
     min-height: 130px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
   }
 
   .sp-card:hover {

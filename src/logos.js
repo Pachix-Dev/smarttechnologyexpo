@@ -150,6 +150,12 @@ const skillsSponsors = [
     href: "https://www.beckhoff.com/es-mx/",
     width: 300,
   },
+  {
+    src: "/img/exhibitors2026/omron.webp",
+    alt: "Omron",
+    href: "",
+    width: 300,
+  }
 ];
 
 const sponsorsSilver = [
