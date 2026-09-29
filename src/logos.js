@@ -188,6 +188,12 @@ const sponsorsGold = [
     alt: "B&R",
     href: "",
     width: 250,
+  },
+  {
+    src: "/img/exhibitors2026/schneider.webp",
+    alt: "Schneider",
+    href: "",
+    width: 250,
   }
 ];
 
