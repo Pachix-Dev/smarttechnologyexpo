@@ -176,6 +176,15 @@ const sponsorsPlatinum = [
   },
 ];
 
+const sponsorsGold = [
+  {
+    src: "/img/exhibitors2026/nojoxten_v2.webp",
+    alt: "Nojoxten",
+    href: "",
+    width: 400,
+  },
+];
+
 const bannerSponsors = [
   {
     src: "/img/logos/sponsors/banners/robustel_es.webp",
@@ -241,5 +250,6 @@ export {
   sponsorsPlatinum,
   bannerSponsors,
   bannerMedios,
+  sponsorsGold,
   sortLogosAlphabetically,
 };
