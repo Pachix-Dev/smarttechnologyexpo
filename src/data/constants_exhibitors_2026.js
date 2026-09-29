@@ -9,19 +9,19 @@ const exhibitors = [
   { src: "/img/exhibitors2026/ateq.webp", alt: "ATEQ", width: 150 },
   { src: "/img/exhibitors2026/ati_robotics.webp", alt: "Ati Robotics", width: 150 },
   { src: "/img/exhibitors2026/autodesk.webp", alt: "Autodesk", width: 150 },
-  { src: "/img/exhibitors2026/autsol.webp", alt: "Autsol", width: 150 },
+  { src: "/img/exhibitors2026/autsol.webp", alt: "Autsol", width: 100 },
   { src: "/img/exhibitors2026/avant.webp", alt: "Avant Assembly Systems", width: 150 },
   { src: "/img/exhibitors2026/beckhoff.webp", alt: "Beckhoff Automation", width: 150 },
   { src: "/img/exhibitors2026/cassa.webp", alt: "", width: 150 },
   { src: "/img/exhibitors2026/chuck_industrial.webp", alt: "Chuck Industrial De México", width: 150 },
   { src: "/img/exhibitors2026/delta.webp", alt: "DELTA", width: 150 },
-  { src: "/img/exhibitors2026/dinkle.webp", alt: "Dinkle", width: 150 },
+  { src: "/img/exhibitors2026/dinkle.webp", alt: "Dinkle", width: 100 },
   { src: "/img/exhibitors2026/dobot.webp", alt: "", width: 150 },
   { src: "/img/exhibitors2026/electro_controles_industriales.webp", alt: "Electro Controles Industriales", width: 150 },
   { src: "/img/exhibitors2026/endress_hauser.webp", alt: "Endress Hauser México", width: 150 },
   { src: "/img/exhibitors2026/erbessd_instruments.webp", alt: "ERBESSD INSTRUMENTS", width: 150 },
   { src: "/img/exhibitors2026/euchner.webp", alt: "EUCHNER MEXICO", width: 150 },
-  { src: "/img/exhibitors2026/eurocontroles.webp", alt: "EUROCONTROLES", width: 150 },
+  { src: "/img/exhibitors2026/eurocontroles.webp", alt: "EUROCONTROLES", width: 100 },
   { src: "/img/exhibitors2026/eurokabel.webp", alt: "Eurokabel México", width: 150 },
   { src: "/img/exhibitors2026/flytek.webp", alt: "Flytek Innovations", width: 150 },
   { src: "/img/exhibitors2026/galu.webp", alt: "", width: 150 },
@@ -100,7 +100,7 @@ const exhibitors = [
   { src: "/img/exhibitors2026/ecn_automation.webp", alt: "ECN", width: 150 },
   { src: "/img/exhibitors2026/helu.webp", alt: "HELU", width: 150 },
   { src: "/img/exhibitors2026/rittal.webp", alt: "RITTAL", width: 150 },
-  { src: "/img/exhibitors2026/br.webp", alt: "B&R", width: 150 }
+  { src: "/img/exhibitors2026/br.webp", alt: "B&R", width: 100 }
 //{ src: "/img/exhibitors2026/", alt: "", width: 150 },
 
 ]
