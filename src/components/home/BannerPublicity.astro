@@ -1,0 +1,18 @@
+---
+import { useTranslations, getTranslation } from "../../utils/translations";
+// ✨ Una sola línea para cargar traducciones!
+const { locale, translations } = await useTranslations(Astro.props, Astro);
+// 🎯 Helper para traducciones más elegante
+const tr = (key: string, fallback: string = "") =>
+  getTranslation(translations, key, fallback);
+---
+<div class="flex flex-col mx-auto justify-center items-center">
+    <spam class="text-xs md:text-base">{locale === "en" ? "PUBLICITY" : "PUBLICIDAD"}</spam>
+    <a href="https://www.beckhoff.com/es-mx/" target="_blank" rel="noopener noreferrer">
+      <img
+        src="/img/logos/sponsors/banners/beckhoff_banner.webp"
+        alt="beckhoff banner"
+        class="w-full sm:w-[950px]"
+      />
+    </a>
+  </div>

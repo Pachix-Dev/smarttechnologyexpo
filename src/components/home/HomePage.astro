@@ -11,7 +11,7 @@ import DisplaySegments from "./DisplaySegments.astro";
 import { events } from "../../data/constans_events";
 import Events from "./Events.astro";
 import ContactTeam from "./ContactTeam.astro";
-import HomePopup from '../../components/home/HomePopup.jsx'
+import HomePopup from "../../components/home/HomePopup.jsx";
 import Buyers from "./Buyers.astro";
 import CollaboratorsDisplay from "./CollaboratorsDisplay.astro";
 import HighlightSte2026 from "./HighlightSte2026.astro";
@@ -20,6 +20,7 @@ import KeyNoteSpeakers from "./KeyNoteSpeakers.astro";
 import DirectorySection from "./DirectorySection.astro";
 import Countdown from "../countdown/Countdown.astro";
 import ExhibitorsGrid2026 from "./ExhibitorsGrid2026.astro";
+import BannerPublicity from "./BannerPublicity.astro";
 export interface Props {
   locale?: string;
 }
@@ -31,8 +32,11 @@ const tr = (key: string, fallback: string = "") =>
   getTranslation(translations, key, fallback);
 ---
 
-<Layout title={tr("site.title", "Smart Technology Expo")} description={tr("site.description", "Expo de tecnología inteligente")}>
-  <HomePopup client:load language={locale}/>
+<Layout
+  title={tr("site.title", "Smart Technology Expo")}
+  description={tr("site.description", "Expo de tecnología inteligente")}
+>
+  <HomePopup client:load language={locale} />
   <HeroHome />
   <ConcurrentEventGrid />
   <HighlightSte2026 />
@@ -42,6 +46,7 @@ const tr = (key: string, fallback: string = "") =>
   <DisplaySegments />
   <DirectorySection />
   <ExhibitorsGrid2026 />
+  <BannerPublicity />
   <StandPrice />
   <BecomeAnExhibitor />
   <Buyers />
