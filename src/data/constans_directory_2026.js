@@ -2185,7 +2185,7 @@ export const directory2026 =
     "type":"coexhibitor",
     "tradename": "ABB Robotics",
     "legal_company_name": "ABB Robotics",
-    "logo": "",
+    "logo": "/img/exhibitors2026/abb.webp",
     "description_es": "",
     "description_en": "",
     "linkedin": "",
