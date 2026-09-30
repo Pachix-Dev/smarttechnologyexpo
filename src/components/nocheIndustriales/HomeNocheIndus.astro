@@ -1,5 +1,6 @@
 ---
 import { useTranslations, getTranslation } from "../../utils/translations";
+import AboutEvent from "./AboutEvent.astro";
 import Hero from "./Hero.astro";
 // Una sola línea para cargar traducciones!
 const { locale, translations } = await useTranslations(Astro.props, Astro);
@@ -8,5 +9,6 @@ const tr = (key: string, fallback: string = "") =>
   getTranslation(translations, key, fallback);
 ---
 <section>
-    <Hero /> 
+    <Hero />
+    <AboutEvent />
 </section>

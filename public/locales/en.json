@@ -1078,5 +1078,41 @@
     "sponsors": {
       "title": "Sponsors"
     }
+  },
+  "nocheIndustriales": {
+    "title": "Industrial Leaders Night",
+    "date": "17-11-2026",
+    "place_room": "Desfilia Hall",
+    "place": "Expo Guadalajara",
+    "description_01": "Industrial Leaders Night is the high-level networking gathering organized by Smart Technology Expo, bringing together business leaders, authorities, technology leaders and key players from the industrial ecosystem. <br><br> A space designed to talk, connect and recognize those who are driving new ways to produce, innovate and compete.  <br><br>  Here, relationships are built beyond a formal agenda: through direct conversations, new connections and encounters among decision-makers.",
+    "sub_title_01": "Itinerary",
+    "schedule_text_01": "Opening of Desfilia Hall",
+    "schedule_text_02": "Guest reception",
+    "schedule_text_03": "Institutional program",
+    "schedule_text_04": "Cocktail and networking",
+    "sub_title_02": "What will you experience at Industrial Leaders Night?",
+    "description_02": "Industrial Leaders Night is an event attended only by the creme de la creme of the industry. Designed to encourage encounters among leaders from different sectors, companies, institutions and specialists. After the institutional program, the networking cocktail will open a more personal space to exchange ideas, explore collaboration opportunities and strengthen relationships. Because many of the best business opportunities begin with a conversation in the right place.",
+    "sub_title_03": "Itzamna Award Ceremony",
+    "description_03": "During Industrial Leaders Night, the 2026 Itzamna Award for Innovation will be presented, a Smart Technology Expo recognition for applied technological innovation projects with proven impact in Mexico. A moment dedicated to honoring initiatives capable of transforming processes, generating results and opening new possibilities for the industry.",
+    "button": "Meet the 2026 nominees",
+    "sub_title_04": "GALLERY FROM THE PREVIOUS EDITION",
+    "important_note": "Industrial Leaders Night is a private event with invitation-only access.",
+    "note_registration": "FILL OUT THE FORM TO BE CONSIDERED FOR INVITATIONS",
+    "registration_subText": " If you are selected, we will send a confirmation to your email.",
+    "sub_title_05": "SPONSORED BY",
+    "sub_title_06": "Information for guests",
+    "text_information": " Everything you need for your arrival and access to Industrial Leaders Night 2026.",
+    "sub_title_07": "Date and time",
+    "sub_title_08": "Venue and access",
+    "text_date": " Tuesday, November 17, the night before Smart Technology Expo",
+    "text_outfit": "Formal dress code",
+    "text_address": "Av. Mariano Otero 1499, Col. Verde Valle C.P. 44550, Guadalajara, Jalisco, Mexico",
+    "address_warning": "Access to the event is through the entrance located on Av. de las Rosas. Guests may use the Expo Guadalajara parking lot.",
+    "sub_title_09": "About access to the event",
+    "text_access": "Industrial Leaders Night is an exclusive event for high-level guests, with access by invitation only. Your admission does not include a companion. Entry will be managed through the previously confirmed guest list, so attendance confirmation before the event will be required. To make access easier, we recommend arriving a few minutes early. Our team will be available to support any details before the event and to welcome guests upon arrival.",
+    "sub_title_10": "For any information related to your attendance:",
+    "rol_person_01": "Public Relations Director IGECO MEXICO",
+    "rol_person_02": "Public Relations IGECO MEXICO",
+    "text_information_contact": "Organized by"
   }
 }

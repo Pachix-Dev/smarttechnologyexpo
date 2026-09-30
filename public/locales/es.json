@@ -1074,7 +1074,43 @@
       "another": "REGISTRAR OTRO"
     },
     "sponsors": {
-    "title": "Patrocinadores"
-  }
+      "title": "Patrocinadores"
+    }
+  },
+  "nocheIndustriales": {
+    "title": "Noche de Industriales",
+    "date": "17-11-2026",
+    "place_room": "Salón Desfilia",
+    "place": "Expo Guadalajara",
+    "description_01": "Noche de Industriales es el encuentro de networking de alto nivel organizado por Smart Technology Expo, que reúne a líderes empresariales, autoridades, referentes de la tecnología y actores clave del ecosistema industrial. <br><br>  Un espacio concebido para conversar, conectar y reconocer a quienes están impulsando nuevas formas de producir, innovar y competir. <br><br>  Aquí, las relaciones se construyen más allá de una agenda formal: en conversaciones directas, nuevas conexiones y encuentros entre quienes toman decisiones.",
+    "sub_title_01": "Intinerario",
+    "schedule_text_01": "Apertura del salon Desfilia",
+    "schedule_text_02": "Recepción de invitados",
+    "schedule_text_03": "Programa institucional",
+    "schedule_text_04": "Cóctel y networking",
+    "sub_title_02" : "¿Qué vivirás en la Noche de Industriales?",
+    "description_02": "Noche de Industriales es un evento donde solo asiste ‘la creme de la creme’ de la industria. Diseñada para propiciar encuentros entre líderes de distintos sectores, empresas, instituciones y especialistas. Después del programa institucional, el cóctel de networking abrirá un espacio más cercano para intercambiar ideas, explorar oportunidades de colaboración y fortalecer relaciones. Porque muchos de los mejores negocios comienzan con una conversación en el lugar adecuado.",
+    "sub_title_03": "Entrega del Premio Itzamná",
+    "description_03": "Durante Noche de Industriales tendrá lugar la entrega del Premio Itzamná a la Innovación 2026, reconocimiento de Smart Technology Expo a proyectos de innovación tecnológica aplicada con impacto comprobable en México. Un momento dedicado a distinguir iniciativas capaces de transformar procesos, generar resultados y abrir nuevas posibilidades para la industria.",
+    "button": "Conoce a los nominados 2026",
+    "sub_title_04": "GALERÍA DE LA EDICIÓN ANTERIOR",
+    "important_note": "Noche de Industriales es un evento privado con acceso exclusivamente por invitación.",
+    "note_registration": "LLENA EL FORMULARIO PARA SER CONSIDERADO EN LAS INVITACIONES",
+    "registration_subText": " Si resultas seleccionado, te enviaremos una confirmación a tu correo electrónico.",
+    "sub_title_05": "PATROCINADO POR",
+    "sub_title_06": "Información para invitados",
+    "text_information": " Todo lo necesario para su llegada y acceso a Noche de Industriales 2026.",
+    "sub_title_07": "Fecha y hora",
+    "sub_title_08": "Lugar y acceso",
+    "text_date": " Martes 17 de noviembre, una noche antes de Smart Technology Expo",
+    "text_outfit": "Código de vestimenta formal",
+    "text_address": "Av. Mariano Otero 1499, Col. Verde Valle C.P. 44550, Guadalajara, Jalisco, México",
+    "address_warning": "Acceso al evento por la entrada ubicada sobre Av. de las Rosas. Los invitados podrán utilizar el estacionamiento de Expo Guadalajara.",
+    "sub_title_09": "Sobre el acceso al evento",
+    "text_access": "Noche de Industriales es un evento exclusivo para invitados de alto nivel, con acceso únicamente por invitación. Su entrada, no incluye acompañante.  El ingreso se realizará mediante la lista de invitados previamente confirmados, por lo que será indispensable contar con confirmación de asistencia antes del evento. Para facilitar el acceso, recomendamos presentarse con algunos minutos de anticipación. Nuestro equipo estará disponible para apoyar con cualquier detalle previo al evento y para recibir a los invitados a su llegada.",
+    "sub_title_10": "Para cualquier información relacionada con su asistencia:",
+    "rol_person_01": "Directora de Relaciones Públicas IGECO MEXICO",
+    "rol_person_02": "Relaciones Públicas IGECO MEXICO",
+    "text_information_contact": "Organizado por"
   }
 }
