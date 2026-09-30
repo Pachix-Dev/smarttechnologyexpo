@@ -15,13 +15,13 @@ import {
   sponsorsDiamond,
   sponsorsBronze,
   sponsorsSilver,
-  sponsorsPlatinum
+  sponsorsPlatinum,
+  sponsorsGold,
 } from "../../logos.js";
 ---
 
 <section class="my-10 p-2">
-  
-  <!-- PATROCINADORES GOLD -->
+  <!-- PATROCINADORES DIAMANTE -->
   <div class="mx-auto mb-0 sm:mb-8">
     <h2
       class="w-fit mx-auto square_red font-extrabold text-xl md:text-4xl uppercase py-5 px-10 text-black font-montserrat-extra-bold-italic text-center"
@@ -65,6 +65,32 @@ import {
                 src={partner.src}
                 alt={partner.alt}
                 class="w-[170px] sm:w-[240px] object-contain"
+              />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+
+  <!-- PATROCINADORES GOLD -->
+  <div class="mx-auto mb-0 sm:mb-8">
+    <h2
+      class="w-fit mx-auto square_red font-extrabold text-xl md:text-4xl uppercase py-5 px-10 text-black font-montserrat-extra-bold-italic text-center"
+    >
+      {locale === "es" ? "PATROCINADORES GOLD" : "GOLD SPONSORS"}
+    </h2>
+    <div class="flex justify-center w-full">
+      <div
+        class="grid grid-cols-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-2 sm:gap-8 place-items-center place-content-center max-w-4xl"
+      >
+        {
+          sponsorsGold.map((partner, index) => (
+            <div class="flex justify-center items-center">
+              <img
+                src={partner.src}
+                alt={partner.alt}
+                class="w-[150px] sm:w-[200px] object-contain"
               />
             </div>
           ))

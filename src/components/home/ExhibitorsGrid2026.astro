@@ -8,6 +8,7 @@ const tr = (key: string, fallback: string = '') =>
   getTranslation(translations, key, fallback)
 
 import { exhibitors } from '../../data/constants_exhibitors_2026.js'
+import {sortLogosAlphabetically } from '../../logos.js'
 
 ---
 
@@ -21,7 +22,7 @@ import { exhibitors } from '../../data/constants_exhibitors_2026.js'
 
   <div class='mt-10 grid grid-cols-4 sm:grid-cols-3 md:grid-cols-8 gap-6 max-w-7xl mx-auto'>
     {
-      exhibitors.map((exhibitor) => (
+      sortLogosAlphabetically(exhibitors).map((exhibitor) => (
         <div class='flex justify-center items-center'>
           <img 
             src={exhibitor.src} 
