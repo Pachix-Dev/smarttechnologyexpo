@@ -18,11 +18,12 @@ const tr = (key: string, fallback: string = "") => getTranslation(translations, 
         data-aos-delay="200"
      >
      <p class="text-xl md:text-5xl font-semibold uppercase">
-        {tr("home.see_you_in", "NOS VEMOS EN")}
-     </p>
-     <h2 class="mt-3 text-xl md:text-5xl font-extrabold uppercase">
-        SMART TECHNOLOGY EXPO
-     </h2>
+  {locale === "en" ? "SEE YOU AT" : "NOS VEMOS EN"}
+</p>
+
+<h2 class="mt-3 text-xl md:text-5xl font-extrabold uppercase">
+  SMART TECHNOLOGY EXPO
+</h2>
 
      </div>
 
@@ -35,12 +36,17 @@ const tr = (key: string, fallback: string = "") => getTranslation(translations, 
      >
 
      <p class="text-xl font-bold uppercase mb-5">
-        FALTAN
-     </p>
+  {locale === "en" ? "REMAINING" : "FALTAN"}
+</p>
 
      <div class="flex gap-2 md:gap-7">
-        <CountdownReact client:load/>  
-     </div>
+        <CountdownReact
+            client:load
+  daysLabel={locale === "en" ? "DAYS" : "DÍAS"}
+  hoursLabel={locale === "en" ? "HOURS" : "HORAS"}
+  minutesLabel={locale === "en" ? "MINUTES" : "MINUTOS"}
+    />     
+    </div>
      </div>
 
     </div>

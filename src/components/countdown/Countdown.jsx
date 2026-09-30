@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 
-export default function Countdown(){
+export default function Countdown({
+    daysLabel,
+    hoursLabel,
+    minutesLabel
+}) {
     const calculateTime= () => {
         const targetDate = new Date(
             "2026-11-18t00:00:00-06:00"
@@ -60,7 +64,7 @@ export default function Countdown(){
                 {time.days}
             </span>
             <small>
-                DÍAS
+                {daysLabel}
             </small>
 
         </div>
@@ -71,7 +75,7 @@ export default function Countdown(){
                 {time.hours}
             </span>
             <small>
-                HORAS
+                {hoursLabel}
             </small>
 
         </div>
@@ -83,7 +87,7 @@ export default function Countdown(){
             </span>
 
             <small>
-                MINUTOS
+                {minutesLabel}
             </small>
 
         </div>
