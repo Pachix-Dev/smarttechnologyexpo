@@ -19,6 +19,8 @@ import ConcurrentEventGrid from "../register/ConcurrentEventGrid.astro";
 import KeyNoteSpeakers from "./KeyNoteSpeakers.astro";
 import DirectorySection from "./DirectorySection.astro";
 import Exhibitors_2026 from "./Exhibitors_2026.astro";
+import Countdown from "../countdown/Countdown.astro";
+
 
 export interface Props {
   locale?: string;
@@ -37,6 +39,7 @@ const tr = (key: string, fallback: string = "") =>
   <ConcurrentEventGrid />
   <HighlightSte2026 />
   <PromotionalVideo />
+  <Countdown />
   <!-- <KeyNoteSpeakers /> -->
   <DisplaySegments />
   <DirectorySection />
