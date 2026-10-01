@@ -78,6 +78,21 @@ export default function InsightsScheduleLive({
   // t: elige texto por idioma. lbl: usa el label traducido si existe, si no t().
   const t = (es, en) => (lang === "en" ? en : es);
   const lbl = (key, es, en) => (labels && labels[key]) || t(es, en);
+  const languageLabel = (value) => {
+    const code = String(value || "")
+      .trim()
+      .toLowerCase();
+    if (code === "en") {
+      return t(
+        "Idioma inglés (con traducción a español)",
+        "English language (with Spanish translation)",
+      );
+    }
+    if (code === "es") {
+      return t("Idioma español", "Spanish language");
+    }
+    return code ? `${t("Idioma", "Language")}: ${value}` : "";
+  };
 
   // Fecha del banner: SOLO mes + año, sin día de la semana ni "de".
   // ES -> "Noviembre 2026", EN -> "November 2026".
@@ -146,7 +161,9 @@ export default function InsightsScheduleLive({
       <div className="isc-inner">
         {/* Encabezado: eyebrow + título + subtítulo */}
         <div className="isc-eyebrow">{lbl("eyebrow", "AGENDA", "AGENDA")}</div>
-        <h2 className="isc-title">{lbl("title", "Programa por día", "Daily program")}</h2>
+        <h2 className="isc-title">
+          {lbl("title", "Programa por día", "Daily program")}
+        </h2>
         <p className="isc-sub">
           {lbl(
             "sub",
@@ -170,16 +187,17 @@ export default function InsightsScheduleLive({
             </a>
           </div>
           */}
-          <div className="isc-notice">
+          {/* Aviso de idioma de las sesiones */}
+          {/* <div className="isc-notice">
             <span className="isc-notice-i">i</span>
             <span>
               {lbl(
                 "notice",
-                "Todas las ponencias se realizarán en español",
-                "All presentations will be held in Spanish",
+                "El idioma de cada ponencia se indica en su tarjeta",
+                "Each session card shows its assigned language",
               )}
             </span>
-          </div>
+          </div> */}
         </div>
 
         {/* Selector de día: un "pill" por cada día del escenario */}
@@ -221,11 +239,17 @@ export default function InsightsScheduleLive({
         {/* Leyenda de tipos (en STE 2026 solo Keynote y Panel) */}
         <div className="isc-legend">
           <div className="isc-legend-item">
-            <span className="isc-legend-dot" style={{ background: "#2563EB" }} />
+            <span
+              className="isc-legend-dot"
+              style={{ background: "#2563EB" }}
+            />
             Keynote
           </div>
           <div className="isc-legend-item">
-            <span className="isc-legend-dot" style={{ background: "#0D9488" }} />
+            <span
+              className="isc-legend-dot"
+              style={{ background: "#0D9488" }}
+            />
             Panel
           </div>
           {/* OCULTO (ajuste STE 2026): categoría "Conferencia". No se borró.
@@ -248,6 +272,7 @@ export default function InsightsScheduleLive({
               const meta = typeMeta(s.type);
               const speakers = s.ponentes || [];
               const desc = confDesc(s, lang);
+              const sessionLanguage = languageLabel(s.language);
               // Logo de la empresa de la conferencia (viene de la API en company_logo).
               const logo = companyLogo(s.company_logo);
               return (
@@ -255,7 +280,11 @@ export default function InsightsScheduleLive({
                   key={s.id}
                   className="isc-card"
                   // tarjeta neutra: el color de tipo vive en la barra/pill/hover, no en el fondo
-                  style={{ background: "#111", borderColor: meta.bar, "--hover": meta.bar }}
+                  style={{
+                    background: "#111",
+                    borderColor: meta.bar,
+                    "--hover": meta.bar,
+                  }}
                 >
                   {/* Barra de color con el badge del tipo (traducido si hay label) */}
                   <div className="isc-bar" style={{ background: meta.bar }}>
@@ -267,12 +296,18 @@ export default function InsightsScheduleLive({
                     {/* Duración y título en la MISMA fila; recuadro "Powered by" a la derecha */}
                     <div className="isc-title-row">
                       <div className="isc-title-left">
-                        <span
-                          className="isc-time-pill"
-                          style={{ background: meta.bar }}
+                        <div
+                          className="isc-meta-row"
+                          style={{ marginBottom: 0 }}
                         >
-                          {formatTime(s.start_time)} – {formatTime(s.end_time)}
-                        </span>
+                          <span
+                            className="isc-time-pill"
+                            style={{ background: meta.bar }}
+                          >
+                            {formatTime(s.start_time)} –{" "}
+                            {formatTime(s.end_time)}
+                          </span>
+                        </div>
                         <div className="isc-session-title">
                           {confTitle(s, lang)}
                         </div>
@@ -292,8 +327,23 @@ export default function InsightsScheduleLive({
                         </div>
                       ) : null}
                     </div>
-                    {desc ? <p className="isc-session-desc">{desc}</p> : null}
-
+                    <div className="py-4">
+                      {/* Etiqueta de idioma de la sesión */}
+                      {sessionLanguage ? (
+                        <span
+                          className="isc-time-pill"
+                          style={{
+                            background: "rgba(255, 255, 255, 0.08)",
+                            border: `1px solid ${meta.bar}`,
+                            color: "#fff",
+                          }}
+                        >
+                          {sessionLanguage}
+                        </span>
+                      ) : null}
+                      {/* Descripción de la sesión */}
+                      {desc ? <p className="isc-session-desc">{desc}</p> : null}
+                    </div>
                     {/* Bloque de ponentes de la sesión (si los hay) */}
                     {speakers.length > 0 && (
                       <div className="isc-speakers">
@@ -352,7 +402,9 @@ export default function InsightsScheduleLive({
                                     {p.name}
                                   </div>
                                   {role && (
-                                    <div className="isc-speaker-role">{role}</div>
+                                    <div className="isc-speaker-role">
+                                      {role}
+                                    </div>
                                   )}
                                   {org && (
                                     <div className="isc-speaker-org">{org}</div>
