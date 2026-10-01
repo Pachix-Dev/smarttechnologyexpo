@@ -14,9 +14,7 @@ const tr = (key: string, fallback: string = "") =>
     >
       {tr("nocheIndustriales.sub_title_02")}
     </h2>
-    <div
-      class="border-2 border-[#cca058]"
-    >
+    <div class="border-2 border-[#cca058]">
       <h3
         class="uppercase font-light tracking-[.45em] text-2xl sm:text-4xl text-[#cca058] border-b-2 border-[#cca058] py-6 text-center w-full"
       >
@@ -31,8 +29,29 @@ const tr = (key: string, fallback: string = "") =>
           src="/img/nocheIndustriales/noche_item_01.webp"
           alt="Noche Industriales 2026"
           class="w-[750px]"
+          loading="lazy"
         />
       </div>
+    </div>
+  </div>
+
+  <div class="flex flex-col sm:flex-row gap-4 sm:gap-18 m-4 sm:m-10 py-10">
+    <img
+      src="/img/nocheIndustriales/noche_item_02.webp"
+      alt="Noche Industriales 2026"
+      class="w-[750px]"
+      loading="lazy"
+    />
+    <div class="flex flex-col justify-start items-start">
+      <h3
+        class="uppercase font-black text-2xl sm:text-4xl text-center text-white pb-6 sm:pb-12"
+      >
+        {tr("nocheIndustriales.sub_title_03")}
+      </h3>
+      <p
+        class="text-xl text-justify"
+        set:html={tr("nocheIndustriales.description_03")}
+      />
     </div>
   </div>
 </section>
