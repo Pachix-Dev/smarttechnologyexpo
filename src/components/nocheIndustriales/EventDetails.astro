@@ -7,84 +7,127 @@ const tr = (key: string, fallback: string = "") =>
   getTranslation(translations, key, fallback);
 ---
 
-<section
-  class="bg-[#0b0b0b] h-auto text-white p-4 sm:p-16 border-t-2 border-[#cca058]"
->
-  <div class="mx-auto text-center">
-    <h2
-      class="uppercase font-black text-2xl sm:text-4xl text-center text-[#cca058] pb-4"
-    >
-      {tr("nocheIndustriales.sub_title_06")}
-    </h2>
-    <span class="text-lg sm:text-2xl italic"
-      >{tr("nocheIndustriales.text_information")}</span
-    >
-  </div>
-  <div class="grid grid-cols-1 sm:grid-cols-2 gap-12 my-10">
-    <div>
-      <h3
-        class="text-xl sm:text-3xl font-bold flex items-center gap-2 border-2 border-[#cca058] p-2 w-auto"
+<div class="bg-[#0b0b0b] text-white">
+  <section class="h-auto p-4 sm:p-16 border-t-2 border-[#cca058]">
+    <div class="mx-auto text-center">
+      <h2
+        class="uppercase font-black text-2xl sm:text-4xl text-center text-[#cca058] pb-4"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="w-[40px]"
-          viewBox="0 0 24 24"
-          ><g
-            fill="none"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            ><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"
-            ></path></g
-          ></svg
-        >{tr("nocheIndustriales.sub_title_07")}
-      </h3>
-      <div
-        class="flex flex-col text-xl sm:text-2xl font-semibold gap-4 sm:ps-14 mt-4 sm:mt-10"
+        {tr("nocheIndustriales.sub_title_06")}
+      </h2>
+      <span class="text-lg sm:text-2xl italic"
+        >{tr("nocheIndustriales.text_information")}</span
       >
-        {tr("nocheIndustriales.text_date")}
-        <span>18:30 hrs. - 23:00 hrs.</span>
-        {tr("nocheIndustriales.text_outfit")}
-      </div>
     </div>
-    <div>
-      <h3
-        class="text-xl sm:text-3xl font-bold flex items-center gap-2 border-2 border-[#cca058] p-2 w-auto"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="w-[40px]"
-          viewBox="0 0 24 24"
-          ><g fill="none" stroke="currentColor" stroke-width="1.5"
-            ><path d="M14.5 9a2.5 2.5 0 1 1-5 0a2.5 2.5 0 0 1 5 0Z"></path><path
-              d="M13.257 17.494a1.813 1.813 0 0 1-2.514 0c-3.089-2.993-7.228-6.336-5.21-11.19C6.626 3.679 9.246 2 12 2s5.375 1.68 6.467 4.304c2.016 4.847-2.113 8.207-5.21 11.19Z"
-            ></path><path
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-12 my-10">
+      <div>
+        <h3
+          class="text-xl sm:text-3xl font-bold flex items-center gap-2 border-2 border-[#cca058] p-2 w-auto"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-[40px]"
+            viewBox="0 0 24 24"
+            ><g
+              fill="none"
+              stroke="currentColor"
               stroke-linecap="round"
-              d="M18 20c0 1.105-2.686 2-6 2s-6-.895-6-2"></path></g
-          ></svg
+              stroke-linejoin="round"
+              stroke-width="2"
+              ><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"
+              ></path></g
+            ></svg
+          >{tr("nocheIndustriales.sub_title_07")}
+        </h3>
+        <div
+          class="flex flex-col text-xl sm:text-2xl font-semibold gap-4 sm:ps-14 mt-4 sm:mt-10"
         >
-        {tr("nocheIndustriales.sub_title_08")}
-      </h3>
-      <div
-        class="flex flex-col text-xl sm:text-2xl font-semibold sm:ps-14 mt-4 sm:mt-10"
-      >
-        <span class="font-bold text-[#cca058]"
-          >{tr("nocheIndustriales.place_room")} · {
-            tr("nocheIndustriales.place")
-          }</span
+          {tr("nocheIndustriales.text_date")}
+          <span>18:30 hrs. - 23:00 hrs.</span>
+          {tr("nocheIndustriales.text_outfit")}
+        </div>
+      </div>
+      <div>
+        <h3
+          class="text-xl sm:text-3xl font-bold flex items-center gap-2 border-2 border-[#cca058] p-2 w-auto"
         >
-        <span class="text-xl">{tr("nocheIndustriales.text_address")}</span>
-        <span class="text-xl pt-2"
-          >{tr("nocheIndustriales.address_warning")}</span
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-[40px]"
+            viewBox="0 0 24 24"
+            ><g fill="none" stroke="currentColor" stroke-width="1.5"
+              ><path d="M14.5 9a2.5 2.5 0 1 1-5 0a2.5 2.5 0 0 1 5 0Z"
+              ></path><path
+                d="M13.257 17.494a1.813 1.813 0 0 1-2.514 0c-3.089-2.993-7.228-6.336-5.21-11.19C6.626 3.679 9.246 2 12 2s5.375 1.68 6.467 4.304c2.016 4.847-2.113 8.207-5.21 11.19Z"
+              ></path><path
+                stroke-linecap="round"
+                d="M18 20c0 1.105-2.686 2-6 2s-6-.895-6-2"></path></g
+            ></svg
+          >
+          {tr("nocheIndustriales.sub_title_08")}
+        </h3>
+        <div
+          class="flex flex-col text-xl sm:text-2xl font-semibold sm:ps-14 mt-4 sm:mt-10"
         >
+          <span class="font-bold text-[#cca058]"
+            >{tr("nocheIndustriales.place_room")} · {
+              tr("nocheIndustriales.place")
+            }</span
+          >
+          <span class="text-xl">{tr("nocheIndustriales.text_address")}</span>
+          <span class="text-xl pt-2"
+            >{tr("nocheIndustriales.address_warning")}</span
+          >
+        </div>
       </div>
     </div>
-  </div>
-</section>
-<section class="bg-[#0b0b0b] h-auto border-t-2 border-b-2 border-[#cca058] text-white">
-  <div class="text-4xl flex flex-col sm:flex-row gap-8 m-4 sm:m-10">
-    <h3 class="uppercase font-black text-2xl sm:text-4xl text-center text-[#cca058] sm:w-1/2">{tr("nocheIndustriales.sub_title_09")}</h3>
-    <p class="text-xl sm:w-1/2 text-justify" set:html={tr("nocheIndustriales.text_access")} />
-  </div>
-</section>
+  </section>
+
+  <section class="h-auto border-t-2 border-b-2 border-[#cca058]">
+    <div class="text-4xl flex flex-col sm:flex-row gap-8 m-4 sm:m-10">
+      <h3
+        class="uppercase font-black text-2xl sm:text-4xl text-center text-[#cca058] sm:w-1/2"
+      >
+        {tr("nocheIndustriales.sub_title_09")}
+      </h3>
+      <p
+        class="text-xl sm:w-1/2 text-justify"
+        set:html={tr("nocheIndustriales.text_access")}
+      />
+    </div>
+  </section>
+
+  <section class="p-4 flex flex-col items-center justify-center">
+    <h3 class="uppercase font-black text-xl sm:text-3xl text-center">
+      {tr("nocheIndustriales.sub_title_10")}
+    </h3>
+    <div class=" sm:text-xl grid grid-cols-1 sm:grid-cols-3 justify-center items-center gap-8 m-4 sm:m-10">
+
+      <div class="border-s-2 border-[#cca058] ps-6 w-full">
+        <p class="font-bold text-[#cca058]">Lilian Malanco</p>
+        <p
+          class="italic text-justify"
+          set:html={tr("nocheIndustriales.rol_person_01")}
+        />
+        <a class="text-[#cca058]" href="mailto:lilian.malanco@igeco.mx">lilian.malanco@igeco.mx</a>
+      </div>
+
+      <div class="border-s-2 border-[#cca058] ps-6 w-full">
+        <p class="font-bold text-[#cca058]">Regina Calvillo </p>
+        <p
+          class="italic text-justify"
+          set:html={tr("nocheIndustriales.rol_person_02")}
+        />
+        <a class="text-[#cca058]" href="mailto:regina.calvillo@igeco.mx">regina.calvillo@igeco.mx</a>
+      </div>
+
+      <div class="w-full">
+        <p class="font-bold text-[#cca058] text-center sm:text-left"> {tr("nocheIndustriales.text_information_contact")} </p>
+        <div class="flex flex-row pt-4">
+          <img src="/img/igeco_bn.webp" alt="Igeco" class="w-[150px] sm:w-[200px]">
+          <img src="/img/deutsche_messe_bn.webp" alt="Deutsche Messe" class="w-[150px] sm:w-[200px]">
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
