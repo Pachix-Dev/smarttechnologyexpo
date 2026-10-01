@@ -1,0 +1,73 @@
+---
+import { useTranslations, getTranslation } from "../../utils/translations";
+// ✨ Una sola línea para cargar traducciones!
+const { locale, translations } = await useTranslations(Astro.props, Astro);
+// 🎯 Helper para traducciones más elegante
+const tr = (key: string, fallback: string = "") =>
+  getTranslation(translations, key, fallback);
+---
+
+<section class="bg-[#0b0b0b] h-auto text-white p-4 sm:p-16 border-t-2 border-[#cca058]">
+  <div class="mx-auto text-center">
+    <h2
+      class="uppercase font-black text-2xl sm:text-4xl text-center text-[#cca058] pb-4"
+    >
+      {tr("nocheIndustriales.sub_title_06")}
+    </h2>
+    <span class="text-lg sm:text-2xl italic"
+      >{tr("nocheIndustriales.text_information")}</span
+    >
+  </div>
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-12 my-10">
+    <div>
+      <h3
+        class="text-xl sm:text-3xl font-bold flex items-center gap-2 border-2 border-[#cca058] p-2 w-auto"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-[40px]"
+          viewBox="0 0 24 24"
+          ><g
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            ><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"
+            ></path></g
+          ></svg
+        >{tr("nocheIndustriales.sub_title_07")}
+      </h3>
+      <div class="flex flex-col text-xl sm:text-2xl font-semibold gap-4 sm:ps-14 mt-4 sm:mt-10">
+        {tr("nocheIndustriales.text_date")}
+        <span>18:30 hrs. - 23:00 hrs.</span>
+        {tr("nocheIndustriales.text_outfit")}
+      </div>
+    </div>
+    <div>
+      <h3
+        class="text-xl sm:text-3xl font-bold flex items-center gap-2 border-2 border-[#cca058] p-2 w-auto"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-[40px]"
+          viewBox="0 0 24 24"
+          ><g fill="none" stroke="currentColor" stroke-width="1.5"
+            ><path d="M14.5 9a2.5 2.5 0 1 1-5 0a2.5 2.5 0 0 1 5 0Z"></path><path
+              d="M13.257 17.494a1.813 1.813 0 0 1-2.514 0c-3.089-2.993-7.228-6.336-5.21-11.19C6.626 3.679 9.246 2 12 2s5.375 1.68 6.467 4.304c2.016 4.847-2.113 8.207-5.21 11.19Z"
+            ></path><path
+              stroke-linecap="round"
+              d="M18 20c0 1.105-2.686 2-6 2s-6-.895-6-2"></path></g
+          ></svg
+        >
+        {tr("nocheIndustriales.sub_title_08")}
+      </h3>
+      <div class="flex flex-col text-xl sm:text-2xl font-semibold sm:ps-14 mt-4 sm:mt-10">
+        <span class="font-bold text-[#cca058]">{tr("nocheIndustriales.place_room")} · {tr("nocheIndustriales.place")}</span>
+        <span class="text-xl">{tr("nocheIndustriales.text_address")}</span>
+        <span class="text-xl pt-2">{tr("nocheIndustriales.address_warning")}</span>
+      </div>
+    </div>
+    
+  </div>
+</section>

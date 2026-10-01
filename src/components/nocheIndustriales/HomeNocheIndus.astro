@@ -2,6 +2,7 @@
 import { useTranslations, getTranslation } from "../../utils/translations";
 import AboutEvent from "./AboutEvent.astro";
 import EventDescription from "./EventDescription.astro";
+import EventDetails from "./EventDetails.astro";
 import Hero from "./Hero.astro";
 import Sponsors from "./Sponsors.astro";
 // Una sola línea para cargar traducciones!
@@ -15,4 +16,5 @@ const tr = (key: string, fallback: string = "") =>
     <AboutEvent />
     <EventDescription />
     <Sponsors />
+    <EventDetails />
 </section>
