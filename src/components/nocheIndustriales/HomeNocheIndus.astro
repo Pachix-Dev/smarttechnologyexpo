@@ -11,10 +11,13 @@ const { locale, translations } = await useTranslations(Astro.props, Astro);
 const tr = (key: string, fallback: string = "") =>
   getTranslation(translations, key, fallback);
 ---
+
 <section>
-    <Hero />
-    <AboutEvent />
-    <EventDescription />
-    <Sponsors />
+  <Hero />
+  <AboutEvent />
+  <EventDescription />
+  <Sponsors />
+  <div id="eventDetails">
     <EventDetails />
+  </div>
 </section>
