@@ -78,6 +78,19 @@ export default function SkillsScheduleLive({
   // t: elige texto por idioma. lbl: usa el label traducido si existe, si no t().
   const t = (es, en) => (lang === "en" ? en : es);
   const lbl = (key, es, en) => (labels && labels[key]) || t(es, en);
+  const languageLabel = (value) => {
+    const code = String(value || "").trim().toLowerCase();
+    if (code === "en") {
+      return t(
+        "Idioma inglés (con traducción a español)",
+        "English language (with Spanish translation)",
+      );
+    }
+    if (code === "es") {
+      return t("Idioma español", "Spanish language");
+    }
+    return code ? `${t("Idioma", "Language")}: ${value}` : "";
+  };
 
   // Fecha del banner: SOLO mes + año ("Noviembre 2026" / "November 2026").
   const monthYear = (dateStr) => {
@@ -163,16 +176,18 @@ export default function SkillsScheduleLive({
             </a>
           </div>
           */}
-          <div className="ssc-notice">
+
+          {/* Estado de aviso de idioma */}
+          {/* <div className="ssc-notice">
             <span className="ssc-notice-i">i</span>
             <span>
               {lbl(
                 "notice",
-                "Todos los talleres serán impartidos en español",
-                "All workshops will be delivered in Spanish",
+                "El idioma de cada taller se indica en su tarjeta",
+                "Each workshop card shows its assigned language",
               )}
             </span>
-          </div>
+          </div> */}
         </div>
 
         {/* Selector de día: un "pill" por cada día (acento inline en el activo) */}
@@ -231,6 +246,7 @@ export default function SkillsScheduleLive({
             sessions.map((s) => {
               const speakers = s.ponentes || [];
               const desc = confDesc(s, lang);
+              const sessionLanguage = languageLabel(s.language);
               // Logo de la empresa del taller (viene de la API en company_logo).
               const logo = companyLogo(s.company_logo);
               return (
@@ -251,12 +267,33 @@ export default function SkillsScheduleLive({
                     {/* Duración + título a la izquierda; recuadro "Powered by" a la derecha */}
                     <div className="ssc-title-row">
                       <div className="ssc-title-left">
-                        <span
-                          className="ssc-time-pill"
-                          style={{ background: accent }}
-                        >
-                          {formatTime(s.start_time)} – {formatTime(s.end_time)}
-                        </span>
+                        <div className="flex flex-col md:items-start md:gap-2">
+                          <div>
+                            {/* Píldora de tiempo de la sesión */}
+                            <span
+                              className="ssc-time-pill"
+                              style={{ background: accent }}
+                            >
+                              {formatTime(s.start_time)} –{" "}
+                              {formatTime(s.end_time)}
+                            </span>
+                          </div>
+                          {/* Píldora de idioma de la sesión */}
+                          <div>
+                            {sessionLanguage ? (
+                              <span
+                                className="ssc-time-pill"
+                                style={{
+                                  background: "rgba(255, 255, 255, 0.08)",
+                                  border: `1px solid ${accent}`,
+                                  color: "#fff",
+                                }}
+                              >
+                                {sessionLanguage}
+                              </span>
+                            ) : null}
+                          </div>
+                        </div>
                         <div className="ssc-session-title">
                           {confTitle(s, lang)}
                         </div>
@@ -308,7 +345,10 @@ export default function SkillsScheduleLive({
                                   ? {
                                       "data-bio-trigger": true,
                                       "data-bio-name": p.name || "",
-                                      "data-bio-position": (lang === "es" ? p.position_esp : p.position_eng) || "",
+                                      "data-bio-position":
+                                        (lang === "es"
+                                          ? p.position_esp
+                                          : p.position_eng) || "",
                                       "data-bio-org": org,
                                       "data-bio-bio": bio,
                                       "data-bio-photo": photo || "",
@@ -344,7 +384,17 @@ export default function SkillsScheduleLive({
                                   {/* Chevron: solo cuando hay semblanza que abrir */}
                                   {hasBio && (
                                     <span className="text-base flex gap-1">
-                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m13.172 12l-4.95-4.95l1.414-1.413L16 12l-6.364 6.364l-1.414-1.415z"/></svg>
+                                      <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="24"
+                                        height="24"
+                                        viewBox="0 0 24 24"
+                                      >
+                                        <path
+                                          fill="currentColor"
+                                          d="m13.172 12l-4.95-4.95l1.414-1.413L16 12l-6.364 6.364l-1.414-1.415z"
+                                        />
+                                      </svg>
                                     </span>
                                   )}
                                 </div>
