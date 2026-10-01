@@ -1,0 +1,78 @@
+---
+import { useTranslations, getTranslation } from "../../utils/translations";
+// ✨ Una sola línea para cargar traducciones!
+const { locale, translations } = await useTranslations(Astro.props, Astro);
+// 🎯 Helper para traducciones más elegante
+const tr = (key: string, fallback: string = "") =>
+  getTranslation(translations, key, fallback);
+
+const base = locale === "es" ? "" : "/en";
+---
+
+<section class="bg-[#0b0b0b] h-auto text-white p-4 sm:p-16">
+  <div class="max-w-6xl mx-auto flex flex-col items-center gap-y-4">
+    <h3
+      class="uppercase font-black text-2xl sm:text-4xl text-center text-[#cca058] pb-6 sm:pb-12"
+    >
+      {tr("nocheIndustriales.sub_title_05")}
+    </h3>
+    <div class="flex flex-col justify-center items-center gap-8">
+      <!-- Beckoff Sponsor -->
+      <img
+        src="/img/nocheIndustriales/beckoff.webp"
+        alt="Beckoff"
+        class="w-[120px] sm:w-[250px]"
+      />
+      <!-- Mitsubishi Sponsor -->
+      <img
+        src="/img/nocheIndustriales/mitsubishi.webp"
+        alt="Mitsubishi"
+        class="w-[120px] sm:w-[250px]"
+      />
+      <!-- BR and Schneider Sponsors -->
+      <div class="flex flex-row gap-4 justify-center items-center">
+        <img
+          src="/img/nocheIndustriales/br.webp"
+          alt="BR"
+          class="w-[120px] sm:w-[250px]"
+        />
+        <img
+          src="/img/nocheIndustriales/schneider.webp"
+          alt="Schneider"
+          class="w-[120px] sm:w-[250px]"
+        />
+      </div>
+      <!-- Telcel Empresas Sponsor -->
+      <img
+        src="/img/nocheIndustriales/telcel_empresas.webp"
+        alt="Telcel Empresas"
+        class="w-[120px] sm:w-[180px]"
+      />
+      <!-- Euchner, Robustel, Smartsol, and Paloalto Sponsors -->
+      <div
+        class="flex flex-wrap sm:flex-row gap-10 justify-center items-center"
+      >
+        <img
+          src="/img/nocheIndustriales/euchner.webp"
+          alt="Euchner"
+          class="w-[120px] sm:w-[200px]"
+        />
+        <img
+          src="/img/nocheIndustriales/robustel.webp"
+          alt="Robustel"
+          class="w-[120px] sm:w-[250px]"
+        />
+        <img
+          src="/img/nocheIndustriales/smartsol.webp"
+          alt="Smartsol"
+          class="w-[120px] sm:w-[250px]"
+        />
+        <img
+          src="/img/nocheIndustriales/paloalto.webp"
+          alt="Paloalto"
+          class="w-[120px] sm:w-[250px]"
+        />
+      </div>
+    </div>
+  </div>
+</section>
