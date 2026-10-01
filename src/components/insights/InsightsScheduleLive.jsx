@@ -172,7 +172,7 @@ export default function InsightsScheduleLive({
           )}
         </p>
 
-        {/* Fila superior: (descarga oculta en STE 2026) + aviso de idioma */}
+        {/* Fila superior: (descarga oculta en STE 2026) */}
         <div className="isc-toprow">
           {/* OCULTO POR AHORA (ajuste STE 2026): sección "Descarga programa".
               No se borró; para reactivarla, descomenta este bloque.
@@ -296,10 +296,9 @@ export default function InsightsScheduleLive({
                     {/* Duración y título en la MISMA fila; recuadro "Powered by" a la derecha */}
                     <div className="isc-title-row">
                       <div className="isc-title-left">
-                        <div
-                          className="isc-meta-row"
-                          style={{ marginBottom: 0 }}
-                        >
+                        <div className="flex flex-col md:items-start gap-1 md:gap-2">
+
+                          {/* Píldora de tiempo de la sesión */}
                           <span
                             className="isc-time-pill"
                             style={{ background: meta.bar }}
@@ -307,6 +306,21 @@ export default function InsightsScheduleLive({
                             {formatTime(s.start_time)} –{" "}
                             {formatTime(s.end_time)}
                           </span>
+
+                          {/* Etiqueta de idioma de la sesión */}
+                          {sessionLanguage ? (
+                            <span
+                              className="isc-time-pill"
+                              style={{
+                                background: "rgba(255, 255, 255, 0.08)",
+                                border: `1px solid ${meta.bar}`,
+                                color: "#fff",
+                              }}
+                            >
+                              {sessionLanguage}
+                            </span>
+                          ) : null}
+
                         </div>
                         <div className="isc-session-title">
                           {confTitle(s, lang)}
@@ -328,19 +342,6 @@ export default function InsightsScheduleLive({
                       ) : null}
                     </div>
                     <div className="py-4">
-                      {/* Etiqueta de idioma de la sesión */}
-                      {sessionLanguage ? (
-                        <span
-                          className="isc-time-pill"
-                          style={{
-                            background: "rgba(255, 255, 255, 0.08)",
-                            border: `1px solid ${meta.bar}`,
-                            color: "#fff",
-                          }}
-                        >
-                          {sessionLanguage}
-                        </span>
-                      ) : null}
                       {/* Descripción de la sesión */}
                       {desc ? <p className="isc-session-desc">{desc}</p> : null}
                     </div>
