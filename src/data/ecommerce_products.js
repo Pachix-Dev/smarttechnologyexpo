@@ -43,7 +43,7 @@ export const ECOMMERCE_PRODUCTS = [
     capacity_limit: 60,
     capacity_desc_es: 'Cupo limitado',
     capacity_desc_en: 'Limited capacity',
-    status: 'active',
+    status: 'inactive',
   },
   {
     id_product: 3,
@@ -85,6 +85,6 @@ export const ECOMMERCE_PRODUCTS = [
     capacity_limit: 60,
     capacity_desc_es: 'Cupo limitado',
     capacity_desc_en: 'Limited capacity',
-    status: 'active',
+    status: 'inactive',
   },
 ];
