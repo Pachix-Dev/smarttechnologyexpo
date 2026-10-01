@@ -5,6 +5,8 @@ const { locale, translations } = await useTranslations(Astro.props, Astro);
 // 🎯 Helper para traducciones más elegante
 const tr = (key: string, fallback: string = "") =>
   getTranslation(translations, key, fallback);
+
+const base = locale === "es" ? "" : "/en";
 ---
 
 <section class="bg-[#0b0b0b] h-auto text-white p-4 sm:p-16">
@@ -52,6 +54,10 @@ const tr = (key: string, fallback: string = "") =>
         class="text-xl text-justify"
         set:html={tr("nocheIndustriales.description_03")}
       />
+      <a href={`${base}/premio-itzamna-2026`} class="uppercase font-bold text-lg sm:text-xl border-2 p-3 flex items-center gap-2 hover:bg-[#cca058] hover:text-black transition-colors duration-300 mt-10">
+        {tr("nocheIndustriales.button")}
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 15 15"><path fill="currentColor" d="M8.293 2.293a1 1 0 0 1 1.414 0l4.5 4.5a1 1 0 0 1 0 1.414l-4.5 4.5a1 1 0 0 1-1.414-1.414L11 8.5H1.5a1 1 0 0 1 0-2H11L8.293 3.707a1 1 0 0 1 0-1.414"/></svg>
+      </a>
     </div>
   </div>
 </section>
