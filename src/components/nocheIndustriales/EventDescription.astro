@@ -1,0 +1,38 @@
+---
+import { useTranslations, getTranslation } from "../../utils/translations";
+// ✨ Una sola línea para cargar traducciones!
+const { locale, translations } = await useTranslations(Astro.props, Astro);
+// 🎯 Helper para traducciones más elegante
+const tr = (key: string, fallback: string = "") =>
+  getTranslation(translations, key, fallback);
+---
+
+<section class="bg-[#0b0b0b] h-auto text-white p-4 sm:p-16">
+  <div>
+    <h2
+      class="uppercase font-black text-2xl sm:text-4xl text-center text-[#cca058] pb-6 sm:pb-12"
+    >
+      {tr("nocheIndustriales.sub_title_02")}
+    </h2>
+    <div
+      class="border-2 border-[#cca058]"
+    >
+      <h3
+        class="uppercase font-light tracking-[.45em] text-2xl sm:text-4xl text-[#cca058] border-b-2 border-[#cca058] py-6 text-center w-full"
+      >
+        NETWORKING
+      </h3>
+      <div class="flex flex-col sm:flex-row gap-4 sm:gap-18 m-4 sm:m-10">
+        <p
+          class="text-xl text-justify"
+          set:html={tr("nocheIndustriales.description_02")}
+        />
+        <img
+          src="/img/nocheIndustriales/noche_item_01.webp"
+          alt="Noche Industriales 2026"
+          class="w-[750px]"
+        />
+      </div>
+    </div>
+  </div>
+</section>
