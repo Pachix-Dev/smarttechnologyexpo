@@ -7,7 +7,9 @@ const tr = (key: string, fallback: string = "") =>
   getTranslation(translations, key, fallback);
 ---
 
-<section class="bg-[#0b0b0b] h-auto text-white p-4 sm:p-16 border-t-2 border-[#cca058]">
+<section
+  class="bg-[#0b0b0b] h-auto text-white p-4 sm:p-16 border-t-2 border-[#cca058]"
+>
   <div class="mx-auto text-center">
     <h2
       class="uppercase font-black text-2xl sm:text-4xl text-center text-[#cca058] pb-4"
@@ -38,7 +40,9 @@ const tr = (key: string, fallback: string = "") =>
           ></svg
         >{tr("nocheIndustriales.sub_title_07")}
       </h3>
-      <div class="flex flex-col text-xl sm:text-2xl font-semibold gap-4 sm:ps-14 mt-4 sm:mt-10">
+      <div
+        class="flex flex-col text-xl sm:text-2xl font-semibold gap-4 sm:ps-14 mt-4 sm:mt-10"
+      >
         {tr("nocheIndustriales.text_date")}
         <span>18:30 hrs. - 23:00 hrs.</span>
         {tr("nocheIndustriales.text_outfit")}
@@ -62,12 +66,25 @@ const tr = (key: string, fallback: string = "") =>
         >
         {tr("nocheIndustriales.sub_title_08")}
       </h3>
-      <div class="flex flex-col text-xl sm:text-2xl font-semibold sm:ps-14 mt-4 sm:mt-10">
-        <span class="font-bold text-[#cca058]">{tr("nocheIndustriales.place_room")} · {tr("nocheIndustriales.place")}</span>
+      <div
+        class="flex flex-col text-xl sm:text-2xl font-semibold sm:ps-14 mt-4 sm:mt-10"
+      >
+        <span class="font-bold text-[#cca058]"
+          >{tr("nocheIndustriales.place_room")} · {
+            tr("nocheIndustriales.place")
+          }</span
+        >
         <span class="text-xl">{tr("nocheIndustriales.text_address")}</span>
-        <span class="text-xl pt-2">{tr("nocheIndustriales.address_warning")}</span>
+        <span class="text-xl pt-2"
+          >{tr("nocheIndustriales.address_warning")}</span
+        >
       </div>
     </div>
-    
+  </div>
+</section>
+<section class="bg-[#0b0b0b] h-auto border-y-2 border-[#cca058] text-white">
+  <div class="text-4xl flex flex-col sm:flex-row gap-8 m-4 sm:m-10">
+    <h3 class="uppercase font-black text-2xl sm:text-4xl text-center text-[#cca058] sm:w-1/2">{tr("nocheIndustriales.sub_title_09")}</h3>
+    <p class="text-xl sm:w-1/2 text-justify" set:html={tr("nocheIndustriales.text_access")} />
   </div>
 </section>
