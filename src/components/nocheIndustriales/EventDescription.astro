@@ -1,5 +1,6 @@
 ---
 import { useTranslations, getTranslation } from "../../utils/translations";
+import Gallery from "./Gallery.astro";
 // ✨ Una sola línea para cargar traducciones!
 const { locale, translations } = await useTranslations(Astro.props, Astro);
 // 🎯 Helper para traducciones más elegante
@@ -71,6 +72,7 @@ const base = locale === "es" ? "" : "/en";
       class="text-xl text-justify"
       set:html={tr("nocheIndustriales.description_04")}
     />
+    <Gallery />
   </div>
 </section>
 <section class="bg-[#cca058] h-auto text-center">

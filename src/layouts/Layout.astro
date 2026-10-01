@@ -207,13 +207,24 @@ const fullOgImage = new URL(ogImage, siteUrl).href;
       <slot />
     </main>
     <Footer />
+
+    <!-- AOS (Animate On Scroll) Library -->
     <script
       is:inline
       data-astro-rerun
       src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- AOS (Animate On Scroll) -->
     <script data-astro-rerun>
       AOS.init();
     </script>
+
+    <!-- Flowbite -->
+    <script
+      is:inline
+      src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.js"
+    ></script>
+
     
     <!-- Pixel de redes sociales -->
     <script is:inline>
