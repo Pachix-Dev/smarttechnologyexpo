@@ -1,0 +1,15 @@
+---
+import { useTranslations, getTranslation } from "../../utils/translations";
+import { ConferenceProgram } from "./ConferenceProgram.jsx";
+// ✨ Una sola línea para cargar traducciones!
+const { locale, translations } = await useTranslations(Astro.props, Astro);
+// 🎯 Helper para traducciones más elegante
+const tr = (key: string, fallback: string = "") =>
+  getTranslation(translations, key, fallback);
+
+const currentLanguage = locale;
+---
+<section class="bg-[#121212]">
+  <h2>{tr("programSchedule.title", "Program Schedule")}</h2>
+  <ConferenceProgram language={currentLanguage} client:only="react" />
+</section>
