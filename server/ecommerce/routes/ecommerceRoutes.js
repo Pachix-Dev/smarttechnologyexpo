@@ -1,4 +1,5 @@
 import express from 'express';
+import fs from 'fs/promises';
 import path from 'path';
 import { Resend } from 'resend';
 import { VisitorModel } from '../models/VisitorModel.js';
@@ -22,6 +23,16 @@ const getResendClient = () => {
     return null;
   }
   return new Resend(apiKey);
+};
+
+const createPdfAttachment = async (filePath) => {
+  const filename = path.basename(filePath);
+
+  return {
+    filename,
+    content: await fs.readFile(filePath),
+    contentType: 'application/pdf',
+  };
 };
 
 /**
@@ -407,10 +418,7 @@ router.post('/capture-order', async (req, res) => {
         });
 
         receiptPdfFile = path.basename(receiptPdfPath);
-        mailAttachments.push({
-          filename: receiptPdfFile,
-          path: receiptPdfPath,
-        });
+        mailAttachments.push(await createPdfAttachment(receiptPdfPath));
       } catch (receiptError) {
         console.error('Error generating ecommerce receipt PDF:', receiptError);
       }
@@ -426,10 +434,7 @@ router.post('/capture-order', async (req, res) => {
         );
 
         badgePdfFile = path.basename(badgePdfPath);
-        mailAttachments.push({
-          filename: badgePdfFile,
-          path: badgePdfPath,
-        });
+        mailAttachments.push(await createPdfAttachment(badgePdfPath));
       } catch (badgeError) {
         console.error('Error generating badge PDF:', badgeError);
       }

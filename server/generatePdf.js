@@ -164,7 +164,13 @@ async function generatePDFInvoice(paypal_id_transaction, body) {
         .text("- USO DE CFDI", 55)
         .text("* FECHA MÁXIMA DE FACTURACIÓN 25 DE MARZO DE 2026");               
 
+    const streamFinished = new Promise((resolve, reject) => {
+        pdfStream.on('finish', resolve);
+        pdfStream.on('error', reject);
+    });
+
     doc.end();
+    await streamFinished;
     return pdfSave;
 }
 
@@ -295,11 +301,13 @@ async function generatePDFEcommercePurchaseReceipt({
             .text('emmanuel.heredia@igeco.mx', 45, currentY + 60)
             .text('jesus.zermeno@igeco.mx', 45, currentY + 75);
 
-        doc.end();
-        await new Promise((resolve, reject) => {
+        const streamFinished = new Promise((resolve, reject) => {
             pdfStream.on('finish', resolve);
             pdfStream.on('error', reject);
         });
+
+        doc.end();
+        await streamFinished;
 
         return pdfSave;
 }
@@ -311,6 +319,9 @@ async function generatePDF_freePass_ecomondo( body, uuid) {
     const __dirname = dirname(__filename);
 
     const outputPath = path.resolve(__dirname, '../invoices');
+    if (!fs.existsSync(outputPath)) {
+        fs.mkdirSync(outputPath, { recursive: true });
+    }
     const pdfSave = path.join(outputPath, `${uuid}.pdf`);
 
     const doc = new PDFDocument();
@@ -432,7 +443,13 @@ async function generatePDF_freePass_ecomondo( body, uuid) {
     // Restore the previous state to avoid rotating everything else
     doc.restore();       
 
+    const streamFinished = new Promise((resolve, reject) => {
+        pdfStream.on('finish', resolve);
+        pdfStream.on('error', reject);
+    });
+
     doc.end();
+    await streamFinished;
     return pdfSave;
 }
 
