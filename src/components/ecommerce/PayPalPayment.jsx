@@ -3,6 +3,16 @@ import { PayPalButtons, PayPalScriptProvider } from '@paypal/react-paypal-js';
 import ecommerceStore from '../../store/ecommerce-store';
 import { ecommerceFetch } from '../../lib/ecommerceApi';
 
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+const getTicketFields = (cartItems = []) =>
+  cartItems.flatMap((item) =>
+    Array.from({ length: Number(item.quantity || 0) }, (_, index) => ({
+      key: `${item.product_id}-${index}`,
+      product_id: item.product_id,
+    }))
+  );
+
 export default function PayPalPayment({ orderId, paypalOrderId, onSuccess, onError }) {
   const [isApproving, setIsApproving] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
@@ -10,9 +20,27 @@ export default function PayPalPayment({ orderId, paypalOrderId, onSuccess, onErr
   const [paypalCurrency, setPayPalCurrency] = useState('MXN');
   const [isConfigLoading, setIsConfigLoading] = useState(true);
 
-  const { visitor, pricing, currentOrder, pendingOrder, clearCheckoutState } = ecommerceStore();
+  const { visitor, pricing, currentOrder, pendingOrder, clearCheckoutState, ticketAttendees } = ecommerceStore();
 
   const activePaypalOrderId = paypalOrderId ?? pendingOrder?.paypal_order_id ?? currentOrder?.paypal_order_id;
+  const ticketFields = getTicketFields(pendingOrder?.cart_items || []);
+  const ticketAttendeesForOrder =
+    ticketFields.length === 1
+      ? [
+          {
+            product_id: ticketFields[0].product_id,
+            email: String(visitor?.email || '').trim().toLowerCase(),
+          },
+        ]
+      : ticketFields.map((field) => ({
+          product_id: field.product_id,
+          email: String(ticketAttendees[field.key] || '').trim().toLowerCase(),
+        }));
+  const ticketEmailError =
+    ticketFields.length > 1 &&
+    ticketAttendeesForOrder.some((attendee) => !EMAIL_REGEX.test(attendee.email))
+      ? 'Completa un correo valido por cada boleto antes de pagar.'
+      : '';
 
   useEffect(() => {
     let active = true;
@@ -73,6 +101,15 @@ export default function PayPalPayment({ orderId, paypalOrderId, onSuccess, onErr
     );
   }
 
+  if (ticketEmailError) {
+    return (
+      <div className="bg-yellow-50 border border-yellow-200 text-yellow-800 px-6 py-4 rounded-lg">
+        <p className="font-semibold">Correos de asistentes incompletos</p>
+        <p className="text-sm mt-1">{ticketEmailError}</p>
+      </div>
+    );
+  }
+
   const handleApprove = async (data) => {
     setIsApproving(true);
     setErrorMessage('');
@@ -91,7 +128,10 @@ export default function PayPalPayment({ orderId, paypalOrderId, onSuccess, onErr
         },
         body: JSON.stringify({
           paypal_order_id: orderIdFromPaypal,
-          pending_order: pendingOrder,
+          pending_order: {
+            ...pendingOrder,
+            attendees: ticketAttendeesForOrder,
+          },
         }),
       });
 

@@ -106,6 +106,7 @@ const ecommerceStore = create(
         discount: 0,
         final_amount: 0,
       },
+      ticketAttendees: {},
     });
   },
 
@@ -140,6 +141,13 @@ const ecommerceStore = create(
 
   clearPendingOrder: () => set({ pendingOrder: null }),
 
+  // ===== ASISTENTES / BOLETOS =====
+  ticketAttendees: {}, // {"productId-index": "email@dominio.com"}
+
+  setTicketAttendees: (ticketAttendees) => set({ ticketAttendees }),
+
+  clearTicketAttendees: () => set({ ticketAttendees: {} }),
+
   clearCheckoutState: () =>
     set({
       cart: [],
@@ -152,6 +160,7 @@ const ecommerceStore = create(
       },
       currentOrder: null,
       pendingOrder: null,
+      ticketAttendees: {},
       error: null,
       success: false,
     }),
@@ -199,6 +208,7 @@ const ecommerceStore = create(
       },
       currentOrder: null,
       pendingOrder: null,
+      ticketAttendees: {},
       isLoading: false,
       error: null,
       success: false,
@@ -239,6 +249,7 @@ const ecommerceStore = create(
         pricing: state.pricing,
         currentOrder: state.currentOrder,
         pendingOrder: state.pendingOrder,
+        ticketAttendees: state.ticketAttendees,
       }),
     }
   )

@@ -21,22 +21,34 @@ export class TicketService {
    * @param {number} order_id - ID de la orden
    * @param {number} visitor_id - ID del visitante que compró
    * @param {Array} items - Items de compra [{product_id, quantity, unit_price}, ...]
+   * @param {Array} attendees - Asistentes [{product_id, visitor_id, email}, ...]
    * @returns {Promise<Array>} Array de IDs de boletos creados
    */
-  static async createTickets(order_id, visitor_id, items) {
+  static async createTickets(order_id, visitor_id, items, attendees = []) {
     const connection = await mysql.createConnection(config);
     try {
       const ticketIds = [];
+      const attendeesByProduct = new Map();
+
+      for (const attendee of attendees) {
+        const productId = Number(attendee.product_id);
+        const productAttendees = attendeesByProduct.get(productId) || [];
+        productAttendees.push(attendee);
+        attendeesByProduct.set(productId, productAttendees);
+      }
 
       for (const item of items) {
         const { product_id, quantity, unit_price } = item;
+        const productAttendees = attendeesByProduct.get(Number(product_id)) || [];
 
         // Crear tantos boletos como quantity
         for (let i = 0; i < quantity; i++) {
+          const attendee = productAttendees.shift();
+          const ticketVisitorId = attendee?.visitor_id || visitor_id;
           const [result] = await connection.query(
             `INSERT INTO ticket_purchases (order_id, visitor_id, product_id, unit_price, status)
              VALUES (?, ?, ?, ?, 0)`,
-            [order_id, visitor_id, product_id, unit_price]
+            [order_id, ticketVisitorId, product_id, unit_price]
           );
 
           ticketIds.push(result.insertId);

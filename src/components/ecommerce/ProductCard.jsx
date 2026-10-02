@@ -128,11 +128,12 @@ export default function ProductCard({ product, languageProp, onAddToCart }) {
 
         {/* Precio */}
         <div className="mb-6">
+          {/* Precio de preventa */}
           <div className="border-2 border-solid border-green-800 bg-green-600/10 rounded-lg p-2 mb-2">
             <h4 className="text-base font-bold mb-2 uppercase text-green-800">
               {languageProp === "es"
-                ? "Preventa : Agosto y septiembre"
-                : "Presale : August and September"}
+                ? "Precio regular: octubre y noviembre "
+                : "Regular price: October and November "}
             </h4>
             <span className="text-3xl font-bold text-green-800">
               ${parseFloat(product.price).toFixed(2)}
@@ -140,7 +141,8 @@ export default function ProductCard({ product, languageProp, onAddToCart }) {
             <span className="text-gray-600 text-sm ml-2 font-bold">MXN</span>
             {languageProp === "es" ? " con IVA incluido" : " with VAT included"}
           </div>
-          <div className="flex flex-col">
+          {/* Precio regular */}
+          {/* <div className="flex flex-col">
             <span className="uppercase">
               {languageProp === "es"
                 ? "Precio regular: octubre y noviembre "
@@ -155,7 +157,9 @@ export default function ProductCard({ product, languageProp, onAddToCart }) {
                   : " with VAT included"}
               </span>
             </span>
-          </div>
+          </div> */}
+
+          {/* Capacidad */}
           {/* <span className="text-gray-500 text-sm ml-2">
             {product.capacity_limit === null
               ? languageProp === "es" ? "Disponible" : "Available"

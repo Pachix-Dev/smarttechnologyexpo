@@ -2,6 +2,18 @@ import React, { useState, useEffect } from 'react';
 import ecommerceStore from '../../store/ecommerce-store';
 import { ecommerceFetch } from '../../lib/ecommerceApi';
 
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+const getTicketFields = (cart) =>
+  cart.flatMap((item) =>
+    Array.from({ length: Number(item.quantity || 0) }, (_, index) => ({
+      key: `${item.product_id}-${index}`,
+      product_id: item.product_id,
+      productName: item.name,
+      ticketNumber: index + 1,
+    }))
+  );
+
 export default function CheckoutForm({ onOrderCreated }) {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
@@ -16,7 +28,19 @@ export default function CheckoutForm({ onOrderCreated }) {
     setCurrentOrder,
     clearMessages,
     pricing,
+    ticketAttendees,
+    setTicketAttendees,
   } = ecommerceStore();
+
+  const ticketFields = getTicketFields(cart);
+  const totalTickets = ticketFields.length;
+  const ticketAttendeeList = ticketFields.map((field) => ({
+    product_id: field.product_id,
+    email: String(ticketAttendees[field.key] || '').trim().toLowerCase(),
+  }));
+  const hasInvalidTicketEmails =
+    totalTickets > 1 &&
+    ticketAttendeeList.some((attendee) => !EMAIL_REGEX.test(attendee.email));
 
   // Recalcular precios cuando cambia el carrito o cupón
   useEffect(() => {
@@ -24,6 +48,18 @@ export default function CheckoutForm({ onOrderCreated }) {
       handleRecalculateTotal();
     }
   }, [cart, couponCode, visitor]);
+
+  useEffect(() => {
+    const nextAttendees = {};
+    ticketFields.forEach((field, index) => {
+      nextAttendees[field.key] =
+        ticketAttendees[field.key] || (index === 0 && visitor?.email ? visitor.email : '');
+    });
+
+    if (JSON.stringify(nextAttendees) !== JSON.stringify(ticketAttendees)) {
+      setTicketAttendees(nextAttendees);
+    }
+  }, [cart, visitor?.email]);
 
   const handleRecalculateTotal = async () => {
     try {
@@ -82,6 +118,12 @@ export default function CheckoutForm({ onOrderCreated }) {
 
     if (cart.length === 0) {
       setMessage('Tu carrito está vacío');
+      setMessageType('error');
+      return;
+    }
+
+    if (hasInvalidTicketEmails) {
+      setMessage('Ingresa un correo valido por cada boleto antes de continuar');
       setMessageType('error');
       return;
     }
@@ -149,6 +191,52 @@ export default function CheckoutForm({ onOrderCreated }) {
         </div>
       </div>
 
+      {totalTickets > 1 && (
+        <div className="mb-6 rounded-lg border border-blue-200 bg-blue-50 p-4">
+          <h4 className="mb-2 font-semibold text-gray-900">Correos de asistentes</h4>
+          <p className="mb-4 text-sm text-gray-600">
+            Captura un correo registrado por cada boleto adquirido. El primer boleto usa el correo del comprador, pero puedes cambiarlo.
+          </p>
+
+          <div className="space-y-3">
+            {ticketFields.map((field, index) => {
+              const value = ticketAttendees[field.key] || '';
+              const isInvalid = value.trim() !== '' && !EMAIL_REGEX.test(value.trim());
+
+              return (
+                <label key={field.key} className="block">
+                  <span className="mb-1 block text-sm font-medium text-gray-700">
+                    {field.productName} - Boleto {field.ticketNumber}
+                  </span>
+                  <input
+                    type="email"
+                    value={value}
+                    onChange={(event) =>
+                      setTicketAttendees({
+                        ...ticketAttendees,
+                        [field.key]: event.target.value,
+                      })
+                    }
+                    placeholder={index === 0 ? visitor.email : 'correo@dominio.com'}
+                    className={`w-full rounded-lg border px-3 py-2 text-sm outline-none transition focus:ring-2 ${
+                      isInvalid
+                        ? 'border-red-300 focus:border-red-500 focus:ring-red-100'
+                        : 'border-gray-300 focus:border-blue-500 focus:ring-blue-100'
+                    }`}
+                    required
+                  />
+                  {isInvalid && (
+                    <span className="mt-1 block text-xs text-red-600">
+                      Ingresa un correo valido.
+                    </span>
+                  )}
+                </label>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
       {/* Totales */}
       <div className="bg-gray-50 p-4 rounded-lg mb-6 border-t-2">
         <div className="space-y-2">
@@ -189,7 +277,7 @@ export default function CheckoutForm({ onOrderCreated }) {
       {/* Botón de pago */}
       <button
         onClick={handleProceedToPayment}
-        disabled={loading || cart.length === 0}
+        disabled={loading || cart.length === 0 || hasInvalidTicketEmails}
         className="w-full py-3 bg-blue-600 text-white rounded-lg font-bold hover:bg-blue-700 disabled:bg-gray-400"
       >
         {loading ? 'Procesando...' : 'Continuar al Pago'}

@@ -58,7 +58,7 @@ export const ECOMMERCE_PRODUCTS = [
     schedule: '09:00 hrs - 17:00 hrs',
     venue_es: 'Smart Technology Expo, dentro de Expo Guadalajara',
     venue_en: 'Smart Technology Expo, inside Expo Guadalajara',
-    price: 5800,
+    price: 6900,
     early_bird_price: 5800,
     final_price: 6960,
     capacity_limit: 50,

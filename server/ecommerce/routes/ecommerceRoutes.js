@@ -35,6 +35,79 @@ const createPdfAttachment = async (filePath) => {
   };
 };
 
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+const normalizeEmail = (email) => String(email || '').trim().toLowerCase();
+
+const validateTicketAttendees = async ({ attendees, items, buyerVisitor }) => {
+  const expectedByProduct = new Map();
+  let expectedTotal = 0;
+
+  for (const item of items || []) {
+    const productId = Number(item.product_id);
+    const quantity = Number(item.quantity || 0);
+    expectedTotal += quantity;
+    expectedByProduct.set(productId, (expectedByProduct.get(productId) || 0) + quantity);
+  }
+
+  if (expectedTotal === 1 && (!Array.isArray(attendees) || attendees.length === 0)) {
+    const [item] = items;
+    return [
+      {
+        product_id: Number(item.product_id),
+        visitor_id: buyerVisitor.id,
+        email: normalizeEmail(buyerVisitor.email),
+      },
+    ];
+  }
+
+  if (!Array.isArray(attendees) || attendees.length !== expectedTotal) {
+    throw new Error(`Debes proporcionar ${expectedTotal} correo(s), uno por cada boleto.`);
+  }
+
+  const receivedByProduct = new Map();
+  const visitorsByEmail = new Map();
+  const normalizedAttendees = [];
+
+  for (const attendee of attendees) {
+    const productId = Number(attendee?.product_id);
+    const email = normalizeEmail(attendee?.email);
+
+    if (!expectedByProduct.has(productId)) {
+      throw new Error('Los correos de asistentes no coinciden con los productos del carrito.');
+    }
+
+    if (!EMAIL_REGEX.test(email)) {
+      throw new Error('Todos los boletos deben tener un correo valido.');
+    }
+
+    let attendeeVisitor = visitorsByEmail.get(email);
+    if (!attendeeVisitor) {
+      attendeeVisitor = await VisitorModel.findByEmail(email);
+      if (!attendeeVisitor) {
+        throw new Error(`El correo ${email} no esta registrado como visitante.`);
+      }
+      visitorsByEmail.set(email, attendeeVisitor);
+    }
+
+    receivedByProduct.set(productId, (receivedByProduct.get(productId) || 0) + 1);
+
+    normalizedAttendees.push({
+      product_id: productId,
+      visitor_id: attendeeVisitor.id,
+      email,
+    });
+  }
+
+  for (const [productId, expectedQuantity] of expectedByProduct.entries()) {
+    if ((receivedByProduct.get(productId) || 0) !== expectedQuantity) {
+      throw new Error('La cantidad de correos no coincide con la cantidad de boletos por producto.');
+    }
+  }
+
+  return normalizedAttendees;
+};
+
 /**
  * GET /ecommerce/paypal-config
  * Expone configuración pública mínima de PayPal para el frontend
@@ -256,6 +329,7 @@ router.post('/create-order', async (req, res) => {
  *   pending_order: {
  *     visitor_email: string,
  *     cart_items: [{product_id, quantity}, ...],
+ *     attendees: [{product_id, email}, ...],
  *     coupon_code: string | null,
  *     pricing: {subtotal, discount, final_amount},
  *     paypal_order_id: string,
@@ -278,6 +352,7 @@ router.post('/capture-order', async (req, res) => {
       visitor_email,
       cart_items,
       coupon_code,
+      attendees,
       pricing: pendingPricing,
       paypal_order_id: preparedPaypalOrderId,
     } = pending_order;
@@ -331,6 +406,20 @@ router.post('/capture-order', async (req, res) => {
 
     // 4. Revalidar capacidad
     await PricingService.validateCapacity(cart_items);
+
+    let ticketAttendees;
+    try {
+      ticketAttendees = await validateTicketAttendees({
+        attendees,
+        items: pricingData.items,
+        buyerVisitor: visitor,
+      });
+    } catch (attendeesError) {
+      return res.status(400).json({
+        success: false,
+        message: attendeesError.message,
+      });
+    }
 
     // 5. Capturar en PayPal
     let paypalCapture;
@@ -395,7 +484,8 @@ router.post('/capture-order', async (req, res) => {
     const ticketIds = await TicketService.createTickets(
       order.id_order,
       visitor.id,
-      pricingData.items
+      pricingData.items,
+      ticketAttendees
     );
 
     let emailSent = false;
