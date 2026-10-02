@@ -180,8 +180,6 @@ function DayNavigation({
   className = "",
   compact = false,
 }) {
-  const previousLabel = language === "es" ? "Día anterior" : "Previous day";
-  const nextLabel = language === "es" ? "Día siguiente" : "Next day";
 
   return (
     <nav
@@ -190,14 +188,6 @@ function DayNavigation({
         language === "es" ? "Navegación por días" : "Day navigation"
       }
     >
-      {/* <button
-        type="button"
-        className="min-h-12 rounded-lg border border-white/15 px-4 py-3 text-sm font-black text-white transition hover:border-cyan-300 hover:text-cyan-200 disabled:cursor-not-allowed disabled:opacity-35 disabled:hover:border-white/15 disabled:hover:text-white"
-        disabled={activeDay === 0}
-        onClick={() => setActiveDay((day) => Math.max(day - 1, 0))}
-      >
-        <span aria-hidden="true">&lt;</span> {previousLabel}
-      </button> */}
 
       <div className="flex flex-wrap justify-center gap-2">
         {days.map((day, index) => {
@@ -224,17 +214,6 @@ function DayNavigation({
           );
         })}
       </div>
-
-      {/* <button
-        type="button"
-        className="min-h-12 rounded-lg border border-white/15 px-4 py-3 text-sm font-black text-white transition hover:border-cyan-300 hover:text-cyan-200 disabled:cursor-not-allowed disabled:opacity-35 disabled:hover:border-white/15 disabled:hover:text-white"
-        disabled={activeDay >= days.length - 1}
-        onClick={() =>
-          setActiveDay((day) => Math.min(day + 1, days.length - 1))
-        }
-      >
-        {nextLabel} <span aria-hidden="true">&gt;</span>
-      </button> */}
     </nav>
   );
 }
