@@ -190,14 +190,14 @@ function DayNavigation({
         language === "es" ? "Navegación por días" : "Day navigation"
       }
     >
-      <button
+      {/* <button
         type="button"
         className="min-h-12 rounded-lg border border-white/15 px-4 py-3 text-sm font-black text-white transition hover:border-cyan-300 hover:text-cyan-200 disabled:cursor-not-allowed disabled:opacity-35 disabled:hover:border-white/15 disabled:hover:text-white"
         disabled={activeDay === 0}
         onClick={() => setActiveDay((day) => Math.max(day - 1, 0))}
       >
         <span aria-hidden="true">&lt;</span> {previousLabel}
-      </button>
+      </button> */}
 
       <div className="flex flex-wrap justify-center gap-2">
         {days.map((day, index) => {
@@ -225,7 +225,7 @@ function DayNavigation({
         })}
       </div>
 
-      <button
+      {/* <button
         type="button"
         className="min-h-12 rounded-lg border border-white/15 px-4 py-3 text-sm font-black text-white transition hover:border-cyan-300 hover:text-cyan-200 disabled:cursor-not-allowed disabled:opacity-35 disabled:hover:border-white/15 disabled:hover:text-white"
         disabled={activeDay >= days.length - 1}
@@ -234,7 +234,7 @@ function DayNavigation({
         }
       >
         {nextLabel} <span aria-hidden="true">&gt;</span>
-      </button>
+      </button> */}
     </nav>
   );
 }
