@@ -9,7 +9,24 @@ const tr = (key: string, fallback: string = "") =>
 
 const currentLanguage = locale;
 ---
-<section class="bg-[#121212]">
-  <h2>{tr("programSchedule.title", "Program Schedule")}</h2>
+
+<section class="bg-[#050505]">
+  <header class="mx-auto max-w-7xl px-4 pt-8 pb-8 text-white md:pt-10">
+    <div class="max-w-5xl">
+      <p class="mb-3 text-sm font-black uppercase tracking-[0.22em] text-cyan-300">
+        {currentLanguage === "es" ? "Agenda" : "Agenda"}
+      </p>
+      <h2 class="max-w-4xl text-4xl font-black uppercase leading-[0.95] tracking-normal md:text-6xl">
+        DRONE THEATER
+      </h2>
+      <p class="mt-5 max-w-4xl text-base leading-8 text-zinc-300 md:text-lg md:leading-8">
+        {
+          currentLanguage === "es"
+            ? "Contenido especializado para líderes y profesionales del ecosistema de drones y tecnologías aéreas no tripuladas. Conferencias, paneles, talleres y casos de éxito que exploran innovación, aplicaciones emergentes y el futuro de la industria en México y Latinoamérica."
+            : "Specialized content for leaders and professionals in the drone ecosystem and unmanned aerial technologies. Conferences, panels, workshops, and success stories exploring innovation, emerging applications, and the future of the industry in Mexico and Latin America."
+        }
+      </p>
+    </div>
+  </header>
   <ConferenceProgram language={currentLanguage} client:only="react" />
 </section>

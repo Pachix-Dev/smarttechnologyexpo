@@ -106,27 +106,9 @@ export function ConferenceProgram({ language = "es" }) {
   }
 
   return (
-    <section className="bg-[#050505] py-16 text-white">
+    <section className="bg-[#050505] py-2 text-white">
       <div className="mx-auto max-w-7xl px-4">
-        <header className="mb-9">
-          <p className="mb-2 text-sm font-black uppercase tracking-[0.22em] text-cyan-300">
-            {language === "es" ? "Agenda" : "Agenda"}
-          </p>
-          <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
-            <div className="max-w-4xl">
-              <h2 className="text-3xl font-black uppercase leading-none md:text-5xl">
-                {pickText(language, program.name, program.name_en) ||
-                  "DRONE THEATER"}
-              </h2>
-              <p className="mt-4 max-w-3xl text-base leading-7 text-zinc-300 md:text-lg">
-                {language === "es"
-                  ? "Selecciona un día para ver horarios, conferencias y ponentes del programa."
-                  : "Pick a day to see the schedule, conferences and speakers."}
-              </p>
-            </div>
-          </div>
-        </header>
-
+        
         <div className="mb-3 text-xs font-black uppercase tracking-[0.22em] text-zinc-400">
           {language === "es" ? "Selecciona el día" : "Select a day"}
         </div>
@@ -135,7 +117,7 @@ export function ConferenceProgram({ language = "es" }) {
           activeDay={activeDay}
           setActiveDay={setActiveDay}
           language={language}
-          className="mb-8"
+          className="mb-2"
         />
 
         {selectedDay ? (
@@ -158,7 +140,6 @@ export function ConferenceProgram({ language = "es" }) {
             />
           ) : null}
         </div>
-
       </div>
     </section>
   );
@@ -180,7 +161,7 @@ function DayNavigation({
       }
     >
 
-      <div className="flex flex-wrap justify-center gap-2">
+      <div className="flex justify-center gap-2">
         {days.map((day, index) => {
           const isActive = index === activeDay;
           return (
@@ -217,10 +198,10 @@ function DayBanner({ day, language, index }) {
           {dayNumber(day.date) || index + 1}
         </div>
         <div>
-          <p className="text-sm font-black uppercase tracking-[0.2em] text-cyan-200">
+          {/* <p className="text-sm font-black uppercase tracking-[0.2em] text-cyan-200">
             {day.name || `${language === "es" ? "Día" : "Day"} ${index + 1}`}
-          </p>
-          <h3 className="mt-1 text-2xl font-black text-white">
+          </p> */}
+          <h3 className="mt-1 text-xl sm:text-2xl font-black text-cyan-200">
             {formatDateLong(day.date, language)}
           </h3>
         </div>
