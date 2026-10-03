@@ -255,6 +255,10 @@ function SessionLegend({ language }) {
         <span className="h-3 w-3 rounded-full bg-[#2563eb]" />
         Keynote
       </div>
+      <div className="flex items-center gap-2">
+        <span className="h-3 w-3 rounded-full bg-[#c2410c]" />
+        {language === "es" ? "Taller" : "Workshop"}
+      </div>
     </div>
   );
 }
