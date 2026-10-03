@@ -159,14 +159,6 @@ export function ConferenceProgram({ language = "es" }) {
           ) : null}
         </div>
 
-        <DayNavigation
-          days={days}
-          activeDay={activeDay}
-          setActiveDay={setActiveDay}
-          language={language}
-          className="mt-8"
-          compact
-        />
       </div>
     </section>
   );
@@ -178,7 +170,6 @@ function DayNavigation({
   setActiveDay,
   language,
   className = "",
-  compact = false,
 }) {
 
   return (
@@ -207,9 +198,7 @@ function DayNavigation({
               <span className="block text-xs uppercase tracking-[0.16em]">
                 {language === "es" ? "Día" : "Day"} {index + 1}
               </span>
-              {!compact ? (
-                <span>{day.name || formatDateShort(day.date, language)}</span>
-              ) : null}
+              <span>{day.name || formatDateShort(day.date, language)}</span>
             </button>
           );
         })}
@@ -332,7 +321,7 @@ function SessionRow({ session, language }) {
                   className="rounded-full border px-3 py-1.5 text-sm font-bold text-white"
                   style={{ borderColor: meta.color }}
                 >
-                  {sessionLanguage}
+                {language === "es" ? "Idioma : " : "Language : "}{sessionLanguage}
                 </span>
               ) : null}
               {session.room ? (
