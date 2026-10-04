@@ -1114,5 +1114,10 @@
     "rol_person_02": "Relaciones Públicas IGECO MEXICO",
     "text_information_contact": "Organizado por",
     "button_02": "Detalles para invitados"
+  },
+  "womens_conference": {
+    "title": "Conexiones - Networking Mu",
+    "description_01": "W26 es un espacio creado para mujeres que forman parte de la industria y que, desde sus diferentes trayectorias y experiencias, han ido construyendo su propia historia.",
+    "description_02": "Un encuentro para conectar, compartir experiencias, reconocer a quienes han abierto camino e inspirar a las mujeres que vienen detrás, fortaleciendo una comunidad que crece a través de nuestras historias, voces y visión."
   }
 }

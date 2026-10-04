@@ -1,5 +1,6 @@
 ---
 import { useTranslations, getTranslation } from "../../utils/translations";
+import AboutSection from "./AboutSection.astro";
 import HeroWomenPage from "./HeroWomenPage.astro";
 import PricingSection from "./PricingSection.astro";
 // ✨ Una sola línea para cargar traducciones!
@@ -13,9 +14,8 @@ const tr = (key: string, fallback: string = "") =>
   <header>
     <HeroWomenPage />
   </header>
-  <div class="grid grid-cols-2">
     <main>
+      <AboutSection />
       <PricingSection />
     </main>
-  </div>
 </section>

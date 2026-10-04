@@ -1,0 +1,24 @@
+---
+import { useTranslations, getTranslation } from "../../utils/translations";
+// ✨ Una sola línea para cargar traducciones!
+const { locale, translations } = await useTranslations(Astro.props, Astro);
+// 🎯 Helper para traducciones más elegante
+const tr = (key: string, fallback: string = "") =>
+  getTranslation(translations, key, fallback);
+---
+
+<section class="w-full bg-white px-5 py-6 text-[#1d1d1b] sm:px-8 sm:py-16 lg:py-20">
+    <div
+      class="max-w-7xl space-y-4 font-['Montserrat',sans-serif] grid grid-cols-1 sm:grid-cols-2 sm:gap-5 mx-auto"
+      data-aos="fade-left"
+      data-aos-duration="700"
+      data-aos-delay="120"
+    >
+      <p class="text-lg font-bold leading-relaxed text-[#1d1d1b] sm:text-xl lg:text-2xl">
+        {tr("womens_conference.description_01")}
+      </p>
+      <p class="text-base leading-8 text-[#4b5563] sm:text-lg italic">
+        {tr("womens_conference.description_02")}
+      </p>
+    </div>
+</section>

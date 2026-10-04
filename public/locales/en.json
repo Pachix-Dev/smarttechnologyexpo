@@ -1116,5 +1116,10 @@
     "rol_person_02": "Public Relations IGECO MEXICO",
     "text_information_contact": "Organized by",
     "button_02": "Guest details"
+  },
+  "womens_conference": {
+    "title": "Women Smart Connection",
+    "description_01": "W26 is a space created for women who are part of the industry and who, from their different trajectories and experiences, have been building their own story.",
+    "description_02": "A meeting to connect, share experiences, recognize those who have paved the way, and inspire the women who follow, strengthening a community that grows through our stories, voices, and vision."
   }
 }
