@@ -4,6 +4,12 @@ export default function ProductCard({ product, languageProp, onAddToCart }) {
   const [quantity, setQuantity] = useState(1);
   const [addedMessage, setAddedMessage] = useState(false);
 
+  const formatPrice = (value) =>
+    Number(value).toLocaleString("en-US", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+
   const handleAddToCart = () => {
     onAddToCart({
       product_id: product.id_product,
@@ -24,15 +30,25 @@ export default function ProductCard({ product, languageProp, onAddToCart }) {
 
   return (
     <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden border border-gray-200">
-      <div className="p-6">
+      <div className="p-4">
         {/* Nombre */}
-        <h3 className="text-xl font-bold text-gray-900 mb-2 border-b border-gray-400 pb-2">
-          {languageProp === "es" ? product.name_es : product.name_en}
-        </h3>
+        <div
+          style={{ backgroundImage: `url(${product.img_background})` }}
+          className="header-card w-full h-32 bg-cover bg-center rounded-lg p-4 flex justify-center items-center"
+        >
+          <h3 className="text-lg sm:text-2xl font-extrabold text-white">
+            {languageProp === "es" ? product.name_es : product.name_en}
+          </h3>
+          {
+            product.logo_img && (
+              <img src={product.logo_img} alt="women 2026 - smart technology expo" className="w-[90px] sm:w-[120px]"/>
+            )
+          }
+        </div>
 
         {/* Descripción */}
         {product.description_es && (
-          <p className="text-gray-600 text-sm mb-4">
+          <p className="text-gray-600 text-sm my-4">
             {languageProp === "es"
               ? product.description_es
               : product.description_en}
@@ -128,44 +144,69 @@ export default function ProductCard({ product, languageProp, onAddToCart }) {
 
         {/* Precio */}
         <div className="mb-6">
-          {/* Precio de preventa */}
-          <div className="border-2 border-solid border-green-800 bg-green-600/10 rounded-lg p-2 mb-2">
-            <h4 className="text-base font-bold mb-2 uppercase text-green-800">
-              {languageProp === "es"
-                ? "Precio regular: octubre y noviembre "
-                : "Regular price: October and November "}
-            </h4>
-            <span className="text-3xl font-bold text-green-800">
-              ${parseFloat(product.price).toFixed(2)}
-            </span>
-            <span className="text-gray-600 text-sm ml-2 font-bold">MXN</span>
-            {languageProp === "es" ? " con IVA incluido" : " with VAT included"}
-          </div>
-          {/* Precio regular */}
-          {/* <div className="flex flex-col">
-            <span className="uppercase">
-              {languageProp === "es"
-                ? "Precio regular: octubre y noviembre "
-                : "Regular price: October and November "}
-            </span>
-            <span className="text-gray-600 text-base font-bold">
-              ${parseFloat(product.final_price).toFixed(2)}
-              <span className="text-sm ml-2 font-normal">
-                MXN
-                {languageProp === "es"
-                  ? " con IVA incluido"
-                  : " with VAT included"}
-              </span>
-            </span>
-          </div> */}
+          <div className="overflow-hidden rounded-lg border border-slate-200 bg-white">
+            {/* Precio de preventa */}
+            {product.early_bird_price && (
+              <div className="grid gap-2 border-b border-green-800/20 bg-green-50 px-3 py-3 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end">
+                <div className="min-w-0">
+                  <p className="text-xs font-extrabold uppercase text-green-900">
+                    {languageProp === "es"
+                      ? "Precio de preventa"
+                      : "Early bird price"}
+                  </p>
+                  <p className="mt-1 text-xs font-medium text-gray-600">
+                    {languageProp === "es"
+                      ? product.early_bird_price_date_es
+                      : product.early_bird_price_date_en}
+                  </p>
+                </div>
 
-          {/* Capacidad */}
-          {/* <span className="text-gray-500 text-sm ml-2">
-            {product.capacity_limit === null
-              ? languageProp === "es" ? "Disponible" : "Available"
-              : languageProp === "es" ? "No disponible" : "Not available"
-            }
-          </span> */}
+                <div className="min-w-0 sm:text-right">
+                  <p className="flex flex-wrap items-baseline gap-x-1 text-green-900 sm:justify-end">
+                    <span className="text-lg font-extrabold">$</span>
+                    <span className="text-3xl font-extrabold leading-none sm:text-4xl">
+                      {product.early_bird_price}
+                    </span>
+                    <span className="text-sm font-bold text-gray-700">MXN</span>
+                  </p>
+                  <p className="mt-1 text-xs font-medium text-gray-600">
+                    {languageProp === "es"
+                      ? "con IVA incluido"
+                      : "with VAT included"}
+                  </p>
+                </div>
+              </div>
+            )}
+
+            {/* Precio regular */}
+            <div className="grid gap-2 px-3 py-3 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end">
+              <div className="min-w-0">
+                <p className="text-xs font-extrabold uppercase text-slate-900">
+                  {languageProp === "es" ? "Precio regular" : "Regular price"}
+                </p>
+                <p className="mt-1 text-xs font-medium text-gray-600">
+                  {languageProp === "es"
+                      ? product.regular_price_date_es
+                      : product.regular_price_date_en}
+                </p>
+              </div>
+
+              <div className="min-w-0 sm:text-right">
+                <p className="flex flex-wrap items-baseline gap-x-1 text-slate-900 sm:justify-end">
+                  <span className="text-lg font-extrabold">$</span>
+                  <span className="text-2xl font-extrabold leading-none sm:text-3xl">
+                    {product.final_price}
+                  </span>
+                  <span className="text-sm font-bold text-gray-700">MXN</span>
+                </p>
+                <p className="mt-1 text-xs font-medium text-gray-600">
+                  {languageProp === "es"
+                    ? "con IVA incluido"
+                    : "with VAT included"}
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Cantidad */}

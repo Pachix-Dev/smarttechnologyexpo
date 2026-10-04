@@ -5,24 +5,30 @@
 export const ECOMMERCE_PRODUCTS = [
   {
     id_product: 1, // ID del producto en la DB
-    name_es: 'Mujeres Networking 2026',
-    name_en: 'Women Networking 2026',
-    description_es:'Únete a un desayuno inspirador con conferencias de mujeres líderes en tecnología. Conoce a profesionales, expande tu red y descubre nuevas oportunidades en el sector tech.',
-    description_en:'Join an inspiring breakfast with talks from leading women in technology. Network with professionals, expand your connections, and discover new opportunities in the tech sector.',
+    name_es: 'Women Smart Connection 2026',
+    name_en: 'Women Smart Connection 2026',
+    description_es:'Un desayuno de networking para mujeres de la industria, la tecnología y la innovación, creado para conectar, compartir experiencias e inspirar a través de sus historias y trayectorias. Un encuentro para fortalecer vínculos, reconocer a quienes han abierto camino y construir una comunidad de mujeres que transforma la industria.',
+    description_en:'A networking breakfast for women in the industry, technology, and innovation, designed to connect, share experiences, and inspire through their stories and journeys. An event to strengthen bonds, recognize those who have paved the way, and build a community of women transforming the industry.',
     product_type: 'event',
     category: 'womens_networking',
-    event_date_es: '19 y 20 de noviembre, 2026',
+    event_date_es: '19 de noviembre, 2026',
     event_date_en: 'November 19 - 20, 2026',
-    schedule: '09:00 hrs - 17:00 hrs',
+    schedule: '08:00 hrs',
     venue_es: 'Smart Technology Expo, dentro de Expo Guadalajara',
     venue_en: 'Smart Technology Expo, inside Expo Guadalajara',
-    price: 1300, // Precio original en bd
-    early_bird_price: 1200, // Precio con descuento en bd
+    price: 1300, // Precio original en bd incluyendo impuestos
+    early_bird_price: 1300, // Precio con descuento en bd
     final_price: 1500,// Precio final a mostrar en la web (puede ser el mismo que price o early_bird_price)
     capacity_limit: 50,
     capacity_desc_es: 'Cupo limitado',
     capacity_desc_en: 'Limited capacity',
-    status: 'inactive', // Cambiado a inactive para pruebas, cambiar a 'active' para producción
+    status: 'active', // Cambiado a inactive para pruebas, cambiar a 'active' para producción
+    img_background: '/img/bg_mujeres_hero.webp',
+    logo_img: '/img/mujeres_logo.webp',
+    early_bird_price_date_es: 'valido durante octubre',
+    early_bird_price_date_en: 'valid during October',
+    regular_price_date_es: 'noviembre',
+    regular_price_date_en: 'November',
   },
   {
     id_product: 2,
@@ -44,6 +50,12 @@ export const ECOMMERCE_PRODUCTS = [
     capacity_desc_es: 'Cupo limitado',
     capacity_desc_en: 'Limited capacity',
     status: 'inactive',
+    img_background: '/img/bg_mujeres_hero.webp',
+    logo_img: '/img/mujeres_logo.webp',
+    early_bird_price_date_es: '',
+    early_bird_price_date_en: '',
+    regular_price_date_es: '',
+    regular_price_date_en: '',
   },
   {
     id_product: 3,
@@ -59,12 +71,18 @@ export const ECOMMERCE_PRODUCTS = [
     venue_es: 'Smart Technology Expo, dentro de Expo Guadalajara',
     venue_en: 'Smart Technology Expo, inside Expo Guadalajara',
     price: 6900,
-    early_bird_price: 5800,
+    early_bird_price: null,
     final_price: 6960,
     capacity_limit: 50,
     capacity_desc_es: 'Cupo limitado',
     capacity_desc_en: 'Limited capacity',
     status: 'active',
+    img_background: '/img/bg_footer.png',
+    logo_img: '',
+    early_bird_price_date_es: 'agosto y septiembre',
+    early_bird_price_date_en: '',
+    regular_price_date_es: 'octubre y noviembre',
+    regular_price_date_en: 'October and November',
   },
    {
     id_product: 4,
@@ -86,5 +104,11 @@ export const ECOMMERCE_PRODUCTS = [
     capacity_desc_es: 'Cupo limitado',
     capacity_desc_en: 'Limited capacity',
     status: 'inactive',
+    img_background: '',
+    logo_img: '',
+    early_bird_price_date_es: '',
+    early_bird_price_date_en: '',
+    regular_price_date_es: '',
+    regular_price_date_en: '',
   },
 ];

@@ -546,7 +546,7 @@ router.post('/capture-order', async (req, res) => {
       const emailResponse = await resend.emails.send({
         from: 'Smart Technology Expo <noreply@smarttechnologyexpo.mx>',
         to: [visitor.email],
-        cc: ['emmanuel.heredia@igeco.mx', 'jesus.zermeno@igeco.mx'],
+        cc: ['jesus.zermeno@igeco.mx'],
         subject: `Your purchase confirmation - Order #${order.id_order}`,
         html,
         attachments: mailAttachments,

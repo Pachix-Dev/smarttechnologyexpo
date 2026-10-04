@@ -1,6 +1,7 @@
 ---
 import { useTranslations, getTranslation } from "../../utils/translations";
 import HeroWomenPage from "./HeroWomenPage.astro";
+import PricingSection from "./PricingSection.astro";
 // ✨ Una sola línea para cargar traducciones!
 const { locale, translations } = await useTranslations(Astro.props, Astro);
 // 🎯 Helper para traducciones más elegante
@@ -9,4 +10,5 @@ const tr = (key: string, fallback: string = "") =>
 ---
 <section class="w-full">
   <HeroWomenPage />
+  <PricingSection />
 </section>

@@ -194,8 +194,8 @@ export default function CheckoutForm({ onOrderCreated }) {
       {totalTickets > 1 && (
         <div className="mb-6 rounded-lg border border-blue-200 bg-blue-50 p-4">
           <h4 className="mb-2 font-semibold text-gray-900">Correos de asistentes</h4>
-          <p className="mb-4 text-sm text-gray-600">
-            Captura un correo registrado por cada boleto adquirido. El primer boleto usa el correo del comprador, pero puedes cambiarlo.
+          <p className="mb-4 text-sm text-gray-600 text-justify">
+            <span className='font-bold'>Atención : </span> El correo que ingreses debe ser el mismo con el que te registraste como visitante en <span className='font-bold'>Smart Technology Expo</span>. Si usas un correo diferente, no podremos validar tu registro y la compra no podrá completarse.
           </p>
 
           <div className="space-y-3">
