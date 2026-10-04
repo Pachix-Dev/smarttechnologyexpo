@@ -72,7 +72,7 @@ export const ECOMMERCE_PRODUCTS = [
     venue_en: 'Smart Technology Expo, inside Expo Guadalajara',
     price: 6900,
     early_bird_price: null,
-    final_price: 6960,
+    final_price: 6900,
     capacity_limit: 50,
     capacity_desc_es: 'Cupo limitado',
     capacity_desc_en: 'Limited capacity',
