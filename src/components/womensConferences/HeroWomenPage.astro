@@ -8,7 +8,7 @@ const tr = (key: string, fallback: string = "") =>
 ---
 
 <section
-  class="relative flex min-h-[620px] w-full items-center justify-center overflow-hidden bg-[#d70a58] bg-[url('/img/bg_mujeres_hero.webp')] bg-cover bg-[center_left_42%] px-5 py-16 text-white sm:min-h-[620px] sm:bg-center sm:px-8 md:py-20 lg:min-h-[660px] lg:px-12"
+  class="relative flex h-auto w-full items-center justify-center overflow-hidden bg-[#d70a58] bg-[url('/img/bg_mujeres_hero.webp')] bg-cover bg-[center_left_42%] px-5 py-16 text-white sm:min-h-[620px] sm:bg-center sm:px-8 md:py-20 lg:min-h-[660px] lg:px-12"
 >
   <div class="absolute inset-0 bg-[#e0005a]/20" aria-hidden="true"></div>
 
@@ -26,7 +26,7 @@ const tr = (key: string, fallback: string = "") =>
       <img
         src="/img/mujeres_logo.webp"
         alt={tr("women.hero.logo_alt", "Logo de Mujeres")}
-        class="h-auto w-full"
+        class="w-[250px] sm:h-auto sm:w-full"
       />
     </div>
 
@@ -42,12 +42,12 @@ const tr = (key: string, fallback: string = "") =>
         {locale === "es" ? "19 NOV" : "NOV 19"}
       </p>
       <p
-        class="m-0 mt-3 text-[clamp(1.65rem,7vw,2.8rem)] font-black leading-none tracking-normal sm:text-[clamp(2.2rem,4.2vw,3.5rem)]"
+        class="m-0 mt-3 text-[clamp(1.25rem,5.5vw,2rem)] font-black leading-none tracking-normal sm:text-[clamp(2.2rem,2vw,3rem)]"
       >
-        {locale === "es" ? "Salón de Eventos" : "Event Hall"}
+        SMART TECHNOLOGY EXPO
       </p>
       <p
-        class="m-0 mt-1 text-[clamp(1.25rem,5.5vw,2rem)] font-light leading-none tracking-normal sm:text-[clamp(1.7rem,3.2vw,2.75rem)]"
+        class="m-0 mt-1 text-[clamp(1.25rem,5.5vw,2rem)] font-light leading-none tracking-normal sm:text-[clamp(1.7rem, 2vw, 3rem)]"
       >
         Expo Guadalajara
       </p>
