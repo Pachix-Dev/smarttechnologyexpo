@@ -1,0 +1,50 @@
+---
+import { useTranslations, getTranslation } from "../../utils/translations";
+// ✨ Una sola línea para cargar traducciones!
+const { locale, translations } = await useTranslations(Astro.props, Astro);
+// 🎯 Helper para traducciones más elegante
+const tr = (key: string, fallback: string = "") =>
+  getTranslation(translations, key, fallback);
+---
+
+<section class="flex justify-center bg-[url(/img/bg_mujeres_02.jpg)] bg-cover bg-center h-auto">
+  <div class="grid grid-rows-1 sm:grid-cols-2 justify-center items-center max-w-7xl mx-auto">
+    <div class="text-white p-4" data-aos="fade-up" data-aos-duration="800">
+      <p class="text-white text-lg font-bold">
+        {tr("womens_conference.embajadora_description")}
+      </p>
+      <h2 class="font-extrabold text-3xl sm:text-6xl">{locale === 'es' ? 'EMBAJADORA W' : 'W AMBASSADOR'}</h2>
+      <p class="text-lg sm:text-2xl">
+        {locale === 'es' ? 'La Embajadora W es un reconocimiento anual que celebra a una mujer que inspira, transforma y representa la visión de las mujeres y su impacto en la industria.' : 'The W Ambassador is an annual recognition that celebrates a woman who inspires, transforms, and represents the vision of women and their impact on the industry.'}
+      </p>
+      <div class="mt-8" data-aos="fade-up" data-aos-duration="800" data-aos-delay="120">
+        <p class="text-lg sm:text-4xl font-semibold">{locale === 'es' ? '¿Cómo se elige a la Embajadora W?' : 'How is the W Ambassador chosen?'}</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-black mt-6">
+            <div class="bg-[#f6bed6] rounded-xl p-2 flex flex-row items-center gap-2" data-aos="fade-up" data-aos-duration="700" data-aos-delay="180">
+                <svg xmlns="http://www.w3.org/2000/svg" class="bg-pink-500 text-white w-[50px] rounded-full p-2" viewBox="0 0 512 512"><path fill="currentColor" fill-rule="evenodd" d="m320 64l21.334 21.333l-.001 42.667h128v298.667H42.668V128h128V85.333L192 64zM85.333 284.935V384h341.334v-99.065c-42.625 12.196-85.298 19.824-128 22.874v33.524h-85.333V307.81c-42.702-3.05-85.375-10.678-128-22.874m341.334-114.268H85.334v69.766c56.972 17.5 113.84 26.234 170.666 26.234c56.827 0 113.695-8.734 170.668-26.234zm-128-64h-85.333V128h85.333z"/></svg>
+                <p class="text-base sm:text-xl font-semibold">{locale === 'es' ? 'Trayectoria profesional' : 'Professional trajectory'}</p>
+            </div>
+            <div class="bg-[#f6bed6] rounded-xl p-2 flex flex-row items-center gap-2" data-aos="fade-up" data-aos-duration="700" data-aos-delay="240">
+                <svg xmlns="http://www.w3.org/2000/svg" class="bg-pink-500 text-white w-[50px] rounded-full p-2" viewBox="0 0 24 24"><path fill="currentColor" d="M5.187 8.738v3.985l4.883-3.157v8.217l1.925 1.111l1.926-1.111V9.57l4.882 3.158V8.742l-6.808-4.269zM12 0l10.375 5.999V18L12 24L1.625 18.006V6.003z"/></svg>
+                <p class="text-base sm:text-xl font-semibold">{locale === 'es' ? 'Impacto en la industria' : 'Impact in the industry'}</p>
+            </div>
+            <div class="bg-[#f6bed6] rounded-xl p-2 flex flex-row items-center gap-2" data-aos="fade-up" data-aos-duration="700" data-aos-delay="300">
+                <svg xmlns="http://www.w3.org/2000/svg" class="bg-pink-500 text-white w-[50px] rounded-full p-2" viewBox="0 0 56 56"><path fill="currentColor" d="M28 27.126c3.194 0 5.941-2.852 5.941-6.566c0-3.669-2.762-6.387-5.941-6.387s-5.942 2.778-5.942 6.417c0 3.684 2.748 6.536 5.942 6.536m-17.097.341c2.763 0 5.17-2.495 5.17-5.718c0-3.194-2.422-5.556-5.17-5.556c-2.763 0-5.199 2.421-5.184 5.585c0 3.194 2.406 5.69 5.184 5.69m34.194 0c2.778 0 5.184-2.495 5.184-5.689c0-3.164-2.421-5.585-5.184-5.585c-2.748 0-5.17 2.362-5.17 5.555c0 3.224 2.407 5.72 5.17 5.72M2.614 40.881h11.29c-1.545-2.243.341-6.759 3.535-9.225c-1.65-1.099-3.773-1.916-6.55-1.916C4.188 29.74 0 34.686 0 38.801c0 1.337.743 2.08 2.614 2.08m50.772 0c1.886 0 2.614-.743 2.614-2.08c0-4.115-4.189-9.061-10.888-9.061c-2.778 0-4.902.817-6.55 1.916c3.193 2.466 5.08 6.982 3.535 9.225Zm-34.73 0h18.672c2.332 0 3.164-.669 3.164-1.976c0-3.832-4.798-9.12-12.507-9.12c-7.694 0-12.492 5.288-12.492 9.12c0 1.307.832 1.976 3.164 1.976"/></svg>
+                <p class="text-base sm:text-xl font-semibold">{locale === 'es' ? 'Liderazgo y compromiso' : 'Leadership and commitment'}</p>
+            </div>
+            <div class="bg-[#f6bed6] rounded-xl p-2 flex flex-row items-center gap-2" data-aos="fade-up" data-aos-duration="700" data-aos-delay="360">
+                <svg xmlns="http://www.w3.org/2000/svg" class="bg-pink-500 text-white w-[60px] sm:w-[70px] rounded-full p-2" viewBox="0 0 32 32"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m16 2l4 10h10l-8 7l3 11l-9-7l-9 7l3-11l-8-7h10Z"/></svg>
+                <p class="text-base sm:text-xl font-semibold">{locale === 'es' ? 'Afinidad con la misión de la Embajadora W' : 'Affinity with the W Ambassador mission'}</p>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-col items-center justify-center" data-aos="zoom-in" data-aos-duration="900" data-aos-delay="180">
+      <img src="/img/mujer_silueta.png" alt="Women - Smart Technology Expo" class=" h-[250px] sm:h-[450px]" />
+      <div class="bg-gray-950 text-white p-4 text-center sm:w-[450px]">
+        <p class="font-extrabold italic text-2xl sm:text-4xl ">{locale === 'es' ? 'PRÓXIMAMENTE' : 'COMING SOON'}</p>
+        <p class="text-base sm:text-xl sm:px-16">{locale === 'es' ? 'Descubre quién recibirá esta distinción durante W 2026' : 'Find out who will receive this distinction during W 2026'}</p>
+      </div>
+    </div>
+  </div>
+</section>
