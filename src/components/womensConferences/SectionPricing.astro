@@ -1,0 +1,118 @@
+---
+import { useTranslations, getTranslation } from "../../utils/translations";
+import PricingSection from "./PricingSection.astro";
+// ✨ Una sola línea para cargar traducciones!
+const { locale, translations } = await useTranslations(Astro.props, Astro);
+// 🎯 Helper para traducciones más elegante
+const tr = (key: string, fallback: string = "") =>
+  getTranslation(translations, key, fallback);
+---
+
+<section>
+  <div class="">
+    <div class="mx-auto p-2">
+      <div class="text-center">
+        <h2 class="text-3xl sm:text-7xl uppercase font-extrabold italic">
+          <span class="font-normal"
+            >{locale === "es" ? "NO PIERDAS" : "DON'T MISS"}</span
+          >
+          <br />
+          <span class="text-[#db0d5c]"
+            >{locale === "es" ? "La oportunidad" : "The opportunity"}</span
+          >
+        </h2>
+        <p class="text-xl sm:text-3xl">
+          {
+            locale === "es"
+              ? "de ser parte del evento más importante de la industria"
+              : "to be part of the most important event in the industry"
+          }
+        </p>
+      </div>
+
+      <div class="sm:p-10">
+        <div class="grid grid-cols-1 sm:grid-cols-2 w-full">
+          <div class="order-2 sm:order-1">
+            <h4 class="uppercase text-2xl sm:text-4xl">
+              {locale === "es" ? "PROGRAMA" : "PROGRAM"}
+            </h4>
+            <ul class="flex flex-col gap-2 sm:gap-4 list-disc list-inside py-4">
+              <li class="bg-gray-100 p-2 rounded border border-gray-300">
+                <samp>8:00 hrs</samp>
+                <p>
+                  {
+                    locale === "es"
+                      ? "Registro y bienvenida"
+                      : "Registration and welcome"
+                  }
+                </p>
+              </li>
+              <li class="bg-gray-100 p-2 rounded border border-gray-300">
+                <samp>8:30 hrs</samp>
+                <p>
+                  {
+                    locale === "es"
+                      ? "Bienvenida e inauguración | Desayuno entre líderes"
+                      : "Welcome and inauguration | Breakfast among leaders"
+                  }
+                </p>
+              </li>
+              <li class="bg-gray-100 p-2 rounded border border-gray-300">
+                <samp>8:35 hrs</samp>
+                <p>
+                  {
+                    locale === "es"
+                      ? "Conferencia magistral: “Conduciendo el cambio: Mi trayectoria de liderazgo en ingeniería, de la industria aeroespacial al automovilismo”, impartida por Silvia Karlsson, Methods, General Motors – Motorsports / Board of Directors Member, Society of Women Engineers"
+                      : "Keynote: “Driving Change: My Leadership Journey in Engineering, from the Aerospace Industry to Motorsports,” presented by Silvia Karlsson, Methods, General Motors – Motorsports / Board of Directors Member, Society of Women Engineers"
+                  }
+                </p>
+              </li>
+              <li class="bg-gray-100 p-2 rounded border border-gray-300">
+                <samp>9:10 hrs</samp>
+                <p>{locale === "es" ? "Sesión de Q&A" : "Q&A Session"}</p>
+              </li>
+              <li class="bg-gray-100 p-2 rounded border border-gray-300">
+                <samp>9:20 hrs</samp>
+                <p>
+                  {
+                    locale === "es"
+                      ? "Reconocimiento a la Embajadora W 2026"
+                      : "Recognition of the W Ambassador 2026"
+                  }
+                </p>
+              </li>
+              <li class="bg-gray-100 p-2 rounded border border-gray-300">
+                <samp>9:30 hrs</samp>
+                <p>
+                  {
+                    locale === "es"
+                      ? "Conversación de la Embajadora W"
+                      : "Conversation with the W Ambassador"
+                  }
+                </p>
+              </li>
+              <li class="bg-gray-100 p-2 rounded border border-gray-300">
+                <samp>10:00 hrs</samp>
+                <p>
+                  {
+                    locale === "es"
+                      ? "Conexiones & Networking"
+                      : "Conexiones & Networking"
+                  }
+                </p>
+              </li>
+              <li class="bg-gray-100 p-2 rounded border border-gray-300">
+                <samp>11:00 hrs</samp>
+                <p>{locale === "es" ? "Cierre del evento" : "Event Closing"}</p>
+              </li>
+            </ul>
+          </div>
+
+          <div class="order-1 sm:order-2">
+            <div><PricingSection /></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>|

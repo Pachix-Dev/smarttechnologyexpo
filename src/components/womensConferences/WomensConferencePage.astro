@@ -4,7 +4,7 @@ import AboutSection from "./AboutSection.astro";
 import EmbajadoraWomen from "./EmbajadoraWomen.astro";
 import HeroWomenPage from "./HeroWomenPage.astro";
 import KeyNoteSpeaker from "./KeyNoteSpeaker.astro";
-import PricingSection from "./PricingSection.astro";
+import SectionPricing from "./SectionPricing.astro";
 // ✨ Una sola línea para cargar traducciones!
 const { locale, translations } = await useTranslations(Astro.props, Astro);
 // 🎯 Helper para traducciones más elegante
@@ -20,6 +20,6 @@ const tr = (key: string, fallback: string = "") =>
       <AboutSection />
       <KeyNoteSpeaker />
       <EmbajadoraWomen />
-      <PricingSection />
+      <SectionPricing />
     </section>
 </section>
