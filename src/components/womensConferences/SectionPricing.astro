@@ -6,12 +6,57 @@ const { locale, translations } = await useTranslations(Astro.props, Astro);
 // 🎯 Helper para traducciones más elegante
 const tr = (key: string, fallback: string = "") =>
   getTranslation(translations, key, fallback);
+
+const agenda = [
+  {
+    time: "8:00 hrs.",
+    activity_es: "Registro y bienvenida",
+    activity_en: "Registration and welcome",
+  },
+  {
+    time: "8:30 hrs.",
+    activity_es: "Bienvenida e inauguración | Desayuno entre líderes",
+    activity_en: "Welcome and inauguration | Breakfast among leaders",
+  },
+  {
+    time: "8:35 hrs.",
+    activity_es:
+      "Conferencia magistral: “Conduciendo el cambio: Mi trayectoria de liderazgo en ingeniería, de la industria aeroespacial al automovilismo”, impartida por Silvia Karlsson, Methods, General Motors – Motorsports / Board of Directors Member, Society of Women Engineers",
+    activity_en:
+      "Keynote: “Driving Change: My Leadership Journey in Engineering, from the Aerospace Industry to Motorsports,” presented by Silvia Karlsson, Methods, General Motors – Motorsports / Board of Directors Member, Society of Women Engineers",
+  },
+  {
+    time: "9:10 hrs.",
+    activity_es: "Sesión de Q&A",
+    activity_en: "Q&A Session",
+  },
+  {
+    time: "9:20 hrs.",
+    activity_es: "Reconocimiento a la Embajadora W 2026",
+    activity_en: "Recognition of the W Ambassador 2026",
+  },
+  {
+    time: "9:30 hrs.",
+    activity_es: "Conversación de la Embajadora W",
+    activity_en: "Conversation with the W Ambassador",
+  },
+  {
+    time: "10:00 hrs.",
+    activity_es: "Conexiones & Networking",
+    activity_en: "Connections & Networking",
+  },
+  {
+    time: "10:30 hrs.",
+    activity_es: "Cierre del evento",
+    activity_en: "Closing of the event",
+  },
+];
 ---
 
 <section>
   <div class="">
     <div class="mx-auto p-2">
-      <div class="text-center">
+      <div class="text-center pt-2">
         <h2 class="text-3xl sm:text-7xl uppercase font-extrabold italic">
           <span class="font-normal"
             >{locale === "es" ? "NO PIERDAS" : "DON'T MISS"}</span
@@ -21,11 +66,11 @@ const tr = (key: string, fallback: string = "") =>
             >{locale === "es" ? "La oportunidad" : "The opportunity"}</span
           >
         </h2>
-        <p class="text-xl sm:text-3xl">
+        <p class="text-base sm:text-3xl">
           {
             locale === "es"
-              ? "de ser parte del evento más importante de la industria"
-              : "to be part of the most important event in the industry"
+              ? "de ser parte del gran evento de la industria"
+              : "to be part of the great event of the industry"
           }
         </p>
       </div>
@@ -33,78 +78,21 @@ const tr = (key: string, fallback: string = "") =>
       <div class="sm:p-10">
         <div class="grid grid-cols-1 sm:grid-cols-2 w-full">
           <div class="order-2 sm:order-1">
-            <h4 class="uppercase text-2xl sm:text-4xl">
+            <h4 class="uppercase text-2xl sm:text-4xl font-extrabold italic flex items-center justify-center md:justify-start gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12" viewBox="0 0 24 24"><path fill="currentColor" d="M17.5 12a5.5 5.5 0 1 1 0 11a5.5 5.5 0 0 1 0-11m.25-9A3.25 3.25 0 0 1 21 6.25v5.774a6.5 6.5 0 0 0-1.5-.71V6.25a1.75 1.75 0 0 0-1.75-1.75H6.25A1.75 1.75 0 0 0 4.5 6.25v11.5c0 .966.784 1.75 1.75 1.75h5.065a6.4 6.4 0 0 0 .71 1.5H6.25A3.25 3.25 0 0 1 3 17.75V6.25A3.25 3.25 0 0 1 6.25 3zm-.25 11a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5H20a.5.5 0 0 0 0-1h-2v-2.5a.5.5 0 0 0-.5-.5m-6.185 1.5q-.234.718-.294 1.5H7.75a.75.75 0 0 1-.102-1.493l.102-.007zm4.402-4.25a6.5 6.5 0 0 0-2.652 1.5H7.75a.75.75 0 0 1-.102-1.493l.102-.007zM16.25 7a.75.75 0 0 1 .102 1.493l-.102.007h-8.5a.75.75 0 0 1-.102-1.493L7.75 7z"/></svg>
               {locale === "es" ? "PROGRAMA" : "PROGRAM"}
             </h4>
-            <ul class="flex flex-col gap-2 sm:gap-4 list-disc list-inside py-4">
-              <li class="bg-gray-100 p-2 rounded border border-gray-300">
-                <samp>8:00 hrs</samp>
-                <p>
-                  {
-                    locale === "es"
-                      ? "Registro y bienvenida"
-                      : "Registration and welcome"
-                  }
-                </p>
-              </li>
-              <li class="bg-gray-100 p-2 rounded border border-gray-300">
-                <samp>8:30 hrs</samp>
-                <p>
-                  {
-                    locale === "es"
-                      ? "Bienvenida e inauguración | Desayuno entre líderes"
-                      : "Welcome and inauguration | Breakfast among leaders"
-                  }
-                </p>
-              </li>
-              <li class="bg-gray-100 p-2 rounded border border-gray-300">
-                <samp>8:35 hrs</samp>
-                <p>
-                  {
-                    locale === "es"
-                      ? "Conferencia magistral: “Conduciendo el cambio: Mi trayectoria de liderazgo en ingeniería, de la industria aeroespacial al automovilismo”, impartida por Silvia Karlsson, Methods, General Motors – Motorsports / Board of Directors Member, Society of Women Engineers"
-                      : "Keynote: “Driving Change: My Leadership Journey in Engineering, from the Aerospace Industry to Motorsports,” presented by Silvia Karlsson, Methods, General Motors – Motorsports / Board of Directors Member, Society of Women Engineers"
-                  }
-                </p>
-              </li>
-              <li class="bg-gray-100 p-2 rounded border border-gray-300">
-                <samp>9:10 hrs</samp>
-                <p>{locale === "es" ? "Sesión de Q&A" : "Q&A Session"}</p>
-              </li>
-              <li class="bg-gray-100 p-2 rounded border border-gray-300">
-                <samp>9:20 hrs</samp>
-                <p>
-                  {
-                    locale === "es"
-                      ? "Reconocimiento a la Embajadora W 2026"
-                      : "Recognition of the W Ambassador 2026"
-                  }
-                </p>
-              </li>
-              <li class="bg-gray-100 p-2 rounded border border-gray-300">
-                <samp>9:30 hrs</samp>
-                <p>
-                  {
-                    locale === "es"
-                      ? "Conversación de la Embajadora W"
-                      : "Conversation with the W Ambassador"
-                  }
-                </p>
-              </li>
-              <li class="bg-gray-100 p-2 rounded border border-gray-300">
-                <samp>10:00 hrs</samp>
-                <p>
-                  {
-                    locale === "es"
-                      ? "Conexiones & Networking"
-                      : "Conexiones & Networking"
-                  }
-                </p>
-              </li>
-              <li class="bg-gray-100 p-2 rounded border border-gray-300">
-                <samp>11:00 hrs</samp>
-                <p>{locale === "es" ? "Cierre del evento" : "Event Closing"}</p>
-              </li>
+            <ul class="flex flex-col sm:gap-2 list-disc list-inside py-4">
+              {
+                agenda.map((item) => (
+                  <li class="p-2 list-none bg-pink-200/20 border-s-3 border-[#db0d5c] my-1 sm:my-0">
+                    <samp class="font-bold text-[#db0d5c]">{item.time}</samp>
+                    <p>
+                      {locale === "es" ? item.activity_es : item.activity_en}
+                    </p>
+                  </li>
+                ))
+              }
             </ul>
           </div>
 
