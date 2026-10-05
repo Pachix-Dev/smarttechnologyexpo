@@ -19,7 +19,7 @@ export const ECOMMERCE_PRODUCTS = [
     price: 1100, // Precio original en bd incluyendo impuestos
     early_bird_price: 1100, // Precio con descuento en bd
     final_price: 1300,// Precio final a mostrar en la web (puede ser el mismo que price o early_bird_price)
-    capacity_limit: 50,
+    capacity_limit: 60,
     capacity_desc_es: 'Cupo limitado',
     capacity_desc_en: 'Limited capacity',
     status: 'active', // Cambiado a inactive para pruebas, cambiar a 'active' para producción
