@@ -84,7 +84,7 @@ export const ECOMMERCE_PRODUCTS = [
     regular_price_date_es: 'octubre y noviembre',
     regular_price_date_en: 'October and November',
   },
-   {
+  {
     id_product: 4,
     name_es: 'Agricultura Inteligente con Drones: Monitoreo y Buenas Prácticas',
     name_en: ' Smart Farming with Drones: Monitoring and Best Practices',
