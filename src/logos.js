@@ -163,8 +163,14 @@ const sponsorsSilver = [
     src: "/img/exhibitors2026/telcel_empresas.webp",
     alt: "Robustel",
     href: "https://robustel.com",
-    width: 300,
+    width: 230,
   },
+  {
+    src: "/img/logos/sponsors/teradyne_robotics.webp",
+    alt: "Another Sponsor",
+    href: "",
+    width: 230,
+  }
 ];
 
 const sponsorsPlatinum = [
