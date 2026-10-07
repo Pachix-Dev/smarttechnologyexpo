@@ -27,8 +27,8 @@ export const ECOMMERCE_PRODUCTS = [
     logo_img: '/img/mujeres_logo.webp',
     early_bird_price_date_es: 'valido durante octubre',
     early_bird_price_date_en: 'valid during October',
-    regular_price_date_es: 'noviembre',
-    regular_price_date_en: 'November',
+    regular_price_date_es: 'a partir de noviembre',
+    regular_price_date_en: 'Starting in November',
   },
   {
     id_product: 2,
