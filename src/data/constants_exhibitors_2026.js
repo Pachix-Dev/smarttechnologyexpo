@@ -54,6 +54,7 @@ const exhibitors = [
   { src: "/img/exhibitors2026/mlean.webp", alt: "MLEAN", width: 150 },
   { src: "/img/exhibitors2026/mobile.webp", alt: "", width: 150 },
   { src: "/img/exhibitors2026/modular.webp", alt: "Modular Assembly Technology", width: 150 },
+  { src: "/img/exhibitors2026/monitorapp.webp", alt: "MonitorApp® ", width: 150 },
   { src: "/img/exhibitors2026/movi_ruedas.webp", alt: "MOVI RUEDAS", width: 150 },
   { src: "/img/exhibitors2026/neoden.webp", alt: "neoden mexico", width: 150 },
   { src: "/img/exhibitors2026/nidec_dives.webp", alt: "NIDEC DRIVES", width: 150 },
