@@ -23,7 +23,7 @@ const strategicPartners = [
     width: 300,
   },
   { src: "/img/logos/strategic_partners/csia.webp", alt: "CSIA", width: 300 },
-  { src: "/img/logos/strategic_partners/giz.webp", alt: "GIZ", width: 400 },
+  { src: "/img/logos/strategic_partners/giz.webp", alt: "GIZ", width: 500 },
   {
     src: "/img/logos/strategic_partners/camara_verde.png",
     alt: "Cámara Verde",
@@ -32,8 +32,13 @@ const strategicPartners = [
   {
     src: "/img/logos/strategic_partners/holland_house.webp",
     alt: "Holland House",
-    width: 50,
+    width: 100,
   },
+  {
+    src: "/img/logos/strategic_partners/guadalajara.webp",
+    alt: "Guadalajara Guadalajara",
+    width: 400,
+  }
   // { src: "/img/logos/strategic_partners/swe.webp", alt: "SWE", width: 300 },
 ];
 
