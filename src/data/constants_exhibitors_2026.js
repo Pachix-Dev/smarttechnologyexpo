@@ -37,7 +37,6 @@ const exhibitors = [
   { src: "/img/exhibitors2026/idicsa.webp", alt: "IDICSA", width: 150 },
   { src: "/img/exhibitors2026/igus.webp", alt: "igus México", width: 150 },
   { src: "/img/exhibitors2026/indeq.webp", alt: "INDEQ", width: 150 },
-  { src: "/img/exhibitors2026/indusol.webp", alt: "InduSol America", width: 150 },
   { src: "/img/exhibitors2026/infotech_automation.webp", alt: "Infotech Automation", width: 150 },
   { src: "/img/exhibitors2026/inhand_networks.webp", alt: "InHand Networks", width: 150 },
   { src: "/img/exhibitors2026/interlaken.webp", alt: "INTERLAKEN MAQUINARIA", width: 150 },
