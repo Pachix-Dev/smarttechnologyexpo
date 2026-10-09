@@ -36,7 +36,7 @@ export const directory2026 =
     "linkedin": "https://www.linkedin.com/company/idicsa-oficial",
     "facebook": "https://www.facebook.com/idicsa.coding.marking",
     "instagram": "https://www.instagram.com/idicsa.oficial.mx",
-    "stand_number": "B65",
+    "stand_number": "H23",
     "webpage": "www.idicsa.com.mx",
     "address": "Av. Jesús Reyes Heroles 148, Colonia Valle Ceylán",
     "zip_code": "54150",
@@ -61,7 +61,7 @@ export const directory2026 =
     "linkedin": "https://www.linkedin.com/company/sen-item-mexico/",
     "facebook": "https://m.facebook.com/itemNoreste?wtsid=rdr_0gP5ejFPrQIWtZ45V",
     "instagram": "https://www.instagram.com/soluciones_sen?igsh=MXRqM2JjeXYyeG8xdg==",
-    "stand_number": "B72",
+    "stand_number": "H15",
     "webpage": "www.solucionesen.mx",
     "address": "Boulevard Diamante",
     "zip_code": "76903",
@@ -86,7 +86,7 @@ export const directory2026 =
     "linkedin": "www.linkedin.com/in/autsol/",
     "facebook": "https://www.facebook.com/share/1GDTWfrXjq/",
     "instagram": null,
-    "stand_number": "B63",
+    "stand_number": "B54",
     "webpage": "autsol.online",
     "address": "avenida revolucion 476",
     "zip_code": "44450",
@@ -136,7 +136,7 @@ export const directory2026 =
     "linkedin": "https://www.linkedin.com/company/asicmx/?viewAsMember=true",
     "facebook": "https://www.linkedin.com/company/asicmx/?viewAsMember=true",
     "instagram": "https://www.instagram.com/asicmexico?igsh=MWRreDJtMGdtY2s4Zw%3D%3D&utm_source=qr",
-    "stand_number": "E72",
+    "stand_number": "H18",
     "webpage": "https://asicmexico.com/",
     "address": "JUANOJEDAROBLES 14351 CHAMIZAL",
     "zip_code": "22415",
@@ -161,7 +161,7 @@ export const directory2026 =
     "linkedin": "https://www.linkedin.com/company/sensify-mx",
     "facebook": "https://www.facebook.com/sensifymx",
     "instagram": "https://www.instagram.com/sensify.mx/",
-    "stand_number": "D65",
+    "stand_number": "I25",
     "webpage": "https://www.sensify.mx/",
     "address": "Calzada Central 122, Ciudad Granja",
     "zip_code": "45010",
@@ -261,7 +261,7 @@ export const directory2026 =
     "linkedin": "https://www.linkedin.com/company/octaveintelligence/about/",
     "facebook": null,
     "instagram": null,
-    "stand_number": "D-60",
+    "stand_number": "B35",
     "webpage": "https://www.octave.com/es",
     "address": "Jaime Balmes 11, Torre C, Piso 1, Col. Los Morales Polanco, C.P. 11510. Ciudad de México",
     "zip_code": "11510",
@@ -301,7 +301,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 14,
+    "id": 13,
     "type":"exhibitor",
     "tradename": "ATEQ",
     "legal_company_name": "ATEQ CORP",
@@ -311,7 +311,7 @@ export const directory2026 =
     "linkedin": "https://www.linkedin.com/company/ateq-mexico/",
     "facebook": "https://www.facebook.com/profile.php?id=100065175534265&mibextid=LQQJ4d",
     "instagram": "https://www.instagram.com/ateqmexico/",
-    "stand_number": "C64",
+    "stand_number": "I21",
     "webpage": "www.ateq.com.mx",
     "address": "Paseo Centenario del Ejercito Mexicano Km. 1+037 Int. 56 A Colonia Cerro Prieto Parque Industrial TERRA PARK CENTENARIO",
     "zip_code": "76267",
@@ -326,7 +326,7 @@ export const directory2026 =
     "coexhibitors": ""
   },
   {
-    "id": 15,
+    "id": 14,
     "type":"exhibitor",
     "tradename": "Avant Assembly Systems",
     "legal_company_name": "Avant Robotics",
@@ -351,7 +351,7 @@ export const directory2026 =
     "coexhibitors": "TBD"
   },
   {
-    "id": 16,
+    "id": 15,
     "type":"exhibitor",
     "tradename": "Mean Well",
     "legal_company_name": "GCM Comercial",
@@ -376,7 +376,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 17,
+    "id": 16,
     "type":"exhibitor",
     "tradename": "Risoul RS",
     "legal_company_name": "Risoul y Cia",
@@ -401,7 +401,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 18,
+    "id": 17,
     "type":"exhibitor",
     "tradename": "Uber para Empresas",
     "legal_company_name": "Uber",
@@ -411,7 +411,7 @@ export const directory2026 =
     "linkedin": "https://www.linkedin.com/company/uber-for-business/",
     "facebook": null,
     "instagram": null,
-    "stand_number": "A 75",
+    "stand_number": "A45",
     "webpage": "https://www.uber.com/mx/es/business/",
     "address": "Polanco, Ciudad de Mexico",
     "zip_code": "11550",
@@ -426,7 +426,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 19,
+    "id": 18,
     "type":"exhibitor",
     "tradename": "Keyence Mexico",
     "legal_company_name": "Keyence Mexico S.A. D.E C.V.",
@@ -436,7 +436,7 @@ export const directory2026 =
     "linkedin": "https://www.linkedin.com/company/keyence/",
     "facebook": "https://www.facebook.com/KeyenceMexico",
     "instagram": "https://www.instagram.com/keyence_mexico/",
-    "stand_number": "G10",
+    "stand_number": "G01",
     "webpage": "https://www.keyence.com.mx/",
     "address": "Av. Paseo de la reforma 243",
     "zip_code": "06500",
@@ -451,7 +451,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 20,
+    "id": 19,
     "type":"exhibitor",
     "tradename": "RemBrain",
     "legal_company_name": "RemBrain",
@@ -461,7 +461,7 @@ export const directory2026 =
     "linkedin": "https://www.linkedin.com/company/rembrain/posts/?feedView=all",
     "facebook": null,
     "instagram": null,
-    "stand_number": "E71",
+    "stand_number": "B56",
     "webpage": "https://rembrain.ai/",
     "address": "502 Dricoll PI,  Palo Alto",
     "zip_code": "94306",
@@ -476,7 +476,7 @@ export const directory2026 =
     "coexhibitors": ""
   },
   {
-    "id": 21,
+    "id": 20,
     "type":"exhibitor",
     "tradename": "EUCHNER MEXICO",
     "legal_company_name": "EUCHNER MEXICO",
@@ -501,32 +501,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 22,
-    "type":"exhibitor",
-    "tradename": "InduSol America",
-    "legal_company_name": "InduSol America, LLC",
-    "logo": "/img/exhibitors2026/indusol.webp",
-    "description_es": "InduSol America se especializa en corrección de problemas de redes industriales y mantenimiento predictivo, soluciones para PROFINET, Ethernet/IP, PROFIBUS ASi y más, con el respaldo de servicios profesionales para mantenimiento correctivo, entrenamiento y soporte en sitio.",
-    "description_en": "InduSol America specializes in industrial network troubleshooting and predictive maintenance solutions for PROFINET, EtherNet/IP, PROFIBUS, ASi, and more, backed by professional services for troubleshooting, training, and on-site support.",
-    "linkedin": "https://www.linkedin.com/company/indusol-america-llc/",
-    "facebook": null,
-    "instagram": null,
-    "stand_number": "D56",
-    "webpage": "https://indusolamerica.com/",
-    "address": "980 Birmingham Rd. Ste 721",
-    "zip_code": "30004",
-    "city": "Alpharetta",
-    "state": "GA",
-    "country": "United States",
-    "contact_name": "Hugo Mora",
-    "contact_email": "hugo.mora@indusolamerica.com",
-    "contact_phone": "+52 921 274 1636",
-    "directory_consent": "Acepto / Agree.",
-    "has_coexhibitors": "No",
-    "coexhibitors": null
-  },
-  {
-    "id": 23,
+    "id": 21,
     "type":"exhibitor",
     "tradename": "Win Source Electronics",
     "legal_company_name": "Win Source Electronic Technology Limited",
@@ -551,7 +526,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 24,
+    "id": 22,
     "type":"exhibitor",
     "tradename": "ManWinWin Software",
     "legal_company_name": "Navaltik Management, Lda.",
@@ -576,7 +551,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 25,
+    "id": 23,
     "type":"exhibitor",
     "tradename": "maxon",
     "legal_company_name": "maxon precision motors, inc.",
@@ -586,7 +561,7 @@ export const directory2026 =
     "linkedin": "https://www.linkedin.com/company/maxongroupus/",
     "facebook": null,
     "instagram": null,
-    "stand_number": "B61",
+    "stand_number": "B50",
     "webpage": "www.maxongroup.com.mx",
     "address": "125 Dever Drive",
     "zip_code": "02780",
@@ -601,7 +576,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 26,
+    "id": 24,
     "type":"exhibitor",
     "tradename": "Packaging & Robotic Solutions",
     "legal_company_name": "Federico Barrera",
@@ -611,7 +586,7 @@ export const directory2026 =
     "linkedin": "linkedin.com/company/packaging-and-robotic-solutions",
     "facebook": null,
     "instagram": null,
-    "stand_number": "C63",
+    "stand_number": "E54",
     "webpage": "https://www.linkedin.com/company/worldwide-packaging-solutions/?viewAsMember=true",
     "address": "Vereda de las Violetas 21",
     "zip_code": "45675",
@@ -626,7 +601,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 27,
+    "id": 25,
     "type":"exhibitor",
     "tradename": "INTERLAKEN MAQUINARIA",
     "legal_company_name": "INTERLAKEN MAQUINARIA",
@@ -651,7 +626,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 28,
+    "id": 26,
     "type":"exhibitor",
     "tradename": "Beckhoff Automation",
     "legal_company_name": "Beckhoff Automation",
@@ -661,7 +636,7 @@ export const directory2026 =
     "linkedin": "https://www.linkedin.com/company/89562449/admin/page-posts/published/",
     "facebook": null,
     "instagram": null,
-    "stand_number": "D01",
+    "stand_number": "C01",
     "webpage": "https://www.beckhoff.com/es-mx/",
     "address": "Boulevard Manuel Ávila Camacho 2610, Torre B, Piso 9, Colonia Valle de los Pinos, Tlalnepantla de Baz Estado de México",
     "zip_code": "54040",
@@ -676,7 +651,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 29,
+    "id": 27,
     "type":"exhibitor",
     "tradename": "Infotech Automation",
     "legal_company_name": "Infotech Automation",
@@ -701,7 +676,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 30,
+    "id": 28,
     "type":"exhibitor",
     "tradename": "KNIPEX",
     "legal_company_name": "KNIPEX MÉXICO",
@@ -711,7 +686,7 @@ export const directory2026 =
     "linkedin": "https://www.linkedin.com/company/knipex-latinoamerica/",
     "facebook": "https://www.facebook.com/knipex.mx",
     "instagram": "https://www.instagram.com/knipex.mexico/",
-    "stand_number": "F65",
+    "stand_number": "G57",
     "webpage": "knipex.com/es-mx",
     "address": "Av. Santa Fe 170, int. 6-2-24 A Col. Santa Fe",
     "zip_code": "01376",
@@ -726,7 +701,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 31,
+    "id": 29,
     "type":"exhibitor",
     "tradename": "Process Think Engineering",
     "legal_company_name": "HOVLAND SA de CV",
@@ -736,7 +711,7 @@ export const directory2026 =
     "linkedin": "https://www.linkedin.com/company/thkengineering/",
     "facebook": null,
     "instagram": null,
-    "stand_number": "65",
+    "stand_number": "F54",
     "webpage": "https://thkengineering.com",
     "address": "Xochitl 173-1",
     "zip_code": "45050",
@@ -751,7 +726,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 32,
+    "id": 30,
     "type":"exhibitor",
     "tradename": "3D MARKET",
     "legal_company_name": "DMA1408294E1",
@@ -761,7 +736,7 @@ export const directory2026 =
     "linkedin": "https://www.linkedin.com/company/3dmarketmx/?originalSubdomain=mx",
     "facebook": "https://www.facebook.com/3dmarketmx",
     "instagram": "https://www.instagram.com/3dmarketmx/",
-    "stand_number": "E71",
+    "stand_number": "A43",
     "webpage": "https://www.3dmarket.mx/",
     "address": "Av. Ejercito Republicano Piso 4/ PH Ejército Republicano 121 Piso PH, Carretas, 76050 Santiago de Querétaro, Qro.",
     "zip_code": "76050",
@@ -776,7 +751,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 34,
+    "id": 31,
     "type":"exhibitor",
     "tradename": "PREVOST",
     "legal_company_name": "PREVOST CORP",
@@ -786,7 +761,7 @@ export const directory2026 =
     "linkedin": "https://www.linkedin.com/showcase/prevost-us/",
     "facebook": null,
     "instagram": null,
-    "stand_number": "",
+    "stand_number": "I23",
     "webpage": "https://www.prevostusa.com/",
     "address": "74 Brookfield Oaks Dr #3,",
     "zip_code": "29607",
@@ -801,7 +776,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 35,
+    "id": 32,
     "type":"exhibitor",
     "tradename": "InHand Networks",
     "legal_company_name": "InHand Networks Inc.",
@@ -811,7 +786,7 @@ export const directory2026 =
     "linkedin": "https://www.linkedin.com/company/inhand-networks",
     "facebook": "https://www.facebook.com/inhandnetworks",
     "instagram": "https://www.instagram.com/inhand_networks/",
-    "stand_number": "B73",
+    "stand_number": "B45",
     "webpage": "https://www.inhand.com",
     "address": "3650 Concorde Pkwy, Suite 200",
     "zip_code": "20151",
@@ -826,7 +801,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 36,
+    "id": 33,
     "type":"exhibitor",
     "tradename": "Electro Controles Industriales",
     "legal_company_name": "Electro Controles Industriales S.A. de C.V.",
@@ -851,7 +826,7 @@ export const directory2026 =
     "coexhibitors": "RITTAL, HELU y BRADY"
   },
   {
-    "id": 37,
+    "id": 34,
     "type":"exhibitor",
     "tradename": "Hitachi Energy",
     "legal_company_name": "Hitachi Energy México",
@@ -876,7 +851,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 38,
+    "id": 35,
     "type":"exhibitor",
     "tradename": "NIDEC DRIVES",
     "legal_company_name": "NIDEC MEXICO SHARED SERVICES",
@@ -901,7 +876,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 39,
+    "id": 36,
     "type":"exhibitor",
     "tradename": "SHIFT 3D",
     "legal_company_name": "GLV2 DE MEXICO SA DE CV",
@@ -926,7 +901,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 40,
+    "id": 37,
     "type":"exhibitor",
     "tradename": "TIERRA TECH",
     "legal_company_name": "TT OPERADORA DEL BAJIO",
@@ -951,7 +926,7 @@ export const directory2026 =
     "coexhibitors": "N/A"
   },
   {
-    "id": 41,
+    "id": 38,
     "type":"exhibitor",
     "tradename": "SERVOMOTION",
     "legal_company_name": "PPR ROBOTICS",
@@ -976,7 +951,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 42,
+    "id": 39,
     "type":"exhibitor",
     "tradename": "TRACTIAN",
     "legal_company_name": "Tractian Tecnología Industrial, S. de R.L. de C.V.",
@@ -1001,7 +976,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 44,
+    "id": 40,
     "type":"exhibitor",
     "tradename": "Servus Intralogistics",
     "legal_company_name": "Servus Intralogistics GmbH",
@@ -1011,7 +986,7 @@ export const directory2026 =
     "linkedin": "https://www.linkedin.com/company/servus-intralogistics-gmbh/",
     "facebook": "/",
     "instagram": "https://www.instagram.com/servus_intralogistics/",
-    "stand_number": "F73",
+    "stand_number": "F50",
     "webpage": "https://servus-intralogistics.com/",
     "address": "Dr. Walter Zumtobel Straße 2",
     "zip_code": "6850",
@@ -1026,7 +1001,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 45,
+    "id": 41,
     "type":"exhibitor",
     "tradename": "Endress+Hauser México",
     "legal_company_name": "Endress+Hauser México S.A de C.V",
@@ -1051,7 +1026,7 @@ export const directory2026 =
     "coexhibitors": "ECN"
   },
   {
-    "id": 46,
+    "id": 42,
     "type":"exhibitor",
     "tradename": "TELCEL EMPRESAS",
     "legal_company_name": "RADIOMOVIL DIPSA SA DE CV",
@@ -1061,7 +1036,7 @@ export const directory2026 =
     "linkedin": "https://mx.linkedin.com/company/telcel",
     "facebook": "https://es-la.facebook.com/TelcelEmpresas/",
     "instagram": null,
-    "stand_number": "I130",
+    "stand_number": "I30",
     "webpage": "https://www.telcel.com/empresas",
     "address": "Lago Zurich 245 Ampliación Granada Miguel Hidalgo",
     "zip_code": "11529",
@@ -1076,7 +1051,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 47,
+    "id": 43,
     "type":"exhibitor",
     "tradename": "ERBESSD INSTRUMENTS",
     "legal_company_name": "Erbessd Instruments Technologies Inc.",
@@ -1086,7 +1061,7 @@ export const directory2026 =
     "linkedin": "https://www.linkedin.com/company/erbessd-instruments-latam/",
     "facebook": "https://www.facebook.com/share/1TWnZk414P/?mibextid=wwXIfr",
     "instagram": "https://www.instagram.com/erbessd.instruments.latam?igsh=MTBwZ3RhNmppdXlzeg%3D%3D&utm_source=qr",
-    "stand_number": "664",
+    "stand_number": "G24",
     "webpage": "www.erbessd-instruments.com",
     "address": "Calle 45, Lote 5, Colonia Leandro Valle",
     "zip_code": "97143",
@@ -1101,7 +1076,7 @@ export const directory2026 =
     "coexhibitors": ""
   },
   {
-    "id": 48,
+    "id": 44,
     "type":"exhibitor",
     "tradename": "Weidmüller",
     "legal_company_name": "W INTERCONNECTIONS",
@@ -1126,7 +1101,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 49,
+    "id": 45,
     "type":"exhibitor",
     "tradename": "Robustel",
     "legal_company_name": "Robustel Limited",
@@ -1151,7 +1126,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 50,
+    "id": 46,
     "type":"exhibitor",
     "tradename": "HIKVISION MEXICO",
     "legal_company_name": "HME180717DZ5",
@@ -1161,7 +1136,7 @@ export const directory2026 =
     "linkedin": "https://www.linkedin.com/company/89739186/admin/page-posts/published/",
     "facebook": "https://www.facebook.com/profile.php/?id=100064050154772",
     "instagram": "https://www.instagram.com/hikmicro_industrial/",
-    "stand_number": "D64",
+    "stand_number": "B48",
     "webpage": "https://www.hikmicrotech.com/es/industrial/",
     "address": "Lago Zurich 219, Ciudad de México, México",
     "zip_code": "11529",
@@ -1176,7 +1151,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 51,
+    "id": 47,
     "type":"exhibitor",
     "tradename": "Otennlux Lighting Technology Co.,Ltd.",
     "legal_company_name": "Otennlux Lighting Technology Co.,Ltd.",
@@ -1186,7 +1161,7 @@ export const directory2026 =
     "linkedin": "www.otennlux.com",
     "facebook": "https://www.facebook.com/profile.php?id=100082051729281",
     "instagram": "https://www.instagram.com/tina.zhang81/",
-    "stand_number": "C73",
+    "stand_number": "C45",
     "webpage": "www.otennlux.com",
     "address": "Floor 3, Factory 2#, No.4,Xingda Road, Zhongxing industry area, Pingshan Yi Village, Shibi Street, Panyu, Guangzhou , Guangdong, China",
     "zip_code": "511495",
@@ -1201,7 +1176,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 52,
+    "id": 48,
     "type":"exhibitor",
     "tradename": "Flytek Innovations",
     "legal_company_name": "FLYTEK INNOVAIONS S. DE R.L. DE C.V.",
@@ -1211,7 +1186,7 @@ export const directory2026 =
     "linkedin": "https://mx.linkedin.com/company/flytek-innovations",
     "facebook": "https://www.facebook.com/flytek.innova/",
     "instagram": "https://www.instagram.com/flytekinnovations/",
-    "stand_number": "G60",
+    "stand_number": "I10",
     "webpage": "www.flytek.com.mx",
     "address": "Mariano Matamoros 90, Nueva Aragón",
     "zip_code": "55260",
@@ -1226,7 +1201,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 53,
+    "id": 49,
     "type":"exhibitor",
     "tradename": "SMarTsol Technologies",
     "legal_company_name": "Smartsol Technologies",
@@ -1251,7 +1226,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 54,
+    "id": 50,
     "type":"exhibitor",
     "tradename": "WAGO",
     "legal_company_name": "WAGO",
@@ -1276,7 +1251,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 55,
+    "id": 51,
     "type":"exhibitor",
     "tradename": "PULSAR",
     "legal_company_name": "Pulsar Global Corp",
@@ -1286,7 +1261,7 @@ export const directory2026 =
     "linkedin": "https://www.linkedin.com/company/pulsar-global-corp",
     "facebook": "https://www.facebook.com/pulsarml",
     "instagram": "https://www.instagram.com/pulsar_global/",
-    "stand_number": "B26",
+    "stand_number": "E10",
     "webpage": "www.pulsarml.com",
     "address": "228 Hamilton Ave, Third Floor",
     "zip_code": "94301",
@@ -1301,7 +1276,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 56,
+    "id": 52,
     "type":"coexhibitor",
     "tradename": "RITTAL",
     "legal_company_name": "RITTAL",
@@ -1326,7 +1301,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 57,
+    "id": 53,
     "type":"coexhibitor",
     "tradename": "HELU",
     "legal_company_name": "HELU",
@@ -1351,7 +1326,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 58,
+    "id": 54,
     "type":"coexhibitor",
     "tradename": "BRADY",
     "legal_company_name": "BRADY",
@@ -1376,7 +1351,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 59,
+    "id": 55,
     "type":"coexhibitor",
     "tradename": "ECN",
     "legal_company_name": "ECN Automation",
@@ -1401,7 +1376,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 60,
+    "id": 56,
     "type":"exhibitor",
     "tradename": "MOVI RUEDAS",
     "legal_company_name": "MOVI - RUEDAS, S.A. DE C.V.",
@@ -1411,7 +1386,7 @@ export const directory2026 =
     "linkedin": "https://www.linkedin.com/company/movi-ruedas/",
     "facebook": "",
     "instagram": "",
-    "stand_number": "E56",
+    "stand_number": "F56",
     "webpage": "https://www.moviruedas.com",
     "address": "Norte 92 # 4310, La Malinche.",
     "zip_code": "07899",
@@ -1426,7 +1401,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 61,
+    "id": 57,
     "type":"exhibitor",
     "tradename": "Ati Robotics",
     "legal_company_name": "ATI Motors Robots, S. de R.L. de C.V.",
@@ -1451,7 +1426,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 62,
+    "id": 58,
     "type":"exhibitor",
     "tradename": "Logicbus",
     "legal_company_name": "Logicbus SA de CV",
@@ -1476,7 +1451,7 @@ export const directory2026 =
     "coexhibitors": "3OneData"
   },
   {
-    "id": 63,
+    "id": 59,
     "type":"exhibitor",
     "tradename": "INDEQ",
     "legal_company_name": "INDEQ GDL S de RL",
@@ -1502,7 +1477,7 @@ export const directory2026 =
   },
 
   {
-    "id": 64,
+    "id": 60,
     "type":"exhibitor",
     "tradename": "NorthWind Technical Services",
     "legal_company_name": "NorthWind Technical Services",
@@ -1528,7 +1503,7 @@ export const directory2026 =
   },
 
   {
-    "id": 65,
+    "id": 61,
     "type":"exhibitor",
     "tradename": "Dinkle",
     "legal_company_name": "Dinkle Corporation USA",
@@ -1554,7 +1529,7 @@ export const directory2026 =
   },
 
   {
-    "id": 66,
+    "id": 62,
     "type":"exhibitor",
     "tradename": "EUROCONTROLES",
     "legal_company_name": "EUROCONTROLES",
@@ -1580,7 +1555,7 @@ export const directory2026 =
   },
 
   {
-    "id": 67,
+    "id": 63,
     "type":"exhibitor",
     "tradename": "INDUSTRIAL COMPUTER",
     "legal_company_name": "JHC TECHNOLOGY",
@@ -1606,7 +1581,7 @@ export const directory2026 =
   },
   
   {
-    "id": 68,
+    "id": 64,
     "type":"exhibitor",
     "tradename": "MLEAN",
     "legal_company_name": "MOBILE LEAN SL",
@@ -1631,7 +1606,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-  "id": 69,
+  "id": 65,
   "type":"exhibitor",
   "tradename": "neoden mexico",
   "legal_company_name": "DEL TORNO INGENIERIA YA SERVICIO SA DE CV",
@@ -1656,7 +1631,7 @@ export const directory2026 =
   "coexhibitors": null
   },
   {
-  "id": 70,
+  "id": 66,
   "type":"exhibitor",
   "tradename": "ThinkSafe Ingeniería",
   "legal_company_name": "THINKSAFE, TECNOLOGIA APLICADA E INGENIERIA",
@@ -1681,7 +1656,7 @@ export const directory2026 =
   "coexhibitors": "Miembros de la marca de DJI Enterprise"
   },
   {
-  "id": 71,
+  "id": 67,
   "type":"exhibitor",
   "tradename": "mairu",
   "legal_company_name": "Digital Factory Consulting S.L.",
@@ -1706,7 +1681,7 @@ export const directory2026 =
   "coexhibitors": null
   },
   {
-  "id": 72,
+  "id": 68,
   "type":"exhibitor",
   "tradename": "DELTA",
   "legal_company_name": "DELTA ELECTRONICS INTERNATIONAL MEXICO",
@@ -1731,7 +1706,7 @@ export const directory2026 =
   "coexhibitors": "DONBER"
   },
   {
-  "id": 73,
+  "id": 69,
   "type":"exhibitor",
   "tradename": "Mitsubishi Electric Industrial Automation",
   "legal_company_name": "Mitsubishi Electric US, Inc.",
@@ -1756,7 +1731,7 @@ export const directory2026 =
   "coexhibitors": null
   },
   {
-  "id": 74,
+  "id": 70,
   "type":"exhibitor",
   "tradename": "Nippon Bearing",
   "legal_company_name": "NB CORPORATION",
@@ -1781,7 +1756,7 @@ export const directory2026 =
   "coexhibitors": null
   },
   {
-  "id": 75,
+  "id": 71,
   "type":"exhibitor",
   "tradename": "APIEJ INDUSTRIAL PARKS",
   "legal_company_name": "ASOCIACION DE PARQUES INDUSTRIALES DEL ESTADO DE JALISCO",
@@ -1806,7 +1781,7 @@ export const directory2026 =
   "coexhibitors": null
   },
   {
-    "id": 76,
+    "id": 72,
     "type":"exhibitor",
     "tradename": "Schneider Electric México",
     "legal_company_name": "Schneider Electric México SA de CV",
@@ -1831,7 +1806,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 77,
+    "id": 73,
     "type":"exhibitor",
     "tradename": "Autodesk",
     "legal_company_name": "Autodesk de México, S.A. de C.V.",
@@ -1856,7 +1831,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 78,
+    "id": 74,
     "type":"exhibitor",
     "tradename": "Simulación Flexible SFX",
     "legal_company_name": "Simulación Flexible SA de CV",
@@ -1881,7 +1856,7 @@ export const directory2026 =
     "coexhibitors": null
   },
     {
-    "id": 79,
+    "id": 75,
     "type":"exhibitor",
     "tradename": "PHOENIX CONTACT",
     "legal_company_name": "PHOENIX CONTACT",
@@ -1906,7 +1881,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 80,
+    "id": 76,
     "type":"exhibitor",
     "tradename": "NOJOXTEN",
     "legal_company_name": "INGENIERIA Y CONTROL INTEGRAL SA DE CV",
@@ -1931,7 +1906,7 @@ export const directory2026 =
     "coexhibitors": "B&R Automation, ABB Robotics, ABB Jokab, ABB Electric, ABB Control, Zimmer, AIGNEP, Rochu, Industry Labs, Scada IA, Benkelys, Santerno"
   },
   {
-    "id": 81,
+    "id": 77,
     "type":"coexhibitor",
     "tradename": "Beghelli",
     "legal_company_name": "Beghelli",
@@ -1956,7 +1931,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 82,
+    "id": 78,
     "type":"coexhibitor",
     "tradename": "Fenix",
     "legal_company_name": "Fenix",
@@ -1981,7 +1956,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 83,
+    "id": 79,
     "type":"coexhibitor",
     "tradename": "Top Cable",
     "legal_company_name": "Top Cable",
@@ -2006,7 +1981,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 84,
+    "id": 80,
     "type":"coexhibitor",
     "tradename": "Unzerk",
     "legal_company_name": "Unzerk",
@@ -2031,7 +2006,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 85,
+    "id": 81,
     "type":"coexhibitor",
     "tradename": "Pemsa",
     "legal_company_name": "Pemsa",
@@ -2056,7 +2031,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 86,
+    "id": 82,
     "type":"coexhibitor",
     "tradename": "TBD",
     "legal_company_name": "TBD",
@@ -2081,7 +2056,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 87,
+    "id": 83,
     "type":"coexhibitor",
     "tradename": "3OneData",
     "legal_company_name": "3OneData",
@@ -2106,7 +2081,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 88,
+    "id": 84,
     "type":"coexhibitor",
     "tradename": "DJI Enterprise ",
     "legal_company_name": "DJI Enterprise ",
@@ -2131,7 +2106,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 89,
+    "id": 85,
     "type":"coexhibitor",
     "tradename": "DONBER",
     "legal_company_name": "DONBER",
@@ -2156,7 +2131,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 90,
+    "id": 86,
     "type":"coexhibitor",
     "tradename": "B&R Automation",
     "legal_company_name": "B&R Automation",
@@ -2181,7 +2156,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 91,
+    "id": 87,
     "type":"coexhibitor",
     "tradename": "ABB Robotics",
     "legal_company_name": "ABB Robotics",
@@ -2207,7 +2182,7 @@ export const directory2026 =
   },
 
   {
-    "id": 92,
+    "id": 88,
     "type":"coexhibitor",
     "tradename": "Zimmer",
     "legal_company_name": "Zimmer",
@@ -2232,7 +2207,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 93,
+    "id": 89,
     "type":"coexhibitor",
     "tradename": "AIGNEP",
     "legal_company_name": "AIGNEP",
@@ -2257,7 +2232,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 94,
+    "id": 90,
     "type":"coexhibitor",
     "tradename": "Rochu",
     "legal_company_name": "Rochu",
@@ -2282,7 +2257,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 95,
+    "id": 91,
     "type":"coexhibitor",
     "tradename": "Industry Labs",
     "legal_company_name": "Industry Labs",
@@ -2307,7 +2282,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 96,
+    "id": 92,
     "type":"coexhibitor",
     "tradename": "Scada IA",
     "legal_company_name": "Scada IA",
@@ -2332,7 +2307,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 97,
+    "id": 93,
     "type":"coexhibitor",
     "tradename": "Benkelys",
     "legal_company_name": "Benkelys",
@@ -2357,7 +2332,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 98,
+    "id": 94,
     "type":"coexhibitor",
     "tradename": "Santerno",
     "legal_company_name": "Santerno",
@@ -2382,7 +2357,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 99,
+    "id": 95,
     "type":"exhibitor",
     "tradename": "ServiBot",
     "legal_company_name": "Pegasus Control",
@@ -2407,7 +2382,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 100,
+    "id": 96,
     "type":"exhibitor",
     "tradename": "Honpe Prototyping México",
     "legal_company_name": "HONPE PROTOTYPING MEXICO",
@@ -2432,7 +2407,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 101,
+    "id": 97,
     "type":"exhibitor",
     "tradename": "Palo Alto Networks",
     "legal_company_name": "PALO ALTO NETWORKS (MEXICO)",
@@ -2442,7 +2417,7 @@ export const directory2026 =
     "linkedin": "https://www.linkedin.com/company/palo-alto-networks/?originalSubdomain=es",
     "facebook": "",
     "instagram": "",
-    "stand_number": "D63",
+    "stand_number": "E22",
     "webpage": "https://www.paloaltonetworks.com.mx/",
     "address": "BOSQUE DE CIRUELOS, MIGUEL HIDALGO, CIUDAD DE MEXICO",
     "zip_code": "11700",
@@ -2457,7 +2432,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 102,
+    "id": 98,
     "type":"exhibitor",
     "tradename": "MOBILEWARE DE MEXICO",
     "legal_company_name": "MOBILEWARE DE MEXICO",
@@ -2482,7 +2457,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 103,
+    "id": 99,
     "type":"exhibitor",
     "tradename": "Tempsens",
     "legal_company_name": "Tempsens México S.A. de C.V.",
@@ -2507,7 +2482,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 104,
+    "id": 100,
     "type":"exhibitor",
     "tradename": "MonitorApp®",
     "legal_company_name": "LEAN APP",
