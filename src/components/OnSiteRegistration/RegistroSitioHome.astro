@@ -1,0 +1,56 @@
+---
+import { useTranslations, getTranslation } from "../../utils/translations";
+import { RegisterForm } from "./RegisterForm.jsx";
+// ✨ Una sola línea para cargar traducciones!
+const { locale, translations } = await useTranslations(Astro.props, Astro);
+// 🎯 Helper para traducciones más elegante
+const tr = (key: string, fallback: string = "") =>
+  getTranslation(translations, key, fallback);
+
+// Toma las traducciones del bloque "register"; si no existen, usa un objeto vacio para evitar errores.
+const registerTranslations = translations?.register ?? {};
+const currentLanguage = locale;
+---
+
+<section>
+  <header
+    class="text-center bg-[url(/img/registerPage/hero_register_bg.png)] w-full h-auto bg-cover bg-center font-semibold text-white p-4"
+  >
+    <div
+      class="flex flex-col sm:flex-row text-2xl justify-between items-center gap-4 mx-auto max-w-7xl"
+    >
+      <div class="sm:text-start sm:p-8 ">
+        <h2 class="text-2xl sm:text-6xl font-extrabold">
+          {locale === "es" ? "REGISTRO EN SITIO" : "ON-SITE REGISTRATION"}
+        </h2>
+        <p class="mt-2 text-base sm:text-xl italic">
+          {
+            locale === "es"
+              ? "Por favor completa el formulario para registrarte en el evento."
+              : "Please complete the form to register for the event."
+          }
+        </p>
+      </div>
+      <div class="flex sm:flex-col gap-6 justify-center sm:items-start items-center">
+        <img
+          src="/img/smarttecexpo_logo.svg"
+          alt="smart technology expo"
+          loading="lazy"
+          class="w-[120px] sm:w-[200px]"
+        />
+        <h2
+          class="text-sm sm:text-2xl text-start sm:text-start font-montserrat-extra-bold-italic"
+        >
+          {locale === "es" ? "FORMA PARTE DE LA COMUNIDAD" : "BE PART OF THE COMMUNITY"}
+        </h2>
+      </div>
+    </div>
+  </header>
+  <div class="container mx-auto p-4 sm:px-20">
+    <RegisterForm
+      translates={registerTranslations}
+      currentLanguage={currentLanguage}
+      client:only="react"
+    />
+  </div>
+</section>

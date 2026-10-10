@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-const useRegisterForm = create( 
+const useOnSiteRegisterForm = create( 
     persist(
         (set) => ({
             step: 0, 
@@ -45,6 +45,8 @@ const useRegisterForm = create(
             items:[],
             total: 0,
             code_cortesia: "",
+
+            printableLabel: null,
             
             setIdUser: (idUser) => set({ idUser }),
             setUuid: (uuid) => set({ uuid }),
@@ -85,6 +87,8 @@ const useRegisterForm = create(
             setInvoiceDownToLoad: (invoiceDownToLoad) => set({ invoiceDownToLoad }),
             setInvoiceFieldTrip: (invoiceFieldTrip) => set({ invoiceFieldTrip }),
             setCode_cortesia: (code_cortesia) => set({code_cortesia}),
+
+            setPrintableLabel: (printableLabel) => set({ printableLabel }),
 
             incrementStep: () => set((state) => ({ 
                 step: state.step + 1 
@@ -166,11 +170,13 @@ const useRegisterForm = create(
                 levelInfluence: "",
                 wannaBeExhibitor: "",
                 alreadyVisited: "",                
-                code_cortesia: ""        
+                code_cortesia: "",
+                
+                printableLabel: null,
             })
         }), 
-        { name: "register-form-smarttechnologyexpo-v1" }
+        { name: "onsite-register-smarttechnologyexpo" }
     )
 )
 
-export {useRegisterForm};
+export { useOnSiteRegisterForm };

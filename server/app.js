@@ -108,15 +108,19 @@ app.post("/expositor-landing-email", async (req, res) => {
   }
 });
 
-// Registro gratuito para visitantes a Smart Technology Expo 2026
+// Registro gratuito para Smart Technology Expo 2026
 app.post("/free-register-ste", async (req, res) => {
   const { body } = req;
 
   try {
+    
+    // revisar el tipo de registro y asignar "VISITANTE" si no está definido
+    const typeRegister = String(body.typeRegister || "").trim() || "VISITANTE";
+    
     const data = {
       uuid: uuidv4(),
       ...body,
-      typeRegister: "VISITANTE",
+      typeRegister,
     };
     const userResponse = await RegisterModel.create_user_ste({ ...data });
 
@@ -126,12 +130,49 @@ app.post("/free-register-ste", async (req, res) => {
       });
     }
 
-    const pdfAtch = await generatePDF_freePass_ecomondo(body, data.uuid);
+    const pdfAtch = await generatePDF_freePass_ecomondo(data, data.uuid);
     const mailResponse = await sendEmailEcomondo(data, pdfAtch, data.uuid);
 
     return res.send({
       ...mailResponse,
+      uuid: data.uuid,
       invoice: `${data.uuid}.pdf`,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).send({
+      status: false,
+      message:
+        "hubo un error al procesar tu registro, por favor intenta mas tarde...",
+    });
+  }
+});
+
+app.post("/free-register-ste-onsite", async (req, res) => {
+  const { body } = req;
+
+  try {
+    const typeRegister = String(body.typeRegister || "").trim() || "VISITANTE";
+
+    const data = {
+      uuid: uuidv4(),
+      ...body,
+      typeRegister,
+      registro_en_sitio: 1,
+      imprimir_gafete: 1,
+    };
+    const userResponse = await RegisterModel.create_user_ste_test({ ...data });
+
+    if (!userResponse.status) {
+      return res.status(userResponse.statusCode || 500).send({
+        ...userResponse,
+      });
+    }
+
+    return res.send({
+      status: true,
+      uuid: data.uuid,
+      message: "Tu registro fue exitoso...",
     });
   } catch (err) {
     console.log(err);

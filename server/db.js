@@ -117,6 +117,7 @@ export class RegisterModel {
     }
   }
 
+  // Crea un nuevo usuario en la tabla visitors_ste_2026
   static async create_user_ste({
     uuid,
     name,
@@ -149,18 +150,23 @@ export class RegisterModel {
     levelInfluence,
     wannaBeExhibitor,
     alreadyVisited,
+    registro_en_sitio = 0,
+    imprimir_gafete = 0,
   }) {
     const connection = await mysql.createConnection(config);
     try {
+      const normalizedTypeRegister =
+        String(typeRegister || "").trim() || "VISITANTE";
+
       const [result] = await connection.query(
-        "INSERT INTO visitors_ste_2026 (uuid, name, paternSurname, email, phone, typeRegister, genre, nacionality, code_invitation, company, rfcNif, industry, position, area, country, municipality, state, city, address, colonia, postalCode, webPage, phoneCompany, eventKnowledge, productInterest, levelInfluence, wannaBeExhibitor, alreadyVisited ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+        "INSERT INTO visitors_ste_2026 (uuid, name, paternSurname, email, phone, typeRegister, genre, nacionality, code_invitation, company, rfcNif, industry, position, area, country, municipality, state, city, address, colonia, postalCode, webPage, phoneCompany, eventKnowledge, productInterest, levelInfluence, wannaBeExhibitor, alreadyVisited, registro_en_sitio, imprimir_gafete ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
         [
           uuid,
           name,
           paternSurname,
           email,
           phone,
-          typeRegister,
+          normalizedTypeRegister,
           genre,
           nacionality,
           code_invitation,
@@ -185,6 +191,100 @@ export class RegisterModel {
           levelInfluence,
           wannaBeExhibitor,
           alreadyVisited,
+          registro_en_sitio,
+          imprimir_gafete,
+        ],
+      );
+
+      return {
+        status: true,
+        insertId: result.insertId,
+        ...result,
+      };
+    } catch (error) {
+      console.log(error);
+      return hableError(error);
+    } finally {
+      await connection.end();
+    }
+  }
+
+  // Crea un nuevo usuario en la tabla visitors_ste_2026_test
+  static async create_user_ste_test({
+    uuid,
+    name,
+    paternSurname,
+    maternSurname,
+    email,
+    phone,
+    typeRegister,
+    genre,
+    nacionality,
+    code_invitation,
+
+    company,
+    rfcNif,
+    industry,
+    position,
+    area,
+    country,
+    municipality,
+    state,
+    city,
+    address,
+    colonia,
+    postalCode,
+    webPage,
+    phoneCompany,
+
+    eventKnowledge,
+    productInterest,
+    levelInfluence,
+    wannaBeExhibitor,
+    alreadyVisited,
+    registro_en_sitio = 0,
+    imprimir_gafete = 0,
+  }) {
+    const connection = await mysql.createConnection(config);
+    try {
+      const normalizedTypeRegister =
+        String(typeRegister || "").trim() || "VISITANTE";
+
+      const [result] = await connection.query(
+        "INSERT INTO visitors_ste_2026_test (uuid, name, paternSurname, email, phone, typeRegister, genre, nacionality, code_invitation, company, rfcNif, industry, position, area, country, municipality, state, city, address, colonia, postalCode, webPage, phoneCompany, eventKnowledge, productInterest, levelInfluence, wannaBeExhibitor, alreadyVisited, registro_en_sitio, imprimir_gafete ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+        [
+          uuid,
+          name,
+          paternSurname,
+          email,
+          phone,
+          normalizedTypeRegister,
+          genre,
+          nacionality,
+          code_invitation,
+
+          company,
+          rfcNif,
+          industry,
+          position,
+          area,
+          country,
+          municipality,
+          state,
+          city,
+          address,
+          colonia,
+          postalCode,
+          webPage,
+          phoneCompany,
+
+          eventKnowledge,
+          productInterest,
+          levelInfluence,
+          wannaBeExhibitor,
+          alreadyVisited,
+          registro_en_sitio,
+          imprimir_gafete,
         ],
       );
 
