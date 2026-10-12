@@ -23,6 +23,7 @@ const copy = {
     of: "de",
     exhibitors: "expositores",
     exhibitor: "Expositor",
+    media: "Medio",
     stand: "Stand",
     noStand: "Stand por confirmar",
     coexhibitor: "Coexpositor",
@@ -37,6 +38,7 @@ const copy = {
     of: "of",
     exhibitors: "exhibitors",
     exhibitor: "Exhibitor",
+    media: "Media",
     stand: "Booth",
     noStand: "Booth pending",
     coexhibitor: "Co-exhibitor",
@@ -61,18 +63,47 @@ const TextBlock = ({ label, children }) => {
   );
 };
 
-const isExhibitorType = (type) =>
-  String(type || "").trim().toLowerCase() === "exhibitor";
+const normalizeType = (type) => String(type || "").trim().toLowerCase();
 
-const getTypeLabel = (type, labels) =>
-  isExhibitorType(type) ? labels.exhibitor : labels.coexhibitor;
+const getTypePriority = (type) => {
+  const normalizedType = normalizeType(type);
+
+  switch (normalizedType) {
+    case "exhibitor":
+      return 0;
+    case "coexhibitor":
+      return 1;
+    case "medio":
+      return 2;
+    default:
+      return 3;
+  }
+};
+
+const getTypeLabel = (type, labels) => {
+  const normalizedType = normalizeType(type);
+
+  switch (normalizedType) {
+    case "exhibitor":
+      return labels.exhibitor;
+    case "medio":
+      return labels.media;
+    default:
+      return labels.coexhibitor;
+  }
+};
 
 const sortByExhibitorType = (items) =>
   [...items].sort((a, b) => {
-    const aPriority = isExhibitorType(a.type) ? 0 : 1;
-    const bPriority = isExhibitorType(b.type) ? 0 : 1;
+    const aPriority = getTypePriority(a.type);
+    const bPriority = getTypePriority(b.type);
 
-    return aPriority - bPriority;
+    if (aPriority !== bPriority) return aPriority - bPriority;
+
+    const aName = a.tradename || a.legal_company_name || "";
+    const bName = b.tradename || b.legal_company_name || "";
+
+    return aName.localeCompare(bName, "es", { sensitivity: "base" });
   });
 
 export function ExhibitorSummary({ exhibitors, language }) {

@@ -2736,7 +2736,7 @@ export const directory2026 =
     "type":"medio",
     "tradename": "Dime Noticias",
     "legal_company_name": "Dime Noticias",
-    "logo": "/img/exhibitors2026/dime.webp",
+    "logo": "/img/logos/media/dime.webp",
     "description_es": "DIME Noticias es un medio de comunicación nacional dedicado a informar con rigor sobre las noticias de México hoy, con cobertura nacional, análisis y contenidos de actualidad. Somos un medio independiente que nació en Quintana Roo en noviembre de 2021, con la misión de ofrecer información veraz, oportuna y crítica, siempre al servicio de la ciudadanía. Desde nuestros inicios, nos consolidamos como un referente local gracias a nuestra cercanía con la comunidad y a un periodismo directo, accesible y enfocado en los hechos.",
     "description_en": "DIME Noticias is a national communication medium dedicated to informing with rigor about today's news in Mexico, with national coverage, analysis, and current affairs content. We are an independent media outlet that was founded in Quintana Roo in November 2021, with the mission of providing accurate, timely, and critical information, always in service of the citizenship. Since our inception, we have consolidated as a local reference thanks to our closeness with the community and a direct, accessible journalism focused on the facts.",
     "linkedin": "https://www.linkedin.com/company/dimenoticias",
