@@ -131,6 +131,12 @@ const sponsorsBronze = [
     width: 300,
   },
   {
+    src: "/img/exhibitors2026/paloalto.webp",
+    alt: "Palo Alto Networks",
+    href: "https://www.paloaltonetworks.com.mx/",
+    width: 300,
+  },
+  {
     src: "/img/logos/sponsors/robustel.webp",
     alt: "Robustel",
     href: "https://robustel.com",
@@ -141,7 +147,7 @@ const sponsorsBronze = [
     alt: "SmartSol",
     href: "https://smartsol.mx/",
     width: 300,
-  },
+  }
 ];
 
 const skillsSponsors = [
