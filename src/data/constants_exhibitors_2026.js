@@ -89,7 +89,7 @@ const exhibitors = [
   { src: "/img/exhibitors2026/tennant.webp", alt: "Tennant", width: 150 },
   { src: "/img/exhibitors2026/thinksafe.webp", alt: "ThinkSafe Ingeniería", width: 150 },
   { src: "/img/exhibitors2026/tierra_tech.webp", alt: "TIERRA TECH", width: 150 },
-  { src: "/img/exhibitors2026/tractian.webp", alt: "TRACTIAN", width: 150 },
+  //{ src: "/img/exhibitors2026/tractian.webp", alt: "TRACTIAN", width: 150 },
   { src: "/img/exhibitors2026/tuxpas.webp", alt: "Tuxpas", width: 150 },
   { src: "/img/exhibitors2026/uber_empresas.webp", alt: "Uber para Empresas", width: 150 },
   { src: "/img/exhibitors2026/wago.webp", alt: "WAGO", width: 150 },

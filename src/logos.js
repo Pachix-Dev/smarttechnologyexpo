@@ -46,35 +46,37 @@ const mediaPlanito = [
   {
     src: "/img/logos/media/cluster_industrial.webp",
     alt: "Cluster Industrial",
-    href: "https://new.siemens.com/mx/es.html",
+    href: "https://clusterindustrial.com.mx/",
     width: 300,
   },
   {
     src: "/img/media/global-energy-v2.webp",
     alt: "Global Industries",
+    href: "https://globalindustries.mx/",
     width: 300,
   },
   {
     src: "/img/media/global-industries_v2.webp",
     alt: "Global Energy",
+    href:"https://globalenergy.mx/",
     width: 300,
   },
   {
     src: "/img/logos/media/mexico_industry.webp",
     alt: "Mexico Industry",
-    href: "https://new.siemens.com/mx/es.html",
+    href: "https://mexicoindustry.com/",
     width: 300,
   },
   {
     src: "/img/logos/media/metalmecanica.webp",
     alt: "Metalmecánica",
-    href: "https://new.siemens.com/mx/es.html",
+    href: "https://www.metalmecanica.com/",
     width: 300,
   },
   {
     src: "/img/logos/media/manufactura_latam.webp",
     alt: "Manufactura Latam",
-    href: "https://new.siemens.com/mx/es.html",
+    href: "https://www.manufactura-latam.com/",
     width: 300,
   },
 ];
@@ -83,31 +85,31 @@ const mediaGold = [
   {
     src: "/img/logos/media/dime.webp",
     alt: "Dime Noticias",
-    href: "https://www.otromedio.com",
+    href: "https://dimenoticias.mx/",
     width: 300,
   },
   {
     src: "/img/logos/media/energy.webp",
     alt: "Energy & Commerce",
-    href: "https://www.otromedio.com",
+    href: "https://energyandcommerce.com.mx/",
     width: 300,
   },
   {
     src: "/img/logos/media/industry_energy_magazine.webp",
     alt: "Industry Energy Magazine",
-    href: "https://www.otromedio.com",
+    href: "https://energymagazine.mx/",
     width: 300,
   },
   {
     src: "/img/logos/media/industry.webp",
     alt: "Industry News MX",
-    href: "https://www.otromedio.com",
+    href: "",
     width: 300,
   },
   {
     src: "/img/logos/media/revista_consultoria.webp",
     alt: "Revista Consultoria",
-    href: "https://new.siemens.com/mx/es.html",
+    href: "https://revistaconsultoria.com.mx/",
     width: 300,
   },
 ];
@@ -245,7 +247,7 @@ const bannerMedios = [
   {
     src: "/img/logos/sponsors/banners/global_energy.webp",
     alt: "Global Energy",
-    href: "",
+    href: "https://globalenergy.mx/",
     width: 540,
   },
   {
@@ -257,13 +259,13 @@ const bannerMedios = [
   {
     src: "/img/logos/sponsors/banners/cluster_industrial.webp",
     alt: "Cluster Industrial",
-    href: "",
+    href: "https://clusterindustrial.com.mx/",
     width: 540,
   },
   {
     src: "/img/logos/sponsors/banners/dime.webp",
     alt: "Dime Noticias",
-    href: "",
+    href: "https://dimenoticias.mx/",
     width: 540,
   },
 ];

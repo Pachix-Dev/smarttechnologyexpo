@@ -191,11 +191,17 @@ import {
         {
           mediaPlanito.map((medio, index) => (
             <div class="flex justify-center items-center">
-              <img
-                src={medio.src}
-                alt={medio.alt}
-                class="w-auto object-contain"
-              />
+              <a
+                href={medio.href}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src={medio.src}
+                  alt={medio.alt}
+                  class="w-auto object-contain"
+                />
+              </a>
             </div>
           ))
         }
@@ -217,11 +223,17 @@ import {
         {
           mediaGold.map((medio, index) => (
             <div class="flex justify-center items-center">
-              <img
-                src={medio.src}
-                alt={medio.alt}
-                class="w-auto object-contain"
-              />
+              <a
+                href={medio.href}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src={medio.src}
+                  alt={medio.alt}
+                  class="w-auto object-contain"
+                />
+              </a>
             </div>
           ))
         }
