@@ -183,7 +183,13 @@ const sponsorsSilver = [
     alt: "Another Sponsor",
     href: "",
     width: 230,
-  }
+  },
+  {
+    src: "/img/logos/sponsors/sap_logo.webp",
+    alt: "SAP",
+    href: "https://www.sap.com/latinamerica/index.html",
+    width: 170,
+  },
 ];
 
 const sponsorsPlatinum = [
