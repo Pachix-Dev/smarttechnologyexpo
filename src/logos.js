@@ -212,21 +212,9 @@ const sponsorsGold = [
 
 const bannerSponsors = [
   {
-    src: "/img/logos/sponsors/banners/robustel_es.webp",
-    alt: "Robustel",
-    href: "https://robustel.com/",
-    width: 540,
-  },
-  {
-    src: "/img/logos/sponsors/banners/smartechnologyexpo.webp",
-    alt: "Smart Technology Expo",
-    href: "https://smartsol.mx/",
-    width: 540,
-  },
-  {
-    src: "/img/logos/sponsors/banners/telcel.webp",
-    alt: "Telcel Empresas",
-    href: "https://www.telcel.com/empresas",
+    src: "/img/logos/sponsors/banners/mitsubishi_banner_v1.webp",
+    alt: "Mitsubishi Electric",
+    href: "https://mx.mitsubishielectric.com/es/",
     width: 540,
   },
   {
@@ -236,10 +224,34 @@ const bannerSponsors = [
     width: 540,
   },
   {
-    src: "/img/logos/sponsors/banners/paloalto.webp",
+    src: "/img/logos/sponsors/banners/telcel.webp",
+    alt: "Telcel Empresas",
+    href: "https://www.telcel.com/empresas",
+    width: 540,
+  },
+  {
+    src: "/img/logos/sponsors/banners/robustel_es.webp",
+    alt: "Robustel",
+    href: "https://robustel.com/",
+    width: 540,
+  },
+  {
+    src: "/img/logos/sponsors/banners/smartSol.webp",
+    alt: "SmartSol",
+    href: "https://smartsol.mx/",
+    width: 540,
+  },
+   {
+    src: "/img/logos/sponsors/banners/robustel_es.webp",
+    alt: "Robustel",
+    href: "https://robustel.com/",
+    width: 540,
+  },
+  {
+    src: "/img/logos/sponsors/banners/paloalto_banner_v2.webp",
     alt: "Palo Alto",
     href: "https://www.paloaltonetworks.com.mx/",
-    width: 540,
+    width: 560,
   }
 ];
 
