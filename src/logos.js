@@ -233,6 +233,12 @@ const bannerSponsors = [
     href: "",
     width: 540,
   },
+  {
+    src: "/img/logos/sponsors/banners/paloalto.webp",
+    alt: "Palo Alto",
+    href: "https://www.paloaltonetworks.com.mx/",
+    width: 540,
+  }
 ];
 
 const bannerMedios = [
