@@ -241,12 +241,6 @@ const bannerSponsors = [
     href: "https://smartsol.mx/",
     width: 540,
   },
-   {
-    src: "/img/logos/sponsors/banners/robustel_es.webp",
-    alt: "Robustel",
-    href: "https://robustel.com/",
-    width: 540,
-  },
   {
     src: "/img/logos/sponsors/banners/paloalto_banner_v2.webp",
     alt: "Palo Alto",
