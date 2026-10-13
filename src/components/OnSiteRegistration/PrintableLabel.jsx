@@ -1,14 +1,23 @@
 import { useEffect } from "react";
 import QRCode from "react-qr-code";
 import { useOnSiteRegisterForm } from "../../store/onsite-register-form";
+import { useStaffRegisterForm } from "../../store/staff-register-form";
+
 import "./PrintableLabel.css";
 
-export function PrintableLabel() {
-  const { printableLabel } = useOnSiteRegisterForm();
+export function PrintableLabel({ source = "onsite" }) {
+
+  const onsiteLabel = useOnSiteRegisterForm((state) => state.printableLabel);
+  const staffLabel = useStaffRegisterForm((state) => state.printableLabel);
+
+  const printableLabel = source === "staff" ? staffLabel : onsiteLabel;
+
+  const returnPath =
+    source === "staff" ? "/registro-operativo" : "/registro-en-sitio";
 
   useEffect(() => {
     if (!printableLabel) {
-      window.location.replace("/registro-en-sitio");
+      window.location.replace(returnPath);
       return;
     }
 
@@ -17,7 +26,7 @@ export function PrintableLabel() {
     }, 500);
 
     return () => clearTimeout(timer);
-  }, [printableLabel]);
+  }, [printableLabel, returnPath] );
 
   if (!printableLabel) return null;
 
@@ -55,7 +64,7 @@ export function PrintableLabel() {
           Imprimir etiqueta
         </button>
 
-        <a href="/registro-en-sitio">Nuevo registro</a>
+       <a href={returnPath}>Nuevo registro</a>
       </div>
     </main>
   );

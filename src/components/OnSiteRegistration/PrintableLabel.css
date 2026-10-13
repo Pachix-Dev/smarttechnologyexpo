@@ -13,7 +13,7 @@
   height: 51mm;
   background: #ffffff;
   border: 0.35mm solid #d7dbe0;
-  padding: 3.5mm;
+  padding: 3mm;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -57,23 +57,9 @@
 }
 
 .label-content h1 {
-  margin: 0 0 5px;
-  font-size: 20px;
-  line-height: 1.08;
-  text-align: center;
-  text-transform: uppercase;
-  font-weight: 800;
-  overflow: hidden;
-  overflow-wrap: anywhere;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-}
-
-.label-content .text-rol {
-  margin: 0 0 4px;
-  font-size: 15px;
-  line-height: 1.1;
+  margin: 0 0 2px;
+  font-size: 18px;
+  line-height: 1;
   text-align: center;
   text-transform: uppercase;
   font-style: italic;
@@ -85,9 +71,23 @@
   -webkit-line-clamp: 2;
 }
 
+.label-content .text-rol {
+  margin: 0 0 2px;
+  font-size: 20px;
+  line-height: 1.1;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 800;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
 .label-content p {
-  margin: 0;
-  font-size: 10px;
+  margin: 0 0 2px;
+  font-size: 14px;
   line-height: 1.1;
   text-align: center;
   text-transform: uppercase;

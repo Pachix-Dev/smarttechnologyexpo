@@ -1,0 +1,11 @@
+---
+import { PrintableLabel } from "../../components/OnSiteRegistration/PrintableLabel";
+import LayoutRegistroSitio from "../../layouts/LayoutRegistroSitio.astro";
+---
+
+<LayoutRegistroSitio
+  title="ETIQUETA REGISTRO OPERATIVO"
+  description="Etiqueta de registro operativo"
+>
+  <PrintableLabel source="staff" client:only="react" />
+</LayoutRegistroSitio>
