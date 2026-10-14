@@ -2832,7 +2832,7 @@ export const directory2026 =
     "coexhibitors": null
   },
   {
-    "id": 113,
+    "id": 114,
     "type":"coexhibitor",
     "tradename": "AWL",
     "legal_company_name": "AWL",
@@ -2854,6 +2854,31 @@ export const directory2026 =
     "contact_phone": "",
     "directory_consent": "",
     "has_coexhibitors": "No",
+    "coexhibitors": null
+  },
+  {
+    "id": 115,
+    "type":"exhibitor",
+    "tradename": "TAISA",
+    "legal_company_name": "Tecnologias de Automatizacion Industrial",
+    "logo": "/img/exhibitors2026/tasa.webp",
+    "description_es": "Somos una empresa orgullosamente mexicana, con más de 13 años mejorando los sistemas y productividad de las empresas por medio de la automatización de sus procesos, en TAISA (Tecnologías de Automatización Industrial S.A. de C.V. ) nos dedicamos a mejorar la rentabilidad de las empresas por medio de la automatización industrial, ayudándoles con el control y monitoreo de sus procesos. Contamos con amplia experiencia en el desarrollo de sistemas y aplicaciones, además de ser una empresa integradora certificada por General Electric como Solution Provider Customer, que respalda nuestras habilidades en la aplicación de tecnología conforme a las evaluaciones técnicas, operacionales y de calidad que GE exige. En TAISA ofrecemos soluciones de Punta para incrementar la productividad y ganancias en los procesos de nuestros clientes, desde mejorar la eficiencia, ahorro en refacciones, hasta seguimiento y trazabilidad de los activos.",
+    "description_en": "We are a proudly Mexican company with over 13 years of experience enhancing corporate systems and productivity through process automation. At TAISA (Tecnologías de Automatización Industrial S.A. de C.V.), we are dedicated to boosting business profitability via industrial automation, assisting clients with the control and monitoring of their processes. We possess extensive experience in developing systems and applications. Furthermore, as a systems integrator certified by General Electric as a ""Solution Provider Customer,"" our technical expertise in technology application is backed by GE’s rigorous technical, operational, and quality standards. At TAISA, we offer cutting-edge solutions designed to increase productivity and profits across our clients' processes—delivering benefits ranging from improved efficiency and spare parts savings to asset tracking and traceability.",
+    "linkedin": "https://www.linkedin.com/in/taisa-tecnologías-de-automátizacion-20829365?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+    "facebook": "https://www.facebook.com/share/1A5SFTtpwm/",
+    "instagram": "https://instagram.com/taisacontacto?rpxt=YXdkZHhzMHB2d2ps",
+    "stand_number": "D05",
+    "webpage": "https://taisa-mx.com/",
+    "address": "CAÑADA DE LA VIRGEN 106 COL. CAMINO A ESTRADA ",
+    "zip_code": "38110",
+    "city": "CELAYA",
+    "state": "GUANAJUATO",
+    "country": "MEXICO",
+    "contact_name": "Rafael Rios Gallegos",
+    "contact_email": "contacto@taisa-mx.com",
+    "contact_phone": "4424250990",
+    "directory_consent": "si",
+    "has_coexhibitors": "no",
     "coexhibitors": null
   },
   // {
