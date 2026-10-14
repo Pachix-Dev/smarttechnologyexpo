@@ -83,7 +83,11 @@ const exhibitors = [
   { src: "/img/exhibitors2026/shift_3d.webp", alt: "SHIFT 3D", width: 150 },
   { src: "/img/exhibitors2026/signifikativo.webp", alt: "Signifikativo", width: 150 },
   { src: "/img/exhibitors2026/smartsol_technologies.webp", alt: "SMarTsol Technologies", width: 150 },
+<<<<<<< HEAD
   { src: "/img/exhibitors2026/tasa.webp", alt: "TASA", width: 150 },
+=======
+  { src: "/img/exhibitors2026/tasa.webp", alt: "tasa", width: 150 },
+>>>>>>> practicante
   { src: "/img/exhibitors2026/telcel_empresas.webp", alt: "TELCEL EMPRESAS", width: 150 },
   { src: "/img/exhibitors2026/tempsens.webp", alt: "TempSens", width: 150 },
   { src: "/img/exhibitors2026/tennant.webp", alt: "Tennant", width: 150 },

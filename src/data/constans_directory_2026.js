@@ -2781,6 +2781,7 @@ export const directory2026 =
     "has_coexhibitors": "no",
     "coexhibitors": null
   },
+<<<<<<< HEAD
   {
     "id": 112,
     "type":"exhibitor",
@@ -2856,6 +2857,8 @@ export const directory2026 =
     "has_coexhibitors": "No",
     "coexhibitors": null
   },
+=======
+>>>>>>> practicante
   // {
   //   "id": 0,
   //   "type":"coexhibitor",
