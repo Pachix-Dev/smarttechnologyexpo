@@ -8,7 +8,6 @@ const tr = (key: string, fallback: string = "") =>
 
 const base = locale === "es" ? "" : "/en";
 ---
-
 <section class="bg-[#0b0b0b] h-auto text-white p-4 sm:p-16">
   <div class="max-w-6xl mx-auto flex flex-col items-center gap-y-4">
     <h3
@@ -17,60 +16,76 @@ const base = locale === "es" ? "" : "/en";
       {tr("nocheIndustriales.sub_title_05")}
     </h3>
     <div class="flex flex-col justify-center items-center gap-8">
-      <!-- Beckoff Sponsor -->
+      <!-- PATROCINADORES DIAMANTE -->
       <img
         src="/img/nocheIndustriales/beckoff.webp"
         alt="Beckoff"
-        class="w-[120px] sm:w-[250px]"
+        class="w-[120px] sm:w-[220px]"
       />
-      <!-- Mitsubishi Sponsor -->
+      <!-- PATROCINADORES PLATINO -->
       <img
         src="/img/nocheIndustriales/mitsubishi.webp"
         alt="Mitsubishi"
-        class="w-[120px] sm:w-[250px]"
+        class="w-[120px] sm:w-[180px]"
       />
-      <!-- BR and Schneider Sponsors -->
-      <div class="flex flex-row gap-4 justify-center items-center">
+      <!-- PATROCINADORES ORO -->
+      <div class="flex flex-row gap-4 sm:gap-10 justify-center items-center">
         <img
-          src="/img/nocheIndustriales/br.webp"
-          alt="BR"
-          class="w-[120px] sm:w-[250px]"
+          src="/img/nocheIndustriales/b&r.webp"
+          alt="B&R"
+          class="w-[50px] sm:w-[100px]"
+        />
+        <img
+          src="/img/nocheIndustriales/nojoxten.webp"
+          alt="Nojoxten"
+          class="w-[70px] sm:w-[200px]"
         />
         <img
           src="/img/nocheIndustriales/schneider.webp"
           alt="Schneider"
-          class="w-[120px] sm:w-[250px]"
+          class="w-[70px] sm:w-[190px]"
         />
       </div>
-      <!-- Telcel Empresas Sponsor -->
-      <img
-        src="/img/nocheIndustriales/telcel_empresas.webp"
-        alt="Telcel Empresas"
-        class="w-[120px] sm:w-[180px]"
-      />
-      <!-- Euchner, Robustel, Smartsol, and Paloalto Sponsors -->
-      <div
-        class="flex flex-wrap sm:flex-row gap-10 justify-center items-center"
+      <!-- PATROCINADORES PLATA -->
+      <div class="flex flex-wrap sm:flex-row gap-4 sm:gap-10 justify-center items-center">
+        <img
+          src="/img/nocheIndustriales/sap.webp"
+          alt="SAP"
+          class="w-[70px] sm:w-[120px]"
+        />
+        <img
+          src="/img/nocheIndustriales/telcel_empresas.webp"
+          alt="Telcel Empresas"
+          class="w-[70px] sm:w-[130px]"
+        />
+        <img
+          src="/img/nocheIndustriales/ur_robotics.webp"
+          alt="UR Robotics"
+          class="w-[70px] sm:w-[140px]"
+        />
+      </div>
+      <!-- PATROCINADORES BRONCE -->
+      <div class="flex flex-row gap-4 sm:gap-10 justify-center items-center"
       >
         <img
-          src="/img/nocheIndustriales/euchner.webp"
+          src="/img/nocheIndustriales/euchner_logo.webp"
           alt="Euchner"
-          class="w-[120px] sm:w-[200px]"
-        />
-        <img
-          src="/img/nocheIndustriales/robustel.webp"
-          alt="Robustel"
-          class="w-[120px] sm:w-[250px]"
-        />
-        <img
-          src="/img/nocheIndustriales/smartsol.webp"
-          alt="Smartsol"
-          class="w-[120px] sm:w-[250px]"
+          class="w-[70px] sm:w-[150px]"
         />
         <img
           src="/img/nocheIndustriales/paloalto.webp"
           alt="Paloalto"
-          class="w-[120px] sm:w-[250px]"
+          class="w-[70px] sm:w-[200px]"
+        />
+        <img
+          src="/img/nocheIndustriales/robustel.webp"
+          alt="Robustel"
+          class="w-[70px] sm:w-[200px]"
+        />
+        <img
+          src="/img/nocheIndustriales/smartsol.webp"
+          alt="Smartsol"
+          class="w-[70px] sm:w-[185px]"
         />
       </div>
     </div>
