@@ -184,6 +184,91 @@ app.post("/free-register-ste-onsite", async (req, res) => {
   }
 });
 
+app.get("/onsite-registration-search", async (req, res) => {
+  const query = String(req.query.q || "").trim().replace(/\s+/g, " ");
+
+  if (query.length < 2) {
+    return res.status(400).send({
+      status: false,
+      records: [],
+      message: "Ingresa al menos 2 caracteres para buscar.",
+    });
+  }
+
+  try {
+    const records = await RegisterModel.search_visitors_ste(query);
+
+    return res.send({
+      status: true,
+      records,
+    });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).send({
+      status: false,
+      records: [],
+      message: "No se pudo completar la busqueda.",
+    });
+  }
+});
+
+app.patch("/onsite-registration/:uuid", async (req, res) => {
+  const uuid = String(req.params.uuid || "").trim();
+
+  if (!uuid) {
+    return res.status(400).send({
+      status: false,
+      message: "Falta el identificador del registro.",
+    });
+  }
+
+  try {
+    const result = await RegisterModel.update_visitor_ste_onsite({
+      ...req.body,
+      uuid,
+    });
+
+    if (!result.status) {
+      return res.status(result.statusCode || 500).send(result);
+    }
+
+    return res.send(result);
+  } catch (err) {
+    console.log(err);
+    return res.status(500).send({
+      status: false,
+      message: "No se pudo actualizar el registro.",
+    });
+  }
+});
+
+app.post("/onsite-registration/:uuid/print", async (req, res) => {
+  const uuid = String(req.params.uuid || "").trim();
+
+  if (!uuid) {
+    return res.status(400).send({
+      status: false,
+      message: "Falta el identificador del registro.",
+    });
+  }
+
+  try {
+    const result = await RegisterModel.mark_visitor_ste_badge_printed(uuid);
+
+    if (!result.status) {
+      return res.status(result.statusCode || 500).send(result);
+    }
+
+    return res.send(result);
+  } catch (err) {
+    console.log(err);
+    return res.status(500).send({
+      status: false,
+      message: "No se pudo preparar la impresion.",
+    });
+  }
+});
+
 app.post("/create-order-ecomondo", async (req, res) => {
   try {
     const { body } = req;

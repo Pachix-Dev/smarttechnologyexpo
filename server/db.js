@@ -301,6 +301,118 @@ export class RegisterModel {
     }
   }
 
+  static async search_visitors_ste(query) {
+    const connection = await mysql.createConnection(config);
+    try {
+      const cleanQuery = String(query || "").trim().replace(/\s+/g, " ");
+      const likeQuery = `%${cleanQuery.replace(/[\\%_]/g, "\\$&")}%`;
+
+      const [rows] = await connection.query(
+        "SELECT id, uuid, name, paternSurname, email, phone, company, position, typeRegister " +
+          "FROM visitors_ste_2026 " +
+          "WHERE uuid = ? " +
+          "OR uuid LIKE ? " +
+          "OR CONCAT_WS(' ', name, paternSurname) LIKE ? " +
+          "OR email LIKE ? " +
+          "OR company LIKE ? " +
+          "ORDER BY CASE WHEN uuid = ? THEN 0 ELSE 1 END, name ASC, paternSurname ASC " +
+          "LIMIT 15",
+        [cleanQuery, likeQuery, likeQuery, likeQuery, likeQuery, cleanQuery],
+      );
+
+      return rows;
+    } finally {
+      await connection.end();
+    }
+  }
+
+  static async update_visitor_ste_onsite({
+    uuid,
+    name,
+    paternSurname,
+    email,
+    phone,
+    typeRegister,
+    company,
+    position,
+  }) {
+    const connection = await mysql.createConnection(config);
+    try {
+      const normalizedTypeRegister =
+        String(typeRegister || "").trim() || "VISITANTE";
+
+      const [result] = await connection.query(
+        "UPDATE visitors_ste_2026 SET name = ?, paternSurname = ?, email = ?, phone = ?, typeRegister = ?, company = ?, position = ?, registro_en_sitio = 1 WHERE uuid = ? LIMIT 1",
+        [
+          name,
+          paternSurname,
+          email,
+          phone,
+          normalizedTypeRegister,
+          company,
+          position,
+          uuid,
+        ],
+      );
+
+      if (result.affectedRows === 0) {
+        return {
+          status: false,
+          statusCode: 404,
+          message: "No se encontro el registro.",
+        };
+      }
+
+      const [rows] = await connection.query(
+        "SELECT id, uuid, name, paternSurname, email, phone, company, position, typeRegister FROM visitors_ste_2026 WHERE uuid = ? LIMIT 1",
+        [uuid],
+      );
+
+      return {
+        status: true,
+        visitor: rows[0],
+      };
+    } catch (error) {
+      console.log(error);
+      return hableError(error);
+    } finally {
+      await connection.end();
+    }
+  }
+
+  static async mark_visitor_ste_badge_printed(uuid) {
+    const connection = await mysql.createConnection(config);
+    try {
+      const [result] = await connection.query(
+        "UPDATE visitors_ste_2026 SET imprimir_gafete = 1 WHERE uuid = ? LIMIT 1",
+        [uuid],
+      );
+
+      if (result.affectedRows === 0) {
+        return {
+          status: false,
+          statusCode: 404,
+          message: "No se encontro el registro.",
+        };
+      }
+
+      const [rows] = await connection.query(
+        "SELECT id, uuid, name, paternSurname, email, phone, company, position, typeRegister FROM visitors_ste_2026 WHERE uuid = ? LIMIT 1",
+        [uuid],
+      );
+
+      return {
+        status: true,
+        visitor: rows[0],
+      };
+    } catch (error) {
+      console.log(error);
+      return hableError(error);
+    } finally {
+      await connection.end();
+    }
+  }
+
   static async create_user_ecomondo_student({
     uuid,
     name,

@@ -9,6 +9,7 @@ import { CountrySelectWithCode } from "../register/CountrySelectWithCode";
 import "../register/Form.css";
 
 const TEXT_PATTERN = /^[\p{L}\p{M}' -]+$/u;
+const STAFF_REGISTER_TYPES = ["EXPOSITOR", "CONFERENCISTA", "VIP"];
 
 const emptyRegistrationFields = {
   maternSurname: "",
@@ -60,6 +61,7 @@ export function StaffRegisterForm({ translates, currentLanguage }) {
     control,
     handleSubmit,
     setValue,
+    reset,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -74,14 +76,213 @@ export function StaffRegisterForm({ translates, currentLanguage }) {
   });
 
   const [message, setMessage] = useState("");
+  const [messageType, setMessageType] = useState("error");
   const [processing, setProcessing] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const [searchMessage, setSearchMessage] = useState("");
+  const [searching, setSearching] = useState(false);
+  const [editingVisitor, setEditingVisitor] = useState(null);
 
   const requiredMessage = translates.requiered || "Campo requerido";
   const selectOption = translates.select_option || "Selecciona una opcion";
+  const searchCopy =
+    currentLanguage === "es"
+      ? {
+          label: "Buscar registro",
+          placeholder: "Nombre, correo, empresa o QR",
+          button: "Buscar",
+          loading: "Buscando...",
+          print: "Imprimir",
+          update: "Actualizar",
+          emptyCompany: "Sin empresa",
+          emptyPosition: "Sin puesto",
+          emptyName: "Sin nombre",
+          minLength: "Ingresa al menos 2 caracteres para buscar.",
+          unable: "No se pudo completar la busqueda.",
+          noResults: "No se encontraron registros con ese criterio.",
+          error: "Hubo un error al buscar registros.",
+          loaded: "Registro cargado para actualizar.",
+          created: "Tu registro fue exitoso...",
+          updated: "Registro actualizado.",
+          updateError: "No se pudo actualizar el registro.",
+          cancelEdit: "Cancelar actualizacion",
+          createSubmit: "FINALIZAR",
+          updateSubmit: "Actualizar registro",
+          updatePrintSubmit: "Actualizar e imprimir",
+          editMode: "Editando registro existente",
+          printError: "No se pudo preparar la impresion.",
+        }
+      : {
+          label: "Search registration",
+          placeholder: "Name, email, company or QR",
+          button: "Search",
+          loading: "Searching...",
+          print: "Print",
+          update: "Update",
+          emptyCompany: "No company",
+          emptyPosition: "No position",
+          emptyName: "No name",
+          minLength: "Enter at least 2 characters to search.",
+          unable: "The search could not be completed.",
+          noResults: "No records were found with that criteria.",
+          error: "There was an error searching records.",
+          loaded: "Record loaded for update.",
+          created: "Your registration was successful...",
+          updated: "Record updated.",
+          updateError: "The record could not be updated.",
+          cancelEdit: "Cancel update",
+          createSubmit: "FINISH",
+          updateSubmit: "Update record",
+          updatePrintSubmit: "Update and print",
+          editMode: "Editing existing record",
+          printError: "The print could not be prepared.",
+        };
 
   const urlbase = import.meta.env.DEV
     ? "http://localhost:3005/"
     : "https://smarttechnologyexpo.mx/server/";
+
+  const showMessage = (text, type = "error") => {
+    setMessageType(type);
+    setMessage(text);
+    setTimeout(() => setMessage(""), 8000);
+  };
+
+  const syncField = (field, value, setter) => {
+    const nextValue = value || "";
+    setter(nextValue);
+    setValue(field, nextValue, {
+      shouldDirty: true,
+      shouldValidate: Boolean(nextValue),
+    });
+  };
+
+  const buildLabelData = (visitor) => ({
+    qr: visitor.uuid,
+    name: visitor.name || "",
+    paternSurname: visitor.paternSurname || "",
+    company: visitor.company || "",
+    position: visitor.position || "",
+    typeRegister: String(visitor.typeRegister || typeRegister || "").trim(),
+  });
+
+  const goToPrintLabel = (visitor) => {
+    clear();
+    setPrintableLabel(buildLabelData(visitor));
+    setCompleteRegister(true);
+
+    flushSync(() => {
+      setProcessing(false);
+    });
+
+    window.location.replace("/registro-operativo/etiqueta");
+  };
+
+  const handleSearch = async () => {
+    const query = searchTerm.trim();
+
+    if (query.length < 2) {
+      setSearchResults([]);
+      setSearchMessage(searchCopy.minLength);
+      return;
+    }
+
+    setSearching(true);
+    setSearchMessage("");
+    setSearchResults([]);
+
+    try {
+      const response = await fetch(
+        `${urlbase}onsite-registration-search?q=${encodeURIComponent(query)}`,
+      );
+      const data = await response.json();
+
+      if (!response.ok || !data?.status) {
+        setSearchMessage(data?.message || searchCopy.unable);
+        return;
+      }
+
+      const records = Array.isArray(data.records) ? data.records : [];
+      setSearchResults(records);
+
+      if (records.length === 0) {
+        setSearchMessage(searchCopy.noResults);
+      }
+    } catch (error) {
+      console.error(error);
+      setSearchMessage(searchCopy.error);
+    } finally {
+      setSearching(false);
+    }
+  };
+
+  const handlePrintVisitor = async (visitor) => {
+    if (!visitor?.uuid) {
+      setSearchMessage(searchCopy.printError);
+      return;
+    }
+
+    setProcessing(true);
+
+    try {
+      const response = await fetch(
+        `${urlbase}onsite-registration/${encodeURIComponent(visitor.uuid)}/print`,
+        {
+          method: "POST",
+        },
+      );
+      const data = await response.json();
+
+      if (!response.ok || !data?.status) {
+        throw new Error(data?.message || searchCopy.printError);
+      }
+
+      goToPrintLabel(data.visitor || visitor);
+    } catch (error) {
+      console.error(error);
+      setProcessing(false);
+      setSearchMessage(error.message || searchCopy.printError);
+    }
+  };
+
+  const handleSelectVisitor = (visitor) => {
+    setEditingVisitor(visitor);
+    syncField("name", visitor.name, setName);
+    syncField("paternSurname", visitor.paternSurname, setPaternSurname);
+    syncField("email", visitor.email, setEmail);
+    syncField("phone", visitor.phone, setPhone);
+    syncField("company", visitor.company, setCompany);
+    syncField("position", visitor.position, setPosition);
+
+    const nextTypeRegister = String(visitor.typeRegister || "").toUpperCase();
+
+    if (STAFF_REGISTER_TYPES.includes(nextTypeRegister)) {
+      syncField("typeRegister", nextTypeRegister, setTypeRegister);
+    } else {
+      syncField("typeRegister", "", setTypeRegister);
+    }
+
+    const fullName = `${visitor.name || ""} ${visitor.paternSurname || ""}`.trim();
+    setSearchTerm(fullName || visitor.email || visitor.company || "");
+    setSearchResults([]);
+    setSearchMessage(searchCopy.loaded);
+  };
+
+  const handleCancelEdit = () => {
+    setEditingVisitor(null);
+    clear();
+    reset({
+      name: "",
+      paternSurname: "",
+      email: "",
+      phone: "",
+      typeRegister: "",
+      company: "",
+      position: "",
+    });
+    setSearchMessage("");
+  };
 
   useEffect(() => {
     setTypeRegister("");
@@ -100,14 +301,64 @@ export function StaffRegisterForm({ translates, currentLanguage }) {
     };
   }, []);
 
-  const handleRegister = async () => {
+  const handleRegister = async (_, event) => {
     const selectedTypeRegister = String(
       useStaffRegisterForm.getState().typeRegister || "",
     ).trim();
+    const shouldPrintAfterUpdate =
+      event?.nativeEvent?.submitter?.dataset?.print === "true";
+    const payload = {
+      name,
+      paternSurname,
+      email,
+      phone,
+      typeRegister: selectedTypeRegister,
+      company,
+      position,
+      currentLanguage,
+    };
 
     setProcessing(true);
 
     try {
+      if (editingVisitor?.uuid) {
+        const response = await fetch(
+          `${urlbase}onsite-registration/${encodeURIComponent(editingVisitor.uuid)}`,
+          {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
+          },
+        );
+
+        const updateData = await response.json();
+
+        if (!response.ok || !updateData?.status) {
+          setProcessing(false);
+          showMessage(updateData?.message || searchCopy.updateError);
+          return;
+        }
+
+        const updatedVisitor = updateData.visitor || {
+          ...editingVisitor,
+          ...payload,
+          uuid: editingVisitor.uuid,
+        };
+
+        setEditingVisitor(updatedVisitor);
+
+        if (shouldPrintAfterUpdate) {
+          await handlePrintVisitor(updatedVisitor);
+          return;
+        }
+
+        setProcessing(false);
+        showMessage(searchCopy.updated, "success");
+        return;
+      }
+
       const response = await fetch(urlbase + "free-register-ste-onsite", {
         method: "POST",
         headers: {
@@ -115,14 +366,7 @@ export function StaffRegisterForm({ translates, currentLanguage }) {
         },
         body: JSON.stringify({
           ...emptyRegistrationFields,
-          name,
-          paternSurname,
-          email,
-          phone,
-          typeRegister: selectedTypeRegister,
-          company,
-          position,
-          currentLanguage,
+          ...payload,
         }),
       });
 
@@ -131,40 +375,23 @@ export function StaffRegisterForm({ translates, currentLanguage }) {
       if (orderData?.status) {
         if (!orderData?.uuid) {
           setProcessing(false);
-          setMessage("No se recibio el UUID para generar la etiqueta.");
-          setTimeout(() => setMessage(""), 8000);
+          showMessage("No se recibio el UUID para generar la etiqueta.");
           return;
         }
 
-        const labelData = {
-          qr: orderData.uuid,
-          name,
-          paternSurname,
-          company,
-          position,
-          typeRegister: selectedTypeRegister,
-        };
-
-        clear();
-        setPrintableLabel(labelData);
-        setCompleteRegister(true);
-
-        flushSync(() => {
-          setProcessing(false);
+        goToPrintLabel({
+          uuid: orderData.uuid,
+          ...payload,
         });
-
-        window.location.replace("/registro-operativo/etiqueta");
         return;
       }
 
       setProcessing(false);
-      setMessage(orderData?.message || "No se pudo completar el registro.");
-      setTimeout(() => setMessage(""), 8000);
+      showMessage(orderData?.message || "No se pudo completar el registro.");
     } catch (error) {
       console.error(error);
       setProcessing(false);
-      setMessage("Hubo un error al procesar el registro.");
-      setTimeout(() => setMessage(""), 8000);
+      showMessage("Hubo un error al procesar el registro.");
     }
   };
 
@@ -172,6 +399,112 @@ export function StaffRegisterForm({ translates, currentLanguage }) {
     <section className="py-5">
       <form className="mx-auto" onSubmit={handleSubmit(handleRegister)}>
         <div className="rounded-lg shadow-lg border border-gray-800/20 p-8">
+          <div className="mb-8 rounded-lg border border-gray-200 bg-gray-50 p-4">
+            <label
+              htmlFor="staff-search"
+              className="block text-sm font-semibold text-black"
+            >
+              {searchCopy.label}
+            </label>
+            <div className="mt-2 flex flex-col gap-3 sm:flex-row">
+              <input
+                type="search"
+                id="staff-search"
+                value={searchTerm}
+                onChange={(event) => setSearchTerm(event.target.value)}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter") {
+                    event.preventDefault();
+                    handleSearch();
+                  }
+                }}
+                className="w-full rounded-lg bg-white border border-gray-200 p-4 text-sm shadow-sm"
+                placeholder={searchCopy.placeholder}
+                autoComplete="off"
+              />
+              <button
+                type="button"
+                onClick={handleSearch}
+                disabled={searching}
+                className="rounded-lg bg-black px-6 py-3 text-sm font-semibold text-white transition hover:bg-gray-800 disabled:cursor-not-allowed disabled:bg-gray-400"
+              >
+                {searching ? searchCopy.loading : searchCopy.button}
+              </button>
+            </div>
+
+            {searchMessage && (
+              <p className="mt-3 text-sm font-semibold text-gray-700">
+                {searchMessage}
+              </p>
+            )}
+
+            {searchResults.length > 0 && (
+              <ul className="mt-4 divide-y divide-gray-200 overflow-hidden rounded-lg border border-gray-200 bg-white">
+                {searchResults.map((visitor) => {
+                  const fullName =
+                    `${visitor.name || ""} ${visitor.paternSurname || ""}`.trim() ||
+                    visitor.email ||
+                    searchCopy.emptyName;
+
+                  return (
+                    <li
+                      key={`${visitor.uuid || visitor.id}-${visitor.email}`}
+                      className="flex flex-col gap-3 p-4 sm:flex-row sm:items-center sm:justify-between"
+                    >
+                      <div className="min-w-0">
+                        <p className="font-semibold text-black">{fullName}</p>
+                        <p className="break-all text-sm text-gray-600">
+                          {visitor.email}
+                        </p>
+                        <p className="text-sm text-gray-600">
+                          {visitor.company || searchCopy.emptyCompany}
+                        </p>
+                        <p className="text-sm text-gray-500">
+                          {visitor.position || searchCopy.emptyPosition}
+                        </p>
+                      </div>
+                      <div className="flex flex-col gap-2 sm:flex-row">
+                        <button
+                          type="button"
+                          onClick={() => handlePrintVisitor(visitor)}
+                          className="rounded-lg bg-black px-4 py-2 text-sm font-semibold text-white transition hover:bg-gray-800"
+                        >
+                          {searchCopy.print}
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => handleSelectVisitor(visitor)}
+                          className="rounded-lg border border-gray-900 px-4 py-2 text-sm font-semibold text-gray-900 transition hover:bg-gray-900 hover:text-white"
+                        >
+                          {searchCopy.update}
+                        </button>
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
+          </div>
+
+          {editingVisitor && (
+            <div className="mb-8 flex flex-col gap-3 rounded-lg border border-blue-200 bg-blue-50 p-4 text-blue-900 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <p className="font-semibold">{searchCopy.editMode}</p>
+                <p className="text-sm">
+                  {`${editingVisitor.name || ""} ${editingVisitor.paternSurname || ""}`.trim() ||
+                    editingVisitor.email ||
+                    searchCopy.emptyName}
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={handleCancelEdit}
+                className="rounded-lg border border-blue-900 px-4 py-2 text-sm font-semibold text-blue-900 transition hover:bg-blue-900 hover:text-white"
+              >
+                {searchCopy.cancelEdit}
+              </button>
+            </div>
+          )}
 
           <div className="grid md:grid-cols-2 gap-6">
             <div>
@@ -198,6 +531,9 @@ export function StaffRegisterForm({ translates, currentLanguage }) {
                 </option>
                 <option value="VIP" className="text-black">
                   {translates.type_register_4 || "VIP"}
+                </option>
+                <option value="VISITANTE" className="text-black">
+                  {translates.type_register_2 || "VISITANTE"}
                 </option>
               </select>
               {errors.typeRegister && (
@@ -424,14 +760,31 @@ export function StaffRegisterForm({ translates, currentLanguage }) {
           </div>
         </div>
 
-        <div className="flex justify-center mt-10">
-          <button type="submit" className="button">
-            {translates.finish || "FINALIZAR"}
-          </button>
+        <div className="flex flex-col items-center justify-center gap-3 mt-10 sm:flex-row">
+          {editingVisitor ? (
+            <>
+              <button type="submit" className="button">
+                {searchCopy.updateSubmit}
+              </button>
+              <button type="submit" data-print="true" className="button">
+                {searchCopy.updatePrintSubmit}
+              </button>
+            </>
+          ) : (
+            <button type="submit" className="button">
+              {translates.finish || searchCopy.createSubmit}
+            </button>
+          )}
         </div>
 
         {message && (
-          <p className="mt-5 text-red-600 bg-red-100 p-4 font-bold text-center">
+          <p
+            className={`mt-5 p-4 font-bold text-center ${
+              messageType === "success"
+                ? "bg-green-100 text-green-700"
+                : "bg-red-100 text-red-600"
+            }`}
+          >
             {message}
           </p>
         )}
