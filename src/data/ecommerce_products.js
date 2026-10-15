@@ -5,8 +5,8 @@
 export const ECOMMERCE_PRODUCTS = [
   {
     id_product: 1, // ID del producto en la DB
-    name_es: 'Women Smart Connection 2026',
-    name_en: 'Women Smart Connection 2026',
+    name_es: 'Women in Smart Technology',
+    name_en: 'Women in Smart Technology',
     description_es:'Un desayuno de networking para mujeres de la industria, la tecnología y la innovación, creado para conectar, compartir experiencias e inspirar a través de sus historias y trayectorias. Un encuentro para fortalecer vínculos, reconocer a quienes han abierto camino y construir una comunidad de mujeres que transforma la industria.',
     description_en:'A networking breakfast for women in the industry, technology, and innovation, designed to connect, share experiences, and inspire through their stories and journeys. An event to strengthen bonds, recognize those who have paved the way, and build a community of women transforming the industry.',
     product_type: 'event',
