@@ -444,7 +444,7 @@ export function RegisterForm({ translates, currentLanguage }) {
                 <option value="VISITANTE" className="text-black">
                   {translates.type_register_2}
                 </option>
-                <option value="CONFERENCISTA" className="text-black">
+                {/* <option value="CONFERENCISTA" className="text-black">
                   {translates.type_register_3}
                 </option>
                 <option value="VIP" className="text-black">
@@ -452,7 +452,7 @@ export function RegisterForm({ translates, currentLanguage }) {
                 </option>
                 <option value="EXPOSITOR" className="text-black">
                   {translates.type_register_5}
-                </option>
+                </option> */}
                 <option value="MEDIO" className="text-black">
                   {translates.type_register_6}
                 </option>
