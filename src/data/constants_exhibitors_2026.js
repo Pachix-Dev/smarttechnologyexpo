@@ -26,6 +26,7 @@ const exhibitors = [
   { src: "/img/exhibitors2026/flytek.webp", alt: "Flytek Innovations", width: 150 },
   { src: "/img/exhibitors2026/galu.webp", alt: "Galu", width: 150 },  
   { src: "/img/exhibitors2026/gimac.webp", alt: "Gimac", width: 150 },
+  { src: "/img/exhibitors2026/global.webp", alt: "Global Voip", width: 150 },
   { src: "/img/exhibitors2026/go_dron.webp", alt: "Go Dron", width: 150 },
   { src: "/img/exhibitors2026/heidenhain.webp", alt: "HEIDENHAIN", width: 150 },
   { src: "/img/exhibitors2026/hellermann.webp", alt: "HellermannTyton México", width: 150 },
