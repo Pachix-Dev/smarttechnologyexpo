@@ -1,60 +1,299 @@
 ---
-import { useTranslations, getTranslation } from "../../utils/translations";
-// ✨ Una sola línea para cargar traducciones!
-const { locale, translations } = await useTranslations(Astro.props, Astro);
-// 🎯 Helper para traducciones más elegante
-const tr = (key: string, fallback: string = "") =>
-  getTranslation(translations, key, fallback);
+import { useTranslations } from "../../utils/translations";
 
-const videos = [
+const { locale } = await useTranslations(Astro.props, Astro);
+const isEnglish = locale === "en";
+
+const participantesItzamna = [
+  // {
+  //   company: "IGUS MEXICO",
+  //   src: "https://www.youtube.com/embed/F12KxIjOS-w?si=PdORGdQHMPqxvJ-N",
+  //   proyectoName: {
+  //     es: "Polímeros autolubricantes para eliminar el uso de agua en líneas de embotellado",
+  //     en: "Self-lubricating polymers to eliminate water use in bottling lines",
+  //   },
+  // },
+  // {
+  //   company: "DIRAC SAPI",
+  //   src: "https://www.youtube.com/embed/PgBZ_U7tLxE?si=ndkkJuYGIiF858Tu",
+  //   proyectoName: {
+  //     es: "APM Advanced Project Management",
+  //     en: "APM Advanced Project Management",
+  //   },
+  // },
+  // {
+  //   company: "Maximage Data Systems",
+  //   src: "https://www.youtube.com/embed/bN6iyS5uKY8?si=sRgmRkK3-7QtbJyz",
+  //   proyectoName: {
+  //     es: "Maximage ID Recognition",
+  //     en: "Maximage ID Recognition",
+  //   },
+  // },
+  // {
+  //   company: "Arcanum Company",
+  //   src: "https://www.youtube.com/embed/2AtnNVNUffk?si=AAQ6qdrthOQumNpG",
+  //   proyectoName: {
+  //     es: "CRONOS",
+  //     en: "CRONOS",
+  //   },
+  // },
+  // {
+  //   company: "3D Vision",
+  //   src: "https://www.youtube.com/embed/Pl3Nin41UPQ",
+  //   proyectoName: {
+  //     es: "3D Vision",
+  //     en: "3D Vision",
+  //   },
+  // },
   {
-    src: "https://www.youtube.com/embed/F12KxIjOS-w?si=PdORGdQHMPqxvJ-N",
-    title: "Participante Premio Itzamna 1",
+    company: "3D Vision",
+    src: "https://www.youtube.com/embed/Pl3Nin41UPQ",
+    proyectoName: {
+      es: "3D Vision",
+      en: "3D Vision",
+    },
   },
   {
-    src: "https://www.youtube.com/embed/PgBZ_U7tLxE?si=ndkkJuYGIiF858Tu",
-    title: "Participante Premio Itzamna 2",
+    company: "Arcanum Company",
+    src: "https://www.youtube.com/embed/2AtnNVNUffk",
+    proyectoName: {
+      es: "CRONOS",
+      en: "CRONOS",
+    },
   },
   {
-    src: "https://www.youtube.com/embed/bN6iyS5uKY8?si=sRgmRkK3-7QtbJyz",
-    title: "Participante Premio Itzamna 3",
+    company: "AuraChat.ai",
+    src: "https://www.youtube.com/embed/Sw1zsLqRi1A",
+    proyectoName: {
+      es: "Integración operativa en Cinemex",
+      en: "Operational Integration at Cinemex",
+    },
+  },
+  // {
+  //   company: "AuraChat.ai",
+  //   src: "",
+  //   proyectoName: {
+  //     es: "Integración operativa de ventas en Grupo Ruba",
+  //     en: "Operational Sales Integration at Grupo Ruba",
+  //   },
+  // },
+  {
+    company: "Avicos Automation",
+    src: "https://www.youtube.com/embed/zsAzLj0CoJQ",
+    proyectoName: {
+      es: "INT: Prueba de carga inercial",
+      en: "INT: Inertia Load Test",
+    },
   },
   {
-    src: "https://www.youtube.com/embed/2AtnNVNUffk?si=AAQ6qdrthOQumNpG",
-    title: "Participante Premio Itzamna 4",
+    company: "ControlT",
+    src: "https://www.youtube.com/embed/Hn8TXpijPyA",
+    proyectoName: {
+      es: "ControlT",
+      en: "ControlT",
+    },
   },
-];
+  {
+    company: "DIRAC SAPI de CV",
+    src: "https://www.youtube.com/embed/0qAi4XiLnYE",
+    proyectoName: {
+      es: "APM Advanced Project Management",
+      en: "APM Advanced Project Management",
+    },
+  },
+  {
+    company: "ECON Tech",
+    src: "https://www.youtube.com/embed/DyzBAST3T8g",
+    proyectoName: {
+      es: "Autoheat (Consumo energético eficiente en la industria siderúrgica)",
+      en: "Autoheat (Efficient energy use in the steel industry)",
+    },
+  },
+  {
+    company: "GoldenBlackLlama",
+    src: "https://www.youtube.com/embed/drAYDihjbJA",
+    proyectoName: {
+      es: "GoldenBlackLlama",
+      en: "GoldenBlackLlama",
+    },
+  },
+  {
+    company: "igus México",
+    src: "https://www.youtube.com/embed/nQEI3gRXb9I",
+    proyectoName: {
+      es: "Polímeros autolubricantes para eliminar el uso de agua en líneas de embotellado",
+      en: "Self-lubricating polymers to eliminate water use in bottling lines",
+    },
+  },
+  {
+    company: "Innovaccion Aplicada en TI",
+    src: "https://www.youtube.com/embed/LSyom2IT13A",
+    proyectoName: {
+      es: "NOVACTI Smart Robotics",
+      en: "NOVACTI Smart Robotics",
+    },
+  },
+  {
+    company: "Maximage Data Systems",
+    src: "https://www.youtube.com/embed/bN6iyS5uKY8",
+    proyectoName: {
+      es: "Maximage ID Recognition",
+      en: "Maximage ID Recognition",
+    },
+  },
+  // {
+  //   company: "Mileforum (mileforum.ai)",
+  //   src: "https://www.youtube.com/embed/XSWMh7v0pcA",
+  //   proyectoName: {
+  //     es: "Sistema de Navegación Prudencial (ML para análisis de datos)",
+  //     en: "Prudential Navigation System (ML for data analysis)",
+  //   },
+  // },
+  {
+    company: "MobilityADO",
+    src: "https://www.youtube.com/embed/1tD-hhOXcVM",
+    proyectoName: {
+      es: "SAE INTERNO, OPERACIÓN CON INTELIGENCIA",
+      en: "INTERNAL SAE, INTELLIGENT OPERATIONS",
+    },
+  },
+  {
+    company: "MSITGROUP / IASECURITY",
+    src: "https://www.youtube.com/embed/ZjJgMYoBeWg",
+    proyectoName: {
+      es: "IASecurity Intelligence",
+      en: "IASecurity Intelligence",
+    },
+  },
+  {
+    company: "Particular",
+    src: "https://www.youtube.com/embed/vl1CV56u6a0",
+    proyectoName: {
+      es: "Drenador de electrones \"fase de congelación de agua vía drenado de electrones\"",
+      en: "Electron drainer \"water freezing phase through electron drainage\"",
+    },
+  },
+  {
+    company: "Patok (Embeddin Tech Solutions, S.A.S. de C.V.)",
+    src: "https://www.youtube.com/embed/wRwX3o91hwc",
+    proyectoName: {
+      es: "Inteligencia artificial desde el evento en planta hasta la decisión estratégica",
+      en: "Artificial intelligence from plant-floor events to strategic decisions",
+    },
+  },
+  {
+    company: "PIGNUS",
+    src: "https://www.youtube.com/embed/B-mwC4CEldI",
+    proyectoName: {
+      es: "FISMIRO",
+      en: "FISMIRO",
+    },
+  },
+  {
+    company: "Prevost SAS",
+    src: "https://www.youtube.com/embed/T0fvHF3HNC8",
+    proyectoName: {
+      es: "PPS AMS - Válvula inteligente con sistema de monitoreo de aire",
+      en: "PPS AMS - Air Monitoring System Smart Valve",
+    },
+  },
+  {
+    company: "SENSIFY IOT SOLUTIONS",
+    src: "https://www.youtube.com/embed/cR_ogsB728o",
+    proyectoName: {
+      es: "Sensify",
+      en: "Sensify",
+    },
+  },
+  {
+    company: "Systems Automation & Technologies SA de CV",
+    src: "https://www.youtube.com/embed/dB-qVI4rFN0",
+    proyectoName: {
+      es: "XL Vorne Optimización del OEE inteligente",
+      en: "XL Vorne Intelligent OEE Optimization",
+    },
+  },
+  {
+    company: "VANGAL - Energía y Tecnología Industrial",
+    src: "https://www.youtube.com/embed/hzeLfqqp_9s",
+    proyectoName: {
+      es: "Agenting Culture",
+      en: "Agenting Culture",
+    },
+  },
+].sort((a, b) =>
+  a.company.localeCompare(b.company, "es", {
+    sensitivity: "base",
+    numeric: true,
+  })
+);
 ---
 
-<section class="px-4 py-10 sm:px-6 lg:px-8">
-  <div class="mx-auto w-full max-w-6xl">
-    <h2
-      class="text-center text-2xl sm:text-4xl uppercase font-extrabold leading-tight text-black"
-    >
-      {locale === "es" ? "Conoce a los participantes y sus proyectos" : "Meet the participants and their projects"}
-    </h2>
+<section
+  aria-labelledby="itzamna-participantes-title"
+  class="bg-slate-50 px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20"
+>
+  <div class="mx-auto w-full max-w-[1440px]">
+    <header class="mx-auto max-w-3xl text-center">
+      <h2
+        id="itzamna-participantes-title"
+        class="text-balance text-2xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-3xl lg:text-4xl"
+      >
+        {
+          isEnglish
+            ? "Meet the participants and their projects"
+            : "Conoce a los participantes y sus proyectos"
+        }
+      </h2>
+    </header>
 
-    <div class="mt-8 grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-2">
+    <div class="mt-8 grid grid-cols-1 gap-5 sm:mt-10 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 lg:gap-8 2xl:grid-cols-4">
       {
-        videos.map((video) => (
-          <div
-            class="relative w-full overflow-hidden rounded-lg bg-black shadow-lg"
-            style="padding-top: 56.25%;"
-          >
-            <iframe
-              class="absolute inset-0 h-full w-full"
-              width="560"
-              height="315"
-              src={video.src}
-              title={video.title}
-              frameborder="0"
-              loading="lazy"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerpolicy="strict-origin-when-cross-origin"
-              allowfullscreen
-            ></iframe>
-          </div>
-        ))
+        participantesItzamna.map((participante, index) => {
+          const projectTitle = isEnglish
+            ? participante.proyectoName.en
+            : participante.proyectoName.es;
+          const titleId = `itzamna-proyecto-${index + 1}`;
+
+          return (
+            <article
+              aria-labelledby={titleId}
+              class="flex h-full min-w-0 flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm"
+            >
+              <div class="relative aspect-video w-full shrink-0 overflow-hidden bg-slate-900">
+                {participante.src ? (
+                  <iframe
+                    class="absolute inset-0 h-full w-full border-0"
+                    width="560"
+                    height="315"
+                    src={participante.src}
+                    title={`${projectTitle} — ${participante.company}`}
+                    loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen
+                  />
+                ) : (
+                  <p class="absolute inset-0 flex items-center justify-center p-6 text-center text-sm font-medium text-slate-300">
+                    {isEnglish ? "Video coming soon" : "Video próximamente"}
+                  </p>
+                )}
+              </div>
+
+              <div class="flex flex-1 flex-col gap-2 p-4 sm:p-5">
+                <p class="text-sm font-semibold leading-relaxed text-[#2a4b9b] [overflow-wrap:anywhere]">
+                  {participante.company}
+                </p>
+                <h3
+                  id={titleId}
+                  class="text-base font-bold leading-snug text-slate-900 [overflow-wrap:anywhere] sm:text-lg"
+                >
+                  {projectTitle}
+                </h3>
+              </div>
+            </article>
+          );
+        })
       }
     </div>
   </div>
