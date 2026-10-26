@@ -3167,7 +3167,7 @@ export const directory2026 =
     "linkedin": "https://www.linkedin.com/company/sap/posts/",
     "facebook": "https://www.facebook.com/SAP",
     "instagram": "https://www.instagram.com/sap/",
-    "stand_number": "H55",
+    "stand_number": "",
     "webpage": "https://www.sap.com/index.html",
     "address": "Avenida Paseo de la Reforma, 06500 Cuauhtémoc, Ciudad de México",
     "zip_code": "06500",
