@@ -138,8 +138,7 @@ export function ConferenceProgram({ language = "es" }) {
   return (
     <section className="bg-[#050505] py-2 text-white">
       <div className="mx-auto max-w-7xl px-4">
-        
-        <div className="mb-3 text-xs font-black uppercase tracking-[0.22em] text-zinc-400">
+        <div className="mb-3.5 text-xs font-bold uppercase tracking-[0.2em] text-[#9a9a9a]">
           {language === "es" ? "Selecciona el día" : "Select a day"}
         </div>
         <DayNavigation
@@ -147,7 +146,7 @@ export function ConferenceProgram({ language = "es" }) {
           activeDay={activeDay}
           setActiveDay={setActiveDay}
           language={language}
-          className="mb-2"
+          className="mb-[22px]"
         />
 
         {selectedDay ? (
@@ -166,7 +165,6 @@ export function ConferenceProgram({ language = "es" }) {
               key={selectedDay.id ?? `${selectedDay.date}-${activeDay}`}
               day={selectedDay}
               language={language}
-              index={activeDay}
             />
           ) : null}
         </div>
@@ -182,38 +180,32 @@ function DayNavigation({
   language,
   className = "",
 }) {
-
   return (
     <nav
-      className={`${className} flex flex-col gap-3 rounded-lg border border-white/10 bg-[#0d0d0d] p-3 lg:flex-row lg:items-center lg:justify-between`}
+      className={`${className} flex flex-wrap gap-2.5`}
       aria-label={
         language === "es" ? "Navegación por días" : "Day navigation"
       }
     >
 
-      <div className="flex justify-center gap-2">
-        {days.map((day, index) => {
-          const isActive = index === activeDay;
-          return (
-            <button
-              key={day.id ?? `${day.date}-${index}`}
-              type="button"
-              className={
-                isActive
-                  ? "min-h-12 rounded-lg bg-cyan-300 px-5 py-3 text-sm font-black text-black shadow-[0_0_18px_rgba(34,211,238,0.25)]"
-                  : "min-h-12 rounded-lg border border-white/15 bg-white/[0.04] px-5 py-3 text-sm font-black text-zinc-200 transition hover:border-cyan-300 hover:text-cyan-200"
-              }
-              aria-current={isActive ? "date" : undefined}
-              onClick={() => setActiveDay(index)}
-            >
-              <span className="block text-xs uppercase tracking-[0.16em]">
-                {language === "es" ? "Día" : "Day"} {index + 1}
-              </span>
-              <span>{day.name || formatDateShort(day.date, language)}</span>
-            </button>
-          );
-        })}
-      </div>
+      {days.map((day, index) => {
+        const isActive = index === activeDay;
+        return (
+          <button
+            key={day.id ?? `${day.date}-${index}`}
+            type="button"
+            className={`cursor-pointer rounded-full border px-[22px] py-2.5 text-sm capitalize transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${
+              isActive
+                ? "border-white bg-white font-extrabold text-black"
+                : "border-[#2a2a2a] bg-transparent font-bold text-[#b9b9b9] hover:border-white hover:text-white"
+            }`}
+            aria-current={isActive ? "date" : undefined}
+            onClick={() => setActiveDay(index)}
+          >
+            {formatWeekday(day.date, language) || day.name}
+          </button>
+        );
+      })}
     </nav>
   );
 }
@@ -222,22 +214,22 @@ function DayBanner({ day, language, index }) {
   const sessions = day.conferencias || [];
 
   return (
-    <div className="mb-5 flex flex-col gap-4 rounded-lg border border-white/10 bg-[#121212] p-5 md:flex-row md:items-center md:justify-between">
+    <div className="mb-[30px] flex flex-wrap items-center justify-between gap-4 rounded-[10px] border border-[#232323] bg-[#111] px-6 py-5">
       <div className="flex items-center gap-4">
-        <div className="grid h-16 w-16 flex-none place-items-center rounded-lg bg-cyan-300 text-3xl font-black text-black">
+        <div className="grid h-14 w-14 flex-none place-items-center rounded-[10px] bg-white text-[22px] font-black text-black">
           {dayNumber(day.date) || index + 1}
         </div>
         <div>
-          {/* <p className="text-sm font-black uppercase tracking-[0.2em] text-cyan-200">
-            {day.name || `${language === "es" ? "Día" : "Day"} ${index + 1}`}
-          </p> */}
-          <h3 className="mt-1 text-xl sm:text-2xl font-black text-cyan-200">
-            {formatDateLong(day.date, language)}
+          <h3 className="text-xl font-extrabold capitalize leading-tight text-white">
+            {formatWeekday(day.date, language) || day.name}
           </h3>
+          <p className="mt-0.5 text-[13px] font-semibold capitalize text-[#9a9a9a]">
+            {formatMonthYear(day.date, language)}
+          </p>
         </div>
       </div>
       <span className="inline-flex w-fit items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-sm font-black text-zinc-200">
-        <span className="h-2 w-2 rounded-full border-2 border-cyan-300" />
+        <span className="h-2 w-2 rounded-full border-2 border-white" />
         {sessions.length}{" "}
         {language === "es"
           ? sessions.length === 1
@@ -262,14 +254,14 @@ function SessionLegend({ language }) {
         <span className="h-3 w-3 rounded-full bg-[#0d9488]" />
         Panel
       </div>
-      <div className="flex items-center gap-2">
+      {/* <div className="flex items-center gap-2">
         <span className="h-3 w-3 rounded-full bg-[#2563eb]" />
         Keynote
       </div>
       <div className="flex items-center gap-2">
         <span className="h-3 w-3 rounded-full bg-[#c2410c]" />
         {language === "es" ? "Taller" : "Workshop"}
-      </div>
+      </div> */}
     </div>
   );
 }
@@ -311,7 +303,7 @@ function SessionRow({ session, language }) {
 
   return (
     <article
-      className="overflow-hidden rounded-lg border bg-[#111] transition hover:-translate-y-0.5 hover:shadow-[0_0_22px_rgba(34,211,238,0.12)]"
+      className="@container overflow-hidden rounded-lg border bg-[#111] transition hover:-translate-y-0.5 hover:shadow-[0_0_22px_rgba(34,211,238,0.12)]"
       style={{ borderColor: meta.color }}
     >
       <div
@@ -322,7 +314,7 @@ function SessionRow({ session, language }) {
       </div>
 
       <div className="p-5 md:p-6">
-        <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+        <div className="flex flex-col gap-3 min-[641px]:@min-[621px]:flex-row min-[641px]:@min-[621px]:items-start min-[641px]:@min-[621px]:justify-between min-[641px]:@min-[621px]:gap-[18px]">
           <div className="min-w-0 flex-1">
             <div className="mb-3 flex flex-wrap gap-2">
               <span
@@ -352,12 +344,12 @@ function SessionRow({ session, language }) {
           </div>
 
           {logo ? (
-            <div className="w-full max-w-44 flex-none rounded-lg border border-white/10 bg-white p-3">
-              <p className="mb-2 text-[10px] font-black uppercase tracking-[0.16em] text-zinc-500">
+            <div className="flex max-w-full flex-none items-center gap-2 self-start rounded-[10px] border border-white/[0.12] bg-white/[0.04] px-2.5 py-1.5 min-[641px]:@min-[621px]:w-[150px] min-[641px]:@min-[621px]:flex-col min-[641px]:@min-[621px]:gap-[5px] min-[641px]:@min-[621px]:px-3 min-[641px]:@min-[621px]:py-2">
+              <span className="shrink-0 whitespace-nowrap text-[10px] font-semibold tracking-[0.05em] text-[#9a9a9a]">
                 Powered by
-              </p>
+              </span>
               <img
-                className="max-h-16 w-full object-contain"
+                className="h-[34px] w-auto min-w-0 rounded-md bg-white object-contain px-2 py-1 @max-[380px]:h-[30px] min-[641px]:@min-[621px]:h-[50px] min-[641px]:@min-[621px]:w-full min-[641px]:@min-[621px]:px-[9px] min-[641px]:@min-[621px]:py-[5px]"
                 src={logo}
                 alt={session.company || title || ""}
                 loading="lazy"
@@ -387,7 +379,7 @@ function SessionRow({ session, language }) {
 
         {speakers.length > 0 ? (
           <div className="mt-5">
-            <p className="mb-3 text-xs font-black uppercase tracking-[0.18em] text-cyan-200">
+            <p className="mb-3 text-xs font-black uppercase tracking-[0.18em] text-white">
               {language === "es"
                 ? speakers.length === 1
                   ? "Ponente"
@@ -414,51 +406,71 @@ function SessionRow({ session, language }) {
 
 function SpeakerCard({ speaker, language }) {
   const photo = mediaUrl(speaker.photo, "ponentes");
-  const role = pickText(
+  const position = pickText(
     language,
     speaker.position_esp || speaker.position,
     speaker.position_eng,
   );
   const company = pickText(language, speaker.company, speaker.company_eng);
   const bio = pickText(language, speaker.bio_esp, speaker.bio_eng);
+  const Card = bio ? "button" : "div";
 
   return (
-    <div className="rounded-lg border border-white/10 bg-[#171717] p-3 transition hover:border-cyan-300/60">
-      <div className="flex gap-3">
+    <Card
+      className={`group block w-full rounded-lg border border-white/10 bg-[#171717] p-3 text-left transition ${
+        bio
+          ? "cursor-pointer hover:border-white hover:bg-white/[0.06] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+          : "cursor-default"
+      }`}
+      {...(bio
+        ? {
+            type: "button",
+            "data-bio-trigger": true,
+            "data-bio-name": speaker.name || "",
+            "data-bio-position": position,
+            "data-bio-org": company,
+            "data-bio-bio": bio,
+            "data-bio-photo": photo || "",
+            "aria-haspopup": "dialog",
+            "aria-controls": "bio-modal-overlay",
+            "aria-label": `${language === "es" ? "Ver semblanza de" : "View bio for"} ${speaker.name || ""}`,
+          }
+        : {})}
+    >
+      <span className="flex items-center gap-4">
         {photo ? (
           <img
-            className="h-16 w-16 flex-none rounded-full object-cover"
+            className="h-24 w-24 flex-none rounded-xl object-cover sm:h-32 sm:w-32"
             src={photo}
             alt={speaker.name || ""}
             loading="lazy"
           />
         ) : (
-          <span className="grid h-16 w-16 flex-none place-items-center rounded-full bg-zinc-800 text-lg font-black text-zinc-300">
+          <span className="grid h-24 w-24 flex-none place-items-center rounded-full bg-zinc-800 text-2xl font-black text-zinc-300 sm:h-32 sm:w-32">
             {initials(speaker.name)}
           </span>
         )}
-        <div className="min-w-0">
-          <h5 className="text-base font-black leading-tight text-white">
+        <span className="min-w-0">
+          <span className="block text-base font-black leading-tight text-white">
             {speaker.name}
-          </h5>
-          {role ? (
-            <p className="mt-1 text-sm font-semibold text-zinc-300">{role}</p>
+          </span>
+          {position ? (
+            <span className="mt-1 block text-sm font-semibold text-zinc-300">
+              {position}
+            </span>
           ) : null}
-          {company ? <p className="text-sm text-cyan-200">{company}</p> : null}
-        </div>
-      </div>
-
-      {bio ? (
-        <details className="mt-4 group">
-          <summary className="cursor-pointer text-sm font-bold text-cyan-200 transition hover:text-cyan-100">
-            {language === "es" ? "Semblanza" : "Bio"}
-          </summary>
-          <p className="mt-3 whitespace-pre-line text-sm leading-6 text-zinc-300">
-            {bio}
-          </p>
-        </details>
-      ) : null}
-    </div>
+          {company ? <span className="block text-sm text-white">{company}</span> : null}
+        </span>
+        {bio ? (
+          <span
+            className="ml-auto flex-none text-2xl text-white/60 transition group-hover:text-white group-focus-visible:text-white"
+            aria-hidden="true"
+          >
+            ›
+          </span>
+        ) : null}
+      </span>
+    </Card>
   );
 }
 
@@ -501,29 +513,26 @@ function dayNumber(dateStr) {
   return match ? match[1] : "";
 }
 
-function formatDateLong(dateStr, language) {
+function formatMonthYear(dateStr, language) {
   const datePart = String(dateStr || "").slice(0, 10);
   if (!datePart) return "";
   const date = new Date(`${datePart}T12:00:00`);
   if (Number.isNaN(date.getTime())) return datePart;
+
+  const month = date.toLocaleDateString(language === "en" ? "en-US" : "es-MX", {
+    month: "long",
+  });
+  return `${month} ${date.getFullYear()}`;
+}
+
+function formatWeekday(dateStr, language) {
+  const datePart = String(dateStr || "").slice(0, 10);
+  if (!datePart) return "";
+  const date = new Date(`${datePart}T12:00:00`);
+  if (Number.isNaN(date.getTime())) return "";
 
   return date.toLocaleDateString(language === "en" ? "en-US" : "es-MX", {
     weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-}
-
-function formatDateShort(dateStr, language) {
-  const datePart = String(dateStr || "").slice(0, 10);
-  if (!datePart) return "";
-  const date = new Date(`${datePart}T12:00:00`);
-  if (Number.isNaN(date.getTime())) return datePart;
-
-  return date.toLocaleDateString(language === "en" ? "en-US" : "es-MX", {
-    month: "short",
-    day: "numeric",
   });
 }
 
@@ -546,25 +555,25 @@ function typeMeta(type) {
   const meta = {
     keynote: { color: "#2563eb" },
     panel: { color: "#0d9488" },
-    conference: { color: "#22d3ee" },
+    conference: { color: "#1447E6" },
     presentation: { color: "#0891b2" },
     technical: { color: "#64748b" },
     workshop: { color: "#c2410c" },
     break: { color: "#52525b" },
   };
-  return meta[cleanText(type).toLowerCase()] || { color: "#22d3ee" };
+  return meta[cleanText(type).toLowerCase()] || { color: "#1447E6" };
 }
 
 function typeLabel(type, language) {
   const fallback = language === "en" ? "Session" : "Sesión";
   const labels = {
-    keynote: ["Keynote", "Keynote"],
-    panel: ["Panel", "Panel"],
-    conference: ["Conferencia", "Conference"],
-    presentation: ["Presentación", "Presentation"],
-    technical: ["Técnica", "Technical"],
-    workshop: ["Taller", "Workshop"],
-    break: ["Receso", "Break"],
+     conference: ["Conferencia", "Conference"],
+     panel: ["Panel", "Panel"],
+    // keynote: ["Keynote", "Keynote"],
+    // presentation: ["Presentación", "Presentation"],
+    // technical: ["Técnica", "Technical"],
+    // workshop: ["Taller", "Workshop"],
+    // break: ["Receso", "Break"],
   };
   const key = cleanText(type).toLowerCase();
   const label = labels[key];

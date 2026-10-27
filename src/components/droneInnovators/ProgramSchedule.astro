@@ -1,6 +1,7 @@
 ---
 import { useTranslations, getTranslation } from "../../utils/translations";
 import { ConferenceProgram } from "./ConferenceProgram.jsx";
+import BioModal from "../shared/BioModal.astro";
 // ✨ Una sola línea para cargar traducciones!
 const { locale, translations } = await useTranslations(Astro.props, Astro);
 // 🎯 Helper para traducciones más elegante
@@ -30,3 +31,4 @@ const currentLanguage = locale;
   </header>
   <ConferenceProgram language={currentLanguage} client:only="react" />
 </section>
+<BioModal locale={currentLanguage} />
