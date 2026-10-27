@@ -18,20 +18,50 @@ export function ConferenceProgram({ language = "es" }) {
         setLoading(true);
         setError(null);
 
-        const response = await fetch(PROGRAM_API_URL, {
-          signal: controller.signal,
-        });
+        // Comparte el programa completo con Insights durante tres minutos.
+        const cacheKey = `ste:programa:v1:${PROGRAM_API_URL}`;
+        let stages;
 
-        if (!response.ok) {
-          throw new Error(`Error HTTP: ${response.status}`);
+        try {
+          const cached = JSON.parse(sessionStorage.getItem(cacheKey));
+          if (cached?.expiresAt > Date.now()) {
+            stages = cached.data;
+          }
+        } catch {
+          // Si la caché no se puede leer, consulta la API.
         }
 
-        const json = await response.json();
-        const stages = Array.isArray(json?.data)
-          ? json.data
-          : Array.isArray(json)
-            ? json
-            : [];
+        if (!Array.isArray(stages)) {
+          const response = await fetch(PROGRAM_API_URL, {
+            signal: controller.signal,
+          });
+
+          if (!response.ok) {
+            throw new Error(`Error HTTP: ${response.status}`);
+          }
+
+          const json = await response.json();
+          stages = Array.isArray(json?.data)
+            ? json.data
+            : Array.isArray(json)
+              ? json
+              : [];
+
+          try {
+            sessionStorage.setItem(
+              cacheKey,
+              JSON.stringify({
+                data: stages,
+                expiresAt: Date.now() + 3 * 60 * 1000,
+              }),
+            );
+          } catch {
+            // Muestra el programa aunque el navegador no pueda guardarlo.
+          }
+        }
+
+        if (controller.signal.aborted) return;
+
         const droneProgram =
           stages.find((stage) => Number(stage.id) === DRONE_PROGRAM_ID) ||
           null;

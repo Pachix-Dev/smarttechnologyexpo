@@ -34,14 +34,41 @@ export const INSIGHTS_STAGE_ID = Number(
 // FETCH + SELECCIÓN DE ESCENARIO
 // ---------------------------------------------------------------------------
 
-// Descarga el programa completo y devuelve el escenario elegido (o el primero).
-// Pasos: fetch → valida HTTP → toma json.data → busca el escenario por id →
-// ordena sus días por fecha ascendente → devuelve el escenario con días ordenados.
+// Reutiliza el programa completo durante su vigencia en la misma pestaña.
+// Si no hay caché vigente, consulta la API. Después selecciona el escenario
+// elegido (o el primero) y ordena sus días por fecha ascendente.
 export async function fetchStage(stageId = INSIGHTS_STAGE_ID) {
-  const res = await fetch(INSIGHTS_API_URL);
-  if (!res.ok) throw new Error(`HTTP ${res.status}`);
-  const json = await res.json();
-  const stages = Array.isArray(json?.data) ? json.data : [];
+  const cacheKey = `ste:programa:v1:${INSIGHTS_API_URL}`;
+  let stages;
+
+  // La respuesta incluye ambos idiomas; la clave no depende de lang ni stageId.
+  try {
+    const cached = JSON.parse(sessionStorage.getItem(cacheKey));
+    if (cached?.expiresAt > Date.now()) {
+      stages = cached.data;
+    }
+  } catch {
+    // Si el almacenamiento no está disponible o está corrupto, consulta la API.
+  }
+
+  if (!Array.isArray(stages)) {
+    const res = await fetch(INSIGHTS_API_URL);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const json = await res.json();
+    stages = Array.isArray(json?.data) ? json.data : [];
+
+    try {
+      sessionStorage.setItem(
+        cacheKey,
+        JSON.stringify({
+          data: stages,
+          expiresAt: Date.now() + 3 * 60 * 1000,
+        }),
+      );
+    } catch {
+      // Los datos siguen disponibles aunque el navegador no pueda guardarlos.
+    }
+  }
 
   // Busca el escenario pedido; si no aparece, usa el primero disponible.
   const stage =
