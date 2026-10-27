@@ -22,7 +22,7 @@ import {
   fetchStage,
   INSIGHTS_STAGE_ID,
   speakerPhoto,
-  speakerRole,
+  speakerPosition,
   speakerOrg,
   uniqueSpeakers,
 } from "./insightsApi.js";
@@ -75,7 +75,7 @@ export default function InsightsSpeakersLive({
     const photo = speakerPhoto(sp.photo);
     // Cargo (position_esp/position_eng) y empresa (company/company_eng) según el
     // idioma, con respaldo automático al otro idioma si falta la traducción.
-    const role = speakerRole(sp, lang);
+    const position = speakerPosition(sp, lang);
     const org = speakerOrg(sp, lang);
     return (
       <div key={`${sp.id ?? sp.name}-${i}`} className="isp-card">
@@ -96,7 +96,7 @@ export default function InsightsSpeakersLive({
         </div>
         <div className="isp-body">
           <div className="isp-name">{sp.name}</div>
-          {role && <div className="isp-role">{role}</div>}
+          {position && <div className="isp-role">{position}</div>}
           {org && <div className="isp-company">{org}</div>}
         </div>
       </div>

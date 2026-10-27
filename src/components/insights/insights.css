@@ -663,7 +663,8 @@
   font-weight: 800;
   line-height: 1.2;
 }
-.isc-speaker-role {
+.isc-speaker-role,
+.isc-speaker-position {
   font-size: 14px;         
   color: #cfcfcf;
   margin-top: 2px;

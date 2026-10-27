@@ -11,7 +11,7 @@
 //   - "Descarga programa" comentado (queda solo el aviso de idioma).
 //   - La fecha del banner ahora muestra solo mes + año (p. ej. "Noviembre 2026").
 //   - Categoría "Conferencia" de la leyenda comentada (quedan Keynote y Panel).
-//   - Cargo/empresa del ponente pueden venir en inglés (position_en/company_en).
+//   - Cargo/empresa del ponente pueden venir en inglés (position_eng/company_eng).
 //
 //  Flujo:
 //   - Al montar, fetchStage(stageId) y guarda el escenario en estado.
@@ -28,6 +28,7 @@ import {
   confDesc,
   speakerBio,
   speakerRole,
+  speakerPosition,
   speakerOrg,
   speakerPhoto,
   companyLogo,
@@ -366,9 +367,10 @@ export default function InsightsScheduleLive({
                             const bio = speakerBio(p, lang);
                             const photo = speakerPhoto(p.photo);
                             const hasBio = Boolean(bio);
-                            // Cargo (position_esp/position_eng) y empresa
-                            // (company/company_eng) según idioma, con respaldo.
+                            // Rol en la sesión, cargo profesional y empresa
+                            // según idioma, con respaldo para las traducciones.
                             const role = speakerRole(p, lang);
+                            const position = speakerPosition(p, lang);
                             const org = speakerOrg(p, lang);
                             return (
                               <div
@@ -381,6 +383,7 @@ export default function InsightsScheduleLive({
                                       "data-bio-trigger": true,
                                       "data-bio-name": p.name || "",
                                       "data-bio-role": role,
+                                      "data-bio-position": position || "",
                                       "data-bio-org": org,
                                       "data-bio-bio": bio,
                                       "data-bio-photo": photo || "",
@@ -405,6 +408,11 @@ export default function InsightsScheduleLive({
                                   {role && (
                                     <div className="isc-speaker-role">
                                       {role}
+                                    </div>
+                                  )}
+                                  {position && (
+                                    <div className="isc-speaker-position">
+                                      {position}
                                     </div>
                                   )}
                                   {org && (
