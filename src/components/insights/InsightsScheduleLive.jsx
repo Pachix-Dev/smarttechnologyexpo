@@ -159,7 +159,7 @@ export default function InsightsScheduleLive({
   // ── RENDER PRINCIPAL ─────────────────────────────────────────────────────
   return (
     <section className="isc-section">
-      <div className="isc-inner">
+      <div className="isc-inner py-8 px-4 sm:px-10">
         {/* Encabezado: eyebrow + título + subtítulo */}
         <div className="isc-eyebrow">{lbl("eyebrow", "AGENDA", "AGENDA")}</div>
         <h2 className="isc-title">

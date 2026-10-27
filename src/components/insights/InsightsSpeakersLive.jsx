@@ -111,7 +111,7 @@ export default function InsightsSpeakersLive({
 
   return (
     <section className="isp-section">
-      <div className="isp-inner">
+      <div className="p-2 sm:p-10">
         {/* Encabezado: título a la izquierda, nota a la derecha (sin eyebrow en STE 2026) */}
         <div className="isp-head">
           <div>
@@ -119,11 +119,11 @@ export default function InsightsSpeakersLive({
               {lbl("title", "Keynote Speakers", "Keynote Speakers")}
             </h2>
           </div>
-          <span className="isp-note">
+          <span className="text-base">
             {lbl(
               "note",
-              "Programa preliminar · sujeto a cambios",
-              "Preliminary program · subject to change",
+              "Programa preliminar sujeto a cambios",
+              "Program subject to change",
             )}
           </span>
         </div>
