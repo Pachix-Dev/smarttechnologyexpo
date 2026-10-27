@@ -364,6 +364,14 @@
   object-fit: cover;
   transition: box-shadow 0.15s ease;
 }
+.ssc-avatar--placeholder {
+  display: grid;
+  place-items: center;
+  background: #27272a;
+  color: #d4d4d8;
+  font-size: 2rem;
+  font-weight: 900;
+}
 .ssc-speaker-name {
   font-size: 17px;
   color: #fff;

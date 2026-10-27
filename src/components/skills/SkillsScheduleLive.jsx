@@ -36,6 +36,19 @@ import {
   daySessions,
 } from "./skillsApi.js";
 
+function speakerInitials(name) {
+  return (
+    String(name || "")
+      .trim()
+      .split(/\s+/)
+      .filter(Boolean)
+      .slice(0, 2)
+      .map((part) => part[0])
+      .join("")
+      .toUpperCase() || "?"
+  );
+}
+
 export default function SkillsScheduleLive({
   lang = "es",
   stageId = SKILLS_STAGE_ID, // escenario de TALLERES en la API (9)
@@ -59,10 +72,7 @@ export default function SkillsScheduleLive({
         if (!alive) return;
         setStage(data);
         // Selecciona por defecto el primer día que tenga sesiones.
-        const idx = (data?.dias || []).findIndex(
-          (d) => (d.conferencias || []).length > 0,
-        );
-        setActiveDay(idx >= 0 ? idx : 0);
+        setActiveDay(0);
         setLoading(false);
       })
       .catch((err) => {
@@ -105,7 +115,9 @@ export default function SkillsScheduleLive({
   };
 
   // Día activo y sus sesiones (memorizadas para no reordenar en cada render).
-  const days = stage?.dias || [];
+  const days = (stage?.dias || []).filter(
+    (d) => (d.conferencias || []).length > 0,
+  );
   const dia = days[activeDay] || days[0] || null;
   const sessions = useMemo(() => daySessions(dia), [dia]);
 
@@ -364,7 +376,12 @@ export default function SkillsScheduleLive({
                                     loading="lazy"
                                   />
                                 ) : (
-                                  <span className="ssc-avatar" />
+                                  <span
+                                    className="ssc-avatar ssc-avatar--placeholder"
+                                    aria-hidden="true"
+                                  >
+                                    {speakerInitials(p.name)}
+                                  </span>
                                 )}
 
                                 <div>
