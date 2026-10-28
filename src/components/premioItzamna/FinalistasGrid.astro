@@ -1,0 +1,355 @@
+---
+import { useTranslations } from "../../utils/translations";
+
+const { locale } = await useTranslations(Astro.props, Astro);
+const isEnglish = locale === "en";
+
+const copy = isEnglish
+  ? {
+      award: "Itzamná Award · 2026",
+      title: "Meet the",
+      highlight: "finalists",
+      description:
+        "Discover the projects driving innovation and technological transformation in industry.",
+      finalist: "Finalist 2026",
+      project: "Finalist project",
+      video: "Watch project video",
+      videoPending: "Video coming soon",
+      newTab: "opens in a new tab",
+    }
+  : {
+      award: "Premio Itzamná · 2026",
+      title: "Conoce a los",
+      highlight: "finalistas",
+      description:
+        "Descubre los proyectos que impulsan la innovación y la transformación tecnológica de la industria.",
+      finalist: "Finalista 2026",
+      project: "Proyecto finalista",
+      video: "Ver video del proyecto",
+      videoPending: "Video próximamente",
+      newTab: "abre en una pestaña nueva",
+    };
+
+// Sustituye los datos de ejemplo por los finalistas confirmados.
+// Agrega las rutas de sus logos y videos cuando estén disponibles.
+const finalistas = [
+  {
+    companyName: "ECON Tech",
+    proyectoName_es:
+      "Autoheat (Consumo energético eficiente en la industria siderúrgica)",
+    proyectoName_en: "Autoheat (Energy Efficiency in the Steel Industry)",
+    logoCompany: "/img/econ_automation_finalista.webp",
+    url_video: "https://www.youtube.com/watch?v=DyzBAST3T8g&t=2s",
+  },
+  {
+    companyName: "Igus México",
+    proyectoName_es:
+      "Polímeros autolubricantes para eliminar el uso de agua en líneas de embotellado",
+    proyectoName_en:
+      "Self-lubricating polymers to eliminate the use of water in bottling lines",
+    logoCompany: "/img/exhibitors2026/igus.webp",
+    url_video: "https://www.youtube.com/watch?v=nQEI3gRXb9I",
+  },
+  {
+    companyName: "MobilityADO",
+    proyectoName_es: "SAE interno, operación con inteligencia",
+    proyectoName_en: "Internal SAE operation with intelligence",
+    logoCompany: "/img/movility_ado_finalista.webp",
+    url_video:
+      "https://www.youtube.com/watch?v=1tD-hhOXcVM&source_ve_path=MjM4NTE&embeds_referring_euri=http%3A%2F%2Flocalhost%3A4321%2F",
+  },
+];
+---
+
+<section
+  id="finalistas"
+  aria-labelledby="itzamna-finalistas-title"
+  class="finalistas-section relative isolate overflow-hidden px-4 py-14 sm:px-6 sm:py-20 lg:px-8 lg:py-24"
+>
+  <div class="relative mx-auto max-w-6xl">
+    <header class="flex items-center justify-between gap-8">
+      <div class="max-w-2xl">
+        <p
+          class="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.18em] text-[#2a4b9b] sm:text-sm"
+          data-aos="fade-up"
+          data-aos-duration="800"
+          data-aos-delay="0"
+          data-aos-easing="ease-out-cubic"
+          data-aos-once="true"
+        >
+          {copy.award}
+        </p>
+        <h2
+          id="itzamna-finalistas-title"
+          data-aos="fade-up"
+          data-aos-duration="800"
+          data-aos-delay="100"
+          data-aos-easing="ease-out-cubic"
+          data-aos-once="true"
+          class="mt-5 text-balance text-4xl font-extrabold leading-[1.08] tracking-tight text-[#142751] sm:text-5xl lg:text-6xl uppercase italic"
+        >
+          {copy.title}
+          <span class="text-[#2a4b9b]"> {copy.highlight} </span>
+        </h2>
+        <p
+          class="mt-5 max-w-xl text-base leading-relaxed text-slate-600 sm:text-lg"
+          data-aos="fade-up"
+          data-aos-duration="800"
+          data-aos-delay="200"
+          data-aos-easing="ease-out-cubic"
+          data-aos-once="true"
+        >
+          {copy.description}
+        </p>
+      </div>
+
+      <div
+        class="finalistas-emblem hidden shrink-0 items-center justify-center sm:flex"
+        data-aos="zoom-in"
+        data-aos-duration="900"
+        data-aos-delay="150"
+        data-aos-easing="ease-out-cubic"
+        data-aos-once="true"
+        aria-hidden="true"
+      >
+        <img
+          src="/img/itzamna/icon_prehispanico_itzamna.webp"
+          alt=""
+          width="120"
+          height="150"
+          class="h-28 w-auto lg:h-36"
+          loading="lazy"
+        />
+      </div>
+    </header>
+
+    <ul
+      class="mt-10 grid list-none grid-cols-1 gap-6 sm:mt-12 sm:grid-cols-2 lg:grid-cols-3 lg:gap-7"
+    >
+      {
+        finalistas.map((finalista, index) => {
+          const projectTitle = isEnglish
+            ? finalista.proyectoName_en
+            : finalista.proyectoName_es;
+          const titleId = `itzamna-finalista-${index + 1}`;
+          const words = finalista.companyName.trim().split(/\s+/);
+          const initials = (
+            words.length > 1
+              ? words
+                  .map((word) => word[0])
+                  .join("")
+                  .slice(0, 2)
+              : finalista.companyName.slice(0, 2)
+          ).toLocaleUpperCase(locale);
+
+          return (
+            <li class="min-w-0">
+              <article
+                aria-labelledby={titleId}
+                class="finalista-card flex h-full flex-col overflow-hidden rounded-2xl border border-[#dce4f1] bg-white"
+              >
+                <div class="finalista-brand relative flex min-h-52 items-center justify-center border-b border-[#e7edf6] px-8 pb-7 pt-16 sm:min-h-56">
+                  <span class="absolute left-5 top-5 inline-flex items-center gap-2 rounded-full bg-[#edf2fc] px-3 py-1.5 text-xs font-semibold text-[#2a4b9b]">
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.7"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <circle cx="12" cy="8" r="5" />
+                      <path d="m8.5 12-1 9 4.5-3 4.5 3-1-9" />
+                    </svg>
+                    {copy.finalist}
+                  </span>
+
+                  {finalista.logoCompany ? (
+                    <img
+                      src={finalista.logoCompany}
+                      alt={finalista.companyName}
+                      width="240"
+                      height="112"
+                      class="relative h-28 w-full max-w-60 object-contain"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  ) : (
+                    <span
+                      class="finalista-initials relative flex h-24 w-24 items-center justify-center rounded-2xl text-4xl font-extrabold tracking-tight text-[#2a4b9b]"
+                      aria-hidden="true"
+                    >
+                      {initials}
+                    </span>
+                  )}
+                </div>
+
+                <div class="flex flex-1 flex-col p-6 sm:p-7">
+                  <h3
+                    id={titleId}
+                    class="text-xl font-bold leading-snug text-[#142751] [overflow-wrap:anywhere] sm:text-2xl"
+                  >
+                    {finalista.companyName}
+                  </h3>
+                  <div class="mb-7 mt-5">
+                    <p class="text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">
+                      {copy.project}
+                    </p>
+                    <p class="mt-2 text-base leading-relaxed text-slate-700 [overflow-wrap:anywhere] font-semibold italic">
+                      {projectTitle}
+                    </p>
+                  </div>
+
+                  <div class="mt-auto border-t border-slate-100 pt-5">
+                    {finalista.url_video ? (
+                      <a
+                        href={finalista.url_video}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`${copy.video}: ${projectTitle} — ${finalista.companyName} (${copy.newTab})`}
+                        class="finalista-video inline-flex min-h-12 w-full items-center justify-center gap-2.5 rounded-xl bg-[#2a4b9b] px-4 py-3 text-center text-sm font-semibold text-white transition-colors hover:bg-[#1e397b] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2a4b9b]"
+                      >
+                        <svg
+                          class="shrink-0"
+                          width="19"
+                          height="19"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="1.6"
+                          aria-hidden="true"
+                        >
+                          <circle cx="12" cy="12" r="9" />
+                          <path
+                            d="m10 8 6 4-6 4V8Z"
+                            fill="currentColor"
+                            stroke="none"
+                          />
+                        </svg>
+                        {copy.video}
+                        <svg
+                          class="shrink-0"
+                          width="15"
+                          height="15"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="1.8"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          aria-hidden="true"
+                        >
+                          <path d="M7 17 17 7M7 7h10v10" />
+                        </svg>
+                      </a>
+                    ) : (
+                      <p class="flex min-h-12 items-center justify-center gap-2.5 rounded-xl bg-slate-50 px-4 py-3 text-sm font-medium text-slate-500">
+                        <svg
+                          class="shrink-0"
+                          width="18"
+                          height="18"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="1.6"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          aria-hidden="true"
+                        >
+                          <circle cx="12" cy="12" r="9" />
+                          <path d="M12 7v5l3 2" />
+                        </svg>
+                        {copy.videoPending}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              </article>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .finalistas-section {
+    background: linear-gradient(180deg, #f4f7fc 0%, #f8fafc 100%);
+  }
+
+  .finalistas-section::before {
+    position: absolute;
+    inset: 0 0 auto;
+    height: 4px;
+    background: linear-gradient(90deg, #2a4b9b 0% 70%, #0f95be 70%);
+    content: "";
+  }
+
+  .finalistas-emblem {
+    width: clamp(11rem, 20vw, 15rem);
+    aspect-ratio: 1;
+    border: 1px solid #dce4f1;
+    border-radius: 50%;
+    background: #edf2fa;
+    box-shadow:
+      0 0 0 12px #f4f7fc,
+      0 0 0 13px #e5ebf5;
+  }
+
+  .finalistas-emblem img {
+    transform: rotate(-10deg);
+  }
+
+  .finalista-card {
+    box-shadow: 0 4px 18px rgb(20 39 81 / 4%);
+    transition:
+      transform 220ms ease,
+      box-shadow 220ms ease,
+      border-color 220ms ease;
+  }
+
+  .finalista-brand {
+    background-image: radial-gradient(#dce4f1 0.8px, transparent 0.8px);
+    background-size: 14px 14px;
+  }
+
+  .finalista-initials {
+    border: 1px solid #dce4f1;
+    background: #f0f4fb;
+    box-shadow: 0 0 0 8px white;
+  }
+
+  .finalista-card:focus-within {
+    border-color: #2a4b9b;
+    box-shadow: 0 12px 28px rgb(20 39 81 / 10%);
+  }
+
+  @media (hover: hover) {
+    .finalista-card:hover {
+      border-color: #a9bcdf;
+      box-shadow: 0 16px 32px rgb(20 39 81 / 10%);
+      transform: translateY(-5px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .finalistas-section [data-aos] {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+
+    .finalista-card,
+    .finalista-video {
+      transition: none;
+    }
+
+    .finalista-card:hover {
+      transform: none;
+    }
+  }
+</style>
