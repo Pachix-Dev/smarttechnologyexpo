@@ -140,14 +140,26 @@ const sponsorsBronze = [
     src: "/img/logos/sponsors/robustel.webp",
     alt: "Robustel",
     href: "https://robustel.com",
-    width: 300,
+    width: 400,
+  },
+  {
+    src: "/img/logos/sponsors/sap_logo.webp",
+    alt: "SAP",
+    href: "https://www.sap.com/latinamerica/index.html",
+    width: 120,
   },
   {
     src: "/img/logos/sponsors/smartsol.webp",
     alt: "SmartSol",
     href: "https://smartsol.mx/",
     width: 300,
-  }
+  },
+   {
+    src: "/img/logos/sponsors/sensortrol.webp",
+    alt: "Sensortrol",
+    href: "https://smartsol.mx/",
+    width: 300,
+  },
 ];
 
 const skillsSponsors = [
@@ -173,6 +185,18 @@ const skillsSponsors = [
 
 const sponsorsSilver = [
   {
+    src: "/img/logos/sponsors/absa.webp",
+    alt: "Absa",
+    href: "",
+    width: 230,
+  },
+  {
+    src: "/img/logos/sponsors/kuka.webp",
+    alt: "Kuka",
+    href: "",
+    width: 230,
+  },
+  {
     src: "/img/exhibitors2026/telcel_empresas.webp",
     alt: "Robustel",
     href: "https://robustel.com",
@@ -183,12 +207,6 @@ const sponsorsSilver = [
     alt: "Another Sponsor",
     href: "",
     width: 230,
-  },
-  {
-    src: "/img/logos/sponsors/sap_logo.webp",
-    alt: "SAP",
-    href: "https://www.sap.com/latinamerica/index.html",
-    width: 170,
   },
 ];
 
@@ -203,22 +221,22 @@ const sponsorsPlatinum = [
 
 const sponsorsGold = [
   {
-    src: "/img/exhibitors2026/nojoxten.webp",
-    alt: "Nojoxten",
-    href: "",
-    width: 250,
-  },
-  {
     src: "/img/exhibitors2026/b&r_logo.webp",
     alt: "B&R",
     href: "",
-    width: 250,
+    width: 230,
+  },
+  {
+    src: "/img/exhibitors2026/nojoxten.webp",
+    alt: "Nojoxten",
+    href: "",
+    width: 260,
   },
   {
     src: "/img/exhibitors2026/schneider.webp",
     alt: "Schneider",
     href: "",
-    width: 250,
+    width: 230,
   }
 ];
 
