@@ -4,6 +4,7 @@ const exhibitors = [
   { src: "/img/exhibitors2026/ag_electronica.webp", alt: "", width: 150 },
   { src: "/img/exhibitors2026/airmobility.webp", alt: "Airmobility", width: 150 },
   { src: "/img/exhibitors2026/armasel.webp", alt: "Armasel", width: 150 },
+  { src: "/img/exhibitors2026/apera.webp", alt: "Apera AI", width: 150 },
   { src: "/img/exhibitors2026/apiej.webp", alt: "APIEJ INDUSTRIAL PARKS", width: 150 },
   { src: "/img/exhibitors2026/asic_mexico.webp", alt: "Asic Mexico", width: 150 },
   { src: "/img/exhibitors2026/ateq.webp", alt: "ATEQ", width: 150 },
