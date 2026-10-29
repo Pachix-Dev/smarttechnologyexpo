@@ -304,6 +304,12 @@ const bannerMedios = [
     href: "https://dimenoticias.mx/",
     width: 540,
   },
+  {
+    src: "/img/logos/sponsors/banners/mexico_industry.webp",
+    alt: "Mexico Industry",
+    href: " https://mexicoindustry.com/suscribe",
+    width: 540,
+  },
 ];
 
 export {
