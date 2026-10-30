@@ -3231,6 +3231,7 @@ export const directory2026 =
     "has_coexhibitors": "No",
     "coexhibitors": null
   },
+  /*
   {
     "id": 130,
     "type":"coexhibitor",
@@ -3256,6 +3257,7 @@ export const directory2026 =
     "has_coexhibitors": "No",
     "coexhibitors": null
   },
+  */
   {
     "id": 130,
     "type":"coexhibitor",
