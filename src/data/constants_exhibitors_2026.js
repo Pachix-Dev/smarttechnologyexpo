@@ -1,7 +1,7 @@
 const exhibitors = [
   { src: "/img/exhibitors2026/3d_market.webp", alt: "3D MARKET", width: 150 },
   { src: "/img/exhibitors2026/absoger.webp", alt: "ABSOGER", width: 150 },
-  { src: "/img/exhibitors2026/absoger.webp", alt: "ABSOGER", width: 150 },
+  { src: "/img/exhibitors2026/abb.webp", alt: "ABB", width: 150 },
   { src: "/img/exhibitors2026/adv.webp", alt: "ADV", width: 150 },
   { src: "/img/exhibitors2026/airmobility.webp", alt: "Airmobility", width: 150 },
   { src: "/img/exhibitors2026/armasel.webp", alt: "Armasel", width: 150 },
