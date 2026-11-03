@@ -130,6 +130,8 @@ app.post("/free-register-ste", async (req, res) => {
       });
     }
 
+    await syncVisitorToBurquesa(data.uuid, "main");
+
     const pdfAtch = await generatePDF_freePass_ecomondo(data, data.uuid);
     const mailResponse = await sendEmailEcomondo(data, pdfAtch, data.uuid);
 
@@ -168,6 +170,8 @@ app.post("/free-register-ste-onsite", async (req, res) => {
         ...userResponse,
       });
     }
+
+    await syncVisitorToBurquesa(data.uuid, "test");
 
     return res.send({
       status: true,
@@ -212,8 +216,40 @@ app.get("/onsite-registration-search", async (req, res) => {
   }
 });
 
+app.get("/onsite-registration/:uuid", async (req, res) => {
+  const uuid = String(req.params.uuid || "").trim();
+  const source = req.query.source === "test" ? "test" : "main";
+
+  if (!uuid) {
+    return res.status(400).send({
+      status: false,
+      message: "Falta el identificador del registro.",
+    });
+  }
+
+  try {
+    const visitor = await RegisterModel.get_visitor_ste_onsite_by_uuid(uuid, source);
+
+    if (!visitor) {
+      return res.status(404).send({
+        status: false,
+        message: "No se encontro el registro.",
+      });
+    }
+
+    return res.send({ status: true, visitor });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).send({
+      status: false,
+      message: "No se pudo consultar el registro.",
+    });
+  }
+});
+
 app.patch("/onsite-registration/:uuid", async (req, res) => {
   const uuid = String(req.params.uuid || "").trim();
+  const source = req.query.source === "test" ? "test" : "main";
 
   if (!uuid) {
     return res.status(400).send({
@@ -226,6 +262,7 @@ app.patch("/onsite-registration/:uuid", async (req, res) => {
     const result = await RegisterModel.update_visitor_ste_onsite({
       ...req.body,
       uuid,
+      source,
     });
 
     if (!result.status) {
@@ -244,6 +281,7 @@ app.patch("/onsite-registration/:uuid", async (req, res) => {
 
 app.post("/onsite-registration/:uuid/print", async (req, res) => {
   const uuid = String(req.params.uuid || "").trim();
+  const source = req.query.source === "test" ? "test" : "main";
 
   if (!uuid) {
     return res.status(400).send({
@@ -253,7 +291,7 @@ app.post("/onsite-registration/:uuid/print", async (req, res) => {
   }
 
   try {
-    const result = await RegisterModel.mark_visitor_ste_badge_printed(uuid);
+    const result = await RegisterModel.mark_visitor_ste_badge_printed(uuid, source);
 
     if (!result.status) {
       return res.status(result.statusCode || 500).send(result);
@@ -1205,6 +1243,142 @@ async function sendEmailExpositor(data) {
   }
 }
 
+// Consulta el registro guardado y lo envia sin interrumpir su confirmacion.
+async function syncVisitorToBurquesa(uuid, source = "main") {
+  try {
+    console.info("[Burquesa] Iniciando sincronizacion del visitante:", {
+      uuid,
+      source,
+    });
+
+    const visitor = await RegisterModel.get_visitor({ visitor_id: uuid, source });
+
+    if (!visitor.status) {
+      console.error("No se pudo consultar el visitante para Burquesa:", {
+        uuid,
+        source,
+        message: visitor.message,
+      });
+      return visitor;
+    }
+
+    const result = await sendVisitorToBurquesa(visitor.result);
+
+    if (!result.status) {
+      console.error("El registro se guardo, pero fallo su envio a Burquesa:", {
+        uuid,
+        source,
+        statusCode: result.statusCode,
+        message: result.message,
+        errors: result.errors,
+        retryable: result.retryable,
+        retryAfter: result.retryAfter,
+      });
+    } else {
+      console.info("[Burquesa] Registro confirmado por la API:", {
+        uuid,
+        source,
+        statusCode: result.statusCode,
+        apiStatus: result.apiStatus,
+        barcode: result.barcode,
+      });
+    }
+
+    return result;
+  } catch (err) {
+    console.error("Error al sincronizar el visitante con Burquesa:", {
+      uuid,
+      source,
+      message: err.message,
+    });
+  }
+}
+
+//funcion para enviar un registro de visitante ste a la api de https://burquesa.com.mx/api/v1/attendees
+async function sendVisitorToBurquesa(data) {
+  try {
+    // El UUID es el identificador que ya se utiliza en el QR del visitante.
+    const payload = {
+      barcode: data.uuid,
+      first_name: data.name,
+      last_name: data.paternSurname,
+      email: data.email,
+      phone: data.phone,
+      company: data.company,
+      country: data.country,
+      postal_code: data.postalCode,
+      role: data.position,
+    };
+
+    const response = await fetch("https://burquesa.com.mx/api/v1/attendees", {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${process.env.BURQUESA_API_KEY}`,
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+      signal: AbortSignal.timeout(5000) // optional: set a timeout for the request
+    });
+
+    // Los errores 401, 409 y 429 pueden llegar sin un cuerpo JSON.
+    const responseData = await response.json().catch(() => null);
+    const isCreated =
+      response.status === 201 && responseData?.status === "created";
+    const alreadyExists =
+      response.status === 200 && responseData?.status === "exists";
+
+    if (
+      (isCreated || alreadyExists) &&
+      typeof responseData.barcode === "string" &&
+      responseData.barcode.trim()
+    ) {
+      return {
+        status: true,
+        statusCode: response.status,
+        apiStatus: responseData.status,
+        barcode: responseData.barcode,
+        message: responseData.message || "Registro confirmado en Burquesa",
+      };
+    }
+
+    const errorMessages = {
+      401: "Token de Burquesa faltante, invalido, vencido o eliminado.",
+      409: "Otra peticion esta procesando este barcode. Reintenta en unos segundos.",
+      422: "Datos invalidos. Corrige los campos indicados antes de reintentar.",
+      429: "Limite de peticiones de Burquesa alcanzado. Espera antes de reintentar.",
+    };
+
+    return {
+      status: false,
+      statusCode: response.status,
+      message: response.ok
+        ? "Burquesa devolvio una respuesta de confirmacion inesperada."
+        : responseData?.message ||
+          errorMessages[response.status] ||
+          "No se pudo enviar el registro a Burquesa",
+      errors: responseData?.errors || null,
+      retryable:
+        response.status === 409 ||
+        response.status === 429 ||
+        (response.status >= 500 && response.status < 600),
+      retryAfter: response.headers.get("Retry-After"),
+    };
+  } catch (err) {
+    console.error("Error de comunicacion con Burquesa:", err.message);
+    return {
+      status: false,
+      statusCode: null,
+      message: "No se pudo comunicar con Burquesa. El envio no fue confirmado.",
+      retryable: true,
+      retryAfter: null,
+    };
+  }
+}
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
+  console.info("[Burquesa] Integracion activa:", {
+    apiKeyConfigured: Boolean(process.env.BURQUESA_API_KEY?.trim()),
+  });
 });

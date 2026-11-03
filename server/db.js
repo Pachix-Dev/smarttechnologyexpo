@@ -39,6 +39,9 @@ const hableError = (error) => {
   };
 };
 
+const getOnsiteVisitorsTable = (source = "main") =>
+  source === "test" ? "visitors_ste_2026_test" : "visitors_ste_2026";
+
 export class RegisterModel {
   static async create_expositor_lead({
     sector,
@@ -304,20 +307,33 @@ export class RegisterModel {
   static async search_visitors_ste(query) {
     const connection = await mysql.createConnection(config);
     try {
-      const cleanQuery = String(query || "").trim().replace(/\s+/g, " ");
+      const cleanQuery = String(query || "")
+        .trim()
+        .replace(/\s+/g, " ");
       const likeQuery = `%${cleanQuery.replace(/[\\%_]/g, "\\$&")}%`;
 
       const [rows] = await connection.query(
-        "SELECT id, uuid, name, paternSurname, email, phone, company, position, typeRegister " +
-          "FROM visitors_ste_2026 " +
-          "WHERE uuid = ? " +
-          "OR uuid LIKE ? " +
-          "OR CONCAT_WS(' ', name, paternSurname) LIKE ? " +
-          "OR email LIKE ? " +
-          "OR company LIKE ? " +
-          "ORDER BY CASE WHEN uuid = ? THEN 0 ELSE 1 END, name ASC, paternSurname ASC " +
-          "LIMIT 15",
-        [cleanQuery, likeQuery, likeQuery, likeQuery, likeQuery, cleanQuery],
+        "SELECT * FROM (" +
+          "SELECT id, uuid, name, paternSurname, email, phone, company, position, typeRegister, 'main' AS source " +
+          "FROM visitors_ste_2026 WHERE uuid = ? OR uuid LIKE ? OR CONCAT_WS(' ', name, paternSurname) LIKE ? OR email LIKE ? OR company LIKE ? " +
+          "UNION ALL " +
+          "SELECT id, uuid, name, paternSurname, email, phone, company, position, typeRegister, 'test' AS source " +
+          "FROM visitors_ste_2026_test WHERE uuid = ? OR uuid LIKE ? OR CONCAT_WS(' ', name, paternSurname) LIKE ? OR email LIKE ? OR company LIKE ?" +
+          ") AS matches " +
+          "ORDER BY CASE WHEN uuid = ? THEN 0 ELSE 1 END, name ASC, paternSurname ASC LIMIT 15",
+        [
+          cleanQuery,
+          likeQuery,
+          likeQuery,
+          likeQuery,
+          likeQuery,
+          cleanQuery,
+          likeQuery,
+          likeQuery,
+          likeQuery,
+          likeQuery,
+          cleanQuery,
+        ],
       );
 
       return rows;
@@ -326,33 +342,73 @@ export class RegisterModel {
     }
   }
 
-  static async update_visitor_ste_onsite({
-    uuid,
-    name,
-    paternSurname,
-    email,
-    phone,
-    typeRegister,
-    company,
-    position,
-  }) {
+  static async get_visitor_ste_onsite_by_uuid(uuid, source = "main") {
     const connection = await mysql.createConnection(config);
     try {
-      const normalizedTypeRegister =
-        String(typeRegister || "").trim() || "VISITANTE";
+      const table = getOnsiteVisitorsTable(source);
+      const [rows] = await connection.query(
+        `SELECT *, ? AS source FROM ${table} WHERE uuid = ? LIMIT 1`,
+        [source, uuid],
+      );
+
+      return rows[0] || null;
+    } finally {
+      await connection.end();
+    }
+  }
+
+  static async update_visitor_ste_onsite({ uuid, source = "main", ...fields }) {
+    const connection = await mysql.createConnection(config);
+    try {
+      const table = getOnsiteVisitorsTable(source);
+      const allowedFields = [
+        "name",
+        "paternSurname",
+        "email",
+        "phone",
+        "typeRegister",
+        "genre",
+        "nacionality",
+        "code_invitation",
+        "company",
+        "rfcNif",
+        "industry",
+        "position",
+        "area",
+        "country",
+        "municipality",
+        "state",
+        "city",
+        "address",
+        "colonia",
+        "postalCode",
+        "webPage",
+        "phoneCompany",
+        "eventKnowledge",
+        "productInterest",
+        "levelInfluence",
+        "wannaBeExhibitor",
+        "alreadyVisited",
+      ];
+      const updates = allowedFields.filter(
+        (field) => fields[field] !== undefined,
+      );
+
+      if (updates.length === 0) {
+        return {
+          status: false,
+          statusCode: 400,
+          message: "No hay datos para actualizar.",
+        };
+      }
+
+      const assignments = updates.map((field) => `${field} = ?`).join(", ");
+      const values = updates.map((field) => fields[field]);
+      values.push(uuid);
 
       const [result] = await connection.query(
-        "UPDATE visitors_ste_2026 SET name = ?, paternSurname = ?, email = ?, phone = ?, typeRegister = ?, company = ?, position = ?, registro_en_sitio = 1 WHERE uuid = ? LIMIT 1",
-        [
-          name,
-          paternSurname,
-          email,
-          phone,
-          normalizedTypeRegister,
-          company,
-          position,
-          uuid,
-        ],
+        `UPDATE ${table} SET ${assignments}, registro_en_sitio = 1 WHERE uuid = ? LIMIT 1`,
+        values,
       );
 
       if (result.affectedRows === 0) {
@@ -364,8 +420,8 @@ export class RegisterModel {
       }
 
       const [rows] = await connection.query(
-        "SELECT id, uuid, name, paternSurname, email, phone, company, position, typeRegister FROM visitors_ste_2026 WHERE uuid = ? LIMIT 1",
-        [uuid],
+        `SELECT *, ? AS source FROM ${table} WHERE uuid = ? LIMIT 1`,
+        [source, uuid],
       );
 
       return {
@@ -380,11 +436,12 @@ export class RegisterModel {
     }
   }
 
-  static async mark_visitor_ste_badge_printed(uuid) {
+  static async mark_visitor_ste_badge_printed(uuid, source = "main") {
     const connection = await mysql.createConnection(config);
     try {
+      const table = getOnsiteVisitorsTable(source);
       const [result] = await connection.query(
-        "UPDATE visitors_ste_2026 SET imprimir_gafete = 1 WHERE uuid = ? LIMIT 1",
+        `UPDATE ${table} SET imprimir_gafete = 1 WHERE uuid = ? LIMIT 1`,
         [uuid],
       );
 
@@ -397,8 +454,8 @@ export class RegisterModel {
       }
 
       const [rows] = await connection.query(
-        "SELECT id, uuid, name, paternSurname, email, phone, company, position, typeRegister FROM visitors_ste_2026 WHERE uuid = ? LIMIT 1",
-        [uuid],
+        `SELECT *, ? AS source FROM ${table} WHERE uuid = ? LIMIT 1`,
+        [source, uuid],
       );
 
       return {
@@ -1031,6 +1088,31 @@ export class RegisterModel {
       }
     } finally {
       await connection.end(); // Close the connection
+    }
+  }
+
+  // Obtiene los datos para Burquesa por UUID desde la tabla del registro.
+  static async get_visitor({ visitor_id, source = "main" }) {
+    const connection = await mysql.createConnection(config);
+    try {
+      const table = getOnsiteVisitorsTable(source);
+      const [result] = await connection.query(
+        `SELECT uuid, name, paternSurname, email, phone, company, country, postalCode, position FROM ${table} WHERE uuid = ? LIMIT 1`,
+        [visitor_id],
+      );
+      if (result.length === 0) {
+        return {
+          status: false,
+          message: "Visitante no encontrado.",
+        };
+      } else {
+        return {
+          status: true,
+          result: result[0],
+        };
+      }
+    } finally {
+      await connection.end();
     }
   }
 }
