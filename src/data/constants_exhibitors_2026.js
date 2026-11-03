@@ -38,6 +38,7 @@ const exhibitors = [
   { src: "/img/exhibitors2026/honpe.webp", alt: "HONPE PROTOTYPING MEXICO", width: 150 },
   { src: "/img/exhibitors2026/electronics.webp", alt: "Electronics", width: 150 },
   { src: "/img/exhibitors2026/i4.0_emr.webp", alt: "I4.0 EMR", width: 150 },
+  { src: "/img/exhibitors2026/innautec.webp", alt: "INNAUTEC", width: 150 },
   { src: "/img/exhibitors2026/ibtest.webp", alt: "Innovate Board Test", width: 150 },
   { src: "/img/exhibitors2026/idicsa.webp", alt: "IDICSA", width: 150 },
   { src: "/img/exhibitors2026/igus.webp", alt: "igus México", width: 150 },
