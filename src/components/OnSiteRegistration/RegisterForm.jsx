@@ -91,7 +91,6 @@ export function RegisterForm({ translates, currentLanguage }) {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      typeRegister: "",
       state,
       municipality,
       city,
@@ -107,9 +106,10 @@ export function RegisterForm({ translates, currentLanguage }) {
   }, [state, municipality, city, colonia, setValue]);
 
   useEffect(() => {
-    setTypeRegister("");
-    setValue("typeRegister", "");
-  }, [setTypeRegister, setValue]);
+    if (typeRegister !== "VISITANTE") {
+      setTypeRegister("VISITANTE");
+    }
+  }, [typeRegister, setTypeRegister]);
 
   const [messagePostalCode, setMessagePostalCode] = useState("");
   const postalCodeRequest = useRef(0);
@@ -376,6 +376,7 @@ export function RegisterForm({ translates, currentLanguage }) {
     setMessageType("error");
     setMessagePostalCode("");
     clear();
+    setTypeRegister("VISITANTE");
     setCompleteRegister(false);
     reset({
       name: "",
@@ -383,7 +384,6 @@ export function RegisterForm({ translates, currentLanguage }) {
       maternSurname: "",
       email: "",
       phone: "",
-      typeRegister: "",
       radio: "",
       nacionality: "",
       code_invitation: "",
@@ -434,7 +434,6 @@ export function RegisterForm({ translates, currentLanguage }) {
     syncField("maternSurname", visitor.maternSurname, setMaternSurname);
     syncField("email", visitor.email, setEmail);
     syncField("phone", visitor.phone, setPhone);
-    syncField("typeRegister", visitor.typeRegister, setTypeRegister);
     syncField("radio", visitor.genre, setGenre);
     syncField("nacionality", visitor.nacionality, setNacionality);
     syncField("code_invitation", visitor.code_invitation, setCodeInvitation);
@@ -481,9 +480,6 @@ export function RegisterForm({ translates, currentLanguage }) {
   };
 
   const handleRegister = async (_, event) => {
-    const selectedTypeRegister = String(
-      useOnSiteRegisterForm.getState().typeRegister || "",
-    ).trim();
     const shouldPrintAfterUpdate =
       event?.nativeEvent?.submitter?.dataset?.print === "true";
     const productInterestValue = Array.isArray(productInterest)
@@ -495,7 +491,7 @@ export function RegisterForm({ translates, currentLanguage }) {
       maternSurname,
       email,
       phone,
-      typeRegister: selectedTypeRegister,
+      typeRegister: "VISITANTE",
       genre,
       nacionality,
       code_invitation,
@@ -636,46 +632,6 @@ export function RegisterForm({ translates, currentLanguage }) {
             {translates.info_personal}
           </p>
           <hr className="my-4 border-t border-gray-200" />
-          <div className="grid md:grid-cols-2 gap-6">
-            <div>
-              <p className="mb-4 font-semibold text-black">
-                {translates.type_register}
-                <span className="text-red-600"> * </span> <br />
-              </p>
-              <select
-                {...register("typeRegister", {
-                  required: `${translates.requiered}`,
-                  onChange: (e) => setTypeRegister(e.target.value),
-                })}
-                value={typeRegister}
-                className="w-full rounded-lg bg-transparent border border-gray-200 p-4 pe-12 text-sm uppercase shadow-sm"
-              >
-                <option value="" className="text-black">
-                  {translates.select_option}
-                </option>
-                <option value="VISITANTE" className="text-black">
-                  {translates.type_register_2}
-                </option>
-                {/* <option value="CONFERENCISTA" className="text-black">
-                  {translates.type_register_3}
-                </option>
-                <option value="VIP" className="text-black">
-                  {translates.type_register_4}
-                </option>
-                <option value="EXPOSITOR" className="text-black">
-                  {translates.type_register_5}
-                </option> */}
-                <option value="MEDIO" className="text-black">
-                  {translates.type_register_6}
-                </option>
-              </select>
-              {errors.typeRegister && (
-                <p className="text-red-600 font-light">
-                  {errors.typeRegister.message}
-                </p>
-              )}
-            </div>
-          </div>
 
           <div className="grid md:grid-cols-2 gap-6">
             {/* Nombre de visitante */}
