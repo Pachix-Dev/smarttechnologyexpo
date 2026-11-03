@@ -163,7 +163,7 @@ app.post("/free-register-ste-onsite", async (req, res) => {
       registro_en_sitio: 1,
       imprimir_gafete: 1,
     };
-    const userResponse = await RegisterModel.create_user_ste_test({ ...data });
+    const userResponse = await RegisterModel.create_user_ste({ ...data });
 
     if (!userResponse.status) {
       return res.status(userResponse.statusCode || 500).send({
@@ -171,7 +171,7 @@ app.post("/free-register-ste-onsite", async (req, res) => {
       });
     }
 
-    await syncVisitorToBurquesa(data.uuid, "test");
+    await syncVisitorToBurquesa(data.uuid, "main");
 
     return res.send({
       status: true,
@@ -218,7 +218,6 @@ app.get("/onsite-registration-search", async (req, res) => {
 
 app.get("/onsite-registration/:uuid", async (req, res) => {
   const uuid = String(req.params.uuid || "").trim();
-  const source = req.query.source === "test" ? "test" : "main";
 
   if (!uuid) {
     return res.status(400).send({
@@ -228,7 +227,7 @@ app.get("/onsite-registration/:uuid", async (req, res) => {
   }
 
   try {
-    const visitor = await RegisterModel.get_visitor_ste_onsite_by_uuid(uuid, source);
+    const visitor = await RegisterModel.get_visitor_ste_onsite_by_uuid(uuid);
 
     if (!visitor) {
       return res.status(404).send({
@@ -249,7 +248,6 @@ app.get("/onsite-registration/:uuid", async (req, res) => {
 
 app.patch("/onsite-registration/:uuid", async (req, res) => {
   const uuid = String(req.params.uuid || "").trim();
-  const source = req.query.source === "test" ? "test" : "main";
 
   if (!uuid) {
     return res.status(400).send({
@@ -262,7 +260,6 @@ app.patch("/onsite-registration/:uuid", async (req, res) => {
     const result = await RegisterModel.update_visitor_ste_onsite({
       ...req.body,
       uuid,
-      source,
     });
 
     if (!result.status) {
@@ -281,7 +278,6 @@ app.patch("/onsite-registration/:uuid", async (req, res) => {
 
 app.post("/onsite-registration/:uuid/print", async (req, res) => {
   const uuid = String(req.params.uuid || "").trim();
-  const source = req.query.source === "test" ? "test" : "main";
 
   if (!uuid) {
     return res.status(400).send({
@@ -291,7 +287,7 @@ app.post("/onsite-registration/:uuid/print", async (req, res) => {
   }
 
   try {
-    const result = await RegisterModel.mark_visitor_ste_badge_printed(uuid, source);
+    const result = await RegisterModel.mark_visitor_ste_badge_printed(uuid);
 
     if (!result.status) {
       return res.status(result.statusCode || 500).send(result);

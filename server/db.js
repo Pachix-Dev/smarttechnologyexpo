@@ -313,20 +313,10 @@ export class RegisterModel {
       const likeQuery = `%${cleanQuery.replace(/[\\%_]/g, "\\$&")}%`;
 
       const [rows] = await connection.query(
-        "SELECT * FROM (" +
-          "SELECT id, uuid, name, paternSurname, email, phone, company, position, typeRegister, 'main' AS source " +
+        "SELECT id, uuid, name, paternSurname, email, phone, company, position, typeRegister, 'main' AS source " +
           "FROM visitors_ste_2026 WHERE uuid = ? OR uuid LIKE ? OR CONCAT_WS(' ', name, paternSurname) LIKE ? OR email LIKE ? OR company LIKE ? " +
-          "UNION ALL " +
-          "SELECT id, uuid, name, paternSurname, email, phone, company, position, typeRegister, 'test' AS source " +
-          "FROM visitors_ste_2026_test WHERE uuid = ? OR uuid LIKE ? OR CONCAT_WS(' ', name, paternSurname) LIKE ? OR email LIKE ? OR company LIKE ?" +
-          ") AS matches " +
           "ORDER BY CASE WHEN uuid = ? THEN 0 ELSE 1 END, name ASC, paternSurname ASC LIMIT 15",
         [
-          cleanQuery,
-          likeQuery,
-          likeQuery,
-          likeQuery,
-          likeQuery,
           cleanQuery,
           likeQuery,
           likeQuery,
@@ -342,13 +332,12 @@ export class RegisterModel {
     }
   }
 
-  static async get_visitor_ste_onsite_by_uuid(uuid, source = "main") {
+  static async get_visitor_ste_onsite_by_uuid(uuid) {
     const connection = await mysql.createConnection(config);
     try {
-      const table = getOnsiteVisitorsTable(source);
       const [rows] = await connection.query(
-        `SELECT *, ? AS source FROM ${table} WHERE uuid = ? LIMIT 1`,
-        [source, uuid],
+        "SELECT *, 'main' AS source FROM visitors_ste_2026 WHERE uuid = ? LIMIT 1",
+        [uuid],
       );
 
       return rows[0] || null;
@@ -357,10 +346,9 @@ export class RegisterModel {
     }
   }
 
-  static async update_visitor_ste_onsite({ uuid, source = "main", ...fields }) {
+  static async update_visitor_ste_onsite({ uuid, ...fields }) {
     const connection = await mysql.createConnection(config);
     try {
-      const table = getOnsiteVisitorsTable(source);
       const allowedFields = [
         "name",
         "paternSurname",
@@ -407,7 +395,7 @@ export class RegisterModel {
       values.push(uuid);
 
       const [result] = await connection.query(
-        `UPDATE ${table} SET ${assignments}, registro_en_sitio = 1 WHERE uuid = ? LIMIT 1`,
+        `UPDATE visitors_ste_2026 SET ${assignments}, registro_en_sitio = 1 WHERE uuid = ? LIMIT 1`,
         values,
       );
 
@@ -420,8 +408,8 @@ export class RegisterModel {
       }
 
       const [rows] = await connection.query(
-        `SELECT *, ? AS source FROM ${table} WHERE uuid = ? LIMIT 1`,
-        [source, uuid],
+        "SELECT *, 'main' AS source FROM visitors_ste_2026 WHERE uuid = ? LIMIT 1",
+        [uuid],
       );
 
       return {
@@ -436,12 +424,11 @@ export class RegisterModel {
     }
   }
 
-  static async mark_visitor_ste_badge_printed(uuid, source = "main") {
+  static async mark_visitor_ste_badge_printed(uuid) {
     const connection = await mysql.createConnection(config);
     try {
-      const table = getOnsiteVisitorsTable(source);
       const [result] = await connection.query(
-        `UPDATE ${table} SET imprimir_gafete = 1 WHERE uuid = ? LIMIT 1`,
+        "UPDATE visitors_ste_2026 SET imprimir_gafete = 1 WHERE uuid = ? LIMIT 1",
         [uuid],
       );
 
@@ -454,8 +441,8 @@ export class RegisterModel {
       }
 
       const [rows] = await connection.query(
-        `SELECT *, ? AS source FROM ${table} WHERE uuid = ? LIMIT 1`,
-        [source, uuid],
+        "SELECT *, 'main' AS source FROM visitors_ste_2026 WHERE uuid = ? LIMIT 1",
+        [uuid],
       );
 
       return {

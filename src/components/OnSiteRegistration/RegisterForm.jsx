@@ -2,11 +2,16 @@ import { useForm } from "react-hook-form";
 import PhoneInputWithCountry from "react-phone-number-input/react-hook-form";
 import Select from "react-select";
 import "react-phone-number-input/style.css";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { flushSync } from "react-dom";
 import { useOnSiteRegisterForm } from "../../store/onsite-register-form";
 import { CountrySelectWithCode } from "../register/CountrySelectWithCode";
 import { countries } from "../../data/list_countries";
+import { RegistrationLookup } from "./RegistrationLookup";
+import {
+  markRegistrationPrinted,
+  updateRegistration,
+} from "./registrationApi";
 
 import "../register/Form.css";
 
@@ -82,6 +87,7 @@ export function RegisterForm({ translates, currentLanguage }) {
     control,
     handleSubmit,
     setValue,
+    reset,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -106,9 +112,11 @@ export function RegisterForm({ translates, currentLanguage }) {
   }, [setTypeRegister, setValue]);
 
   const [messagePostalCode, setMessagePostalCode] = useState("");
+  const postalCodeRequest = useRef(0);
   const urlcp = "https://smarttechnologyexpo.mx/server/";
 
   const handlePostalCode = async (e) => {
+    const request = ++postalCodeRequest.current;
     // Verificar que hay un país seleccionado antes de procesar
     if (!country) {
       setMessagePostalCode(
@@ -122,6 +130,7 @@ export function RegisterForm({ translates, currentLanguage }) {
     if (e.length === 5 && country === "Mexico") {
       const res = await fetch(urlcp + `get-postalcode/${e}`);
       const data = await res.json();
+      if (request !== postalCodeRequest.current) return;
       if (data.status) {
         const record = data.records[0];
         const resolvedCity =
@@ -168,7 +177,10 @@ export function RegisterForm({ translates, currentLanguage }) {
       : "w-full rounded-lg bg-transparent border border-gray-200 p-4 pe-12 text-sm shadow-sm";
 
   const [message, setMessage] = useState("");
+  const [messageType, setMessageType] = useState("error");
   const [processing, setProcessing] = useState(false);
+  const [editingVisitor, setEditingVisitor] = useState(null);
+  const [resetVersion, setResetVersion] = useState(0);
 
   useEffect(() => {
     const resetProcessingOnRestore = () => {
@@ -319,90 +331,290 @@ export function RegisterForm({ translates, currentLanguage }) {
     ? "http://localhost:3005/"
     : "https://smarttechnologyexpo.mx/server/";
 
-  const handleRegister = async () => {
+  const editCopy =
+    currentLanguage === "es"
+      ? {
+          editMode: "Editando registro existente",
+          cancelEdit: "Cancelar actualizacion",
+          updated: "Registro actualizado.",
+          updateError: "No se pudo actualizar el registro.",
+          updateSubmit: "Actualizar registro",
+          updatePrintSubmit: "Actualizar e imprimir",
+        }
+      : {
+          editMode: "Editing existing record",
+          cancelEdit: "Cancel update",
+          updated: "Record updated.",
+          updateError: "The record could not be updated.",
+          updateSubmit: "Update record",
+          updatePrintSubmit: "Update and print",
+        };
+
+  const syncField = (field, value, setter) => {
+    const nextValue = value ?? "";
+    setter(nextValue);
+    setValue(field, nextValue, {
+      shouldDirty: true,
+      shouldValidate: false,
+    });
+  };
+
+  const buildLabelData = (visitor) => ({
+    qr: visitor.uuid,
+    name: visitor.name || "",
+    paternSurname: visitor.paternSurname || "",
+    company: visitor.company || "",
+    position: visitor.position || "",
+    typeRegister: visitor.typeRegister || typeRegister || "",
+  });
+
+  const resetRegistrationForm = () => {
+    postalCodeRequest.current += 1;
+    setEditingVisitor(null);
+    setResetVersion((version) => version + 1);
+    setMessage("");
+    setMessageType("error");
+    setMessagePostalCode("");
+    clear();
+    setCompleteRegister(false);
+    reset({
+      name: "",
+      paternSurname: "",
+      maternSurname: "",
+      email: "",
+      phone: "",
+      typeRegister: "",
+      radio: "",
+      nacionality: "",
+      code_invitation: "",
+      company: "",
+      rfcNif: "",
+      industry: "",
+      position: "",
+      area: "",
+      country: "",
+      municipality: "",
+      state: "",
+      city: "",
+      address: "",
+      colonia: "",
+      postalCode: "",
+      webPage: "",
+      phoneCompany: "",
+      eventKnowledge: "",
+      productInterest: [],
+      levelInfluence: "",
+      wannaBeExhibitor: "",
+      alreadyVisited: "",
+    });
+  };
+
+  const goToPrintLabel = (visitor) => {
+    const labelData = buildLabelData(visitor);
+    resetRegistrationForm();
+    setPrintableLabel(labelData);
+    setCompleteRegister(true);
+
+    flushSync(() => {
+      setProcessing(false);
+    });
+
+    window.location.replace("/registro-en-sitio/etiqueta");
+  };
+
+  const handlePrintVisitor = async (visitor) => {
+    goToPrintLabel(visitor);
+  };
+
+  const handleEditVisitor = (visitor) => {
+    setEditingVisitor(visitor);
+
+    syncField("name", visitor.name, setName);
+    syncField("paternSurname", visitor.paternSurname, setPaternSurname);
+    syncField("maternSurname", visitor.maternSurname, setMaternSurname);
+    syncField("email", visitor.email, setEmail);
+    syncField("phone", visitor.phone, setPhone);
+    syncField("typeRegister", visitor.typeRegister, setTypeRegister);
+    syncField("radio", visitor.genre, setGenre);
+    syncField("nacionality", visitor.nacionality, setNacionality);
+    syncField("code_invitation", visitor.code_invitation, setCodeInvitation);
+    syncField("company", visitor.company, setCompany);
+    syncField("rfcNif", visitor.rfcNif, setRfcNif);
+    syncField("industry", visitor.industry, setIndustry);
+    syncField("position", visitor.position, setPosition);
+    syncField("area", visitor.area, setArea);
+    syncField("country", visitor.country, setCountry);
+    syncField("municipality", visitor.municipality, setMunicipality);
+    syncField("state", visitor.state, setState);
+    syncField("city", visitor.city, setCity);
+    syncField("address", visitor.address, setAddress);
+    syncField("colonia", visitor.colonia, setColonia);
+    syncField("postalCode", visitor.postalCode, setPostalCode);
+    syncField("webPage", visitor.webPage, setWebPage);
+    syncField("phoneCompany", visitor.phoneCompany, setPhoneCompany);
+    syncField("eventKnowledge", visitor.eventKnowledge, setEventKnowledge);
+    syncField("levelInfluence", visitor.levelInfluence, setLevelInfluence);
+    syncField("wannaBeExhibitor", visitor.wannaBeExhibitor, setWannaBeExhibitor);
+    syncField("alreadyVisited", visitor.alreadyVisited, setAlreadyVisited);
+
+    const availableProducts = (translates.list_interest_product || []).map(
+      (item) => ({ label: item, value: item }),
+    );
+    const selectedProducts = String(visitor.productInterest || "")
+      .split(",")
+      .map((item) => item.trim())
+      .filter(Boolean)
+      .map(
+        (value) =>
+          availableProducts.find((option) => option.value === value) || {
+            label: value,
+            value,
+          },
+      );
+
+    setProductInterest(selectedProducts);
+    setValue("productInterest", selectedProducts, {
+      shouldDirty: true,
+      shouldValidate: false,
+    });
+    setColonias(visitor.colonia ? [visitor.colonia] : []);
+  };
+
+  const handleRegister = async (_, event) => {
     const selectedTypeRegister = String(
       useOnSiteRegisterForm.getState().typeRegister || "",
     ).trim();
+    const shouldPrintAfterUpdate =
+      event?.nativeEvent?.submitter?.dataset?.print === "true";
+    const productInterestValue = Array.isArray(productInterest)
+      ? productInterest.map((item) => item.value).join()
+      : productInterest || "";
+    const payload = {
+      name,
+      paternSurname,
+      maternSurname,
+      email,
+      phone,
+      typeRegister: selectedTypeRegister,
+      genre,
+      nacionality,
+      code_invitation,
+      company,
+      industry,
+      position,
+      area,
+      country,
+      municipality,
+      state,
+      city,
+      address,
+      colonia,
+      postalCode,
+      webPage,
+      phoneCompany,
+      rfcNif,
+      eventKnowledge,
+      productInterest: productInterestValue,
+      levelInfluence,
+      wannaBeExhibitor,
+      alreadyVisited,
+      currentLanguage,
+    };
 
     setProcessing(true);
-    const response = await fetch(urlbase + "free-register-ste-onsite", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name,
-        paternSurname,
-        maternSurname,
-        email,
-        phone,
-        typeRegister: selectedTypeRegister,
-        genre,
-        nacionality,
-        code_invitation,
-        company,
-        industry,
-        position,
-        area,
-        country,
-        municipality,
-        state,
-        city,
-        address,
-        colonia,
-        postalCode,
-        webPage,
-        phoneCompany,
-        rfcNif,
-        eventKnowledge,
-        productInterest: productInterest.map((item) => item.value).join(),
-        levelInfluence,
-        wannaBeExhibitor,
-        alreadyVisited,
-        currentLanguage,
-      }),
-    });
-    const orderData = await response.json();
-    if (orderData?.status) {
-      if (!orderData?.uuid) {
+    try {
+      if (editingVisitor?.uuid) {
+        const updatedVisitor = await updateRegistration(
+          editingVisitor.uuid,
+          {
+            ...editingVisitor,
+            ...payload,
+          },
+          editingVisitor.source,
+        );
+
+        setEditingVisitor(updatedVisitor);
+
+        if (shouldPrintAfterUpdate) {
+          const printedVisitor = await markRegistrationPrinted(
+            updatedVisitor.uuid,
+            updatedVisitor.source,
+          );
+          handlePrintVisitor(printedVisitor);
+          return;
+        }
+
+        resetRegistrationForm();
         setProcessing(false);
-        setMessage("No se recibio el UUID para generar la etiqueta.");
-        setTimeout(() => {
-          setMessage("");
-        }, 8000);
+        setMessageType("success");
+        setMessage(editCopy.updated);
         return;
       }
 
-      const labelData = {
-        qr: orderData.uuid,
-        name,
-        paternSurname,
-        company,
-        position,
-        typeRegister: selectedTypeRegister,
-      };
-
-      clear();
-      setPrintableLabel(labelData);
-      setCompleteRegister(true);
-
-      flushSync(() => {
-        setProcessing(false);
+      const response = await fetch(urlbase + "free-register-ste-onsite", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
       });
+      const orderData = await response.json();
 
-      window.location.replace("/registro-en-sitio/etiqueta");
-    } else {
+      if (orderData?.status) {
+        if (!orderData?.uuid) {
+          setProcessing(false);
+          setMessage("No se recibio el UUID para generar la etiqueta.");
+          return;
+        }
+
+        goToPrintLabel({ uuid: orderData.uuid, ...payload });
+        return;
+      }
+
       setProcessing(false);
-      setMessage(orderData?.message);
+      setMessageType("error");
+      setMessage(orderData?.message || "No se pudo completar el registro.");
       setTimeout(() => {
         setMessage("");
       }, 8000);
+    } catch (error) {
+      console.error(error);
+      setProcessing(false);
+      setMessageType("error");
+      setMessage(error.message || "Hubo un error al procesar el registro.");
     }
   };
 
   return (
     <section className="py-5">
       <form className="mx-auto" onSubmit={handleSubmit(handleRegister)}>
+        <RegistrationLookup
+          key={resetVersion}
+          currentLanguage={currentLanguage}
+          onEdit={handleEditVisitor}
+          onPrint={handlePrintVisitor}
+        />
+
+        {editingVisitor && (
+          <div className="mb-8 flex flex-col gap-3 rounded-lg border border-blue-200 bg-blue-50 p-4 text-blue-900 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <p className="font-semibold">{editCopy.editMode}</p>
+              <p className="text-sm">
+                {`${editingVisitor.name || ""} ${editingVisitor.paternSurname || ""}`.trim() ||
+                  editingVisitor.email ||
+                  "Sin nombre"}
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={resetRegistrationForm}
+              className="rounded-lg border border-blue-900 px-4 py-2 text-sm font-semibold text-blue-900 transition hover:bg-blue-900 hover:text-white"
+            >
+              {editCopy.cancelEdit}
+            </button>
+          </div>
+        )}
+
         {/* Personal Information */}
         <div className="rounded-lg shadow-lg border border-gray-800/20 p-8">
           <p className="text-lg font-semibold text-black flex items-center gap-5">
@@ -736,6 +948,7 @@ export function RegisterForm({ translates, currentLanguage }) {
               </p>
               <div className="relative mt-2">
                 <PhoneInputWithCountry
+                  key={resetVersion}
                   name="phone"
                   control={control}
                   defaultValue={phone}
@@ -1309,7 +1522,9 @@ export function RegisterForm({ translates, currentLanguage }) {
               <div className="relative mt-2">
                 <input
                   type="text"
-                  onChange={(e) => setWebPage(e.target.value)}
+                  {...register("webPage", {
+                    onChange: (e) => setWebPage(e.target.value),
+                  })}
                   name="webPage"
                   id="webPage"
                   className="w-full rounded-lg bg-transparent border border-gray-200 p-4 pe-12 text-sm shadow-sm"
@@ -1451,6 +1666,7 @@ export function RegisterForm({ translates, currentLanguage }) {
                 <span className="text-red-600">*</span>
               </p>
               <Select
+                key={resetVersion}
                 isMulti
                 options={translates.list_interest_product.map((item) => ({
                   label: item,
@@ -1474,6 +1690,8 @@ export function RegisterForm({ translates, currentLanguage }) {
                 }
                 className="mt-2 w-full max-w-full text-sm uppercase"
                 classNamePrefix="react-select"
+                closeMenuOnSelect={false}
+
               />
 
               {/* Campo oculto para validación con react-hook-form */}
@@ -1580,15 +1798,31 @@ export function RegisterForm({ translates, currentLanguage }) {
           </div> */}
         </div>
 
-        {/* Button para finalizar el registro */}
-        <div className="flex justify-center mt-10">
-          <button type="submit" className="button">
-            {translates.finish}
-          </button>
+        <div className="flex flex-col items-center justify-center gap-3 mt-10 sm:flex-row">
+          {editingVisitor ? (
+            <>
+              <button type="submit" className="button">
+                {editCopy.updateSubmit}
+              </button>
+              <button type="submit" data-print="true" className="button">
+                {editCopy.updatePrintSubmit}
+              </button>
+            </>
+          ) : (
+            <button type="submit" className="button">
+              {translates.finish}
+            </button>
+          )}
         </div>
 
         {message && (
-          <p className="mt-5 text-red-600 bg-red-100 p-4 font-bold text-center">
+          <p
+            className={`mt-5 p-4 font-bold text-center ${
+              messageType === "success"
+                ? "bg-green-100 text-green-700"
+                : "bg-red-100 text-red-600"
+            }`}
+          >
             {message}
           </p>
         )}
