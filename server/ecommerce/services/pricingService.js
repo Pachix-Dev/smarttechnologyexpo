@@ -1,5 +1,5 @@
 import { ProductModel } from '../models/ProductModel.js';
-import { CouponModel } from '../models/CouponModel.js';
+import { CouponModel, CouponValidationError } from '../models/CouponModel.js';
 import { PAYPAL_CURRENCY } from './paypalService.js';
 
 /**
@@ -18,8 +18,15 @@ export class PricingService {
   static async calculateTotal(cartItems, coupon_code = null) {
     try {
       // Validar que el carrito no esté vacío
-      if (!cartItems || cartItems.length === 0) {
+      if (!Array.isArray(cartItems) || cartItems.length === 0) {
         throw new Error('El carrito está vacío');
+      }
+
+      if (cartItems.some((item) =>
+        !Number.isSafeInteger(Number(item?.product_id)) || Number(item.product_id) <= 0 ||
+        !Number.isSafeInteger(Number(item?.quantity)) || Number(item.quantity) <= 0
+      )) {
+        throw new Error('Los productos y cantidades del carrito no son válidos');
       }
 
       // Obtener información de productos
@@ -62,14 +69,15 @@ export class PricingService {
           }
         }
 
-        const itemTotal = parseFloat(product.price) * parseInt(item.quantity);
+        const quantity = Number(item.quantity);
+        const itemTotal = parseFloat(product.price) * quantity;
         subtotal += itemTotal;
 
         itemsWithPrices.push({
           product_id: item.product_id,
           name: product.name,
           unit_price: parseFloat(product.price),
-          quantity: parseInt(item.quantity),
+          quantity,
           total: itemTotal,
         });
       }
@@ -80,16 +88,19 @@ export class PricingService {
       let coupon = null;
 
       if (coupon_code) {
-        const couponValidation = await CouponModel.validate(coupon_code);
+        const couponValidation = await CouponModel.validate(coupon_code, itemsWithPrices);
         if (couponValidation.valid) {
           coupon = couponValidation.coupon;
           coupon_id = coupon.id_coupon;
-          discount = CouponModel.calculateDiscount(coupon, subtotal);
-
-          // Asegurar que el descuento no sea mayor que el subtotal
-          discount = Math.min(discount, subtotal);
+          const eligibleSubtotal = itemsWithPrices.reduce(
+            (total, item) => Number(item.product_id) === Number(coupon.product_id)
+              ? total + item.total
+              : total,
+            0
+          );
+          discount = CouponModel.calculateDiscount(coupon, eligibleSubtotal);
         } else {
-          throw new Error(couponValidation.message);
+          throw new CouponValidationError(couponValidation.message);
         }
       }
 

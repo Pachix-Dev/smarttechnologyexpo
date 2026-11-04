@@ -1,5 +1,13 @@
 import { pool } from './db-pool.js';
 
+export class CouponValidationError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = 'CouponValidationError';
+    this.code = 'INVALID_COUPON';
+  }
+}
+
 export class CouponModel {
   /**
    * Busca un cupón por código
@@ -38,19 +46,46 @@ export class CouponModel {
   }
 
   /**
-   * Valida si un cupón es válido
+   * Valida el código y que su producto esté en el carrito.
    * @param {string} code - Código del cupón
+   * @param {Array} cartItems - Productos y cantidades del carrito
    * @returns {Promise<Object>} { valid: boolean, coupon: Object|null, message: string }
    */
-  static async validate(code) {
+  static async validate(code, cartItems = []) {
     try {
-      const coupon = await this.findByCode(code);
+      if (typeof code !== 'string' || !code.trim()) {
+        return { valid: false, coupon: null, message: 'Código de cupón requerido' };
+      }
+
+      const coupon = await this.findByCode(code.trim());
 
       if (!coupon) {
         return {
           valid: false,
           coupon: null,
           message: 'Cupón no válido o no activo',
+        };
+      }
+
+      const productId = Number(coupon.product_id);
+      if (!Number.isSafeInteger(productId) || productId <= 0) {
+        return {
+          valid: false,
+          coupon: null,
+          message: 'Este cupón no tiene un producto asignado',
+        };
+      }
+
+      const hasEligibleProduct = Array.isArray(cartItems) && cartItems.some(
+        (item) => Number(item?.product_id) === productId &&
+          Number.isSafeInteger(Number(item?.quantity)) && Number(item.quantity) > 0
+      );
+
+      if (!hasEligibleProduct) {
+        return {
+          valid: false,
+          coupon: null,
+          message: 'Este cupón no aplica a los productos de tu carrito',
         };
       }
 
@@ -68,7 +103,7 @@ export class CouponModel {
   /**
    * Calcula el descuento basado en un cupón
    * @param {Object} coupon - Objeto cupón
-   * @param {number} subtotal - Subtotal de la compra
+   * @param {number} subtotal - Subtotal del producto autorizado, incluyendo su cantidad
    * @returns {number} Monto del descuento
    */
   static calculateDiscount(coupon, subtotal) {

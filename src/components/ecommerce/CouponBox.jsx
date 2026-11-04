@@ -35,20 +35,23 @@ export default function CouponBox() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ code: inputCode.trim() }),
+        body: JSON.stringify({
+          code: inputCode.trim(),
+          cart_items: cart.map((item) => ({
+            product_id: item.product_id,
+            quantity: item.quantity,
+          })),
+        }),
       });
 
       const data = await response.json();
 
       if (data.success) {
         setCoupon(data.coupon);
-        setCouponCode(inputCode.trim());
+        setCouponCode(data.coupon.code);
         setMessage('✓ Cupón validado y aplicado');
         setMessageType('success');
         setInputCode('');
-
-        // Recalcular totales con el cupón
-        handleRecalculatePricing(data.coupon.id_coupon);
       } else {
         setMessage(data.message || 'Cupón no válido');
         setMessageType('error');
@@ -61,11 +64,6 @@ export default function CouponBox() {
     } finally {
       setValidating(false);
     }
-  };
-
-  const handleRecalculatePricing = async (couponId) => {
-    // Esta función se llama desde CheckoutForm después de aplicar el cupón
-    // Por ahora es un placeholder
   };
 
   const handleRemoveCoupon = () => {

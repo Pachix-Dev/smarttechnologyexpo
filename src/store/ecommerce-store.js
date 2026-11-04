@@ -16,15 +16,25 @@ const ecommerceStore = create(
   persist(
     (set, get) => ({
   recalculateLocalPricing: (cartItems) => {
-    const { pricing } = get();
+    const { pricing, coupon } = get();
     const subtotal = cartItems.reduce(
       (total, item) => total + Number(item.price || 0) * Number(item.quantity || 0),
       0
     );
-    const discount = Math.min(Number(pricing?.discount || 0), subtotal);
+    const eligibleSubtotal = coupon?.product_id
+      ? cartItems.reduce(
+          (total, item) => Number(item.product_id) === Number(coupon.product_id)
+            ? total + Number(item.price || 0) * Number(item.quantity || 0)
+            : total,
+          0
+        )
+      : 0;
+    const discount = Math.min(Number(pricing?.discount || 0), eligibleSubtotal);
     const final_amount = Math.max(0, subtotal - discount);
 
     set({
+      currentOrder: null,
+      pendingOrder: null,
       pricing: {
         subtotal,
         discount,
@@ -116,9 +126,19 @@ const ecommerceStore = create(
   
   setCoupon: (coupon) => set({ coupon }),
   
-  setCouponCode: (code) => set({ couponCode: code }),
+  setCouponCode: (code) => set({ couponCode: code, currentOrder: null, pendingOrder: null }),
   
-  clearCoupon: () => set({ coupon: null, couponCode: '' }),
+  clearCoupon: () => set((state) => ({
+    coupon: null,
+    couponCode: '',
+    currentOrder: null,
+    pendingOrder: null,
+    pricing: {
+      ...state.pricing,
+      discount: 0,
+      final_amount: state.pricing.subtotal,
+    },
+  })),
 
   // ===== PRECIOS Y TOTALES =====
   pricing: {

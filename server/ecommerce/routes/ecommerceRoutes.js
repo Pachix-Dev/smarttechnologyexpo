@@ -4,7 +4,7 @@ import path from 'path';
 import { Resend } from 'resend';
 import { VisitorModel } from '../models/VisitorModel.js';
 import { ProductModel } from '../models/ProductModel.js';
-import { CouponModel } from '../models/CouponModel.js';
+import { CouponModel, CouponValidationError } from '../models/CouponModel.js';
 import { OrderModel } from '../models/OrderModel.js';
 import { PayPalService, PAYPAL_CURRENCY } from '../services/paypalService.js';
 import { PricingService } from '../services/pricingService.js';
@@ -214,20 +214,27 @@ router.get('/visitor', async (req, res) => {
 /**
  * POST /ecommerce/validate-coupon
  * Valida un cupón
- * Body: { code: string }
+ * Body: { code: string, cart_items: [{product_id, quantity}, ...] }
  */
 router.post('/validate-coupon', async (req, res) => {
   try {
-    const { code } = req.body;
+    const { code, cart_items } = req.body;
 
-    if (!code) {
+    if (typeof code !== 'string' || !code.trim()) {
       return res.status(400).json({
         success: false,
         message: 'Código de cupón requerido',
       });
     }
 
-    const validation = await CouponModel.validate(code);
+    if (!Array.isArray(cart_items) || cart_items.length === 0) {
+      return res.status(400).json({
+        success: false,
+        message: 'Añade productos al carrito primero',
+      });
+    }
+
+    const validation = await CouponModel.validate(code, cart_items);
 
     res.json({
       success: validation.valid,
@@ -313,6 +320,9 @@ router.post('/create-order', async (req, res) => {
     });
   } catch (error) {
     console.error('Error in POST /create-order:', error);
+    if (error instanceof CouponValidationError) {
+      return res.status(400).json({ success: false, code: error.code, message: error.message });
+    }
     res.status(500).json({
       success: false,
       message: 'Error creando orden',
@@ -577,6 +587,9 @@ router.post('/capture-order', async (req, res) => {
     });
   } catch (error) {
     console.error('Error in POST /capture-order:', error);
+    if (error instanceof CouponValidationError) {
+      return res.status(400).json({ success: false, code: error.code, message: error.message });
+    }
     res.status(500).json({
       success: false,
       message: 'Error capturando orden',

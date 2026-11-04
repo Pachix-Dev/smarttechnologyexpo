@@ -26,6 +26,7 @@ export default function CheckoutForm({ onOrderCreated }) {
     setPricing,
     setPendingOrder,
     setCurrentOrder,
+    pendingOrder,
     clearMessages,
     pricing,
     ticketAttendees,
@@ -44,9 +45,13 @@ export default function CheckoutForm({ onOrderCreated }) {
 
   // Recalcular precios cuando cambia el carrito o cupón
   useEffect(() => {
+    const controller = new AbortController();
+    setPendingOrder(null);
+    setCurrentOrder(null);
     if (cart.length > 0 && visitor) {
-      handleRecalculateTotal();
+      handleRecalculateTotal(controller.signal);
     }
+    return () => controller.abort();
   }, [cart, couponCode, visitor]);
 
   useEffect(() => {
@@ -61,7 +66,15 @@ export default function CheckoutForm({ onOrderCreated }) {
     }
   }, [cart, visitor?.email]);
 
-  const handleRecalculateTotal = async () => {
+  const handleRecalculateTotal = async (signal) => {
+    const resetPricing = () => {
+      const subtotal = cart.reduce(
+        (total, item) => total + Number(item.price) * Number(item.quantity),
+        0
+      );
+      setPricing({ subtotal, discount: 0, final_amount: subtotal });
+    };
+
     try {
       // Crear carrito en formato esperado por el backend
       const cartItems = cart.map((item) => ({
@@ -73,6 +86,7 @@ export default function CheckoutForm({ onOrderCreated }) {
       // Preparar orden temporal: pricing + orden PayPal (sin persistir en DB)
       const response = await ecommerceFetch('/ecommerce/create-order', {
         method: 'POST',
+        signal,
         headers: {
           'Content-Type': 'application/json',
         },
@@ -84,6 +98,7 @@ export default function CheckoutForm({ onOrderCreated }) {
       });
 
       const data = await response.json();
+      if (signal.aborted) return;
 
       if (data.success) {
         setPricing(data.pricing);
@@ -100,12 +115,16 @@ export default function CheckoutForm({ onOrderCreated }) {
         });
         setMessage('');
       } else {
+        resetPricing();
         setMessage(data.message || 'Error calculando total');
         setMessageType('error');
       }
     } catch (error) {
+      if (signal.aborted) return;
       console.error('Error recalculating total:', error);
-      // Silencioso en error de cálculo
+      resetPricing();
+      setMessage('No se pudo actualizar el total. Intenta nuevamente.');
+      setMessageType('error');
     }
   };
 
@@ -277,7 +296,7 @@ export default function CheckoutForm({ onOrderCreated }) {
       {/* Botón de pago */}
       <button
         onClick={handleProceedToPayment}
-        disabled={loading || cart.length === 0 || hasInvalidTicketEmails}
+        disabled={loading || cart.length === 0 || hasInvalidTicketEmails || !pendingOrder}
         className="w-full py-3 bg-blue-600 text-white rounded-lg font-bold hover:bg-blue-700 disabled:bg-gray-400"
       >
         {loading ? 'Procesando...' : 'Continuar al Pago'}
