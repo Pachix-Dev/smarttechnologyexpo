@@ -16,8 +16,8 @@ const workshops = [
  
   {
     workshopId: 1,
-    name: 'SEGURIDAD EN MAQUINARIA: ANÁLISIS Y MITIGACIÓN DE RIESGOS',
-    name_en: 'EMACHINE SAFETY: RISK ANALYSIS AND MITIGATION',
+    name: 'SEGURIDAD EN MAQUINARIA: ANÁLISIS Y MITIGACIÓN DE RIESGOS (SESIÓN 1)',
+    name_en: 'EMACHINE SAFETY: RISK ANALYSIS AND MITIGATION (SESSION 1)',
     company: 'Euchner',
     companyLogo: '/img/exhibitors2026/euchner.webp',
     nivel: 'INTERMEDIO',
@@ -130,6 +130,32 @@ const workshops = [
     cupo: 16,
     profile_es: ['Información por confirmar'],
     profile_en: ['Pending information'],
+  },
+  {
+    workshopId: 5,
+    name: 'SEGURIDAD EN MAQUINARIA: ANÁLISIS Y MITIGACIÓN DE RIESGOS (SESIÓN 2)',
+    name_en: 'EMACHINE SAFETY: RISK ANALYSIS AND MITIGATION (SESSION 2)',
+    company: 'Euchner',
+    companyLogo: '/img/exhibitors2026/euchner.webp',
+    nivel: 'INTERMEDIO',
+    instructor: [
+      {
+        name: 'Timothy Castillejos Martinez',
+        role: 'Gerente Nacional',
+        role_en: 'National Manager',
+      }
+    ],
+    duracion: '3 h',
+    duracion_en: '3 h',
+    date: "2026-11-19",
+    startTime: "15:30",
+    dia: "19 noviembre",    
+    dia_en: "November 18",
+    horario: '15:30 – 18:30',
+    sala: 'Smart Skills Stage',
+    cupo: 70,
+    profile_es: ['Ingenieros de proyecto', 'Personal de seguridad e higiene', 'Integradores y fabricantes de máquinas'],
+    profile_en: ['Project engineers', 'Health and safety personnel', 'Machine integrators and manufacturers'],
   },
   // {
   //  workshopId: 0,
