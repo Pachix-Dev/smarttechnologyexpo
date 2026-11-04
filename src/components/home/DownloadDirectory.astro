@@ -1,0 +1,40 @@
+---
+import { useTranslations } from "../../utils/translations";
+
+const { locale } = await useTranslations(Astro.props, Astro);
+
+const isEnglish = locale === "en";
+
+const pdfUrl = isEnglish
+  ? "/downloads/directory_2026_en.pdf"
+  : "/downloads/directorio_2026_es.pdf";
+
+const buttonText = isEnglish
+  ? "Download directory"
+  : "Descargar directorio";
+---
+
+<a
+  href={pdfUrl}
+  download
+  class="inline-flex w-fit items-center justify-center gap-3 rounded-lg bg-[#ED001B] px-6 py-3 font-bold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-[#c90017] hover:shadow-lg"
+>
+  {buttonText}
+
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M12 3v12" />
+    <path d="m7 10 5 5 5-5" />
+    <path d="M5 17v4h14v-4" />
+  </svg>
+</a>

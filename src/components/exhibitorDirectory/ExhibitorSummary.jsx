@@ -30,6 +30,8 @@ const copy = {
     details: "Ver detalles",
     emptyTitle: "No encontramos expositores",
     emptyText: "Prueba con otro nombre, stand o ubicación.",
+    downloadDirectory: "Descargar directorio",
+    directoryPdf: "/downloads/directorio_2026_es.pdf",
   },
   en: {
     searchLabel: "Search exhibitor",
@@ -45,6 +47,8 @@ const copy = {
     details: "View details",
     emptyTitle: "No exhibitors found",
     emptyText: "Try another name, booth, or location.",
+    downloadDirectory: "Download directory",
+    directoryPdf: "/downloads/directory_2026_en.pdf",
   },
 };
 
@@ -136,43 +140,76 @@ export function ExhibitorSummary({ exhibitors, language }) {
     return sortByExhibitorType(matchingExhibitors);
   }, [exhibitors, query]);
 
-  return (
-    <>
-      <div className="mx-auto w-full max-w-[1240px] p-2 sm:p-4 sm:px-6 lg:px-8">
-        <div className="border border-slate-200 bg-white p-4 shadow-[0_18px_45px_rgba(15,23,42,0.14)] sm:p-5 lg:flex lg:items-center lg:justify-between lg:gap-6">
-          <div>
-            <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#e30613] text-center sm:text-left">
-              {labels.showing} {filteredExhibitors.length} {labels.of} {exhibitors.length} {labels.exhibitors}
-            </p>
-          </div>
+  
+return (
+  <>
+    <div className="mx-auto w-full max-w-[1240px] p-2 sm:p-4 sm:px-6 lg:px-8">
+      <div className="border border-slate-200 bg-white p-4 shadow-[0_18px_45px_rgba(15,23,42,0.14)] sm:p-5 lg:flex lg:items-center lg:justify-between lg:gap-6">
 
-          <label className="mt-5 block w-full lg:mt-0 lg:max-w-xl">
-            <span className="sr-only">{labels.searchLabel}</span>
-            <span className="relative block">
-              <svg
-                className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <circle cx="11" cy="11" r="8" />
-                <path d="m21 21-4.3-4.3" />
-              </svg>
-              <input
-                type="search"
-                value={query}
-                onChange={(event) => setQuery(event.target.value)}
-                placeholder={labels.searchPlaceholder}
-                className="h-[52px] w-full border border-slate-300 bg-slate-50 pl-12 pr-4 text-sm font-semibold text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-[#e30613] focus:bg-white focus:ring-4 focus:ring-red-100 sm:h-14"
-              />
-            </span>
-          </label>
+        {/* CONTADOR Y BOTÓN DE DESCARGA */}
+        <div className="flex flex-wrap items-center justify-center gap-4 sm:justify-start">
+
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#e30613] text-center sm:text-left">
+            {labels.showing} {filteredExhibitors.length} {labels.of} {exhibitors.length} {labels.exhibitors}
+          </p>
+
+          <a
+            href={labels.directoryPdf}
+            download
+            className="inline-flex w-fit shrink-0 items-center justify-center gap-2 rounded-lg bg-[#ED001B] px-4 py-3 text-xs font-bold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-[#c90017] hover:shadow-md"
+          >
+            {labels.downloadDirectory}
+
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M12 3v12" />
+              <path d="m7 10 5 5 5-5" />
+              <path d="M5 17v4h14v-4" />
+            </svg>
+          </a>
+
         </div>
+
+        {/* BUSCADOR */}
+        <label className="mt-5 block w-full lg:mt-0 lg:max-w-xl">
+          <span className="sr-only">{labels.searchLabel}</span>
+          <span className="relative block">
+            <svg
+              className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <circle cx="11" cy="11" r="8" />
+              <path d="m21 21-4.3-4.3" />
+            </svg>
+            <input
+              type="search"
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              placeholder={labels.searchPlaceholder}
+              className="h-[52px] w-full border border-slate-300 bg-slate-50 pl-12 pr-4 text-sm font-semibold text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-[#e30613] focus:bg-white focus:ring-4 focus:ring-red-100 sm:h-14"
+            />
+          </span>
+        </label>
+
+      </div>
+
 
         {filteredExhibitors.length > 0 ? (
           <div className="grid grid-cols-3 gap-2 py-10 sm:gap-3 sm:py-16 md:grid-cols-4 lg:grid-cols-5 lg:gap-4 xl:grid-cols-6">

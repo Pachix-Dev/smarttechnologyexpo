@@ -21,6 +21,7 @@
     "canvas-confetti": "^1.9.4",
     "express-rate-limit": "^8.6.0",
     "flowbite": "^4.0.2",
+    "pdfkit": "^0.20.2",
     "react": "^19.2.1",
     "react-dom": "^19.2.1",
     "react-fast-marquee": "^1.6.5",
@@ -28,6 +29,7 @@
     "react-phone-number-input": "^3.4.17",
     "react-qr-code": "^2.2.0",
     "react-select": "^5.10.2",
+    "sharp": "^0.35.5",
     "zustand": "^5.0.14"
   },
   "devDependencies": {
