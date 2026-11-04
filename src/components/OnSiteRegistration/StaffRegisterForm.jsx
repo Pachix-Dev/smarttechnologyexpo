@@ -301,8 +301,8 @@ export function StaffRegisterForm({ translates, currentLanguage }) {
 
   return (
     <section className="py-5">
-      <form className="mx-auto" onSubmit={handleSubmit(handleRegister)}>
-        <div className="rounded-lg shadow-lg border border-gray-800/20 p-8">
+      <form className="registration-form mx-auto" onSubmit={handleSubmit(handleRegister)}>
+        <div className="rounded-lg shadow-lg border border-gray-800/20 p-4 sm:p-8">
           <RegistrationLookup
             key={resetVersion}
             currentLanguage={currentLanguage}

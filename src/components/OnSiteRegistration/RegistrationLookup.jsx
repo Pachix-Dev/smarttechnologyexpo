@@ -1,11 +1,78 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import {
   getRegistrationByUuid,
   markRegistrationPrinted,
   searchRegistrations,
 } from "./registrationApi";
 
+import "./RegistrationLookup.css";
+
 const getRegistrationKey = (visitor) => `${visitor.source || "main"}:${visitor.uuid}`;
+
+function PrintIcon() {
+  return (
+    <svg
+      className="registration-action-icon"
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.75"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <path d="M6 9V3h12v6" />
+      <path d="M6 17H4a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2" />
+      <rect x="6" y="13" width="12" height="8" rx="1" />
+      <path d="M9 17h6m2-6h.01" />
+    </svg>
+  );
+}
+
+function ClearIcon() {
+  return (
+    <svg
+      className="registration-action-icon"
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.75"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <path d="m15 3 6 6-10 10H7l-4-4L15 3Z" />
+      <path d="m8 10 6 6M7 21h14" />
+    </svg>
+  );
+}
+
+function EditIcon() {
+  return (
+    <svg
+      className="registration-action-icon"
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.75"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <path d="m15 5 4 4" />
+      <path d="m4 20 4-1L20 7a2.83 2.83 0 0 0-4-4L4 15v5Z" />
+    </svg>
+  );
+}
 
 export function RegistrationLookup({ currentLanguage, onEdit, onPrint, onPrintMultiple }) {
   const [searchTerm, setSearchTerm] = useState("");
@@ -13,8 +80,13 @@ export function RegistrationLookup({ currentLanguage, onEdit, onPrint, onPrintMu
   const [selectedVisitors, setSelectedVisitors] = useState([]);
   const [message, setMessage] = useState("");
   const [busyUuid, setBusyUuid] = useState("");
+  const [busyAction, setBusyAction] = useState(null);
   const [printingSelected, setPrintingSelected] = useState(false);
   const [searching, setSearching] = useState(false);
+  const [hasSearched, setHasSearched] = useState(false);
+  const componentId = useId();
+  const searchInputRef = useRef(null);
+  const selectAllRef = useRef(null);
   const requestVersion = useRef(0);
   const actionInProgress = useRef(false);
   const isBusy = Boolean(busyUuid) || printingSelected;
@@ -34,8 +106,10 @@ export function RegistrationLookup({ currentLanguage, onEdit, onPrint, onPrintMu
     requestVersion.current += 1;
     setSearchTerm("");
     setSearchResults([]);
+    setHasSearched(false);
     setMessage("");
     setBusyUuid("");
+    setBusyAction(null);
     setSearching(false);
   };
 
@@ -47,6 +121,11 @@ export function RegistrationLookup({ currentLanguage, onEdit, onPrint, onPrintMu
           button: "Buscar",
           clear: "Limpiar búsqueda",
           loading: "Buscando...",
+          loadingRecord: "Cargando...",
+          preparingRecord: "Preparando...",
+          searchHint: "Escribe al menos 2 caracteres para buscar.",
+          results: "Resultados de búsqueda",
+          resultsFound: "Resultados encontrados",
           print: "Imprimir",
           select: "Seleccionar registro",
           selectAll: "Seleccionar todos los resultados",
@@ -58,8 +137,14 @@ export function RegistrationLookup({ currentLanguage, onEdit, onPrint, onPrintMu
           printError: "No se pudo preparar la impresión completa. Tu selección se conserva para reintentar.",
           remove: "Quitar de la selección",
           update: "Actualizar",
+          person: "Nombre y correo",
+          company: "Empresa",
+          position: "Puesto",
+          emptyEmail: "Sin correo",
           emptyCompany: "Sin empresa",
           emptyPosition: "Sin puesto",
+          registrationType: "Tipo de registro",
+          emptyRegistrationType: "Sin especificar",
           emptyName: "Sin nombre",
           minLength: "Ingresa al menos 2 caracteres para buscar.",
           noResults: "No se encontraron registros con ese criterio.",
@@ -72,6 +157,11 @@ export function RegistrationLookup({ currentLanguage, onEdit, onPrint, onPrintMu
           button: "Search",
           clear: "Clear search",
           loading: "Searching...",
+          loadingRecord: "Loading...",
+          preparingRecord: "Preparing...",
+          searchHint: "Enter at least 2 characters to search.",
+          results: "Search results",
+          resultsFound: "Results found",
           print: "Print",
           select: "Select registration",
           selectAll: "Select all results",
@@ -83,8 +173,14 @@ export function RegistrationLookup({ currentLanguage, onEdit, onPrint, onPrintMu
           printError: "The complete print job could not be prepared. Your selection is kept so you can retry.",
           remove: "Remove from selection",
           update: "Update",
+          person: "Name and email",
+          company: "Company",
+          position: "Position",
+          emptyEmail: "No email",
           emptyCompany: "No company",
           emptyPosition: "No position",
+          registrationType: "Registration type",
+          emptyRegistrationType: "Not specified",
           emptyName: "No name",
           minLength: "Enter at least 2 characters to search.",
           noResults: "No records were found with that criteria.",
@@ -99,12 +195,14 @@ export function RegistrationLookup({ currentLanguage, onEdit, onPrint, onPrintMu
 
     if (query.length < 2) {
       setSearchResults([]);
+      setHasSearched(false);
       setMessage(copy.minLength);
       setSearching(false);
       return;
     }
 
     setSearching(true);
+    setHasSearched(true);
     setMessage("");
     setSearchResults([]);
 
@@ -130,6 +228,7 @@ export function RegistrationLookup({ currentLanguage, onEdit, onPrint, onPrintMu
     actionInProgress.current = true;
     const version = ++requestVersion.current;
     setBusyUuid(visitor.uuid);
+    setBusyAction("edit");
     setMessage("");
 
     try {
@@ -151,7 +250,10 @@ export function RegistrationLookup({ currentLanguage, onEdit, onPrint, onPrintMu
       setMessage(error.message || copy.error);
     } finally {
       actionInProgress.current = false;
-      if (version === requestVersion.current) setBusyUuid("");
+      if (version === requestVersion.current) {
+        setBusyUuid("");
+        setBusyAction(null);
+      }
     }
   };
 
@@ -160,6 +262,7 @@ export function RegistrationLookup({ currentLanguage, onEdit, onPrint, onPrintMu
     actionInProgress.current = true;
     const version = ++requestVersion.current;
     setBusyUuid(visitor.uuid);
+    setBusyAction("print");
     setMessage("");
 
     try {
@@ -175,7 +278,10 @@ export function RegistrationLookup({ currentLanguage, onEdit, onPrint, onPrintMu
       setMessage(error.message || copy.error);
     } finally {
       actionInProgress.current = false;
-      if (version === requestVersion.current) setBusyUuid("");
+      if (version === requestVersion.current) {
+        setBusyUuid("");
+        setBusyAction(null);
+      }
     }
   };
 
@@ -198,6 +304,10 @@ export function RegistrationLookup({ currentLanguage, onEdit, onPrint, onPrintMu
       searchResults.forEach((visitor) => visitors.set(getRegistrationKey(visitor), visitor));
       return [...visitors.values()];
     });
+  };
+
+  const focusSelectionControl = () => {
+    (selectAllRef.current || searchInputRef.current)?.focus();
   };
 
   const handlePrintSelected = async () => {
@@ -226,17 +336,22 @@ export function RegistrationLookup({ currentLanguage, onEdit, onPrint, onPrintMu
   };
 
   return (
-    <div className="mb-8 rounded-lg border border-gray-200 bg-gray-50 p-4">
+    <section className="registration-lookup" aria-labelledby={`${componentId}-label`}>
       <label
-        htmlFor="registration-search"
-        className="block text-sm font-semibold text-black"
+        id={`${componentId}-label`}
+        htmlFor={`${componentId}-search`}
+        className="registration-lookup-title"
       >
         {copy.label}
       </label>
-      <div className="mt-2 flex flex-col gap-3 sm:flex-row">
+      <p id={`${componentId}-hint`} className="registration-lookup-hint">{copy.searchHint}</p>
+      <div className="registration-search-controls">
         <input
           type="search"
-          id="registration-search"
+          ref={searchInputRef}
+          id={`${componentId}-search`}
+          aria-describedby={`${componentId}-hint`}
+          aria-controls={`${componentId}-results`}
           value={searchTerm}
           onChange={(event) => {
             const value = event.target.value;
@@ -250,7 +365,7 @@ export function RegistrationLookup({ currentLanguage, onEdit, onPrint, onPrintMu
               handleSearch();
             }
           }}
-          className="w-full rounded-lg border border-gray-200 bg-white p-4 text-sm shadow-sm"
+          className="registration-search-input"
           placeholder={copy.placeholder}
           autoComplete="off"
         />
@@ -258,7 +373,7 @@ export function RegistrationLookup({ currentLanguage, onEdit, onPrint, onPrintMu
           type="button"
           onClick={handleSearch}
           disabled={searching || isBusy}
-          className="rounded-lg bg-black px-6 py-3 text-sm font-semibold text-white transition hover:bg-gray-800 disabled:cursor-not-allowed disabled:bg-gray-400"
+          className="registration-button registration-button-primary"
         >
           {searching ? copy.loading : copy.button}
         </button>
@@ -266,138 +381,190 @@ export function RegistrationLookup({ currentLanguage, onEdit, onPrint, onPrintMu
           type="button"
           onClick={clearSearch}
           disabled={isBusy}
-          className="whitespace-nowrap rounded-lg border border-gray-900 px-4 py-3 text-sm font-semibold text-gray-900 transition hover:bg-gray-900 hover:text-white disabled:cursor-not-allowed disabled:border-gray-400 disabled:text-gray-400"
+          className="registration-button registration-button-with-icon registration-button-secondary"
         >
-          {copy.clear}
+          <ClearIcon />
+          <span>{copy.clear}</span>
         </button>
       </div>
 
-      {message && <p role="status" className="mt-3 text-sm font-semibold text-gray-700">{message}</p>}
+      <p role="status" aria-atomic="true" className="registration-search-status">
+        {searching ? copy.loading : message || (hasSearched ? `${copy.resultsFound}: ${searchResults.length}` : "")}
+      </p>
 
-      {(searchResults.length > 0 || selectedVisitors.length > 0) && (
-        <div className="mt-4 rounded-lg border border-gray-200 bg-white p-4">
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            {searchResults.length > 0 && (
-              <label className="flex cursor-pointer items-center gap-2 text-sm font-semibold text-black">
-                <input
-                  type="checkbox"
-                  checked={allResultsSelected}
-                  ref={(input) => {
-                    if (input) input.indeterminate = someResultsSelected && !allResultsSelected;
+      <div id={`${componentId}-results`} aria-busy={searching || isBusy}>
+        {(searchResults.length > 0 || selectedVisitors.length > 0) && (
+          <div className="registration-selection">
+            <div className="registration-selection-toolbar">
+              <div className="registration-selection-summary">
+                {searchResults.length > 0 && (
+                  <label className="registration-select-all">
+                    <input
+                      type="checkbox"
+                      checked={allResultsSelected}
+                      ref={(input) => {
+                        selectAllRef.current = input;
+                        if (input) input.indeterminate = someResultsSelected && !allResultsSelected;
+                      }}
+                      onChange={toggleAllResults}
+                      disabled={isBusy || searching}
+                      className="registration-checkbox"
+                    />
+                    {copy.selectAll}
+                  </label>
+                )}
+                <p role="status" aria-atomic="true" className="registration-selection-count">
+                  {copy.selected}: {selectedVisitors.length}
+                </p>
+              </div>
+              <div className="registration-selection-actions">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSelectedVisitors([]);
+                    focusSelectionControl();
                   }}
-                  onChange={toggleAllResults}
-                  disabled={isBusy || searching}
-                  className="h-4 w-4 accent-black"
-                />
-                {copy.selectAll}
-              </label>
-            )}
-            <p role="status" className="text-sm font-semibold text-black">
-              {copy.selected}: {selectedVisitors.length}
-            </p>
-            <div className="flex flex-wrap gap-2">
-              <button
-                type="button"
-                onClick={() => setSelectedVisitors([])}
-                disabled={isBusy || selectedVisitors.length === 0}
-                className="rounded-lg border border-gray-900 px-4 py-2 text-sm font-semibold text-gray-900 disabled:cursor-not-allowed disabled:opacity-50"
-              >
-                {copy.clearSelection}
-              </button>
-              <button
-                type="button"
-                onClick={handlePrintSelected}
-                disabled={isBusy || searching || selectedVisitors.length === 0}
-                className="rounded-lg bg-black px-4 py-2 text-sm font-semibold text-white hover:bg-gray-800 disabled:cursor-not-allowed disabled:bg-gray-400"
-              >
-                {printingSelected ? copy.preparing : `${copy.printSelected} (${selectedVisitors.length})`}
-              </button>
+                  disabled={isBusy || selectedVisitors.length === 0}
+                  className="registration-button registration-button-with-icon registration-button-secondary"
+                >
+                  <ClearIcon />
+                  <span>{copy.clearSelection}</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={handlePrintSelected}
+                  disabled={isBusy || searching || selectedVisitors.length === 0}
+                  className="registration-button registration-button-with-icon registration-button-print"
+                >
+                  <PrintIcon />
+                  <span>{printingSelected ? copy.preparing : `${copy.printSelected} (${selectedVisitors.length})`}</span>
+                </button>
+              </div>
             </div>
+            {selectedVisitors.length > 0 && (
+              <>
+                <p className="registration-selection-hint">{copy.selectionHint}</p>
+                <ul aria-label={copy.selected} className="registration-selected-list">
+                  {selectedVisitors.map((visitor) => {
+                    const name = `${visitor.name || ""} ${visitor.paternSurname || ""}`.trim() ||
+                      visitor.email || copy.emptyName;
+                    return (
+                      <li key={getRegistrationKey(visitor)}>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            toggleVisitor(visitor);
+                            focusSelectionControl();
+                          }}
+                          disabled={isBusy}
+                          aria-label={`${copy.remove}: ${name}`}
+                          className="registration-selection-chip"
+                        >
+                          <span>{name}</span> <span aria-hidden="true">×</span>
+                        </button>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </>
+            )}
           </div>
-          {selectedVisitors.length > 0 && (
-            <>
-              <p className="mt-3 text-sm text-gray-600">{copy.selectionHint}</p>
-              <ul aria-label={copy.selected} className="mt-2 flex flex-wrap gap-2">
-                {selectedVisitors.map((visitor) => {
-                  const name = `${visitor.name || ""} ${visitor.paternSurname || ""}`.trim() ||
-                    visitor.email || copy.emptyName;
-                  return (
-                    <li key={getRegistrationKey(visitor)}>
-                      <button
-                        type="button"
-                        onClick={() => toggleVisitor(visitor)}
-                        disabled={isBusy}
-                        aria-label={`${copy.remove}: ${name}`}
-                        className="rounded-full bg-gray-100 px-3 py-1 text-sm text-gray-900 disabled:opacity-50"
-                      >
-                        {name} <span aria-hidden="true">×</span>
-                      </button>
-                    </li>
-                  );
-                })}
-              </ul>
-            </>
-          )}
-        </div>
-      )}
+        )}
 
-      {searchResults.length > 0 && (
-        <ul className="mt-4 divide-y divide-gray-200 overflow-hidden rounded-lg border border-gray-200 bg-white">
-          {searchResults.map((visitor) => {
-            const fullName =
-              `${visitor.name || ""} ${visitor.paternSurname || ""}`.trim() ||
-              visitor.email ||
-              copy.emptyName;
-            const isVisitorBusy = busyUuid === visitor.uuid;
+        {searchResults.length > 0 && (
+          <ul aria-label={copy.results} className="registration-results">
+            {searchResults.map((visitor) => {
+              const fullName =
+                `${visitor.name || ""} ${visitor.paternSurname || ""}`.trim() ||
+                visitor.email ||
+                copy.emptyName;
+              const isVisitorBusy = busyUuid === visitor.uuid;
+              const isSelected = selectedKeys.has(getRegistrationKey(visitor));
+              const printLabel = isVisitorBusy && busyAction === "print" ? copy.preparingRecord : copy.print;
+              const editLabel = isVisitorBusy && busyAction === "edit" ? copy.loadingRecord : copy.update;
 
-            return (
-              <li
-                key={getRegistrationKey(visitor)}
-                className="flex flex-col gap-3 p-4 sm:flex-row sm:items-center sm:justify-between"
-              >
-                <div className="flex min-w-0 items-start gap-3">
-                  <input
-                    type="checkbox"
-                    checked={selectedKeys.has(getRegistrationKey(visitor))}
-                    onChange={() => toggleVisitor(visitor)}
-                    disabled={isBusy || searching}
-                    aria-label={`${copy.select}: ${fullName}`}
-                    className="mt-1 h-4 w-4 shrink-0 accent-black"
-                  />
-                  <div className="min-w-0">
-                    <p className="font-semibold text-black">{fullName}</p>
-                    <p className="break-all text-sm text-gray-600">{visitor.email}</p>
-                    <p className="text-sm text-gray-600">
-                      {visitor.company || copy.emptyCompany}
+              return (
+                <li
+                  key={getRegistrationKey(visitor)}
+                  className="registration-result"
+                  data-selected={isSelected}
+                  aria-busy={isVisitorBusy}
+                >
+                  <label className="registration-result-select registration-checkbox-target">
+                    <input
+                      type="checkbox"
+                      checked={isSelected}
+                      onChange={() => toggleVisitor(visitor)}
+                      disabled={isBusy || searching}
+                      aria-label={`${copy.select}: ${fullName}`}
+                      className="registration-checkbox"
+                    />
+                  </label>
+                  <div className="registration-result-person">
+                    <p className="registration-field-label">
+                      {copy.person}
                     </p>
-                    <p className="text-sm text-gray-500">
-                      {visitor.position || copy.emptyPosition}
+                    <p className="registration-result-name">{fullName}</p>
+                    <p className="registration-result-email">
+                      {visitor.email || copy.emptyEmail}
                     </p>
                   </div>
-                </div>
-                <div className="flex flex-col gap-2 sm:flex-row">
-                  <button
-                    type="button"
-                    onClick={() => handlePrint(visitor)}
-                    disabled={isBusy || searching}
-                    className="rounded-lg bg-black px-4 py-2 text-sm font-semibold text-white transition hover:bg-gray-800 disabled:cursor-not-allowed disabled:bg-gray-400"
-                  >
-                    {isVisitorBusy ? copy.loading : copy.print}
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => handleEdit(visitor)}
-                    disabled={isBusy || searching}
-                    className="rounded-lg border border-gray-900 px-4 py-2 text-sm font-semibold text-gray-900 transition hover:bg-gray-900 hover:text-white disabled:cursor-not-allowed disabled:border-gray-400 disabled:text-gray-400"
-                  >
-                    {copy.update}
-                  </button>
-                </div>
-              </li>
-            );
-          })}
-        </ul>
-      )}
-    </div>
+                  <dl className="registration-result-company">
+                    <div>
+                      <dt className="registration-field-label">
+                        {copy.company}
+                      </dt>
+                      <dd className="registration-field-value">
+                        {visitor.company || copy.emptyCompany}
+                      </dd>
+                    </div>
+                    <div>
+                      <dt className="registration-field-label">
+                        {copy.position}
+                      </dt>
+                      <dd className="registration-field-value">
+                        {visitor.position || copy.emptyPosition}
+                      </dd>
+                    </div>
+                  </dl>
+                  <dl className="registration-result-type">
+                    <dt className="registration-field-label">
+                      {copy.registrationType}
+                    </dt>
+                    <dd>
+                      <span className="registration-type-badge">
+                        {String(visitor.typeRegister ?? "").trim() || copy.emptyRegistrationType}
+                      </span>
+                    </dd>
+                  </dl>
+                  <div className="registration-result-actions">
+                    <button
+                      type="button"
+                      onClick={() => handlePrint(visitor)}
+                      aria-label={`${printLabel}: ${fullName}`}
+                      disabled={isBusy || searching}
+                      className="registration-button registration-button-with-icon registration-button-print"
+                    >
+                      <PrintIcon />
+                      <span>{printLabel}</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => handleEdit(visitor)}
+                      aria-label={`${editLabel}: ${fullName}`}
+                      disabled={isBusy || searching}
+                      className="registration-button registration-button-with-icon registration-button-edit"
+                    >
+                      <EditIcon />
+                      <span>{editLabel}</span>
+                    </button>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        )}
+      </div>
+    </section>
   );
 }

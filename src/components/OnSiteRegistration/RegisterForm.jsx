@@ -585,7 +585,7 @@ export function RegisterForm({ translates, currentLanguage }) {
 
   return (
     <section className="py-5">
-      <form className="mx-auto" onSubmit={handleSubmit(handleRegister)}>
+      <form className="registration-form mx-auto" onSubmit={handleSubmit(handleRegister)}>
         <RegistrationLookup
           key={resetVersion}
           currentLanguage={currentLanguage}
@@ -615,7 +615,7 @@ export function RegisterForm({ translates, currentLanguage }) {
         )}
 
         {/* Personal Information */}
-        <div className="rounded-lg shadow-lg border border-gray-800/20 p-8">
+        <div className="rounded-lg shadow-lg border border-gray-800/20 p-4 sm:p-8">
           <p className="text-lg font-semibold text-black flex items-center gap-5">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -992,7 +992,7 @@ export function RegisterForm({ translates, currentLanguage }) {
         </div>
 
         {/* Business Information */}
-        <div className="rounded-lg shadow-lg border border-gray-800/20 p-8 mt-10">
+        <div className="rounded-lg shadow-lg border border-gray-800/20 p-4 sm:p-8 mt-10">
           <p className="text-lg font-semibold text-black flex items-center gap-5">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -1560,7 +1560,7 @@ export function RegisterForm({ translates, currentLanguage }) {
         </div>
 
         {/* Survey */}
-        <div className="rounded-lg shadow-lg border border-gray-800/20 p-8 mt-10">
+        <div className="rounded-lg shadow-lg border border-gray-800/20 p-4 sm:p-8 mt-10">
           <p className="text-lg font-semibold text-black flex items-center gap-5">
             <svg
               xmlns="http://www.w3.org/2000/svg"
