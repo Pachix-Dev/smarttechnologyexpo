@@ -127,9 +127,10 @@ import { ECOMMERCE_PRODUCTS } from "../../data/ecommerce_products";
                   <div class="bg-white px-3 py-3 text-center">
                     <div class="flex flex-col items-center justify-center leading-none">
                       <h4 class="text-xs font-extrabold mb-2 uppercase text-green-600">
-                        {locale === "es"
+                        {/* {locale === "es"
                           ? product.early_bird_price_date_es
-                          : product.early_bird_price_date_en}
+                          : product.early_bird_price_date_en} */}
+                          { locale === "es" ? product.regular_price_date_es : product.regular_price_date_en}
                       </h4>
                       <div>
                         <span class="mb-1 mr-1 text-[1rem] font-bold text-[#1d1d1b] sm:text-[1.1rem]">
