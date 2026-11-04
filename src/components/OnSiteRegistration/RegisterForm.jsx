@@ -78,7 +78,7 @@ export function RegisterForm({ translates, currentLanguage }) {
     setWannaBeExhibitor,
     setAlreadyVisited,
     setCompleteRegister,
-    setPrintableLabel,
+    setPrintableLabels,
     clear,
   } = useOnSiteRegisterForm();
 
@@ -409,10 +409,10 @@ export function RegisterForm({ translates, currentLanguage }) {
     });
   };
 
-  const goToPrintLabel = (visitor) => {
-    const labelData = buildLabelData(visitor);
+  const goToPrintLabels = (visitors) => {
+    const labels = visitors.map(buildLabelData);
     resetRegistrationForm();
-    setPrintableLabel(labelData);
+    setPrintableLabels(labels);
     setCompleteRegister(true);
 
     flushSync(() => {
@@ -421,6 +421,8 @@ export function RegisterForm({ translates, currentLanguage }) {
 
     window.location.replace("/registro-en-sitio/etiqueta");
   };
+
+  const goToPrintLabel = (visitor) => goToPrintLabels([visitor]);
 
   const handlePrintVisitor = async (visitor) => {
     goToPrintLabel(visitor);
@@ -589,6 +591,7 @@ export function RegisterForm({ translates, currentLanguage }) {
           currentLanguage={currentLanguage}
           onEdit={handleEditVisitor}
           onPrint={handlePrintVisitor}
+          onPrintMultiple={goToPrintLabels}
         />
 
         {editingVisitor && (

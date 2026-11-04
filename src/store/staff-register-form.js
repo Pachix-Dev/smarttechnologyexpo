@@ -14,6 +14,7 @@ const useStaffRegisterForm = create(
 
       complete_register: false,
       printableLabel: null,
+      printableLabels: [],
 
       setName: (name) => set({ name }),
       setPaternSurname: (paternSurname) => set({ paternSurname }),
@@ -24,7 +25,8 @@ const useStaffRegisterForm = create(
       setPosition: (position) => set({ position }),
 
       setCompleteRegister: (complete_register) => set({ complete_register }),
-      setPrintableLabel: (printableLabel) => set({ printableLabel }),
+      setPrintableLabel: (printableLabel) => set({ printableLabel, printableLabels: [] }),
+      setPrintableLabels: (printableLabels) => set({ printableLabels, printableLabel: null }),
 
       clear: () =>
         set({
@@ -37,6 +39,7 @@ const useStaffRegisterForm = create(
           position: "",
           complete_register: false,
           printableLabel: null,
+          printableLabels: [],
         }),
     }),
     { name: "staff-register-smarttechnologyexpo" },

@@ -47,6 +47,7 @@ const useOnSiteRegisterForm = create(
             code_cortesia: "",
 
             printableLabel: null,
+            printableLabels: [],
             
             setIdUser: (idUser) => set({ idUser }),
             setUuid: (uuid) => set({ uuid }),
@@ -88,7 +89,8 @@ const useOnSiteRegisterForm = create(
             setInvoiceFieldTrip: (invoiceFieldTrip) => set({ invoiceFieldTrip }),
             setCode_cortesia: (code_cortesia) => set({code_cortesia}),
 
-            setPrintableLabel: (printableLabel) => set({ printableLabel }),
+            setPrintableLabel: (printableLabel) => set({ printableLabel, printableLabels: [] }),
+            setPrintableLabels: (printableLabels) => set({ printableLabels, printableLabel: null }),
 
             incrementStep: () => set((state) => ({ 
                 step: state.step + 1 
@@ -173,6 +175,7 @@ const useOnSiteRegisterForm = create(
                 code_cortesia: "",
                 
                 printableLabel: null,
+                printableLabels: [],
             })
         }), 
         { name: "onsite-register-smarttechnologyexpo" }

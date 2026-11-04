@@ -63,7 +63,7 @@ export function StaffRegisterForm({ translates, currentLanguage }) {
     setCompany,
     setPosition,
     setCompleteRegister,
-    setPrintableLabel,
+    setPrintableLabels,
     clear,
   } = useStaffRegisterForm();
 
@@ -156,10 +156,10 @@ export function StaffRegisterForm({ translates, currentLanguage }) {
     });
   };
 
-  const goToPrintLabel = (visitor) => {
-    const labelData = buildLabelData(visitor);
+  const goToPrintLabels = (visitors) => {
+    const labels = visitors.map(buildLabelData);
     resetRegistrationForm();
-    setPrintableLabel(labelData);
+    setPrintableLabels(labels);
     setCompleteRegister(true);
 
     flushSync(() => {
@@ -168,6 +168,8 @@ export function StaffRegisterForm({ translates, currentLanguage }) {
 
     window.location.replace("/registro-operativo/etiqueta");
   };
+
+  const goToPrintLabel = (visitor) => goToPrintLabels([visitor]);
 
   const handlePrintVisitor = async (visitor) => {
     goToPrintLabel(visitor);
@@ -306,6 +308,7 @@ export function StaffRegisterForm({ translates, currentLanguage }) {
             currentLanguage={currentLanguage}
             onEdit={handleEditVisitor}
             onPrint={handlePrintVisitor}
+            onPrintMultiple={goToPrintLabels}
           />
 
           {editingVisitor && (
