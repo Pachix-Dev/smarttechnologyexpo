@@ -8,6 +8,7 @@ import { useOnSiteRegisterForm } from "../../store/onsite-register-form";
 import { CountrySelectWithCode } from "../register/CountrySelectWithCode";
 import { countries } from "../../data/list_countries";
 import { RegistrationLookup } from "./RegistrationLookup";
+import { CancelUpdateButton } from "./CancelUpdateButton";
 import {
   markRegistrationPrinted,
   updateRegistration,
@@ -335,7 +336,7 @@ export function RegisterForm({ translates, currentLanguage }) {
     currentLanguage === "es"
       ? {
           editMode: "Editando registro existente",
-          cancelEdit: "Cancelar actualizacion",
+          cancelEdit: "Cancelar actualización",
           updated: "Registro actualizado.",
           updateError: "No se pudo actualizar el registro.",
           updateSubmit: "Actualizar registro",
@@ -604,13 +605,9 @@ export function RegisterForm({ translates, currentLanguage }) {
                   "Sin nombre"}
               </p>
             </div>
-            <button
-              type="button"
-              onClick={resetRegistrationForm}
-              className="rounded-lg border border-blue-900 px-4 py-2 text-sm font-semibold text-blue-900 transition hover:bg-blue-900 hover:text-white"
-            >
+            <CancelUpdateButton onClick={resetRegistrationForm}>
               {editCopy.cancelEdit}
-            </button>
+            </CancelUpdateButton>
           </div>
         )}
 

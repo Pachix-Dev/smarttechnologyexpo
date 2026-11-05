@@ -6,6 +6,7 @@ import "react-phone-number-input/style.css";
 import { useStaffRegisterForm } from "../../store/staff-register-form";
 import { CountrySelectWithCode } from "../register/CountrySelectWithCode";
 import { RegistrationLookup } from "./RegistrationLookup";
+import { CancelUpdateButton } from "./CancelUpdateButton";
 import {
   markRegistrationPrinted,
   updateRegistration,
@@ -99,7 +100,7 @@ export function StaffRegisterForm({ translates, currentLanguage }) {
       ? {
           updated: "Registro actualizado.",
           updateError: "No se pudo actualizar el registro.",
-          cancelEdit: "Cancelar actualizacion",
+          cancelEdit: "Cancelar actualización",
           createSubmit: "FINALIZAR",
           updateSubmit: "Actualizar registro",
           updatePrintSubmit: "Actualizar e imprimir",
@@ -321,13 +322,9 @@ export function StaffRegisterForm({ translates, currentLanguage }) {
                     "Sin nombre"}
                 </p>
               </div>
-              <button
-                type="button"
-                onClick={resetRegistrationForm}
-                className="rounded-lg border border-blue-900 px-4 py-2 text-sm font-semibold text-blue-900 transition hover:bg-blue-900 hover:text-white"
-              >
+              <CancelUpdateButton onClick={resetRegistrationForm}>
                 {editCopy.cancelEdit}
-              </button>
+              </CancelUpdateButton>
             </div>
           )}
 

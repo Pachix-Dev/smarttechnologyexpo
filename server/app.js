@@ -1219,7 +1219,7 @@ async function sendEmailExpositor(data) {
     await resend.emails.send({
       from: "SMART TECHNOLOGY EXPO 2026 - LEAD EXPOSITOR <noreply@smarttechnologyexpo.mx>",
       to: "claudia.rodriguez@igeco.mx",
-      cc: ["brandom.magana@igeco.mx", "paulina.padilla@igeco.mx", "sofia.manriquez@igeco.mx", "jesus.zermeno@igeco.mx", "abigail.medina@Igeco.mx"],
+      cc: ["brandom.magana@igeco.mx", "sofia.manriquez@igeco.mx", "jesus.zermeno@igeco.mx", "abigail.medina@Igeco.mx"],
       subject: "NUEVO LEAD - SMART TECHNOLOGY EXPO",
       html: emailContent,
     });
