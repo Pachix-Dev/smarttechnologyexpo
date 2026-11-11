@@ -53,109 +53,54 @@ const dateBadge = locale === 'en'
     position: relative;
     width: 100%;
     background: #0b1627;
-    max-height: 680px;
     overflow: hidden;
   }
 
   .dh-bg {
+    position: absolute;
+    inset: 0;
     display: block;
     width: 100%;
-    height: 680px;
+    height: 100%;
     object-fit: cover;
     object-position: center bottom;
   }
 
   .dh-inner {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1.46fr) minmax(0, 1fr);
+    align-items: center;
+    gap: clamp(1rem, 3vw, 3rem);
+    width: 100%;
+    max-width: 1600px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: clamp(1.25rem, 2.5vw, 2.5rem) clamp(1rem, 5vw, 6rem);
   }
 
-  .dh-left {
-    position: absolute;
-    top: 27%;
-    left: 6.3%;
-  }
-
-  .dh-logo {
-    width: 49vw;
-    min-width: 200px;
-    height: auto;
-    display: block;
-  }
-
+  .dh-left,
   .dh-right {
-    position: absolute;
-    top: 23%;
-    right: 5%;
+    min-width: 0;
   }
 
+  .dh-logo,
   .dh-date {
-    width: 33.5vw;
-    min-width: 160px;
+    width: 100%;
     height: auto;
     display: block;
   }
 
-  /* ── DESKTOP ≥1281px ── */
-@media (min-width: 1281px) {
-  .dh-hero  { max-height: 680px; }
-  .dh-bg    { height: 680px; object-position: center bottom; }
-  .dh-left  { top: 27%; left: 6.3%; }
-  .dh-right { top: 23%; right: 5%; }
-  .dh-logo  { width: 49vw; min-width: 200px; }
-  .dh-date  { width: 33.5vw; min-width: 160px; }
-}
-
-  /* ── TABLET GRANDE 1024px–1280px ── */
-  @media (max-width: 1280px) and (min-width: 1025px) {
-    .dh-hero  { max-height: 580px; }
-    .dh-bg    { height: 580px; object-position: center bottom; }
-    .dh-left  { top: 32%; left: 0.8%; }
-    .dh-right { top: 29%; right: 4%; }
-    .dh-logo  { width: 56vw; min-width: 200px; }
-    .dh-date  { width: 35vw; min-width: 160px; }
-  }
-
-  /* ── TABLET 769px–1024px ── */
-  @media (max-width: 1024px) and (min-width: 769px) {
-    .dh-hero  { max-height: 460px; }
-    .dh-bg    { height: 460px; object-position: center bottom; }
-    .dh-left  { top: 30%; left: 6%; }
-    .dh-right { top: 26%; right: 3%; }
-    .dh-logo  { width: 50vw; min-width: 180px; }
-    .dh-date  { width: 35vw; min-width: 150px; }
-  }
-
-  /* ── MOBILE ≤768px ── */
   @media (max-width: 768px) {
-    .dh-hero  { max-height: 420px; }
-    .dh-bg    { height: 420px; object-position: 30% bottom; }
-    .dh-left  { top: 32%; left: 2%; transform: translateX(-50%); }
-    .dh-right { top: 32%; left: 62%; transform: translateX(-50%); right: auto; }
-    .dh-logo  { width: 58vw; min-width: 160px; }
-    .dh-date  { width: 35vw; min-width: 140px; }
-  }
+    .dh-inner {
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 0.75rem;
+      padding: 1.25rem 1rem;
+    }
 
-  /* ── MOBILE PEQUEÑO ≤480px ── */
-  @media (max-width: 480px) {
-    .dh-hero  { max-height: 280px; }
-    .dh-bg    { height: 280px; object-position: 30% bottom; }
-    .dh-left  { top: 40%; left: 1%; transform: translateX(-50%); }
-    .dh-right { top: 38%; left: 63%; transform: translateX(-50%); right: auto; }
-    .dh-logo  { width: 60vw; min-width: 160px; }
-    .dh-date  { width: 25vw; min-width: 140px; }
-  }
-
-  /* ── MOBILE MUY PEQUEÑO ≤380px ── */
-  @media (max-width: 380px) {
-    .dh-hero  { max-height: 240px; }
-    .dh-bg    { height: 240px; object-position: 30% bottom; }
-    .dh-left  { top: 41%; left: 1%; transform: translateX(-50%); }
-    .dh-right { top: 42%; left: 65%; transform: translateX(-50%); right: auto; }
-    .dh-logo  { width: 61vw; min-width: 140px; }
-    .dh-date  { width: 30vw; min-width: 120px; }
+    .dh-bg {
+      object-position: 30% bottom;
+    }
   }
 </style>
