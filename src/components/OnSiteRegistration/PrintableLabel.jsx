@@ -5,6 +5,20 @@ import { useStaffRegisterForm } from "../../store/staff-register-form";
 
 import "./PrintableLabel.css";
 
+const PrintIcon = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <polyline points="6 9 6 2 18 2 18 9" />
+    <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
+    <rect x="6" y="14" width="12" height="8" />
+  </svg>
+);
+
+const AddIcon = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <path d="M12 5v14M5 12h14" />
+  </svg>
+);
+
 export function PrintableLabel({ source = "onsite", copies = 2 }) {
   const onsiteLabel = useOnSiteRegisterForm((state) => state.printableLabel);
   const staffLabel = useStaffRegisterForm((state) => state.printableLabel);
@@ -73,11 +87,15 @@ export function PrintableLabel({ source = "onsite", copies = 2 }) {
       </div>
 
       <div className="no-print print-actions">
-        <button type="button" onClick={() => window.print()}>
-          {labels.length === 1 ? "Imprimir etiqueta" : `Imprimir ${labels.length} etiquetas`}
+        <button type="button" onClick={() => window.print()} className="btn-print">
+          <PrintIcon />
+          <span>{labels.length === 1 ? "Imprimir etiqueta" : `Imprimir ${labels.length} etiquetas`}</span>
         </button>
 
-        <a href={returnPath}>Nuevo registro</a>
+        <a href={returnPath} className="btn-new-register">
+          <AddIcon />
+          <span>Nuevo registro</span>
+        </a>
       </div>
     </main>
   );

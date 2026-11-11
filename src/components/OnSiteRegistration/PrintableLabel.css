@@ -156,14 +156,55 @@
 
 .print-actions button,
 .print-actions a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   border: 0;
   border-radius: 8px;
-  background: #111827;
-  color: white;
-  padding: 10px 14px;
+  padding: 12px 20px;
   text-decoration: none;
   font-size: 14px;
+  font-weight: 600;
   cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.print-actions button:hover,
+.print-actions a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.print-actions button:active,
+.print-actions a:active {
+  transform: translateY(0);
+}
+
+.btn-print {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  color: white;
+}
+
+.btn-print:hover {
+  background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+}
+
+.btn-print svg {
+  stroke: white;
+}
+
+.btn-new-register {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  color: white;
+}
+
+.btn-new-register:hover {
+  background: linear-gradient(135deg, #047857 0%, #065f46 100%);
+}
+
+.btn-new-register svg {
+  stroke: white;
 }
 
 @page {
