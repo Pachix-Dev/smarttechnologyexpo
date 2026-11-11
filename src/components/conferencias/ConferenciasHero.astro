@@ -23,12 +23,14 @@ import { useTranslations, getTranslation } from '../../utils/translations'
 
 export interface Props {
   locale?: string
+  downloadHref?: string
 }
 
 // Carga las traducciones del idioma activo y arma el helper tr().
 const { locale, translations } = await useTranslations(Astro.props, Astro)
 const tr = (key: string, fallback: string = '') =>
   getTranslation(translations, key, fallback)
+const { downloadHref = '/files/Programa_CON_2026_STE_v2.pdf' } = Astro.props
 ---
 
 <section class="ch-hero">
@@ -56,7 +58,7 @@ const tr = (key: string, fallback: string = '') =>
         <img
           src="/img/conferencias/logo_conferencias.webp"
           alt="Con26 by Smart Technology Expo"
-          class="ch-logo"
+          class="w-[300px] sm:w-[700px]"
         />
       </div>
       <!-- Descripción: la primera parte va en negrita (desc_bold) y el resto
@@ -65,6 +67,24 @@ const tr = (key: string, fallback: string = '') =>
         <strong>{tr('conferencias.hero.desc_bold', 'CON 2026 es tu oportunidad para explorar tendencias globales, innovación tecnológica y nuevos modelos de negocio')}</strong>
         {tr('conferencias.hero.desc_rest', ' — conecta con los líderes que están transformando el futuro de la industria.')}
       </p>
+      {downloadHref && (
+        <a href='/files/Programa_CON_2026_STE_v2.pdf' download class="ch-download text-2xl">
+          {tr('conferencias.hero.download', locale === 'en' ? 'Download program' : 'Descargar programa')}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-6 h-6 sm:w-8 sm:h-8"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M12 3v12m-5-5 5 5 5-5M5 17v4h14v-4" />
+          </svg>
+        </a>
+      )}
     </div>
 
     <!-- Divisor vertical entre ambas columnas. -->
@@ -209,6 +229,41 @@ const tr = (key: string, fallback: string = '') =>
     font-weight: 700;
   }
 
+  .ch-download {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    max-width: 90%;
+    min-height: 44px;
+    box-sizing: border-box;
+    margin: 1.5rem 0 0 3%;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.5rem;
+    background: #E2101A;
+    color: #fff;
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 1.4;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.2s;
+  }
+
+  .ch-download:hover {
+    background: #bb0d16;
+  }
+
+  .ch-download:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 4px;
+  }
+
+  .ch-download svg {
+    flex-shrink: 0;
+  }
+
   /* ── Divisor vertical con degradado (se desvanece arriba y abajo) ── */
   .ch-divider {
     width: 2px;
@@ -325,6 +380,7 @@ const tr = (key: string, fallback: string = '') =>
     .ch-left    { align-items: flex-start; padding-right: 0.5rem; overflow: visible; min-width: 0; }
     .ch-logo    { width: 170%; max-width: 480px; margin-left: -13.7%; margin-bottom: -8px; }
     .ch-desc    { font-size: 0.55rem; margin-left: 6.7%; width: 85%; line-height: 1.4; }
+    .ch-download { font-size: 0.7rem; max-width: 85%; margin: 1rem 0 0 6.7%; padding: 0.6rem 0.75rem; gap: 0.5rem; }
     .ch-divider { width: 1px; height: 240px; align-self: center; flex-shrink: 0; margin: 0 0.3rem; }
     .ch-right   { align-items: flex-start; text-align: left; padding-left: 0.5rem; gap: 0.5rem; overflow: hidden; min-width: 0; }
     .ch-label   { font-size: 0.7rem; letter-spacing: 0.07em; line-height: 1.5; }
