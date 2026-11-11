@@ -5,7 +5,7 @@ import { useStaffRegisterForm } from "../../store/staff-register-form";
 
 import "./PrintableLabel.css";
 
-export function PrintableLabel({ source = "onsite" }) {
+export function PrintableLabel({ source = "onsite", copies = 2 }) {
   const onsiteLabel = useOnSiteRegisterForm((state) => state.printableLabel);
   const staffLabel = useStaffRegisterForm((state) => state.printableLabel);
   const onsiteLabels = useOnSiteRegisterForm((state) => state.printableLabels);
@@ -15,10 +15,10 @@ export function PrintableLabel({ source = "onsite" }) {
   const printableLabels = source === "staff" ? staffLabels : onsiteLabels;
   const labels = useMemo(
     () => {
-      if (printableLabels?.length) return printableLabels;
-      return printableLabel ? [printableLabel] : [];
+      const baseLabels = printableLabels?.length ? printableLabels : printableLabel ? [printableLabel] : [];
+      return baseLabels.flatMap(label => Array(copies).fill(label));
     },
-    [printableLabels, printableLabel],
+    [printableLabels, printableLabel, copies],
   );
 
   const returnPath =
