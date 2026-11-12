@@ -30,7 +30,6 @@ export interface Props {
 const { locale, translations } = await useTranslations(Astro.props, Astro)
 const tr = (key: string, fallback: string = '') =>
   getTranslation(translations, key, fallback)
-const { downloadHref = '/files/Programa_CON_2026_STE_v3.pdf' } = Astro.props
 ---
 
 <section class="ch-hero">
@@ -67,8 +66,8 @@ const { downloadHref = '/files/Programa_CON_2026_STE_v3.pdf' } = Astro.props
         <strong>{tr('conferencias.hero.desc_bold', 'CON 2026 es tu oportunidad para explorar tendencias globales, innovación tecnológica y nuevos modelos de negocio')}</strong>
         {tr('conferencias.hero.desc_rest', ' — conecta con los líderes que están transformando el futuro de la industria.')}
       </p>
-      {downloadHref && (
-        <a href='/files/Programa_CON_2026_STE_v3.pdf' download class="ch-download text-2xl">
+    
+        <a href={ locale === 'es' ? '/files/Programa_CON_2026_STE_v3_es.pdf' : '/files/Programa_CON_2026_STE_v3_en.pdf' } target="_blank" class="ch-download text-2xl">
           {tr('conferencias.hero.download', locale === 'en' ? 'Download program' : 'Descargar programa')}
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -84,7 +83,6 @@ const { downloadHref = '/files/Programa_CON_2026_STE_v3.pdf' } = Astro.props
             <path d="M12 3v12m-5-5 5 5 5-5M5 17v4h14v-4" />
           </svg>
         </a>
-      )}
     </div>
 
     <!-- Divisor vertical entre ambas columnas. -->
