@@ -313,7 +313,7 @@ export class RegisterModel {
       const likeQuery = `%${cleanQuery.replace(/[\\%_]/g, "\\$&")}%`;
 
       const [rows] = await connection.query(
-        "SELECT id, uuid, name, paternSurname, email, phone, company, position, typeRegister, 'main' AS source " +
+        "SELECT id, uuid, name, paternSurname, email, phone, company, position, typeRegister, imprimir_gafete, 'main' AS source " +
           "FROM visitors_ste_2026 WHERE uuid = ? OR uuid LIKE ? OR CONCAT_WS(' ', name, paternSurname) LIKE ? OR email LIKE ? OR company LIKE ? " +
           "ORDER BY CASE WHEN uuid = ? THEN 0 ELSE 1 END, name ASC, paternSurname ASC LIMIT 15",
         [

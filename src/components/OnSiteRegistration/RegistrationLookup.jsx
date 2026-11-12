@@ -32,6 +32,44 @@ function PrintIcon() {
   );
 }
 
+function PrintStatusIcon({ isPrinted }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="registration-print-status-icon"
+      width="16"
+      height="16"
+      viewBox={isPrinted ? "0 0 22 22" : "0 0 256 256"}
+      aria-hidden="true"
+      focusable="false"
+    >
+      {isPrinted ? (
+        <path
+          fill="currentColor"
+          d="M4 11h2v1h1v1h1v1h2v-1h1v-1h1v-1h1v-1h1V9h1V8h1V7h1V6h2v2h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1H8v-1H7v-1H6v-1H5v-1H4z"
+        />
+      ) : (
+        <g
+          fill="none"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="16"
+        >
+          <path d="M 80.039519,211.06969 64.056987,239.90745" />
+          <path d="m 175.96058,211.06969 15.98254,28.83776" />
+          <circle cx="128" cy="128.007" r="95.915" />
+          <path d="M 35.294352,102.43866 A 47.957299,47.957299 0 0 1 17.212686,53.792007 47.957299,47.957299 0 0 1 53.990946,17.175027 47.957299,47.957299 0 0 1 102.55767,35.470309" />
+          <path d="m 127.99967,32.092482 3.8e-4,-15.985761" />
+          <path d="M 128.00005,80.049788 V 128.00708" />
+          <path d="m 128.00005,128.00708 33.91093,33.91093" />
+          <path d="M 220.70575,102.43866 A 47.957299,47.957299 0 0 0 238.78742,53.792007 47.957299,47.957299 0 0 0 202.00916,17.175027 47.957299,47.957299 0 0 0 153.44244,35.470309" />
+        </g>
+      )}
+    </svg>
+  );
+}
+
 function ClearIcon() {
   return (
     <svg
@@ -127,6 +165,10 @@ export function RegistrationLookup({ currentLanguage, onEdit, onPrint, onPrintMu
           results: "Resultados de búsqueda",
           resultsFound: "Resultados encontrados",
           print: "Imprimir",
+          reprint: "Reimprimir",
+          badgeStatus: "Estatus de gafete",
+          printed: "Impreso",
+          notPrinted: "No impreso",
           select: "Seleccionar registro",
           selectAll: "Seleccionar todos los resultados",
           selected: "Registros seleccionados",
@@ -163,6 +205,10 @@ export function RegistrationLookup({ currentLanguage, onEdit, onPrint, onPrintMu
           results: "Search results",
           resultsFound: "Results found",
           print: "Print",
+          reprint: "Reprint",
+          badgeStatus: "Badge status",
+          printed: "Printed",
+          notPrinted: "Not printed",
           select: "Select registration",
           selectAll: "Select all results",
           selected: "Selected registrations",
@@ -257,6 +303,15 @@ export function RegistrationLookup({ currentLanguage, onEdit, onPrint, onPrintMu
     }
   };
 
+  const syncPrintedVisitor = (printedVisitor) => {
+    const key = getRegistrationKey(printedVisitor);
+    const updateVisitor = (current) => current.map((visitor) =>
+      getRegistrationKey(visitor) === key ? { ...visitor, ...printedVisitor } : visitor,
+    );
+    setSearchResults(updateVisitor);
+    setSelectedVisitors(updateVisitor);
+  };
+
   const handlePrint = async (visitor) => {
     if (isBusy || searching || actionInProgress.current) return;
     actionInProgress.current = true;
@@ -271,6 +326,7 @@ export function RegistrationLookup({ currentLanguage, onEdit, onPrint, onPrintMu
         visitor.source,
       );
       if (version !== requestVersion.current) return;
+      syncPrintedVisitor(printedVisitor);
       await onPrint(printedVisitor);
     } catch (error) {
       if (version !== requestVersion.current) return;
@@ -322,6 +378,7 @@ export function RegistrationLookup({ currentLanguage, onEdit, onPrint, onPrintMu
       for (const visitor of selectedVisitors) {
         const printedVisitor = await markRegistrationPrinted(visitor.uuid, visitor.source);
         if (version !== requestVersion.current) return;
+        syncPrintedVisitor(printedVisitor);
         printedVisitors.push(printedVisitor);
       }
       await onPrintMultiple(printedVisitors);
@@ -480,7 +537,10 @@ export function RegistrationLookup({ currentLanguage, onEdit, onPrint, onPrintMu
                 copy.emptyName;
               const isVisitorBusy = busyUuid === visitor.uuid;
               const isSelected = selectedKeys.has(getRegistrationKey(visitor));
-              const printLabel = isVisitorBusy && busyAction === "print" ? copy.preparingRecord : copy.print;
+              const isPrinted = Number(visitor.imprimir_gafete) === 1;
+              const printLabel = isVisitorBusy && busyAction === "print"
+                ? copy.preparingRecord
+                : isPrinted ? copy.reprint : copy.print;
               const editLabel = isVisitorBusy && busyAction === "edit" ? copy.loadingRecord : copy.update;
 
               return (
@@ -514,7 +574,7 @@ export function RegistrationLookup({ currentLanguage, onEdit, onPrint, onPrintMu
                       <dt className="registration-field-label">
                         {copy.company}
                       </dt>
-                      <dd className="registration-field-value">
+                      <dd className="registration-field-value font-bold">
                         {visitor.company || copy.emptyCompany}
                       </dd>
                     </div>
@@ -528,14 +588,27 @@ export function RegistrationLookup({ currentLanguage, onEdit, onPrint, onPrintMu
                     </div>
                   </dl>
                   <dl className="registration-result-type">
-                    <dt className="registration-field-label">
-                      {copy.registrationType}
-                    </dt>
-                    <dd>
-                      <span className="registration-type-badge">
-                        {String(visitor.typeRegister ?? "").trim() || copy.emptyRegistrationType}
-                      </span>
-                    </dd>
+                    <div>
+                      <dt className="registration-field-label">
+                        {copy.registrationType}
+                      </dt>
+                      <dd>
+                        <span className="registration-type-badge">
+                          {String(visitor.typeRegister ?? "").trim() || copy.emptyRegistrationType}
+                        </span>
+                      </dd>
+                    </div>
+                    <div>
+                      <dt className="registration-field-label">
+                        {copy.badgeStatus}
+                      </dt>
+                      <dd>
+                        <span className="registration-print-status" data-printed={isPrinted}>
+                          <PrintStatusIcon isPrinted={isPrinted} />
+                          <span>{isPrinted ? copy.printed : copy.notPrinted}</span>
+                        </span>
+                      </dd>
+                    </div>
                   </dl>
                   <div className="registration-result-actions">
                     <button
