@@ -1,6 +1,7 @@
 const exhibitors = [
   { src: "/img/exhibitors2026/3d_market.webp", alt: "3D MARKET", width: 150 },
   { src: "/img/exhibitors2026/a3mexico.webp", alt: "A3 Association for Advancing Automation", width: 150 },
+  { src: "/img/exhibitors2026/absa.webp", alt: "ABSA", width: 150 },
   { src: "/img/exhibitors2026/absoger.webp", alt: "ABSOGER", width: 150 },
   { src: "/img/exhibitors2026/abb.webp", alt: "ABB", width: 150 },
   { src: "/img/exhibitors2026/adv.webp", alt: "ADV", width: 150 },
@@ -58,6 +59,7 @@ const exhibitors = [
   { src: "/img/exhibitors2026/jhctech.webp", alt: "JHCTECH", width: 150 },
   { src: "/img/exhibitors2026/kaeser_compresores.webp", alt: "KAESER COMPRESORES", width: 150 },
   { src: "/img/exhibitors2026/keyence.webp", alt: "Keyence Mexico", width: 150 },
+  { src: "/img/exhibitors2026/klemsan.webp", alt: "Klemsan", width: 150 },
   { src: "/img/exhibitors2026/knipex.webp", alt: "KNIPEX", width: 150 },
   { src: "/img/exhibitors2026/kuka.webp", alt: "KUKA", width: 150 },
   { src: "/img/exhibitors2026/logicbus.webp", alt: "Logicbus", width: 150 },
