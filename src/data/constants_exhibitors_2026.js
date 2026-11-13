@@ -93,7 +93,6 @@ const exhibitors = [
   { src: "/img/exhibitors2026/rembrain.webp", alt: "RemBrain", width: 150 },
   { src: "/img/exhibitors2026/risoul.webp", alt: "Risoul RS", width: 150 },
   { src: "/img/exhibitors2026/robustel.webp", alt: "Robustel", width: 150 },
-  { src: "/img/exhibitors2026/robustel.webp", alt: "Robustel", width: 150 },
   { src: "/img/exhibitors2026/sap.webp", alt: "SAP", width: 150 },
   { src: "/img/exhibitors2026/sen.webp", alt: "SEN", width: 150 },
   { src: "/img/exhibitors2026/sensify.webp", alt: "Sensify", width: 150 },
