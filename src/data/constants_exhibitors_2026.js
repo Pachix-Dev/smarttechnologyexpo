@@ -123,7 +123,8 @@ const exhibitors = [
   { src: "/img/exhibitors2026/rittal.webp", alt: "RITTAL", width: 150 },
   { src: "/img/exhibitors2026/b&r_logo.webp", alt: "B&R", width: 150 },
   { src: "/img/exhibitors2026/schneider.webp", alt: "Schneider", width: 150 },
-  { src: "/img/exhibitors2026/sensortrol.webp", alt: "Sensortrol", width: 150 }
+  { src: "/img/exhibitors2026/sensortrol.webp", alt: "Sensortrol", width: 150 },
+  { src: "/img/exhibitors2026/teradyne_robotics.webp", alt: "Teradyne Robotics", width: 200 }
 ]
 
 export { exhibitors };
