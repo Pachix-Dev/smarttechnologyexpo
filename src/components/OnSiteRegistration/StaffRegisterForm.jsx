@@ -356,6 +356,9 @@ export function StaffRegisterForm({ translates, currentLanguage }) {
                 <option value="VISITANTE" className="text-black">
                   {translates.type_register_2 || "VISITANTE"}
                 </option>
+                <option value="MEDIO" className="text-black">
+                  {translates.type_register_1 || "MEDIO"}
+                </option>
               </select>
               {errors.typeRegister && (
                 <p className="text-red-600 font-light">
