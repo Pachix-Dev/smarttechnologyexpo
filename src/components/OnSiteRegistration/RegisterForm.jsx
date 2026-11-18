@@ -562,7 +562,11 @@ export function RegisterForm({ translates, currentLanguage }) {
       if (orderData?.status) {
         if (!orderData?.uuid) {
           setProcessing(false);
+          setMessageType("error");
           setMessage("No se recibio el UUID para generar la etiqueta.");
+          setTimeout(() => {
+            setMessage("");
+          }, 8000);
           return;
         }
 
