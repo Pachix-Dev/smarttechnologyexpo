@@ -7,10 +7,7 @@ import { useStaffRegisterForm } from "../../store/staff-register-form";
 import { CountrySelectWithCode } from "../register/CountrySelectWithCode";
 import { RegistrationLookup } from "./RegistrationLookup";
 import { CancelUpdateButton } from "./CancelUpdateButton";
-import {
-  markRegistrationPrinted,
-  updateRegistration,
-} from "./registrationApi";
+import { markRegistrationPrinted, updateRegistration } from "./registrationApi";
 
 import "../register/Form.css";
 
@@ -192,7 +189,6 @@ export function StaffRegisterForm({ translates, currentLanguage }) {
     } else {
       syncField("typeRegister", "", setTypeRegister);
     }
-
   };
 
   useEffect(() => {
@@ -264,14 +260,14 @@ export function StaffRegisterForm({ translates, currentLanguage }) {
           ? "http://localhost:3005/free-register-ste-onsite"
           : "https://smarttechnologyexpo.mx/server/free-register-ste-onsite",
         {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ...emptyRegistrationFields,
-          ...payload,
-        }),
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            ...emptyRegistrationFields,
+            ...payload,
+          }),
         },
       );
 
@@ -302,7 +298,10 @@ export function StaffRegisterForm({ translates, currentLanguage }) {
 
   return (
     <section className="py-5">
-      <form className="registration-form mx-auto" onSubmit={handleSubmit(handleRegister)}>
+      <form
+        className="registration-form mx-auto"
+        onSubmit={handleSubmit(handleRegister)}
+      >
         <div className="rounded-lg shadow-lg border border-gray-800/20 p-4 sm:p-8">
           <RegistrationLookup
             key={resetVersion}
@@ -488,7 +487,9 @@ export function StaffRegisterForm({ translates, currentLanguage }) {
           <div className="grid md:grid-cols-3 gap-6">
             <div>
               <p className="mt-5 text-black font-semibold">
-                {currentLanguage === "es" ? "Teléfono con lada internacional" : "Phone with international code" }
+                {currentLanguage === "es"
+                  ? "Teléfono con lada internacional"
+                  : "Phone with international code"}
                 <span className="text-red-600"> * </span>
               </p>
               <div className="relative mt-2">
@@ -583,23 +584,6 @@ export function StaffRegisterForm({ translates, currentLanguage }) {
           </div>
         </div>
 
-        <div className="flex flex-col items-center justify-center gap-3 mt-10 sm:flex-row">
-          {editingVisitor ? (
-            <>
-              <button type="submit" className="button">
-                {editCopy.updateSubmit}
-              </button>
-              <button type="submit" data-print="true" className="button">
-                {editCopy.updatePrintSubmit}
-              </button>
-            </>
-          ) : (
-            <button type="submit" className="button">
-              {translates.finish || editCopy.createSubmit}
-            </button>
-          )}
-        </div>
-
         {message && (
           <p
             className={`mt-5 p-4 font-bold text-center ${
@@ -611,6 +595,23 @@ export function StaffRegisterForm({ translates, currentLanguage }) {
             {message}
           </p>
         )}
+
+        <div className="flex flex-col items-center justify-center gap-3 mt-10 sm:flex-row">
+          {editingVisitor ? (
+            <>
+              {/* <button type="submit" className="button">
+                {editCopy.updateSubmit}
+              </button> */}
+              <button type="submit" data-print="true" className="button">
+                {editCopy.updatePrintSubmit}
+              </button>
+            </>
+          ) : (
+            <button type="submit" className="button">
+              {translates.finish || editCopy.createSubmit}
+            </button>
+          )}
+        </div>
 
         {processing && (
           <div className="absolute top-0 left-0 bg-gray-400 bg-opacity-85 z-[999] w-full h-full px-4">
@@ -642,6 +643,7 @@ export function StaffRegisterForm({ translates, currentLanguage }) {
             </div>
           </div>
         )}
+        
       </form>
     </section>
   );
