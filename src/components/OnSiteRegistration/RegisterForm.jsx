@@ -113,11 +113,8 @@ export function RegisterForm({ translates, currentLanguage }) {
   }, [typeRegister, setTypeRegister]);
 
   const [messagePostalCode, setMessagePostalCode] = useState("");
-  const postalCodeRequest = useRef(0);
-  const urlcp = "https://smarttechnologyexpo.mx/server/";
 
-  const handlePostalCode = async (e) => {
-    const request = ++postalCodeRequest.current;
+  const handlePostalCode = (e) => {
     // Verificar que hay un país seleccionado antes de procesar
     if (!country) {
       setMessagePostalCode(
@@ -126,48 +123,16 @@ export function RegisterForm({ translates, currentLanguage }) {
       return;
     }
 
-    setPostalCode(e);
-
-    if (e.length === 5 && country === "Mexico") {
-      const res = await fetch(urlcp + `get-postalcode/${e}`);
-      const data = await res.json();
-      if (request !== postalCodeRequest.current) return;
-      if (data.status) {
-        const record = data.records[0];
-        const resolvedCity =
-          record.d_ciudad?.trim() || record.D_mnpio || record.d_estado || "";
-
-        setMessagePostalCode("");
-        setPostalCode(e);
-        setMunicipality(record.D_mnpio);
-        setState(record.d_estado);
-        setCity(resolvedCity);
-        setValue("municipality", record.D_mnpio);
-        setValue("state", record.d_estado);
-        setValue("city", resolvedCity);
-        setColonias(data.records.map((record) => record.d_asenta));
-        setColonia("");
-      } else {
-        setMessagePostalCode(translates.no_postal_code_valid);
-        setMunicipality("");
-        setState("");
-        setCity("");
-        setColonias([]);
-        setColonia("");
-      }
-    }
-
-    if (e.length > 5 && country === "Mexico") {
-      setMessagePostalCode(translates.no_postal_code_valid);
-      setMunicipality("");
-      setState("");
-      setCity("");
-      setColonias([]);
-      setColonia("");
+    // Para México, solo almacenar el código postal sin validación de API
+    if (country === "Mexico") {
+      setPostalCode(e);
+      setMessagePostalCode("");
+      return;
     }
 
     // Para otros países, simplemente almacenar el código postal
     if (country && country !== "Mexico") {
+      setPostalCode(e);
       setMessagePostalCode("");
     }
   };
@@ -370,7 +335,6 @@ export function RegisterForm({ translates, currentLanguage }) {
   });
 
   const resetRegistrationForm = () => {
-    postalCodeRequest.current += 1;
     setEditingVisitor(null);
     setResetVersion((version) => version + 1);
     setMessage("");
@@ -1407,9 +1371,9 @@ export function RegisterForm({ translates, currentLanguage }) {
                     onChange: (e) => setState(e.target.value),
                     value: state,
                   })}
-                  className={isDisabled}
+                  className="w-full rounded-lg bg-transparent border border-gray-200 p-4 pe-12 text-sm shadow-sm"
                   placeholder={translates.placeholder_state}
-                  disabled={country === "Mexico"}
+                  disabled={!country}
                 />
                 <span className="absolute inset-y-0 end-0 grid place-content-center px-4">
                   <svg
@@ -1446,10 +1410,10 @@ export function RegisterForm({ translates, currentLanguage }) {
                   })}
                   name="municipality"
                   id="municipality"
-                  className={isDisabled}
+                  className="w-full rounded-lg bg-transparent border border-gray-200 p-4 pe-12 text-sm shadow-sm"
                   placeholder={translates.placeholder_municipality}
                   autoComplete="municipality"
-                  disabled={country === "Mexico"}
+                  disabled={!country}
                 />
                 <span className="absolute inset-y-0 end-0 grid place-content-center px-4">
                   <svg
