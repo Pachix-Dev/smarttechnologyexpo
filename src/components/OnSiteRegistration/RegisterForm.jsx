@@ -1400,12 +1400,13 @@ export function RegisterForm({ translates, currentLanguage }) {
             </div>
             <div>
               <p className="text-black font-semibold">
-                {translates.municipality}
+                {translates.municipality} <span className="text-red-600">*</span>
               </p>
               <div className="relative mt-2">
                 <input
                   type="text"
                   {...register("municipality", {
+                    required: `${translates.requiered}`,
                     onChange: (e) => setMunicipality(e.target.value),
                   })}
                   name="municipality"
@@ -1432,6 +1433,11 @@ export function RegisterForm({ translates, currentLanguage }) {
                   </svg>
                 </span>
               </div>
+              {errors.municipality && (
+                <p className="text-red-600 font-light">
+                  {errors.municipality.message}
+                </p>
+              )}
             </div>
           </div>
 
