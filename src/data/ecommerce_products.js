@@ -22,7 +22,7 @@ export const ECOMMERCE_PRODUCTS = [
     capacity_limit: 60,
     capacity_desc_es: 'Cupo limitado',
     capacity_desc_en: 'Limited capacity',
-    status: 'active', // Cambiado a inactive para pruebas, cambiar a 'active' para producción
+    status: 'inactive', // Cambiado a inactive para pruebas, cambiar a 'active' para producción
     img_background: '/img/bg_mujeres_hero.webp',
     logo_img: '/img/mujeres_logo.webp',
     early_bird_price_date_es: 'valido durante octubre',
@@ -76,7 +76,7 @@ export const ECOMMERCE_PRODUCTS = [
     capacity_limit: 50,
     capacity_desc_es: 'Cupo limitado',
     capacity_desc_en: 'Limited capacity',
-    status: 'active',
+    status: 'inactive',
     img_background: '/img/bg_footer.png',
     logo_img: '',
     early_bird_price_date_es: 'agosto y septiembre',
