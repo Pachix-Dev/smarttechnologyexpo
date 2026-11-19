@@ -1293,6 +1293,9 @@ async function syncVisitorToBurquesa(uuid, source = "main") {
 //funcion para enviar un registro de visitante ste a la api de https://burquesa.com.mx/api/v1/attendees
 async function sendVisitorToBurquesa(data) {
   try {
+    const country = String(data.country ?? "").trim() || "México";
+    const postalCode = String(data.postalCode ?? "").trim() || "00000";
+
     // El UUID es el identificador que ya se utiliza en el QR del visitante.
     const payload = {
       barcode: data.uuid,
@@ -1301,8 +1304,8 @@ async function sendVisitorToBurquesa(data) {
       email: data.email,
       phone: data.phone,
       company: data.company,
-      country: data.country,
-      postal_code: data.postalCode,
+      country,
+      postal_code: postalCode,
       role: data.position,
     };
 
