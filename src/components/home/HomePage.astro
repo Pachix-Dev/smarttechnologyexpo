@@ -38,11 +38,26 @@ const tr = (key: string, fallback: string = "") =>
   description={tr("site.description", "Expo de tecnología inteligente")}
 >
   <!-- <HomePopup client:load language={locale} /> -->
-  <HeroHome />
-  <ConcurrentEventGrid />
+  <!-- Key visual 2027 como hero principal -->
+  <section
+    class=" bg-[#111111] sm:h-screen"
+    aria-label="Smart Technology Expo 2027"
+  >
+    <img
+      class="mx-auto"
+      src="/img/imagen_2027/propuesta_key_visual_STE_27.webp"
+      alt="Key visual de Smart Technology Expo 2027"
+      loading="eager"
+      fetchpriority="high"
+      decoding="async"
+    />
+  </section>
+  <!-- <HeroHome /> -->
+  <!-- <BecomeAnExhibitor /> -->
+  <!-- <ConcurrentEventGrid />
   <HighlightSte2026 />
-  <PromotionalVideo />
-  <Countdown />
+  <PromotionalVideo /> -->
+  <!-- <Countdown /> -->
   <DisplaySegments />
   <DirectorySection />
   <ExhibitorsGrid2026 />
@@ -51,7 +66,6 @@ const tr = (key: string, fallback: string = "") =>
   <CollaboratorsDisplay />
   <!-- <KeyNoteSpeakers /> -->
   <!-- <StandPrice /> -->
-  <!-- <BecomeAnExhibitor /> -->
   <!-- <Events events={events} isLeftToRight={true} /> -->
   <ContactTeam />
 </Layout>
