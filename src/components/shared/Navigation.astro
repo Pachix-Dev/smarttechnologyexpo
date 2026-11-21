@@ -236,11 +236,21 @@ const menu: MenuItem[] = [
   },
   {
     title: tr("menu.afeter_show_report"),
-    href:
-      locale === "en"
-        ? "/files/aftershow/Aftershow_ENG_Report_ITM_AMOF_DRONE_2025.pdf"
-        : "/files/aftershow/Aftershow_ESP_Report_ITM_AMOF_DRONE_2025.pdf",
-    target: "_blank",
+    items: [
+      {
+        title: '2026',
+        href: "/files/aftershow/STE_2026_Aftershow_report.pdf",
+        target: "_blank"
+      },
+      {
+        title: '2025',
+        href:
+          locale === "en"
+            ? "/files/aftershow/Aftershow_ENG_Report_ITM_AMOF_DRONE_2025.pdf"
+            : "/files/aftershow/Aftershow_ESP_Report_ITM_AMOF_DRONE_2025.pdf",
+        target: "_blank",
+      }
+    ],
   },
 ];
 ---
