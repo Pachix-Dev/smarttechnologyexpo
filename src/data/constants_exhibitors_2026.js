@@ -23,10 +23,11 @@ const exhibitors = [
   { src: "/img/exhibitors2026/csia.webp", alt: "Control System Integrators Association ", width: 150 },
   { src: "/img/exhibitors2026/delta.webp", alt: "DELTA", width: 150 },
   { src: "/img/exhibitors2026/dinkle.webp", alt: "Dinkle", width: 100 },
-  { src: "/img/exhibitors2026/dobot.webp", alt: "", width: 150 },
+  { src: "/img/exhibitors2026/dobot.webp", alt: "Dobot", width: 150 },
   { src: "/img/exhibitors2026/electro_controles_industriales.webp", alt: "Electro Controles Industriales", width: 150 },
   { src: "/img/exhibitors2026/endress_hauser.webp", alt: "Endress Hauser México", width: 150 },
   { src: "/img/exhibitors2026/erbessd_instruments.webp", alt: "ERBESSD INSTRUMENTS", width: 150 },
+  { src: "/img/exhibitors2026/espai.webp", alt: "ESPAI", width: 150 },
   { src: "/img/exhibitors2026/euchner.webp", alt: "EUCHNER MEXICO", width: 150 },
   { src: "/img/exhibitors2026/eurocontroles.webp", alt: "EUROCONTROLES", width: 100 },
   { src: "/img/exhibitors2026/eurokabel.webp", alt: "Eurokabel México", width: 150 },
@@ -75,6 +76,7 @@ const exhibitors = [
   { src: "/img/exhibitors2026/monitorapp.webp", alt: "MonitorApp® ", width: 150 },
   { src: "/img/exhibitors2026/movi_ruedas.webp", alt: "MOVI RUEDAS", width: 150 },
   { src: "/img/exhibitors2026/neoden.webp", alt: "neoden mexico", width: 150 },
+  { src: "/img/exhibitors2026/newland.webp", alt: "newland", width: 150 },
   { src: "/img/exhibitors2026/nidec_dives.webp", alt: "NIDEC DRIVES", width: 150 },
   { src: "/img/exhibitors2026/nojoxten.webp", alt: "Nojoxten", width: 150 },
   { src: "/img/exhibitors2026/northwind.webp", alt: "NorthWind Technical Services", width: 150 },
@@ -124,7 +126,6 @@ const exhibitors = [
   { src: "/img/exhibitors2026/b&r_logo.webp", alt: "B&R", width: 150 },
   { src: "/img/exhibitors2026/schneider.webp", alt: "Schneider", width: 150 },
   { src: "/img/exhibitors2026/sensortrol.webp", alt: "Sensortrol", width: 150 },
-  { src: "/img/exhibitors2026/teradyne_robotics.webp", alt: "Teradyne Robotics", width: 200 }
 ]
 
 export { exhibitors };
