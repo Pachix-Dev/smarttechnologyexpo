@@ -45,7 +45,7 @@ const getOnsiteVisitorsTable = (source = "main") =>
 export class RegisterModel {
 
 
-  
+  //Crear lead expositor en la tabla ste_exhibitor_leads_2026
   static async create_expositor_lead({
     sector,
     name,

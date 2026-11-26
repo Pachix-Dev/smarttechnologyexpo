@@ -83,6 +83,8 @@ app.get("/check-user-visit", async (req, res) => {
   }
 });
 
+
+// Expositor landing email route
 app.post("/expositor-landing-email", async (req, res) => {
   try {
     const { body } = req;
@@ -439,54 +441,54 @@ app.post("/webhook-mp", async (req, res) => {
   }
 });
 
-app.post("/expositor-landing-email", async (req, res) => {
-  try {
-    const { body } = req;
+// app.post("/expositor-landing-email", async (req, res) => {
+//   try {
+//     const { body } = req;
 
-    // Validar que el expositor no exista previamente
-    const expositorExists = await RegisterModel.check_expositor_exists(
-      body.email,
-    );
-    if (expositorExists) {
-      return res.status(400).send({
-        status: false,
-        message:
-          "Ya has registrado una solicitud con este correo electrónico...",
-      });
-    }
+//     Validar que el expositor no exista previamente
+//     const expositorExists = await RegisterModel.check_expositor_exists(
+//       body.email,
+//     );
+//     if (expositorExists) {
+//       return res.status(400).send({
+//         status: false,
+//         message:
+//           "Ya has registrado una solicitud con este correo electrónico...",
+//       });
+//     }
 
-    await RegisterModel.create_expositor_lead_ecomondo({ ...body });
+//     await RegisterModel.create_expositor_lead_ecomondo({ ...body });
 
-    await resend.emails.send({
-      from: "LEAD EXPOSITOR ECOMONDO 2026 <noreply@ecomondomexico.com.mx>",
-      to: "samuel.ramirez@igeco.mx",
-      cc: "jesus.zermeno@igeco.mx",
-      subject: "Nuevo Lead Expositor ECOMONDO MEXICO 2026",
-      // SEGURIDAD (5): escapamos los datos del usuario (anti inyección de HTML).
-      html: `<h1>Un nuevo expositor ha solicitado información</h1>
-            <p>Sector: ${escapeHtml(body.sector)}</p>
-            <p>Nombre: ${escapeHtml(body.name)}</p>
-            <p>Correo: ${escapeHtml(body.email)}</p>
-            <p>Empresa: ${escapeHtml(body.company)}</p>
-            <p>Telefono: ${escapeHtml(body.phone)}</p>
-            <p>Mensaje: ${escapeHtml(body.message)}</p>
-            `,
-    });
+//     await resend.emails.send({
+//       from: "LEAD EXPOSITOR ECOMONDO 2026 <noreply@ecomondomexico.com.mx>",
+//       to: "samuel.ramirez@igeco.mx",
+//       cc: "jesus.zermeno@igeco.mx",
+//       subject: "Nuevo Lead Expositor ECOMONDO MEXICO 2026",
+//       // SEGURIDAD (5): escapamos los datos del usuario (anti inyección de HTML).
+//       html: `<h1>Un nuevo expositor ha solicitado información</h1>
+//             <p>Sector: ${escapeHtml(body.sector)}</p>
+//             <p>Nombre: ${escapeHtml(body.name)}</p>
+//             <p>Correo: ${escapeHtml(body.email)}</p>
+//             <p>Empresa: ${escapeHtml(body.company)}</p>
+//             <p>Telefono: ${escapeHtml(body.phone)}</p>
+//             <p>Mensaje: ${escapeHtml(body.message)}</p>
+//             `,
+//     });
 
-    return res.send({
-      status: true,
-      message:
-        "Gracias por registrarte, te hemos enviado un correo de confirmación a tu bandeja de entrada...",
-    });
-  } catch (err) {
-    console.log(err);
-    return res.status(500).send({
-      status: false,
-      message:
-        "No pudimos enviarte el correo de confirmación de tu registro, por favor descarga tu registro en este pagina y presentalo hasta el dia del evento...",
-    });
-  }
-});
+//     return res.send({
+//       status: true,
+//       message:
+//         "Gracias por registrarte, te hemos enviado un correo de confirmación a tu bandeja de entrada...",
+//     });
+//   } catch (err) {
+//     console.log(err);
+//     return res.status(500).send({
+//       status: false,
+//       message:
+//         "No pudimos enviarte el correo de confirmación de tu registro, por favor descarga tu registro en este pagina y presentalo hasta el dia del evento...",
+//     });
+//   }
+// });
 
 app.post("/susbribe-email-ecomondo", async (req, res) => {
   const { body } = req;
