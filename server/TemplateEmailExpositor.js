@@ -4,6 +4,7 @@ const email_template_expositor = ({
   email,
   company,
   phone,
+  website,
   message,
 }) => {
   return `
@@ -202,6 +203,28 @@ const email_template_expositor = ({
               >
                 ${phone}
               </a>
+            </td>
+          </tr>
+
+          <tr>
+            <td
+              style="
+                padding: 12px 16px;
+                background-color: #f8fafc;
+                border-bottom: 1px solid #e5e7eb;
+                font-weight: bold;
+              "
+            >
+              Página web
+            </td>
+            <td
+              style="
+                padding: 12px 16px;
+                border-bottom: 1px solid #e5e7eb;
+                overflow-wrap: anywhere;
+              "
+            >
+              ${website || "No proporcionada"}
             </td>
           </tr>
 

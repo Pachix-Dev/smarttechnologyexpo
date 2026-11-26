@@ -8,6 +8,7 @@
         - Email: Correo electrónico de contacto. Obligatorio.
         - Código de país: Selección del código internacional del país para el teléfono. Obligatorio.
         - Teléfono: Número de teléfono de contacto. Obligatorio.
+        - Página web: Sitio web de la empresa. Opcional.
         - Mensaje: Mensaje o motivo de contacto. Obligatorio.
       */
 }
@@ -17,7 +18,7 @@ import { countrycodes } from "../../lib/countrycodes";
 import { useZustandStore } from "../../store/form-store";
 
 export function ContactForm({ language }) {
-  const [selectedCountryCode, setSelectedCountryCode] = useState("");
+  const [selectedCountryCode, setSelectedCountryCode] = useState("52");
   const [phoneNumber, setPhoneNumber] = useState("");
 
   const [response, setResponse] = useState("");
@@ -34,14 +35,12 @@ export function ContactForm({ language }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-
     const formData = Object.fromEntries(new window.FormData(event.target));
     const leadData = {
       ...formData,
       phone: `${formData.countrycodes} ${formData.phone}`.trim(),
-    }
-    delete leadData.countrycodes
-
+    };
+    delete leadData.countrycodes;
 
     const requestOptions = {
       method: "POST",
@@ -55,21 +54,25 @@ export function ContactForm({ language }) {
       setSendStatus(true);
 
       const urlbase = import.meta.env.DEV
-    ? 'http://localhost:3005/'
-    : 'https://smarttechnologyexpo.mx/server/'
+        ? "http://localhost:3005/"
+        : "https://smarttechnologyexpo.mx/server/";
 
       // Guardar datos en la base de datos
-      const res = await fetch( urlbase + "expositor-landing-email",
+      const res = await fetch(
+        urlbase + "expositor-landing-email",
         requestOptions,
       );
       const data = await res.json();
 
       if (data.status) {
-          useZustandStore.setState({ zustandState: true });
-          document.getElementById("form-contact")?.reset();
-          setSelectedCountryCode("52");
-          setPhoneNumber("");
-          window.location.href = language === 'es' ? '/gracias-por-contactarnos' : '/en/gracias-por-contactarnos';
+        useZustandStore.setState({ zustandState: true });
+        document.getElementById("form-contact")?.reset();
+        setSelectedCountryCode("52");
+        setPhoneNumber("");
+        window.location.href =
+          language === "es"
+            ? "/gracias-por-contactarnos"
+            : "/en/gracias-por-contactarnos";
       } else {
         setSendStatus(false);
         setResponse(
@@ -98,16 +101,19 @@ export function ContactForm({ language }) {
             id="contact-form-title"
             className="text-xl md:text-2xl font-bold text-gray-900 mb-10"
           >
-            {language === 'es' ? 'Completa el formulario y nos pondremos en contacto contigo.' : 'Complete the form and we will get in touch with you.'}
+            {language === "es"
+              ? "Completa el formulario y nos pondremos en contacto contigo."
+              : "Complete the form and we will get in touch with you."}
           </h2>
         </div>
+
         {/* Empresa: Nombre de la empresa que desea participar. Obligatorio. */}
         <div>
           <label
             htmlFor="company"
             className="flex items-center gap-1 mb-1 text-sm font-semibold text-gray-800"
           >
-            <span>{language === 'es' ? 'Empresa' : 'Company'}</span>
+            <span>{language === "es" ? "Empresa" : "Company"}</span>
             <span className="text-[#9f2e26]" aria-hidden="true">
               *
             </span>
@@ -117,19 +123,22 @@ export function ContactForm({ language }) {
             id="company"
             name="company"
             className="shadow-sm bg-white/80 border border-[#858C7E]/40 text-gray-900 text-sm rounded-lg focus:ring-[#1F5E00] focus:border-[#1F5E00] block w-full p-3"
-            placeholder={language === 'es' ? 'Empresa S.A. de C.V.' : 'Company Ltd.'}
+            placeholder={
+              language === "es" ? "Empresa S.A. de C.V." : "Company Ltd."
+            }
             required
             autoComplete="organization"
             aria-required="true"
           />
         </div>
+
         {/* Sector: Sector industrial al que pertenece la empresa. Obligatorio. */}
         <div>
           <label
             htmlFor="sector"
             className="flex items-center gap-1 mb-1 text-sm font-semibold text-gray-800"
           >
-            <span>{language === 'es' ? 'Sector' : 'Industry'}</span>
+            <span>{language === "es" ? "Sector" : "Industry"}</span>
             <span className="text-[#9f2e26]" aria-hidden="true">
               *
             </span>
@@ -142,7 +151,7 @@ export function ContactForm({ language }) {
             aria-required="true"
           >
             <option value="" defaultValue>
-              {language === 'es' ? 'Elige una opción' : 'Choose an option'}
+              {language === "es" ? "Elige una opción" : "Choose an option"}
             </option>
             <option value="Automatización y Robótica /  Automation and Robotics">
               Automatización y Robótica / Automation and Robotics
@@ -171,111 +180,147 @@ export function ContactForm({ language }) {
               Software de Automatización e Integración de Sistemas / Automation
               Software and Systems Integration
             </option>
-            <option value="Drone Innovators Forum">Drones</option>
+            <option value="Drones y tecnología de vanguardia / Drones and cutting-edge tech">
+              Drones y tecnología de vanguardia / Drones and cutting-edge tech
+            </option>
           </select>
         </div>
-        {/* Nombre: Nombre completo de la persona de contacto. Obligatorio. */}
-        <div>
-          <label
-            htmlFor="name"
-            className="flex items-center gap-1 mb-1 text-sm font-semibold text-gray-800"
-          >
-            <span>{language === 'es' ? 'Nombre' : 'Name'}</span>
-            <span className="text-[#9f2e26]" aria-hidden="true">
-              *
-            </span>
-          </label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            className="shadow-sm bg-white/80 border border-[#858C7E]/40 text-gray-900 text-sm rounded-lg focus:ring-[#1F5E00] focus:border-[#1F5E00] block w-full p-3"
-            placeholder="John Doe"
-            required
-            autoComplete="name"
-            aria-required="true"
-          />
-        </div>
-        {/* Email: Correo electrónico de contacto. Obligatorio. */}
-        <div>
-          <label
-            htmlFor="email"
-            className="flex items-center gap-1 mb-1 text-sm font-semibold text-gray-800"
-          >
-            <span>{language === 'es' ? 'Correo electrónico' : 'Email'}</span>
-            <span className="text-[#9f2e26]" aria-hidden="true">
-              *
-            </span>
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            className="shadow-sm bg-white/80 border border-[#858C7E]/40 text-gray-900 text-sm rounded-lg focus:ring-[#1F5E00] focus:border-[#1F5E00] block w-full p-3"
-            placeholder="name@flowbite.com"
-            required
-            autoComplete="email"
-            aria-required="true"
-          />
-        </div>
-        {/* Código de país y teléfono: Selección del código internacional y número de teléfono. Ambos obligatorios. */}
-        <div>
-          <label
-            htmlFor="countrycodes"
-            className="block mb-1 text-sm font-semibold text-gray-800"
-          >
-            {language === 'es' ? 'Código de país + número de teléfono' : 'Country code + phone number'}
-          </label>
-          <div
-            className="w-full rounded-lg flex flex-col md:flex-row gap-3"
-            role="group"
-            aria-labelledby="countrycodes"
-          >
-            <div className="w-52">
-              {/* Código de país: Selección del código internacional. Obligatorio. */}
-              <select
-                className="block w-full mt-1 p-3 text-gray-700 border border-[#858C7E]/40 rounded-md focus:outline-none focus:ring-[#1F5E00] focus:border-[#1F5E00] bg-white/80"
-                value={selectedCountryCode}
-                onChange={handleCountryCodeChange}
-                required
-                id="countrycodes"
-                name="countrycodes"
-                aria-required="true"
-              >
-                <option value="52" defaultValue={52}>
-                  MX 52
-                </option>
-                {countrycodes.map((country, index) => (
-                  <option key={index} value={country.code}>
-                    {`${country.iso} (${country.code})`}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="w-full">
-              {/* Teléfono: Número de teléfono de contacto. Obligatorio. */}
-              <input
-                className="block w-full mt-1 p-3 text-gray-700 border border-[#858C7E]/40 rounded-md focus:outline-none focus:ring-[#1F5E00] focus:border-[#1F5E00] bg-white/80"
-                type="number"
-                value={phoneNumber}
-                onChange={handlePhoneNumberChange}
-                placeholder={language === 'es' ? 'Ingresa el número de teléfono' : 'Enter phone number'}
-                required
-                id="phone"
-                name="phone"
-                autoComplete="phone"
-                aria-required="true"
-              />
-            </div>
+
+        <div className="grid sm:grid-cols-2 gap-4">
+          {/* Nombre: Nombre completo de la persona de contacto. Obligatorio. */}
+          <div>
+            <label
+              htmlFor="name"
+              className="flex items-center gap-1 mb-1 text-sm font-semibold text-gray-800"
+            >
+              <span>{language === "es" ? "Nombre" : "Name"}</span>
+              <span className="text-[#9f2e26]" aria-hidden="true">
+                *
+              </span>
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              className="shadow-sm bg-white/80 border border-[#858C7E]/40 text-gray-900 text-sm rounded-lg focus:ring-[#1F5E00] focus:border-[#1F5E00] block w-full p-3"
+              placeholder="John Doe"
+              required
+              autoComplete="name"
+              aria-required="true"
+            />
+          </div>
+          {/* Email: Correo electrónico de contacto. Obligatorio. */}
+          <div>
+            <label
+              htmlFor="email"
+              className="flex items-center gap-1 mb-1 text-sm font-semibold text-gray-800"
+            >
+              <span>{language === "es" ? "Correo electrónico" : "Email"}</span>
+              <span className="text-[#9f2e26]" aria-hidden="true">
+                *
+              </span>
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              className="shadow-sm bg-white/80 border border-[#858C7E]/40 text-gray-900 text-sm rounded-lg focus:ring-[#1F5E00] focus:border-[#1F5E00] block w-full p-3"
+              placeholder="name@flowbite.com"
+              required
+              autoComplete="email"
+              aria-required="true"
+            />
           </div>
         </div>
+
+        <div className="grid sm:grid-cols-2 gap-4">
+          {/* Código de país y teléfono: Selección del código internacional y número de teléfono. Ambos obligatorios. */}
+          <div>
+            <label
+              htmlFor="countrycodes"
+              className="block mb-1 text-sm font-semibold text-gray-800"
+            >
+              {language === "es"
+                ? "Código de país + número de teléfono"
+                : "Country code + phone number"}
+            </label>
+            <div
+              className="w-full rounded-lg flex flex-col md:flex-row gap-3"
+              role="group"
+              aria-labelledby="countrycodes"
+            >
+              <div className="w-full sm:w-52">
+                {/* Código de país: Selección del código internacional. Obligatorio. */}
+                <select
+                  className="block w-full mt-1 p-3 text-gray-700 border border-[#858C7E]/40 rounded-md focus:outline-none focus:ring-[#1F5E00] focus:border-[#1F5E00] bg-white/80"
+                  value={selectedCountryCode}
+                  onChange={handleCountryCodeChange}
+                  required
+                  id="countrycodes"
+                  name="countrycodes"
+                  aria-required="true"
+                >
+                  <option value="52" defaultValue={52}>
+                    MX 52
+                  </option>
+                  {countrycodes.map((country, index) => (
+                    <option key={index} value={country.code}>
+                      {`${country.iso} (${country.code})`}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="w-full">
+                {/* Teléfono: Número de teléfono de contacto. Obligatorio. */}
+                <input
+                  className="block w-full mt-1 p-3 text-gray-700 border border-[#858C7E]/40 rounded-md focus:outline-none focus:ring-[#1F5E00] focus:border-[#1F5E00] bg-white/80"
+                  type="number"
+                  value={phoneNumber}
+                  onChange={handlePhoneNumberChange}
+                  placeholder={
+                    language === "es"
+                      ? "Ingresa el número de teléfono"
+                      : "Enter phone number"
+                  }
+                  required
+                  id="phone"
+                  name="phone"
+                  autoComplete="phone"
+                  aria-required="true"
+                />
+              </div>
+            </div>
+          </div>
+          {/* Pagína web :  Pagina web para obtener más información de la empresa */}
+          <div>
+            <label
+              htmlFor="website"
+              className="block mb-1 text-sm font-semibold text-gray-800"
+            >
+              {language === "es" ? "Página web" : "Website"}
+            </label>
+            <input
+              className="block w-full mt-2 p-3 text-gray-700 border border-[#858C7E]/40 rounded-md focus:outline-none focus:ring-[#1F5E00] focus:border-[#1F5E00] bg-white/80"
+              type="text"
+              id="website"
+              name="website"
+              autoComplete="url"
+              placeholder={
+                language === "es"
+                  ? "https://www.empresa.com"
+                  : "https://www.company.com"
+              }
+            />
+          </div>
+        </div>
+
         {/* Mensaje: Mensaje o motivo de contacto. Obligatorio. */}
         <div className="sm:col-span-2">
           <label
             htmlFor="message"
             className="flex items-center gap-1 mb-1 text-sm font-semibold text-gray-800"
           >
-            <span>{language === 'es' ? 'Mensaje' : 'Message'}</span>
+            <span>{language === "es" ? "Mensaje" : "Message"}</span>
             <span className="text-[#9f2e26]" aria-hidden="true">
               *
             </span>
@@ -285,14 +330,21 @@ export function ContactForm({ language }) {
             rows="6"
             name="message"
             className="block p-3 w-full text-sm text-gray-900 bg-white/80 rounded-lg shadow-sm border border-[#858C7E]/40 focus:ring-[#1F5E00] focus:border-[#1F5E00]"
-            placeholder={language === 'es' ? 'Déjanos saber cómo podemos ayudarte...' : 'Let us know how we can help you...'}
+            placeholder={
+              language === "es"
+                ? "Déjanos saber cómo podemos ayudarte..."
+                : "Let us know how we can help you..."
+            }
             required
             aria-required="true"
           ></textarea>
           <p className="mt-1 text-xs text-gray-600">
-            {language === 'es' ? 'Sé específico para que podamos ayudarte mejor.' : 'Be specific so we can help you better.'}
+            {language === "es"
+              ? "Sé específico para que podamos ayudarte mejor."
+              : "Be specific so we can help you better."}
           </p>
         </div>
+
         {sendStatus ? (
           <span className="text-gray-800 flex items-center" aria-live="polite">
             <svg
@@ -315,7 +367,7 @@ export function ContactForm({ language }) {
                 d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
               ></path>
             </svg>{" "}
-            {language === 'es' ? 'Enviando ...' : 'Sending ...'}
+            {language === "es" ? "Enviando ..." : "Sending ..."}
           </span>
         ) : (
           <>
@@ -344,7 +396,7 @@ export function ContactForm({ language }) {
                     ></path>
                   </svg>
                 ) : null}
-                {language === 'es' ? 'Enviar' : 'Send'}
+                {language === "es" ? "Enviar" : "Send"}
               </button>
             ) : (
               <span className="text-gray-800 font-bold rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 mt-4 text-center">

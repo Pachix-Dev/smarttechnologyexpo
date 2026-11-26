@@ -43,6 +43,9 @@ const getOnsiteVisitorsTable = (source = "main") =>
   source === "test" ? "visitors_ste_2026_test" : "visitors_ste_2026";
 
 export class RegisterModel {
+
+
+  
   static async create_expositor_lead({
     sector,
     name,
@@ -50,12 +53,13 @@ export class RegisterModel {
     phone,
     message,
     company,
+    website,
   }) {
     const connection = await mysql.createConnection(config);
     try {
       const [result] = await connection.query(
-        "INSERT INTO ste_exhibitor_leads_2026	( sector, name, email, phone, message, company ) VALUES (?,?,?,?,?,?)",
-        [sector, name, email, phone, message, company],
+        "INSERT INTO ste_exhibitor_leads_2026 (sector, name, email, phone, message, company, webpage) VALUES (?,?,?,?,?,?,?)",
+        [sector, name, email, phone, message, company, website],
       );
 
       return {
@@ -77,34 +81,6 @@ export class RegisterModel {
       const [result] = await connection.query(
         "INSERT INTO boletin_ecomondo ( name, email ) VALUES (?,?)",
         [name, email],
-      );
-
-      return {
-        status: true,
-        insertId: result.insertId,
-        ...result,
-      };
-    } catch (error) {
-      console.log(error);
-      return hableError(error);
-    } finally {
-      await connection.end();
-    }
-  }
-
-  static async create_expositor_lead({
-    sector,
-    name,
-    email,
-    phone,
-    message,
-    company,
-  }) {
-    const connection = await mysql.createConnection(config);
-    try {
-      const [result] = await connection.query(
-        "INSERT INTO ste_exhibitor_leads_2026	( sector, name, email, phone, message, company ) VALUES (?,?,?,?,?,?)",
-        [sector, name, email, phone, message, company],
       );
 
       return {
